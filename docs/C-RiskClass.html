@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Clasificación de Riesgos | Loss Data Analytics</title>
+  <meta name="description" content="Chapter 8 Clasificación de Riesgos | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Clasificación de Riesgos | Loss Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 8 Clasificación de Riesgos | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="github-repo" content="https://github.com/openacttexts/Loss-Data-Analytics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Clasificación de Riesgos | Loss Data Analytics" />
+  
+  <meta name="twitter:description" content="Chapter 8 Clasificación de Riesgos | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  
+
+<meta name="author" content="An open text authored by the Actuarial Community" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="C-PremiumFoundations.html"/>
+<link rel="next" href="C-Credibility.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<!-- Mathjax -->
+<script type='text/x-mathjax-config'>
+		MathJax.Hub.Config({
+			extensions: ['tex2jax.js'],
+			jax: ['input/TeX', 'output/HTML-CSS'],
+			tex2jax: {
+				inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+				displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': { availableFonts: ['TeX'] }
+		});
+</script>
+
+<!-- The following code is for the quizzes -->
+<script src="https://surveyjs.azureedge.net/1.0.50/survey.jquery.js"></script>
+<link href="https://surveyjs.azureedge.net/1.0.50/survey.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>  
+
+<script>
+function markdownConverterEWF() {  
+//Create showdown markdown converter
+var converter = new showdown.Converter();
+converter.setOption('ghCompatibleHeaderId', true);
+survey
+    .onTextMarkdown
+    .add(function (survey, options) {
+        //convert the mardown text to html
+        var str = converter.makeHtml(options.text);
+        //remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
+        //set html
+        options.html = str;
+         MathJax.Hub.Queue(['Typeset',MathJax.Hub, 'options']);
+    });  
+};
+// Quiz Header info
+const jsonHeader = { 
+    showProgressBar: "bottom",
+    showTimerPanel: "none",
+    maxTimeToFinishPage: 10000,
+    maxTimeToFinish: 25000,
+    firstPageIsStarted: true,
+    startSurveyText: "Start Quiz" //,
+//    title: "Does This Make Sense?"
+}
+// One and Two question quizzes
+function jsonSummary1EWF(json) {  
+let jsonEnd1 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd1;
+};
+
+
+function jsonSummary2EWF(json) {  
+let jsonEnd2 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd2;
+};
+
+// Three, four, and five question quizzes
+function jsonSummary3EWF(json) {  
+let jsonEnd3 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][3]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][3]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][3]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd3;
+};
+
+function jsonSummary4EWF(json) {  
+jsonEnd4 = jsonSummary3EWF(json);
+jsonEnd4.completedHtml = jsonEnd4.completedHtml +  
+"<br>"+
+json["pages"][4]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][4]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][4]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd4;
+};
+
+function jsonSummary5EWF(json) {  
+jsonEnd5 = jsonSummary4EWF(json);
+jsonEnd5.completedHtml = jsonEnd5.completedHtml +  
+"<br>"+
+json["pages"][5]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][5]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][5]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd5;
+};
+
+function jsonSummary6EWF(json) {  
+jsonEnd6 = jsonSummary5EWF(json);
+jsonEnd6.completedHtml = jsonEnd6.completedHtml +  
+"<br>"+
+json["pages"][6]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][6]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][6]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd6;
+};
+
+function jsonSummary7EWF(json) {  
+jsonEnd7 = jsonSummary6EWF(json);
+jsonEnd7.completedHtml = jsonEnd7.completedHtml +  
+"<br>"+
+json["pages"][7]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][7]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][7]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd7;
+};
+
+function jsonSummary8EWF(json) {  
+jsonEnd8 = jsonSummary7EWF(json);
+jsonEnd8.completedHtml = jsonEnd8.completedHtml +  
+"<br>"+
+json["pages"][8]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][8]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][8]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd8;
+};
+
+function jsonSummary9EWF(json) {  
+jsonEnd9 = jsonSummary8EWF(json);
+jsonEnd9.completedHtml = jsonEnd9.completedHtml +  
+"<br>"+
+json["pages"][9]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][9]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][9]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd9;
+};
+
+
+function jsonSummary10EWF(json) {  
+jsonEnd10 = jsonSummary9EWF(json);
+jsonEnd10.completedHtml = jsonEnd10.completedHtml +  
+"<br>"+
+json["pages"][10]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][10]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][10]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd10;
+};
+
+
+function jsonSummary11EWF(json) {  
+jsonEnd11 = jsonSummary10EWF(json);
+jsonEnd11.completedHtml = jsonEnd11.completedHtml +  
+"<br>"+
+json["pages"][11]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][11]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][11]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd11;
+};
+
+
+
+</script>  
+<!-- This completes the code for the quizzes -->
+
+
+<!-- Various toggle functions used throughout --> 
+<script language="javascript">
+function toggle(id1,id2) {
+	var ele = document.getElementById(id1); var text = document.getElementById(id2);
+	if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Solución";}
+		else {ele.style.display = "block"; text.innerHTML = "Ocultar Solución";}}
+function togglecode(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Código R";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Código R";}}
+function toggleEX(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Ejemplo";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Ejemplo";}}
+function toggleTheory(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Teoría";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Teoría";}}
+function toggleQuiz(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Solución de Prueba";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Solución de Prueba";}}      
+</script>
+
+<!-- A few functions for revealing definitions -->
+<script language="javascript">
+<!--   $( function() {
+    $("#tabs").tabs();
+  } ); -->
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+
+<script language="javascript">
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DF6W196L8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DF6W196L8Q');
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Loss Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#naturaleza-y-relevancia-del-seguro"><i class="fa fa-check"></i><b>1.1.1</b> Naturaleza y relevancia del seguro</a></li>
+<li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Procesos en los seguros</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="C-Intro.html"><a href="C-Intro.html#inicio-del-seguro"><i class="fa fa-check"></i><b>1.2.1</b> Inicio del seguro</a></li>
+<li class="chapter" data-level="1.2.2" data-path="C-Intro.html"><a href="C-Intro.html#renovación-del-seguro"><i class="fa fa-check"></i><b>1.2.2</b> Renovación del seguro</a></li>
+<li class="chapter" data-level="1.2.3" data-path="C-Intro.html"><a href="C-Intro.html#gestión-de-productos-y-siniestros"><i class="fa fa-check"></i><b>1.2.3</b> Gestión de productos y siniestros</a></li>
+<li class="chapter" data-level="1.2.4" data-path="C-Intro.html"><a href="C-Intro.html#S:Reserving"><i class="fa fa-check"></i><b>1.2.4</b> Provisiones</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="C-Intro.html"><a href="C-Intro.html#S:OutComes"><i class="fa fa-check"></i><b>1.3.1</b> Variables de siniestralidad del fondo: frecuencia y severidad</a></li>
+<li class="chapter" data-level="1.3.2" data-path="C-Intro.html"><a href="C-Intro.html#S:FundVariables"><i class="fa fa-check"></i><b>1.3.2</b> Variables de clasificación del fondo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="C-Intro.html"><a href="C-Intro.html#operativa-del-fondo"><i class="fa fa-check"></i><b>1.3.3</b> Operativa del fondo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="C-Intro.html"><a href="C-Intro.html#Intro-further-reading-and-resources"><i class="fa fa-check"></i><b>1.4</b> Más Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:how-frequency-augments-severity-information"><i class="fa fa-check"></i><b>2.1.1</b> Cómo la frecuencia incrementa la información sobre la cuantía</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:foundations"><i class="fa fa-check"></i><b>2.2.1</b> Fundamentos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:generating-functions"><i class="fa fa-check"></i><b>2.2.2</b> Funciones Generadoras de Momentos y de Probabilidad</a></li>
+<li class="chapter" data-level="2.2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:important-frequency-distributions"><i class="fa fa-check"></i><b>2.2.3</b> Distribuciones de Frecuencias Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> La Clase (a, b, 0)</a></li>
+<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Estimación de los parámetros</a></li>
+<li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> MLE de las distribuciones de frecuencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:zero-truncation-or-modification"><i class="fa fa-check"></i><b>2.5.1</b> Modificación o Truncamiento en Cero</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Distribuciones Mixtas</a></li>
+<li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Bondad del Ajuste</a></li>
+<li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. Código R para Gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Momentos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#cuantiles"><i class="fa fa-check"></i><b>3.1.2</b> Cuantiles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#función-generatriz-de-momentos"><i class="fa fa-check"></i><b>3.1.3</b> Función generatriz de momentos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Distribución gamma</a></li>
+<li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#distribución-pareto"><i class="fa fa-check"></i><b>3.2.2</b> Distribución Pareto</a></li>
+<li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Distribución Weibull</a></li>
+<li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#distribución-beta-generalizada-de-segundo-tipo"><i class="fa fa-check"></i><b>3.2.4</b> Distribución Beta Generalizada de segundo tipo</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="C-Severity.html"><a href="C-Severity.html#funciones-de-variables-aleatorias-y-sus-distribuciones"><i class="fa fa-check"></i><b>3.3.1</b> Funciones de variables aleatorias y sus distribuciones</a></li>
+<li class="chapter" data-level="3.3.2" data-path="C-Severity.html"><a href="C-Severity.html#multiplicación-por-una-constante"><i class="fa fa-check"></i><b>3.3.2</b> Multiplicación por una constante</a></li>
+<li class="chapter" data-level="3.3.3" data-path="C-Severity.html"><a href="C-Severity.html#elevación-a-una-potencia"><i class="fa fa-check"></i><b>3.3.3</b> Elevación a una potencia</a></li>
+<li class="chapter" data-level="3.3.4" data-path="C-Severity.html"><a href="C-Severity.html#exponenciación"><i class="fa fa-check"></i><b>3.3.4</b> Exponenciación</a></li>
+<li class="chapter" data-level="3.3.5" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-finitas"><i class="fa fa-check"></i><b>3.3.5</b> Mixturas finitas</a></li>
+<li class="chapter" data-level="3.3.6" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-continuas"><i class="fa fa-check"></i><b>3.3.6</b> Mixturas continuas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Franquicias</a></li>
+<li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Límites de la póliza</a></li>
+<li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coseguro-e-inflación"><i class="fa fa-check"></i><b>3.4.3</b> Coseguro e inflación</a></li>
+<li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reaseguro</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#estimadores-de-máxima-verosimilitud-para-datos-completos"><i class="fa fa-check"></i><b>3.5.1</b> Estimadores de máxima verosimilitud para datos completos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Estimadores por máxima verosimilitud usando datos modificados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Recursos y Contribuciones Adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a><ul>
+<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica"><i class="fa fa-check"></i><b>4.1.1</b> Estimación No Paramétrica</a></li>
+<li class="chapter" data-level="4.1.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ToolsModelSelection"><i class="fa fa-check"></i><b>4.1.2</b> Herramientas para la Selección de Modelos y Diagnósticos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#valores-iniciales"><i class="fa fa-check"></i><b>4.1.3</b> Valores Iniciales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-iterativa"><i class="fa fa-check"></i><b>4.2.1</b> Selección del Modelo Iterativa</a></li>
+<li class="chapter" data-level="4.2.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-entrenamiento"><i class="fa fa-check"></i><b>4.2.2</b> Selección de Modelo basada en un Conjunto de Datos de Entrenamiento</a></li>
+<li class="chapter" data-level="4.2.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-prueba"><i class="fa fa-check"></i><b>4.2.3</b> Selección de Modelo basada en un Conjunto de Datos de Prueba</a></li>
+<li class="chapter" data-level="4.2.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-basada-en-validación-cruzada"><i class="fa fa-check"></i><b>4.2.4</b> Selección del Modelo basada en Validación Cruzada</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-paramétrica-usando-datos-modificados"><i class="fa fa-check"></i><b>4.3.1</b> Estimación Paramétrica usando Datos Modificados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica-utilizando-datos-modificados"><i class="fa fa-check"></i><b>4.3.2</b> Estimación no Paramétrica Utilizando Datos Modificados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:IntroBayes"><i class="fa fa-check"></i><b>4.4.1</b> Introducción a la Inferencia Bayesiana</a></li>
+<li class="chapter" data-level="4.4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#modelo-bayesiano"><i class="fa fa-check"></i><b>4.4.2</b> Modelo Bayesiano</a></li>
+<li class="chapter" data-level="4.4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#inferencia-bayesiana"><i class="fa fa-check"></i><b>4.4.3</b> Inferencia Bayesiana</a></li>
+<li class="chapter" data-level="4.4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:ConjugateDistributions"><i class="fa fa-check"></i><b>4.4.4</b> Distribuciones Conjugadas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Más Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introducción"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-individual"><i class="fa fa-check"></i><b>5.2</b> Modelo de Riesgo Individual</a></li>
+<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
+<li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
+<li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#método-recursivo"><i class="fa fa-check"></i><b>5.4.1</b> Método recursivo</a></li>
+<li class="chapter" data-level="5.4.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#simulación"><i class="fa fa-check"></i><b>5.4.2</b> Simulación</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-la-exposición-en-la-frecuencia"><i class="fa fa-check"></i><b>5.5.1</b> Impacto de la exposición en la frecuencia</a></li>
+<li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impacto de los deducibles en la frecuencia de siniestros</a></li>
+<li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-las-modificaciones-de-la-póliza-en-la-siniestralidad-agregada"><i class="fa fa-check"></i><b>5.5.3</b> Impacto de las modificaciones de la póliza en la siniestralidad agregada</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Otros Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a><ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generación-de-observaciones-uniformes-independientes"><i class="fa fa-check"></i><b>6.1.1</b> Generación de observaciones uniformes independientes</a></li>
+<li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:InverseTransform"><i class="fa fa-check"></i><b>6.1.2</b> Método de la transformada inversa</a></li>
+<li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-de-la-simulación"><i class="fa fa-check"></i><b>6.1.3</b> Precisión de la simulación</a></li>
+<li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulación e inferencia estadística</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#fundamentos-del-bootstrap"><i class="fa fa-check"></i><b>6.2.1</b> Fundamentos del Bootstrap</a></li>
+<li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-del-bootstrap-sesgo-desviación-estándar-y-mse-error-cuadrático-medio-en-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>6.2.2</b> Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>6.2.3</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Bootstrap paramétrico</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-k-fold"><i class="fa fa-check"></i><b>6.3.1</b> Validación cruzada k-fold</a></li>
+<li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-dejando-uno-fuera"><i class="fa fa-check"></i><b>6.3.2</b> Validación cruzada dejando uno fuera</a></li>
+<li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-y-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Validación cruzada y Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
+<li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#muestreo-de-gibbs"><i class="fa fa-check"></i><b>6.5.2</b> Muestreo de Gibbs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-bootstrap-applications-in-predictive-modeling"><i class="fa fa-check"></i><b>6.6.1</b> TS 6.A. Bootstrap Applications in Predictive Modeling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a><ul>
+<li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introducción a la Tarificación</a></li>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Método de la Prima Pura</a></li>
+<li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Método de la Ratio de Siniestralidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.1</b> Principios de Tarificación</a></li>
+<li class="chapter" data-level="7.3.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#propiedades-de-los-principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.2</b> Propiedades de los Principios de Tarificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposición al Riesgo</a></li>
+<li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Factores de Tarificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposiciones-y-primas"><i class="fa fa-check"></i><b>7.5.1</b> Exposiciones y Primas</a></li>
+<li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#siniestros-reclamaciones-y-pagos"><i class="fa fa-check"></i><b>7.5.2</b> Siniestros, Reclamaciones y Pagos</a></li>
+<li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-lorenz-clásica"><i class="fa fa-check"></i><b>7.6.1</b> Curva de Lorenz Clásica</a></li>
+<li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-rendimiento-y-estadístico-de-gini"><i class="fa fa-check"></i><b>7.6.2</b> Curva de Rendimiento y Estadístico de Gini</a></li>
+<li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#validación-cruzada"><i class="fa fa-check"></i><b>7.6.3</b> Validación Cruzada</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-regulación-de-la-tarificación"><i class="fa fa-check"></i>TS 7.A. Regulación de la Tarificación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a><ul>
+<li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Necesidad de la Regresión de Poisson</a></li>
+<li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson"><i class="fa fa-check"></i><b>8.2.2</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporación-de-la-exposición"><i class="fa fa-check"></i><b>8.2.3</b> Incorporación de la exposición</a></li>
+<li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejercicios-3"><i class="fa fa-check"></i><b>8.2.4</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#factores-de-tarificación-y-tarifa"><i class="fa fa-check"></i><b>8.3.1</b> Factores de Tarificación y Tarifa</a></li>
+<li class="chapter" data-level="8.3.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#modelo-de-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.2</b> Modelo de Tarifa Multiplicativa</a></li>
+<li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson-para-la-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.3</b> Regresión de Poisson para la Tarifa Multiplicativa</a></li>
+<li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejemplos-numéricos"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplos numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimación-de-modelos-de-regresión-de-poisson"><i class="fa fa-check"></i>TS 8.A – Estimación de Modelos de Regresión de Poisson</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a><ul>
+<li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introducción-a-las-aplicaciones-de-la-teoría-de-la-credibilidad"><i class="fa fa-check"></i><b>9.1</b> Introducción a las Aplicaciones de la Teoría de la Credibilidad</a></li>
+<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:frequency"><i class="fa fa-check"></i><b>9.2.1</b> Credibilidad Completa para la Frecuencia de Siniestralidad</a></li>
+<li class="chapter" data-level="9.2.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-siniestralidad-agregada-y-la-prima-pura"><i class="fa fa-check"></i><b>9.2.2</b> Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura</a></li>
+<li class="chapter" data-level="9.2.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-severidad"><i class="fa fa-check"></i><b>9.2.3</b> Credibilidad Completa para la Severidad</a></li>
+<li class="chapter" data-level="9.2.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-parcial"><i class="fa fa-check"></i><b>9.2.4</b> Credibilidad parcial</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibilidad Z, <em>EPV</em>, y <em>VHM</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann-straub"><i class="fa fa-check"></i><b>9.4</b> Credibilidad de Bühlmann-Straub</a></li>
+<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.5</b> Otros Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a><ul>
+<li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introducción-a-las-carteras-de-seguros"><i class="fa fa-check"></i><b>10.1</b> Introducción a las Carteras de Seguros</a></li>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#clasificación-basada-en-los-momentos"><i class="fa fa-check"></i><b>10.2.1</b> Clasificación Basada en los Momentos</a></li>
+<li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparación-basada-en-el-comportamiento-de-colas-con-límites"><i class="fa fa-check"></i><b>10.2.2</b> Comparación basada en el comportamiento de colas con límites</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#medidas-de-riesgo-coherentes"><i class="fa fa-check"></i><b>10.3.1</b> Medidas de Riesgo Coherentes</a></li>
+<li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.2</b> Valor en Riesgo</a></li>
+<li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#cola-del-valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.3</b> Cola del Valor en Riesgo</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Reaseguro Proporcional</a></li>
+<li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Reaseguro No-Proporcional</a></li>
+<li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Acuerdos de Reaseguro Adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#recursos-y-colaboradores-adicionales"><i class="fa fa-check"></i><b>10.5</b> Recursos y Colaboradores adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:claim-types"><i class="fa fa-check"></i><b>11.1.1</b> Siniestros cerrados, IBNR, y RBNS</a></li>
+<li class="chapter" data-level="11.1.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#por-qué-reservar"><i class="fa fa-check"></i><b>11.1.2</b> ¿Por qué reservar?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#de-micro-a-macro"><i class="fa fa-check"></i><b>11.2.1</b> De Micro a Macro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#triángulos-de-desarrollo"><i class="fa fa-check"></i><b>11.2.2</b> Triángulos de desarrollo</a></li>
+<li class="chapter" data-level="11.2.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#notación-de-provisiones"><i class="fa fa-check"></i><b>11.2.3</b> Notación de provisiones</a></li>
+<li class="chapter" data-level="11.2.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Rcode"><i class="fa fa-check"></i><b>11.2.4</b> Código R para resumir datos de provisión de pérdidas</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:DeterministicCL"><i class="fa fa-check"></i><b>11.3.1</b> Chain-Ladder Determinista</a></li>
+<li class="chapter" data-level="11.3.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#modelo-chain-ladder-de-distribución-libre-de-mack"><i class="fa fa-check"></i><b>11.3.2</b> Modelo Chain-ladder de distribución libre de Mack</a></li>
+<li class="chapter" data-level="11.3.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#código-r-para-las-predicciones-chain-ladder"><i class="fa fa-check"></i><b>11.3.3</b> Código R para las predicciones Chain-Ladder</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#especificación-del-modelo"><i class="fa fa-check"></i><b>11.4.1</b> Especificación del modelo</a></li>
+<li class="chapter" data-level="11.4.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#estimación-y-predicción-del-modelo"><i class="fa fa-check"></i><b>11.4.2</b> Estimación y predicción del modelo</a></li>
+<li class="chapter" data-level="11.4.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#bootstrap"><i class="fa fa-check"></i><b>11.4.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
+<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#tipos-y-fuentes-de-datos"><i class="fa fa-check"></i><b>13.1.1</b> Tipos y Fuentes de Datos</a></li>
+<li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#estructuras-de-datos-y-almacenamiento"><i class="fa fa-check"></i><b>13.1.2</b> Estructuras de Datos y Almacenamiento</a></li>
+<li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#calidad-de-los-datos"><i class="fa fa-check"></i><b>13.1.3</b> Calidad de los Datos</a></li>
+<li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#limpieza-de-los-datos"><i class="fa fa-check"></i><b>13.1.4</b> Limpieza de los Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Proceso de Análisis de Datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratorio-versus-confirmatorio"><i class="fa fa-check"></i><b>13.2.2</b> Exploratorio versus Confirmatorio</a></li>
+<li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervisado-versus-no-supervisado"><i class="fa fa-check"></i><b>13.2.3</b> Supervisado versus No Supervisado</a></li>
+<li class="chapter" data-level="13.2.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#paramétricos-versus-no-paramétricos"><i class="fa fa-check"></i><b>13.2.4</b> Paramétricos versus No Paramétricos</a></li>
+<li class="chapter" data-level="13.2.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:expred"><i class="fa fa-check"></i><b>13.2.5</b> Explicación versus Predicción</a></li>
+<li class="chapter" data-level="13.2.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#modelación-de-datos-versus-modelación-algorítmica"><i class="fa fa-check"></i><b>13.2.6</b> Modelación de Datos versus Modelación Algorítmica</a></li>
+<li class="chapter" data-level="13.2.7" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-de-grandes-volúmenes-de-datos-big-data"><i class="fa fa-check"></i><b>13.2.7</b> Análisis de Grandes Volúmenes de Datos (Big Data)</a></li>
+<li class="chapter" data-level="13.2.8" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-reproducibles"><i class="fa fa-check"></i><b>13.2.8</b> Análisis Reproducibles</a></li>
+<li class="chapter" data-level="13.2.9" data-path="C-DataSystems.html"><a href="C-DataSystems.html#problemas-éticos"><i class="fa fa-check"></i><b>13.2.9</b> Problemas Éticos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-exploratorias"><i class="fa fa-check"></i><b>13.3.1</b> Técnicas exploratorias</a></li>
+<li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-confirmatorias"><i class="fa fa-check"></i><b>13.3.2</b> Técnicas confirmatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#algunas-funciones-de-r"><i class="fa fa-check"></i><b>13.4</b> Algunas funciones de R</a></li>
+<li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#resumen"><i class="fa fa-check"></i><b>13.5</b> Resumen</a></li>
+<li class="chapter" data-level="13.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#DS:further-reading-and-resources"><i class="fa fa-check"></i><b>13.6</b> Otros recursos y colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Dependence Modeling</a><ul>
+<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Qualitative Variables</a></li>
+<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Quantitative Variables</a></li>
+<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#multivariate-variables"><i class="fa fa-check"></i><b>14.1.3</b> Multivariate Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Classic Measures of Scalar Associations</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
+<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
+<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
+<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#data-description"><i class="fa fa-check"></i><b>14.4.1</b> Data Description</a></li>
+<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#marginal-models"><i class="fa fa-check"></i><b>14.4.2</b> Marginal Models</a></li>
+<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#probability-integral-transformation"><i class="fa fa-check"></i><b>14.4.3</b> Probability Integral Transformation</a></li>
+<li class="chapter" data-level="14.4.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#joint-modeling-with-copula-function"><i class="fa fa-check"></i><b>14.4.4</b> Joint Modeling with Copula Function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Types of Copulas</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#elliptical-copulas"><i class="fa fa-check"></i><b>14.5.1</b> Elliptical Copulas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#archimedian-copulas"><i class="fa fa-check"></i><b>14.5.2</b> Archimedian Copulas</a></li>
+<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a><ul>
+<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="C-AppA.html"><a href="C-AppA.html#muestreo-aleatorio"><i class="fa fa-check"></i><b>15.1.1</b> Muestreo Aleatorio</a></li>
+<li class="chapter" data-level="15.1.2" data-path="C-AppA.html"><a href="C-AppA.html#distribución-muestral"><i class="fa fa-check"></i><b>15.1.2</b> Distribución Muestral</a></li>
+<li class="chapter" data-level="15.1.3" data-path="C-AppA.html"><a href="C-AppA.html#teorema-central-del-límite"><i class="fa fa-check"></i><b>15.1.3</b> Teorema Central del Límite</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="C-AppA.html"><a href="C-AppA.html#método-de-estimación-de-momentos"><i class="fa fa-check"></i><b>15.2.1</b> Método de Estimación de Momentos</a></li>
+<li class="chapter" data-level="15.2.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:MLE"><i class="fa fa-check"></i><b>15.2.2</b> Estimación por Máxima Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE:ED"><i class="fa fa-check"></i><b>15.3.1</b> Distribución Exacta para la Media de Muestra Normal</a></li>
+<li class="chapter" data-level="15.3.2" data-path="C-AppA.html"><a href="C-AppA.html#propiedades-de-muestra-grande-del-estimador-mle"><i class="fa fa-check"></i><b>15.3.2</b> Propiedades de Muestra Grande del Estimador MLE</a></li>
+<li class="chapter" data-level="15.3.3" data-path="C-AppA.html"><a href="C-AppA.html#intervalo-de-confianza"><i class="fa fa-check"></i><b>15.3.3</b> Intervalo de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="C-AppA.html"><a href="C-AppA.html#conceptos-básicos"><i class="fa fa-check"></i><b>15.4.1</b> Conceptos Básicos</a></li>
+<li class="chapter" data-level="15.4.2" data-path="C-AppA.html"><a href="C-AppA.html#contraste-t-student-basado-en-el-estimador-mle"><i class="fa fa-check"></i><b>15.4.2</b> Contraste <span class="math inline">\(t\)</span>-Student Basado en el Estimador MLE</a></li>
+<li class="chapter" data-level="15.4.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:LRT"><i class="fa fa-check"></i><b>15.4.3</b> Prueba de la Razón de Verosimilitud</a></li>
+<li class="chapter" data-level="15.4.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:IC"><i class="fa fa-check"></i><b>15.4.4</b> Criterios de Información</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a><ul>
+<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="C-AppB.html"><a href="C-AppB.html#distribución-condicional"><i class="fa fa-check"></i><b>16.1.1</b> Distribución Condicional</a></li>
+<li class="chapter" data-level="16.1.2" data-path="C-AppB.html"><a href="C-AppB.html#caso-continuo"><i class="fa fa-check"></i><b>16.1.2</b> Caso Continuo</a></li>
+<li class="chapter" data-level="16.1.3" data-path="C-AppB.html"><a href="C-AppB.html#esperanza-condicional-y-varianza-condicional"><i class="fa fa-check"></i><b>16.1.3</b> Esperanza Condicional y Varianza Condicional</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-las-esperanzas-iteradas"><i class="fa fa-check"></i><b>16.2.1</b> Ley de las Esperanzas Iteradas</a></li>
+<li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-la-varianza-total"><i class="fa fa-check"></i><b>16.2.2</b> Ley de la Varianza Total</a></li>
+<li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#aplicación"><i class="fa fa-check"></i><b>16.2.3</b> Aplicación</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#familia-exponencial-lineal"><i class="fa fa-check"></i><b>16.3.1</b> Familia Exponencial Lineal</a></li>
+<li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#distribuciones-conjugadas"><i class="fa fa-check"></i><b>16.3.2</b> Distribuciones Conjugadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="C-AppC.html"><a href="C-AppC.html#la-función-de-verosimilitud-y-de-log-verosimilitud"><i class="fa fa-check"></i><b>17.1.1</b> La Función de Verosimilitud y de Log-verosimilitud</a></li>
+<li class="chapter" data-level="17.1.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-de-las-funciones-de-verosimilitud"><i class="fa fa-check"></i><b>17.1.2</b> Propiedades de las Funciones de Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="C-AppC.html"><a href="C-AppC.html#definición-y-derivación-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.1</b> Definición y Derivación del Estimador MLE</a></li>
+<li class="chapter" data-level="17.2.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-asintóticas-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.2</b> Propiedades Asintóticas del Estimador MLE</a></li>
+<li class="chapter" data-level="17.2.3" data-path="C-AppC.html"><a href="C-AppC.html#uso-de-la-estimación-de-máxima-verosimilitud"><i class="fa fa-check"></i><b>17.2.3</b> Uso de la Estimación de Máxima Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#contraste-de-hipótesis"><i class="fa fa-check"></i><b>17.3.1</b> Contraste de Hipótesis</a></li>
+<li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> Validación del Modelo y MLE</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a><ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab0"><i class="fa fa-check"></i><b>18.1.1</b> La clase (a,b,0)</a></li>
+<li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab1"><i class="fa fa-check"></i><b>18.1.2</b> La clase (a,b,1)</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-un-parámetro"><i class="fa fa-check"></i><b>18.2.1</b> Distribuciones Un Parámetro</a></li>
+<li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-dos-parámetros"><i class="fa fa-check"></i><b>18.2.2</b> Distribuciones Dos Parámetros</a></li>
+<li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-tres-parámetros"><i class="fa fa-check"></i><b>18.2.3</b> Distribuciones Tres Parámetros</a></li>
+<li class="chapter" data-level="18.2.4" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribución-cuatro-parámetros"><i class="fa fa-check"></i><b>18.2.4</b> Distribución Cuatro Parámetros</a></li>
+<li class="chapter" data-level="18.2.5" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#otras-distribuciones"><i class="fa fa-check"></i><b>18.2.5</b> Otras Distribuciones</a></li>
+<li class="chapter" data-level="18.2.6" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-con-soporte-finito"><i class="fa fa-check"></i><b>18.2.6</b> Distribuciones con Soporte Finito</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#valor-esperado-limitado"><i class="fa fa-check"></i><b>18.3</b> Valor Esperado Limitado</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/OpenActTexts/Loss-Data-Analytics" target="blank">Loss Data Analytics on GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Loss Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="C:RiskClass" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Clasificación de Riesgos</h1>
+<p><em>Resumen del capítulo.</em> Este capítulo motiva el uso de la clasificación de riesgos en la fijación de precios de seguros y presenta a los lectores la regresión de Poisson como un ejemplo destacado de clasificación de riesgos. En la Sección <a href="C-RiskClass.html#S:RC:Introduction">8.1</a> explicamos por qué las aseguradoras necesitan incorporar diversas características de riesgo, o factores de tarificación, de los asegurados individuales en los precios de los contratos de seguro. Luego presentamos la Sección <a href="C-RiskClass.html#S:RC:PoissonRegression">8.2</a> donde mostramos la regresión de Poisson como una herramienta de fijación de precios para lograr diferencias en las primas. El concepto de exposición también se introduce en esta sección. Como la mayoría de los factores de tarificación son categóricos, en la Sección <a href="C-RiskClass.html#S:CatVarMultiTarriff">8.3</a> mostramos cómo se puede incorporar el modelo de tarifa multiplicativa en el modelo de regresión de Poisson en la práctica, junto con ejemplos numéricos para ilustrarlo.</p>
+<div id="S:RC:Introduction" class="section level2">
+<h2><span class="header-section-number">8.1</span> Introducción</h2>
+<hr />
+<p>En esta sección, se aprende:</p>
+<ul>
+<li>Por qué las primas deben variar entre los asegurados según sus diferentes clases de riesgo.</li>
+<li>El significado de la espiral de selección adversa.</li>
+<li>La necesidad de clasificar los riesgos.</li>
+</ul>
+<hr />
+<p>A través de los contratos de seguro, los asegurados transfieren de manera efectiva sus riesgos a la aseguradora a cambio de primas. Para que la aseguradora permanezca en el negocio, el ingreso de la prima recaudada de un grupo de asegurados debe ser al menos igual al beneficio que se obtiene. En los productos de seguros generales donde se cobra una prima por un solo período, por ejemplo, anual, la prima bruta del seguro basada en el principio de equivalencia se define como</p>
+<p><span class="math display">\[
+\text{Prima Pura = Pérdidas esperadas + Gastos esperados + Beneficio}.
+\]</span></p>
+<p>Por lo tanto, ignorando los gastos denominados “de fricción” asociados con los gastos administrativos y el beneficio, la prima neta o pura cobrada por el asegurador debe ser igual a las pérdidas esperadas que se producen por el riesgo que se transfiere por parte del tomador del seguro.</p>
+<p>Si todos los asegurados en una cartera tienen perfiles de riesgo idénticos, la aseguradora simplemente cobra la misma prima para todos los asegurados porque tienen la misma pérdida esperada. En realidad, sin embargo, los asegurados no son necesariamente homogéneos. Por ejemplo, el riesgo de mortalidad en el seguro de vida depende de las características del asegurado, como la edad, el sexo y el estilo de vida. En el seguro de automóviles, esas características pueden incluir la edad, la ocupación, el tipo o el uso del automóvil y el área donde reside el conductor. El conocimiento de estas características o variables puede mejorar la capacidad de calcular primas justas para los asegurados individuales, ya que pueden usarse para estimar o predecir las pérdidas esperadas con mayor precisión.</p>
+<p><strong>Selección adversa.</strong> De hecho, si el asegurador no diferencia las características de riesgo de los asegurados individuales y simplemente cobra la misma prima a todos los asegurados en función de la pérdida promedio en la cartera, el asegurador se enfrenta a la llamada <em>selección adversa </em>, una situación en la que las personas con una mayor probabilidad de pérdidas son atraídas hacia la cartera y las personas de bajo riesgo son repelidas. Por ejemplo, consideremos una entidad de seguros de salud donde el tabaquismo es un factor de riesgo importante para la mortalidad y la morbilidad. La mayoría de las aseguradoras de salud en el mercado establecen primas diferentes según la condición de fumador, por lo que los fumadores pagan primas más altas que los no fumadores, con otras características idénticas. Ahora supongamos que hay una aseguradora, llamémosla EquitabAll, que ofrece la misma prima a todos los asegurados, independientemente de su condición de fumador, a diferencia de otros competidores. La prima neta de EquitabAll se calcula, naturalmente, a partir de una pérdida con la mortalidad promedio que representa tanto a los fumadores como a los no fumadores. Es decir, la prima neta es un promedio ponderado de las pérdidas, siendo las ponderaciones la proporción de fumadores y no fumadores, respectivamente. Por lo tanto, es fácil ver que un fumador tiene un mayor incentivo para contratar un seguro de EquitabAll que de otras aseguradoras, ya que la prima ofrecida por EquitabAll es relativamente menor. Al mismo tiempo, los no fumadores prefieren contratar un seguro en otra compañía donde se ofrezcan primas más bajas, calculadas sólo para el grupo de no fumadores. Como resultado, habrá más fumadores y menos no fumadores en la cartera de EquitabAll, lo que conduce a pérdidas mayores de lo esperado y, por lo tanto, a una prima más alta para los asegurados en el próximo período para cubrir los costos más altos. Con el aumento de la nueva prima en el próximo período, los no fumadores en EquitabAll tendrán incentivos aún mayores para cambiar de aseguradora. A medida que este ciclo continúa con el tiempo, EquitabAll retendría gradualmente a más fumadores y menos no fumadores en su cartera con la prima elevándose continuamente, lo que eventualmente llevaría al colapso del negocio. En la literatura, este fenómeno se conoce como <em>espiral de selección adversa</em> o espiral de muerte. Por lo tanto, incorporar y diferenciar características de riesgo importantes de las personas en el proceso de fijación de precios del seguro es una componente relevante tanto para la determinación de la prima justa para los asegurados individuales como para la sostenibilidad a largo plazo de las aseguradoras.</p>
+<p><strong>Factores de tarificación</strong>. Para incorporar las características de riesgo relevantes de los asegurados en el proceso de fijación de precios, las aseguradoras mantienen un sistema de clasificación que asigna cada asegurado a una de las clases de riesgo en función de un número relativamente pequeño de características de riesgo que se consideran las más relevantes. Estas características utilizadas en el sistema de clasificación se denominan <em>factores de tarificación</em>, que son variables <em>a priori</em> en el sentido de que se conocen antes de que comience el contrato (por ejemplo, sexo, estado de salud, tipo de vehículo, etc., se conocen durante la suscripción). Todos los asegurados que comparten factores de riesgo idénticos se asignan a la misma clase de riesgo y se consideran homogéneos desde el punto de vista de los precios; la aseguradora en consecuencia les cobra la misma prima o precio.</p>
+<p>Con respecto a los factores de riesgo y las primas, el <em>Estándar de Práctica Actuarial </em> (ASOP No. 12) de <span class="citation">Actuarial Standards Board (<a href="#ref-ASBStandards" role="doc-biblioref">2018</a>)</span> establece que el actuario debe seleccionar las características de riesgo que están relacionadas con los resultados esperados, y que las primas dentro de un sistema de clasificación de riesgos se consideran equitativas si sus diferencias reflejan diferencias materiales en el coste esperado de las características de riesgo. En el proceso de elección de los factores de riesgo, ASOP también requiere que el actuario considere lo siguiente: relación de las características de riesgo y los resultados esperados, causalidad, objetividad, practicidad, ley aplicable, prácticas de la industria y prácticas comerciales.</p>
+<p>En el lado cuantitativo, una tarea importante para el actuario en la construcción de cualquier clasificación de riesgos es construir un modelo estadístico que pueda determinar la pérdida esperada dados los diversos factores de clasificación de un asegurado. El enfoque estándar es adoptar un modelo de regresión que produzca la pérdida esperada como resultado cuando los factores de riesgo relevantes se den como inputs. En este capítulo aprendemos la regresión de Poisson, que se puede usar cuando la pérdida es una variable de conteo, como un ejemplo destacado de una herramienta de fijación de precios de seguros.</p>
+<!-- %\subsection{Conceptos fundamentales en la tarificación en seguros} -->
+<!-- %================================ -->
+</div>
+<div id="S:RC:PoissonRegression" class="section level2">
+<h2><span class="header-section-number">8.2</span> Modelo de Regresión de Poisson</h2>
+<p>El modelo de regresión de Poisson se ha utilizado con éxito en una amplia gama de aplicaciones y tiene la ventaja de permitir expresiones de forma cerrada para cantidades importantes, lo que proporciona una intuición e interpretación informativa. En esta sección presentamos la regresión de Poisson como una extensión natural de la distribución de Poisson.</p>
+<hr />
+<p>En esta sección, se aprende a:</p>
+<ul>
+<li>Entender las regresiones de Poisson como una herramienta útil para combinar distribuciones individuales de Poisson de manera unificada.</li>
+<li>Conocer el concepto de exposición y su importancia.</li>
+<li>Aprender formalmente cómo formular el modelo de regresión de Poisson utilizando variables indicadoras cuando las variables explicativas son categóricas.</li>
+</ul>
+<hr />
+<div id="S:RC:Need.Poi.reg" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Necesidad de la Regresión de Poisson</h3>
+<p><strong>Distribución de Poisson</strong><br />
+Para presentar la regresión de Poisson, consideremos una cartera hipotética de seguros de salud donde todos los asegurados son de la misma edad y solo un factor de riesgo, el tabaquismo, es relevante. Por lo tanto, el estado de ser fumador es una variable categórica que contiene dos tipos diferentes: fumador y no fumador. En la literatura estadística, los diferentes tipos en una variable categórica dada se denominan comúnmente <em>niveles</em>. Como hay dos niveles para el estado de fumar, podemos denotar fumadores y no fumadores por nivel 1 y 2, respectivamente. Aquí la numeración es arbitraria y nominal. Supongamos ahora que estamos interesados en fijar el precio de un seguro de salud en el que la prima de cada asegurado se determina por la cantidad de visitas ambulatorias al consultorio del médico durante un año. Se supone que el coste médico para cada visita es el mismo, independientemente del estado de si es fumador o no por simplicidad. Por lo tanto, si creemos que el tabaquismo es un factor de riesgo válido en este seguro de salud, es natural considerar los datos por separado para cada grupo de tabaquismo. En la [Tabla 8.1] presentamos los datos para esta cartera.</p>
+<p><a id=tab:8.1></a></p>
+<p><span class="math display">\[
+{\small
+\begin{matrix}
+\begin{array}{cc|cc|cc}
+\hline
+\text{Fumador} &amp; \text{(Nivel 1)}  &amp; \text{No fumador}&amp;\text{(Nivel 2)}  &amp; &amp; \text{Ambos}\\
+  \text{Valor} &amp; \text{Observaciones} &amp;  \text{Valor} &amp; \text{Observaciones}  &amp;   \text{Valor} &amp; \text{Observaciones} \\ \hline
+0 &amp; 2213 &amp;   0 &amp; 6671 &amp;  0 &amp; 8884 \\
+1 &amp; 178  &amp;   1 &amp; 430  &amp;  1 &amp; 608 \\
+2 &amp; 11   &amp;   2 &amp; 25   &amp;  2 &amp; 36 \\
+3 &amp; 6    &amp;   3 &amp; 9    &amp;  3 &amp; 15 \\
+4 &amp; 0    &amp;   4 &amp; 4    &amp;  4 &amp; 4 \\
+5 &amp; 1    &amp;   5 &amp; 2    &amp;  5 &amp; 3 \\ \hline
+\text{Total} &amp; 2409  &amp;   \text{Total} &amp; 7141 &amp; \text{Total} &amp; 9550 \\
+\text{Media} &amp; 0,0926 &amp;   \text{Media} &amp; 0,0746 &amp; \text{Media} &amp; 0,0792 \\
+\hline
+    \end{array}
+\end{matrix}
+}
+\]</span></p>
+<p><a href="#tab:8.1">Table 8.1</a> : Número de visitas a la consulta médica el año pasado</p>
+<p>Como este conjunto de datos contiene recuentos aleatorios, intentamos ajustar una distribución de Poisson para cada nivel.</p>
+<p>Como se introdujo en la Sección <a href="C-Frequency-Modeling.html#S:poisson-distribution">2.2.3.2</a>, la función de densidad de probabilidad de Poisson con media <span class="math inline">\(\mu\)</span> viene dada por:</p>
+<p><span class="math display" id="eq:Pois-pmf">\[\begin{equation}
+\Pr(Y=y)=\frac{\mu^y e^{-\mu}}{y!},\qquad y=0,1,2, \ldots
+\tag{8.1}
+\end{equation}\]</span></p>
+<p>y <span class="math inline">\(\mathrm{E~}{(Y)}=\mathrm{Var~}{(Y)}=\mu\)</span>. En contextos de regresión, es habitual usar <span class="math inline">\(\mu\)</span> para parámetros que denotan la media en lugar del parámetro de Poisson <span class="math inline">\(\lambda\)</span>, aunque ciertamente ambos símbolos son adecuados. Como vimos en la sección
+<a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions">2.4</a>, la <em>mle</em> de la distribución de Poisson viene dada por la media muestral. Por lo tanto, si denotamos el parámetro media de Poisson para cada nivel por <span class="math inline">\(\mu_{(1)}\)</span> (fumador) y <span class="math inline">\(\mu_{(2)}\)</span> (no fumador), vemos en la [Tabla 8.1] que <span class="math inline">\(\hat{\mu}_{(1)}= 0,0926\)</span> y <span class="math inline">\(\hat{\mu}_{(2)} = 0,0746\)</span>. Este simple ejemplo muestra la idea básica de clasificación de riesgo. Dependiendo de la condición de fumador, un asegurado tendrá una característica de riesgo diferente y ésta puede incorporarse a través del parámetro variable de Poisson en el cálculo de la prima justa. En este ejemplo, la proporción de frecuencias de pérdida esperadas es <span class="math inline">\(\frac{\hat{\mu} _{(1)}}{\hat{\mu}_{(2)}}= 1,2402\)</span>, lo que implica que los fumadores tienden a visitar la consulta médica 24,02<span class="math inline">\(\%\)</span> veces más frecuentemente en comparación con los no fumadores.</p>
+<p>También es informativo tener en cuenta que si la aseguradora cobra la misma prima a todos los asegurados, independientemente del estado de ser fumador, en función de la característica promedio de la cartera, como fue el caso de la compañía EquitabAll descrito en la Introducción, la frecuencia esperada (o la prima) <span class="math inline">\(\hat{\mu}\)</span> es 0,0792, obtenida de la última columna de [Tabla 8.1]. Se verifica fácilmente que:</p>
+<p><span class="math display" id="eq:coll-prem-avg">\[\begin{equation}
+\hat{\mu} = \left(\frac{n_1}{n_1+n_2}\right)\hat{\mu}_{(1)}+\left(\frac{n_2}{n_1+n_2}\right)\hat{\mu}_{(2)}=0,0792,
+\tag{8.2}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(n_i\)</span> es el número de observaciones en cada nivel. Claramente, esta prima es un promedio ponderado de las primas para cada nivel con un peso igual a la proporción de asegurados en ese nivel.</p>
+<p><strong>Una regresión de Poisson simple</strong>
+En el ejemplo anterior, hemos ajustado una distribución de Poisson para cada nivel por separado, pero en realidad podemos combinarlos de manera unificada para que un solo modelo de Poisson pueda abarcar los estados de fumadores y no fumadores. Esto se puede hacer relacionando el parámetro medio de Poisson con el factor de riesgo. En otras palabras, hacemos que la media de Poisson, que es la frecuencia de pérdida esperada, responda al cambio en el estado de ser o no fumador. El enfoque convencional para tratar con una variable categórica es adoptar indicadores o variables ficticias que toman valores 1 o 0, de modo que activemos el interruptor para un nivel y lo apaguemos para otros. Por lo tanto, podemos proponernos usar:
+<span class="math display" id="eq:lin-mu">\[\begin{equation}
+\mu=\beta_0+\beta_1 x_1
+\tag{8.3}
+\end{equation}\]</span></p>
+<p>o bien, como se hace habitualmente, en forma log lineal:</p>
+<p><span class="math display" id="eq:log-lin-mu">\[\begin{equation}
+\log \mu=\beta_0+\beta_1 x_1,
+\tag{8.4}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(x_1\)</span> es una variable indicadora con</p>
+<p><span class="math display" id="eq:dummy-x1">\[\begin{equation}
+x_1=
+\begin{cases}
+     1 &amp; \text{si fuma}, \\
+     0 &amp; \text{en caso contrario}.
+\end{cases}
+\tag{8.5}
+\end{equation}\]</span></p>
+<p>En general, preferimos la relación log lineal <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a> frente a la lineal de <a href="C-RiskClass.html#eq:lin-mu">(8.3)</a> para prevenir los efectos no deseados de producir valores negativos para <span class="math inline">\(\mu\)</span>, que podrían darse cuando hay una gran variedad de factores de riesgo diferentes y niveles distintos. La especificación de <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a> y <a href="C-RiskClass.html#eq:dummy-x1">(8.5)</a> entonces proporciona parámetros de frecuencia de Poisson diferentes dependiendo del nivel del correspondiente factor de riesgo:</p>
+<p><span class="math display" id="eq:ind-mu">\[\begin{equation}
+\log \mu=
+\begin{cases}
+     \beta_0+\beta_1 \\
+     \beta_0 
+\end{cases}
+\quad \text{o equivalentemente,}\qquad \mu= \begin{cases}
+     e^{\beta_0+\beta_1} &amp; \text{si fuma (nivel 1)}, \\
+     e^{\beta_0} &amp; \text{si no fuma (nivel 2)},
+\end{cases} 
+\tag{8.6}
+\end{equation}\]</span></p>
+<p>consiguiendo el resultado que perseguimos. Ésta es la forma más simple de la regresión de Poisson. Tengamos en cuenta que requerimos una sola variable indicadora para modelar dos niveles en este caso. Alternativamente, también es posible usar dos variables indicadoras a través de un esquema de codificación diferente. Este esquema requiere eliminar el término constante para que <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a> quede como</p>
+<p><span class="math display" id="eq:log-lin-mu-2">\[\begin{equation}
+\log \mu=\beta_1 x_1+\beta_2 x_2,
+\tag{8.7}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(x_2\)</span> es la segunda variable indicadora tal que</p>
+<p><span class="math display" id="eq:dummy-x-2">\[\begin{equation}
+x_2=
+\begin{cases}
+     1 &amp; \text{si no fuma}, \\
+     0 &amp; \text{en caso contrario}.
+\end{cases}
+\tag{8.8}
+\end{equation}\]</span></p>
+<p>Entonces obtenemos, a partir de <a href="C-RiskClass.html#eq:log-lin-mu-2">(8.7)</a>,</p>
+<p><span class="math display" id="eq:ind-mu-2">\[\begin{equation}
+\log \mu=
+\begin{cases}
+     \beta_1 \\
+     \beta_2 
+\end{cases}
+\quad \text{or}\qquad \mu= \begin{cases}
+     e^{\beta_1} &amp; \text{si fuma (level 1)}, \\
+     e^{\beta_2} &amp; \text{si no fuma (level 2)}.
+\end{cases}
+\tag{8.9}
+\end{equation}\]</span></p>
+<p>El resultado numérico de <a href="C-RiskClass.html#eq:ind-mu">(8.6)</a> es el mismo que <a href="C-RiskClass.html#eq:ind-mu-2">(8.9)</a> ya que todos los coeficientes se dan como números en la estimación real, siendo la configuración inicial más común en la mayoría textos; usaremos la inicial aquí también.</p>
+<p>Con este modelo de regresión de Poisson, podemos comprender fácilmente cómo los coeficientes <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> están vinculados a la frecuencia de pérdida esperada en cada nivel. Según <a href="C-RiskClass.html#eq:ind-mu">(8.6)</a>, la media de Poisson de los fumadores, <span class="math inline">\(\mu_{(1)}\)</span>, viene dada por</p>
+<p><span class="math display" id="eq:no-label">\[\begin{equation}
+\mu_{(1)}=e^{\beta_0+\beta_1}=\mu_{(2)} \,e^{\beta_1} \quad \text{or}\quad  \mu_{(1)}/\mu_{(2)} =e^{\beta_1}
+\tag{8.10}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\mu_{(2)}\)</span> es la media de la distribución de Poisson para los no fumadores. Esta relación entre los fumadores y los no fumadores sugiere una forma útil de comparar los riesgos incluidos en diferentes niveles de un factor de riesgo dado. Es decir, el aumento proporcional en la frecuencia de pérdida esperada de los fumadores en comparación con la de los no fumadores se da simplemente por un factor multiplicativo <span class="math inline">\(e^{\beta_1}\)</span>. Dicho de otra manera, si establecemos la frecuencia de pérdida esperada de los no fumadores como el valor base, la frecuencia de pérdida esperada de los fumadores se obtiene aplicando el factor <span class="math inline">\(e^{\beta_1}\)</span> al valor base.</p>
+<p><strong>Manejo de casos de niveles múltiples</strong></p>
+<p>Podemos extender fácilmente el caso de dos niveles a uno de varios niveles en el que intervienen <span class="math inline">\(l\)</span> diferentes niveles para un solo factor de tarificación. Para esto, generalmente necesitamos <span class="math inline">\(l-1\)</span> variables indicadoras para formular</p>
+<p><span class="math display" id="eq:log-lin-mu-1">\[\begin{equation}
+\log \mu=\beta_0+\beta_1 x_1+\cdots+\beta_{l-1} x_{l-1},
+\tag{8.11}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(x_k\)</span> es una variable indicadora que toma el valor 1 si la póliza pertenece al nivel <span class="math inline">\(k\)</span> y 0 en caso contrario, para <span class="math inline">\(k=1,2, \ldots, l-1\)</span>. Al omitir la variable indicadora asociada con el último nivel en <a href="C-RiskClass.html#eq:log-lin-mu-1">(8.11)</a> , elegimos efectivamente el nivel <span class="math inline">\(l\)</span> como el caso base, pero esta elección es arbitraria y no importa numéricamente. El parámetro de Poisson resultante para las pólizas el nivel <span class="math inline">\(k\)</span> se convierte, a partir de <a href="C-RiskClass.html#eq:log-lin-mu-1">(8.11)</a>,</p>
+<p><span class="math display">\[\begin{equation}
+\nonumber
+\mu= \begin{cases}
+     e^{\beta_0+\beta_k} &amp; \text{si la póliza pertenece al nivel $k$ (k=1,2, ..., l-1)}, \\
+     e^{\beta_0} &amp; \text{si la póliza pertenece al nivel $l$}.
+\end{cases}
+\end{equation}\]</span></p>
+<p>Por lo tanto, si denotamos el parámetro de Poisson para pólizas en el nivel <span class="math inline">\(k\)</span> como <span class="math inline">\(\mu_{(k)}\)</span>, podemos relacionar el parámetro de Poisson para diferentes niveles a través de <span class="math inline">\(\mu_{(k)} = \mu_{(l)}\, e^{\beta_k}\)</span>, <span class="math inline">\(k= 1,2,\ldots, l-1\)</span>. Esto indica que, al igual que en el caso de dos niveles, la frecuencia de pérdida esperada del nivel <span class="math inline">\(k\)</span>-ésimo se obtiene a partir del valor base multiplicado por el factor relativo <span class="math inline">\(e^{\beta_k}\)</span>.</p>
+<p>Esta interpretación relativa se vuelve extremadamente útil cuando hay muchos factores de riesgo con niveles múltiples, y nos lleva a una mejor comprensión del riesgo subyacente y una predicción más precisa de las pérdidas futuras. Finalmente, observamos que la media de una distribución de Poisson está completamente determinada por los parámetros <span class="math inline">\(\beta_k\)</span>’s, que se estiman a partir del conjunto de datos; El procedimiento de estimación de parámetros se discute más adelante en este capítulo.</p>
+</div>
+<div id="regresión-de-poisson" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Regresión de Poisson</h3>
+<p>Ahora describimos la regresión de Poisson en un entorno formal y más general. Supongamos que hay <span class="math inline">\(n\)</span> asegurados independientes con un conjunto de factores de tarificación caracterizados por un vector variable de dimensión <span class="math inline">\(k\)</span><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. El factor de tarificación del asegurado <span class="math inline">\(i\)</span>-ésimo se denota así por el vector <span class="math inline">\(\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}\)</span>, y el asegurado se dice que ha registrado un valor de pérdidas igual a <span class="math inline">\(y_i \in \{0,1,2, \ldots \}\)</span> desde el último período de observación de pérdidas, para <span class="math inline">\(i=1, \ldots, n\)</span>. En la literatura de regresión, los valores <span class="math inline">\(x_{i1}, \ldots, x_{ik}\)</span> se conocen generalmente como <em>variables explicativas</em>, ya que estas son medidas que proporcionan información sobre la variable de interés <span class="math inline">\(y_i\)</span>. En esencia, el análisis de regresión es un método para cuantificar la relación entre una variable de interés y variables explicativas.</p>
+<p>También asumimos, por ahora, que todos los asegurados tienen un mismo período de observación de pérdidas igual a una unidad, o la misma exposición de 1, para mantener las cosas simples; discutiremos más detalles sobre la exposición en la siguiente subsección.</p>
+<p>Como se hizo anteriormente, describimos la regresión de Poisson a través de su función de la media. Para esto, primero denotamos que <span class="math inline">\(\mu_i\)</span> es el número entero que representa las pérdida esperada del titular de la póliza <span class="math inline">\(i\)</span>-ésima mediante la especificación de Poisson <a href="C-RiskClass.html#eq:Pois-pmf">(8.1)</a>:</p>
+<p><span class="math display" id="eq:mui-glm">\[\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n.
+\tag{8.12}
+\end{equation}\]</span></p>
+<p>La condición dentro de la operación de la esperanza en <a href="C-RiskClass.html#eq:mui-glm">(8.12)</a>) indica que la frecuencia de pérdida <span class="math inline">\(\mu_i\)</span> es el output del modelo que responde al conjunto dado de factores de riesgo o variables explicativas.
+En principio, la media condicional <span class="math inline">\(\mathrm{E~}{(y_i|\mathbf{ x}_i)}\)</span> en <a href="C-RiskClass.html#eq:mui-glm">(8.12)</a> puede tomar diferentes formas dependiendo de cómo especifiquemos la relación entre <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(y\)</span>. La opción estándar para la regresión de Poisson es adoptar la función exponencial, como mencionamos anteriormente, de forma que</p>
+<p><span class="math display" id="eq:mean-ft-Pois">\[\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=e^{\mathbf{ x}^{\prime}_i\beta}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n.
+\tag{8.13}
+\end{equation}\]</span></p>
+<p>Aquí <span class="math inline">\(\beta=(\beta_0, \ldots, \beta_k)^{\prime}\)</span> es el vector de coeficientes de manera que <span class="math inline">\(\mathbf{ x}^{\prime}_i\beta=\beta_0+\beta_1x_{i1} +\ldots+\beta_k x_{ik}\)</span>.
+La función exponencial en <a href="C-RiskClass.html#eq:mean-ft-Pois">(8.13)</a> asegura que <span class="math inline">\(\mu_i &gt;0\)</span> para cualquier conjunto de factores de tarificación <span class="math inline">\(\mathbf{ x}_i\)</span>. A menudo <a href="C-RiskClass.html#eq:mean-ft-Pois">(8.13)</a> se reescribe en forma log lineal</p>
+<p><span class="math display" id="eq:mean-ft-Pois-2">\[\begin{equation}
+\log \mu_i=\log \mathrm{E~}{(y_i|\mathbf{ x}_i)}=\mathbf{ x}^{\prime}_i\beta, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n
+\tag{8.14}
+\end{equation}\]</span></p>
+<p>para poner explícitamente que la relación entre la parte de la derecha está expresada en forma lineal, <span class="math inline">\(\mathbf{ x}^{\prime}_i\beta\)</span>. De nuevo, vemos que la correspondencia funciona bien dado que ambos lados de <a href="C-RiskClass.html#eq:mean-ft-Pois-2">(8.14)</a>, <span class="math inline">\(\log \mu_i\)</span> y <span class="math inline">\(\mathbf{ x}_i\beta\)</span>, pueden cubrir todos los valores reales.</p>
+<p>Esta es la formulación de la regresión de Poisson, suponiendo que todos los asegurados tienen el mismo período unitario de exposición. Sin embargo, cuando las exposiciones difieren entre los asegurados, como es el caso en la mayoría de los casos prácticos, necesitamos revisar esta formulación agregando el componente de exposición como un término adicional en <a href="C-RiskClass.html#eq:mean-ft-Pois-2">(8.14)</a>.</p>
+</div>
+<div id="incorporación-de-la-exposición" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> Incorporación de la exposición</h3>
+<p><strong>Concepto de Exposición</strong></p>
+<p>Para determinar el tamaño de las pérdidas potenciales en cualquier tipo de seguro, siempre se debe conocer la exposición correspondiente. El concepto de exposición es un ingrediente extremadamente importante en la fijación de precios de seguros, aunque generalmente lo damos por sentado. Por ejemplo, cuando decimos que la frecuencia de reclamaciones esperada de una póliza de seguro de salud es 0,2, no significa nada sin la especificación de la exposición, como, en este caso, por mes o por año. De hecho, todas las primas y pérdidas necesitan especificar la exposición con precisión y deben explicitarse en consecuencia; de lo contrario, todos los análisis estadísticos y predicciones posteriores se distorsionarán.</p>
+<p>En la sección anterior asumimos la misma unidad de exposición para todos los asegurados, pero esto no es realista en la práctica. En el seguro de salud, por ejemplo, dos asegurados diferentes con diferentes períodos de cobertura de seguro (por ejemplo, 3 meses y 12 meses, respectivamente) podrían haber registrado el mismo número de reclamaciones. Como el número esperado de reclamaciones sería proporcional a la duración de la cobertura, no debemos tratar las experiencias de pérdida de estos dos asegurados de manera idéntica en el proceso de modelización. Esto motiva la necesidad de usar el concepto de <em>exposición</em> en la regresión de Poisson.</p>
+<p>La distribución de Poisson en <a href="C-RiskClass.html#eq:Pois-pmf">(8.1)</a> se parametriza a través de su media. Para comprender la exposición, parametrizamos alternativamente el parametro de la <em>pmf</em> de Poisson en términos del parámetro <em>tasa</em> <span class="math inline">\(\lambda\)</span>, según la definición del proceso de Poisson:</p>
+<p><span class="math display" id="eq:Pois-pmf-2">\[\begin{equation}
+\Pr(Y=y)=\frac{(\lambda t)^y e^{-\lambda t}}{y!},\qquad y=0,1,2, \ldots
+\tag{8.15}
+\end{equation}\]</span></p>
+<p>con <span class="math inline">\(\mathrm{E~}{(Y)}=\mathrm{Var~}{(Y)}=\lambda t\)</span>. Aquí <span class="math inline">\(\lambda\)</span> se conoce como la tasa o intensidad por unidad de período del proceso de Poisson y <span class="math inline">\(t\)</span> representa el período de tiempo o <em>exposición</em>, que ha de ser un valor constante conocido. Para <span class="math inline">\(\lambda\)</span> dados, la distribución de Poisson <a href="C-RiskClass.html#eq:Pois-pmf-2">(8.15)</a> produce un mayor valor en el conteo de pérdidas esperadas a medida que la exposición <span class="math inline">\(t\)</span> aumenta.
+Claramente, <a href="C-RiskClass.html#eq:Pois-pmf-2">(8.15)</a> se reduce a <a href="C-RiskClass.html#eq:Pois-pmf">(8.1)</a> cuando <span class="math inline">\(t=1\)</span>, lo que significa que la media y la tasa se vuelven iguales para la unidad de exposición, el caso que consideramos en la subsección anterior.</p>
+<p>En principio, la exposición no necesita ser medida en unidades de tiempo y puede representar diferentes cosas dependiendo del problema en cuestión. Por ejemplo:</p>
+<ol style="list-style-type: decimal">
+<li>En el seguro de salud, la tasa puede ser la aparición de una enfermedad específica por cada 1.000 personas y la exposición es el número de personas consideradas en la unidad de 1.000.</li>
+<li>En el seguro de automóviles, la tasa puede ser el número de accidentes por año de un conductor y la exposición es la duración del período observado para el conductor en la unidad de un año.</li>
+<li>En la compensación a trabajadores que cubre la pérdida salarial como resultado de una lesión o enfermedad relacionada con el trabajo de un empleado, la tasa puede ser la probabilidad de lesión durante el tiempo del empleo por dólar y la exposición es la cuantía de la nómina en dólares.</li>
+<li>En marketing, la tasa puede ser la cantidad de clientes que ingresan a una tienda por hora y la exposición es la cantidad de horas observadas.</li>
+<li>En ingeniería civil, la tasa puede ser el número de grietas importantes en el camino pavimentado 10 kms y la exposición es la longitud del camino considerado en la unidad de 10 kms.</li>
+<li>En la modelización del riesgo de crédito, la tasa puede ser el número de eventos de incumplimiento por cada 1000 empresas y la exposición es el número de empresas consideradas en unidades de 1.000.</li>
+</ol>
+<p>Los actuarios pueden usar diferentes bases de exposición para una pérdida asegurable determinada. Por ejemplo, en el seguro de automóviles, tanto el número de kilómetros recorridos como el número de meses cubiertos por el seguro pueden usarse como bases de exposición. Aquí, el primero es más preciso y útil para modelizar las pérdidas por accidentes automovilísticos, pero es más difícil de medir y administrar para las aseguradoras. Por lo tanto, una buena base de exposición puede no ser la mejor en teoría debido a varias limitaciones prácticas. Por regla general, una base de exposición debe ser fácil de determinar, medible con precisión, legal y socialmente aceptable y libre de posibles manipulaciones por parte de los asegurados.</p>
+<p><strong>Incorporación de la exposición en la regresión de Poisson</strong></p>
+<p>Como las exposiciones afectan la media de Poisson, la construcción de regresiones de Poisson requiere que separemos cuidadosamente la tasa y la exposición en el proceso de modelización. Centrándonos en el contexto del seguro, denotemos la tasa del evento de pérdida del asegurado <span class="math inline">\(i\)</span>-ésimo como <span class="math inline">\(\lambda_i\)</span>, la exposición conocida (la duración de la cobertura) como <span class="math inline">\(m_i\)</span> y el valor del conteo de pérdidas esperado bajo la exposición dada por <span class="math inline">\(\mu_i\)</span>. Luego, la formulación de regresión de Poisson en <a href="C-RiskClass.html#eq:mean-ft-Pois">(8.13)</a> y <a href="C-RiskClass.html#eq:mean-ft-Pois-2">(8.14)</a> debe revisarse según <a href="C-RiskClass.html#eq:Pois-pmf-2">(8.15)</a> como</p>
+<p><span class="math display" id="eq:mean-ft-Pois-6">\[\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=m_i \,\lambda_i=m_i \, e^{\mathbf{ x}^{\prime}_i\beta}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n,
+\tag{8.16}
+\end{equation}\]</span></p>
+<p>lo que produce</p>
+<p><span class="math display" id="eq:mean-ft-Pois-7">\[\begin{equation}
+\log \mu_i=\log m_i+\mathbf{ x}^{\prime}_i\beta, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots,
+\tag{8.17}
+\end{equation}\]</span></p>
+<p>Añadiendo <span class="math inline">\(\log m_i\)</span> en <a href="C-RiskClass.html#eq:mean-ft-Pois-7">(8.17)</a> no supone ningún problema en el ajuste dado que siempre podemos especificar esto como una variable explicativa adicional, puesto que es una constante conocida, y fijar su coeficiente a 1. En la literatura, el logaritmo de la exposición, <span class="math inline">\(\log m_i\)</span>, se suele denominar el <strong>offset</strong>.</p>
+</div>
+<div id="ejercicios-3" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> Ejercicios</h3>
+<!-- %=================== -->
+<ol style="list-style-type: decimal">
+<li>Respecto a la <a href="#tab:8.1">Table 8.1</a> contestad lo siguiente.
+<ol style="list-style-type: lower-alpha">
+<li>Verificad la media de los valores de la tabla.<br />
+</li>
+<li>Verificad el número en la ecuación <a href="C-RiskClass.html#eq:coll-prem-avg">(8.2)</a>.<br />
+</li>
+<li>Producid los valores de conteo ajustados en la distribución de Poisson para cada nivel de la situación de fumador en la tabla.</li>
+</ol></li>
+<li>En la formulación de la regresión de Poisson <a href="C-RiskClass.html#eq:mui-glm">(8.12)</a>, considera el uso de <span class="math inline">\(\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=({\mathbf{ x}^{\prime}_i\beta})^2\)</span>, para <span class="math inline">\(i=1, \ldots, n\)</span>, en lugar de la función exponencial. ¿Qué problema potencial puede aperecer?</li>
+</ol>
+<!-- %3. Verifica ecuación \@ref(eq:Inf-mtx-Poi) diferenciando el logaritmo de verosimilitud \@ref(eq:ll-Poi-reg). -->
+</div>
+</div>
+<div id="S:CatVarMultiTarriff" class="section level2">
+<h2><span class="header-section-number">8.3</span> Variables Categóricas y Tarifa Multiplicativa</h2>
+<hr />
+<p>En esta sección, se aprende:</p>
+<ul>
+<li>El modelo de tarifa multiplicativa cuando los factores de tarificación son categóricos.</li>
+<li>Cómo construir el modelo de regresión de Poisson basado en la estructura tarifaria multiplicativa.</li>
+</ul>
+<hr />
+<div id="factores-de-tarificación-y-tarifa" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Factores de Tarificación y Tarifa</h3>
+<p>En la práctica, la mayoría de los factores de tarificación en seguros son <em>variables categóricas</em>, lo que significa que toman uno de la cantidad predeterminada de valores posibles. Los ejemplos de variables categóricas incluyen el sexo, el tipo de automóviles, la región de residencia y la ocupación del conductor. Las variables continuas, como la edad o el kilometraje del vehículo, también pueden agruparse por intervalos y tratarse como variables categóricas. Por lo tanto, podemos imaginar que, con un pequeño número de factores de tarificación, habrá muchos asegurados que caigan en la misma clase de riesgo, y pagarán la misma prima. Para el resto de este capítulo asumimos que todos los factores de tarificación son variables categóricas.</p>
+<p>Para ilustrar cómo se utilizan las variables categóricas en el proceso de fijación de precios, consideramos un seguro hipotético para automóviles con solo dos factores:</p>
+<ul>
+<li>Tipo de vehículo: Tipo A (propiedad personal) y B (propiedad de la empresa). Usamos el índice <span class="math inline">\(j = 1\)</span> y <span class="math inline">\(2\)</span> para representar respectivamente cada nivel de este factor de tarificación.</li>
+<li>Grupo de edad del conductor: joven (edad <span class="math inline">\(&lt;\)</span> 25), adulto (25 <span class="math inline">\(\le\)</span> edad <span class="math inline">\(&lt;\)</span> 60) y mayor (edad <span class="math inline">\(\ge\)</span> 60). Utilizamos el índice <span class="math inline">\(k = 1, 2\)</span> y <span class="math inline">\(3\)</span>, respectivamente, para este factor.</li>
+</ul>
+<!-- %  \item  -->
+<p>A partir de esta regla de clasificación, podemos crear una tabla o lista organizada, como la que se muestra en la [Tabla 8.2], que recopila a todos los asegurados. Claramente hay <span class="math inline">\(2\times 3 = 6\)</span> diferentes clases de riesgo en total. Cada fila de la tabla muestra una combinación de diferentes características de riesgo de los asegurados individuales. Nuestro objetivo es calcular seis primas diferentes para cada una de estas combinaciones. Una vez que se ha determinado la prima para cada fila utilizando la exposición y el número de reclamaciones dadas, la aseguradora puede reemplazar las dos últimas columnas en la [Tabla 8.2] con una sola columna que contiene las primas calculadas. Esta nueva tabla puede servir como un manual para determinar la prima para un nuevo asegurado dados los factores de tarificación durante el proceso de suscripción. En los seguros no de vida, una tabla (o un conjunto de tablas) o una lista que contiene cada conjunto de factores de tarificación y la prima asociada se conoce como una <em>tarifa</em>. Cada combinación única de los factores de calificación en una tarifa se llama <em>celda de tarifa</em>; así, en la [Tabla 8.2] el número de celdas de tarifa es seis, igual que el número de clases de riesgo.
+<a id=tab:8.2></a></p>
+<p><span class="math display">\[
+{\small
+\begin{matrix}
+\begin{array}{ccrrc}
+ \hline
+\text{Factores} &amp;\text{Tarificación}  &amp;   \text{Exposición} &amp; \text{Número de reclamaciones} \\
+\text{Tipo }(j) &amp; \text{Edad }(k) &amp;  \text{anual} &amp; \text{observadas}\\
+\hline \hline
+j=1 &amp; k=1 &amp;  89,1 &amp; 9\\
+1 &amp; 2   &amp; 208,5&amp; 8\\
+1 &amp; 3  &amp; 155,2 &amp; 6  \\
+2  &amp; 1  &amp; 19,3 &amp; 1 \\
+2  &amp; 2  &amp; 360,4 &amp; 13 \\
+2   &amp; 3  &amp; 276,7 &amp; 6 \\ \hline
+\end{array}
+\end{matrix}
+}
+\]</span></p>
+<p><a href="#tab:8.2">Table 8.2</a> : Ilustración de registro de pérdidas en el seguro de automóviles</p>
+<p>Veamos ahora la información sobre pérdidas en la [Tabla 8.2] más de cerca. La exposición en cada fila representa la suma de la duración de las coberturas de seguro, o los tiempos vigentes, en la unidad de año, de todos los asegurados en esa celda de tarifa. Del mismo modo, el recuento de reclamaciones en cada fila es el número de reclamaciones en cada celda. Naturalmente, las exposiciones y los recuentos de reclamaciones varían debido a la diferente cantidad de conductores en las celdas, así como a diferentes períodos de tiempo de vigencia entre los conductores dentro de cada celda.</p>
+<p>En el marco de la regresión de Poisson, denotamos la exposición y el recuento de reclamaciones de la celda <span class="math inline">\((j, k)\)</span> como <span class="math inline">\(m_ {jk}\)</span> y <span class="math inline">\(y_ {jk}\)</span>, respectivamente, y definimos el recuento de reclamaciones por unidad de exposición como</p>
+<p><span class="math display">\[\begin{equation}
+\nonumber
+z_{jk}= \frac{y_{jk}}{ m_{jk}}, \qquad j=1,2;\, k=1, 2,3.
+\end{equation}\]</span></p>
+<p>Por ejemplo, <span class="math inline">\(z_{12}=8/208,5=0,03837\)</span>, lo que significa que un asegurado en la celda de tarifa (1,2) tendría 0,03837 accidentes si estuviera asegurado durante un año completo en promedio. El conjunto de valores de <span class="math inline">\(z_{ij}\)</span> corresponde al parámetro de tasa media en la distribución de Poisson <a href="C-RiskClass.html#eq:Pois-pmf-2">(8.15)</a>, ya que son las tasas de ocurrencia de eventos por unidad de exposición. Es decir, tenemos <span class="math inline">\(z_{jk}=\hat{\lambda}_{jk}\)</span> donde <span class="math inline">\({\lambda}_{jk}\)</span> es el parámetro tasa de la Poisson. Sin embargo, generando los valores de <span class="math inline">\(z_ {ij}\)</span> lo que se hace simplemente es comparar las frecuencias de pérdida promedio entre las clases de riesgo. Para explotar completamente el conjunto de datos, construiremos un modelo de precios a partir de la [Tabla 8.2] utilizando la regresión de Poisson en el resto del capítulo.</p>
+<p>Comentar que los registros de pérdidas reales utilizados por las aseguradoras generalmente incluyen muchos más factores de riesgo, en cuyo caso el número de celdas crece exponencialmente. La tarifa consiste entonces en un conjunto de tablas, en lugar de una, separadas por algunos de los factores básicos de tarificación, como el sexo o el territorio.</p>
+</div>
+<div id="modelo-de-tarifa-multiplicativa" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Modelo de Tarifa Multiplicativa</h3>
+<!-- %\noindent\textbf{Concept of tariff}\\ -->
+<p>En esta subsección, presentamos el modelo de tarifa multiplicativa, una estructura de precios muy utilizada que puede usarse naturalmente dentro del marco de regresión de Poisson. Los desarrollos aquí se basan en la [Tabla 8.2]. Recordemos que el recuento de pérdidas de un asegurado se describe mediante el modelo de regresión de Poisson con tasa o media <span class="math inline">\(\lambda\)</span> y exposición <span class="math inline">\(m\)</span>, de modo que el recuento de pérdidas esperado se convierte en <span class="math inline">\(m \lambda\)</span>. Como <span class="math inline">\(m\)</span> es una constante conocida, estamos esencialmente interesados en modelizar <span class="math inline">\(\lambda\)</span>, de modo que responda al cambio en los factores de tarificación.</p>
+<p>Entre otras formas funcionales posibles, comúnmente elegimos la relación multiplicativa<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> para modelar la tasa de Poisson <span class="math inline">\(\lambda_{jk}\)</span> para el factor de tarificación (<span class="math inline">\(j,k\)</span>):</p>
+<p><span class="math display" id="eq:multiplicative-tarrif">\[\begin{equation}
+\lambda_{jk}= f_0 \times f_{1j} \times f_{2k}, \qquad j=1,2;\, k=1, 2,3.
+\tag{8.18}
+\end{equation}\]</span></p>
+<p>Aquí <span class="math inline">\(\{ f_{1j}, j=1,2\}\)</span> son los parámetros asociados con los dos niveles en el primer factor de calificación, tipo de automóvil y <span class="math inline">\(\{ f_{2k}, k=1,2,3\}\)</span> están asociados con los tres niveles de la franja de edad, el segundo factor de tarificación. Por ejemplo, la media de Poisson para un asegurado de mediana edad (adulto) con un vehículo Tipo B viene dada por <span class="math inline">\(\lambda_{22}=f_0 \times f_{12} \times f_{22}\)</span>. El primer término <span class="math inline">\(f_0\)</span> es un valor base que se discutirá en breve. Por lo tanto, estos seis parámetros se entienden como representaciones numéricas de los niveles dentro de cada factor de tarificación y deben estimarse a partir del conjunto de datos.</p>
+<p>La forma multiplicativa <a href="C-RiskClass.html#eq:multiplicative-tarrif">(8.18)</a> ) es fácil de entender y usar, porque muestra claramente cómo cambia el recuento de pérdidas esperadas (por unidad de exposición) a medida que varía cada factor de tarificación. Por ejemplo, si <span class="math inline">\(f_{11}=1\)</span> y <span class="math inline">\(f_{12}=1,2\)</span>, el recuento de pérdidas esperadas de un asegurado con un vehículo del tipo B sería un 20<span class="math inline">\(\%\)</span> mayor que el tipo A, cuando el resto de factores son los mismos. En los seguros no de vida, los parámetros <span class="math inline">\(f_{1j}\)</span> y <span class="math inline">\(f_{2k}\)</span> se conocen como <em>relatividades</em>, ya que determinan la cantidad de pérdida esperada que debería cambiar en relación con el valor base <span class="math inline">\(f_0\)</span>. La idea de la relatividad es bastante útil en la práctica, ya que podemos decidir la prima para un asegurado simplemente multiplicando una serie de relatividades correspondientes al valor base.</p>
+<p>Eliminar un factor de calificación existente o agregar uno nuevo también es transparente con esta estructura multiplicativa. Además, la aseguradora puede ajustar fácilmente la prima general para todos los asegurados controlando el valor base <span class="math inline">\(f_0\)</span> sin cambiar las relatividades individuales. Sin embargo, al adoptar la forma multiplicativa, asumimos implícitamente que no existe una interacción importante entre los factores de riesgo.</p>
+<p>Cuando se usa la forma multiplicativa, debemos abordar un problema de identificación. Es decir, para cualquier <span class="math inline">\(c&gt; 0\)</span>, podemos escribir</p>
+<p><span class="math display">\[\begin{equation}
+\lambda_{jk}= f_0 \times \frac{f_{1j}}{c} \times c\,f_{2k}. 
+\end{equation}\]</span></p>
+<p>Al comparar con <a href="C-RiskClass.html#eq:multiplicative-tarrif">(8.18)</a>), vemos que se puede obtener exactamente el mismo parámetro de tasa <span class="math inline">\(\lambda_{jk}\)</span> para relatividades individuales muy diferentes. Esta sobre-parametrización, que significa que muchos conjuntos diferentes de parámetros llegan a un modelo idéntico, obviamente requiere alguna restricción sobre <span class="math inline">\(f_{1j}\)</span> y <span class="math inline">\(f_{2k}\)</span>. La práctica estándar es hacer que una relatividad en cada factor de tarificación sea igual a uno. Esto puede hacerse arbitrariamente en teoría, pero la práctica estándar es hacer que la relatividad de la clase más común (clase base) sea igual a uno. Asumiremos que los vehículos de tipo A y los conductores jóvenes son las clases más frecuentes, es decir, <span class="math inline">\(f_{11} = 1\)</span> y <span class="math inline">\(f_{21} = 1\)</span>. De esta manera, todas las demás relatividades se determinan de manera única. La celda de tarifa <span class="math inline">\((j,k) = (1,1)\)</span> se llama entonces <em>celda de tarifa base</em>, donde la tasa simplemente se convierte en <span class="math inline">\(\lambda_{11} = f_0\)</span>, correspondiente al valor base de acuerdo con <a href="C-RiskClass.html#eq:multiplicative-tarrif">(8.18)</a>. Por lo tanto, el valor base <span class="math inline">\(f_0\)</span> generalmente se interpreta como la media de Poisson de la celda de tarifa base.</p>
+<p>De nuevo, <a href="C-RiskClass.html#eq:multiplicative-tarrif">(8.18)</a> se transforma mediante el logaritmo y puede re-escribirse como:</p>
+<p><span class="math display" id="eq:log-linear-tariff">\[\begin{equation}
+\log \lambda_{jk}= \log f_0 + \log f_{1j} + \log f_{2k},
+\tag{8.19}
+\end{equation}\]</span></p>
+<p>ya que es más fácil trabajar en el proceso de estimación, similar a <a href="C-RiskClass.html#eq:mean-ft-Pois-2">(8.14)</a>. Esta forma lineal de registro hace que las relatividades de registro del nivel base en cada factor de tarificación sean iguales a cero, es decir, <span class="math inline">\(\log f_{11}=\log f_{21}=0\)</span>, y nos lleva a la siguiente alternativa, que es una expresión más explícita para <a href="C-RiskClass.html#eq:log-linear-tariff">(8.19)</a>:</p>
+<p><span class="math display" id="eq:log-rate-Poi-tariff-3">\[\begin{equation}
+\log \lambda=\begin{cases}
+      \log f_0 + \quad 0 \quad \,\,+ \quad 0 \quad \,\,&amp; \text{para una póliza en a celda $(1,1)$}, \\
+            \log f_0+ \quad 0 \quad \,\,+\log f_{22}&amp; \text{para una póliza en a celda $(1,2)$}, \\
+                  \log f_0+ \quad 0 \quad \,\,+\log f_{23}&amp; \text{para una póliza en a celda $(1,3)$}, \\
+                        \log f_0+\log f_{12}+ \quad 0 \quad \,\,&amp; \text{para una póliza en a celda $(2,1)$}, \\
+                              \log f_0+\log f_{12}+\log f_{22}&amp; \text{para una póliza en a celda $(2,2)$}, \\
+                                    \log f_0+\log f_{12}+\log f_{23}&amp; \text{para una póliza en a celda $(2,3)$}. \\
+\end{cases}
+\tag{8.20}
+\end{equation}\]</span></p>
+<p>Esto muestra claramente que el parámetro de Poisson <span class="math inline">\(\lambda\)</span> varía según las diferentes celdas de la tarifa, con la misma forma lineal logarítmica utilizada en el marco de la regresión de Poisson. De hecho, se puede ver que<a href="C-RiskClass.html#eq:log-rate-Poi-tariff-3">(8.20)</a> es una versión extendida de la expresión anterior <a href="C-RiskClass.html#eq:ind-mu">(8.6)</a> con múltiples factores de riesgo y que las relatividades logarítmicas ahora juegan el papel de los parámetros <span class="math inline">\(\beta_i\)</span>.
+Por lo tanto, todas las relatividades pueden estimarse fácilmente mediante el ajuste de una regresión de Poisson con un conjunto de variables indicadoras elegidas adecuadamente.</p>
+</div>
+<div id="regresión-de-poisson-para-la-tarifa-multiplicativa" class="section level3">
+<h3><span class="header-section-number">8.3.3</span> Regresión de Poisson para la Tarifa Multiplicativa</h3>
+<p><strong>Variables Indicadoras para las Celdas de Tarifa</strong></p>
+<p>Ahora explicamos cómo se pueden incorporar las relatividades en la regresión de Poisson. Como se vio al principio de este capítulo, utilizamos variables indicadoras para tratar con variables categóricas. Por lo tanto, para nuestra aseguradora de automóviles del ejemplo, definimos una variable indicadora para el primer factor de calificación como</p>
+<p><span class="math display">\[\begin{equation}
+x_1=
+\begin{cases}
+      1 &amp; \text{ para vehículos de tipo B}, \\
+      0 &amp; \text{ en caso contrario}.
+\end{cases}
+\end{equation}\]</span></p>
+<p>Para el segundo factor de tarificación, empleamos dos variables indicadoras para el grupo de edad, es decir,</p>
+<p><span class="math display">\[\begin{equation}
+x_2=
+\begin{cases}
+     1 &amp; \text{para el grupo de edad 2}, \\
+     0 &amp; \text{en caso contrario}.
+\end{cases}
+\end{equation}\]</span></p>
+<p>y</p>
+<p><span class="math display">\[\begin{equation}
+x_3=
+\begin{cases}
+     1 &amp; \text{para el grupo de edad3}, \\
+     0 &amp; \text{en caso contrario}.
+\end{cases}
+\end{equation}\]</span></p>
+<p>La tripleta <span class="math inline">\((x_1, x_2, x_3)\)</span> puede determinar de manera efectiva y única cada clase de riesgo. Al observar que las variables indicadoras asociadas con el Tipo A y el grupo de edad 1 se omiten, vemos que la celda de tarifa <span class="math inline">\((j, k) = (1,1)\)</span> juega el papel de la celda base. Hacemos hincapié en que nuestra elección de las tres variables indicadoras anteriores se ha realizado cuidadosamente para que sea coherente con la elección de los niveles base en el modelo de tarifa multiplicativa en la subsección anterior (es decir, <span class="math inline">\(f_{11}=1\)</span> and <span class="math inline">\(f_{21}=1\)</span>).
+<!-- % -->
+<!-- % In addition, there is a one-to-one mapping between the tariff cell index $(j,k)$ and the triple $(x_1, x_2, x_3)$.  -->
+<!-- %For example, cell $(j,k)=(2,2)$ corresponds to $(1, 1, 0)$, and the base cell $(j,k)=(1,1)$ corresponds to $(0, 0, 0)$.  -->
+<!-- % --></p>
+<p>Con las variables indicadoras propuestas, podemos reescribir la tasa de registro <a href="C-RiskClass.html#eq:log-linear-tariff">(8.19)</a> como</p>
+<p><span class="math display" id="eq:log-linear-tariff-3">\[\begin{equation}
+\log \lambda_{}= \log f_0+ \log f_{12}  \times x_1 + \log f_{22} \times x_2 +\log f_{23} \times x_3,
+\tag{8.21}
+\end{equation}\]</span></p>
+<p>que es idéntico a <a href="C-RiskClass.html#eq:log-rate-Poi-tariff-3">(8.20)</a> cuando cada valor de la tripleta se aplica como corresponde. Por ejemplo, podemos verificar que la celda de tarifa base <span class="math inline">\((j,k)=(1,1)\)</span> corresponde a <span class="math inline">\((x_1, x_2,x_3)=(0, 0, 0)\)</span>, y a su vez produce <span class="math inline">\(\log \lambda=\log f_0\)</span> o <span class="math inline">\(\lambda=f_0\)</span> en <a href="C-RiskClass.html#eq:log-linear-tariff-3">(8.21)</a> según sea necesario.</p>
+<p><strong>Regresion de Poisson para el modelo de tarificación</strong></p>
+<p>Bajo esta especificación, consideremos a los <span class="math inline">\(n\)</span> asegurados en la cartera con las características de riesgo del asegurado <span class="math inline">\(i\)</span>-ésimo dadas por un vector de variables explicativas <span class="math inline">\(\mathbf{ x}_i=(x_{i1}, x_{i2},x_{i3})^{\prime}\)</span>, para <span class="math inline">\(i = 1, \ldots, n\)</span>.
+Entonces establecemos <a href="C-RiskClass.html#eq:log-linear-tariff-3">(8.21)</a> como
+<span class="math display">\[\begin{equation}
+\log \lambda_{i}= \beta_0+ \beta_1 \, x_{i1} + \beta_{2} \, x_{i2} +\beta_3  \, x_{i3}=\mathbf{ x}^{\prime}_i\beta, \qquad i=1, \ldots, n,
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\beta_0, \ldots, \beta_3\)</span> se pueden asignar a las relatividades de registro correspondientes en <a href="C-RiskClass.html#eq:log-linear-tariff-3">(8.21)</a>. Ésta es exactamente la misma configuración que en <a href="C-RiskClass.html#eq:mean-ft-Pois-7">(8.17)</a> excepto por el componente de exposición. Por lo tanto, al incorporar la exposición en cada clase de riesgo, el modelo de regresión de Poisson para este modelo de tarifa multiplicativa finalmente se convierte en</p>
+<p><span class="math display">\[\begin{equation}
+\log \mu_i=\log \lambda_{i}+\log m_i= \log m_i+ \beta_0+ \beta_1 \, x_{i1} + \beta_{2} \, x_{i2} +\beta_3  \, x_{i3}=\log m_i+\mathbf{ x}^{\prime}_i\beta, 
+\end{equation}\]</span></p>
+<p>para <span class="math inline">\(i=1, \ldots, n\)</span>.
+Como resultado, las relatividades vienen dadas por</p>
+<p><span class="math display" id="eq:relativity-1">\[\begin{equation}
+{f}_0=e^{\beta_0}, \quad {f}_{12}=e^{\beta_1}, \quad {f}_{22}=e^{\beta_2} \quad \text{and}\quad {f}_{23}=e^{\beta_3},
+\tag{8.22}
+\end{equation}\]</span></p>
+<p>con <span class="math inline">\(f_{11}=1\)</span> y <span class="math inline">\(f_{21}=1\)</span> de la especificación inicial. Para el conjunto de datos real, <span class="math inline">\(\beta_i\)</span>, <span class="math inline">\(i = 0,1, 2, 3\)</span>, se reemplaza con su estimación <em>mle</em> <span class="math inline">\(b_i\)</span> usando el método en el suplemento técnico al final de este capítulo (Sección 8.A).</p>
+</div>
+<div id="ejemplos-numéricos" class="section level3">
+<h3><span class="header-section-number">8.3.4</span> Ejemplos numéricos</h3>
+<p>Presentamos dos ejemplos numéricos de la regresión de Poisson. En el primer ejemplo, construimos un modelo de regresión de Poisson a partir de la [Tabla 8.2], que es un conjunto de datos de una hipotética compañía de seguro del automóvil. El segundo ejemplo utiliza un conjunto de datos real de una entidad aseguradora con más factores de riesgo. Como nuestro propósito es mostrar cómo se puede usar el modelo de regresión de Poisson bajo una regla de clasificación dada, no nos preocupa la calidad del ajuste del modelo de Poisson en este capítulo.</p>
+<p><strong>Ejemplo 8.1: Regresión de Poisson para el seguro del automóvil del ejemplo</strong></p>
+<p>En las últimas subsecciones anteriores, hemos considerado un conjunto de datos de una compañía aseguradora hipotética de automóviles con dos factores de riesgo, como se muestra en la [Tabla 8.2]. Ahora aplicamos el modelo de regresión de Poisson a este conjunto de datos. Como se hizo anteriormente, hemos establecido <span class="math inline">\((j, k) = (1,1)\)</span> como la celda de tarifa base, de modo que <span class="math inline">\(f_{11} = f_{21} = 1\)</span>. El resultado de la regresión da las estimaciones de coeficientes siguientes <span class="math inline">\((b_0, b_1, b_2, b_3) = (- 2,3359, -0,3004, -0,7837, -1,0655)\)</span>, que a su vez produce las correspondientes relatividades</p>
+<p><span class="math display">\[\begin{equation}
+\nonumber
+{f}_0=0,0967, \quad {f}_{12}=  0,7405, \quad {f}_{22}=0,4567 \quad \text{y}\quad {f}_{23}=0,3445.
+\end{equation}\]</span></p>
+<p>a partir de la relación dada por <a href="C-RiskClass.html#eq:relativity-1">(8.22)</a>. El programa en <code>R</code> y los resultados son los siguientes</p>
+<h5 style="text-align: center;">
+<a id="displayCodeRiskClass.1" href="javascript:togglecode('toggleCodeRiskClass.1','displayCodeRiskClass.1');"><i><strong>Muestral código R</strong></i></a>
+</h5>
+<div id="toggleCodeRiskClass.1" style="display: none">
+<div class="sourceCode" id="cb96"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb96-1" title="1">&gt; mydat1&lt;- read.csv(&quot;eg1_v1a.csv&quot;)</a>
+<a class="sourceLine" id="cb96-2" title="2">&gt; mydat1</a>
+<a class="sourceLine" id="cb96-3" title="3">  Vtype Agebnd Expsr Claims</a>
+<a class="sourceLine" id="cb96-4" title="4">1     1      1  89.1      9</a>
+<a class="sourceLine" id="cb96-5" title="5">2     1      2 208.5      8</a>
+<a class="sourceLine" id="cb96-6" title="6">3     1      3 155.2      6</a>
+<a class="sourceLine" id="cb96-7" title="7">4     2      1  19.3      1</a>
+<a class="sourceLine" id="cb96-8" title="8">5     2      2 360.4     13</a>
+<a class="sourceLine" id="cb96-9" title="9">6     2      3 276.7      6</a>
+<a class="sourceLine" id="cb96-10" title="10">&gt; VtypeF &lt;- relevel(factor(Vtype), ref=&quot;1&quot;) # treat Vtype as factors with 1 as base.</a>
+<a class="sourceLine" id="cb96-11" title="11">&gt; AgebndF &lt;- relevel(factor(Agebnd), ref=&quot;1&quot;) # treat Age band as factors.</a>
+<a class="sourceLine" id="cb96-12" title="12">&gt; Pois_reg1 = glm(Claims ~ VtypeF + AgebndF,</a>
+<a class="sourceLine" id="cb96-13" title="13">                    data = mydat1, family = poisson(link = log), offset = log(Expsr) )</a>
+<a class="sourceLine" id="cb96-14" title="14">&gt; Pois_reg1</a>
+<a class="sourceLine" id="cb96-15" title="15"></a>
+<a class="sourceLine" id="cb96-16" title="16">Coefficients:</a>
+<a class="sourceLine" id="cb96-17" title="17">(Intercept)      VtypeF2     AgebndF2     AgebndF3  </a>
+<a class="sourceLine" id="cb96-18" title="18">    -2.3359      -0.3004      -0.7837      -1.0655  </a>
+<a class="sourceLine" id="cb96-19" title="19"></a>
+<a class="sourceLine" id="cb96-20" title="20">Degrees of Freedom: 5 Total (i.e. Null);  2 Residual</a>
+<a class="sourceLine" id="cb96-21" title="21">Null Deviance:      8.774 </a>
+<a class="sourceLine" id="cb96-22" title="22">Residual Deviance: 0.6514   AIC: 30.37</a></code></pre></div>
+</div>
+<hr />
+<p><strong>Ejemplo 8.2. Regresión de Poisson para datos de siniestros en seguros en Singapur</strong></p>
+<p>Este conjunto de datos real es un subconjunto de los datos utilizados por <span class="citation">(Frees and Valdez <a href="#ref-frees2008hierarchical" role="doc-biblioref">2008</a>)</span>. Los datos provienen de la Asociación de Seguros Generales de Singapur, una organización que agrupa aseguradoras de no vida en Singapur. Los datos contienen el número de accidentes automovilísticos para <span class="math inline">\(n = 7.483\)</span> pólizas de seguro de auto con varias variables explicativas categóricas y la exposición para cada póliza. Las variables explicativas incluyen cuatro factores de riesgo: el tipo de vehículo asegurado (automóvil (A) u otro (O), denotado por <span class="math inline">\(\tt{Vtype}\)</span>), la edad del vehículo en años (<span class="math inline">\(\tt{Vage}\)</span>), el sexo del titular de la póliza (<span class="math inline">\(\tt{Sex}\)</span>) y la edad del titular de la póliza (en años, agrupados en siete categorías, indicados <span class="math inline">\(\tt{Age}\)</span>).</p>
+<p>Según la descripción de los datos, hay varias cosas a recordar antes de construir un modelo. Primero, hay 3.842 pólizas con vehículo tipo A (automóvil) y 3.641 pólizas con otros tipos de vehículos. Sin embargo, la información sobre edad y sexo está disponible solo para las pólizas del vehículo tipo A; Se registra que los conductores de todos los demás tipos de vehículos tienen 21 años de edad o menos con sexo no especificado, excepto en una póliza, lo que indica que no se ha recopilado información del conductor para vehículos que no sean automóviles. Segundo, todos los vehículos tipo A están clasificados como vehículos privados y los demás tipos no.</p>
+<p>Cuando incluimos estos factores de riesgo, asumimos que todo sexo no especificado es masculino. Como la información sobre la edad solo es aplicable a los vehículos tipo A, configuramos el modelo en consecuencia. Es decir, aplicamos la variable de edad solo a los vehículos del tipo A. También utilizamos cinco franjas de antigüedad del vehículo, simplificando los siete grupos originales, combinando las edades de los vehículos 0, 1 y 2; el intervalo combinado se codifica como nivel 2<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> en el archivo de datos. Por lo tanto, nuestro modelo de Poisson tiene la siguiente forma explícita:
+<span class="math display">\[\begin{align*}
+\log \mu_i= \mathbf{ x}^{\prime}_i\beta+&amp;\log m_i=\beta_0+\beta_1 I(Sex_i=M)+ \sum_{t=2}^6 \beta_t\, I(Vage_i=t) \\
+&amp;+  \sum_{t=7}^{13} \beta_t \,I(Vtype_i=A)\times I(Age_i=t-7)+\log m_i.
+\end{align*}\]</span></p>
+<p>El resultado del ajuste se proporciona en la <a href="#tab:8.3">Table 8.3</a>, para la que hacemos varios comentarios.</p>
+<ul>
+<li>La frecuencia de reclamaciones es mayor para hombres en un 17,3%, cuando otros factores de tarificación se mantienen fijos. Sin embargo, esto puede estar afectado por el hecho de que todo el sexo no especificado se ha asignado como hombre.</li>
+<li>Con respecto a la edad del vehículo, la frecuencia de reclamaciones disminuye gradualmente a medida que el vehículo envejece, cuando otros factores de tarificación se mantienen fijos. El nivel comienza desde 2 para esta variable pero, nuevamente, la numeración es nominal y no afecta el resultado numérico.</li>
+<li>La variable de edad del titular de la póliza solo se aplica al vehículo tipo A (automóvil), y no existe una póliza en el primer grupo de edad. Podemos especular que los conductores más jóvenes, menores de 21 años, conducen los automóviles de sus padres en lugar de tener el suyo debido a las altas primas de seguro o las regulaciones relacionadas. La falta de relatividad puede estimarse mediante alguna interpolación o a juicio profesional del actuario. La frecuencia de siniestros es la más baja para las franjas de edad 3 y 4, pero se vuelve sustancialmente más alta para los grupos de mayor edad, un patrón razonable visto en muchos conjuntos de datos de costes en el seguro de automóviles.</li>
+</ul>
+<p>También observamos que no existe un nivel base en la variable de edad del titular de la póliza, en el sentido de que ninguna relatividad es igual a 1. Esto se debe a que la variable solo es aplicable al tipo de vehículo A. Esto no causa un problema numérico, pero se puede establecer la relatividad básica de la siguiente manera si es necesario para otros fines. Como no hay ninguna póliza en el grupo de edad 0, consideramos el grupo 1 como el caso base. Específicamente, tratamos su relatividad como un producto de 0,918 y 1, donde la primera es la relatividad común (es decir, la reducción de prima común) aplicada a todas las pólizas con vehículo tipo A y la segunda es el valor base para la franja de edad 1. Entonces, la relatividad de la franja de edad 2 puede obtenerse como <span class="math inline">\(0,917 = 0,918 \times 0,999\)</span>, donde 0,999 se entiende como la relatividad para la franja de edad 2. Los grupos de edad restantes pueden tratarse de manera similar.</p>
+<p><a id=tab:8.3></a></p>
+<p><span class="math display">\[
+{\small 
+\begin{matrix}
+\begin{array}{clcc}
+\hline
+\text{Factor} &amp; \text{Nivel} &amp; \text{Relatividad en la tarifa} &amp; \text{Nota}\\ \hline\hline
+\text{Valor base}  &amp;  &amp; 0.167 &amp; f_0\\ \hline
+\text{Sexo} &amp; 1 (F) &amp; 1.000 &amp; \text{Base}\\
+ &amp; 2 (M) &amp; 1.173 &amp;\\\hline
+ \text{Edad del vehículo} &amp; 2 (0-2\text{ años}) &amp; 1.000 &amp; \text{Base}\\
+  &amp; 3 (3-5\text{ años}) &amp; 0,843 \\
+  &amp; 4 (6-10\text{ años}) &amp; 0,553 \\
+  &amp; 5 (11-15\text{ años}) &amp; 0,269 \\
+  &amp; 6 (16+\text{ años}) &amp; 0,189 &amp;\\\hline
+  \text{Edad del asegurado} &amp; 0 (0-21) &amp; \text{N. D.} &amp; \text{Sin pólizas} \\
+  \text{(Sólo aplicable a} &amp; 1 (22-25) &amp; 0,918 \\
+ \text{Tipo de vehículo A)}  &amp; 2 (26-35) &amp; 0,917 \\
+  &amp; 3 (36-45) &amp; 0,758 \\
+  &amp; 4 (46-55) &amp; 0,632 \\
+  &amp; 5 (56-65) &amp;  1,102\\
+  &amp; 6 (65+) &amp; 1,179\\ \hline \hline
+\end{array}
+\end{matrix}
+}
+\]</span></p>
+<p><a href="#tab:8.3">Table 8.3</a> : Datos de siniestros en seguros en Singapur</p>
+<p>Probemos varios ejemplos basados en la [Tabla 8.3]. Supongamos que un titular de póliza masculino de 40 años que posee un vehículo de tipo A de 7 años de edad. La frecuencia de reclamaciones esperada para este titular de póliza viene dada por
+<span class="math display">\[\begin{equation}
+\lambda=0,167 \times 1,173 \times 0,553 \times 0,758 = 0,082.
+\end{equation}\]</span></p>
+<p>Como otro ejemplo, considere a una asegurada de 60 años que posee un vehículo de 3 años del tipo O. La frecuencia de reclamaciones esperada para este asegurado es
+<span class="math display">\[\begin{equation}
+\lambda=0,167 \times 1 \times 0,843  = 0,141.
+\end{equation}\]</span></p>
+<p>Tengamos en cuenta que para esta póliza, la variable de grupo de edad no se utiliza ya que el tipo de vehículo no es A. La secuencia de comandos <code>R</code> se proporciona de la siguiente manera.</p>
+<h5 style="text-align: center;">
+<a id="displayCodeRiskClass.2" href="javascript:togglecode('toggleCodeRiskClass.2','displayCodeRiskClass.2');"><i><strong>Muestra código R</strong></i></a>
+</h5>
+<div id="toggleCodeRiskClass.2" style="display: none">
+<div class="sourceCode" id="cb97"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb97-1" title="1">mydat &lt;- read.csv(&quot;SingaporeAuto.csv&quot;,  quote = &quot;&quot;, header = TRUE)</a>
+<a class="sourceLine" id="cb97-2" title="2">attach(mydat)</a>
+<a class="sourceLine" id="cb97-3" title="3"></a>
+<a class="sourceLine" id="cb97-4" title="4"># create vehicle type as factor</a>
+<a class="sourceLine" id="cb97-5" title="5">TypeA = 1 * (VehicleType == &quot;A&quot;)</a>
+<a class="sourceLine" id="cb97-6" title="6">table(VehicleType)</a>
+<a class="sourceLine" id="cb97-7" title="7">VtypeF &lt;- as.character(VehicleType)</a>
+<a class="sourceLine" id="cb97-8" title="8">VtypeF[VtypeF != &quot;A&quot;] &lt;- &quot;O&quot;</a>
+<a class="sourceLine" id="cb97-9" title="9">VtypeF = relevel(factor(VtypeF), ref=&quot;A&quot;)</a>
+<a class="sourceLine" id="cb97-10" title="10"></a>
+<a class="sourceLine" id="cb97-11" title="11"># create gender as factor</a>
+<a class="sourceLine" id="cb97-12" title="12">Female = 1 * (SexInsured == &quot;F&quot; )</a>
+<a class="sourceLine" id="cb97-13" title="13">Sex = as.character(SexInsured)</a>
+<a class="sourceLine" id="cb97-14" title="14">Sex[Sex != &quot;F&quot;] &lt;- &quot;M&quot;</a>
+<a class="sourceLine" id="cb97-15" title="15">SexF = relevel(factor(Sex), ref = &quot;F&quot;)</a>
+<a class="sourceLine" id="cb97-16" title="16"></a>
+<a class="sourceLine" id="cb97-17" title="17"># create driver age as factor</a>
+<a class="sourceLine" id="cb97-18" title="18">AgeCat = pmax(AgeCat - 1, 0)</a>
+<a class="sourceLine" id="cb97-19" title="19">AgeCatF = relevel(factor(AgeCat), ref = &quot;0&quot;)</a>
+<a class="sourceLine" id="cb97-20" title="20">table(AgeCatF) # No policy in the first age band</a>
+<a class="sourceLine" id="cb97-21" title="21"></a>
+<a class="sourceLine" id="cb97-22" title="22"># create vehicle age as factor</a>
+<a class="sourceLine" id="cb97-23" title="23">VAgeCatF = relevel( factor(VAgeCat), ref = &quot;0&quot; )</a>
+<a class="sourceLine" id="cb97-24" title="24">VAgecat1 = factor(VAgecat1, labels = </a>
+<a class="sourceLine" id="cb97-25" title="25">                    c(&quot;Vage0-2&quot;, &quot;Vage3-5&quot;, &quot;Vage6-10&quot;, &quot;Vage11-15&quot;, &quot;Vage15+&quot;) )</a>
+<a class="sourceLine" id="cb97-26" title="26">VAgecat1F = relevel( factor(VAgecat1), ref = &quot;Vage0-2&quot; )</a>
+<a class="sourceLine" id="cb97-27" title="27"></a>
+<a class="sourceLine" id="cb97-28" title="28"># Poisson reg model</a>
+<a class="sourceLine" id="cb97-29" title="29">Pois_reg2 = glm(Clm_Count ~ SexF + TypeA:AgeCatF + VAgecat1F, </a>
+<a class="sourceLine" id="cb97-30" title="30">                   offset = LNWEIGHT, poisson(link = log) )</a>
+<a class="sourceLine" id="cb97-31" title="31">summary(Pois_reg2) </a>
+<a class="sourceLine" id="cb97-32" title="32"></a>
+<a class="sourceLine" id="cb97-33" title="33"># compute relativities</a>
+<a class="sourceLine" id="cb97-34" title="34">exp(Pois_reg2<span class="ss">$coefficients)</span></a>
+<a class="sourceLine" id="cb97-35" title="35"></a>
+<a class="sourceLine" id="cb97-36" title="36"><span class="ss">detach(mydat)</span></a></code></pre></div>
+</div>
+<hr />
+<p>Como observación final, comentar que la regresión de Poisson no es el único modelo de regresión posible para datos de conteo. En realidad, la distribución de Poisson puede ser restrictiva en el sentido de que tiene un único parámetro y su media y la varianza son siempre iguales. Existen otros modelos de regresión para conteos que permiten una estructura de distribución más flexible, como las regresiones binomiales negativas y las regresiones infladas en cero (ZI); Los detalles de estas regresiones alternativas se pueden encontrar en otros textos enumerados en la siguiente sección.</p>
+</div>
+</div>
+<div id="RC:further-reading-and-resources" class="section level2">
+<h2><span class="header-section-number">8.4</span> Más Recursos y Colaboradores</h2>
+<div id="más-información-y-referencias" class="section level4 unnumbered">
+<h4>Más Información y Referencias</h4>
+<p>La regresión de Poisson es un caso especial de una clase de modelo de regresión más general conocido como modelo lineal generalizado (glm). El glm establece un marco de regresión unificado para conjuntos de datos cuando las variables de respuesta son continuas, binarias o discretas. El modelo de regresión lineal clásico con error normal también es miembro del glm. Hay muchos textos estadísticos estándar que tratan sobre el glm, incluido <span class="citation">(Peter McCullagh and Nelder <a href="#ref-mccullagh1989generalized" role="doc-biblioref">1989</a>)</span>. Los textos más accesibles son <span class="citation">(Dobson and Barnett <a href="#ref-dobson2008introduction" role="doc-biblioref">2008</a>)</span>, <span class="citation">(Agresti <a href="#ref-agresti1996introduction" role="doc-biblioref">1996</a>)</span> y <span class="citation">(Faraway <a href="#ref-faraway2016extending" role="doc-biblioref">2016</a>)</span>. Para las aplicaciones actuariales y de seguros del glm, consulte <span class="citation">(Edward W. Frees <a href="#ref-frees2009regression" role="doc-biblioref">2009</a><a href="#ref-frees2009regression" role="doc-biblioref">a</a>)</span>, <span class="citation">(De Jong and Heller <a href="#ref-de2008generalized" role="doc-biblioref">2008</a>)</span>. Además, <span class="citation">(Ohlsson and Johansson <a href="#ref-ohlsson2010non" role="doc-biblioref">2010</a>)</span> analiza el glm en el contexto de fijación de precios de seguros no vida con análisis de tarifas.</p>
+</div>
+<div id="colaboradores-3" class="section level4 unnumbered">
+<h4>Colaboradores</h4>
+<ul>
+<li><strong>Joseph H. T. Kim</strong>, Yonsei University, es el autor principal de la versión inicial de este capítulo. Email: <a href="mailto:jhtkim@yonsei.ac.kr" class="email">jhtkim@yonsei.ac.kr</a> para comentarios del capítulo y sugerencias de mejora.</li>
+<li>Revisores del capítulo: Chun Yong Chew, Lina Xu, Jeffrey Zheng.</li>
+<li>Traducción al español: Montserrat Guillen (Universitat de Barcelona)</li>
+</ul>
+</div>
+<div id="ts-8.a-estimación-de-modelos-de-regresión-de-poisson" class="section level3 unnumbered">
+<h3>TS 8.A – Estimación de Modelos de Regresión de Poisson</h3>
+<p>Los principios de la estimación de máxima verosimilitud (<em>mle</em>) se presentan en las Secciones <a href="C-Frequency-Modeling.html#S:parameter-estimation">2.4.1</a> y <a href="C-Severity.html#S:MaxLikeEstimation">3.5</a>, definidos en la Sección <a href="C-AppA.html#S:AppA:MLE">15.2.2</a>, y desarrollados teóricamente en el Capítulo <a href="C-AppC.html#C:AppC">17</a>. Aquí presentamos el procedimiento <em>mle</em> de la regresión de Poisson para que el lector pueda ver cómo se tratan las variables explicativas para maximizar la función de verosimilitud en el ámbito de la regresión.</p>
+<p><strong>Máxima Verosimilitud para Datos Individuales</strong></p>
+<p>En la regresión de Poisson, la media de la distribución de Poisson está determinada por los parámetros <span class="math inline">\(\beta_i\)</span>’s, como se muestra en <a href="C-RiskClass.html#eq:mean-ft-Pois-7">(8.17)</a>. En esta subsección usamos el método de máxima verosimilitud para estimar estos parámetros. Nuevamente, asumimos que hay <span class="math inline">\(n\)</span> asegurados y el asegurado <span class="math inline">\(i\)</span>-ésimo se caracteriza por <span class="math inline">\(\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}\)</span> con la pérdida observada como una frecuencia <span class="math inline">\(y_i\)</span>. Luego, partiendo de <a href="C-RiskClass.html#eq:mean-ft-Pois-6">(8.16)</a> y @ref(eq: mean-ft-Pois-7), la función log-verosimilitud del vector<span class="math inline">\(\beta=(\beta_0, \dots, \beta_k)\)</span> viene dada por</p>
+<p><span class="math display" id="eq:ll-Poi-reg">\[\begin{align}
+\nonumber \log L(\beta)    &amp;= l(\beta)=\sum^n_{i=1} \left( -\mu_i +y_i \, \log \mu_i -\log y_i! \right)  \\
+    &amp;  = \sum^n_{i=1} \left( -m_i \exp(\mathbf{ x}^{\prime}_i\beta) +y_i \,(\log m_i+\mathbf{ x}^{\prime}_i\beta)  -\log y_i! \right)
+\tag{8.23}
+\end{align}\]</span></p>
+<p>Para obtener la <em>mle</em> de <span class="math inline">\(\beta=(\beta_0, \ldots, \beta_k)^{\prime}\)</span>, diferenciamos<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> <span class="math inline">\(l(\beta)\)</span> respecto al vector <span class="math inline">\(\beta\)</span> e igualamos a cero:</p>
+<p><span class="math display" id="eq:score-ft-Poi">\[\begin{equation}
+\frac{\partial}{\partial \beta}l(\beta)\Bigg{|}_{\beta=\mathbf{b}}=\sum^n_{i=1} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i=\mathbf{ 0}.
+\tag{8.24}
+\end{equation}\]</span></p>
+<p>Solucionando numéricamente este sistema de ecuaciones obtenemos la <em>mle</em> de <span class="math inline">\(\beta\)</span>, denotada como <span class="math inline">\(\mathbf{ b}=(b_0, b_1, \ldots, b_k)^{\prime}\)</span>.
+Es importante ver que, como <span class="math inline">\(\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}\)</span> es un vector columna, la ecuación <a href="C-RiskClass.html#eq:score-ft-Poi">(8.24)</a> es un sistema con <span class="math inline">\(k+1\)</span> ecuaciones donde ambos lados están escritos como un vector columna de dimensión <span class="math inline">\(k+1\)</span>. Si denotamos <span class="math inline">\(\hat{\mu}_i=m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b})\)</span>, podemos escribir <a href="C-RiskClass.html#eq:score-ft-Poi">(8.24)</a> como</p>
+<p><span class="math display">\[\begin{equation}
+\sum^n_{i=1} \left(y_i -\hat{\mu}_i \right)\mathbf{ x}_i=\mathbf{ 0}.
+\end{equation}\]</span></p>
+<p>Dado que la solución <span class="math inline">\(\mathbf{ b}\)</span> satisface esta ecuación, se deduce que la primera de las <span class="math inline">\(k+1\)</span> ecuaciones, que corresponde al primer elemento constante de <span class="math inline">\(\mathbf{ x}_i\)</span>, implica que</p>
+<p><span class="math display">\[\begin{equation}
+\sum^n_{i=1}\left( y_i -\hat{\mu}_i \right)\times 1={ 0},
+\end{equation}\]</span></p>
+<p>lo que implica que tenemos</p>
+<p><span class="math display">\[\begin{equation}
+n^{-1}\sum_{i=1}^n y_i =\bar{y}=n^{-1}\sum_{i=1}^n \hat{\mu}_i.
+\end{equation}\]</span></p>
+<p>Esta es una propiedad interesante que dice que el promedio de las pérdidas individuales observadas, <span class="math inline">\(\bar{y}\)</span>, es el mismo que el promedio de los valores estimados. Es decir, la media muestral se conserva bajo el modelo de regresión de Poisson ajustado.</p>
+<p><strong>Estimación por Máxima Verosimilitud con Datos Agrupados</strong></p>
+<p>Algunas veces los datos no están disponibles a nivel de póliza individual. Por ejemplo, la [Tabla 8.2] proporciona información sobre pérdidas colectivas para cada clase de riesgo después de agrupar pólizas individuales. Cuando este es el caso, <span class="math inline">\(y_i\)</span> y <span class="math inline">\(m_i\)</span>, las cantidades necesarias para el cálculo de la <em>mle</em> en <a href="C-RiskClass.html#eq:score-ft-Poi">(8.24)</a> no están disponibles para cada <span class="math inline">\(i\)</span>. Sin embargo, esto no plantea un problema siempre que tengamos los recuentos de pérdidas totales y la exposición total para cada clase de riesgo.</p>
+<p>Para ver el detalle, supongamos que hay <span class="math inline">\(K\)</span> diferentes clases de riesgo, y además que, en la clase de riesgo <span class="math inline">\(k\)</span>-ésima, tenemos <span class="math inline">\(n_k\)</span> pólizas con la exposición total <span class="math inline">\(m_{(k)}\)</span> y el promedio pérdidas <span class="math inline">\(\bar{y}_{(k)}\)</span>, para <span class="math inline">\(k = 1, \ldots, K\)</span>; el recuento total de pérdidas para la clase de riesgo <span class="math inline">\(k\)</span>-ésima es entonces <span class="math inline">\(n_k \, \bar {y} _ {(k)}\)</span>. Denotamos el conjunto de índices de las pólizas que pertenecen a la clase <span class="math inline">\(k\)</span>-ésima para <span class="math inline">\(C_k\)</span>. Como todas las pólizas en una clase de riesgo dada comparten las mismas características de riesgo, podemos denotar
+<span class="math inline">\(\mathbf{x} _i = \mathbf{x} _{(k)}\)</span> para las pólizas <span class="math inline">\(i \in C_k\)</span>. Con esta notación, podemos reescribir <a href="C-RiskClass.html#eq:score-ft-Poi">(8.24)</a> como</p>
+<p><span class="math display" id="eq:score-ft-Poi-2">\[\begin{align}
+\nonumber \sum^n_{i=1} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i &amp;= \sum^K_{k=1}\Big{\{}\sum_{i \in C_k} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i  \Big{\}} \\
+\nonumber     &amp;  =\sum^K_{k=1}\Big{\{} \sum_{i \in C_k} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \right)\mathbf{ x}_{(k)}  \Big{\}} \\
+\nonumber     &amp;  =\sum^K_{k=1}\Big{\{}  \Big(\sum_{i \in C_k}y_i -\sum_{i \in C_k}m_i \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \Big)\mathbf{ x}_{(k)}  \Big{\}} \\
+      &amp;  =\sum^K_{k=1} \Big(n_k\, \bar{y}_{(k)}-m_{(k)} \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \Big)\mathbf{ x}_{(k)} =0.
+\tag{8.25}
+\end{align}\]</span></p>
+<p>Como <span class="math inline">\(n_k \, \bar{y}_{(k)}\)</span> en <a href="C-RiskClass.html#eq:score-ft-Poi-2">(8.25)</a> representa el recuento total de pérdidas para la clase de riesgo <span class="math inline">\(k\)</span>-ésima y <span class="math inline">\(m_{( k)}\)</span> es su exposición total, vemos que para la regresión de Poisson la <em>mle</em> de <span class="math inline">\(\mathbf {b}\)</span> es el misma si usamos los datos individuales o los datos agrupados.</p>
+<p><strong>Matriz de Información</strong><br />
+La Sección <a href="C-AppC.html#S:AppC:LF">17.1</a> define las matrices de información. Tomando las segundas derivadas en <a href="C-RiskClass.html#eq:ll-Poi-reg">(8.23)</a> proporciona la matriz de información de los estimadores <em>mle</em>,</p>
+<p><span class="math display" id="eq:Inf-mtx-Poi">\[\begin{equation}
+\mathbf{ I}(\beta)=-\mathrm{E~}{\left( \frac{\partial^2}{\partial \beta\partial \beta^{\prime}}l(\beta) \right)}=\sum^n_{i=1}m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ \beta})\mathbf{ x}_i \mathbf{ x}_i^{\prime}=\sum^n_{i=1} {\mu}_i \mathbf{ x}_i \mathbf{ x}_i^{\prime}.
+\tag{8.26}
+\end{equation}\]</span></p>
+<p>Para conjuntos de datos individuales, <span class="math inline">\({\mu}_i\)</span> en <a href="C-RiskClass.html#eq:Inf-mtx-Poi">(8.26)</a> se reemplaza por <span class="math inline">\(\hat{\mu}_i=m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b})\)</span> para estimar las varianzas y covarianzas relevantes de los estimadores <em>mle</em> <span class="math inline">\(\mathbf{ b}\)</span> o sus funciones.</p>
+<p>Para conjuntos de datos agrupados, tenemos</p>
+<p><span class="math display">\[\begin{equation}
+\mathbf{ I}(\beta)=\sum^K_{k=1} \Big{\{}\sum_{i \in C_k}m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ \beta})\mathbf{ x}_i \mathbf{ x}_i^{\prime} \Big{\}}=\sum^K_{k=1} m_{(k)} \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ \beta})\mathbf{ x}_{(k)} \mathbf{ x}_{(k)}^{\prime}.
+\end{equation}\]</span></p>
+
+</div>
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-ASBStandards">
+<p>Actuarial Standards Board. 2018. “Actuarial Standards of Practice.” In. American Academy of Actuaries. <a href="http://www.actuarialstandardsboard.org/standards-of-practice/">http://www.actuarialstandardsboard.org/standards-of-practice/</a>.</p>
+</div>
+<div id="ref-agresti1996introduction">
+<p>Agresti, Alan. 1996. <em>An Introduction to Categorical Data Analysis</em>. Wiley New York.</p>
+</div>
+<div id="ref-de2008generalized">
+<p>De Jong, Piet, and Gillian Z. Heller. 2008. <em>Generalized Linear Models for Insurance Data</em>. Cambridge University Press Cambridge.</p>
+</div>
+<div id="ref-dobson2008introduction">
+<p>Dobson, Annette J, and Adrian Barnett. 2008. <em>An Introduction to Generalized Linear Models</em>. CRC press.</p>
+</div>
+<div id="ref-faraway2016extending">
+<p>Faraway, Julian J. 2016. <em>Extending the Linear Model with R: Generalized Linear, Mixed Effects and Nonparametric Regression Models</em>. Vol. 124. CRC press.</p>
+</div>
+<div id="ref-frees2009regression">
+<p>Frees, Edward W. 2009a. <em>Regression Modeling with Actuarial and Financial Applications</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-frees2008hierarchical">
+<p>Frees, Edward W., and Emiliano A. Valdez. 1998. “Understanding Relationships Using Copulas.” <em>North American Actuarial Journal</em> 2 (01): 1–25.</p> 2008. “Hierarchical Insurance Claims Modeling.” <em>Journal of the American Statistical Association</em> 103 (484): 1457–69.</p>
+</div>
+<div id="ref-mccullagh1989generalized">
+<p>McCullagh, Peter, and John A. Nelder. 1989. <em>Generalized Linear Models</em>. Vol. 37. CRC press.</p>
+</div>
+<div id="ref-ohlsson2010non">
+<p>Ohlsson, Esbjörn, and Björn Johansson. 2010. <em>Non-Life Insurance Pricing with Generalized Linear Models</em>. Vol. 21. Springer.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Por ejemplo, si hay 3 factores de riesgo, cuyo número de niveles es 2, 3 y 4, respectivamente, tenemos <span class="math inline">\(k=(2-1)\times(3-1)\times (4-1)=6\)</span>.<a href="C-RiskClass.html#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Ya se mencionó laa preferencia por la forma multiplicativa frente a otras (por ejemplo, la aditiva) en <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a>.<a href="C-RiskClass.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>corresponde a <span class="math inline">\(\texttt{VAgecat1}\)</span><a href="C-RiskClass.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Usamos derivada matricial<a href="C-RiskClass.html#fnref12" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="C-PremiumFoundations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="C-Credibility.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LossDataAnalytics.pdf", "LossDataAnalytics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,952 @@
+
+`r chapnum = 11`
+
+# Provisiones {#C:LossReserves}
+
+
+*Vista Previa del Capítulo.* Este capítulo introduce las provisiones (también conocidas como reservas por pérdidas) para seguros de propiedad y accidentes (P&C, según sus siglas en inglés, o generales, no-vida). En particular, el capítulo presenta algunas herramientas analíticas básicas esenciales para evaluar las reservas de una cartera de productos de seguros de P&C. En primer lugar, la Sección \@ref(S:motivation) motiva la necesidad de las provisiones. Después la Sección \@ref(S:Data) estudia las fuentes de datos disponibles e introduce algunas notaciones formales para enfocar las provisiones como un desafío de predicción. A continuación, la sección \@ref(S:Chain-ladder) cubre el método de chain-ladder y el modelo de chain-ladder con distribución libre de Mack. La sección \@ref(S:GLMs) finalmente desarrolla un enfoque totalmente estocástico para determinar la reserva pendiente con modelos lineales generalizados (GLMs, según sus siglas en inglés), incluyendo la técnica de bootstrapping para obtener una distribución predictiva de la reserva pendiente a través de la simulación. 
+
+
+## Motivación {#S:motivation}
+
+Nuestro punto de partida es la vida de un siniestro en un seguro de P&C. La figura \@ref(fig:tikz-run-off) muestra el desarrollo del siniestro a lo largo del tiempo e identifica los eventos de interés:
+
+
+<a id="tikz-run-off"></a>
+```{tikz, tikz-run-off, fig.cap = "Vida o run-off de un siniestro", fig.align = 'center', fig.ext = 'png', fig.width=5, echo = FALSE}
+\usetikzlibrary{snakes}
+\begin{tikzpicture}[snake=zigzag, line before snake = 5mm, line after snake = 5mm]
+%draw horizontal line
+\draw[->] (0,0) -- (10,0);
+% draw arrow
+%\draw (1.5,0) node{$\bullet$};
+%draw bullet
+\foreach \x in {1,2,4,5,6,8}   \draw (\x cm,3pt) -- (\x cm,-3pt);
+%draw nodes
+\draw (1,0) node[below=3pt] {$ t_{\text{occ}} $};
+\draw (2,0) node[below=3pt] {$ t_{\text{rep}} $};
+\draw (4,0) node[below=3pt] {$ t_1 $};
+\draw (5,0) node[below=3pt] {$ t_2 $};
+\draw (6,0) node[below=3pt] {$ t_3 $};
+\draw (8,0) node[below=3pt] {$ t_{\text{set}} $};
+\draw (10,0) node[below=3pt] {\begin{tiny}tiempo\end{tiny}};
+%draw vertical lines
+\draw[->] (1,2) -- (1,0.5);
+\draw (1,2) node[above=3pt] {\textcolor{black}{Ocurrencia}};
+\draw[->] (2,1.0) -- (2,0.5);
+\draw (2,1.0) node[above=3pt] {\textcolor{black}{Apertura}};
+\draw[->] (4,2) -- (4,0.5);
+\draw[->] (5,2) -- (5,0.5);
+\draw[->] (6,2) -- (6,0.5);
+\draw (5,2) node[above=3pt] {\textcolor{black}{Pagos}};
+\draw[->] (8,2) -- (8,0.5);
+\draw (8,2) node[above=3pt] {\textcolor{black}{Liquidación}};
+
+\draw [decorate,decoration={brace,amplitude=5pt, mirror}, thick, color=red]
+(1,-0.8) -- (1.95,-0.8);
+
+\draw [decorate,decoration={brace,amplitude=5pt, mirror}, thick, color=blue]
+(2.05,-0.8) -- (8,-0.8);
+
+\draw (1.5,0) node [red, below=30pt]
+{\textcolor{red}{\textsf{retraso apertura}}};
+
+\draw (5.5,0) node [blue, below=30pt]
+{\textcolor{blue}{\textsf{retraso liquidación}}};
+\end{tikzpicture}
+
+```
+
+El evento asegurado o accidente ocurre en el momento $t_{occ}$. Este siniestro es reportado a la compañía de seguros en el momento $t_{rep}$, después de un cierto tiempo de demora. Si la compañía de seguros acepta la reclamación presentada, realizará diferentes pagos para reembolsar la pérdida financiera del titular de la póliza. En este ejemplo, la compañía de seguros compensa la pérdida sufrida con pagos por pérdidas en los momentos $t_1$, $t_2$ u $t_3$. Finalmente, la reclamación se liquida o cierra en el momento $t_{set}$. 
+
+A menudo las reclamaciones no se liquidan inmediatamente debido a la presencia de una demora en la presentación de la reclamación, un retraso en el proceso de liquidación o ambos. El `r Gloss('retraso en la notificación')` es el tiempo que transcurre entre la ocurrencia del evento asegurado y la notificación de este evento a la compañía de seguros. El tiempo entre la notificación y la liquidación de una reclamación se conoce como la `r Gloss('demora en la liquidación')`. Por ejemplo, es muy intuitivo que una reclamación por daños materiales se resuelve más rápidamente que una reclamación por lesiones corporales que impliquen un tipo de lesión compleja. Las reclamaciones cerradas pueden reabrirse debido a nuevos acontecimientos, por ejemplo, una lesión que requiere un tratamiento adicional. En conjunto, el desarrollo del siniestro requiere un tiempo. La presencia de este retraso en la tramitación de un siniestro obliga al asegurador a disponer de capital para liquidar estas reclamaciones en el futuro. 
+
+
+### Siniestros cerrados, IBNR, y RBNS {#S:claim-types}
+
+Basándonos en el estado de la liquidación de la reclamación, distinguimos tres tipos de siniestros en los libros de una compañía de seguros. El primer tipo de siniestro es una reclamación cerrada. Para estos siniestros se ha observado el desarrollo completo. Con la línea roja de la figura \@ref(fig:tikz-closed) que indica el momento presente, todos los eventos del desarrollo del siniestro tienen lugar antes del momento presente. Por lo tanto, estos eventos se observan en el momento actual. Por comodidad, asumiremos que una reclamación cerrada no puede reabrirse. 
+
+
+<a id="tikz-closed"></a>
+```{tikz, tikz-closed, fig.cap = "Vida de un siniestro cerrado", fig.align = 'center', fig.ext = 'png', fig.width=5, echo = FALSE}
+\usetikzlibrary{snakes}
+\begin{tikzpicture}[snake=zigzag, line before snake = 5mm, line after snake = 5mm]
+%draw horizontal line
+\draw[->] (3,0) -- (15,0);
+\foreach \x in {4,6,7.5,10,11}   \draw (\x cm,3pt) -- (\x cm,-3pt);
+\draw (4,0) node[below=3pt] {$ t_{\text{occ}} $};
+\draw (6,0) node[below=3pt] {$ t_{\text{rep}} $};
+\draw (7.5,0) node[below=3pt] {$ t_1 $};
+\draw (10,0) node[below=3pt] {$ t_2 $};
+\draw (11,0) node[below=3pt] {$t_{\text{set}}$};
+
+%\draw (3,4) node[above=3pt] {\textbf{\textcolor{red}{Siniestro cerrado}}};
+\draw (15,0) node[below=3pt] {\begin{tiny}tiempo\end{tiny}};
+%draw vertical lines
+\draw[->] (4,2) -- (4,0.5);
+\draw (4,2) node[above=3pt] {Ocurrencia};
+\draw[->] (6,1.0) -- (6,0.5);
+\draw (6,1.0) node[above=3pt] {Apertura};
+\draw[->] (7.5,1.75) -- (7.5,0.5);
+\draw (8.8,2.5) node[below=3pt] {Pagos};
+\draw[->] (10,1.75) -- (10,0.5);
+\draw[->] (11,1.0) -- (11,0.5);
+\draw (11,1.0) node[above=3pt] {Liquidación};
+\draw[->,color=red,line width=2pt] (12.5,2.5) -- (12.5,0.1);
+\draw (12.5,2.5) node[above=3pt] {\textcolor{red}{\textbf{Presente}}};
+\end{tikzpicture}
+```
+
+Un siniestro `r Gloss('RBNS')` ha sido comunicado pero no está completamente liquidado (**R**eported **B**ut **N**ot **S**ettled) en el momento actual o en el momento de la evaluación, es decir, el momento en que las provisiones deben ser calculadas y reservadas por el asegurador. La ocurrencia, la notificación y posiblemente algunos pagos tienen lugar antes del momento presente, pero el cierre del siniestro ocurre en el futuro, más allá del momento presente.
+
+
+<a id="tikz-RBNS"></a>
+```{tikz, tikz-RBNS, fig.cap = "Vida de un siniestro RBNS", fig.align = 'center', fig.ext = 'png', fig.width=5, echo = FALSE}
+\usetikzlibrary{snakes}
+\usetikzlibrary{shapes.arrows}
+\definecolor{shadecolor}{HTML}{f67e8e}  %licht rood
+\begin{tikzpicture}[scale=0.8,snake=zigzag, line before snake = 5mm, line after snake = 5mm]
+%draw horizontal line
+\draw[->] (3,0) -- (15,0);
+\foreach \x in {4,6,7.5,10}   \draw (\x cm,3pt) -- (\x cm,-3pt);
+\draw (4,0) node[below=3pt] {$ t_{\text{occ}} $};
+\draw (6,0) node[below=3pt] {$ t_{\text{rep}} $};
+\draw (7.5,0) node[below=3pt] {$ t_1 $};
+\draw (10,0) node[below=3pt] {$ t_2 $};
+
+%\draw (3,4) node[above=3pt] {\textcolor{red{\textbf{RBNS claim}}};
+\draw (14,0) node[below=3pt] {\begin{tiny}tiempo\end{tiny}};
+%draw vertical lines
+\draw[->] (4,2) -- (4,0.5);
+\draw (4,2) node[above=3pt] {Ocurrencia};
+\draw[->] (6,1.0) -- (6,0.5);
+\draw (6,1.0) node[above=3pt] {Apertura};
+\draw[->] (7.5, 1.75) -- (7.5, 0.5);
+\draw (8.8, 2.5) node[below=3pt] {Pagos};
+\draw[->] (10, 1.75) -- (10, 0.5);
+
+\draw[->,color=red,line width=2pt] (12.5,2.5) -- (12.5,0.1);
+\draw (12.5,2.5) node[above=3pt] {\textcolor{red}{\textbf{Presente}}};
+\node at (13.9, -1.15) [single arrow,fill=shadecolor] {Incertidumbre};
+\end{tikzpicture}
+```
+
+Un siniestro `r Gloss('IBNR')` ha ocurrido en el pasado pero aún no ha sido comunicado (**I**ncurred **B**ut **N**ot yet **R**eported). El evento asegurado ocurrió, pero la compañía de seguros aún no está al tanto del siniestro asociado. Esta reclamación se comunicará en el futuro y su desarrollo completo (desde la comunicación hasta la liquidación) tendrá lugar en el futuro.
+
+<a id="tikz-IBNR"></a>
+```{tikz, tikz-IBNR, fig.cap = "Vida de un siniestro IBNR", fig.align = 'center', fig.ext = 'png', fig.width=5, echo = FALSE}
+\usetikzlibrary{snakes}
+\usetikzlibrary{shapes.arrows}
+\definecolor{shadecolor}{HTML}{f67e8e}  %licht rood
+\begin{tikzpicture}[scale=0.8,snake=zigzag, line before snake = 5mm, line after snake = 5mm]
+%draw horizontal line
+\draw[->] (3,0) -- (15,0);
+\foreach \x in {4}   \draw (\x cm,3pt) -- (\x cm,-3pt);
+\draw (4,0) node[below=3pt] {$ t_{\text{occ}} $};
+%\draw (3,4) node[above=3pt] {\textcolor{red}{\textbf{IBNR claim}}};
+\draw (14,0) node[below=3pt] {\begin{tiny}tiempo\end{tiny}};
+%draw vertical lines
+\draw[->] (4,2) -- (4,0.5);
+\draw (4,2) node[above=3pt] {Ocurrencia};
+\draw[->,color=red,line width=2pt] (10.5,1.5) -- (10.5,0.1);
+\draw (10.5,1.5) node[above=3pt] {\textcolor{red}{\textbf{Presente}}};
+\node at (11.8,-0.85) [single arrow,fill=shadecolor] {Incertidumbre};
+\end{tikzpicture}
+```
+
+Las compañías de seguros provisionarán el capital para cumplir con sus responsabilidades futuras con respecto a los siniestros tanto RBNS como IBNR. El desarrollo futuro de tales siniestros es incierto y se utilizarán técnicas de modelización predictiva para calcular las reservas adecuadas, a partir de los datos históricos de desarrollo observados en siniestros similares.  
+
+### ¿Por qué reservar?
+
+El ciclo de producción invertido del mercado de los seguros y la dinámica de los siniestros que se muestra en la sección \@ref(S:claim-types) motivan la necesidad de reservar y el diseño de herramientas de modelización predictiva para estimar las reservas. En los seguros, los ingresos por primas preceden a los costes. Un asegurador cobrará una prima a un cliente, antes de saber realmente cómo de costosa será la póliza o el contrato de seguro. En la industria manufacturera normalmente no es así y el fabricante sabe - antes de vender un producto - cuál fue el coste de producción de este producto. En un momento de evaluación específico $\tau$ el asegurador predecirá sus responsabilidades pendientes con respecto a los contratos vendidos en el pasado. Esta es la reserva de siniestros o reserva para pérdidas; es el capital necesario para liquidar los siniestros abiertos de exposiciones pasadas. Es un elemento muy importante en el balance del asegurador, más concretamente en el pasivo de este balance.
+
+
+## Datos de provisiones {#S:Data}
+
+### De Micro a Macro
+
+Ahora analizamos los datos disponibles para estimar la reserva pendiente de una cartera de contratos P&C. Las compañías de seguros suelen registrar los datos sobre el desarrollo de un siniestro individual como se muestra en la línea de tiempo a la izquierda de la figura \@ref(fig:tikz-micro-macro). Nos referimos a los datos registrados a este nivel como **datos granulares o de micro-nivel**. Típicamente, un actuario agrega la información registrada sobre la evolución individual de los siniestros para todas las reclamaciones de una cartera. Esta agregación da lugar a datos estructurados en un formato triangular como se muestra en la parte derecha de la figura \@ref(fig:tikz-micro-macro). Estos datos se denominan datos **agregados o a nivel macro** porque cada celda del triángulo muestra la información obtenida al agregar el desarrollo de múltiples reclamaciones.
+
+<a id="tikz-micro-macro"></a>
+```{tikz, tikz-micro-macro, fig.cap = "De datos granulares a triángulo de desarrollo", fig.align = 'center', fig.ext = 'png', fig.width=5, echo = FALSE}
+\tikzset{
+triangle/.style={
+  draw,shape border uses incircle,
+  isosceles triangle,isosceles triangle apex angle=90,
+  shape border rotate=-225,
+  minimum width={100pt},
+ text width=20pt,
+ text height=10pt},
+lowTriangle/.style={
+  draw,shape border uses incircle,
+  isosceles triangle,isosceles triangle apex angle=90,
+  shape border rotate=-45,
+  minimum width={100pt},
+ text width=20pt}
+ }
+\usetikzlibrary{decorations}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\begin{tikzpicture}[scale=0.5, auto, to/.style={->,>=stealth',shorten >=1pt}, every node/.style={font=\fontsize{6pt}{6pt}\selectfont\sffamily, align=center, semithick}]
+\draw[to] (0,0) -- (8,0) node[below right]  {time};
+\foreach \x in {1,2.5,4,4.5,5,6.6}   \draw (\x cm,3pt) -- (\x cm,-3pt);
+\draw (1,0) node[below=3pt] {$ t_{\text{occ}} $};
+\draw (2.5,0) node[below=3pt] {$ t_{\text{rep}} $};
+\draw (4,0) node[below=3pt] {$ t_1 $};
+\draw (4.5,0) node[below=3pt] {$ t_2 $};
+\draw (5,0) node[below=3pt] {$ t_3 $};
+\draw (6.6,0) node[below=3pt] {$ t_{\text{set}} $};
+\draw[to] (1,3) -- (1,0.5);
+\draw (1,3) node[above=3pt] {Ocurrencia};
+\draw[to] (2.5,1.5) -- (2.5,0.5);
+\draw (2.5,1.5) node[above=3pt] {Apertura};
+\draw[to] (4,3) -- (4,0.5);
+\draw[to] (4.5,3) -- (4.5,0.5);
+\draw (4.5,3) node[above=3pt] {Pagos};
+\draw[to] (5,3) -- (5,0.5);
+\draw[to] (6.6,1.5) -- (6.6,0.5);
+\draw (6.6,1.5) node[above=3pt] {Liquidación};
+\draw[->, >=stealth',shorten >=1pt, semithick, decorate, decoration={snake, amplitude=.7mm, segment length = 3mm, post length = 2.5mm}] (11,1.5) to node[yshift=5pt] {Todos los siniestros de la cartera} node[swap, yshift=-5pt] {\textcolor{blue}{Datos comprimidos}} (15.5,1.5);
+\draw[semithick,color=red] (17,3.5) -- node{Retraso en el pago} (20.5,3.5) -- (17,0) -- (17,3.5) node[midway, sloped, above]{Año de ocurrencia};
+\end{tikzpicture}
+```
+
+La visualización triangular utilizada en la provisión por pérdidas se llama triángulo **run-off o de desarrollo**. En el eje vertical el triángulo enumera los años de accidente o de ocurrencia durante los cuales se sigue una cartera. Los pagos provisionados para un siniestro específico están conectados con el año durante el cual ocurrió el evento asegurado. En el eje horizontal se indica el retraso en el pago desde la ocurrencia del evento asegurado.
+
+### Triángulos de desarrollo
+
+Un primer ejemplo de un `r Gloss('triángulo de desarrollo')` con pagos incrementales se muestra en la Figura \@ref(fig:tikz-triangle) (tomada de @WuthrichMerz2008, Tabla 2.2, también utilizada en @WuthrichMerz2015, Tabla 1.4). Los años de los accidentes (o años de ocurrencia) se muestran en el eje vertical y van desde 2004 hasta 2013. Se refieren al año durante el cual ocurrió el evento asegurado. El eje horizontal indica el retraso en el pago en años desde la ocurrencia del evento asegurado. *0 retraso* se utiliza para los pagos realizados en el año de ocurrencia del accidente o evento asegurado. *Un año* de retraso se utiliza para los pagos realizados en el año posterior a la ocurrencia del accidente.
+
+
+<a id="tikz-triangle"></a>
+
+```{tikz, tikz-triangle, fig.cap = "Triángulo de Desarrollo con datos de pagos incrementales. Fuente: @WuthrichMerz2008, Tabla 2.2.", fig.align = 'center', fig.ext = 'png',  echo = FALSE}
+\begin{LARGE}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+\textsf{accident} & \multicolumn{10}{c|}{\textsf{payment delay (in years)}}  \\
+\cline{2-11}
+\textsf{year} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+\hline
+2004 & 5947,0 & 3721,2 & 895,7 & 207,8 & 206,7 & 621,2 & 658,1 & 148,5 & 111,3 & 158,1 \\
+2005 & 6346,8 & 3246,4 & 723,2 & 151,8 & 678,2 & 366,0 & 527,5 & 111,9 & 116,5   & \\
+2006 & 6269,1 & 2976,2 & 8470,5 & 262,8 & 152,7 & 654,4 & 535,5 & 892,4    & & \\
+2007 & 5863 & 2683,2 & 722,5 & 190,7 & 133,0 & 883,4 & 433,3    & & & \\
+2008 & 5778,9 & 2745,2 & 653,9 & 273,4 & 230,3 & 105,2    & & & & \\
+2009 & 6184,8 & 2828,3 & 572,8 & 244,9 & 105,0     & & & & & \\
+2010 & 5600,2 & 2893,2 & 563,1 & 225,5   & & & & & & \\
+2011 & 5288,1 & 2440,1 & 528,0   &  & & & & & & \\
+2012 & 5290,8 & 2357,9    & &  & & & & & & \\
+2013 & 5675,6   &   & &  & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+\end{LARGE}
+```
+
+Por ejemplo, la celda $(2004, 0)$ del triángulo anterior muestra el número $5947$, la cantidad total pagada en el año 2004 por todas los siniestros ocurridos en el año 2004. Por lo tanto, es la cantidad total pagada con 0 años de retraso en todas las reclamaciones que ocurrieron en el año 2004. De manera similar, el número de la celda $(2012,1)$ muestra el total de $2357,9$ pagados en el año 2013 por todos los siniestros que ocurrieron en el año 2012.
+
+<a id="tikz-cum-triangle"></a>
+```{tikz, tikz-cum-triangle, fig.cap = " Triángulo de desarrollo con datos de pago acumulados. Fuente: @WuthrichMerz2008, Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{LARGE}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+accident & \multicolumn{10}{c|}{payment delay (in years)}  \\
+\cline{2-11}
+year & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+\hline
+2004 & 5.947 & 9.668 & 10.564 & 10.772 & 10.978 & 11.041 & 11.106 & 11.121 & 11.132 & 11.148 \\
+2005 & 6.347 & 9.593 & 10.316 & 10.468 & 10.536 & 10.573  & 10.625 & 10.637 & 10.648   & \\
+2006 & 6.269 & 9.245 & 10.092 & 10.355 & 10.508 & 10.573 & 10.627 & 10.636  & & \\
+2007 & 5.863 & 8.546 & 9.269 & 9.459 & 9.592 & 9.681 & 9.724  & & & \\
+2008 & 5.779 & 8.524 & 9.178 & 9.451 & 9.682 & 9.787   & & & & \\
+2009 & 6.185 & 9.013 & 9.586 & 9.831 & 9.936 &   & & & & \\
+2010 & 5.600 & 8.493 & 9.057 & 9.282  &     & & & & & \\
+2011 & 5.288 & 7.728 & 8.256 &     & & & & & & \\
+2012 & 5.291  &7.649    & & & & & & & & \\
+2013 & 5.676  & & & & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+\end{LARGE}
+```
+
+Mientras que el triángulo de la Figura \@ref(fig:tikz-triangle) muestra los datos de pago incremental, la Figura \@ref(fig:tikz-cum-triangle) muestra la misma información en formato acumulado. Ahora, la celda $(2004,1)$ muestra la cantidad total pagada *hasta* la demora de pago 1 para todos los siniestros que ocurrieron en el año 2004. Por lo tanto, es la suma de la cantidad pagada en 2004 y la cantidad pagada en 2005 por los accidentes que ocurrieron en 2004. 
+
+Se pueden utilizar diferentes datos en triángulos de desarrollo como los que se muestran en la Figura \@ref(fig:tikz-triangle) y en la Figura \@ref(fig:tikz-cum-triangle). Dependiendo del tipo de datos utilizados, el triángulo se utilizará para estimar diferentes cantidades.
+
+
+Por ejemplo, en el formato incremental una celda puede mostrar:
+
+* los pagos de los siniestros, como explicado antes
+* el número de reclamaciones que se produjeron en un año específico y que se notificaron con cierto retraso, cuando el objetivo es estimar el número de siniestros IBNR
+* la variación en las cantidades incurridas, donde las cantidades incurridas de los siniestros son la suma de los siniestros pagados acumulados y las `r Gloss('estimaciones individuales')`. La estimación individual es la estimación del tramitador de los siniestros sobre la cantidad pendiente de pago de un siniestro. 
+
+En el formato acumulado una celda puede mostrar: 
+
+* la cantidad pagada acumulada, según lo explicado antes
+* el número total de siniestros de un año de ocurrencia, notificados hasta un determinado retraso
+* las cantidades incurridas de los siniestros.
+
+Es posible que se disponga de otras fuentes de información, por ejemplo, covariables (como el tipo de siniestros), información externa (como inflación, cambios regulatorios). La mayoría de los métodos de provisión de siniestros diseñados para los triángulos de desarrollo se basan más bien en una sola fuente de información, aunque algunas contribuciones recientes se centran en el uso de datos más detallados para la provisión de pérdidas.
+
+
+### Notación de provisiones
+
+#### Triángulos de desarrollo {-}
+
+
+Para formalizar lo mostrado en las figuras \@ref(fig:tikz-triangle) y \@ref(fig:tikz-cum-triangle), permitimos que $i$ se refiera al año de ocurrencia o accidente, el año en que ocurrió el evento asegurado. En nuestra anotación el primer año de accidente considerado en la cartera se denota con 1 y el último año de accidente, el más reciente, se denota con $I$. De la misma forma, $j$ se refiere al año de retraso de pago o desarrollo, donde un retraso igual a 0 corresponde al año de accidente.  La figura \@ref(fig:tikz-math-triangle) muestra un triángulo en el que se considera el mismo número de años en la dirección vertical y en la horizontal, por lo que $j$ va desde 0 hasta $J = I-1$.
+
+
+<a id="tikz-math-triangle"></a>
+```{tikz, tikz-math-triangle, fig.cap = "Notación matemática para un triángulo de desarrollo. Fuente: @WuthrichMerz2008", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{LARGE}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+\textsf{año} & \multicolumn{10}{c|}{retraso en pagos $j$} \\
+\cline{2-11} \textsf{accidente $i$} & 0 & 1 & 2 & 3 & 4 & $\ldots$ & $j$ & $\ldots$ & $J-1$ & $J=I-1$ \\
+\hline
+ 1 &  &  &  & & & & & & & \\
+\cline{11-11} 2 &  &  &  & & & & & & \multicolumn{1}{r|}{} & \\
+\cline{10-10} $\vdots$ & \multicolumn{7}{c}{\textcolor{black}{observaciones} $\mathcal{D}_I=\{C_{ij}: i+j\leq I\}$} & \multicolumn{1}{r|}{} & & \\
+\cline{9-9} $\vdots$ &  &  &  & & & &   \multicolumn{1}{r|}{} & & &  \\
+\cline{8-8} $i$ &  &  &  & & & \multicolumn{1}{r|}{} & & & & \\
+\cline{7-7} $\vdots$ &  &  &  & &  \multicolumn{1}{r|}{} & & &  & & \\
+\cline{6-6} $\vdots$ &  &  &  &   \multicolumn{1}{r|}{} & & & & & & \\
+\cline{5-5} $I-2$ & &  &    \multicolumn{1}{r|}{} & \multicolumn{7}{c|}{\textcolor{black}{a predecir} $\mathcal{D}^c_I=\{C_{ij}: i+j > I\}$} \\
+\cline{4-4} $I-1$ &  &   \multicolumn{1}{r|}{} & & & & & & & &  \\
+\cline{3-3} $I$ &    \multicolumn{1}{r|}{} & & & & & & & & &  \\
+\hline
+\end{tabular}
+\end{center}
+\end{LARGE}
+```
+
+La variable aleatoria $X_{ij}$ denota las reclamaciones incrementales pagadas en el período de desarrollo $j$ de los siniestros del año de accidente $i$. Por lo tanto, $X_{ij}$ es la cantidad total pagada en el año de desarrollo $j$ por todos los siniestros que ocurrieron en el año de ocurrencia $i$. Estas cuantías se pagan realmente en el año contable o natural $i+j$. Desde un punto de vista acumulado, $C_{ij}$ es la cantidad acumulada pagada hasta (e incluyendo) el año de desarrollo $j$ por los accidentes ocurridos en el año $i$. Al final, se paga una cantidad total de $C_{iJ}$ en el último año de desarrollo $J$ por los siniestros ocurridos en el año de accidente $i$. En este capítulo el tiempo se expresa en años, aunque también se pueden utilizar otras unidades de tiempo, por ejemplo, semestres o trimestres.
+
+#### Provisión por pérdidas {-}
+
+En el momento de la evaluación $\tau$, se han observado los datos del triángulo superior, mientras que el triángulo inferior tiene que predecirse. Aquí, el momento de la evaluación es el final del año del accidente $I$ lo que implica que una celda $(i,j)$ con $i+j \leq I$ se observa, y una celda $(i,j)$ con $i+j > I$ pertenece al futuro y tiene que ser predicha. Así, para un triángulo de desarrollo acumulado, el objetivo de un método de provisión de pérdidas es predecir $C_{i,I-1}$,
+la cantidad última por los siniestros para el año de ocurrencia $i$, correspondiente al período final de desarrollo $I-1$ en la Figura \@ref(fig:tikz-cum-triangle). Asumimos que - más allá de este período - no habrá más pagos, aunque este supuesto puede relajarse.
+
+Dado que $C_{i,I-1}$ es acumulado, incluye tanto una parte observada como una parte que debe predecirse. Por lo tanto, la provisión por pagos pendientes para el año de accidente $i$ es
+
+\begin{eqnarray*}
+\mathcal{R}^{(0)}_{i} = \sum_{\ell=I-i+1}^{I-1} X_{i\ell} = C_{i,I}-C_{i,I-i}.
+\end{eqnarray*}
+
+Expresamos la reserva como una suma de datos incrementales, $X_{i\ell}$, o como la diferencia entre datos acumulados. En este último caso, la cantidad pendiente es la cantidad acumulada final $C_{i,I}$ menos la cantidad acumulada observada más reciente $C_{i,I-i}$. Siguiendo a @WuthrichMerz2015, la anotación $\mathcal{R}^{(0)}_{i}$ se refiere a la reserva para el año de ocurrencia $i$ donde $i=1,\ldots,I$. El superíndice $(0)$ se refiere a la evaluación de la reserva en el momento actual, digamos $\tau = 0$. Entendemos que $\tau = 0$ al final del año de ocurrencia $I$, el año calendario más reciente para el que se observan y registran los datos.
+
+### Código R para resumir datos de provisión de pérdidas {#S:Rcode}
+
+Usamos el paquete `ChainLadder` [@R-chainladder] para importar triángulos de desarrollo en `R` y para explorar las tendencias presentes en estos triángulos. La viñeta del paquete documenta muy bien sus funciones para trabajar con datos triangulares. Primero, exploramos dos formas de importar un triángulo.
+
+
+#### Datos con formato extenso {-}
+
+El conjunto de datos `triangle_W_M_long.txt` almacena el triángulo de desarrollo acumulado de @WuthrichMerz2008 (Tabla 2.2) en formato largo. Es decir, cada celda del triángulo es una fila de este conjunto de datos, y se almacenan tres características: la cuantía del pago (acumulado, en este ejemplo), el año de ocurrencia ($i$) y el retraso del pago ($j$). Importamos el archivo `r Gloss('.txt')` y almacenamos el conjunto de datos resultante como `my_triangle_long`:
+
+`r HideRCode('TriangleText.1','Código R para importar datos de texto')`
+
+```{r read_triangle_long, comment = "", echo=SHOW_PDF}
+my_triangle_long <- read.table("Data/triangle_W_M_long.txt", header = TRUE)
+head(my_triangle_long)
+```
+
+</div>  
+
+Usamos la función `as.triangle` del paquete `ChainLadder` para transformar el conjunto de datos en formato triangular. El objeto resultante `my_triangle` ahora es de tipo `triangle`.
+
+`r HideRCode('TriangleText.2','Código R para la transformación en formato triangular')`
+
+```{r from_long_to_wide, comment = "", echo=SHOW_PDF}
+my_triangle <- as.triangle(my_triangle_long, origin = "origin", dev = "dev", value = "payment")
+str(my_triangle)
+```
+
+</div>  
+
+Mostramos el triángulo y reconocemos los números (en miles) de la figura \@ref(fig:tikz-cum-triangle). Las celdas en el triángulo inferior se indican como valores ausentes (*not available*), `NA`.
+
+`r HideRCode('TriangleText.3','Código R para mostrar datos triangulares')`
+
+```{r display_long_to_wide, comment = "", echo=SHOW_PDF}
+round(my_triangle/1000, digits = 0)
+```
+
+</div>  
+
+#### Datos en formato triangular {-}
+
+Alternativamente, el triángulo puede ser almacenado en un archivo `r Gloss('.csv')` con los años de ocurrencia en las filas y los años de desarrollo en las celdas de la columna. Importamos este archivo .csv y transformamos `my_triangle_csv` resultante en una matriz.
+
+`r HideRCode('TriangleCSV.1','Código R para importar datos triangulares')`
+
+```{r read_excel_triangle, comment = "", echo=SHOW_PDF}
+my_triangle_csv <- read.csv2("Data/triangle_W_M.csv", header = FALSE)
+my_triangle_matrix <- as.matrix(my_triangle_csv)
+dimnames(my_triangle_matrix) <- list(origin = 2004 : 2013, dev = 0:(ncol(my_triangle_matrix)-1))
+```
+
+</div>  
+
+Inspeccionamos el triángulo:
+
+`r HideRCode('TriangleCSV.2','Código R para mostrar datos triangulares')`
+
+```{r excel_to_triangle, comment = "", echo=SHOW_PDF}
+my_triangle <- as.triangle(my_triangle_matrix) 
+round(my_triangle/1000, digits = 0)
+```
+
+</div>  
+
+#### De acumulado a incremental y viceversa {-}
+
+Las funciones de `R` `cum2incr()` y `incr2cum()` nos permiten pasar de datos acumulados a incrementales, y viceversa, de una manera fácil.
+
+`r HideRCode('TriangleCSV.3','Código R para pasar de visualización de datos acumulados a incrementales')`
+
+```{r cum_to_incr, comment = "", echo=SHOW_PDF}
+my_triangle_incr <- cum2incr(my_triangle) 
+round(my_triangle_incr/1000, digits = 0)
+```
+
+</div>  
+Reconocemos el triángulo incremental de la figura \@ref(fig:tikz-triangle). 
+
+#### Visualización de triángulos {-}
+
+Para explorar la evolución de los pagos acumulados por año de ocurrencia, la figura \@ref(fig:plottriangle) muestra `my_triangle` usando la función `plot` disponible para los objetos de tipo `triangle` en el paquete `ChainLadder`. Cada línea de este gráfico muestra un año de ocurrencia (de 2004 a 2013, etiquetado como 1 a 10). Los períodos de desarrollo se etiquetan de 1 a 10 (en lugar de 0 a 9, como se usó anteriormente).
+
+```{r plottriangle, fig.cap = "Desarrollo del siniestro por año de ocurrencia ", fig.align = 'center', out.width = '80%'}
+plot(my_triangle)
+```
+
+Alternativamente, el argumento `lattice` crea un gráfico por año de ocurrencia.
+
+```{r plot_triangle_lattice, fig.align = 'center', out.width = '80%'}
+plot(my_triangle, lattice = TRUE)
+```
+En lugar de graficar el triángulo acumulado guardado en `my_triangle`, podemos graficar el triángulo de desarollo incremental.
+
+```{r plot_triangle_incr, fig.align = 'center', out.width = '80%'}
+plot(my_triangle_incr)
+plot(my_triangle_incr, lattice = TRUE)
+```
+
+## Chain-Ladder {#S:Chain-ladder}
+
+El método más utilizado para estimar las reservas por pagos pendientes es el llamado `r Gloss('método chain-ladder')`. Los orígenes de este método no están claros pero se afianzó firmemente en aplicaciones prácticas a principios de los 70, @taylor1986claims. Como se mostrará, el nombre se refiere al encadenamiento (chain) de una secuencia de factores (desarrollo año a año) en una escalera (ladder) de factores; las pérdidas inmaduras suben hacia la madurez cuando se multiplican por esta concatenación de ratios, de ahí la descripción de *método chain-ladder.* Empezaremos explorando el método chain-ladder en su versión determinista o algorítmica, por lo tanto sin hacer ninguna suposición estocástica. Luego describiremos el modelo chain-ladder de distribución libre de Mack.
+
+
+### Chain-Ladder Determinista {#S:DeterministicCL}
+
+El método chain-ladder determinista se centra en el triángulo de desarrollo en forma acumulada. Recordemos que una celda $(i,j)$ en este triángulo muestra la cantidad acumulada pagada hasta el período de desarrollo $j$ por siniestros que ocurrieron en el año $i$. El método chain-ladder asume que los **factores de desarrollo** $f_j$ (también llamados factores edad-a-edad, ratios de enlace o factores chain-ladder) existen de tal manera que
+
+$$
+C_{i,j+1} = f_j \times C_{i,j}.
+$$ 
+
+Por tanto, el factor de desarrollo indica cómo la cantidad acumulada en el año de desarrollo $j$ crece hasta la cantidad acumulada en el año $j+1$. Destacamos la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo en la Figura \@ref(fig:tikz-cum-triangle-cl1) tomada de @WuthrichMerz2008 (Tabla 2.2, también utilizada en @WuthrichMerz2015, Tabla 1.4).
+
+<a id="tikz-cum-triangle-cl1"></a>
+```{tikz, tikz-cum-triangle-cl1, fig.cap = "Triángulo de desarrollo con datos de pagos acumulados que muestra la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo. Fuente: @WuthrichMerz2008, Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{large}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+año & \multicolumn{10}{c|}{retardo en pagos (en años)}  \\
+\cline{2-11}
+accidente & \textcolor{magenta}{0} & \textcolor{magenta}{1} & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+\hline
+1 & \textcolor{blue}{5.947} & \textcolor{red}{9.668} & 10.564 & 10.772 & 10.978 & 11.041 & 11.106 & 11.121 & 11.132 & 11.148 \\
+2 & \textcolor{blue}{6.347} & \textcolor{red}{9.593} & 10.316 & 10.468 & 10.536 & 10.573  & 10.625 & 10.637 & 10.648   & \\
+3 & \textcolor{blue}{6.269} & \textcolor{red}{9.245} & 10.092 & 10.355 & 10.508 & 10.573 & 10.627 & 10.636  & & \\
+4 & \textcolor{blue}{5.863} & \textcolor{red}{8.546} & 9.269 & 9.459 & 9.592 & 9.681 & 9.724  & & & \\
+5 & \textcolor{blue}{5.779} & \textcolor{red}{8.524} & 9.178 & 9.451 & 9.682 & 9.787   & & & & \\
+6 & \textcolor{blue}{6.185} & \textcolor{red}{9.013} & 9.586 & 9.831 & 9.936 &   & & & & \\
+7 & \textcolor{blue}{5.600} & \textcolor{red}{8.493} & 9.057 & 9.282  &     & & & & & \\
+8 & \textcolor{blue}{5.288} & \textcolor{red}{7.728} & 8.256 &     & & & & & & \\
+9 & \textcolor{blue}{5.291}  & \textcolor{red}{7.649}    & & & & & & & & \\
+10 & 5.676  & & & & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+\end{large}
+```
+
+El método chain-ladder presenta una forma intuitiva para estimar o calcular estos factores de desarrollo. Dado que el primer factor de desarrollo $f_0$ describe el desarrollo de la cantidad acumulada de los siniestros desde el período de desarrollo 0 hasta el período de desarrollo 1, se puede estimar como la proporción de las cantidades acumuladas en rojo y las cantidades acumuladas en azul, resaltadas en la Figura \@ref(fig:tikz-cum-triangle-cl1). En notación matemática obtenemos entonces la siguiente estimación $\hat{f}_0^{CL}$ para el primer factor de desarrollo $f_0$, dadas las observaciones $\mathcal{D}_I$:
+
+$$
+\hat{f}^{CL}_{\color{magenta}{0}} = \frac{\sum_{i=1}^{10-\color{magenta}{0}-1} \color{red}{C_{i,\color{magenta}{0}+1}}}{\sum_{i=1}^{10-\color{magenta}{0}-1} \color{blue}{C_{i\color{magenta}{0}}}}= 1,4925.
+$$
+
+Cabe señalar que el índice $i$, utilizado en las sumas del numerador y el denominador, va desde el primer período de ocurrencia (1) hasta el último período de ocurrencia (9) para el que se observan ambos períodos de desarrollo 0 y 1. Como tal, este factor de desarrollo mide cómo los datos en azul crecen hasta los datos en rojo, promediados a través de todos los períodos de ocurrencia para los cuales se observan ambos períodos. El método chain-ladder utiliza entonces este estimador del factor de desarrollo para predecir la cantidad acumulada $C_{10,1}$ (es decir, la cantidad acumulada pagada hasta el año de desarrollo 1 inclusive por los accidentes ocurridos en el año 10). Esta predicción se obtiene multiplicando la cantidad acumulada de siniestros más reciente observada para el período de ocurrencia 10 (es decir, $C_{10,0}$ con el período de desarrollo 0) por el factor de desarrollo estimado $\hat{f}^{CL}_0$:
+$$
+\hat{C}_{10, 1} = C_{10,0} \cdot \hat{f}^{CL}_0 = 5.676\cdot 1,4925=8.471.
+$$
+Siguiendo este razonamiento, se puede estimar el próximo factor de desarrollo $f_1$. Dado que $f_1$ captura el desarrollo del período 1 al período 2, puede ser estimado como la proporción de los números en rojo y los números en azul como se resalta en la Figura \@ref(fig:tikz-cum-triangle-cl2).
+<a id="tikz-cum-triangle-cl2"></a>
+```{tikz, tikz-cum-triangle-cl2, fig.cap = " Triángulo de desarrollo con datos de pago acumulado que muestra la cantidad acumulada en el período 1 en azul y la cantidad acumulada en el período 2 en rojo. Fuente: @WuthrichMerz2008, Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{large}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+año & \multicolumn{10}{c|}{retardo en pagos (en años)}  \\
+\cline{2-11}
+accidente & 0 & \textcolor{magenta}{1} & \textcolor{magenta}{2} & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+\hline
+1 & 5.947 & \textcolor{blue}{9.668} & \textcolor{red}{10.564} & 10.772 & 10.978 & 11.041 & 11.106 & 11.121 & 11.132 & 11.148 \\
+2 & 6.347 & \textcolor{blue}{9.593} & \textcolor{red}{10.316} & 10.468 & 10.536 & 10.573  & 10.625 & 10.637 & 10.648   & \\
+3 & 6.269 & \textcolor{blue}{9.245} & \textcolor{red}{10.092} & 10.355 & 10.508 & 10.573 & 10.627 & 10.636  & & \\
+4 & 5.863 & \textcolor{blue}{8.546} & \textcolor{red}{9.269} & 9.459 & 9.592 & 9.681 & 9.724  & & & \\
+5 & 5.779 & \textcolor{blue}{8.524} & \textcolor{red}{9.178} & 9.451 & 9.682 & 9.787   & & & & \\
+6 & 6.185 & \textcolor{blue}{9.013} & \textcolor{red}{9.586} & 9.831 & 9.936 &   & & & & \\
+7 & 5.600 & \textcolor{blue}{8.493} & \textcolor{red}{9.057} & 9.282  &     & & & & & \\
+8 & 5.288 & \textcolor{blue}{7.728} & \textcolor{red}{8.256} &     & & & & & & \\
+9 & 5.291  &7.649    & & & & & & & & \\
+10 & 5.676  & & & & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+\end{large}
+```
+
+La notación matemática de la estimación de $\hat{f}_1^{CL}$ para el siguiente factor de desarrollo $f_1$, dadas las observaciones $\mathcal{D}_I$, es igual:
+
+$$
+\hat{f}^{CL}_{\color{magenta}{1}} = \frac{\sum_{i=1}^{10-\color{magenta}{1}-1} \color{red}{C_{i,\color{magenta}{1}+1}}}{\sum_{i=1}^{10-\color{magenta}{1}-1} \color{blue}{C_{i\color{magenta}{1}}}}=1,0778.
+$$
+
+Por consiguiente, este factor mide cómo la cantidad acumulada pagada en el período de desarrollo 1 crece hasta el período 2, promediada en todos los períodos de ocurrencia en los que se observan ambos períodos. El índice $i$ va ahora del período 1 al 8, ya que estos son los períodos de ocurrencia para los que se observan ambos períodos de desarrollo 1 y 2. Esta estimación del segundo factor de desarrollo se utiliza entonces para predecir las casillas que faltan y no se observan en el período de desarrollo 2:
+
+$$
+\begin{array}{rl}
+\hat{C}_{10,2} &= C_{10,0} \cdot \hat{f}^{CL}_0 \cdot \hat{f}_1^{CL} = \hat{C}_{10,1} \cdot \hat{f}_1^{CL} = 8471 \cdot 1,0778 = 9130 \\
+\hat{C}_{9,2}  &= C_{9,1} \cdot \hat{f}^{CL}_1 = 7649 \cdot 1,0778 = 8244.
+\end{array}
+$$
+Note que para $\hat{C}_{10,2}$ realmente se usa la estimación $\hat{C}_{10,1}$ y se multiplica por el factor de desarrollo estimado $\hat{f}_1^{CL}$.
+
+
+Continuamos de manera análoga y obtenemos las siguientes predicciones, mostradas en cursiva en la Figura \@ref(fig:tikz-cum-triangle-cl3):
+
+<a id="tikz-cum-triangle-cl3"></a>
+```{tikz, tikz-cum-triangle-cl3, fig.cap = " Triángulo de desarollo con datos de pago acumulados que incluyen predicciones en cursiva. Fuente: [@WuthrichMerz2008], Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{large}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+año & \multicolumn{10}{c|}{retardo en pagos (en años)}  \\
+\cline{2-11}
+accidente & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 &  \textcolor{magenta}{8} & \textcolor{magenta}{9}  \\
+\hline
+    1  & 5947 & 9668 &  10564 & 10772 & 10978 & 11041 & 11106 & 11121 &\textcolor{blue}{11132} & \textcolor{red}{11148} \\
+ \cline{11-11}   2  & 6347 & 9593 & 10316 & 10468 & 10536 & 10573 & 10625 & 10637 & \multicolumn{1}{r|}{10648} &  \\
+ \cline{10-10}   3  & 6269 & 9245 & 10092 & 10355 & 10508 & 10573 & 10627 & \multicolumn{1}{r|}{10636} & \textit{10647} &  \\
+ \cline{9-9}   4  & 5863 & 8546 & 9269 & 9459 & 9592 &  9681 &  \multicolumn{1}{r|}{9724} &  \textit{9735} &  \textit{9745} &   \\
+ \cline{8-8}   5  & 5779 & 8524 & 9178 & 9451 &  9682 &  \multicolumn{1}{r|}{9787} &  \textit{9837} &  \textit{9848} & \textit{9858} &  \\
+ \cline{7-7}    6  & 6185 & 9013 & 9586 & 9831 & \multicolumn{1}{r|}{9936} & \textit{10005} & \textit{10057} & \textit{10067} & \textit{10078} & \\
+ \cline{6-6}    7 & 5600 & 8493 & 9057 & \multicolumn{1}{r|}{9282} &  \textit{9420} &  \textit{9485} &  \textit{9534} &  \textit{9545} &  \textit{9555} & \\
+ \cline{5-5}    8 & 5288 & 7728 & \multicolumn{1}{r|}{8256} & \textit{8445} &  \textit{8570} &  \textit{8630} &  \textit{8675} &  \textit{8684} &  \textit{8693} &  \\
+ \cline{4-4}    9 & 5291 & \multicolumn{1}{r|}{7649} & \textit{8243} &  \textit{8432} &  \textit{8557} &  \textit{8617} & \textit{8661} &  \textit{8671} &  \textit{8680} &   \\
+  \cline{3-3}   10 & \multicolumn{1}{r|}{5676} & \textit{8471} & \textit{9130} &  \textit{9339} &  \textit{9477} &  \textit{9543} &  \textit{9592} &  \textit{9603} &  \textit{9613} &  \\
+\hline
+$\hat{f}^{CL}$ &  1,493 & 1,078 & 1,023 & 1,015 & 1,007 & 1,005 & 1,001 & 1,001 &  & \\
+\hline
+\end{tabular}
+\end{center}
+\end{large}
+```
+Eventualmente se necesita estimar los valores de la columna final. El último factor de desarrollo $f_8$ mide el crecimiento desde el período de desarrollo 8 al período de desarrollo 9 en el triángulo. Como sólo en la primera fila del triángulo se han observado ambas celdas, este último factor se estima como la relación entre el valor en rojo y el valor en azul en la Figura \@ref(fig:tikz-cum-triangle-cl3b).
+
+<a id="tikz-cum-triangle-cl3b"></a>
+```{tikz, tikz-cum-triangle-cl3b, fig.cap = " Triángulo de desarollo con datos de pago acumulado en los que se destaca la cantidad acumulada en el período 8 en azul y la cantidad acumulada en el período 9 en rojo. Fuente: [@WuthrichMerz2008], Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{large}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+año & \multicolumn{10}{c|}{retardo en pagos (en años)}  \\
+\cline{2-11}
+accidente & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 &  \textcolor{magenta}{8} & \textcolor{magenta}{9}  \\
+\hline
+    1  & 5947 & 9668 &  10564 & 10772 & 10978 & 11041 & 11106 & 11121 &\textcolor{blue}{11132} & \textcolor{red}{11148} \\
+ \cline{11-11}   2  & 6347 & 9593 & 10316 & 10468 & 10536 & 10573 & 10625 & 10637 & \multicolumn{1}{r|}{10648} &  \\
+ \cline{10-10}   3  & 6269 & 9245 & 10092 & 10355 & 10508 & 10573 & 10627 & \multicolumn{1}{r|}{10636} & \textit{10647} &  \\
+ \cline{9-9}   4  & 5863 & 8546 & 9269 & 9459 & 9592 &  9681 &  \multicolumn{1}{r|}{9724} &  \textit{9735} &  \textit{9745} &   \\
+ \cline{8-8}   5  & 5779 & 8524 & 9178 & 9451 &  9682 &  \multicolumn{1}{r|}{9787} &  \textit{9837} &  \textit{9848} & \textit{9858} &  \\
+ \cline{7-7}    6  & 6185 & 9013 & 9586 & 9831 & \multicolumn{1}{r|}{9936} & \textit{10005} & \textit{10057} & \textit{10067} & \textit{10078} & \\
+ \cline{6-6}    7 & 5600 & 8493 & 9057 & \multicolumn{1}{r|}{9282} &  \textit{9420} &  \textit{9485} &  \textit{9534} &  \textit{9545} &  \textit{9555} & \\
+ \cline{5-5}    8 & 5288 & 7728 & \multicolumn{1}{r|}{8256} & \textit{8445} &  \textit{8570} &  \textit{8630} &  \textit{8675} &  \textit{8684} &  \textit{8693} &  \\
+ \cline{4-4}    9 & 5291 & \multicolumn{1}{r|}{7649} & \textit{8243} &  \textit{8432} &  \textit{8557} &  \textit{8617} & \textit{8661} &  \textit{8671} &  \textit{8680} &   \\
+  \cline{3-3}   10 & \multicolumn{1}{r|}{5676} & \textit{8471} & \textit{9130} &  \textit{9339} &  \textit{9477} &  \textit{9543} &  \textit{9592} &  \textit{9603} &  \textit{9613} &  \\
+\hline
+$\hat{f}^{CL}$ &  1,493 & 1,078 & 1,023 & 1,015 & 1,007 & 1,005 & 1,001 & 1,001 &  & \\
+\hline
+\end{tabular}
+\end{center}
+\end{large}
+```
+
+
+Dadas las observaciones $\mathcal{D}_I$, este factor estimado es igual a:
+$$
+\hat{f}^{CL}_{\color{magenta}{8}} = \frac{\sum_{i=1}^{10-\color{magenta}{8}-1} \color{red}{C_{i,\color{magenta}{8}+1}}}{\sum_{i=1}^{10-\color{magenta}{8}-1} \color{blue}{C_{i\color{magenta}{8}}}}=1,001.
+$$
+Frecuentemente este último factor de desarrollo es cercano a 1 y por lo tanto los flujos de caja pagados en el período final de desarrollo son menores.
+Utilizando esta estimación del factor de desarrollo, podemos ahora estimar los costes de los siniestros acumulados que faltan en la columna multiplicando los valores del año de desarrollo 8 con este factor.
+
+La notación matemática general para las predicciones chain-ladder para el triángulo inferior ($i+j>I$) es la siguiente:
+
+$$
+\begin{array}{rl}
+\hat{C}_{ij}^{CL} &= C_{i,I-i} \cdot \prod_{l=I-i}^{j-1} \hat{f}_l^{CL} \\
+\hat{f}_j^{CL} &= \frac{\sum_{i=1}^{I-j-1} C_{i,j+1}}{\sum_{i=1}^{I-j-1} C_{ij}},
+\end{array}
+$$
+donde $C_{i,I-i}$ está en la última diagonal observada. Es evidente que una suposición importante del método chain-ladder es que los desarrollos proporcionales de siniestros de un período de desarrollo a otro son similares para todos los años de ocurrencia. 
+
+Esto da como resultado la siguiente Figura \@ref(fig:tikz-cum-triangle-cl4):
+
+<a id="tikz-cum-triangle-cl4"></a>
+```{tikz, tikz-cum-triangle-cl4, fig.cap = " Triángulo de desarrollo con datos de pagos acumulados en el que se incluyen las predicciones en cursiva. Fuente: @WuthrichMerz2008, Tabla 2.2.", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{large}
+\begin{center}
+\begin{tabular}{|c||r r r r r r r r r r|}
+\hline
+año & \multicolumn{10}{c|}{retardo en pagos (en años)}  \\
+\cline{2-11}
+accidente & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+\hline
+    1  & 5947 & 9668 &  10564 & 10772 & 10978 & 11041 & 11106 & 11121 & 11132 & 11148 \\
+ \cline{11-11}   2  & 6347 & 9593 & 10316 & 10468 & 10536 & 10573 & 10625 & 10637 & \multicolumn{1}{r|}{10648} & \textit{10663} \\
+ \cline{10-10}   3  & 6269 & 9245 & 10092 & 10355 & 10508 & 10573 & 10627 & \multicolumn{1}{r|}{10636} & \textit{10647} & \textit{10662} \\
+ \cline{9-9}   4  & 5863 & 8546 & 9269 & 9459 & 9592 &  9681 &  \multicolumn{1}{r|}{9724} &  \textit{9735} &  \textit{9745} &  \textit{9759} \\
+ \cline{8-8}   5  & 5779 & 8524 & 9178 & 9451 &  9682 &  \multicolumn{1}{r|}{9787} &  \textit{9837} &  \textit{9848} & \textit{9858} &  \textit{9872} \\
+ \cline{7-7}    6  & 6185 & 9013 & 9586 & 9831 & \multicolumn{1}{r|}{9936} & \textit{10005} & \textit{10057} & \textit{10067} & \textit{10078} & \textit{10092} \\
+ \cline{6-6}    7 & 5600 & 8493 & 9057 & \multicolumn{1}{r|}{9282} &  \textit{9420} &  \textit{9485} &  \textit{9534} &  \textit{9545} &  \textit{9555} &  \textit{9568} \\
+ \cline{5-5}    8 & 5288 & 7728 & \multicolumn{1}{r|}{8256} & \textit{8445} &  \textit{8570} &  \textit{8630} &  \textit{8675} &  \textit{8684} &  \textit{8693} &  \textit{8705} \\
+ \cline{4-4}    9 & 5291 & \multicolumn{1}{r|}{7649} & \textit{8243} &  \textit{8432} &  \textit{8557} &  \textit{8617} & \textit{8661} &  \textit{8671} &  \textit{8680} &  \textit{8692} \\
+  \cline{3-3}   10 & \multicolumn{1}{r|}{5676} & \textit{8471} & \textit{9130} &  \textit{9339} &  \textit{9477} &  \textit{9543} &  \textit{9592} &  \textit{9603} &  \textit{9613} &  \textit{9626} \\
+\hline
+$\hat{f}^{CL}$ &  1,493 & 1,078 & 1,023 & 1,015 & 1,007 & 1,005 & 1,001 & 1,001 & 1,001 & \\
+\hline
+\end{tabular}
+\end{center}
+\end{large}
+```
+
+Las cifras de la última columna muestran las estimaciones de las cantidades finales de los siniestros. La estimación de la cantidad pendiente $\hat{\mathcal{R}}_i^{CL}$ para un particular año de ocurrencia  $i=I-J+1,\ldots, I$ viene dada por la diferencia entre la cantidad última y la cantidad acumulada observada en la diagonal más reciente:
+$$
+\hat{\mathcal{R}}_i^{CL} =\hat{C}_{iJ}^{CL}-C_{i,I-i}.
+$$
+Esta es la estimación chain-ladder de la provisión necesaria para cumplir con las responsabilidades futuras con respecto a los siniestros que ocurrieron en este período de ocurrencia en particular. Estas reservas por período de ocurrencia y para el total sumado de todos los períodos de ocurrencia se resumen en la Figura \@ref(fig:tikz-cum-triangle-cl5).
+<a id="tikz-table-cl5"></a>
+
+```{tikz, tikz-cum-triangle-cl5, fig.cap = " Reservas por período de ocurrencia y para el total", fig.align = 'center', fig.ext = 'png', fig.width=10, echo = FALSE}
+\begin{LARGE}
+\begin{center}
+\begin{tabular}{|r| r| r| r| r|}
+\hline
+    &   $C_{i,I-i}$ & Dev.To.Date &  $\hat{C}^{CL}_{iJ}$  &    $\hat{\mathcal{R}}_i^{CL}$ \\
+\hline
+1 & 11.148.123  &     1,000 & 11.148.123     &    0 \\
+2 & 10.648.192  &     0,999 & 10.663.317 &   15.125 \\
+3 & 10.635.750  &     0,998 & 10.662.007 &   26.257  \\
+4 &  9.724.069  &     0,996 & 9.758.607  &  34.538 \\
+5 &  9.786.915  &     0,991 & 9.872.216  &  85.301 \\
+6 &  9.935.752  &     0,984 & 10.092.245 &  156.493 \\
+7 &  9.282.022  &     0,970 & 9.568.142 &  286.120 \\
+8 &  8.256.212  &     0,948 & 8.705.378 &  449.166 \\
+9 &  7.648.729  &     0,880 & 8.691.971 & 1.043.242 \\
+10 & 5.675.568  &     0,590 & 9.626.383 & 3.950.815 \\
+\hline
+totales &  92.741.332,00 &  0,94 & 98.788.390,50 &   6.047.058,50 \\
+\hline
+\end{tabular}
+\end{center}
+\end{LARGE}
+```
+
+### Modelo Chain-ladder de distribución libre de Mack
+
+En esta etapa, el método tradicional chain-ladder proporciona un estimador puntual $\hat{C}^{CL}_{iJ}$ para el pronóstico de $C_{iJ}$, usando la información $\mathcal{D}_I$. Dado que el método de chain-ladder es un algoritmo puramente determinista e intuitivamente natural para completar un triángulo de desarrollo, no se puede determinar cómo de fiable es el estimador puntual ni modelizar la variación de los pagos futuros. Para responder a tales preguntas se necesita un modelo estocástico subyacente que reproduzca las estimaciones de las provisiones chain-ladder.
+
+En esta sección nos centraremos en el modelo chain-ladder de distribución libre como modelo estocástico subyacente, introducido en @Mack1993. Este método nos permite estimar los errores estándar de las predicciones chain-ladder. En la siguiente sección \@ref(S:GLMs), se utilizan modelos lineales generalizados para desarrollar un enfoque totalmente estocástico para predecir la reserva pendiente.
+
+En el enfoque de Mack se mantienen las siguientes condiciones (sin asumir una distribución):
+
+* Los siniestros acumulados $(C_{ij})_{j=0,\ldots,J}$ son independientes a lo largo de diferentes periodos de ocurrencia $i$.
+
+* Existen constantes fijas $f_0, \ldots, f_{J-1}$ y $\sigma^2_0,\ldots, \sigma^2_{J-1}$ tal que para todo $i=1,\ldots, I$ y $j=0,\ldots,J-1$:
+
+$$
+\begin{array}{rl}
+E[C_{i,j+1}|C_{i0},\ldots,C_{ij}] &= f_j \cdot C_{ij} \\
+\text{Var}(C_{i,j+1}|C_{ij}) &= \sigma^2_j \cdot C_{ij}.
+\end{array}
+$$
+
+Esto significa que los siniestros acumulados $(C_{ij})_{j=0,\ldots,J}$ son procesos de Markov (en los períodos de desarrollo $j$) y por lo tanto el futuro sólo depende del presente.
+
+Con estos supuestos, el valor esperado de la cantidad de pagos final $C_{i,J}$, dados los datos disponibles en el triángulo superior, es la cantidad acumulada en la diagonal más reciente ($C_{i, I-1}$) multiplicada por los factores de desarrollo apropiados $f_j$. En notación matemática obtenemos para los factores de desarrollo conocidos $f_j$ y las observaciones $\mathcal{D}_I$:
+
+$$
+E[C_{iJ}|\mathcal{D}_I] = C_{i,I-i} \prod_{j=I-i}^{J-1} f_j.
+$$
+Esto es exactamente lo que hace el método de chain-ladder determinista, como se explica en la sección \@ref(S:DeterministicCL). En la práctica, los factores de desarrollo no se conocen y necesitan ser estimados a partir de los datos que están disponibles en el triángulo superior. En el enfoque de Mack obtenemos exactamente la misma expresión para estimar los factores de desarrollo $f_j$ en el tiempo $I$ que en el algoritmo determinista de chain-ladder:
+$$
+\hat{f}_j^{CL} =\frac{\sum_{j=1}^{I-j-1} C_{i,j+1}}{\sum_{i=1}^{I-j-1} C_{ij}}.
+$$
+Las predicciones para las celdas del triángulo inferior (es decir, para las celdas $C_{i,j}$ donde $i+j>I$) se obtienen entonces reemplazando los factores desconocidos $f_j$ por sus correspondientes estimaciones $\hat{f}_j^{CL}$:
+$$
+\hat{C}^{CL}_{ij} = C_{i,I-i}\prod_{l=I-i}^{j-1} \hat{f}_l^{CL}.
+$$
+
+Para cuantificar el error de predicción de las predicciones de chain-ladder, Mack también introdujo parámetros de varianza $\sigma^2_j$. Para comprender mejor la estimación de estos parámetros de varianza, se introducen los llamados factores de desarrollo individual $f_{i,j}$ (que son específicos del período de ocurrencia $i$):
+
+$$
+f_{i,j} = \frac{C_{i,j+1}}{C_{ij}}.
+$$
+Estos factores de desarrollo individuales también describen cómo la cantidad acumulada crece desde el período $j$ hasta el período $j+1$, pero consideran la proporción de sólo dos celdas (en lugar de tomar la proporción de dos sumas sobre todos los períodos de ocurrencia disponibles).
+
+Obsérvese que los factores de desarrollo pueden escribirse como un promedio ponderado de los factores de desarrollo individual:
+$$
+\hat{f}_j^{CL} = \sum_{i=1}^{I-j-1} \frac{C_{ij}}{\sum_{i=1}^{I-j-1} C_{ij}} f_{i,j},
+$$
+donde los pesos son iguales a los siniestros acumulados $C_{ij}$.
+
+Estimemos ahora los parámetros de varianza $\sigma^2$ escribiendo el supuesto de la varianza de Mack de manera equivalente. 
+
+Primero, la varianza de la relación de $C_{i,j+1}$ y $c_{i,j}$ condicionada a $C_{i,0},\ldots, C_{i,j}$ es proporcional a la inversa de $C_{i,j}$:
+
+$$
+\text{Var}[C_{i,j+1}/C_{ij}|C_{i0},\ldots,C_{ij}] ~ \propto ~ \frac{1}{C_{ij}}.
+$$
+
+Esto tiene la estructura de *mínimos cuadrados ponderados* donde los pesos son la inversa de la variabilidad de una respuesta. Por lo tanto, una variable de respuesta más volátil o imprecisa tendrá menos peso. Los $C_{i,j}$ juegan el papel de los pesos. Usando el parámetro de varianza desconocida $\sigma^2_j$ esta suposición de varianza puede escribirse como:
+
+$$
+\text{Var}[C_{i,j+1}|C_{i0},\ldots,C_{ij}] = \sigma^2_j \cdot C_{ij},
+$$
+La conexión con los mínimos cuadrados ponderados nos conduce directamente a una estimación insesgada del parámetro de varianza desconocida $\sigma^2_j$ en forma de suma ponderada de residuos al cuadrado:
+$$
+\hat{\sigma}^2_j = \frac{1}{I-j-2}\sum_{i=1}^{I-j-1} C_{ij}\left(\frac{C_{i,j+1}}{C_{ij}}-\hat{f}_j^{CL}\right)^2.
+$$
+Los pesos son de nuevo iguales a $C_{i,j}$ y los residuos son las diferencias entre las ratios $C_{i,j+1}/C_{i,j}$ y los factores de desarrollo individual.
+
+Ahora tenemos todos los ingredientes necesarios para calibrar el modelo chain-ladder de distribución libre con los datos. El siguiente paso es analizar la incertidumbre de la predicción y el error de predicción. Aquí usamos el predictor de chain-ladder donde reemplazamos los factores de desarrollo desconocidos con sus estimadores:
+
+$$
+\hat{C}_{iJ}^{CL} = C_{i,I-i} \prod_{l=I-i}^{J-1} \hat{f}_l^{CL}
+$$
+
+Utilizamos esta expresión como estimador de la esperanza condicional de la cantidad de pagos final (dado el triángulo superior observado) o como predictor de la cantidad de pagos final como variable aleatoria (dado el triángulo superior observado).
+
+En estadística, la medida más simple para analizar la incertidumbre que viene con una estimación puntual o predicción es el *Error Cuadrado Medio de Predicción* (*MSEP*, según sus siglas en inglés). Aquí consideramos un *MSEP* condicional, condicionado a los datos observados en el triángulo superior:
+
+$$
+MSEP_{C_{iJ}|\mathcal{D}_I}\left(\hat{C}_{iJ}^{CL}\right) = E\left[\left(C_{iJ}-\hat{C}_{iJ}^{CL}\right)^2|\mathcal{D}_I\right]. 
+$$
+
+El *MSEP* condicional mide:
+
+* la distancia entre el (verdadero) coste final $C_{iJ}$ y su predictor chain-ladder $\hat{C}_{iJ}^{CL}$ en el tiempo $I$, y 
+* la incertidumbre total de la predicción sobre la totalidad del desarrollo del coste nominal final $C_{iJ}$. No se considera ni el valor del tiempo del dinero, ni margen de riesgo ni ninguna dinámica en los desarrollos.
+
+El *MSEP* de la estimación de la cantidad final de siniestros acumulada es igual al *MSEP* que mide la distancia cuadrada entre la provisión verdadera y la estimada:
+
+$$
+\begin{array}{rl}
+MSEP_{\hat{\mathcal{R}}^{I}_{i}|\mathcal{D}_I}(\hat{\mathcal{R}}^{I}_i) &= E[(\hat{\mathcal{R}}^I_i-\mathcal{R}^I_i)^2|\mathcal{D}_I] \\
+&= E[(\hat{C}^{CL}_{iJ}-C_{iJ})^2|\mathcal{D}_I] = MSEP(\hat{C}_{iJ}). 
+\end{array}
+$$
+La razón de esta equivalencia es el hecho de que la provisión es el coste último de los siniestros menos el coste de los siniestros observado más reciente. Este último se observa y usa en $\mathcal{R}^I_i$ y $\hat{\mathcal{R}}^I_i$.
+
+Es interesante descomponer este *MSEP* en un componente que capture la *varianza del proceso* y un componente que capture la *varianza de la estimación de los parámetros*:
+
+$$
+\begin{array}{rl}
+MSEP_{C_{iJ|\mathcal{D}_I}}\left(\hat{C}_{iJ}^{CL}\right) &=
+E\left[ \left( C_{iJ} - \hat{C}_{iJ} \right)^2 | \mathcal{D}_I\right] \\
+&= \text{Var}(C_{iJ}|\mathcal{D}_I) + \left( E[C_{iJ}|\mathcal{D}_I]-\hat{C}_{iJ}^{CL} \right)^2 \\
+&= \color{magenta}{\text{varianza del proceso}} + \color{magenta}{\text{ varianza de la estimación de los parámetros}},
+\end{array}
+$$
+
+para un $\mathcal{D}_I$ medible estimador/predictor de $\hat{C}_{iJ}$. El componente de la varianza del proceso captura la volatilidad o incertidumbre en la variable aleatoria $C_{i,J}$ y la varianza de la estimación del parámetro mide el error que surge al sustituir los factores de desarrollo desconocidos $f_j$ por sus valores estimados. Este resultado se deriva inmediatamente de la siguiente igualdad sobre la varianza de una variable aleatoria desplazada $X$ donde el desplazamiento $a$ es determinístico:
+
+$$
+E(X-a)^2 = \text{Var}(X)+\left[EX-a\right]^2.
+$$
+
+Aplicado a la expresión del *MSEP* se trata a $\hat{C}_{i,J}$ como fijo porque se trabaja condicionalmente en los datos del triángulo superior y $\hat{C}_{i,J}$ sólo usa la información de este triángulo superior. 
+
+@Mack1993 derivó la importante fórmula para el *MSEP* condicional en el modelo chain-ladder de distribución libre para un único período de ocurrencia $i$:
+
+$$
+\widehat{MSEP_{C_{iJ}|\mathcal{D}_I}}  =
+\left(\hat{C}_{iJ}^{CL}\right)^2 \sum_{j=I-i}^{J-1} \left[ \frac{\hat{\sigma}_j^2}{(\hat{f}_j^{CL})^2} \left(\frac{1}{\hat{C}^{CL}_{ij}}+\frac{1}{\sum_{n=1}^{I-j-1}C_{nj}}\right)\right].
+$$
+
+Para la derivación de esta fórmula popular, nos remitimos a su artículo. Nótese que es una estimación del *MSEP* ya que los parámetros desconocidos $f_j$ y $\sigma_j$ necesitan ser estimados y el error de estimación no puede calcularse explícitamente. 
+
+Mack también derivó una fórmula para el *MSEP* para la provisión total, a través de todos los períodos de ocurrencia:
+
+$$
+\begin{array}{ll}
+\widehat{MSEP_{\sum_{i=1}^I \hat{C}^{CL}_{iJ}}}\left( \sum_{i=1}^I \hat{C}^{CL}_{iJ}  \right) \\
+ \ \ \ \ \ \sum_{i=1}^I \widehat{MSEP_{C_{iJ}|\mathcal{D}_I}}\left( \hat{C}^{CL}_{iJ} \right)
+\color{blue}{+2 \sum_{1\leq i< k \leq I} \hat{C}_{iJ}^{CL} \hat{C}_{kJ}^{CL}
+\sum_{j=I-i}^{J-1} \frac{ \hat{\sigma}_j^2/\left( \hat{f}_j^{\text{CL}} \right)^2 }{ \sum_{n=1}^{I-j-1} C_{nj} }}.
+\end{array}
+$$
+El resultado es la suma de los *MSEP* por período de ocurrencia más un término de covarianza. Este término de covarianza se suma porque los MSEPs para diferentes períodos de ocurrencia $i$ utilizan los mismos estimadores $\hat{f}_j^{CL}$ de los parámetros $f_j$ para diferentes años de accidentes $i$.
+
+### Código R para las predicciones Chain-Ladder
+
+Usamos el objeto `my_triangle` de tipo `triangle` que se creó en la sección \@ref(S:Rcode). El modelo chain-ladder de distribución libre de @Mack1993 está implementado en el paquete `ChainLadder` [@R-chainladder] (como una forma especial de mínimos cuadrados ponderados) y puede ser aplicado en los datos `my_triangle` para predecir las cuantías de los siniestros pendientes y para estimar el error estándar de estas predicciones.
+
+`r HideRCode('MackModel.1','Código R para las predicciones del modelo Mack')`
+
+```{r MackChainLadder, comment = ""}
+CL <- MackChainLadder(my_triangle)
+CL
+round(summary(CL)$Totals)
+```
+
+</div> 
+
+Los factores de desarrollo se obtienen de la siguiente manera: 
+```{r Factors, comment = ""}
+round(CL$f,digits = 4)
+```
+También podemos obtener el triángulo de desarrollo completo (incluyendo las predicciones).
+`r HideRCode('MackModel.1','Código R para el triángulo completo modelo de  Mack')`
+
+```{r FullTriangle, comment = ""}
+CL$FullTriangle
+```
+
+</div> 
+
+La `r Gloss('MSEP')` para la reserva total a través de todos los períodos de ocurrencia se obtiene como:
+
+```{r SE, comment = ""}
+CL$Total.Mack.S.E^2
+```
+
+Se deben validar los supuestos de Mack comprobando que no hay tendencias en los gráficos de los residuos. Los últimos cuatro gráficos que obtenemos con el siguiente comando muestran respectivamente los residuos estandarizados frente a los valores ajustados, el período de origen, el período de calendario y el período de desarrollo.
+
+```{r ResidualPlot, fig.align = 'center'}
+plot(CL)
+```
+
+El gráfico superior izquierdo es un gráfico de barras de la última posición de los siniestros más el IBNR y el error estándar de Mack por período de ocurrencia. El gráfico superior derecho muestra los patrones de desarrollo predichos para todos los períodos de ocurrencia (comenzando con 1 para el período de ocurrencia más antiguo).
+
+Al establecer el argumento `lattice=TRUE` se obtiene un gráfico del desarrollo, incluyendo la predicción y los errores estándar estimados por período de ocurrencia:
+
+```{r PlotLattice, fig.align = 'center'}
+plot(CL, lattice=TRUE)
+```
+
+## GLMs y Bootstrap para provisiones {#S:GLMs}
+
+***
+
+** Esta sección se está escribiendo y aún no está completa ni editada. Os mostramos una idea de lo que será la versión final.**
+
+***
+
+Esta sección cubre los modelos de regresión para analizar los triángulos de desarrollo. Cuando se analizan los datos de un triángulo de desarrollo con un modelo de regresión, se dispone de los instrumentos estándar para la construcción, estimación y predicción del modelo. Usando estas herramientas somos capaces de ir más allá de la estimación puntual y el error estándar como se deriva en la Sección \@ref(S:Chain-ladder). Más específicamente, construimos un modelo lineal generalizado (`r Gloss('GLM')`) para los pagos incrementales $X_{ij}$ en la Figura \@ref(fig:tikz-triangle). Mientras que el método de chain-ladder funciona con datos acumulados, los GLM asumen que las variables de respuesta son independientes y por lo tanto trabajan con triángulos de desarrollo incrementales. 
+
+
+### Especificación del modelo
+
+Suponemos que $X_{ij}$ denota el pago incremental en la celda $(i,j)$ del triángulo de desarrollo. Asumimos que los $X_{ij}$ son independientes con una densidad $f(x_{ij};\theta_{ij},\phi)$ de la familia exponencial de distribuciones. Identificamos
+
+* $\mu_{ij}=E[X_{ij}]$ el valor esperado de la celda $X_{ij}$ 
+* $\phi$ el parámetro de dispersion y $\text{Var}[X_{ij}]=\phi \cdot V(\mu_{ij})$, donde $V(.)$ es la función varianza.
+* $\eta_{ij}$ el predictor lineal tal $\eta_{ij}=g(\mu_{ij})$ con $g$ la función enlace.
+
+Las distribuciones de la familia exponencial y sus funciones de enlace por defecto se enumeran en http://stat.ethz.ch/R-manual/R-patched/library/stats/html/family.html. Ahora analizamos tres GLM específicos ampliamente utilizados para la reserva de pérdidas. 
+
+Primero, el modelo de regresión de Poisson fue introducido en la sección \@ref(S:RC:PoissonRegression). En este modelo, asumimos que $X_{ij}$ tiene una distribución de Poisson con el parámetro 
+
+$$
+\mu_{ij} = \pi_i \cdot \gamma_j,
+$$
+
+una estructura cruzada que capta un efecto multiplicador del año de ocurrencia $i$ y el período de desarrollo $j$. La estructura del modelo propuesto no es identificable sin una restricción adicional en los parámetros, por ejemplo $\sum_{j=0}^J \gamma_j=1$. Esta restricción da una interpretación explícita a $\pi_i$ (con $i=1,\ldots,I$) como la medida de exposición o volumen para el año de ocurrencia $i$ y $\gamma_j$ como la fracción del volumen total pagado con retraso $j$. Sin embargo, cuando se calibran los GLM en `R`, las restricciones alternativas como $\pi_1=1$ o $\gamma_1=1$, o una reparametrización donde $\mu_{ij} = \exp{(\mu+\alpha_i+\beta_j)}$ son más fáciles de implementar. Continuamos con esta última especificación, incluyendo $\alpha_1 = \beta_0 = 0$, denominadas restricciones de esquina. Este GLM trata el año de ocurrencia y el retraso de pago como variables categóricas y ajusta un parámetro por nivel, junto a una constante $\mu$. Las restricciones de esquina establecen que el efecto del primer nivel de una variable factorial sea igual a cero. La distribución de Poisson es particularmente útil para un triángulo de desarrollo con número de siniestros comunicados, a menudo utilizado en la estimación del número de siniestros `r Gloss('IBNR')` (véase la sección \@ref(S:Data)).
+
+En segundo lugar, una interesante modificación del modelo básico de regresión de Poisson es el modelo de regresión de **Poisson sobredisperso** donde $Z_{ij}$ tiene una distribución de Poisson con parámetro $\mu_{ij}/\phi$ y
+
+$$
+\begin{array}{rl}
+X_{ij} &\sim  \phi \cdot Z_{ij}  \\
+\mu_{ij} &= \exp{(\mu + \alpha_i + \beta_j)}.
+\end{array}
+$$
+
+De este modo, $X_{ij}$ tiene la misma especificación para la media que en el modelo básico de regresión de Poisson, pero ahora
+$$
+\text{Var}[X_{ij}] = \phi^2 \cdot \text{Var}[Z_{ij}] = \phi \cdot \exp{(\mu + \alpha_i + \beta_j)}.
+$$
+
+Esta construcción permite la subdispersión (cuando $\phi <1$) y la sobredispersión (con $\phi>1$). Dado que $X_{ij}$ ya no sigue una distribución conocida, este enfoque se denomina cuasiprobabilidad. Es particularmente útil para modelar un triángulo de desarrollo con pagos incrementales, ya que éstos normalmente muestran sobredispersión. 
+
+En tercer lugar, el modelo de regresión **gamma** es adecuado para modelizar un triángulo de desarrollo con pagos de siniestros. Recordemos la sección \@ref(S:Loss:Gamma) (véase también el capítulo del apéndice \@ref(C:SummaryDistributions)) con parámetros $\alpha$ y $\theta$. A partir de aquí, reparametrizamos y definimos un nuevo parámetro $\mu = \alpha \cdot \theta$ mientras se mantiene el parámetro de escala $\theta$. Además, se asume que $X_{ij}$ tiene una distribución gamma y se permite que $\mu$ varíe con $ij$ de tal manera que
+
+$$
+\mu_{ij} =  \exp{(\mu + \alpha_i + \beta_j)}.
+$$
+
+
+### Estimación y predicción del modelo
+
+Se estiman los parámetros de regresión $\mu$, $\alpha_i$ y $\beta_j$ en los GLM propuestos. En `R` está disponible la función `glm` para estimar estos parámetros a través de la estimación por máxima verosimilitud (`r Gloss('mle')`) o cuasi-verosimilitud (en el caso de Poisson sobredisperso). Teniendo disponibles las estimaciones de los parámetros $\hat{\mu}$, $\hat{\alpha}_i$ y $\hat{\beta}_j$, se obtiene una estimación puntual para cada celda del triángulo superior
+$$
+\hat{X}_{ij} =\hat{E[X_{ij}]} = \exp{(\hat{\mu}+\hat{\alpha}_i+\hat{\beta}_j)},\ \text{con}\ i+j\leq I.
+$$
+Similarly, a cell in the lower triangle will be predicted as 
+De manera similar, se puede predecir una celda en el triángulo inferior como
+$$
+\hat{X}_{ij} = \hat{E[X_{ij}]} = \exp{(\hat{\mu}+\hat{\alpha}_i+\hat{\beta}_j)},\ \text{con}\ i+j> I.
+$$
+
+Luego se suman las estimaciones específicas de cada celda para obtener estimaciones puntuales de las reservas pendientes (por año de ocurrencia $i$ o la provisión total). Combinando las observaciones del triángulo superior con sus estimaciones puntuales, podemos obtener residuos adecuadamente definidos y usarlos para la inspección de los residuos.
+
+### Bootstrap
+
+
+
+## Recursos adicionales y contribuciones {#LossRe:further-reading-and-resources}
+
+
+#### Colaboradores {-}
+
+- **Katrien Antonio**, KU Leuven y University of Amsterdam, **Jan Beirlant**, KU Leuven, y **Tim Veerdonck**, University of Antwerp, son los autores principals de la version inicial de este capítulo. Email: katrien.antonio@kuleuven.be para comentarios y posibles mejoras del capítulo.
+- Traducción al español: Miguel Santolino (Universitat de Barcelona)
+
+#### Lecturas adicionales y referencias {-}
+
+Como se muestra en la Figura \@ref(fig:tikz-run-off), cronogramas y visualizaciones similares se discuten (entre otros) en @WuthrichMerz2008, @AntonioPlat2014 y @WuthrichMerz2015.  
+
+Con el tiempo los actuarios comenzaron a pensar en posibles modelos subyacentes. Aquí mencionamos algunas contribuciones importantes:
+
+* @Kremer1982: ANOVA de dos factores
+* @Kremer1984, @Mack1991: modelo Poisson
+* @Mack1993: modelo chain-ladder de distribución-libre
+* @Renshaw1989; @RenshawVerrall1998: modelo Poisson sobredisperso
+* @Gisler2006; @GislerWuthrich2008; @Buhlmann2009: modelo chain-ladder bayesiano. 
+
+Los diversos modelos estocásticos propuestos en la literatura actuarial se basan en diferentes supuestos y tienen diferentes propiedades, pero tienen en común que proporcionan exactamente las estimaciones de la provisión chain-ladder. Para más información también nos referimos a @MackVenter2000 y a la interesante discusión que se publicó en el *ASTIN Bulletin: Journal of the International Actuarial Association* en 2006 [@Venter2006].
+
+Para leer más sobre las familias exponenciales y los modelos lineales generalizados, ver, por ejemplo, @McCullagh1989 y @WuthrichMerz2008. Nos referimos a [@Kremer1982], [@RenshawVerrall1998] y [@EnglandVerrall2002], y a los resúmenes en [@Taylor2000], [@WuthrichMerz2008] y [@WuthrichMerz2015] para más detalles sobre los GLM analizamos. XXX presenta supuestos distributivos y especificaciones alternativas del predictor lineal.
+

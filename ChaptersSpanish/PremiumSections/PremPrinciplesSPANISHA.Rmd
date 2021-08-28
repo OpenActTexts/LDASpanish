@@ -1,0 +1,69 @@
+<!-- ###  Principios de Tarificación {#S:PremPrinciples} -->
+
+Existen diferentes aproximaciones para la tarificación según el tipo de contrato. Por ejemplo, el seguro de automóvil para particulares es conocido como una parte importante del mercado minorista de seguros generales en el Reino Unido. En este caso, podemos esperar realizar la tarificación basándonos en un conjunto grande de contratos independientes, una situación en la que las esperanzas matemáticas de los siniestros proporcionan un punto de partida excelente. Por el contrario, un actuario puede tener que tarificar un contrato de seguro para un gran empresario que desea cubrir los complejos beneficios de salud para miles de empleados. En tal caso, el conocimiento de la distribución entera de los siniestros potenciales, no tan solo su valor esperado, es crucial para empezar las negociaciones de la tarifa. Para cubrir una gran gama de potenciales aplicaciones, en esta sección se describen los principales principios de tarificación y sus propiedades, que pueden utilizarse para decidir qué principio en concreto es aplicable en una situación determinada.
+
+### Principios de Tarificación
+
+Este capítulo introduce los tradicionales principios de tarificación actuariales basados tan solo en la distribución de la siniestralidad; el precio no depende de la demanda de seguros u otros aspectos de los costes como los gastos. Suponemos que la siniestralidad $X$ tiene una función de distribución $F(\cdot)$ y que existen algunas funciones $H$ que retorna $F(\cdot)$ en la línea real positiva, denotado como $P = H(F)$. Para propósitos de notación, es a menudo conveniente sustituir la variable aleatoria $X$ por su función de distribución y escribir $P = H(X)$. La tabla \@ref(tab:PremPrinciples) proporciona varios ejemplos.
+
+  Descripción 		      Definición ($H(X)$)
+  ------------------      ---------------------------------------------
+  Prima neta (pura)	      $E[X]$ 
+  Valor esperado 	       $(1+\alpha)E[X]$ 
+  Desviación estándar	    $E[X]+\alpha SD(X)$ 
+  Varianza		          $E[X]+\alpha Var(X)$ 
+  Utilidad cero		      Solución de $u(w) = E u(w + P - X)$
+  Exponencial		      $\frac{1}{\alpha} \ln E e^{\alpha X}$
+  ------------------      ---------------------------------------------
+  
+  Table: (\#tab:PremPrinciples)  Principios comunes de tarificación 
+  
+Un principio de tarificación es similar a una `r Gloss('medida de riesgo')` como las introducidas en la Sección \@ref(S:RiskMeasure). Matemáticamente, en ambos casos, son funciones que convierten la variable aleatoria (`r Gloss('rv')`) de siniestralidad de interés en un valor numérico. Desde un punto de vista práctico, un principio de tarificación proporciona una guía de qué cantidad cobrará un asegurador para aceptar un riesgo $X$. En cambio, una medida de riesgo cuantifica el nivel de incertidumbre, o riskiness en inglés, que un asegurador puede utilizar para decidir un nivel de capital suficiente para asegurar su solvencia.
+
+Como se aprecia en la Tabla, la prima neta, o pura, esencialmente supone que no existe incertidumbre. Los principios del valor esperado, la desviación estándar y la varianza añaden un recargo explícito para la incertidumbre a través del parámetro $\alpha \ge 0$. Para el principio de utilidad cero, pensamos en un asegurador con función de utilidad $u(\cdot)$ y riqueza *w* al que le resulta indiferente aceptar o no aceptar el riesgo $X$. En este caso, $P$ es conocido como el precio de indiferencia o, en economía, como precio de reserva. Con la utilidad exponencial, el principio de utilidad cero se reduce al principio de tarificación exponencial, esto es, suponiendo $u(x) = (1-e^{-\alpha x})/\alpha$.
+
+Para valores pequeños de los parámetros de riesgo, el principio de varianza es aproximadamente igual al principio exponencial, como se ilustra en el siguiente caso especial.
+
+***
+
+**Caso especial: Distribución Gamma **. Consideramos una siniestralidad distribuida como una gamma con parámetros $\alpha$ y $\theta$. Del Apéndice D en \@ref(C:SummaryDistributions), la media es $\alpha \theta$ y la varianza es $\alpha \theta^2$. Utilizando $\alpha_{Var}$ como parámetro de riesgo, el principio de varianza es  $H_{Var}(X) = \alpha \theta+\alpha_{Var} (\alpha \theta^2)$. Del mismo apéndice, es directo derivar la función generadora de momentos, $M(t) = E e^{tX} = (1-t\theta)^{-\alpha}$. Con esto y un parámetro de riesgo $\alpha_{Exp}$,  podemos expresar el principio exponencial como
+
+$$
+H_{Exp}(X) = \frac{-\alpha}{\alpha_{Exp}} \ln\left(1-\alpha_{Exp} \theta\right).
+$$
+
+Para ver la relación entre $H_{Var}(X)$ y $H_{Exp}(X)$, escogemos $\alpha_{Exp} = 2 \alpha_{Var}$. Con una aproximación de cálculo ($\ln(1-x) = -x - x^2/2 - x^3/3 - \cdots$), podemos escribir
+
+$$
+H_{Exp}(X) = \frac{-\alpha}{\alpha_{Exp}} \ln\left(1-\alpha_{Exp} \theta\right) 
+= \frac{-\alpha}{\alpha_{Exp}} \left\{ -\alpha_{Exp} \theta -(\alpha_{Exp} \theta)^2/2 - \cdots\right\} \\
+\approx \alpha \theta + \frac{\alpha_{Exp}}{2}(\alpha \theta^2 ) 
+= H_{Var}(X). 
+$$
+
+
+### Propiedades de los Principios de Tarificación
+
+Las propiedades de los principios de tarificación nos ayudan como guía en la selección de un principio de tarificación en las aplicaciones prácticas. La Tabla \@ref(tab:Properties) proporciona algunos ejemplos de las propiedades de estos principios.
+
+  Descripción	   	    Definición
+  -------------------   ----------------------------------------------------------
+  Recargo no negativo 	$H(X) \ge E[X]$
+  Aditividad 		     $H(X_1+X_2) = H(X_1) + H(X_2)$, para $X_1, X_2$ independientes
+  Invariancia de escala	$H(cX) = c H(X)$, para $c \ge 0$
+  Consistencia 		     $H(c+X) = c + H(X)$
+  Acotabilidad   		$H(X) \le max ~range ~\{X\}$
+  -------------------   ----------------------------------------------------------
+
+Table: (\#tab:Properties) Propiedades Comunes de los Principios de Tarificación
+
+Esta tabla es sencillamente un subconjunto de las muchas propiedades citadas en la literatura actuarial. Por ejemplo, el artículo de @young2014premium lista 15 propiedades. Véase también las propiedades descritas como *axiomas coherentes* que  introducimos para las medidas de riesgo en la Sección \@ref(S:RiskMeasure).
+
+Algunas de las propiedades listadas en la Tabla \@ref(tab:Properties) son suaves en el sentido que casi siempre serán satisfechas. Por ejemplo, la propiedad de *acotabilidad* indica que el recargo de la prima será más pequeño que el valor máximo de la siniestralidad $X$. Otras propiedades pueden no ser tan suaves. Por ejemplo, para una cartera de riesgos independientes, el actuario puede querer que se cumpla la propiedad de *aditividad*.  Es fácil ver que esta propiedad se cumple para los principios del valor esperado, varianza, y exponencial, pero no para el principio de desviación estándar. Otro ejemplo es la propiedad de *consistencia* que no se cumple para el principio de valor esperado cuándo el parámetro de riesgo del recargo $\alpha$ es positivo.
+
+El principio de *invariancia de escala* es conocido como *homogeneidad de grado uno* en economía. Nos permite, por ejemplo, trabajar con monedas diferentes (p. ej., de dólares a Euros), así como en otras aplicaciones que serán comentadas más adelante en la Sección siguiente \@ref(S:HeterogeneousRisks). A pesar de que es un principio generalmente aceptado, nótese que este principio no se cumple para unos valores grandes de $X$ que pueden limitar los beneficios de un asegurador; si un asegurador tiene una probabilidad elevada de devenir insolvente, entonces el asegurador no deseará utilizar un criterio lineal de tarificación.  Es fácil comprobar que este principio se cumple para los principios del valor esperado y desviación estándar, pero no para los principios de varianza y exponencial.
+
+
+
+
+

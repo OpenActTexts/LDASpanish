@@ -1,0 +1,1253 @@
+
+
+# Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad {#C:Credibility}
+
+`r chapnum = 9`
+
+*Resumen del capítulo.*    Este capítulo introduce la teoría de la credibilidad como una herramienta actuarial importante para la estimación de primas puras, frecuencias y severidades para riesgos individuales o clases de riesgos. La teoría de la credibilidad proporciona un marco conveniente para combinar la experiencia para un riesgo individual o clase con otros datos para producir unas estimaciones más estables y precisas. Se discutirán varios modelos para calcular estimaciones de credibilidad, incluyendo: fluctuación limitada, Bühlmann, Bühlmann-Straub, y métodos de credibilidad no paramétricos y semi-paramétricos.  El capítulo también mostrará la conexión entre la teoría de la credibilidad y la estimación bayesiana introducida en el Capítulo \@ref(C:ModelSelection).
+
+## Introducción a las Aplicaciones de la Teoría de la Credibilidad
+
+¿Qué prima debe ser cobrada para proporcionar cobertura?  La respuesta depende de la exposición al riesgo de pérdida.  Un método común para calcular la prima de un seguro es clasificar a un asegurado utilizando un `r Gloss('sistema de tarificación o clasificación')`.  Un sistema de clasificación suele seleccionar una tarifa de seguro basándose en las características de tarificación de cada asegurado, tales como el territorio geográfico, la edad, etc.  Todo sistema de tarificación o clasificación utiliza un conjunto limitado de características o criterios para agrupar a los asegurados en una "clase" por lo que   todavía restará una variación en el riesgo de pérdida entre los asegurados de una misma clase.
+
+Un sistema de tarificación basado en la experiencia trata de capturar una parte de esa variación en el riesgo de pérdida entre los asegurados de una misma clase mediante la utilización de la experiencia de siniestralidad propia de cada asegurado para, de este modo, complementar la tarifa del sistema de tarificación o clasificación.  Una manera de conseguirlo es mediante la utilización de una `r Gloss('ponderación de credibilidad')` $Z$ con $0\leq Z \leq 1$ para calcular
+
+\begin{equation*} 
+\hat{R}=Z\bar{X}+(1-Z)M,
+\end{equation*}
+
+\begin{eqnarray*}
+\hat{R}&=&\textrm{tarifa ponderada de credibilidad para el riesgo,}\\
+           \bar{X}&=&\textrm{siniestralidad media del riesgo en un periodo de tiempo especificado,}\\
+                  M&=&\textrm{tarifa general del grupo de clasificación, denominada comúnmente tarifa manual.}\\
+\end{eqnarray*}
+
+Para un riesgo cuya experiencia de siniestralidad sea estable año tras año, $Z$ podría ser cercano a 1.  Para un riesgo cuyas pérdidas varían ampliamente año tras año, $Z$ puede ser cercano a 0.
+
+La teoría de la credibilidad también puede ser utilizada para calcular las tarifas para clases individuales dentro de un sistema de tarificación o clasificación.  Cuando las tarifas de un sistema de clasificación están siendo determinadas, algunos o muchos de los grupos pueden no disponer de datos suficientes para producir unas tarifas estables y fiables. Entonces, la experiencia de siniestralidad real para un grupo será asignada con un peso de credibilidad $Z$ y el `r Gloss('complemento de credibilidad')` $1-Z$ podrá ser asignado a la siniestralidad media general para los riesgos de todas las clases.  O también, si un sistema de tarificación está siendo actualizado, el complemento de credibilidad podrá ser asignado a la vigente `r Gloss('tarifa de clase')`.  La teoría de la credibilidad también puede ser aplicada al cálculo de las frecuencias y severidades esperadas.
+
+El cálculo de los valores numéricos para $Z$ requiere de un análisis y comprensión de los datos.  ¿Cuál es la variabilidad, en el número de siniestros y en el coste de los mismos, entre los riesgos de una cartera?  ¿Cuál es la variabilidad global dentro de cada clase de riesgos?
+
+
+```{r child = './Quizzes/Quiz91.html', eval = QUIZ}
+```
+
+## Credibilidad de Fluctuación Limitada
+
+***
+
+En esta sección, se aprende cómo:
+
+* Calcular los estándares de credibilidad completa para el número de siniestros, el coste medio de siniestralidad, y la siniestralidad agregada.
+* Visualizar que la relación entre las medias y las varianzas de distribuciones subyacentes afecta a los estándares de credibilidad completa.
+* Determinar el peso de credibilidad $Z$ utilizando la fórmula de credibilidad parcial de raíz cuadrada.
+
+***
+
+La `r Gloss('credibilidad de fluctuación limitada')`, también denominada "credibilidad clásica", recibe este nombre porque explícitamente intenta limitar las fluctuaciones en las estimaciones de las frecuencias de siniestralidad, severidades, o pérdidas agregadas.  Por ejemplo, suponemos que quisiéramos estimar el número esperado de siniestros $N$ para un conjunto de riesgos dentro de una clase del sistema de tarificación del seguro.  ¿Cuántos riesgos son necesarios en la clase para asegurar que logramos un nivel especificado de exactitud en la estimación?  En primer lugar, la cuestión será considerada desde la perspectiva de cuántas reclamaciones o siniestros son necesarios.
+
+### Credibilidad Completa para la Frecuencia de Siniestralidad {#S:frequency}
+
+Definimos $N$ como una variable aleatoria que representa el número de siniestros o reclamaciones para un grupo de riesgos, por ejemplo, los riesgos dentro de una clase de tarifa particular.  El número observado de siniestros será utilizado para estimar $\mu_N=\mathrm{E}[N]$, el número esperado de siniestros.  ¿Qué grande debe ser $\mu_N$ para conseguir una buena estimación?  Una manera para cuantificar la exactitud de la estimación sería del tipo:  ``El valor observado de $N$ tendría que estar un 5$\%$ por debajo o por encima de $\mu_N$ al menos el 90$\%$ de las veces".   Matemáticamente, la sentencia anterior podría ser expresada como $\Pr[0,95\mu_N\leq N \leq1,05\mu_N] \geq 0,90$.  Y generalizando esta expresión, reemplazando el 5$\%$ por $k$ y la probabilidad 0,90 por $p$, obtenemos la ecuación
+
+\begin{equation}
+\Pr[(1-k)\mu_N\leq N \leq(1+k)\mu_N] \geq p.
+(\#eq:kpercent-interval)
+\end{equation}
+
+El número esperado de siniestros requerido para que la probabilidad en el lado izquierdo de \@ref(eq:kpercent-interval) sea igual a $p$ se denomina como `r Gloss('estándar de credibilidad completa')`.
+
+Si el número esperado de siniestros es mayor o igual que el estándar de credibilidad completa, entonces la credibilidad completa asigna a los datos un valor de $Z=1$.  Normalmente, el valor esperado $\mu_N$ no es conocido por lo que la credibilidad completa será asignada a los datos si el número observado real de siniestros $n$ es mayor o igual al del estándar de credibilidad completa.  Los valores para $k$ y $p$ tendrán que ser seleccionados y el actuario puede confiar en su experiencia, juicio y otros factores para realizar dichas elecciones.
+
+Restando $\mu_N$ de cada término en \@ref(eq:kpercent-interval) y dividiendo por la desviación estándar $\sigma_N$ de $N$, obtenemos
+
+\begin{equation}
+\Pr\left[\frac{-k\mu_N}{\sigma_N}\leq \frac{N-\mu_N}{\sigma_N} \leq \frac{k\mu_N}{\sigma_N}\right] \geq p.
+(\#eq:normalized-interval)
+\end{equation}
+
+En la credibilidad de fluctuación limitada la distribución normal estándar se utiliza para aproximar la distribución de $(N-\mu_N)/\sigma_N$. Si $N$ es la suma de muchas reclamaciones de un grupo numeroso de riesgos similares y las reclamaciones son independientes, entonces la aproximación puede ser razonable.
+
+
+Definimos $y_p$ como el valor tal que $\Pr[-y_p\leq (N-\mu_N)/\sigma_N \leq y_p]=\Phi(y_p)-\Phi(-y_p)=p$ donde $\Phi( )$ es la `r Gloss('función de distribución acumulada de la normal estándar')`.  Como $\Phi(-y_p)=1-\Phi(y_p)$, la igualdad puede ser reescrita de la siguiente manera $2\Phi(y_p)-1=p$.  Despejando para $y_p$ se obtiene que $y_p=\Phi^{-1}((p+1)/2)$ donde $\Phi^{-1}( )$ es la inversa de $\Phi( )$.
+
+La ecuación \@ref(eq:normalized-interval) será satisfecha si $k\mu_N/\sigma_N \geq y_p$ suponiendo la aproximación normal.  En primer lugar, consideraremos esta desigualdad para el caso en que $N$ sigue una distribución Poisson:  $\Pr[N=n] = \lambda^n\textrm{e}^{-\lambda}/n!$.  Como en el caso de la Poisson $\lambda=\mu_N=\sigma_N^2$, tomando las raíces cuadradas se obtiene que $\mu_N^{1/2}=\sigma_N$.  Por lo tanto, $k\mu_N/\mu_N^{1/2} \geq y_p$ es equivalente a $\mu_N \geq (y_p/k)^2$.  Podemos definir $\lambda_{kp}$ como el valor de $\mu_N$ para que se cumpla la igualdad.  En tal caso, el estándar de credibilidad completa para la distribución Poisson es
+
+\begin{equation}
+\lambda_{kp} = \left(\frac{y_p}{k}\right)^2 \textrm{with } y_p=\Phi^{-1}((p+1)/2).
+(\#eq:full-credibility-Poisson)
+\end{equation}
+
+Si el número esperado de reclamaciones $\mu_N$ es mayor o igual que $\lambda_{kp}$, entonces la ecuación \@ref(eq:kpercent-interval) se cumple y la credibilidad completa podrá ser asignada a los datos.  Como se hizo notar anteriormente, como normalmente $\mu_N$ es desconocida, la credibilidad completa será asignada si el número observado de reclamaciones $n$ satisface que $n \geq \lambda_{kp}.$
+
+
+
+**Ejemplo `r chapnum`.2.1.**
+El estándar de credibilidad completa está definido de modo que el número observado de reclamaciones debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$.  Si el número de reclamaciones se distribuye como una Poisson, calcular el número de reclamaciones necesario para conseguir una credibilidad completa.
+
+`r HideExample('9.2.1', 'Mostrar Solución del Ejemplo')`
+
+**Solución**
+Según la tabla de una distribución Normal, tenemos que $y_p=\Phi^{-1}((p+1)/2)=\Phi^{-1}((0,95+1)/2)$=$\Phi^{-1}(0,975)=1,960$.  Utilizando este valor y $k=0,05$, entonces $\lambda_{kp} = (y_p/k)^{2}=(1,960/0,05)^{2}=1.536,64$. Después de redondear al alza, el estándar de credibilidad completa es 1.537.
+
+</div>
+
+*** 
+
+Si las reclamaciones no se distribuyen como una Poisson, entonces la ecuación \@ref(eq:normalized-interval) no implica \@ref(eq:full-credibility-Poisson).  Tomando el límite superior de $(N-\mu_N)/\sigma_N$ en \@ref(eq:normalized-interval) e igualando a $y_p$ se obtiene $k\mu_N/\sigma_N=y_p$.  Aplicando la potencia al cuadrado en ambos lados de la ecuación y despejando para $\mu_N$ se obtiene $\mu_N=(y_p/k)^2(\sigma_N^2/\mu_N)$.  Este es el estándar de credibilidad completa para la frecuencia y será denotado por $n_f$,
+
+\begin{equation}
+n_f=\left(\frac{y_p}{k}\right)^2\left(\frac{\sigma_N^2}{\mu_N}\right)=\lambda_{kp}\left(\frac{\sigma_N^2}{\mu_N}\right).
+(\#eq:full-credibility-frequency)
+\end{equation}
+
+Esta es la misma ecuación que para el estándar de credibilidad completa en el caso Poisson excepto por el multiplicador $(\sigma_N^2/\mu_N)$.  Cuando la distribución de las reclamaciones es Poisson este término es igual a 1 porque la varianza es igual a la media.
+
+
+**Ejemplo `r chapnum`.2.2.**
+El estándar de credibilidad completa está definido de modo que el número observado de reclamaciones debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$.  Si el número de reclamaciones se distribuye como una distribución binomial negativa
+
+\begin{equation*}
+\Pr(N=x)={x+r-1\choose x} \left(\frac{1}{1+\beta}\right)^r \left(\frac{\beta}{1+\beta}\right)^x
+\end{equation*}
+
+con $\beta=1$, calcular el estándar de credibilidad completa.
+
+`r HideExample('9.2.2', 'Mostrar Solución del Ejemplo')`
+
+**Solución** Del ejemplo previo, $\lambda_{kp} =1.536,64$.  La media y la varianza para la binomial negativa son $\mathrm{E}(N)=r\beta$ y $\mathrm{Var}(N)=r\beta(1+\beta)$ por lo que $(\sigma_N^2/\mu_N)=(r\beta(1+\beta)/(r\beta))=1+\beta$ es igual a 2 cuando $\beta=1$.  De este modo, $n_f=\lambda_{kp}(\sigma_N^2/\mu_N)=1.536,64(2)=3.073,28$ que redondeando al alza da un estándar de credibilidad completa de 3.074.
+
+</div>
+
+*** 
+
+Vemos que la distribución binomial negativa con $(\sigma_N^2/\mu_N)>1$ requiere más reclamaciones para llegar a una credibilidad completa que en una distribución Poisson para los mismos valores $k$ y $p$.  El siguiente ejemplo muestra que una distribución binomial con $(\sigma_N^2/\mu_N)<1$ necesitará menos reclamaciones para la credibilidad completa.
+
+
+**Ejemplo `r chapnum`.2.3.**
+El estándar de credibilidad completa está definido de modo que el número observado de reclamaciones debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$.  Si el número de reclamaciones se distribuye como una distribución binomial negativa
+
+\begin{equation*}
+\Pr(N=x)={m\choose x}q^x(1-q)^{m-x}.
+\end{equation*}
+
+Calcular el estándar de credibilidad completa para $q=1/4$.
+
+`r HideExample('9.2.3', 'Mostrar Solución del Ejemplo')`
+
+**Solución** Del primer ejemplo en esta sección $\lambda_{kp} =1,536.64$.  La media y la varianza para una binomial negativa son $\mathrm{E}(N)=mq$ y $\mathrm{Var}(N)=mq(1-q)$ por lo que $(\sigma_N^2/\mu_N)=(mq(1-q)/(mq))=1-q$ es igual a 3/4 cuando $q=1/4$.  De este modo, $n_f=\lambda_{kp}(\sigma_N^2/\mu_N)=1.536,64(3/4)=1.152,48$ que redondeando al alza da un estándar de credibilidad completa de 1.153.
+
+</div>
+
+*** 
+
+Más que utilizar el número esperado de reclamaciones para definir el estándar de credibilidad completa, podemos hacer uso del número de exposiciones.  Una exposición es una medida de riesgo.  Por ejemplo, un automóvil asegurado por un año entero sería un automóvil-año.  Dos automóviles asegurados cada uno durante medio año también resultaría un automóvil-año.  Los automóvil-años tratan de cuantificar la exposición a la pérdida.  Si todos los vehículos tienen el mismo riesgo de pérdida, se esperaría que dos automóvil-años generaran el doble de reclamaciones que un automóvil-año.  Para convertir un estándar de credibilidad completa definido en términos del número de reclamaciones a un estándar de credibilidad completa definido en exposiciones, necesitaremos una estimación razonable del número esperado de reclamaciones por exposición.
+
+
+**Ejemplo `r chapnum`.2.4.**
+El estándar de credibilidad completa está definido de modo que el número observado de reclamaciones debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$.  Si el número de reclamaciones se distribuye como una Poisson y una unidad de exposición esperada es tener aproximadamente 0,20 reclamaciones por año, encontrar el número de exposiciones necesarias para una credibilidad completa.
+
+`r HideExample('9.2.4', 'Mostrar Solución del Ejemplo')`
+
+**Solución** Con $p=0,95$ y $k=0,05$, $\lambda_{kp} = (y_p/k)^{2}=(1,960/0,05)^{2}=1.536,64$ reclamaciones son necesarias para la credibilidad completa.  La tasa de frecuencia de las reclamaciones es de 0,20 reclamaciones/exposiciones.  Para convertir el estándar de credibilidad completa a un estándar definido en exposiciones el cálculo es: (1.536,64 reclamaciones)/(0,20 reclamaciones/exposiciones) = 7.683,20 exposiciones.  Esto puede ser redondeado hasta 7.684.
+
+
+</div>
+
+*** 
+
+La frecuencia puede ser definida como el número de reclamaciones por exposición.  Representando $m$ como el número de exposiciones, entonces la frecuencia de reclamación observada es $N/m$ que puede ser usada para estimar $\mathrm{E}(N/m)$:
+ 
+\begin{equation*}
+\Pr[(1-k)\mathrm{E}(N/m)\leq N/m \leq(1+k)\mathrm{E}(N/m)] \geq p.
+\end{equation*}
+
+Como el número de exposiciones no es una variable aleatoria, $\mathrm{E}(N/m)=\mathrm{E}(N)/m=\mu_N/m$ y la ecuación previa resulta
+
+\begin{equation*}
+\Pr\left[(1-k)\frac{\mu_N}{m}\leq \frac{N}{m} \leq(1+k)\frac{\mu_N}{m}\right] \geq p.
+\end{equation*}
+
+Multiplicando la desigualdad por $m$ resulta la ecuación \@ref(eq:kpercent-interval) del principio de la sección.  Los estándares de credibilidad completa desarrollados para estimar el número esperado de reclamaciones también aplican para la frecuencia.
+
+
+### Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura
+
+La siniestralidad agregada es la suma de todas las cuantías de siniestralidad de un riesgo o grupo de riesgos.  Si representamos como $S$ a la siniestralidad agregada, entonces
+
+\begin{equation*}
+S=X_1+X_2+\cdots+X_N.
+\end{equation*}
+
+La variable aleatoria $N$ representa el número de siniestros y las variables aleatorias $X_1, X_2,\ldots,X_N$ son las cuantías de los siniestros individuales.  En esta sección asumimos que $N$ es independiente de las cuantías de los siniestros y que $X_1, X_2,\ldots,X_N$ son independientes e igualmente distribuidas `r Gloss('iid')`.
+
+La media y la varianza de $S$ son
+
+\begin{equation*}
+\mu_S=\mathrm{E}(S)=\mathrm{E}(N)\mathrm{E}(X)=\mu_N\mu_X\textrm{  and}
+\end{equation*}
+
+
+\begin{equation*}
+\sigma^{2}_S=\mathrm{Var}(S)=\mathrm{E}(N)\mathrm{Var}(X)+[\mathrm{E}(X)]^{2}\mathrm{Var}(N)=\mu_N\sigma^{2}_X+\mu^{2}_X\sigma^{2}_N.
+\end{equation*}
+
+donde $X$ es la cuantía de un siniestro individual.  
+
+La siniestralidad agregada observada $S$ puede ser utilizada para la estimación de su valor esperado $\mu_S=\mathrm{E}(S)$. Como en el modelo para la frecuencia de la sección anterior, la siniestralidad observada tiene que ser próxima a la siniestralidad esperada como se determina en la ecuación
+
+\begin{equation*}
+\Pr[(1-k)\mu_S\leq S \leq(1+k)\mu_S] \geq p.
+\end{equation*} 
+
+\noindent Una vez sustraída la media y dividiendo por la desviación estándar,
+
+\begin{equation*}
+\Pr\left[\frac{-k\mu_S}{\sigma_S}\leq (S-\mu_S)/\sigma_S \leq \frac{k\mu_S}{\sigma_S}\right] \geq p
+\end{equation*}.
+
+Como hicimos en la sección anterior, la distribución supuesta para $(S-\mu_S)/\sigma_S$ es normal con $k\mu_S/\sigma_S=y_p=\Phi^{-1}((p+1)/2)$.  Esta ecuación puede ser reescrita como $\mu_S^2=(y_p/k)^2\sigma_S^2$.  Utilizando las fórmulas previas para $\mu_S$ y $\sigma_{S}^2$ se obtiene $(\mu_N\mu_X)^2=(y_p/k)^2(\mu_N\sigma^{2}_X+\mu^{2}_X\sigma^{2}_N)$.  Dividiendo ambos lados por $\mu_N\mu_X^2$ y reordenando el lado derecho de la ecuación se determina el estándar de credibilidad completa $n_S$ para la siniestralidad agregada
+
+\begin{equation}
+n_S=\left(\frac{y_p}{k}\right)^2\left[\left(\frac{\sigma_N^2}{\mu_N}\right)+\left(\frac{\sigma_X}{\mu_X}\right)^2\right]=\lambda_{kp}\left[\left(\frac{\sigma_N^2}{\mu_N}\right)+\left(\frac{\sigma_X}{\mu_X}\right)^2\right].
+(\#eq:full-credibility-losses)
+\end{equation}
+
+
+**Ejemplo `r chapnum`.2.5.**
+El número de reclamaciones se distribuye como una Poisson.  Las cuantías de siniestros individuales son independientes e idénticamente distribuidas según una distribución Pareto de Tipo II $F(x)=1-[\theta/(x+\theta)]^{\alpha}$.  El número de reclamaciones y las cuantías de los siniestros son independientes.
+Si la siniestralidad agregada observada debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$, ¿cuál es la siniestralidad necesaria para llegar a la credibilidad completa?
+
+`r HideExample('9.2.5', 'Mostrar Solución del Ejemplo')`
+
+
+
+**Solución**
+Como el número de reclamaciones sigue una Poisson, $(\sigma_N^2/\mu_N)=1$.  La media de la Pareto es $\mu_X=\theta/(\alpha-1)$ y la varianza es $\sigma_X^2=\theta^{2}\alpha/[(\alpha-1)^{2}(\alpha-2)]$ por lo que $(\sigma_X/\mu_X)^2=\alpha/(\alpha-2)$.  Combinando las expresiones para la frecuencia y la severidad, se obtiene $[(\sigma_N^2/\mu_N)+(\sigma_X/\mu_X)^2]=2(\alpha-1)/(\alpha-2)$.  De la tabla de probabilidades de una normal $y_p=\Phi^{-1}((0,95+1)/2)=1,960$.  El estándar de credibilidad completa es $n_S=(1,96/0,05)^{2}[2(\alpha-1)/(\alpha-2)]=3.073,28(\alpha-1)/(\alpha-2)$.  Suponiendo $\alpha=3$, entonces $n_S=6.146,56$, redondeando, un estándar de credibilidad completa de 6.147.  Nótese que es necesario un número considerablemente mayor de reclamaciones para alcanzar la credibilidad completa para la siniestralidad agregada que para la frecuencia en solitario.
+
+</div>
+
+*** 
+
+Cuando el número de reclamaciones se distribuye como una Poisson, entonces la ecuación \@ref(eq:full-credibility-losses) puede ser simplificada utilizando $(\sigma_N^2/\mu_N)=1$.  En consecuencia, utilizando la relación $\mu_X^2+\sigma_X^2=\mathrm{E}(X^2)$, obtenemos que  $[(\sigma_N^2/\mu_N)+(\sigma_X/\mu_X)^2]=[1+(\sigma_X/\mu_X)^2]=[(\mu_X^2+\sigma_X^2)/\mu_X^2]=\mathrm{E}(X^2)/\mathrm{E}(X)^2$. Y el estándar de credibilidad completa es $n_S=\lambda_{kp}\mathrm{E}(X^2)/\mathrm{E}(X)^2$.
+
+
+La prima pura $PP$ es igual a la siniestralidad agregada $S$ dividida por las exposiciones $m$:  $PP=S/m$.   El estándar de credibilidad completa para la prima pura requerirá
+
+\begin{equation*}
+\Pr\left[(1-k)\mu_{PP}\leq PP \leq(1+k)\mu_{PP}\right] \geq p.
+\end{equation*}
+
+\noindent El número de exposiciones $m$ se considera fijo y no una variable aleatoria, por lo que $\mu_{PP}=\mathrm{E}(S/m)=\mathrm{E}(S)/m=\mu_S/m$.
+
+\begin{equation*}
+\Pr\left[(1-k)\left(\frac{\mu_S}{m}\right)\leq \left(\frac{S}{m}\right) \leq(1+k)\left(\frac{\mu_S}{m}\right)\right] \geq p.
+\end{equation*}
+
+\noindent Multiplicando la desigualdad por las exposiciones $m$, obtenemos los límites para la siniestralidad agregada
+
+\begin{equation*}
+\Pr[(1-k)\mu_S\leq S \leq(1+k)\mu_S] \geq p.
+\end{equation*}
+
+\noindent Esto significa que el estándar de credibilidad completa $n_{PP}$ para la prima pura es el mismo que para la siniestralidad agregada
+
+\begin{equation*}
+n_{PP}=n_S=\lambda_{kp}\left[\left(\frac{\sigma_N^2}{\mu_n}\right)+\left(\frac{\sigma_X}{\mu_X}\right)^2\right].
+\end{equation*}
+
+
+### Credibilidad Completa para la Severidad
+
+Definimos $X$ como una variable aleatoria que representa la intensidad de una reclamación. La severidad de las reclamaciones es $\mu_X=\mathrm{E}(X)$. Suponemos que ${X_1,X_2, \ldots, X_n}$ es una muestra aleatoria de $n$ reclamaciones que serán utilizadas para estimar la severidad de las reclamaciones $\mu_X$. Suponemos que las reclamaciones son *iid*. El valor medio de la muestra es
+
+\begin{equation*}
+\bar{X}=\frac{1}{n}\left(X_1+X_2+\cdots+X_n\right).
+\end{equation*}
+
+¿Qué valor de $n$ se necesita para conseguir una buena estimación?  Nótese que $n$ no es una variable aleatoria mientras que sí lo era en el modelo de siniestralidad agregada.
+
+En la Sección \@ref(S:frequency), la fiabilidad de un estimador para la frecuencia fue definida a partir de requerir un número de reclamaciones que se encontrara dentro de un intervalo especificado por el número medio reclamaciones con una probabilidad especificada.  Para la severidad este requisito es
+
+\begin{equation*}
+\Pr[(1-k)\mu_X\leq \bar{X} \leq(1+k)\mu_X ]\geq p
+\end{equation*}
+
+\noindent donde $k$ y $p$ deben ser especificados.  Siguiendo los mismos pasos que en la Sección \@ref(S:frequency), para cada término de la expresión anterior, restamos la media de la severidad de las reclamaciones $\mu_X$ y dividimos por la desviación estándar del estimador de la severidad 
+
+\begin{equation*}
+\Pr\left[\frac{-k\mu_X}{\sigma_{\bar{X}}}\leq (\bar{X}-\mu_X)/\sigma_{\bar{X}} \leq \frac{k\mu_X}{\sigma_{\bar{X}}}\right] \geq p
+\end{equation*}.  
+
+Como en las secciones previas, suponemos que $(\bar{X}-\mu_X)/\sigma_{\bar{X}}$ sigue aproximadamente una distribución normal y que la ecuación anterior se satisface si $k\mu_X/\sigma_{\bar{X}}\geq y_p$ con $y_p=\Phi^{-1}((p+1)/2)$.  Como $\bar{X}$ es la media de las reclamaciones individuales $X_1, X_2,\dots, X_n$, su desviación estándar es igual a la desviación estándar de una reclamación individual dividida por $\sqrt{n}$: $\sigma_{\bar{X}}=\sigma_X/\sqrt{n}$.  Por lo tanto, $k\mu_X/(\sigma_X/\sqrt{n})\geq y_p$ y con un poco de álgebra puede ser reescrito como $n \geq (y_p/k)^2(\sigma_X/\mu_X)^2$.  El estándar de credibilidad completa para la severidad es
+
+\begin{equation}
+n_X=\left(\frac{y_p}{k}\right)^2\left(\frac{\sigma_X}{\mu_X}\right)^2=\lambda_{kp}\left(\frac{\sigma_X}{\mu_X}\right)^2.
+(\#eq:full-credibility-severity)
+\end{equation}
+
+Nótese que el término $\sigma_X/\mu_X$ es el `r Gloss('coeficiente de variación')` para una reclamación individual.  Incluso así $\lambda_{kp}$ sigue siendo el estándar de credibilidad completa para la frecuencia dada una distribución Poisson, no hay ninguna suposición sobre la distribución para el número de reclamaciones.
+
+
+**Ejemplo `r chapnum`.2.6.**
+Las cuantías de siniestros individuales son independientes e idénticamente distribuidas con una distribución Pareto de Tipo II $F(x)=1-[\theta/(x+\theta)]^{\alpha}$.  ¿Cuántas reclamaciones son necesarias para que la severidad media de las reclamaciones observadas se encuentre dentro del intervalo al 5$\%$ de la severidad esperada con una probabilidad de $p=0,95$?
+
+`r HideExample('9.2.6', 'Mostrar Solución del Ejemplo')`
+
+**Solución**
+La media de la Pareto es $\mu_X=\theta/(\alpha-1)$ y la varianza es $\sigma_X^2=\theta^{2}\alpha/[(\alpha-1)^{2}(\alpha-2)]$, por lo que $(\sigma_X/\mu_X)^2=\alpha/(\alpha-2)$.  De la tabla de la distribución normal, $y_p=\Phi^{-1}((0,95+1)/2)=1,960$.  El estándar de credibilidad completa es $n_X=(1,96/0,05)^{2}[\alpha/(\alpha-2)]=1.536,64\alpha/(\alpha-2)$.  Si suponemos $\alpha=3$, entonces $n_X=4.609,92$, y redondeando resulta un estándar de credibilidad completa de 4.610.
+
+</div>
+
+*** 
+
+### Credibilidad parcial
+
+En las secciones previas fueron calculados estándares de credibilidad completa para estimar la frecuencia ($n_f$), la prima pura ($n_{PP}$), y la severidad ($n_X$) - en esta sección, estos estándares de credibilidad completa serán denotados por $n_{0}$.  Para cada caso, el estándar de credibilidad completa era el número esperado de reclamaciones requerido para conseguir un nivel definido de fiabilidad cuando utilizamos datos empíricos para estimar un valor esperado. Si el número observado de reclamaciones es mayor o igual que el estándar de credibilidad completa, asignamos un peso de credibilidad completa $Z=1$ a los datos.
+
+En la credibilidad de fluctuación limitada, los pesos de credibilidad $Z$ asignados a los datos son
+
+\begin{equation*} 
+Z=\quad \sqrt{\frac{n}{n_{0}}} \quad \textrm{if} \quad   n < n_{0} \quad \textrm{and}  \quad Z=\quad 1 \quad \textrm{for} \quad   n \geq n_{0}
+\end{equation*}
+
+donde $n_0$ es el estándar de credibilidad completa. La cantidad $n$ es el número de reclamaciones de los datos utilizados para la estimación de la frecuencia y severidad esperadas, o la prima pura.
+
+
+**Ejemplo `r chapnum`.2.7.**
+El número de reclamaciones sigue una distribución Poisson.  Las cuantías de siniestros individuales son independientes e idénticamente distribuidas según una distribución Pareto de Tipo II $F(x)=1-[\theta/(x+\theta)]^{\alpha}$. Suponemos que $\alpha=3$. El número de reclamaciones y las cuantías de los siniestros son independientes. El estándar de credibilidad completa es aquel que la prima pura observada debe estar un 5$\%$ por debajo o por encima de su valor esperado con una probabilidad de $p=0,95$. ¿Qué peso de credibilidad $Z$ asignaríamos a una prima pura calculada con 1.000 reclamaciones?
+
+`r HideExample('9.2.7', 'Mostrar Solución del Ejemplo')`
+
+**Solución**
+Como el número de reclamaciones sigue una Poisson,
+
+$$
+\frac{\mathrm{E}(X^2)}{[\mathrm{E}~(X)]^2}
+=\frac{\sigma_N^2}{\mu_N}+\left(\frac{\sigma_X}{\mu_X}\right)^2.  
+$$
+
+La media de la Pareto es $\mu_X=\theta/(\alpha-1)$ y el momento de segundo orden es $\mathrm{E}(X^2)=2\theta^{2}/[(\alpha-1)(\alpha-2)]$, por lo que $\mathrm{E}(X^2)/[\mathrm{E}(X)]^2=2(\alpha-1)/(\alpha-2)$.  De la tabla de una normal $y_p=\Phi^{-1}((0,95+1)/2)=1,960$.  El estándar de credibilidad completa es
+
+$$n_{PP}=(1,96/0,05)^{2}[2(\alpha-1)/(\alpha-2)]=3.073,28(\alpha-1)/(\alpha-2)$$
+
+y si $\alpha=3$, entonces $n_0=n_{PP}=6.146,56$ o 6.147 si redondeamos al alza.  La credibilidad asignada a 1.000 reclamaciones es $Z=(1.000/6.147)^{1/2}=0,40$.
+
+</div>
+
+*** 
+
+La credibilidad de fluctuación limitada utiliza la fórmula $Z=\sqrt{n/n_0}$ para acotar la fluctuación del estimador de la ponderación de credibilidad y así asignar la fluctuación que permiten los datos de las reclamaciones esperadas en el estándar de credibilidad completa.  La varianza o la desviación estándar son utilizadas como una medida de la fluctuación.  A continuación, mostramos un ejemplo para explicar la razón por la que se utiliza esta fórmula de la raíz cuadrada.
+
+
+Suponemos que la media de la severidad de las reclamaciones está siendo estimada a partir de una muestra de tamaño $n$ que es menor al estándar de credibilidad completa $n_0=n_X$.  Aplicando la teoría de la credibilidad, la estimación de $\hat{\mu}_X$ sería
+
+\begin{equation*}
+\hat{\mu}_X=Z\bar{X}+(1-Z)M_X
+\end{equation*}
+
+con $\bar{X}=(X_1+X_2+\cdots+X_n)/n$ y donde $X_i$ son variables aleatorias $iid$ que representan las cuantías de las reclamaciones individuales.  El complementario de credibilidad se asigna a $M_X$ que puede ser interpretado como la severidad media estimada en los años anteriores ajustada por la inflación, la severidad media de una cartera de riesgos mayor, o alguna otra cantidad pertinente seleccionada por el actuario.  Suponemos que la varianza de $M_X$ es cero o insignificante.  Con este supuesto
+
+\begin{equation*}
+\mathrm{Var}(\hat{\mu}_X)=\mathrm{Var}(Z\bar{X})=Z^2\mathrm{Var}(\bar{X})=\frac{n}{n_0}\mathrm{Var}(\bar{X}).
+\end{equation*}
+
+Como $\bar{X}=(X_1+X_2+\cdots+X_n)/n$, se deriva que $\mathrm{Var}(\bar{X})=\mathrm{Var}(X_i)/n$ donde $X_i$ es la variable aleatoria para una reclamación.  En consecuencia,
+
+\begin{equation*}
+\mathrm{Var}(\hat{\mu}_X)=\frac{n}{n_0}\mathrm{Var}(\bar{X})=\frac{n}{n_0}\frac{\mathrm{Var}(X_i)}{n}=\frac{\mathrm{Var}(X_i)}{n_0}.
+\end{equation*}
+
+El último término es exactamente la varianza de una media muestral $\bar{X}$ cuando el tamaño de la muestra es igual al estándar de credibilidad completa $n_0=n_X$.
+
+
+```{r child = './Quizzes/Quiz92.html', eval = QUIZ}
+```
+
+## Credibilidad de Bühlmann 
+
+***
+
+En esta sección, aprendemos cómo:
+
+*  Calcular una estimación de la ponderación de credibilidad para la siniestralidad esperada de un riesgo o grupo de riesgos.
+*  Determinar la credibilidad $Z$ asignada a las observaciones.
+*  Calcular los valores requeridos en el modelo de credibilidad de Bühlmann, que incluye el valor Esperado de la Varianza de proceso (*EPV* en sus siglas en inglés), la Varianza de las Hipotéticas Medias (*VHM* en sus siglas en inglés) y la media colectiva $\mu$.
+*  Reconocer las situaciones en que el modelo de Bühlmann es apropiado.
+
+***
+
+Un sistema de tarificación o clasificación agrupa a los asegurados en clases con unas mismas características del riesgo. A pesar que los asegurados dentro de una clase tienen ciertas similitudes, no son idénticos y su siniestralidad esperada no será exactamente la misma. Un sistema de tarificación basado en la experiencia puede complementar a un sistema de tarificación por clases aplicando una ponderación de credibilidad entre la experiencia de siniestralidad individual de un asegurado y la tarifa general de la clase, y así obtener una tarifa más ajustada para el asegurado.
+ 
+En la presentación de la `r Gloss('credibilidad de Bühlmann')` es conveniente asignar un `r Gloss('parámetro de riesgo')` $\theta$ a cada asegurado. La siniestralidad $X$ del asegurado tendrá una función de distribución común $F_{\theta}(x)$ con media $\mu(\theta)=\mathrm{E}(X|\theta)$ y varianza $\sigma^2(\theta)=\mathrm{Var}(X|\theta)$. La siniestralidad $X$ puede representar las primas puras, la siniestralidad agregada, el número de reclamaciones, la severidad de las reclamaciones, o alguna otra medida de la siniestralidad en un periodo de tiempo, normalmente un año. El parámetro de riesgo $\theta$ puede ser continuo o discreto, y univariante o multivariante, según el modelo.
+
+Si un asegurado con parámetro de riesgo $\theta$ reclamó siniestros $X_1, \ldots, X_n$ durante $n$ periodos de tiempo, entonces el objetivo es encontrar E($\mu(\theta)|X_1,\ldots, X_n)$, la esperanza condicional de $\mu(\theta)$ dados $X_1,\ldots, X_n$. La estimación ponderada de credibilidad de Bühlmann para E($\mu(\theta)|X_1,\ldots, X_n)$ para un asegurado es
+
+\begin{equation}
+\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu 
+(\#eq:buhlcred)
+\end{equation}
+
+donde
+
+\begin{eqnarray*} 
+\theta&=&\textrm{parámetro de riesgo que identifica el nivel de riesgo de un asegurado}\\
+\hat{\mu}(\theta)&=&\textrm{estimación de la siniestralidad  esperada de un asegurado con parámetro }\theta\\
+& & \textrm{y experiencia de siniestralidad } \bar{X}\\
+\bar{X}&=&(X_1+\cdots+X_n)/n \textrm{ es la media de las $n$ observaciones del asegurado } \\
+Z&=&\textrm{credibilidad asignada a las $n$ observaciones } \\
+\mu&=&\textrm{siniestralidad esperada para un asegurado de la clase escogido aleatoriamente.}\\
+ \end{eqnarray*}
+
+Para un asegurado en concreto, las variables aleatorias $X_j$ se suponen *iid* para $j=1,\ldots,n$ al estar suponiendo que la exposición a la siniestralidad del asegurado es invariable a lo largo del tiempo. La cantidad $\bar{X}$ es la media de las $n$ observaciones y $\mathrm{E}(\bar{X}|\theta)=\mathrm{E}(X_j|\theta)=\mu(\theta)$.
+
+Si un asegurado de una clase es escogido aleatoriamente y no disponemos de su experiencia de siniestralidad, entonces la siniestralidad esperada es $\mu=\mathrm{E}(\mu(\theta))$, donde la esperanza está definida sobre todos los $\theta$ dentro de la clase.  En esta situación $Z=0$ y la siniestralidad esperada para ese riesgo es $\hat\mu(\theta)=\mu$. La cantidad $\mu$ también puede ser expresada como $\mu=\mathrm{E}(X_j)$ o $\mu=\mathrm{E}(\bar{X})$ y a menudo se denomina la media global o `r Gloss('media colectiva')`.  Nótese que E($X_j$) está definida con la `r Gloss('ley de la esperanza total')`: E($X_j$)=E(E($X_j|\theta)$).
+
+
+
+**Ejemplo `r chapnum`.3.1.** 
+El número de reclamaciones $X$ para un asegurado perteneciente a una clase sigue una distribución Poisson con media $\theta>0$. El parámetro de riesgo $\theta$ está distribuido exponencialmente dentro de la clase con una `r Gloss('pdf')` $f(\theta)=e^{-\theta}$. ¿Cuál es el número esperado de reclamaciones para un asegurado escogido al azar en dicha clase?
+
+`r HideExample('9.3.1', 'Mostrar Solución del Ejemplo')`
+
+**Solución** La variable aleatoria $X$ es Poisson con parámetro $\theta$ y E$(X|\theta)=\theta$. El número esperado de reclamaciones para un asegurado escogido aleatoriamente es $\mu=\mathrm{E}(\mu(\theta))=\mathrm{E}(\mathrm{E}(X|\theta))=$E$(\theta)=\int_{0}^{\infty}\theta e^{-\theta} d\theta=1$.
+
+</div>
+
+*** 
+
+
+En el ejemplo anterior el parámetro de riesgo $\theta$ es una variable aleatoria con una distribución exponencial. En el ejemplo siguiente suponemos tres tipos de riesgos y el parámetro de riesgo tiene una distribución discreta.
+
+
+**Ejemplo `r chapnum`.3.2.** Para cualquier riesgo (asegurado) en una población, el número de siniestros $N$ en un año sigue una distribución Poisson con parámetro $\lambda$.  Las cuantías de los siniestros individuales $X_i$ para un riesgo son independientes de $N$ y son *iid* con una distribución Tipo II de Pareto $F(x)=1-[\theta/(x+\theta)]^{\alpha}$. Hay tres tipos de riesgos en la población con las siguientes características:
+
+$$\begin{matrix}
+\begin{array}{|c|c|c|c|}
+\hline
+\text{Riesgo } & \text{Porcentaje} & \text{Parámetro} & \text{Parámetros} \\
+\text{Tipo} & \text{de Población} & \text{Poisson} & \text{Pareto} \\
+\hline
+A & 50\% & \lambda=0,5 & \theta=1000, \alpha=2,0 \\
+B & 30\% & \lambda=1,0 & \theta=1500, \alpha=2,0 \\  
+C & 20\% & \lambda=2,0 & \theta=2000, \alpha=2,0 \\              
+\hline
+\end{array}
+\end{matrix}$$
+Si seleccionamos al azar un riesgo de la población, ¿cuál es la siniestralidad agregada esperada en un año?
+
+`r HideExample('9.3.2', 'Mostrar Solución del Ejemplo')`
+
+**Solución** El número esperado de reclamaciones para un riesgo es E($N|\lambda$)=$\lambda$. El valor esperado de una variable aleatoria distribuida como una Pareto es E($X | \theta, \alpha$)=$\theta/(\alpha-1)$. El valor esperado de la variable aleatoria siniestralidad agregada $S=X_1+\cdots+X_N$ para un riesgo con parámetros $\lambda$, $\alpha$, y $\theta$ es E($S$)=E($N$)E($X$)=$\lambda\theta/(\alpha-1)$. La siniestralidad agregada esperada para un riesgo del tipo A es E($S_{\textrm{A}}$)=(0,5)(1000)/(2-1)=500. La siniestralidad agregada esperada para un riesgo seleccionado al azar en la población es E($S$)=0,5[(0,5)(1000)]+0,3[(1,0)(1500)]+0,2[(2,0)(2000)]=1500.
+
+</div>
+
+*** 
+
+¿Cuál es el parámetro de riesgo para un riesgo (asegurado) en el ejemplo anterior? Se podría decir que el parámetro de riesgo tiene tres componentes $(\lambda,\theta,\alpha)$ con valores posibles (0,5,1000,2,0), (1,0,1500,2,0), y (2,0,2000,2,0), según el tipo de riesgo.
+
+Nótese que en ambos ejemplos el parámetro de riesgo es una cantidad aleatoria con su propia distribución de probabilidad. No conocemos el valor del parámetro de riesgo para un riesgo escogido aleatoriamente.
+
+Aunque la fórmula \@ref(eq:buhlcred) ha sido introducida utilizando como ejemplo una tarificación basada en la experiencia, el modelo de credibilidad de Bühlmann tiene una aplicabilidad más amplia. Supongamos que un sistema de tarificación tiene múltiples clases. La fórmula de credibilidad \@ref(eq:buhlcred) puede ser utilizada para determinar las tarifas individuales de cada clase.  La media global $\mu$ sería la siniestralidad media para todas las clases en su conjunto, $\bar{X}$ sería la experiencia de siniestralidad para cada clase individual, y $\hat{\mu}(\theta)$ sería la siniestralidad estimada para cada clase.
+
+### Credibilidad Z, *EPV*, y *VHM* {#S:EPV-VHM-Z}
+
+Cuando calculemos la estimación de credibilidad $\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu$, ¿qué peso $Z$ asignaremos a la experiencia $\bar{X}$ y qué peso $(1-Z)$ a la media global $\mu$?  En la credibilidad de Bühlmann hay tres factores que necesitan ser considerados:
+
+
+1. ¿Cuánta variación hay en una única observación $X_j$ para un riesgo seleccionado? Con $\bar{X}=(X_1+\cdots+X_n)/n$ y suponiendo que las observaciones son *iid* condicionadas a $\theta$, tenemos que Var($\bar{X}|\theta)$=Var($X_j|\theta)/n$. Cuanto mayor sea Var($\bar{X}|\theta)$ menor peso de credibilidad $Z$ tendría que ser asignado a la experiencia $\bar{X}$. El `r Gloss('Valor Esperado de la Varianza de Proceso')`, abreviado *EPV* en sus siglas en inglés, es el valor esperado de Var($X_j|\theta$) entre todos los  riesgos:
+\begin{equation*}
+EPV=\mathrm{E}(\mathrm{Var}(X_j|\theta)). 
+\end{equation*}
+De Var($\bar{X}|\theta)$=Var($X_j|\theta)/n$, resulta que E(Var($\bar{X}|\theta)$)=EPV/$n$.
+
+2. ¿Cuán homogénea es la población de riesgos cuya experiencia fue combinada para calcular la media global $\mu$?  Si todos los riesgos son similares en su potencial siniestralidad, entonces más peso $(1-Z)$ tendría que ser asignado a la media global $\mu$ porque $\mu$ es la media de un grupo de riesgos similares cuya media individual $\mu(\theta)$ no se aleja de la media global.  La homogeneidad o heterogeneidad de la población está medida por la `r Gloss('Varianza de las Hipotéticas Medias')`, con abreviatura en sus siglas en inglés *VHM*:
+\begin{equation*}
+VHM=\mathrm{Var}(\mathrm{E}(X_j|\theta))=\mathrm{Var}(\mathrm{E}(\bar{X}|\theta)). 
+\end{equation*}
+Nótese que utilizamos $\mathrm{E}(\bar{X}|\theta)=\mathrm{E}(X_j|\theta)$ para derivar la segunda igualdad.
+
+3. ¿Cuántas observaciones $n$ fueron utilizadas para calcular $\bar{X}$?  Una muestra mayor, implicaría un peso $Z$ mayor.
+
+
+**Ejemplo `r chapnum`.3.3.**
+El número de reclamaciones $N$ en un año para un riesgo de una población sigue una distribución Poisson con media $\lambda>0$.  El parámetro de riesgo $\lambda$ está uniformemente distribuido sobre el intervalo $(0,2)$.  Calcular el *EPV* y el *VHM* para la población.
+
+`r HideExample('9.3.3', 'Mostrar Solución del Ejemplo')`
+
+**Solución** La variable aleatoria $N$ es Poisson con parámetro $\lambda$, por lo que Var$(N|\lambda)=\lambda$. El Valor Esperado de la Varianza de proceso es EPV=E(Var($N|\lambda$))=E$(\lambda)=\int_{0}^{2}\lambda \frac{1}{2} d\lambda=1$. La Varianza de las Hipotéticas Medias es VHM=Var(E(N$|\lambda$))= Var($\lambda$)=E($\lambda^2)-(\mathrm{E}(\lambda))^2=\int_{0}^{2}\lambda^2 \frac{1}{2} d\lambda-(1)^2=\frac{1}{3}$.
+
+</div>
+
+*** 
+
+
+La fórmula de credibilidad de Bühlmann contiene los valores para $n$, *EPV*, y *VHM*:
+
+\begin{equation}
+Z=\frac{n}{n+K} \quad , \quad K =\frac{EPV}{VHM}. 
+(\#eq:buhlZ) 
+\end{equation}
+
+
+Si la *VHM* aumenta, entonces $Z$ aumenta. Si el *EPV* aumenta, entonces $Z$ disminuye. A diferencia de la credibilidad de fluctuación limitada, donde $Z=1$ cuando el número esperado de reclamaciones es mayor que el estándar de credibilidad completa, $Z$ se puede aproximar pero no igualar a 1 cuando el número de observaciones $n$ tiende al infinito.
+
+Si multiplicamos el numerador y el denominador de la fórmula $Z$ por (*VHM*/$n$), entonces $Z$ puede ser reescrito como
+
+\begin{equation*}
+Z=\frac{VHM}{VHM+(EPV/n)} . 
+\end{equation*}
+
+El número de observaciones $n$ está incluido en el término (*EPV*/$n$). Como mostramos en el punto (1) al principio de la sección, E(Var($\bar{X}|\theta)$)=*EPV*/$n$. A medida que el número de observaciones es mayor, la varianza esperada de $\bar{X}$ disminuye y la credibilidad $Z$ aumenta de modo que más peso es asignado a $\bar{X}$ en la estimación ponderada de credibilidad $\hat{\mu}(\theta)$.
+
+
+**Ejemplo `r chapnum`.3.4.**
+Usar la ley de la varianza total para demostrar que Var($\bar{X}$) = *VHM* + (*EPV*/n) y derivar una fórmula para $Z$ en función de $\bar{X}$.
+
+`r HideExample('9.3.4', 'Mostrar Solución del Ejemplo')`
+
+**Solución** La cuantía Var($\bar{X}$) se denomina varianza incondicional o varianza total de $\bar{X}$. La ley de la varianza total nos dice que
+ \begin{equation*} 
+\mathrm{Var}(\bar{X})=\textrm{E(Var}(\bar{X}|\theta))+\textrm{Var(E}(\bar{X}|\theta)). 
+\end{equation*}
+
+En el punto (1) al principio de esta sección, mostramos que E(Var($\bar{X}|\theta)$)=*EPV*/$n$. En el segundo punto (2), Var(E($\bar{X}|\theta$))=*VHM*. Reordenando el lado derecho, Var($\bar{X}$)= *VHM* +(*EPV*/$n$). Otra manera de escribir la fórmula para la credibilidad $Z$ es  $Z$=Var(E($\bar{X}|\theta$))/Var($\bar{X}$). Esto implica que $(1-Z)$=E(Var($\bar{X}|\theta$))/Var($\bar{X}$).
+
+</div>
+
+*** 
+
+
+El siguiente ejemplo y su extensa solución muestran cómo calcular la estimación ponderada de credibilidad con datos de frecuencia y severidad.
+
+
+**Ejemplo `r chapnum`.3.5.**
+Dado cualquier riesgo en una población, el número de siniestros $N$ en un año sigue una distribución Poisson con parámetro $\lambda$. Las cuantías de los siniestros individuales $X$ para un riesgo seleccionado son independientes de $N$ y *iid* con distribución exponencial $F(x)=1-e^{-x/\beta}$. Hay tres tipos de riesgos en la población, como se muestra a continuación. Un riesgo fue seleccionado aleatoriamente de la población de la que fueron registrados todos sus siniestros en un periodo de cinco años. La suma total de los siniestros en este periodo de cinco años fue de 5.000. Usar la credibilidad de Bühlmann para estimar la siniestralidad agregada esperada anual para el riesgo.
+$$\begin{matrix}
+\begin{array}{|c|c|c|c|}
+\hline
+\text{Riesgo } & \text{Porcentaje} & \text{Parámetro} & \text{ Parámetro} \\
+\text{Tipo} & \text{de Población} & \text{Poisson} & \text{ Exponencial } \\
+\hline
+A & 50\% & \lambda=0,5 & \beta=1.000 \\
+B & 30\% & \lambda=1,0 & \beta=1.500 \\  
+C & 20\% & \lambda=2,0 & \beta=2.000 \\              
+\hline
+\end{array}
+\end{matrix}$$
+
+`r HideExample('9.3.5', 'Mostrar Solución del Ejemplo')`
+
+**Solución** Como las cuantías de los siniestros individuales $X$ están exponencialmente distribuidos, E($X| \beta$)=$\beta$ y Var($X| \beta$)=$\beta^2$.  Para la siniestralidad agregada $S=X_1+\cdots+X_N$, la media es E($S$)=E($N$)E($X$) y la varianza de proceso es Var($S$)=E($N$)Var($X$)+[E($X$)]$^2$Var($N$). Con la frecuencia distribuida según una Poisson y las cuantías de los siniestros individuales exponencialmente distribuidas, E($S| \lambda, \beta$)=$\beta\de lambda$ y Var($S| \lambda, \beta$) = $\beta\de lambda^2+\beta^2\lambda=2\beta\de lambda^2$.
+**La media de la población $\mu$**: las medias de los riesgos son $\mu$(A)=0,5(1.000)=500; $\mu$(B)=1,0(1.500)=1.500; $\mu$(C)=2,0(2.000)=4.000; y entonces $\mu$=0,50(500)+0,30(1.500)+0,20(4.000)=1.500.
+**VHM**:  *VHM*=$0,50(500-1.500)^2+0,30(1.500-1.500)^2+0,20(4.000-1.500)^2$=1.750.000.
+**EPV**:  Las varianzas del proceso son $\sigma^2(A)=2(0,5)(1.00)^2=1.000.000$; $\sigma^2(B)=2(1,0)(1.500)^2=4.500.000$; $\sigma^2(C)=2(2,0)(2.000)^2=16.000.000$; y entonces
+*EPV*=0,50(1.000.000)+0,30(4.500.000)+0,20(16.000.000)=5.050.000.
+**$\mathbf{\bar{X}}$**: $\bar{X}_5=5.000/5$=1.000.
+**$\mathbf{K}$**: $K=5.050.000/1.750.000$=2,89.
+**$\mathbf{Z}$**: Tenemos cinco años de observaciones, $n=5$.  $Z=5/(5+2,89)$=0,63.
+**$\boldsymbol{\hat{\mu}(\theta)}$**:  $\hat{\mu}(\theta)=0,63(1.000)+(1-0,63)1.500=\boxed{\mathbf{1.185,00}}$.
+
+</div>
+
+*** 
+
+En aplicaciones reales de la credibilidad de Bühlmann, el valor de $K=EPV/VHM$ tendrá que ser estimado. En ocasiones, el valor para $K$ se selecciona utilizando el juicio del actuario. Un valor menor de $K$ hace que el estimador $\hat{\mu}(\theta)$ sea más sensible a la experiencia real $\bar{X}$, mientras que un $K$ mayor produce una estimación más estable dando más peso a $\mu$.  El juicio del actuario puede estar buscando el equilibrio entre sensibilidad y estabilidad. Los métodos para determinar $K$ a partir de los datos serán tratados más adelante en una sección de este capítulo.
+
+Para un asegurado con parámetro de riesgo $\theta$, la credibilidad de Bühlmann utiliza una aproximación lineal $\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu$ para estimar E($\mu(\theta)|X_1,\ldots,X_n$), esto es, la siniestralidad esperada para ese asegurado dada su experiencia de siniestralidad pasada $X_1,\ldots, X_n$. Podemos reescribir esta expresión como $\hat{\mu}(\theta)=a+b\bar{X}$, dejando claro que la estimación de credibilidad es una función lineal de $\bar{X}$.
+
+Si E($\mu(\theta)|X_1,\ldots,X_n$) se aproxima por la función lineal $a+b\bar{X}$ y las constantes $a$ y $b$ se escogen de manera que se minimiza E[(E($\mu(\theta)|X_1,\ldots,X_n)-(a+b\bar{X}))^2$], ¿qué son $a$ y $b$?  La respuesta es $b=n/(n+K)$ y $a=(1-b)\mu$ con $K=EPV/VHM$ y $\mu=E(\mu(\theta))$.  Más detalles pueden ser encontrados en las referencias [@buhlmann], [@buhlmanngisler], [@klugman2012], y [@tse].
+
+La credibilidad de Bühlmann también se denomina como credibilidad de mínimos cuadrados, credibilidad de la mayor precisión, o credibilidad bayesiana.
+
+
+```{r child = './Quizzes/Quiz93.html', eval = QUIZ}
+```
+
+## Credibilidad de Bühlmann-Straub 
+
+***
+
+En esta sección, se aprende cómo:
+
+* Calcular una estimación ponderada de credibilidad para la siniestralidad esperada de un riesgo o grupo de riesgos, utilizando el modelo de Bühlmann-Straub.
+* Determinar la credibilidad $Z$ asignada a las observaciones.
+* Calcular los valores requeridos para ello, que incluyen el Valor Esperado de la Varianza de Proceso (*EPV*), la Varianza de las Medias Hipotéticas (*VHM*) y la media colectiva $\mu$.
+* Reconocer las situaciones en las que el modelo de Bühlmann-Straub es apropiado.
+
+***
+
+En la credibilidad estándar de Bühlmann descrita en la sección anterior, los siniestros observados de un asegurado $X_1,\ldots,X_n$ se suponen *iid*. Si los subíndices indican el año 1, el año 2 y hasta el año $n$, entonces la hipótesis *iid* significa que el asegurado tiene la misma exposición a la pérdida cada año. En un seguro para empresas, esta suposición puede ser violada frecuentemente.
+
+Por ejemplo, consideremos una empresa asegurada que utiliza una flota de vehículos para su actividad. En el año 1 hay $m_1$ vehículos en la flota, $m_2$ vehículos en el año 2, ..., y $m_n$ vehículos en el año $n$. La exposición a la pérdida de la empresa no es constante año tras año. Las cuantías de los siniestros anuales de la flota no son *iid*.
+
+Definimos $Y_{jk}$ como la siniestralidad del $k$-ésimo vehículo de la flota en el año $j$. Entonces, sumando los siniestros para cada uno de los $m_j$ vehículos, la siniestralidad total de la flota en el año $j$ es $Y_{j1}+\cdots+Y_{jm_j}$. En el modelo Bühlmann-Straub se asume que las variables aleatorias $Y_{jk}$ son *iid* para todos los vehículos y años del asegurado. Con esta suposición, las medias E($Y_{jk}|\theta)=\mu(\theta)$ y las varianzas Var($Y_{jk}|\theta)=\sigma^2(\theta)$ son iguales para todos los vehículos y años. La cantidad $\mu(\theta)$ es la siniestralidad esperada y $\sigma^2(\theta)$ es la varianza de la siniestralidad para un año y vehículo de un asegurado con parámetro de riesgo $\theta$.
+
+Si $X_j$ es la siniestralidad media por unidad de exposición en el año $j$, $X_j=(Y_{j1}+\cdots+Y_{jm_j})/m_j$, entonces tenemos que E($X_j|\theta)=\mu(\theta)$ y Var($X_j|\theta)=\sigma^2(\theta)/m_j$ para un asegurado con parámetro de riesgo $\theta$. Nótese que utilizamos el hecho que $Y_{jk}$ son *iid* para un asegurado en concreto. La siniestralidad media por vehículo para los $n$-periodos enteros de años es
+
+\begin{equation*}
+\bar{X}= \frac{1}{m} \sum_{j=1}^{n} m_j X_{j} \quad , \quad  m=\sum_{j=1}^{n}  m_j. 
+\end{equation*}
+
+De lo que se deduce que E$(\bar{X}|\theta)=\mu(\theta)$ y Var$(\bar{X}|\theta)=\sigma^2(\theta)/m$, donde $\mu(\theta)$ y $\sigma^2(\theta)$ son la media y la varianza para un único vehículo y año del asegurado.
+
+
+**Ejemplo `r chapnum`.4.1.**
+Probar que Var$(\bar{X}|\theta)=\sigma^2(\theta)/m$ para un riesgo con parámetro de riesgo $\theta$.
+
+`r HideExample('9.4.1', 'Mostrar Solución del Ejemplo')`
+
+**Solución**
+
+\begin{eqnarray*}
+\mathrm{Var}(\bar{X}|\theta)&=&\mathrm{Var}\left(\frac{1}{m} \sum_{j=1}^{n} m_j X_j|\theta \right)\\
+                            &=&\frac{1}{m^2}\sum_{j=1}^{n} \mathrm{Var}(m_j X_{j}|\theta)=\frac{1}{m^2}\sum_{j=1}^{n} m_j^2 \mathrm{Var}(X_j|\theta)\\
+                            &=&\frac{1}{m^2}\sum_{j=1}^{n} m_j^2 (\sigma^2(\theta)/m_j)=\frac{\sigma^2(\theta)}{m^2}\sum_{j=1}^{n} m_j=\sigma^2(\theta)/m.\\
+\end{eqnarray*}
+
+</div>
+
+*** 
+
+El estimador de `r Gloss("credibilidad de Bühlmann-Straub")` es:
+
+\begin{equation}\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu 
+(\#eq:bscred) 
+\end{equation}
+
+donde
+
+\begin{eqnarray*} 
+\theta&=&\textrm{Parámetro de riesgo que identifica el nivel de riesgo de un asegurado}\\
+\hat{\mu}(\theta)&=&\textrm{Estimación de la siniestralidad esperada por unidad de exposición del asegurado}\\
+ & & \textrm{con experiencia de siniestralidad} \bar{X}\\
+\bar{X}&=& \frac{1}{m} \sum_{j=1}^{n} m_j X_j \textrm{es la siniestralidad media por unidad de exposición para las $m$ exposiciones.}\\
+ & & \textrm{$X_j$ es la siniestralidad media por exposición y $m_j$ es el número de exposiciones en el año $j$.} \\
+Z&=&\textrm{Credibilidad asignada a las $m$ exposiciones} \\
+ \mu&=&\textrm{Siniestralidad esperada por unidad de exposición de un asegurado aleatoriamente}\\
+ & & \textrm{escogido de la población.}\\
+\end{eqnarray*}
+
+Nótese que $\hat{\mu}(\theta)$ es el estimador para la siniestralidad por unidad de exposición.  Si el asegurado tiene $m_j$ exposiciones, entonces su siniestralidad esperada es $m_j\hat{\mu}(\theta)$.
+
+En un ejemplo de la sección anterior se mostró que $Z$=Var(E($\bar{X}|\theta$))/Var($\bar{X}$) donde $\bar{X}$ era la siniestralidad media de las $n$ observaciones.  En la ecuación \@ref(eq:bscred) el $\bar{X}$ puede ser la siniestralidad media para $m$ exposiciones y la misma fórmula para $Z$ puede ser utilizada:
+
+$$
+Z=\frac{\mathrm{Var}(\mathrm{E}(\bar{X}|\theta))}{\mathrm{Var}(\bar{X})}=
+\frac{\mathrm{Var}(\mathrm{E}(\bar{X}|\theta))}{\mathrm{E}(\mathrm{Var}(\bar{X}|\theta))+\mathrm{Var}(\mathrm{E}(\bar{X}|\theta))}. 
+$$
+
+El denominador ha sido expandido utilizando la `r Gloss('ley de la varianza total')`.  Como se hizo notar anteriormente, $\mathrm{E}(\bar{X}|\theta)=\mu(\theta)$, y por tanto, $\mathrm{Var}(\mathrm{E}(\bar{X}|\theta))=\mathrm{Var}(\mu(\theta))=VHM$.
+Como Var$(\bar{X}|\theta)=\sigma^2(\theta)/m$, resulta que E(Var($\bar{X}|\theta$))=E($\sigma^2(\theta))/m$=*EPV*/m.  Haciendo estas sustituciones y un poco de álgebra, obtenemos
+
+\begin{equation}
+Z=\frac{m}{m+K} \quad , \quad K =\frac{EPV}{VHM}. 
+(\#eq:bsZ) 
+\end{equation}
+
+Este es el mismo $Z$ que el modelo de credibilidad de Bühlmann, con la excepción que el número de exposiciones $m$ reemplaza el número de años u observaciones $n$.
+
+
+**Ejemplo `r chapnum`.4.2.**  Un asegurado con una flota de automóviles comerciales tuvo las exposiciones y reclamaciones siguientes en un periodo de tres años:
+$$\begin{matrix}
+\begin{array}{|c|c|c|}
+\hline
+\text{Año} & \text{Número de Vehículos} & \text{Número de Siniestros} \\
+\hline
+1 &  9 &  5  \\
+2 & 12 &  4  \\  
+3 & 15 &  4  \\              
+\hline
+\end{array}
+\end{matrix}$$
+
+
+* El número de siniestros en un año para cada vehículo de la flota del asegurado se distribuye como una Poisson con la misma media (parámetro) $\lambda$.
+* El parámetro $\lambda$ está distribuido entre los asegurados de la población con una *pdf* $f(\lambda)=6\lambda(1-\lambda)$ con $0<\lambda<1$.
+
+En el año 4, el asegurado tiene 18 vehículos en su flota.  Usar la credibilidad de Bühlmann-Straub para estimar el número esperado de siniestros del asegurado en el año 4.
+
+`r HideExample('9.4.2', 'Mostrar Solución del Ejemplo')`
+
+**Solución** El número esperado de siniestros para un vehículo de un asegurado escogido aleatoriamente es $\mu=\mathrm{E}(\lambda)=\int_{0}^{1} \lambda[6\lambda(1-\lambda)] d\lambda=1/2$.  El número medio de siniestros por vehículo del asegurado es $\bar{X}$=13/36.  El Valor Esperado de la Varianza de Proceso para un único vehículo es *EPV*=E($\lambda)=1/2$.  La Varianza de las Medias Hipotéticas entre todos los asegurados es *VHM*=Var($\lambda$)=E($\lambda^2$)-$(\mathrm{E}(\lambda))^2=\int_{0}^{1} \lambda^2[6\lambda(1-\lambda)] d\lambda-(1/2)^2=(3/10)-(1/4)=(6/20)-(5/20)=1/20$.  De ahí, $K$=*EPV*/*VHM*=(1/2)/(1/20)=10.  El número de exposiciones en el periodo de experiencia es $m=9+12+15=36$.  La credibilidad es $Z=36/(36+10)=18/23$.  La estimación ponderada de credibilidad para el número de siniestros de un vehículo es $\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu$=(18/23)(13/36)+(5/23)(1/2)=9/23.  Con 18 vehículos en la flota en el año 4, el número esperado de siniestros es 18(9/23)=162/23=7,04.
+
+/div
+
+*** 
+
+## Inferencia Bayesiana y Credibilidad de Bühlmann 
+
+***
+
+En esta sección, se aprende cómo:
+
+* Usar el Teorema de Bayes para determinar una fórmula para la siniestralidad esperada de un riesgo a partir de una verosimilitud y una distribución a priori.
+* Determinar las distribuciones a posteriori para los modelos bayesianos Gamma-Poisson y Beta-Binomial y calcular sus valores esperados.
+* Entender la relación entre el modelo de Bühlmann y las estimaciones bayesianas para los modelos Gamma-Poisson y Beta-Binomial.
+
+***
+
+En la Sección \@ref(S:MS:BayesInference)) se revisa la `r Gloss('inferencia bayesiana')` y suponemos que el lector está familiarizado con ese material.  Se aconseja también al lector leer la sección de este capítulo sobre credibilidad de Bühlmann.  En la presente sección se comparará la inferencia bayesiana con la credibilidad de Bühlmann y se mostrarán las relaciones entre los dos modelos.
+
+Un riesgo con parámetro de riesgo $\theta$ tiene una siniestralidad esperada $\mu(\theta)=E(X|\theta)$ con variable aleatoria $X$ representando la prima pura, la siniestralidad agregada, el número de reclamaciones, la severidad de la reclamación, o alguna otra medida de la siniestralidad durante un periodo de tiempo.  Si el riesgo tuvo $n$ siniestros $X_1,\ldots, X_n$ durante $n$ periodos separados de tiempo, entonces tales siniestros se suponen $iid$ para el asegurado y con $\mu(\theta)=E(X_i|\theta)$ para $i=1,..,n$.
+
+Si el riesgo tuvo $n$ siniestros $x_1,\ldots, x_n$, entonces  E($\mu(\theta)|x_1,\ldots, x_n)$ es la esperanza condicionada de $\mu(\theta)$.  La fórmula de credibilidad de Bühlmann $\hat{\mu}(\theta)=Z\bar{X}+(1-Z)\mu$ es una función lineal de $\bar{X}=(x_1+\cdots+x_n)/n$ utilizada para estimar $E(\mu(\theta)|x_1,\ldots,x_n)$.
+
+La esperanza $E(\mu(\theta)|x_1,\ldots,x_n)$ puede ser calculada a partir de la función de densidad condicionada $f(x|\theta)$ y la distribución a posteriori $\pi(\theta|x_1,\ldots,x_n)$:
+
+\begin{eqnarray*}  
+\mathrm{E}(\mu(\theta)|x_1,\ldots,x_n)&=&\int \mu(\theta) \pi(\theta|x_1,\ldots,x_n) d\theta \\
+\mu(\theta)&=&\mathrm{E}(X|\theta)=\int  xf(x|\theta) dx .\\
+\end{eqnarray*}
+
+La distribución a posteriori resulta del `r Gloss('teorema de Bayes')`
+
+\begin{equation*} 
+\pi(\theta|x_1,\ldots,x_n)=\frac{\prod_{j=1}^{n} f(x_j|\theta)}{f(x_1,\ldots,x_n)}\pi({\theta}).
+\end{equation*}
+
+La función de densidad condicionada $f(x|\theta)$ y la distribución a priori $\pi(\theta)$ deben ser especificadas.  El numerador en el lado derecho $\prod_{j=1}^{n} f(x_j|\theta)$ se denomina verosimilitud.  El denominador $f(x_1,\ldots,x_n)$ es la función de densidad conjunta para los $n$ siniestros $x_1,\ldots,x_n$.
+
+
+### Modelo Gamma-Poisson 
+
+En el `r Gloss('modelo Gamma-Poisson')` el número de siniestros $X$ sigue una distribución Poisson Pr($X=x|\lambda)=\lambda^xe^{-\lambda}/x!$ para un riesgo con parámetro de riesgo $\lambda$.  La distribución a priori para $\lambda$ es una gamma con $\pi(\lambda)=\beta^\alpha\lambda^{\alpha-1}e^{-\beta\lambda}/\Gamma(\alpha)$.  (Nótese que más que un parámetro de escala, $\beta$ está siendo utilizado como un parámetro de tasa en la distribución gamma).  La media de la distribución gamma es E($\lambda)=\alpha/\beta$ y la varianza es Var($\lambda)=\alpha/\beta^2$.  En esta sección suponemos que $\lambda$ es el número esperado de reclamaciones en un año, aunque podríamos haber escogido otro intervalo de tiempo.
+
+Si seleccionamos al azar un riesgo de la población, entonces el número esperado de siniestros en un año es E($N$)=E(E($N|\lambda$))=E($\lambda$)=$\alpha/\beta$. Si no tuvimos ninguna observación para el riesgo seleccionado, entonces el número esperado de siniestros para el riesgo es $\alpha/\beta$.
+
+Para el riesgo seleccionado aleatoriamente y durante $n$ años, se observaron los siguientes números de siniestros por año:  $x_1,\ldots,x_n$.  Del teorema de Bayes obtenemos la distribución a posteriori
+
+\begin{equation*} 
+\pi(\lambda|x_1,\ldots,x_n)=\frac{\prod_{j=1}^{n} (\lambda^{x_j}e^{-\lambda}/x_j!)}{\Pr(X_1=x_1,\ldots,X_n=x_n)}\beta^\alpha\lambda^{\alpha-1}e^{-\beta\lambda}/\Gamma(\alpha). 
+\end{equation*}
+
+\noindent Combinando los términos con $\lambda$ y dejando el resto de términos en la constante $C$, tenemos que
+
+\begin{equation*} 
+\pi(\lambda|x_1,\ldots,x_n)=C\lambda^{(\alpha+\sum_{j=1}^{n}x_j)-1}e^{-(\beta+n)\lambda}. 
+\end{equation*}
+
+Esto resulta ser una distribución gamma con parámetros $\alpha'=\alpha+\sum_{j=1}^{n}x_j$ and $\beta'=\beta+n$. La constante $C={\beta'}^{\alpha'}/\Gamma(\alpha')$ debe ser tal que $\int_{0}^{\infty}\pi(\lambda|x_1,\ldots,x_n) d\lambda=1$, aunque realmente no necesitamos conocer $C$.  Como se explicó en el capítulo cuatro, la distribución gamma es una a priori conjugada para la distribución Poisson, por lo que su distribución a posteriori es también gamma.
+
+Como la distribución a posteriori es gamma, el número esperado de siniestros para el riesgo seleccionado es
+
+\begin{equation*}  
+\mathrm{E}(\lambda|x_1,\ldots,x_n) = \frac{\alpha+\sum_{j=1}^{n}x_j}{\beta+n}=\frac{\alpha + \textrm{número de siniestros}}{\beta+\textrm{número de años}}. 
+\end{equation*}
+
+Esta fórmula es algo diferente de la del capítulo cuatro porque aquí el parámetro $\beta$ multiplica a $\lambda$ en la exponencial de la *pdf* de la gamma, mientras que en el capítulo cuatro $\lambda$ está dividida por el parámetro $\theta$. Se ha escogido esta forma en la exponencial para simplificar la ecuación del número esperado de siniestros.
+
+Ahora calcularemos el estimador de credibilidad de Bühlmann para el modelo Gamma-Poisson. La varianza de una distribución Poisson con parámetro $\lambda$ es $\lambda$, por lo que *EPV*=E(Var($X|\lambda$))=E($\lambda$)=$\alpha/\beta$. El número medio de siniestros anuales para el riesgo es $\lambda$, y entonces *VHM*=Var(E($X|\lambda$))=Var($\lambda$)=$\alpha/\beta^2$. El
+parámetro de credibilidad es $K$=*EPV*/*VHM*=$(\alpha/\beta)/(\alpha/\beta^2)=\beta$. La media global es E(E($X|\lambda$))=E($\lambda$)=$\alpha/\beta$. La media muestral es $\bar{X}=(\sum_{j=1}^{n}x_j)/n$.  La estimación ponderada de credibilidad para el número esperado de siniestros para el riesgo es 
+
+\begin{equation*} 
+\hat{\mu}=\frac{n}{n+\beta}\frac{\sum_{j=1}^{n}x_j}{n} +(1-\frac{n}{n+\beta})\frac{\alpha}{\beta}=\frac{\alpha+\sum_{j=1}^{n}x_j}{\beta+n}. 
+\end{equation*}
+
+Para el modelo Gamma-Poisson, la estimación de credibilidad de Bühlmann coincide con la obtenida a partir del análisis bayesiano.
+
+
+### Modelo Beta-Binomial
+
+El `r Gloss('modelo Beta-Binomial')` es útil para modelizar la probabilidad de un evento.  Suponemos que la variable aleatoria $X$ es el número de éxitos en $n$ pruebas y que $X$ sigue una distribución binomial Pr($X=x|p)=\binom{n}{x}p^x(1-p)^{n-x}$. En este modelo Beta-Binomial, la distribución a priori para la probabilidad $p$ es una distribución beta con *pdf*
+
+\begin{equation*}  
+\pi(p)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}p^{\alpha-1}(1-p)^{\beta-1} , \quad  0<p<1, \alpha>0, \beta>0.
+\end{equation*}
+
+La distribución a posteriori para $p$, dada una observación de $x$ éxitos en $n$ pruebas es
+
+\begin{equation*} 
+\pi(p|x)=\frac{\binom{n}{x}p^x(1-p)^{n-x}}{\Pr(x)}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}p^{\alpha-1}(1-p)^{\beta-1}.
+\end{equation*}
+
+Combinando los términos con $p$ y dejando el resto en la constante $C$, obtenemos
+
+\begin{equation*} 
+\pi(p| x)=Cp^{\alpha+x-1}(1-p)^{\beta+(n-x)-1}.
+\end{equation*}
+
+Esto resulta ser una distribución beta con parámetros nuevos $\alpha^\prime=\alpha+x$ y $\beta^\prime=\beta+(n-x)$. La constante tiene que ser
+
+\begin{equation*} 
+C=\frac{\Gamma(\alpha+\beta+n)}{\Gamma(\alpha+x)\Gamma(\beta+n-x)}.
+\end{equation*}
+
+La media de la distribución beta con parámetros $\alpha$ y $\beta$ es E($p)=\alpha/(\alpha+\beta)$. Dados $x$ éxitos en $n$ pruebas, según el modelo Beta-Binomial, la media de la distribución a posteriori es
+
+\begin{equation*} 
+E(p|x)=\frac{\alpha+x}{\alpha+\beta+n}.  
+\end{equation*} 
+
+Cuando el número de pruebas $n$ y éxitos $x$ aumenta, el valor esperado de $p$ se aproxima a $x/n$.
+
+El estimador de credibilidad de Bühlmann para E($p|x$) es exactamente el mismo que en la estimación bayesiana, como queda demostrado en el ejemplo siguiente.
+
+**Ejemplo `r chapnum`.5.1**
+La probabilidad que al lanzar una moneda al aire resulte cara es $p$.  La distribución a priori para la probabilidad $p$ es una beta con parámetros $\alpha$ y $\beta$. En $n$ lanzamientos de la moneda se obtuvieron exactamente $x$ caras.  Usar la credibilidad de Bühlmann para estimar el valor esperado de $p$.
+
+`r HideExample('9.5.1', 'Mostrar Solución del Ejemplo')`
+
+**Solución** Definimos las variables aleatorias $Y_j$ tales que $Y_j=1$ si sale cara y $Y_j=0$ si sale cruz en el lanzamiento $j$-ésimo de una moneda, $j=1,\ldots, n$.  Las variables aleatorias $Y_j$ son *iid* condicionadas a $p$ con Pr$[Y=1|p]=p$ y Pr$[Y=0|p]=1-p$. El número de caras en $n$ lanzamientos puede ser representado por la variable aleatoria $X=Y_1+\cdots+Y_n$.   Queremos estimar $p=E[Y_j]$ utilizando la credibilidad de Bühlmann: $\hat{p} = Z\bar{Y} +(1-Z)\mu$.  La media global es $\mu=E(E(Y_j|p))=E(p)=\alpha/(\alpha+\beta)$.  La media muestral es $\bar{y}=x/n$.  La credibilidad es $Z=n/(n+K)$ y K=*EPV*/*VHM*.  Siendo Var$(Y_j|p)=p(1-p)$, tenemos que *EPV*=E(Var$(Y_j|p)$)=E($p(1-p)$). Y como E$(Y_j|p)=p$, entonces *VHM*=Var$(E(Y_j|p))$=Var($p$). Para la distribución beta
+
+\begin{equation*}  
+\mathrm{E}(p)=\frac{\alpha}{\alpha+\beta}, \mathrm{E}(p^2)=\frac{\alpha(\alpha+1)}{(\alpha+\beta)(\alpha+\beta+1)}, \textrm{ y } \mathrm{Var}(p)=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.
+\end{equation*}
+
+El parámetro $K$=*EPV*/*VHM*=[E($p$)-E($p^2$)]/Var($p$). Con algunos cálculos, esto se reduce a $K=\alpha+\beta$. La estimación ponderada de credibilidad de Bühlmann es
+
+\begin{align*}
+  \hat{p} &= \frac{n}{n+\alpha+\beta}\left(\frac{x}{n}\right)+\left(1-\frac{n}{n+\alpha+\beta}\right)\frac{\alpha}{\alpha+\beta} \\
+  \hat{p} & =\frac{\alpha+x}{\alpha+\beta+n}\\
+\end{align*}
+que resulta ser igual a la media bayesiana a posteriori.
+
+</div>
+
+*** 
+
+### Credibilidad exacta
+En la sección anterior quedó demostrado que los estimadores de credibilidad de Bühlmann coinciden exactamente con los resultados del análisis bayesiano para los modelos Gamma-Poisson y Beta-Binomial.  El término `r Gloss('credibilidad exacta')` se aplica en estas situaciones.  La credibilidad exacta puede ocurrir si la distribución de probabilidad para $X_j$ pertenece a la familia exponencial lineal y la distribución a priori es una a priori conjugada.  Además de los dos modelos anteriores, otros ejemplos de credibilidad exacta también incluyen los modelos Gamma-Exponencial y Normal-Normal.
+
+Es también digno de mención que si la media condicionada E$(\mu(\theta)|X_1,...,X_n)$ es lineal respecto a las observaciones históricas, entonces la estimación de credibilidad de Bühlmann coincidirá con la estimación bayesiana. Más información sobre credibilidad exacta puede ser encontrada en [@buhlmanngisler], [@klugman2012], y [@tse].
+
+
+## Estimación de Parámetros de Credibilidad
+
+***
+
+En esta sección, se aprende cómo:
+
+* Realizar una estimación no-paramétrica de los modelos de credibilidad de Bühlmann y Bühlmann-Straub.
+* Identificar las situaciones en las que la estimación semi- parámetrica es apropiada.
+* Usar los datos para aproximar *EPV* y *VHM*.
+* Obtener estimaciones ponderadas de credibilidad.
+
+***
+
+Los ejemplos de este capítulo proporcionan alternativas para calcular los parámetros de credibilidad.  En la práctica real, el actuario deberá usar los datos reales y su juicio para determinar los parámetros de credibilidad.
+
+### Estándar de Credibilidad Completa para la Credibilidad de Fluctuación Limitada
+
+La Credibilidad de Fluctuación limitada requiere un estándar de credibilidad completa.  La fórmula general para la siniestralidad agregada o prima pura, como se obtuvo para la fórmula \@ref(eq:full-credibility-losses), es
+
+\begin{equation*}
+n_S=\left(\frac{y_p}{k}\right)^2\left[\left(\frac{\sigma_N^2}{\mu_N}\right)+\left(\frac{\sigma_X}{\mu_X}\right)^2\right]
+\end{equation*}
+
+\noindent donde $N$ representa el número de siniestros y $X$ la severidad de los siniestros.  Si se supone que $\sigma_X=0$, se obtiene el estándar de credibilidad completa para la frecuencia.  Si $\sigma_N=0$, resulta la fórmula de credibilidad completa para la severidad. La probabilidad $p$ y el valor $k$ a menudo se seleccionan utilizando el juicio y experiencia de un experto.
+
+En la práctica es común suponer que el número de siniestros sigue una distribución Poisson, de modo que $\sigma_N^2/\mu_N=1$. En este caso, la fórmula puede ser simplificada a
+
+\begin{equation*}
+n_S=\left(\frac{y_p}{k}\right)^2\left[\frac{\mathrm{E}(X^2)}{(\mathrm{E}(X))^2}\right].
+\end{equation*}
+
+Una media empírica y el momento de segundo orden de la severidad de los siniestros individuales pueden ser calculados a partir de los datos históricos disponibles.
+
+### Estimación no-paramétrica para los modelos de Bühlmann y Bühlmann-Straub
+
+El análisis bayesiano, como se describió anteriormente, requiere suposiciones sobre una distribución a priori y una verosimilitud.   Es posible obtener estimaciones sin estas suposiciones, esta metodología es habitualmente conocida como `r Gloss('métodos de Bayes empíricos')`. Los modelos de credibilidad de Bühlmann y Bühlmann-Straub con parámetros estimados a partir de los datos se incluyen en esta categoría de métodos de Bayes empíricos.
+
+
+** Modelo de Bühlmann ** En primer lugar, trataremos el modelo más simple de Bühlmann. Suponemos que hay $r$ riesgos en una población. Para el riesgo $i$ con parámetro de riesgo $\theta_i$ los siniestros en $n$ periodos son $X_{i1},\ldots, X_{in}$. Los siniestros para un riesgo dado en diferentes periodos son *iid*, como se supone para el modelo de Bühlmann. Para el riesgo $i$ la media muestral es $\bar{X}_i=\suma_{j=1}^{n}X_{ij}/n$ y la varianza de proceso empírica y no sesgada es $s_i^2=\suma_{j=1}^{n}(X_{ij}-\bar{X}_i)^2/(n-1)$. Un estimador no sesgado para el *EPV* puede ser calculado obteniendo la media de $s_i^2$ para los $r$ riesgos de la población
+
+\begin{equation}  
+\widehat{EPV}=\frac{1}{r}\sum_{i=1}^{r} s_i^2 = \frac{1}{r(n-1)} \sum_{i=1}^{r} \sum_{j=1}^{n}(X_{ij}-\bar{X}_i)^2 .
+(\#eq:EPV-estimate)
+\end{equation}
+
+Las medias individuales del riesgo $\bar{X}_i$ para $i=1,\ldots, r$ pueden ser usadas para estimar el *VHM*.  Un estimador no sesgado para Var($\bar{X}_i$) es
+
+\begin{equation*} 
+\widehat{\mathrm{Var}}(\bar{X}_i)=\frac{1}{r-1} \sum_{i=1}^{r}(\bar{X}_i-\bar{X})^2 \textrm{  and  }  \bar{X}=\frac{1}{r}\sum_{i=1}^{r} \bar{X}_i,
+\end{equation*}
+
+pero Var($\bar{X}_i$) no es el *VHM*.  La fórmula de la varianza total o fórmula de *varianza incondicional* es
+
+\begin{equation*} 
+\mathrm{Var}(\bar{X}_i)=\textrm{E(Var}(\bar{X}_i|\Theta=\theta_i))+\textrm{Var(E}(\bar{X}_i|\Theta=\theta_i)).
+\end{equation*} 
+
+El *VHM* es el segundo término de la derecha porque $\mu(\theta_i)=\mathrm{E}(\bar{X}_i|\Theta=\theta_i)$ es la media hipotética para el riesgo $i$. Por lo que,
+
+\begin{equation*} 
+VHM=\textrm{Var(E}(\mu(\theta_i)) = \mathrm{Var}(\bar{X}_i) - \textrm{E(Var}(\bar{X}_i|\Theta=\theta_i)).
+\end{equation*} 
+
+Tal y como previamente se discutió en la Sección \@ref(S:EPV-VHM-Z), *EPV*/n = E(Var($\bar{X}_i|\Theta=\theta_i$)), y utilizando los estimadores anteriores, resulta un estimador no sesgado para el *VHM*:
+
+
+
+\begin{equation} 
+\widehat{VHM} = \frac{1}{r-1} \sum_{i=1}^{r}(\bar{X}_i-\bar{X})^2 - \frac{\widehat{EPV}}{n} .
+(\#eq:VHM-estimate)
+\end{equation} 
+
+A pesar de que la siniestralidad esperada para un riesgo con parámetro $\theta_i$ es $\mu(\theta_i)$=E($\bar{X}_i|\Theta=\theta_i$), la varianza de la media muestral $\bar{X}_i$ es mayor o igual que la varianza de las medias hipotéticas: Var($\bar{X}_i)\geq$Var($\mu(\theta_i)$). La varianza de las medias muestrales Var($\bar{X}_i$) incluye la varianza de las medias hipotéticas más un término para la varianza de proceso.
+
+En alguna ocasión, la fórmula \@ref(eq:VHM-estimate) puede producir un valor negativo para $\widehat{VHM}$ debido a la sustracción de $\widehat{EPV}/n$, pero una varianza no puede ser negativa. La varianza de proceso dentro de los riesgos es tan grande que excede la medida de la varianza entre medias de los riesgos.  En tal caso, no podemos utilizar este método para determinar los valores necesarios para la credibilidad de Bühlmann.
+
+
+**Ejemplo `r chapnum`.6.1.**
+Dos asegurados declararon siniestros por un periodo de tres años según la tabla mostrada a continuación. Estimar el número esperado de siniestros para cada asegurado utilizando la credibilidad de Bühlmann y calculando los parámetros necesarios a partir de los datos de la tabla.
+ 
+$$\begin{matrix}
+\begin{array}{|c|c|c|}
+\hline
+\text{Año} & \text{Riesgo A} & \text{Riesgo B} \\
+\hline
+1 & 0 &  2 \\
+2 & 1 &  1  \\  
+3 & 0 &  2  \\              
+\hline
+\end{array}
+\end{matrix}$$
+
+`r HideExample('9.6.1', 'Mostrar Solución del Ejemplo')`
+
+**Solución** $\bar{x}_A=\frac{1}{3}(0+1+0)=\frac{1}{3}$, $\bar{x}_B=\frac{1}{3}(2+1+2)=\frac{5}{3}$ 
+
+$\bar{x}=\frac{1}{2}(\frac{1}{3}+\frac{5}{3})=1$
+
+$s_A^2=\frac{1}{3-1}\left[(0-\frac{1}{3})^2+(1-\frac{1}{3})^2+(0-\frac{1}{3})^2\right]=\frac{1}{3}$  
+
+$s_B^2=\frac{1}{3-1}\left[(2-\frac{5}{3})^2+(1-\frac{5}{3})^2+(2-\frac{5}{3})^2\right]=\frac{1}{3}$ 
+
+$\widehat{EPV}=\frac{1}{2}\left(\frac{1}{3}+\frac{1}{3}\right)=\frac{1}{3}$ 
+
+$\widehat{VHM}=\frac{1}{2-1}\left[(\frac{1}{3}-1)^2+(\frac{5}{3}-1)^2\right]-\frac{1/3}{3}=\frac{7}{9}$  
+
+$K=\frac{1/3}{7/9}=\frac{3}{7}$ 
+
+$Z=\frac{3}{3+(3/7))}=\frac{7}{8}$
+
+$\hat{\mu}_A=\frac{7}{8}\left(\frac{1}{3}\right)+(1-\frac{7}{8})1=\frac{5}{12}$
+
+$\hat{\mu}_B=\frac{7}{8}\left(\frac{5}{3}\right)+(1-\frac{7}{8})1=\frac{19}{12}$  
+
+</div>
+
+*** 
+
+
+**Ejemplo `r chapnum`.6.2.**
+Dos asegurados declararon siniestros por un periodo de tres años según la tabla mostrada a continuación.  Calcular la estimación no-paramétrica para el *VHM*.
+ 
+$$\begin{matrix}
+\begin{array}{|c|c|c|}
+\hline
+\text{Año} & \text{Riesgo A} & \text{Riesgo B} \\
+\hline
+1 & 3 &  3 \\
+2 & 0 &  0  \\  
+3 & 0 &  3  \\              
+\hline
+\end{array}
+\end{matrix}$$
+
+`r HideExample('9.6.2', 'Mostrar Solución del Ejemplo')`
+
+**Solución** $\bar{x}_A=\frac{1}{3}(3+0+0)=1$,  $\bar{x}_B=\frac{1}{3}(3+0+3)=2$ 
+
+$\bar{x}=\frac{1}{2}(1+2)=\frac{3}{2}$  
+
+$s_A^2=\frac{1}{3-1}\left[(3-1)^2+(0-1)^2+(0-1)^2\right]=3$  
+
+$s_B^2=\frac{1}{3-1}\left[(3-2)^2+(0-2)^2+(3-2)^2\right]=3$  
+
+$\widehat{EPV}=\frac{1}{2}(3+3)=3$  
+
+$\widehat{VHM}=\frac{1}{2-1}\left[(1-\frac{3}{2})^2+(2-\frac{3}{2})^2\right]-\frac{3}{3}=-\frac{1}{2}.$  
+
+La varianza de proceso es tan grande que no es posible estimar el *VHM*.
+
+
+</div>
+
+*** 
+
+** Modelo de Bühlmann-Straub ** Las fórmulas empíricas para *EPV* y *VHM* en el modelo de Bühlmann-Straub son más complicadas porque el número de exposiciones de un riesgo puede cambiar de un periodo a otro. Además, el número de periodos de experiencia no tiene que ser constante para toda la población. En primer lugar, algunas definiciones:
+
+* $X_{ij}$ es la pérdida por exposición para un riesgo $i$ en un periodo $j$.  Las pérdidas pueden referirse al número de siniestros o la cuantía de los mismos. Suponemos que hay $r$ riesgos, $i=1,\ldots,r$.
+* $n_i$ es el número de periodos de observación para un riesgo $i$.
+* $m_{ij}$ es el número de exposiciones para un riesgo $i$ en un periodo $j$, $j=1,\ldots,n_i$.
+
+
+El riesgo $i$ con parámetro de riesgo $\theta_i$ tiene $m_{ij}$ exposiciones en el periodo $j$, lo que significa que la variable aleatoria de las pérdidas por exposición puede ser escrita como $X_{ij}=(Y_{i1}+\cdots+Y_{im_{ij}})/m_{ij}$.  La variable aleatoria $Y_{ik}$ es la pérdida para una sola exposición. Para el riesgo $i$, las pérdidas $Y_{ik}$ son *iid* con media E($Y_{ik}$)=$\mu(\theta_i)$ y varianza de proceso Var($Y_{ik}$)=$\sigma^2(\theta_i)$. Por tanto, Var($X_{ij})$=$\sigma^2(\theta_i)/m_{ij}$.
+
+Y otras dos definiciones, más importantes aún, son:
+
+* $\bar{X}_i=\frac{1}{m_i}\sum_{j=1}^{n_i} m_{ij}X_{ij}$  con  $m_i = \sum_{j=1}^{n_i} m_{ij}$.  $\bar{X}_i$ es la pérdida media por exposición para el riesgo $i$ combinando todos los periodos de observación.
+* $\bar{X}=\frac{1}{m}\sum_{i=1}^{r} m_i \bar{X}_i$  con $m=\sum_{i=1}^r m_i$.  $\bar{X}$ es la pérdida media por exposición para todos los riesgos y todos los periodos de observación.
+Un estimador no sesgado para la varianza de proceso $\sigma^2(\theta_i)$ de una exposición para el riesgo $i$ es
+
+\begin{equation*}  
+{s_i}^2=\frac{\sum_{j=1}^{n_i} m_{ij}(X_{ij}-\bar{X}_i)^2}{n_i-1}. \end{equation*}
+
+Los pesos $m_{ij}$ se usan en las diferencias al cuadrado porque $X_{ij}$ son las medias de $m_{ij}$ exposiciones. La media ponderada de las varianzas muestrales ${s_i}^2$ para cada riesgo $i$ en la población, con los pesos proporcionales al número $(n_i-1)$ de periodos de observación, proporcionarán el estimador del valor esperado de la varianza de proceso (*EPV*) 
+
+\begin{equation*}  
+\widehat{EPV}=\frac{\sum_{i=1}^r  (n_i-1){s_i}^2}{\sum_{i=1}^r (n_i-1)}=\frac{\sum_{i=1}^r \sum_{j=1}^{n_i} m_{ij}(X_{ij}-\bar{X}_i)^2}{\sum_{i=1}^r (n_i-1)}.     
+\end{equation*}
+
+La cantidad $\widehat{EPV}$ es un estimador no sesgado para el valor esperado de la varianza de proceso de una exposición para un riesgo escogido al azar en la población.
+
+Para calcular un estimador para la varianza de las medias hipotéticas (*VHM*), usaremos las diferencias al cuadrado de las medias muestrales para cada riesgo individual $\bar{X}_i$ y la media poblacional $\bar{X}$.  Un estimador no sesgado para el *VHM* es
+
+\begin{equation*}  
+\widehat{VHM}=\frac{\sum_{i=1}^r m_i(\bar{X}_i-\bar{X})^2 - (r-1)\widehat{EPV}}{m-\frac{1}{m}\sum_{i=1}^r m_i^2}.  
+\end{equation*}
+
+Esta complicada fórmula es necesaria debido al número variable de exposiciones. Varias demostraciones de que estos estimadores para *EPV* y *VHM* son no sesgados, pueden ser encontradas en diferentes referencias mencionadas al final de este capítulo, por ejemplo, [@buhlmanngisler], [@klugman2012], y [@tse].
+
+
+**Ejemplo `r chapnum`.6.3.**
+Dos asegurados declararon siniestros según la tabla mostrada a continuación.  Estimar el número esperado de siniestros por vehículo para cada asegurado utilizando la credibilidad de Bühlmann-Straub y calculando los parámetros a partir de estos datos.
+
+$$\begin{matrix}
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\text{Asegurado} &  & \text{Año 1} & \text{Año 2} & \text{Año 3} & \text{Año 4} \\
+\hline
+\text{A} & \text{Número de siniestros} & 0 & 2 & 2 & 3 \\
+\hline
+\text{A} & \text{Vehículos asegurados} &  1 & 2 & 2 & 2\\  
+\hline
+ & & & & & \\
+\hline
+\text{B} & \text{Número de siniestros} & 0 & 0 & 1 & 2\\    
+\hline 
+\text{B} & \text{Vehículos asegurados} &  0 & 2 & 3 & 4\\      
+\hline
+\end{array}
+\end{matrix}$$
+
+`r HideExample('9.6.3', 'Mostrar Solución del Ejemplo')`
+
+**Solución** $\bar{x}_A=\frac{0+2+2+3}{1+2+2+2}=1$  
+
+$\bar{x}_B=\frac{0+1+2}{2+3+4}=\frac{1}{3}$ 
+
+$\bar{x}=\frac{7(1)+9(1/3)}{7+9}=\frac{5}{8}$  
+
+$s_A^2=\frac{1}{4-1}\left[1(0-1)^2+2(1-1)^2+2(1-1)^2+2(\frac{3}{2}-1)^2\right]=\frac{1}{2 }$  
+
+$s_B^2=\frac{1}{3-1}\left[2(0-\frac{1}{3})^2+3(\frac{1}{3}-\frac{1}{3})^2+4(\frac{1}{2}-\frac{1}{3})^2\right]=\frac{1}{6}$  
+
+$\widehat{EPV}=\left[3\left(\frac{1}{2}\right)+2\left(\frac{1}{6}\right)\right]/(3+2)=\frac{11}{30}=0,3667$  
+
+$\widehat{VHM}=\left[(7(1-\frac{5}{8})^2+9(\frac{1}{3}-\frac{5}{8})^2-(2-1)\frac{11}{30}\right]/\left[16-\left(\frac{1}{16}\right)(7^2+9^2)\right]=0,1757$  
+
+$K=\frac{0,3667}{0,1757}=2,0871$  
+
+$m_A=7$,  $m_B=9$  
+
+$Z_A=\frac{7}{7+2,0871}=0,7703$,      $Z_B=\frac{9}{9+2,0871}=0,8118$    
+
+$\hat{\mu}_A=0,7703(1)+(1-0,7703)(5/8)=0,9139$  
+
+$\hat{\mu}_B=0,8118(1/3)+(1-0,8118)(5/8)=0,3882$  
+
+</div>
+
+*** 
+
+### Estimación Semi-paramétrica para los Modelos Bühlmann y Bühlmann-Straub 
+
+En la sección anterior, sobre `r Gloss('estimación no-paramétrica')`, no había ninguna suposición sobre la distribución de la siniestralidad por exposición $X_{ij}$.  Nos referiremos a la `r Gloss('estimación semi-paramétrica')` cuando supongamos que $X_{ij}$ sigue una distribución particular para, utilizando las propiedades de la distribución junto con los datos, determinar los parámetros de credibilidad.
+
+Un ejemplo de estimación semi-paramétrica sería cuando al estimar frecuencias de siniestralidad suponemos una distribución Poisson.  La distribución Poisson tiene la propiedad que la media y la varianza coinciden, lo que puede simplificar los cálculos. El siguiente ejemplo, repescado de la sección anterior, incluye ahora la suposición de una distribución Poisson para aproximar las frecuencias de siniestralidad.
+
+
+**Ejemplo `r chapnum`.6.4.**
+Dos asegurados declararon siniestros por un periodo de tres años según la tabla mostrada a continuación. Suponemos que la variable número de siniestros para cada riesgo sigue una distribución Poisson. Estimar el número esperado de siniestros para cada asegurado utilizando la credibilidad de Bühlmann y calculando los parámetros necesarios a partir de los datos de la tabla.
+ $$\begin{matrix}
+\begin{array}{|c|c|c|}
+\hline
+\text{Año} & \text{Riesgo A} & \text{Riesgo B} \\
+\hline
+1 & 0 &  2 \\
+2 & 1 &  1  \\  
+3 & 0 &  2  \\              
+\hline
+\end{array}
+\end{matrix}$$
+
+`r HideExample('9.6.4', 'Solución de Ejemplo')`
+
+**Solución** $\bar{x}_A=\frac{1}{3}(0+1+0)=\frac{1}{3}$, $\bar{x}_B=\frac{1}{3}(2+1+2)=\frac{5}{3}$
+
+$\bar{x}=\frac{1}{2}(\frac{1}{3}+\frac{5}{3})=1$ 
+
+Con la hipótesis de distribución Poisson, la varianza estimada para un riesgo A es $\hat\sigma_A^2=\bar{x}_A=\frac{1}{3}$  
+
+Igualmente, $\hat\sigma_B^2=\bar{x}_B=\frac{5}{3}$  
+
+$\widehat{EPV}=\frac{1}{2}(\frac{1}{3})+\frac{1}{2}(\frac{5}{3})=1$.  Debido a la suposición de Poisson, el mismo valor sirve también para $\bar{x}$.
+
+$\widehat{VHM}=\frac{1}{2-1}\left[(\frac{1}{3}-1)^2+(\frac{5}{3}-1)^2\right]-\frac{1}{3}=\frac{5}{9}$  
+
+$K=\frac{1}{5/9}=\frac{9}{5}$     
+
+$Z_A=Z_B=\frac{3}{3+(9/5)}=\frac{5}{8}$ 
+
+$\hat{\mu}_A=\frac{5}{8}\left(\frac{1}{3}\right)+(1-\frac{5}{8})1=\frac{7}{12}$
+
+$\hat{\mu}_B=\frac{5}{8}\left(\frac{5}{3}\right)+(1-\frac{5}{8})1=\frac{17}{12}.$  
+
+</div>
+
+*** 
+
+En el ejemplo anterior, a pesar de que supusimos que el número de siniestros se distribuía como una Poisson, no fue necesaria esa suposición adicional porque había suficiente información para utilizar la estimación no-paramétrica. De hecho, la hipótesis Poisson no sería apropiada porque para el riesgo B la media muestral no es igual a la varianza muestral: $\bar{x}_B=\frac{5}{3}\neq s_B^2=\frac{1}{3}$.
+
+El siguiente ejemplo suele ser utilizado para mostrar una situación en la que la estimación semi-paramétrica es necesaria.   No hay información suficiente para una estimación no-paramétrica, pero con la hipótesis Poisson los estimadores pueden ser calculados.
+
+**Ejemplo  `r chapnum`.6.5.**
+Una cartera con 2.000 asegurados declaran el siguiente perfil de siniestralidad en un periodo de cinco años:
+ $$\begin{matrix}
+\begin{array}{|c|c|}
+\hline
+\text{Número de siniestros } &   \\
+\text{en 5 Años}           &  \text{Número de pólizas}\\
+\hline
+ 0 &  923 \\
+ 1 &  682 \\  
+ 2 &  249 \\  
+ 3 &  70   \\
+ 4 &  51   \\  
+ 5 &  25   \\     
+\hline
+\end{array}
+\end{matrix}$$
+En nuestro modelo suponemos que el número de siniestros para cada asegurado sigue una distribución Poisson y que el número esperado de siniestros para un asegurado es constante a través del tiempo.  Usar el modelo de credibilidad de Bühlmann para estimar el número esperado anual de siniestros para aquellos asegurados con 3 reclamaciones durante el periodo de cinco años.
+
+`r HideExample('9.6.5', 'Solución de Ejemplo')`
+
+**Solución** Definimos $\theta_i$ como el parámetro de riesgo para el riesgo $i$-ésimo de la cartera, con media $\mu(\theta_i)$ y varianza $\sigma^2(\theta_i)$. Con la hipótesis de distribución Poisson $\mu(\theta_i)=\sigma^2(\theta_i)$. El valor esperado de la varianza de proceso es EPV=E($\sigma^2(\theta_i)$) donde la esperanza se toma sobre todos los riesgos de la población. De suponer la distribución Poisson para todos los riesgos, se obtiene que EPV=E($\sigma^2(\theta_i)$)=E($\mu(\theta_i)$). Un estimador para el número esperado anual de siniestros es $\hat{\mu}(\theta_i)$= (número observado de siniestros)/5. Esto también puede servir como estimación para el valor esperado de la varianza de proceso para un riesgo.  Ponderando las estimaciones de la varianza de proceso (o medias) por el número de pólizas en cada grupo, se obtienen los estimadores
+\begin{equation*}  
+\widehat{EPV}=\bar{x}=\frac{923(0)+682(1)+249(2)+70(3)+51(4)+25(5)}{(5)(2.000)}=0,1719.
+\end{equation*}
+
+Utilizando la fórmula (\@ref(eq:VHM-estimate)), el estimador para *VHM* es
+
+\begin{eqnarray*}
+\widehat{VHM}&=&\frac{1}{2.000-1}[923(0-0,1719)^2+682(0,20-0,1719)^2+249(0,40-0,1719)^2\\
+                            &   &+70(0,60-0,1719)^2+51(0,80-0,1719)^2+25(1-0,1719)^2]-\frac{0,1719}{5}\\
+                            &=& 0,0111\\
+               \hat{K}  &=& \widehat{EPV}/\widehat{VHM}=0,1719/0,0111=15,49\\
+               \hat{Z}  &=& \frac{5}{5+15,49}=0,2440\\
+               \hat{\mu}_{3 \textrm{ claims}}& = & 0,2440(3/5)+(1-0,2440)0,1719=0,2764.\\
+\end{eqnarray*}
+
+</div>
+
+*** 
+
+
+
+### Estimadores de Credibilidad Balanceados
+
+El modelo de credibilidad ponderado $\hat{\mu}(\theta_i)=Z_i\bar{X}_i+(1-Z_i)\bar{X}$, donde $\bar{X}_i$ es la siniestralidad por exposición para un riesgo $i$ y $\bar{X}$ es la siniestralidad por exposición para toda la población, suele ser utilizado para estimar la siniestralidad esperada para el riesgo $i$.  La media global es $\bar{X}=\suma_{i=1}^r(m_i/m) \bar{X}_i$ donde $m_i$ y $m$ son el número de exposiciones para el riesgo $i$ y la población, respectivamente.
+
+Para que los estimadores ponderados de credibilidad estén balanceados queremos que
+
+\begin{equation*}   
+\bar{X}=\sum_{i=1}^r(m_i/m) \bar{X}_i=\sum_{i=1}^r(m_i/m) \hat{\mu}(\theta_i).
+\end{equation*}
+
+Si se satisface esta ecuación, la siniestralidad estimada para toda la población resulta de la agregación de la siniestralidad estimada para cada riesgo, lo que representa un objetivo importante en la tarificación. Sin embargo, esto no puede pasar si $\bar{X}$ se utiliza como el complemento de credibilidad.
+
+Para encontrar un complemento de credibilidad que nos lleve a estimadores ponderados de credibilidad balanceados, proponemos $\hat{\mu}$ como ese complemento de credibilidad y analizamos la ecuación siguiente:
+
+\begin{equation*}   
+\sum_{i=1}^r(m_i/m) \bar{X}_i=\sum_{i=1}^r(m_i/m) (Z_i\bar{X}_i+(1-Z_i)\hat{\mu}) .
+\end{equation*}
+
+Con unos pocos cálculos 
+
+\begin{equation*}   
+\sum_{i=1}^r m_i \bar{X}_i=\sum_{i=1}^r m_i Z_i\bar{X}_i + \hat{\mu}\sum_{i=1}^r m_i(1-Z_i),
+\end{equation*}
+
+y
+
+\begin{equation*}  
+\hat{\mu}=\frac{\sum_{i=1}^r m_i(1-Z_i)\bar{X}_i}{\sum_{i=1}^r m_i(1-Z_i)}. \end{equation*}
+
+Utilizando este valor para $\hat{\mu}$ nos llevará a estimadores ponderados de credibilidad balanceados.
+
+Si las credibilidades $Z_i$ fueran calculadas utilizando el modelo de Bühlmann-Straub, entonces $Z_i=m_i/(m_i+K)$. La fórmula anterior puede ser simplificada utilizando la relación siguiente
+
+\begin{equation*}  
+m_i(1-Z_i)=m_i\left(1-\frac{m_i}{m_i+K}\right)=m_i\left(\frac{(m_i+K)-m_i}{m_i+K}\right)=KZ_i .
+\end{equation*}
+
+Por tanto, un complemento de credibilidad que nos llevará a estimadores ponderados de credibilidad balanceados, mediante la siniestralidad media global por exposición, es
+
+\begin{equation*}  
+\hat{\mu}=\frac{\sum_{i=1}^r  Z_i \bar{X}_i}{\sum_{i=1}^r  Z_i}. \end{equation*}
+ 
+
+**Ejemplo `r chapnum`.6.6.**
+Un ejemplo de la sección de Bühlmann-Straub no-paramétrica tenía los siguientes datos para dos riesgos.  Encontrar el complemento de credibilidad $\hat{\mu}$ que produzca estimadores ponderados de credibilidad balanceados.
+
+$$\begin{matrix}
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\text{Asegurado} &  & \text{Año 1} & \text{Año 2} & \text{Año 3} & \text{Año 4} \\
+\hline
+\text{A} & \text{Número de siniestros} & 0 & 2 & 2 & 3 \\
+\hline
+\text{A} & \text{Vehículos asegurados } &  1 & 2 & 2 & 2\\  
+\hline
+ & & & & & \\
+\hline
+\text{B} & \text{Número de siniestros } & 0 & 0 & 1 & 2\\    
+\hline 
+\text{B} & \text{Vehículos asegurados } &  0 & 2 & 3 & 4\\      
+\hline
+\end{array}
+\end{matrix}$$
+
+**Solución** Las credibilidades del ejemplo anterior son $Z_A=\frac{7}{7+2,0871}=0,7703$ y $Z_B=\frac{9}{9+2,0871}=0,8118$.  Las medias muestrales son $\bar{x}_A=1$ y $\bar{x}_B=1/3$.  El complemento de credibilidad balanceado es
+
+\begin{equation*}  
+\hat{\mu}=\frac{0,7703(1)+0,8118(1/3)}{0,7703+0,8118}=0,6579.
+\end{equation*}
+
+Las estimaciones de credibilidad actualizadas son $\hat{\mu}_A=0,7703(1)+(1-0,7703)(0,6579)=0,9214$ versus el anterior 0,9139 y $\hat{\mu}_B=0,8118(1/3)+(1-0,8118)(0,6579)=0,3944$ versus el anterior 0,3882.  Comprobando el balanceado o equilibrio en los estimadores nuevos:  (7/16)(0,9214)+(9/16)(0,3944)=0,6250.  Esto coincide exactamente con $\bar{X}=10/16=0,6250$.
+
+
+</div>
+
+*** 
+
+
+```{r child = './Quizzes/Quiz96.html', eval = QUIZ}
+```
+
+
+## Otros Recursos y Colaboradores {#Cred-further-reading-and-resources}
+
+
+#### Ejercicios {-}
+
+Aquí se ofrece un conjunto de ejercicios que guían al lector a través de algunos de los fundamentos teóricos de **Loss Data Analytics**. Cada tutorial se basa en una o más preguntas de los exámenes actuariales profesionales, normalmente el Examen C de la Society of Acturies.
+
+<p style="text-align: center;">
+[Credibility Guided Tutorials](https://www.ssc.wisc.edu/~jfrees/loss-data-analytics/loss-data-analyticscredibility-guided-tutorials/)
+</p>
+
+
+#### Colaboradores {-}
+
+- **Gary Dean**, Ball State University es el autor de la versión inicial de este capítulo. Email: <cgdean@bsu.edu> para comentarios sobre el capítulo y posibles mejoras.
+- Revisores de los capítulos, entre otros: Liang (Jason) Hong, Ambrose Lo, Ranee Thiagarajah, Hongjuan Zhou.
+- Traducción al español: Lluís Bermúdez (Universitat de Barcelona)
+
+
+
+
+

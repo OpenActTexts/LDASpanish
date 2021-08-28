@@ -1,0 +1,85 @@
+<!-- ###  Regulación de la Tarificación {#S:RateRegulation} -->
+
+La regulación del seguro es necesaria para asegurar la estabilidad financiera de los aseguradores y para proteger a los consumidores. Los aseguradores reciben unas primas a cambio de las promesas de pagar en caso de ocurrencia del evento asegurado. Como en otras instituciones financieras, como los bancos, hay un fuerte interés público en promover la viabilidad económica futura de los aseguradores.
+
+<!-- Además, la regulación es necesaria para proteger a los consumidores porque: -->
+
+<!-- a.	Las pólizas de seguro son documentos legales complejos  que a menudo son difíciles de interpretar y entender. -->
+<!-- b.	Los aseguradores definen pólizas y las venden al público en un "o lo tomas o lo dejas". Los seguros de particulares no son un contrato donde cada parte tiene el mismo acceso a la información. Con sus recursos, los aseguradores se supone que tienen un mayor acceso a la información sobre los riesgos que están asegurando que los consumidores. -->
+
+#### Conducta de mercado {-}
+
+<!— Uno de los aspectos de regulación es conocido como regulación de la *conducta del mercado* - sistemas de control regulatorios que han sido establecidos como requerimiento a los aseguradores para demostrar que están proporcionando unos servicios justos y fiables, incluyendo la regulación del producto. -->
+
+Para ayudar a proteger a los consumidores, los reguladores imponen unas reglas administrativas sobre el comportamiento de los participantes en el mercado. Estas reglas, conocidas como `r Gloss('regulación de conductas de mercado')`, proporcionan sistemas de control regulatorios que disponen que los  aseguradores deben demostrar que están proporcionando servicios justos y fiables, incluyendo la tarificación, de acuerdo con los estatutos y controles de una jurisdicción.
+
+1. La *regulación de producto* sirve para proteger a los consumidores asegurando que las provisiones de las pólizas de seguro son razonables y justas, y que no presentan vacíos importantes en cuanto a la cobertura que podrían ser mal entendidos por los consumidores y dejarles desprotegidos.
+2. El producto asegurador es el contrato de seguro (póliza) y la cobertura que proporciona. Los contratos de seguro están regulados por las siguientes razones:
+a. Las pólizas de seguro son documentos legales complejos que a menudo son difíciles de interpretar y entender.
+b. Los aseguradores definen pólizas y las venden al público en un "o lo tomas o lo dejas".
+
+La conducta de mercado incluye reglas para los *mediadores* como agentes (quiénes principalmente venden seguros a particulares) y corredores (quiénes principalmente venden seguros a empresas). La conducta de mercado también incluye *regulación de normas de competencia*, diseñada para asegurar un mercado eficaz y competitivo que ofrezca buenas ofertas a los consumidores.
+
+
+#### Regulación de Tarifa  {-}
+
+La *regulación de tarifa* sirve de guía en el desarrollo de las primas y por ello es el aspecto principal de este capítulo. Como otros aspectos del control de conducta de mercado, la intención de estas regulaciones es asegurarse que los aseguradores no se benefician injustamente de los consumidores. La regulación de la tarifa (y de la forma de la póliza) es común en todo el mundo.
+
+El grado de regulación varía según el producto de seguro. La regulación de la tarifa es poco común en los seguros de vida. Además, algunos seguros de no-vida, como los ramos más empresariales y el reaseguro, la tarifa está libre de control. La regulación de tarifa es común en el seguro de automóvil, el seguro de salud, los seguros de accidentes laborables, el seguro de responsabilidad civil médica y el seguro de hogar. Estos son mercados en que el seguro es obligatorio o en el que socialmente es deseable una cobertura universal.
+
+Hay tres principios que guían la regulación de tarifa. Las tarifas tienen que:
+
+* ser adecuadas (para mantener la solvencia de la compañía aseguradora),
+* pero no excesivas (no tan alta para producir beneficios desorbitados),
+* ni injustamente discriminatoria (las diferencias de precio solo deben reflejar diferencias en gastos y reclamaciones esperadas).
+
+Recientemente, en los seguros de hogar y automóvil, los temas entrelazados de disponibilidad y accesibilidad, no incluidos explícitamente en los anteriores principios, han ido tomando más importancia en las decisiones regulatorias.
+
+#### Las Tarifas no son Injustamente Discriminatorias  {-}
+
+<!-- En general, la regulación gubernamental de las tarifas toma una de estas dos formas: -->
+
+<!-- 1. Normas que restringen la cantidad, o el nivel, de las primas, y -->
+<!-- 2. Normas que restringen el tipo de información que puede ser utilizada en la clasificación del riesgo. -->
+
+<!-- La sección siguiente, sobre tipos de regulación aseguradora, se centra en la cantidad de las primas o tarifas de seguro. Para el segundo punto, nos hace falta volver a los tres principios de guía de la regulación sobre tarificación. Los dos primeros de estos tres principios, que las tarifas deben ser adecuadas pero no excesivas, son razonablemente intuitivos. El tercero, que las tarifas no sean injustamente discriminatorias, requiere un poco más de explicación. -->
+
+Algunas regulaciones gubernamentales del seguro restringen la cantidad, o nivel, de las tarifas o primas. Estas regulaciones tratan de conseguir los dos primeros de los tres principios de la regulación sobre tarificación, esto es, que las tarifas deben ser adecuadas pero no excesivas. Este tipo de regulación será discutida en la sección siguiente sobre tipos de regulación tarifaria.
+
+En el seguro de vida, desde hace mucho tiempo ha sido aceptado que es razonable y justo cobrar primas de tarifa diferentes por edad. Por ejemplo, una prima de un seguro de vida difiere dramáticamente entre una persona de 80 años y otra de 20 años. En contraste, no está aceptado utilizar tarifas que difieran por:
+
+- Etnia/raza,
+- Afiliación política, o
+- Religión.
+
+No importa si estos datos pueden ser usados para establecer una significación estadística entre las categorías de cualquiera de estas tres variables. Lo relevante es la decisión social sobre qué se considera como concepto de "justicia."
+
+Diferentes jurisdicciones han tomado diferentes posturas sobre qué constituye una variable de tarificación justa. Por ejemplo, en algunas jurisdicciones, para algunos productos aseguradores, el género ya no es una variable permitida. Por ejemplo, en la Unión Europea está prohibido el uso del género del asegurado para el cálculo de las primas. Como otro ejemplo, en los EE.UU., mucho se ha discutido sobre si permitir el uso del índice de crédito del asegurado en la tarifa de su seguro de automóvil. Los índices de crédito están diseñados para medir el grado de responsabilidad financiera del consumidor. En este sentido, algunos argumentan que estos índices de crédito sirven como aproximación de la etnicidad del asegurado y, por tanto, deberían estar prohibidos.
+
+En una época donde los datos están siendo utilizados de múltiples maneras imaginativas, la discusión sobre qué variable constituye una variable justa queda fuera del alcance de este texto. Aun así,  es pertinente remarcar que los actuarios y otros analistas de datos pueden contribuir a las discusiones sociales sobre qué constituye una variable de tarificación "justa", concretamente, determinando la magnitud de las diferencias de precio cuando se utilizan las variables bajo discusión.
+
+<!—¿Debemos recoger estas variables? -->
+
+<!-- - A veces no. El mero acto de recogerlas puede significar que estemos predispuestos a una discriminación de manera sutil, una clase de riesgo moral. -->
+<!-- - A veces sí. Si el estado de la cuestión es incierto o si   podemos desear entender sus efectos y probar que no estamos discriminando injustamente. -->
+
+
+#### Tipos de Regulación Tarifaria {-}
+
+Hay varios métodos, que varían según el nivel regulatorio, con los que los reguladores pueden restringir las tarifas que ofrecen los aseguradores.
+
+El más restrictivo es un sistema regulador de `r Gloss('prescripción gubernamental')`, donde el regulador gubernamental determina y decreta las tarifas, las clasificaciones, la forma, y otras particularidades a las que todos los aseguradores tienen que adherirse. También de carácter restrictivo es un sistema de `r Gloss('aprobación previa')`. En este caso, el asegurador debe presentar las tarifas, las normas y el resto de información requerida por el regulador. Según la normativa, la documentación presentada se considera efectiva tras la finalización de un periodo de tiempo determinado (si el regulador no realiza una acción concreta sobre la documentación presentada, se considera aprobada automáticamente) o cuando el regulador la aprueba formalmente.
+
+El menos restrictivo es un sistema de `r Gloss('no presentación')` o de *mantenimiento de registro* donde el asegurador no necesita presentar documentación sobre tarifas, normas y otros requerimientos al regulador. El regulador periódicamente puede examinar al asegurador para comprobar que actúa con conformidad a la ley. Otro sistema relativamente flexible es el sistema de `r Gloss('presentación única')`, también conocido como tarificación *competitiva*, donde el asegurador sencillamente debe mantener unos documentos para asegurar su conformidad con la ley.
+
+Entre estos dos extremos encontramos (1) presentación y uso, (2) uso y presentación, (3) aprobación previa modificada, y (4) sistemas flexibles de tarifa.
+
+1. Presentación y Uso: El asegurador debe presentar documentación sobre tarifas, normas y otros requerimientos al regulador. Los términos de la documentación son efectivos inmediatamente o tras finalizar un periodo especificado por el regulador.
+2. Uso y Presentación: El asegurador debe presentar documentación sobre tarifas, normas y otros requerimientos al regulador dentro de un periodo de tiempo especificado después de su primer uso. Los términos de la documentación son efectivos al ser utilizados.
+3. Aprobación Previa Modificada: Esto es un híbrido entre los sistemas de "aprobación previa" y de "presentación y uso". Si la revisión de la tarifa sólo responde a un cambio en la experiencia histórica, aplica el sistema de "presentación y uso". Sin embargo, si la revisión de tarifa responde a un cambio en los recargos de gastos o en las clasificaciones de la tarifa, entonces aplica la "aprobación previa".
+4. Tarifa Flexible (o Franja Tarifaria): El asegurador puede aumentar o disminuir la tarifa dentro de una "franja flexible," o rango, sin aprobación del regulador. Generalmente, aquí puede aplicar un sistema de "presentación y uso" o bien de "uso y presentación".
+
+***
+
+Para una profunda revisión de la regulación aseguradora desde una perspectiva global, véase la página web de la [Asociación Internacional de Reguladores de Seguro (IAIS, en sus siglas en inglés)](https://www.iaisweb.org/home).
+

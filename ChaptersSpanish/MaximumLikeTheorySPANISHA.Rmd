@@ -1,0 +1,258 @@
+# Apéndice C: Teoría de la Máxima Verosimilitud {#C:AppC}
+
+*Resumen del capítulo*. El Apéndice del Capítulo \@ref(C:AppA) introdujo la teoría de la máxima verosimilitud con respecto a la estimación de parámetros de una familia paramétrica. Este apéndice ofrece ejemplos más específicos y amplía algunos de los conceptos. La sección \@ref(S:AppC:LF) revisa la definición de la función de verosimilitud e introduce sus propiedades. La sección \@ref(S:AppC:MLE) revisa los estimadores de máxima verosimilitud y extiende sus propiedades en muestra grande al caso en el que hay múltiples parámetros en el modelo. La sección \@ref(S:AppC:SI) revisa la inferencia estadística basada en estimadores de máxima verosimilitud, con ejemplos específicos en casos con múltiples parámetros.
+ 
+## Función de Verosimilitud {#S:AppC:LF}
+
+***
+
+En esta sección, se aprenden
+ 
+- las definiciones de la función de verosimilitud y la función de log-verosimilitud 
+- las propiedades de la función de verosimilitud.
+ 
+***
+
+Del Apéndice \@ref(C:AppA) sabemos que la función de verosimilitud es una función de parámetros dado los datos observados. Aquí, revisamos los conceptos de la función de verosimilitud y presentamos sus propiedades que son la base para la inferencia a través del método de máxima verosimilitud.
+ 
+
+### La Función de Verosimilitud y de Log-verosimilitud
+
+Aquí, presentamos una breve revisión de la función de verosimilitud y la función de log-verosimilitud del Apéndice \@ref(C:AppA). Sea $f(\cdot | \boldsymbol\theta)$ la función de probabilidad de $X$, la función de masa de probabilidad (pmf, según sus siglas en inglés) si $X$ es discreta o la función de densidad de probabilidad (pdf, según sus siglas en inglés) si es continua. La verosimilitud es una función de los parámetros ($\boldsymbol\theta$) dados los datos ($\mathbf{x}$). Por lo tanto, es una función de los parámetros con los datos fijados, en lugar de una función de los datos con los parámetros fijados. El vector de datos $\mathbf{x}$ suele ser una realización de una *muestra aleatoria* como se define en el Apéndice \@ref(C:AppA).
+
+
+Dada una realización de una muestra aleatoria $\mathbf{x} = (x_1, x_2, \cdots, x_n)$ de tamaño $n$, la **función de verosimilitud** se define como
+$$L(\boldsymbol{\theta}|\mathbf{x})=f(\mathbf{x}|\boldsymbol{\theta})=\prod_{i=1}^nf(x_i|\boldsymbol{\theta}),$$
+con la correspondiente **función de log-verosimilitud** dada por
+$$l(\boldsymbol{\theta}|\mathbf{x})=\ln L(\boldsymbol{\theta}|\mathbf{x})=\sum_{i=1}^n\ln f(x_i|\boldsymbol{\theta}),$$
+donde $f(\mathbf{x} | \boldsymbol{\theta})$ denota la función de probabilidad conjunta de $\mathbf{x}$. La función log-verosimilitud genera una estructura aditiva con la que es fácil trabajar.
+
+En el Apéndice \@ref(C:AppA), hemos utilizado la distribución normal para ilustrar los conceptos de la función de verosimilitud y la función de log-verosimilitud. Aquí, derivamos las funciones de verosimilitud y log-verosimilitud correspondientes cuando la distribución de la población proviene de la familia de distribuciones de Pareto. 
+
+<h5 style="text-align: center;"><a id="EXM:S2b:LLK:display" href="javascript:toggleEX('EXM:S2b:LLK','EXM:S2b:LLK:display');"><i><strong>Mostrar Ejemplo</strong></i></a></h5>
+<div id="EXM:S2b:LLK" style="display: none">
+
+**Ejemplo -- Distribución de Pareto.** Supongamos que $X_1, \ldots, X_n$ representa una muestra aleatoria de una distribución de Pareto de un solo parámetro con la **función de distribución** dada por
+    $$F(x) = \Pr(X_i\leq x)=1- \left(\frac{500}{x}\right)^{\alpha}, ~~~~ x>500,$$
+donde el parámetro $\theta = \alpha$.
+
+La correspondiente función de densidad de probabilidad es
+   $f(x) = 500^{\alpha} \alpha x^{-\alpha-1}$ y la
+     función de log-verosimilitud se puede derivar como
+     $$l(\boldsymbol \alpha|\mathbf{x}) = \sum_{i=1}^n \ln f(x_i;\alpha) = n \alpha \ln 500 +n \ln \alpha -(\alpha+1)  \sum_{i=1}^n \ln x_i .$$
+
+</div>    
+
+### Propiedades de las Funciones de Verosimilitud
+
+En estadística matemática, la primera derivada de la función log-verosimilitud con respecto a los parámetros, $u(\boldsymbol\theta)=\partial l(\boldsymbol \theta|\mathbf{x})/\partial \boldsymbol \theta$, se conoce como la **función de score**, o el **vector de score (puntuación)** cuando hay múltiples parámetros en $\boldsymbol \theta$. La función de score o vector de puntuación se puede escribir como
+$$u(\boldsymbol\theta)=\frac{ \partial}{\partial \boldsymbol \theta} l(\boldsymbol \theta|\mathbf{x})
+    =\frac{ \partial}{\partial \boldsymbol \theta} \ln \prod_{i=1}^n
+    f(x_i;\boldsymbol \theta ) =\sum_{i=1}^n \frac{
+    \partial}{\partial \boldsymbol \theta}
+    \ln f(x_i;\boldsymbol \theta ),$$
+    donde $u(\boldsymbol\theta)=(u_1(\boldsymbol\theta),u_2(\boldsymbol\theta),\cdots,u_p(\boldsymbol\theta))$ cuando $\boldsymbol\theta=(\theta_1,\cdots,\theta_p)$  contiene $p> 2$ parámetros, siendo el elemento $u_k(\boldsymbol\theta)=\partial l(\boldsymbol \theta|\mathbf{x})/\partial \theta_k$ la derivada parcial con respecto a $\theta_k$ ($k = 1,2, \cdots, p$).
+
+La función de veosimilitud tiene las siguientes propiedades:
+ 
+- Una propiedad básica de la función de verosimilitud es que la esperanza de la función de score con respecto a $\mathbf{x}$ es 0. Es decir,
+    $$\mathrm{E}[u(\boldsymbol\theta)]=\mathrm{E} \left[ \frac{ \partial}{\partial \boldsymbol \theta}
+    l(\boldsymbol \theta|\mathbf{x}) \right] = \mathbf 0$$
+
+Para ilustrarlo, tenemos que
+
+$$\begin{aligned}
+    \mathrm{E} \left[ \frac{ \partial}{\partial \boldsymbol \theta} l(\boldsymbol \theta|\mathbf{x}) \right]
+    &= \mathrm{E} \left[ \frac{\frac{\partial}{\partial \boldsymbol \theta}f(\mathbf{x};\boldsymbol \theta)}{f(\mathbf{x};\boldsymbol \theta )}  \right]
+    = \int\frac{\partial}{\partial \boldsymbol \theta} f(\mathbf{y};\boldsymbol \theta ) d \mathbf y \\
+    &= \frac{\partial}{\partial \boldsymbol \theta} \int f(\mathbf{y};\boldsymbol \theta ) d \mathbf y
+    = \frac{\partial}{\partial \boldsymbol \theta} 1 = \mathbf 0.\end{aligned}$$
+
+-   Denotemos por ${ \partial^2 l(\boldsymbol \theta|\mathbf{x}) }/{\partial \boldsymbol \theta\partial \boldsymbol \theta^{\prime}}={ \partial^2 l(\boldsymbol \theta|\mathbf{x}) }/{\partial \boldsymbol \theta^{2}}$ a la segunda derivada de la función de log-verosimilitud cuando $\boldsymbol\theta$ es un único parámetro, o por ${ \partial^2 l(\boldsymbol \theta|\mathbf{x}) }/{\partial \boldsymbol \theta\partial \boldsymbol \theta^{\prime}}=(h_{jk})=({ \partial^2 l(\boldsymbol \theta|\mathbf{x}) }/\partial x_j\partial x_k)$ la matriz hessina de la función de log-verosimilitud cuando contiene múltiples parámetros. Denotemos por $[{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta}][{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta'}]=u^2(\boldsymbol \theta)$ con $\boldsymbol\theta$ si hay un único parámetro o por $[{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta}][{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta'}]=(uu_{jk})$ que es una matriz $p\times p$ cuando $\boldsymbol\theta$ contiene un total de $p$ parámetros, con cada elemento definido como $uu_{jk}=u_j(\boldsymbol \theta)u_k(\boldsymbol \theta)$ y  siendo $u_j(\boldsymbol \theta)$ el $j$-ésimo elemento del vector de scores como se ha definido antes. Otra propiedad básica de la función de verosimilitud es que la suma de la esperanza de la matriz hessiana y la esperanza del producto de Kronecker del vector de puntuación y su transposición es $\mathbf 0$. Es decir,
+$$\mathrm{E} \left( \frac{ \partial^2 }{\partial \boldsymbol \theta\partial \boldsymbol \theta^{\prime}} l(\boldsymbol \theta|\mathbf{x}) \right) + \mathrm{E} \left( \frac{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta} \frac{ \partial l(\boldsymbol \theta|\mathbf{x})}{\partial\boldsymbol \theta^{\prime}}\right) = \mathbf 0.$$
+
+-  Se define la **matriz de información de Fisher** como
+    $$
+    \mathcal{I}(\boldsymbol \theta) = \mathrm{E} \left( \frac{ \partial
+    l(\boldsymbol \theta|\mathbf{x})}{\partial \boldsymbol \theta} \frac{ \partial
+    l(\boldsymbol \theta|\mathbf{x})}{\partial \boldsymbol \theta^{\prime}}
+     \right) = -\mathrm{E} \left( \frac{ \partial^2}{\partial \boldsymbol \theta
+    \partial \boldsymbol \theta^{\prime}} l(\boldsymbol \theta|\mathbf{x}) \right).$$
+
+A medida que el tamaño de la muestra $n$ se acerca a infinito, la función (vector) de score converge en distribución a una **distribución normal** (o **distribución normal multivariante** cuando $\boldsymbol \theta$ contiene múltiples parámetros) con media **0** y varianza (o matriz de covarianzas en el caso multivariante) dada por $\mathcal{I}(\boldsymbol \theta)$.
+ 
+
+## Estimadores de Máxima Verosimilitud {#S:AppC:MLE}
+
+***
+
+En esta sección, se aprende
+ 
+- la definición y derivación del estimador de máxima verosimilitud (MLE, según sus siglas en inglés) para los parámetros de una familia de distribución específica
+- las propiedades de los estimadores de máxima verosimilitud que aseguran una inferencia de los parámetros válida en muestras grandes
+- por qué se ha de usar el método MLE y qué precauciones se deben tomar al usarlo.
+ 
+***
+
+En estadística, los estimadores de máxima verosimilitud son los valores de los parámetros $\boldsymbol \theta$ que es más probable que hayan sido producidos por los datos.
+
+### Definición y Derivación del Estimador MLE
+
+Según la definición dada en el Apéndice \@ref(C:AppA), el valor de $\boldsymbol \theta$, llamado $\hat{\boldsymbol \theta}_{MLE}$,
+    que maximiza la función de verosimilitud, se denomina
+    el *estimador de máxima verosimilitud* (MLE) de $\boldsymbol\theta$.
+ 
+Dado que la función logaritmo $\ln (\cdot)$ es una función biunívoca, también podemos determinar
+   $\hat{\boldsymbol{\theta}}_{MLE}$ maximizando la función de log-verosimilitud,
+   $l(\boldsymbol \theta|\mathbf{x})$. Es decir, el estimador MLE se define como
+    $$\hat{\boldsymbol \theta}_{MLE}={\mbox{argmax}}_{\boldsymbol{\theta}\in\Theta}l(\boldsymbol{\theta}|\mathbf{x}).$$
+ 
+Dada la forma analítica de la función de verosimilitud, el estimador MLE se puede obtener tomando la primera derivada de la función de log-verosimilitud con respecto a $\boldsymbol{\theta}$, e igualando los valores de las derivadas parciales a cero. Es decir, los estimadores MLE son las soluciones de las siguientes ecuaciones
+$$\frac{\partial l(\hat{\boldsymbol{\theta}}|\mathbf{x})}{\partial\hat{\boldsymbol{\theta}}}=\mathbf 0.$$
+
+
+*** 
+<h5 style="text-align: center;"><a id="EXM:S2b:MLE:display" href="javascript:toggleEX('EXM:S2b:MLE','EXM:S2b:MLE:display');"><i><strong>Mostrar ejemplo</strong></i></a></h5>
+<div id="EXM:S2b:MLE" style="display: none">
+
+**Ejemplo. Curso C/Examen 4. 21 de Mayo del 2000.** Supongamos que se tienen las siguientes cinco observaciones: 521, 658, 702, 819, 1217. Se usa la distribución de
+Pareto de un solo parámetro con función de distribución:
+$$F(x) = 1- \left(\frac{500}{x}\right)^{\alpha}, ~~~~ x>500 .$$
+Calculad la estimación de máxima verosimilitud del parámetro $\alpha$.
+
+<h5 style="text-align: center;"><a id="SOL:S2b:MLE:display" href="javascript:toggle('SOL:S2b:MLE','SOL:S2b:MLE:display');"><i><strong>Mostrar solución</strong></i></a></h5>
+<div id="SOL:S2b:MLE" style="display: none">
+
+*Solución*. Con $n=5$, la función de log-verosimilitud es
+$$l(\alpha|\mathbf{x} ) =  \sum_{i=1}^5 \ln f(x_i;\alpha ) =  5 \alpha \ln 500 + 5 \ln \alpha
+-(\alpha+1) \sum_{i=1}^5 \ln x_i.$$ Encontrando la raíz (solución) de la función de scores, se obtiene que 
+$$\frac{ \partial}{\partial \alpha } l(\alpha |\mathbf{x}) =    5  \ln 500 + 5 / \alpha -  \sum_{i=1}^5 \ln x_i
+=_{set} 0 \Rightarrow \hat{\alpha}_{MLE} = \frac{5}{\sum_{i=1}^5 \ln x_i - 5  \ln 500 } = 2,453 .$$
+
+</div>
+</div>
+***
+
+### Propiedades Asintóticas del Estimador MLE
+
+Usando los conceptos del Apéndice \@ref(C:AppA), el estimador MLE tiene algunas buenas propiedades en muestras grandes, bajo ciertas condiciones de regularidad. Presentamos los resultados para un solo parámetro en el Apéndice \@ref(C:AppA), pero los resultados son ciertos también cuando $\boldsymbol{\theta}$ contiene múltiples parámetros. En particular, tenemos los siguientes resultados, en el caso general cuando $\boldsymbol{\theta}=(\theta_1,\theta_2,\cdots,\theta_p)$.
+
+
+- El estimador MLE de un parámetro $\boldsymbol{\theta}$, $\hat{\boldsymbol{\theta}}_{MLE}$, es un estimador **consistente**. Es decir, el estimador MLE $\hat{\boldsymbol{\theta}}_{MLE}$ converge en probabilidad al valor verdadero $\boldsymbol{\theta}$, cuando el tamaño de la muestra $n$ tiende a infinito.
+
+
+- El estimador MLE tiene la propiedad de **normalidad asintótica**, lo que significa que el estimador convergerá en distribución a una distribución normal multivariante centrada en el valor verdadero, cuando el tamaño de la muestra tienda a infinito. Es decir,
+$$\sqrt{n}(\hat{\boldsymbol{\theta}}_{MLE}-\boldsymbol{\theta})\rightarrow N\left(\mathbf 0,\,\boldsymbol{V}\right),\quad \mbox{as}\quad n\rightarrow \infty,$$
+donde $\boldsymbol{V}$ denota la varianza asintótica (o matriz de covarianzas) del estimador. Por lo tanto, el estimador MLE $\hat{\boldsymbol{\theta}}_{MLE}$ sigue aproximadamente una distribución normal con media $\boldsymbol{\theta}$ y  varianza (matriz de covarianzas cuando $p>1$) $\boldsymbol{V}/n$, cuando el tamaño de la muestra es grande.
+
+- El estimador MLE es **eficiente**, lo que significa que tiene la varianza asintótica más pequeña posible $\boldsymbol{V}$, comúnmente conocida como la cota inferior de **Cramer--Rao**. En particular, la cota inferior de Cramer--Rao es la inversa de la (matriz de) información de Fisher $\mathcal{I}(\boldsymbol{\theta})$ definida anteriormente en este apéndice. Por lo tanto, $\mathrm{Var}(\hat{\boldsymbol{\theta}}_{MLE})$ puede estimarse en función de la información de Fisher observada.
+
+En base a los resultados anteriores, podemos realizar inferencia estadística basada en los procedimientos definidos en el Apéndice \@ref(C:AppA).
+
+*** 
+<h5 style="text-align: center;"><a id="EXM:S2b:COV:display" href="javascript:toggleEX('EXM:S2b:COV','EXM:S2b:COV:display');"><i><strong>Mostrar ejemplo</strong></i></a></h5>
+<div id="EXM:S2b:COV" style="display: none">
+
+**Ejemplo. Curso C/Examen 4. 13 de Noviembre del 2000.** Partimos de una muestra de diez observaciones de una familia paramétrica
+    $f(x,; \theta_1, \theta_2)$ con función de verosimilitud
+    $$l(\theta_1, \theta_2)= \sum_{i=1}^{10} f(x_i; \theta_1, \theta_2) = -2,5 \theta_1^2 - 3
+    \theta_1 \theta_2 - \theta_2^2 + 5 \theta_1 + 2 \theta_2 + k,$$
+    donde $k$ es una constante. Se ha de determinar la matriz de covarianzas estimada del estimador de máxima verosimilitud, $\hat{\theta_1}, \hat{\theta_2}$.
+
+<h5 style="text-align: center;"><a id="SOL:S2b:COV:display" href="javascript:toggle('SOL:S2b:COV','SOL:S2b:COV:display');"><i><strong>Mostrar solución</strong></i></a></h5>
+<div id="SOL:S2b:COV" style="display: none">
+
+*Solución*. Denotando $l=l(\theta_1, \theta_2)$, la matriz hessiana de segundas derivadas es $$\left(
+\begin{array}{cc}
+  \frac{ \partial ^2}{\partial \theta_1 ^2 } l & \frac{ \partial ^2}{\partial \theta_1 \partial \theta_2 } l  \\
+  \frac{ \partial ^2}{\partial \theta_1 \partial \theta_2 } l & \frac{ \partial ^2}{\partial \theta_1 ^2 } l
+\end{array} \right) =
+\left(
+\begin{array}{cc}
+  -5 & -3  \\
+  -3 & -2
+\end{array} \right)$$ Por lo tanto, la matriz de información es:
+$$\mathcal{I}(\theta_1, \theta_2) = -\mathrm{E} \left( \frac{ \partial^2}{\partial \boldsymbol \theta
+\partial \boldsymbol \theta^{\prime}} l(\boldsymbol \theta|\mathbf{x}) \right) = \left(
+\begin{array}{cc}
+  5 & 3  \\
+  3 & 2
+\end{array} \right)$$ y
+$$\mathcal{I}^{-1}(\theta_1, \theta_2) = \frac{1}{5(2) - 3(3)}\left(
+\begin{array}{cc}
+  2 & -3  \\
+  -3 & 5
+\end{array} \right) = \left(
+\begin{array}{cc}
+  2 & -3  \\
+  -3 & 5
+\end{array} \right) .$$
+
+</div>
+</div>
+***
+
+### Uso de la Estimación de Máxima Verosimilitud
+
+El método de máxima verosimilitud tiene muchas ventajas sobre otros métodos alternativos, como el método de momentos introducido en el Apéndice \@ref(C:AppA).
+
+  - Es un método general que funciona en muchas situaciones. Por ejemplo, podemos escribir la función de verosimilitud de forma cerrada para datos censurados y truncados. La estimación de máxima verosimilitud se puede utilizar para modelos de regresión que incluyen covariables, como la regresión de supervivencia, modelos lineales generalizados y modelos mixtos, que pueden incluir covariables que dependen del tiempo.
+  - Debido a la eficiencia del estimador MLE, éste es óptimo, el mejor, en el sentido de que tiene la varianza más pequeña entre la clase de todos los estimadores insesgados para tamaños de muestra grandes.
+  - A partir de los resultados sobre normalidad asintótica del estimador MLE, podemos obtener una distribución en muestras grandes para dicho estimador, lo que permite evaluar la variabilidad en la estimación y realizar inferencia estadística sobre los parámetros. El enfoque es menos costoso computacionalmente que los métodos de remuestreo que requieren realizar una gran cantidad de ajustes del modelo.
+
+A pesar de sus numerosas ventajas, el estimador MLE tiene sus inconvenientes en casos como los modelos lineales generalizados cuando no tiene una forma analítica cerrada. En tales casos, los estimadores de máxima verosimilitud se calculan iterativamente utilizando métodos de optimización numérica. Por ejemplo, podemos usar el algoritmo iterativo de Newton-Raphson o sus variantes para obtener la estimación MLE. Los algoritmos iterativos requieren establecer valores iniciales. En algunos problemas, la elección de un valor inicial cercano a la solución es fundamental, particularmente en los casos en los que la función de verosimilitud tiene mínimos o máximos locales. En consecuencia, puede haber un problema de convergencia cuando el valor inicial está lejos del máximo. Por lo tanto, es importante comenzar desde diferentes valores en el espacio de parámetros y comparar la verosimilitud maximizada o el logaritmo de verosimilitud maximizado para asegurarse de que los algoritmos hayan convergido a un máximo global.
+
+
+## Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud {#S:AppC:SI}
+
+***
+
+En esta sección, se aprende como
+ 
+- realizar pruebas de hipótesis basadas en el estimador MLE para casos en los que hay múltiples parámetros en $\boldsymbol\theta$
+- realizar un contraste de la razón de verosimilitud para casos en los que hay múltiples parámetros en $\boldsymbol\theta$
+
+
+***
+
+En el Apéndice \@ref(C:AppA), hemos introducido métodos basados en la máxima verosimilitud para realizar inferencia estadística cuando $\boldsymbol\theta$ contiene un solo parámetro. Aquí, extenderemos los resultados a casos en los que haya múltiples parámetros en $\boldsymbol\theta$.
+
+### Contraste de Hipótesis
+
+En el Apéndice \@ref(C:AppA), definimos las pruebas de hipótesis relativas a la hipótesis nula, una condición sobre los parámetros de una distribución o modelo. Un tipo importante de inferencia es evaluar si una estimación del parámetro es estadísticamente significativa, lo que significa si el valor del parámetro es cero o no.
+ 
+Hemos aprendido antes que el estimador MLE $\hat{\boldsymbol{\theta}}_{MLE}$ tiene una distribución normal en muestras grandes con media $\boldsymbol\theta$ y matriz de varianzas y covarianzas $\mathcal{I}^{-1}(\boldsymbol \theta)$. Basándonos en la distribución normal multivariante, el elemento $j$-ésimo de $\hat{\boldsymbol{\theta}}_{MLE}$, es decir $\hat{\theta}_{MLE,j}$, tiene una distribución normal univariante en muestras grandes.
+
+Definimos $se(\hat{\theta}_{MLE,j})$ el error estándar (desviación estándar estimada) como la raíz cuadrada del elemento diagonal $j$-ésimo de $\mathcal{I}^{-1}(\boldsymbol \theta)_{MLE}$.
+Para evaluar la hipótesis nula en la que se establece que $\theta_j=\theta_0$,  definimos el estadístico $t$ o el $t$-ratio como
+    $t(\hat{\theta}_{MLE,j})=(\hat{\theta}_{MLE,j}-\theta_0)/se(\hat{\theta}_{MLE,j})$.
+ 
+Bajo la hipótesis nula, el estadístico tiene una distribución $t$-Student con $np$ grados de libertad, siendo $p$ la dimensión de $\boldsymbol{\theta}$.
+
+En la mayoría de las aplicaciones actuariales, tenemos un tamaño de muestra $n$ grande, por lo que la distribución $t$ está muy cerca de la distribución normal (estándar). En el caso en que $n$ sea muy grande o cuando se conozca el error estándar, el estadístico $t$ se puede denominar estadístico $z$ o $z$-score.
+
+Basándonos en los resultados del Apéndice \@ref(C:AppA), si el estadístico $t$ , $t(\hat{\theta}_{MLE,j})$ supera un punto de corte (en valor absoluto), entonces el contraste para el parámetro $j$, $\theta_j$, determina que es estadísticamente significativo. Si $\theta_j$ es el coeficiente de regresión de la variable independiente $j$-ésima, entonces decimos que la variable $j$-ésima es estadísticamente significativa.
+
+Por ejemplo, si usamos un nivel de significación del 5%, entonces el valor del punto de corte es 1,96 usando una aproximación a la distribución normal para casos con un tamaño de muestra grande. En términos más generales, usando un nivel de significación de $100\alpha\%$, el punto de corte es un cuantil de $100(1-\alpha/ 2)\%$ de una distribución de $t$-Student con $n-p$ grados de libertad.
+
+Otro concepto útil en la prueba de hipótesis es el $p$-valor, abreviatura de valor de probabilidad. A partir de la definición matemática presentada en el Apéndice \@ref(C:AppA), el $p$-valor se define como el nivel de significación más pequeño para el cual se rechazaría la hipótesis nula. Por lo tanto, el $p$-valor es un estadístico de resumen útil para el analista de datos porque le permite comprender la fuerza de la evidencia estadística respecto a la desviación de la hipótesis nula.
+
+### Validación del Modelo y MLE {#S:AppC:MLEModelVal}
+
+Además de las pruebas de hipótesis y la estimación por intervalos introducidas en el Apéndice \@ref(C:AppA) y la subsección anterior, otro tipo importante de inferencia es la selección de un modelo entre dos opciones, donde una opción es un caso especial de la otra en el que ciertos parámetros están restringidos. Para elegir entre dos modelos en los que uno está anidado en el otro, hemos introducido la prueba de razón de verosimilitud (LRT, según sus siglas en inglés) en el Apéndice \@ref(C:AppA). Aquí, revisaremos brevemente el proceso para realizar una LRT basada en un ejemplo específico de dos modelos alternativos.
+ 
+Supongamos que tenemos un modelo (grande) bajo el cual derivamos el estimador de máxima verosimilitud, $\hat{\boldsymbol{\theta}}_{MLE}$. Ahora supongamos que algunos de los elementos $p$ en $\boldsymbol\theta$ son iguales a cero y determinamos el estimador de máxima verosimilitud sobre el conjunto restante, con el estimador resultante denotado por $\hat{\boldsymbol{\theta}}_{Reducido}$.
+
+Según la definición del Apéndice \@ref(C: Aplicación A), el estadístico,
+   $LRT= 2 \left( l(\hat{\boldsymbol{\theta}}_{MLE}) - l(\hat{\boldsymbol{\theta}}_{Reducido}) \right)$, se llama estadístico de la razón de verosimilitud. Bajo la hipótesis nula de que el modelo reducido es correcto, la razón de verosimilitud sigue una distribución Chi-cuadrado con $d$ grados de
+libertad, siendo $d$ el número de variables fijadas en cero.
+
+Este tipo de contraste permite juzgar cuál de los dos modelos es más probable que sea correcto con los datos observados. Si el estadístico $LRT$ es grande en relación con el valor crítico de la distribución Chi-cuadrado, entonces rechazamos el modelo reducido a favor del más grande. En el Apéndice \@ref(C:AppA) se proporcionan detalles sobre el valor crítico y métodos alternativos basados en criterios de información.
+
+
+#### Autoría {-}
+
+- **Lei (Larry) Hua**, Northern Illinois University, y **Edward W. (Jed) Frees**, University of Wisconsin-Madison, son los autores principales de la versión inicial de este capítulo. Email: lhua@niu.edu o jfrees@bus.wisc.edu para enviar comentarios o sugerencias de mejora.
+
+- Traducción al español: Montserrat Guillen y Manuela Alcañiz (Universitat de Barcelona).
+

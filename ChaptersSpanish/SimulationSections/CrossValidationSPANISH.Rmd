@@ -1,0 +1,245 @@
+<!-- ## Validación cruzada -->
+
+La validación cruzada, brevemente introducida en la Sección 4.2.4, es una técnica basada en simular resultados y por ello es conveniente pensar en su propósito en comparación con otras técnicas de simulación ya introducidas en este capítulo.
+
+- La simulación, o Monte-Carlo, introducida en la Sección \@ref(S:SimulationFundamentals), permite calcular valores esperados o otras medidas de resumen de distribuciones estadísticas, como $p$-valores, fácilmente.
+- El bootstrap, y otros métodos de remuestreo introducidos en la Sección \@ref(S:Bootstrap), proporciona estimadores de la precisión, o variabilidad, de los estadísticos.
+- La validación cruzada es importante para valorar con qué precisión un modelo predictivo funcionará en la práctica.
+
+Existe superposición, pero sin embargo es útil pensar acerca del objetivo general asociado con cada uno de los métodos. 
+
+Para presentar la validación cruzada, es conveniente recordar de la Sección 4.2 algunas de las ideas clave de la validación de modelos. Cuando se valora, o valida, un modelo, se mide el funcionamiento o desempeño del modelo en datos *nuevos*, o al menos no aquéllos que hayan sido usados para ajustar el modelo. Un enfoque clásico, descrito en la Sección 4.2.3, es dividir la muestra en dos partes: una parte (la base de datos de *entrenamiento*) se usa para ajustar el modelo y la otra (la base de datos de *prueba*) se usa para validar. Sin embargo, una limitación de este enfoque es que los resultados dependen de la partición; aunque la muestra general sea fija, la partición entre submuestras de entrenamiento y prueba varía aleatoriamente. Una muestra de entrenamiento diferente implica una estimación para los parámetros diferente. Unos parámetros diferentes para el modelo y una muestra de prueba diferente implican unos estadísticos de validación diferentes. Dos analistas pueden usar los mismos datos y los mismos modelos y pueden llegar a conclusiones diferentes sobre la viabilidad de un modelo (basado en diferentes particiones aleatorias), una situación frustrante.
+
+<!-- 
+Las técnicas de validación cruzada se usan para evitar la partición básica entre dos partes. Hay que tener en cuenta que aquí se mencionarán dos técnicas: un enfoque exhaustivo, en el que todas las observaciones serán usadas (una vez, y solo una) como una observación de prueba y uno no exhaustivo, basado en técnicas de bootstrap. Ver [Arlot & Celisse (2010)](https://projecteuclid.org/euclid.ssu/1268143839) a modo de resumen.
+ -->
+
+### Validación cruzada k-fold
+
+Para mitigar esta dificultad, es común usar un enfoque de validación cruzada como el introducido en la Sección 4.2.4. La idea clave es emular el enfoque básico de entrenamiento/validación para la validación del modelo repitiéndolo muchas veces y tomando medias a partir de las diferentes particiones de los datos. Una ventaja clave es que el estadístico de validación no está ligado a un modelo paramétrico (o no paramétrico) específico – se puede usar un estadístico no paramétrico o un estadístico que tiene una interpretación económica – y puede ser usado para comparar modelos que no están anidados (diferente a como ocurre con los procedimientos de la ratio de verosimilitud).
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, comment = ""}
+## Leer datos y obtener número de siniestros.  
+claim_lev <- read.csv("../../Data/CLAIMLEVEL.csv", header = TRUE) 
+# 2010 subset 
+claim_data <- subset(claim_lev, Year == 2010); 
+library(MASS)
+library(VGAM)
+library(goftest)
+# Ajustar una distribución de Pareto a la totalidad de los datos
+fit.pareto <- vglm(Claim ~ 1, paretoII, loc = 0, data = claim_data)
+ksResultPareto <- ks.test(claim_data$Claim, "pparetoII", loc = 0, shape = exp(coef(fit.pareto)[2]), 
+        scale = exp(coef(fit.pareto)[1]))
+# Ajustar una distribución gamma a la totalidad de los datos
+fit.gamma <- glm(Claim ~ 1, data = claim_data, family = Gamma(link = log)) 
+gamma_theta <- exp(coef(fit.gamma)) * gamma.dispersion(fit.gamma) 
+alpha <- 1 / gamma.dispersion(fit.gamma)
+ksResultGamma <- ks.test(claim_data$Claim, "pgamma", shape = alpha, scale = gamma_theta)
+```
+
+**Ejemplo `r chapnum`.3.1. Fondo de propiedad de Wisconsin.** Para los datos del fondo de propiedad de 2010 introducido en la Sección 1.3, se ajustan una gamma y una Pareto a los 1,377 datos de siniestros. Para ver en detalle la bondad de ajuste asociada se puede consultar el Apéndice Sección 15.4.4. Ahora se considera el estadístico de Kolmogorov-Smirnov introducido en la Sección 4.1.2.2. Cuando se realiza el ajuste sobre la totalidad de los datos, el estadístico de bondad del ajuste de Kolmogorov-Smirnov para la distribución gamma resulta ser 
+`r round(ksResultPareto$statistic,digits=4)` y para la distribución de Pareto es `r round(ksResultGamma$statistic,digits=4)`. El valor más bajo para la distribución de Pareto indica que esta distribución tiene mejor ajuste que la gamma.
+
+Para ver cómo funciona la `r Gloss('validación cruzada k-fold')`, se divide aleatoriamente los datos en $k=8$ grupos, o folds (en inglés), cada uno con $1377/8 \approx 172$ observaciones. Entonces, se ajustan una gamma y un modelo de Pareto a la base de datos con los primeros siete folds (sobre $172*7 = 1204$ observaciones), se determinan los parámetros estimados, y entonces se usan estos modelos ajustados con los datos restantes para determinar el estadístico de Kolmogorov-Smirnov. 
+
+`r HideRCode('KFoldCV.1','Muestra el código R para la validación cruzada Kolmogorov-Smirnov')`
+
+```{r warning = FALSE, message = FALSE, comment = "",  echo=SHOW_PDF}
+# Reordenación aleatoria de los datos - "shuffle it" en inglés
+n <- nrow(claim_data)
+set.seed(12347)
+cvdata <- claim_data[sample(n), ]
+# Number of folds
+k <- 8
+cvalvec <- matrix(0,2,k)
+for (i in 1:k) {
+  indices <- (((i-1) * round((1/k)*nrow(cvdata))) + 1):((i*round((1/k) * nrow(cvdata))))
+# Pareto
+  fit.pareto <- vglm(Claim ~ 1, paretoII, loc = 0, data = cvdata[-indices,])
+  ksResultPareto <- ks.test(cvdata[indices,]$Claim, "pparetoII", loc = 0, shape = exp(coef(fit.pareto)[2]), 
+        scale = exp(coef(fit.pareto)[1]))
+  cvalvec[1,i] <- ksResultPareto$statistic
+# Gamma
+  fit.gamma <- glm(Claim ~ 1, data = cvdata[-indices,], family = Gamma(link = log)) 
+  gamma_theta <- exp(coef(fit.gamma)) * gamma.dispersion(fit.gamma)  
+  alpha <- 1 / gamma.dispersion(fit.gamma)
+  ksResultGamma <- ks.test(cvdata[indices,]$Claim, "pgamma", shape = alpha, scale = gamma_theta)
+  cvalvec[2,i] <- ksResultGamma$statistic
+}
+KScv <- rowSums(cvalvec)/k
+```
+
+</div>
+
+Los resultados aparecen en la Figura \@ref(fig:KScvFig) donde el eje horizontal es Fold=1. Este proceso se repite para los otros siete folds. Los resultados se resumen en la Figura \@ref(fig:KScvFig) y se aprecia que la Pareto es una distribución más confiable que la gamma.
+
+```{r KScvFig, warning = FALSE, message = FALSE, comment = "", fig.align='center', fig.cap='Estadísticos de Kolmogorov-Smirnov (KS) con validación cruzada para los datos de siniestros del fondo de propiedad. La línea continua negra corresponde a la distribución de Pareto, la línea verde discontinua corresponde a la gamma. El estadístico KS mide la mayor desviación entre la distribución ajustada y la empírica para cada uno de los 8 grupos, o folds, de los datos seleccionados aleatoriamente.', echo=SHOW_PDF, cache = TRUE}
+# Representación de los estadísticos
+matplot(1:k,t(cvalvec),type="b", col=c(1,3), lty=1:2, 
+        ylim=c(0,0.4), pch = 0, xlab="Fold", ylab="KS Statistic")
+legend("left", c("Pareto", "Gamma"), col=c(1,3),lty=1:2, bty="n")
+```
+
+### Validación cruzada dejando uno fuera 
+
+El caso especial donde $k=n$ es conocido como `r Gloss('validación cruzada dejando uno fuera')`. Este caso tiene importancia históricamente y está muy relacionado con los `r Gloss('estadísticos jackknife')`, un precursor de la técnica bootstrap. 
+
+A pesar de que se presenta como un caso especial de validación cruzada, es conveniente dar una definición explícita. Se considera un estadístico genérico $\widehat{\theta}=t(\boldsymbol{x})$ que es un estimador del parámetro de interés $\theta$. La idea de jackknife es calcular $n$ valores $\widehat{\theta}_{-i}=t(\boldsymbol{x}_{-i})$, donde $\boldsymbol{x}_{-i}$ es una submuestra de $\boldsymbol{x}$ con el $i$-ésimo valor eliminado. La media de esos valores se denota como
+
+$$
+\overline{\widehat{\theta}}_{(\cdot)}=\frac{1}{n}\sum_{i=1}^n \widehat{\theta}_{-i} .
+$$
+Esos valores pueden usarse para crear estimaciones del sesgo del estadístico $\widehat{\theta}$
+
+\begin{equation}
+Bias_{jack} = (n-1) \left(\overline{\widehat{\theta}}_{(\cdot)} - \widehat{\theta}\right)
+(\#eq:Biasjack)
+\end{equation}
+
+así como de una estimación de la desviación estándar
+
+\begin{equation}
+s_{jack} =\sqrt{\frac{n-1}{n}\sum_{i=1}^n \left(\widehat{\theta}_{-i} -\overline{\widehat{\theta}}_{(\cdot)}\right)^2} ~.
+(\#eq:sdjack)
+\end{equation}
+
+**Ejemplo `r chapnum`.3.2. Coeficiente de variación.** A modo de ilustración, se considera una muestra pequeña ficticia $\boldsymbol{x}=\{x_1,\ldots,x_n\}$ con realizaciones
+
+```{}
+sample_x <- c(2.46,2.80,3.28,3.86,2.85,3.67,3.37,3.40,
+              5.22,2.55,2.79,4.50,3.37,2.88,1.44,2.56,2.00,2.07,2.19,1.77)
+```
+Se desea determinar el `r Gloss('coeficiente de variación')`
+$\theta = CV = \sqrt{\mathrm{Var~}X}/\mathrm{E~}X$.
+
+```{r echo = FALSE}
+sample_x <- c(2.46,2.80,3.28,3.86,2.85,3.67,3.37,3.40,5.22,2.55,2.79,4.50,3.37,2.88,1.44,2.56,2.00,2.07,2.19,1.77)
+CVar <- function(x) sqrt(var(x))/mean(x)
+JackCVar <- function(i) sqrt(var(sample_x[-i]))/mean(sample_x[-i])
+JackTheta <- Vectorize(JackCVar)(1:length(sample_x))
+BiasJack <- (length(sample_x)-1)*(mean(JackTheta) - CVar(sample_x))
+sdJack <- sd(JackTheta)
+```
+
+Con esta base de datos, el estimador del coeficiente de variación resulta ser `r round(CVar(sample_x),digits = 5)`. Pero, ¿cómo de fiable es este resultado? Para contestar a esta pregunta, se pueden calcular las estimaciones de jackknife del sesgo y su desviación estándar. El siguiente código muestra el estimador jackknife del sesgo es $Bias_{jack} =$ `r round(BiasJack,digits = 5)` y la desviación típica jackknife es $s_{jack} =$ `r round(sdJack,digits = 5)`.
+
+```{r eval = FALSE, echo=SHOW_PDF}
+CVar <- function(x) sqrt(var(x))/mean(x)
+JackCVar <- function(i) sqrt(var(sample_x[-i]))/mean(sample_x[-i])
+JackTheta <- Vectorize(JackCVar)(1:length(sample_x))
+BiasJack <- (length(sample_x)-1)*(mean(JackTheta) - CVar(sample_x))
+sd(JackTheta)
+```
+
+***
+
+**Ejemplo `r chapnum`.3.3. Siniestros con daños corporales y ratios de eliminación de pérdida.** En el Ejemplo `r chapnum`.2.1, se mostró como calcular estimaciones bootstrap del sesgo y desviación estándar para la ratio de eliminación de pérdidas usando los datos de siniestros con daños corporales del Ejemplo 4.1.11. Se continúa ahora proporcionando cuantías comparables usando los estadísticos jackknife.
+
+[Tabla 6.7] resume los resultados de la estimación jackknife. Muestra como la estimación jackknife del sesgo y la desviación estándar de la ratio de eliminación $\mathrm{E}~\min(X,d)/\mathrm{E}~X$ son ampliamente consistentes con la metodología bootstrap. Es más, se pueden usar las desviaciones estándar para construir intervalos de confianza basados en la normal, centrados alrededor del estimador corregido por el sesgo. Por ejemplo, para $d=14000$, se vio en el Ejemplo 4.1.11 que el estimador no paramétrico de *LER* es 0.97678. Tiene un sesgo estimado de 0.00010, y resulta un estimador (jackknife) *corregido por el sesgo* igual a 0.97688. Los intervalos de confianza al 95% se obtienen creando un intervalo de dos veces la longitud de 1.96 desviaciones estándar jackknife, centrado sobre el estimador corregido por el sesgo (1.96 es aproximadamente el cuantil 97.5 de la distribución normal estándar). 
+
+`r HideRCode('Jackknife.1','Se muestra el código R')`
+
+```{r comment="", warning=FALSE, echo=SHOW_PDF}
+# Example from Derrig et al
+BIData <- read.csv("../../Data/DerrigResampling.csv", header =T)
+BIData$Censored <- 1*(BIData$AmountPaid >= BIData$PolicyLimit)
+BIDataUncensored <- subset(BIData, Censored == 0)
+LER.boot <- function(ded, data, indices){
+  resample.data <- data[indices,]
+  sumClaims <- sum(resample.data$AmountPaid)
+  sumClaims_d <- sum(pmin(resample.data$AmountPaid,ded))
+  LER <-   sumClaims_d/sumClaims
+  return(LER)  
+}
+x <- BIDataUncensored$AmountPaid
+LER.jack<- function(ded,i){
+  LER <-   sum(pmin(x[-i],ded))/sum(x[-i])
+  return(LER)  
+}
+LER <- function(ded) sum(pmin(x,ded))/sum(x)
+##Derrig et al
+set.seed(2019)
+dVec2 <- c(4000, 5000, 10500, 11500, 14000, 18500)
+OutJack <- matrix(0,length(dVec2),8)
+colnames(OutJack) <- c("d","Estimación NP","Sesgo Bootstrap ", "Bootstrap SD", "Sesgo Jackknife ", "Jackknife SD","Límite inferior del 95% Jackknife CI", "Límite superior del 95% Jackknife CI")
+  for (j in 1:length(dVec2)) {
+OutJack[j,1] <- dVec2[j]
+results <- boot(data=BIDataUncensored, statistic=LER.boot, R=1000, ded=dVec2[j])
+OutJack[j,2] <- results$t0
+biasboot <- mean(results$t)-results$t0 -> OutJack[j,3]
+sdboot <- sd(results$t) -> OutJack[j,4]
+temp <- boot.ci(results)
+LER.jack.ded<- function(i) LER.jack(ded=dVec2[j],i)
+JackTheta.ded <- Vectorize(LER.jack.ded)(1:length(x))
+OutJack[j,5] <- BiasJack.ded <- (length(x)-1)*(mean(JackTheta.ded) - LER(ded=dVec2[j]))
+OutJack[j,6] <- sd(JackTheta.ded)
+OutJack[j,7:8] <- mean(JackTheta.ded)+qt(c(0.025,0.975),length(x)-1)*OutJack[j,6]
+}
+```
+
+</div>
+
+[Tabla 6.7]:\#tab:67
+<a id=tab:67></a>
+
+##### Table 6.7. Estimaciones Jackknife del LER en las franquicias seleccionadas {-}
+
+```{r comment="", echo=FALSE}
+knitr::kable(OutJack, digits=5)
+```
+
+***
+
+**Discusión.** Una de las cosas más interesantes sobre el caso especial de validación cruzada dejando uno fuera es la habilidad de replicar estimaciones de manera exacta. Es decir, cuando el tamaño del grupo o fold es solo uno, entonces no hay incertidumbre adicional inducida por la validación cruzada. Esto significa que los analistas pueden replicar de manera exacta el trabajo de otro, lo cual es una importante consideración.
+
+Los estadísticos Jackknife fueron desarrollados para entender la precisión de estimadores, produciendo estimadores de sesgo y desviación estándar en las ecuaciones \@ref(eq:Biasjack) y \@ref(eq:sdjack). Esto tiene que ver con algunas metas que se han asociado con las técnicas de bootstrap, no con métodos de validación cruzada. Esto demuestra como las técnicas estadísticas pueden usarse para alcanzar diferentes metas.
+
+### Validación cruzada y Bootstrap
+
+El bootstrap es útil para proporcionar estimadores de la precisión, o  variabilidad, de los estadísticos. También puede ser útil para la validación de modelos. El enfoque bootstrap para la validación de modelos es similar al enfoque dejando uno fuera y los procedimientos de validación *k* fold:
+
+- Se crea una muestra de bootstrap a través del remuestreo (con reemplazamiento) $n$ índices en $\{1,\cdots,n\}$. Esta será la *muestra de entrenamiento*. Se estima el modelo considerado en base a esta muestra.
+- La muestra de *prueba*, o *muestra de validación*, consiste en esas observaciones no seleccionadas para en entrenamiento. Se evalúa el modelo ajustado (basado en los datos de entrenamiento) usando los datos de prueba.
+
+Este proceso se repite muchas (digamos $B$) veces. Se toma la media de los resultados y se selecciona al modelo basado en el estadístico de evaluación promedio.
+
+**Ejemplo `r chapnum`.3.4. Fondo de propiedad de Wisconsin.**  Se vuelve  a considerar el ejemplo `r chapnum`.3.1 donde se investiga el ajuste de unas distribuciones gamma y Pareto a los datos del fondo de propiedad. Nuevamente se compara el desempeño predictivo usando el estadístico de Kolmogorov-Smirnov pero esta vez usando el procedimiento bootstrap para partir los datos entre muestra de entrenamiento y prueba. A continuación, se muestra el código ilustrativo.
+
+`r HideRCode('BootstrapValidation.1','Muestra el código R para procedimientos de validación Bootstrap')`
+
+```{r, warning=FALSE, comment=FALSE, echo=SHOW_PDF}
+# library(MASS)
+# library(VGAM)
+# library(goftest)
+# claim_lev <- read.csv("../../Data/CLAIMLEVEL.csv", header = TRUE) 
+# # 2010 subset 
+# claim_data <- subset(claim_lev, Year == 2010); 
+n <- nrow(claim_data)
+set.seed(12347)
+indices <- 1:n
+# Número de muestras Bootstrap 
+B <- 100
+cvalvec <- matrix(0,2,B)
+for (i in 1:B) {
+  bootindex <- unique(sample(indices, size=n, replace= TRUE))
+  traindata <- claim_data[bootindex,]
+  testdata  <- claim_data[-bootindex,]
+# Pareto
+  fit.pareto <- vglm(Claim ~ 1, paretoII, loc = 0, data = traindata)
+  ksResultPareto <- ks.test(testdata$Claim, "pparetoII", loc = 0, shape = exp(coef(fit.pareto)[2]), 
+        scale = exp(coef(fit.pareto)[1]))
+  cvalvec[1,i] <- ksResultPareto$statistic
+# Gamma
+  fit.gamma <- glm(Claim ~ 1, data = traindata, family = Gamma(link = log)) 
+  gamma_theta <- exp(coef(fit.gamma)) * gamma.dispersion(fit.gamma)  
+  alpha <- 1 / gamma.dispersion(fit.gamma)
+  ksResultGamma <- ks.test(testdata$Claim, "pgamma", shape = alpha, scale = gamma_theta)
+  cvalvec[2,i] <- ksResultGamma$statistic
+}
+KSBoot <- rowSums(cvalvec)/B
+```
+
+</div>
+
+Se ha realizado el muestreo usando $B=$ `r B` réplicas. El estadístico *KS* promedio de la distribución Pareto era `r round (KSBoot[1], digits = 3)`, que puede compararse con el promedio para la distribución gamma, `r round (KSBoot[2], digits = 3)`. Esto es consistente con los resultados anteriores y proporciona una evidencia más de que el modelo Pareto es mejor para estos datos que el gamma.
+

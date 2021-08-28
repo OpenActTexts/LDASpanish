@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics</title>
+  <meta name="description" content="Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="github-repo" content="https://github.com/openacttexts/Loss-Data-Analytics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics" />
+  
+  <meta name="twitter:description" content="Chapter 1 Introducción a la Analítica de Datos de Pérdida | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  
+
+<meta name="author" content="An open text authored by the Actuarial Community" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="C-Frequency-Modeling.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<!-- Mathjax -->
+<script type='text/x-mathjax-config'>
+		MathJax.Hub.Config({
+			extensions: ['tex2jax.js'],
+			jax: ['input/TeX', 'output/HTML-CSS'],
+			tex2jax: {
+				inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+				displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': { availableFonts: ['TeX'] }
+		});
+</script>
+
+<!-- The following code is for the quizzes -->
+<script src="https://surveyjs.azureedge.net/1.0.50/survey.jquery.js"></script>
+<link href="https://surveyjs.azureedge.net/1.0.50/survey.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>  
+
+<script>
+function markdownConverterEWF() {  
+//Create showdown markdown converter
+var converter = new showdown.Converter();
+converter.setOption('ghCompatibleHeaderId', true);
+survey
+    .onTextMarkdown
+    .add(function (survey, options) {
+        //convert the mardown text to html
+        var str = converter.makeHtml(options.text);
+        //remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
+        //set html
+        options.html = str;
+         MathJax.Hub.Queue(['Typeset',MathJax.Hub, 'options']);
+    });  
+};
+// Quiz Header info
+const jsonHeader = { 
+    showProgressBar: "bottom",
+    showTimerPanel: "none",
+    maxTimeToFinishPage: 10000,
+    maxTimeToFinish: 25000,
+    firstPageIsStarted: true,
+    startSurveyText: "Start Quiz" //,
+//    title: "Does This Make Sense?"
+}
+// One and Two question quizzes
+function jsonSummary1EWF(json) {  
+let jsonEnd1 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd1;
+};
+
+
+function jsonSummary2EWF(json) {  
+let jsonEnd2 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd2;
+};
+
+// Three, four, and five question quizzes
+function jsonSummary3EWF(json) {  
+let jsonEnd3 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][3]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][3]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][3]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd3;
+};
+
+function jsonSummary4EWF(json) {  
+jsonEnd4 = jsonSummary3EWF(json);
+jsonEnd4.completedHtml = jsonEnd4.completedHtml +  
+"<br>"+
+json["pages"][4]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][4]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][4]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd4;
+};
+
+function jsonSummary5EWF(json) {  
+jsonEnd5 = jsonSummary4EWF(json);
+jsonEnd5.completedHtml = jsonEnd5.completedHtml +  
+"<br>"+
+json["pages"][5]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][5]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][5]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd5;
+};
+
+function jsonSummary6EWF(json) {  
+jsonEnd6 = jsonSummary5EWF(json);
+jsonEnd6.completedHtml = jsonEnd6.completedHtml +  
+"<br>"+
+json["pages"][6]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][6]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][6]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd6;
+};
+
+function jsonSummary7EWF(json) {  
+jsonEnd7 = jsonSummary6EWF(json);
+jsonEnd7.completedHtml = jsonEnd7.completedHtml +  
+"<br>"+
+json["pages"][7]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][7]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][7]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd7;
+};
+
+function jsonSummary8EWF(json) {  
+jsonEnd8 = jsonSummary7EWF(json);
+jsonEnd8.completedHtml = jsonEnd8.completedHtml +  
+"<br>"+
+json["pages"][8]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][8]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][8]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd8;
+};
+
+function jsonSummary9EWF(json) {  
+jsonEnd9 = jsonSummary8EWF(json);
+jsonEnd9.completedHtml = jsonEnd9.completedHtml +  
+"<br>"+
+json["pages"][9]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][9]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][9]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd9;
+};
+
+
+function jsonSummary10EWF(json) {  
+jsonEnd10 = jsonSummary9EWF(json);
+jsonEnd10.completedHtml = jsonEnd10.completedHtml +  
+"<br>"+
+json["pages"][10]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][10]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][10]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd10;
+};
+
+
+function jsonSummary11EWF(json) {  
+jsonEnd11 = jsonSummary10EWF(json);
+jsonEnd11.completedHtml = jsonEnd11.completedHtml +  
+"<br>"+
+json["pages"][11]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][11]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][11]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd11;
+};
+
+
+
+</script>  
+<!-- This completes the code for the quizzes -->
+
+
+<!-- Various toggle functions used throughout --> 
+<script language="javascript">
+function toggle(id1,id2) {
+	var ele = document.getElementById(id1); var text = document.getElementById(id2);
+	if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Solución";}
+		else {ele.style.display = "block"; text.innerHTML = "Ocultar Solución";}}
+function togglecode(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Código R";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Código R";}}
+function toggleEX(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Ejemplo";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Ejemplo";}}
+function toggleTheory(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Teoría";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Teoría";}}
+function toggleQuiz(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Mostrar Solución de Prueba";}
+      else {ele.style.display = "block"; text.innerHTML = "Ocultar Solución de Prueba";}}      
+</script>
+
+<!-- A few functions for revealing definitions -->
+<script language="javascript">
+<!--   $( function() {
+    $("#tabs").tabs();
+  } ); -->
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+
+<script language="javascript">
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DF6W196L8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DF6W196L8Q');
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Loss Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#naturaleza-y-relevancia-del-seguro"><i class="fa fa-check"></i><b>1.1.1</b> Naturaleza y relevancia del seguro</a></li>
+<li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Procesos en los seguros</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="C-Intro.html"><a href="C-Intro.html#inicio-del-seguro"><i class="fa fa-check"></i><b>1.2.1</b> Inicio del seguro</a></li>
+<li class="chapter" data-level="1.2.2" data-path="C-Intro.html"><a href="C-Intro.html#renovación-del-seguro"><i class="fa fa-check"></i><b>1.2.2</b> Renovación del seguro</a></li>
+<li class="chapter" data-level="1.2.3" data-path="C-Intro.html"><a href="C-Intro.html#gestión-de-productos-y-siniestros"><i class="fa fa-check"></i><b>1.2.3</b> Gestión de productos y siniestros</a></li>
+<li class="chapter" data-level="1.2.4" data-path="C-Intro.html"><a href="C-Intro.html#S:Reserving"><i class="fa fa-check"></i><b>1.2.4</b> Provisiones</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="C-Intro.html"><a href="C-Intro.html#S:OutComes"><i class="fa fa-check"></i><b>1.3.1</b> Variables de siniestralidad del fondo: frecuencia y severidad</a></li>
+<li class="chapter" data-level="1.3.2" data-path="C-Intro.html"><a href="C-Intro.html#S:FundVariables"><i class="fa fa-check"></i><b>1.3.2</b> Variables de clasificación del fondo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="C-Intro.html"><a href="C-Intro.html#operativa-del-fondo"><i class="fa fa-check"></i><b>1.3.3</b> Operativa del fondo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="C-Intro.html"><a href="C-Intro.html#Intro-further-reading-and-resources"><i class="fa fa-check"></i><b>1.4</b> Más Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:how-frequency-augments-severity-information"><i class="fa fa-check"></i><b>2.1.1</b> Cómo la frecuencia incrementa la información sobre la cuantía</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:foundations"><i class="fa fa-check"></i><b>2.2.1</b> Fundamentos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:generating-functions"><i class="fa fa-check"></i><b>2.2.2</b> Funciones Generadoras de Momentos y de Probabilidad</a></li>
+<li class="chapter" data-level="2.2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:important-frequency-distributions"><i class="fa fa-check"></i><b>2.2.3</b> Distribuciones de Frecuencias Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> La Clase (a, b, 0)</a></li>
+<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Estimación de los parámetros</a></li>
+<li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> MLE de las distribuciones de frecuencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:zero-truncation-or-modification"><i class="fa fa-check"></i><b>2.5.1</b> Modificación o Truncamiento en Cero</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Distribuciones Mixtas</a></li>
+<li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Bondad del Ajuste</a></li>
+<li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. Código R para Gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Momentos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#cuantiles"><i class="fa fa-check"></i><b>3.1.2</b> Cuantiles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#función-generatriz-de-momentos"><i class="fa fa-check"></i><b>3.1.3</b> Función generatriz de momentos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Distribución gamma</a></li>
+<li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#distribución-pareto"><i class="fa fa-check"></i><b>3.2.2</b> Distribución Pareto</a></li>
+<li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Distribución Weibull</a></li>
+<li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#distribución-beta-generalizada-de-segundo-tipo"><i class="fa fa-check"></i><b>3.2.4</b> Distribución Beta Generalizada de segundo tipo</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="C-Severity.html"><a href="C-Severity.html#funciones-de-variables-aleatorias-y-sus-distribuciones"><i class="fa fa-check"></i><b>3.3.1</b> Funciones de variables aleatorias y sus distribuciones</a></li>
+<li class="chapter" data-level="3.3.2" data-path="C-Severity.html"><a href="C-Severity.html#multiplicación-por-una-constante"><i class="fa fa-check"></i><b>3.3.2</b> Multiplicación por una constante</a></li>
+<li class="chapter" data-level="3.3.3" data-path="C-Severity.html"><a href="C-Severity.html#elevación-a-una-potencia"><i class="fa fa-check"></i><b>3.3.3</b> Elevación a una potencia</a></li>
+<li class="chapter" data-level="3.3.4" data-path="C-Severity.html"><a href="C-Severity.html#exponenciación"><i class="fa fa-check"></i><b>3.3.4</b> Exponenciación</a></li>
+<li class="chapter" data-level="3.3.5" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-finitas"><i class="fa fa-check"></i><b>3.3.5</b> Mixturas finitas</a></li>
+<li class="chapter" data-level="3.3.6" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-continuas"><i class="fa fa-check"></i><b>3.3.6</b> Mixturas continuas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Franquicias</a></li>
+<li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Límites de la póliza</a></li>
+<li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coseguro-e-inflación"><i class="fa fa-check"></i><b>3.4.3</b> Coseguro e inflación</a></li>
+<li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reaseguro</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#estimadores-de-máxima-verosimilitud-para-datos-completos"><i class="fa fa-check"></i><b>3.5.1</b> Estimadores de máxima verosimilitud para datos completos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Estimadores por máxima verosimilitud usando datos modificados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Recursos y Contribuciones Adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a><ul>
+<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica"><i class="fa fa-check"></i><b>4.1.1</b> Estimación No Paramétrica</a></li>
+<li class="chapter" data-level="4.1.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ToolsModelSelection"><i class="fa fa-check"></i><b>4.1.2</b> Herramientas para la Selección de Modelos y Diagnósticos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#valores-iniciales"><i class="fa fa-check"></i><b>4.1.3</b> Valores Iniciales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-iterativa"><i class="fa fa-check"></i><b>4.2.1</b> Selección del Modelo Iterativa</a></li>
+<li class="chapter" data-level="4.2.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-entrenamiento"><i class="fa fa-check"></i><b>4.2.2</b> Selección de Modelo basada en un Conjunto de Datos de Entrenamiento</a></li>
+<li class="chapter" data-level="4.2.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-prueba"><i class="fa fa-check"></i><b>4.2.3</b> Selección de Modelo basada en un Conjunto de Datos de Prueba</a></li>
+<li class="chapter" data-level="4.2.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-basada-en-validación-cruzada"><i class="fa fa-check"></i><b>4.2.4</b> Selección del Modelo basada en Validación Cruzada</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-paramétrica-usando-datos-modificados"><i class="fa fa-check"></i><b>4.3.1</b> Estimación Paramétrica usando Datos Modificados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica-utilizando-datos-modificados"><i class="fa fa-check"></i><b>4.3.2</b> Estimación no Paramétrica Utilizando Datos Modificados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:IntroBayes"><i class="fa fa-check"></i><b>4.4.1</b> Introducción a la Inferencia Bayesiana</a></li>
+<li class="chapter" data-level="4.4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#modelo-bayesiano"><i class="fa fa-check"></i><b>4.4.2</b> Modelo Bayesiano</a></li>
+<li class="chapter" data-level="4.4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#inferencia-bayesiana"><i class="fa fa-check"></i><b>4.4.3</b> Inferencia Bayesiana</a></li>
+<li class="chapter" data-level="4.4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:ConjugateDistributions"><i class="fa fa-check"></i><b>4.4.4</b> Distribuciones Conjugadas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Más Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introducción"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-individual"><i class="fa fa-check"></i><b>5.2</b> Modelo de Riesgo Individual</a></li>
+<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
+<li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
+<li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#método-recursivo"><i class="fa fa-check"></i><b>5.4.1</b> Método recursivo</a></li>
+<li class="chapter" data-level="5.4.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#simulación"><i class="fa fa-check"></i><b>5.4.2</b> Simulación</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-la-exposición-en-la-frecuencia"><i class="fa fa-check"></i><b>5.5.1</b> Impacto de la exposición en la frecuencia</a></li>
+<li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impacto de los deducibles en la frecuencia de siniestros</a></li>
+<li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-las-modificaciones-de-la-póliza-en-la-siniestralidad-agregada"><i class="fa fa-check"></i><b>5.5.3</b> Impacto de las modificaciones de la póliza en la siniestralidad agregada</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Otros Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a><ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generación-de-observaciones-uniformes-independientes"><i class="fa fa-check"></i><b>6.1.1</b> Generación de observaciones uniformes independientes</a></li>
+<li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:InverseTransform"><i class="fa fa-check"></i><b>6.1.2</b> Método de la transformada inversa</a></li>
+<li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-de-la-simulación"><i class="fa fa-check"></i><b>6.1.3</b> Precisión de la simulación</a></li>
+<li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulación e inferencia estadística</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#fundamentos-del-bootstrap"><i class="fa fa-check"></i><b>6.2.1</b> Fundamentos del Bootstrap</a></li>
+<li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-del-bootstrap-sesgo-desviación-estándar-y-mse-error-cuadrático-medio-en-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>6.2.2</b> Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>6.2.3</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Bootstrap paramétrico</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-k-fold"><i class="fa fa-check"></i><b>6.3.1</b> Validación cruzada k-fold</a></li>
+<li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-dejando-uno-fuera"><i class="fa fa-check"></i><b>6.3.2</b> Validación cruzada dejando uno fuera</a></li>
+<li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-y-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Validación cruzada y Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
+<li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#muestreo-de-gibbs"><i class="fa fa-check"></i><b>6.5.2</b> Muestreo de Gibbs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-bootstrap-applications-in-predictive-modeling"><i class="fa fa-check"></i><b>6.6.1</b> TS 6.A. Bootstrap Applications in Predictive Modeling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a><ul>
+<li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introducción a la Tarificación</a></li>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Método de la Prima Pura</a></li>
+<li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Método de la Ratio de Siniestralidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.1</b> Principios de Tarificación</a></li>
+<li class="chapter" data-level="7.3.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#propiedades-de-los-principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.2</b> Propiedades de los Principios de Tarificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposición al Riesgo</a></li>
+<li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Factores de Tarificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposiciones-y-primas"><i class="fa fa-check"></i><b>7.5.1</b> Exposiciones y Primas</a></li>
+<li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#siniestros-reclamaciones-y-pagos"><i class="fa fa-check"></i><b>7.5.2</b> Siniestros, Reclamaciones y Pagos</a></li>
+<li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-lorenz-clásica"><i class="fa fa-check"></i><b>7.6.1</b> Curva de Lorenz Clásica</a></li>
+<li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-rendimiento-y-estadístico-de-gini"><i class="fa fa-check"></i><b>7.6.2</b> Curva de Rendimiento y Estadístico de Gini</a></li>
+<li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#validación-cruzada"><i class="fa fa-check"></i><b>7.6.3</b> Validación Cruzada</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-regulación-de-la-tarificación"><i class="fa fa-check"></i>TS 7.A. Regulación de la Tarificación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a><ul>
+<li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Necesidad de la Regresión de Poisson</a></li>
+<li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson"><i class="fa fa-check"></i><b>8.2.2</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporación-de-la-exposición"><i class="fa fa-check"></i><b>8.2.3</b> Incorporación de la exposición</a></li>
+<li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejercicios-3"><i class="fa fa-check"></i><b>8.2.4</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#factores-de-tarificación-y-tarifa"><i class="fa fa-check"></i><b>8.3.1</b> Factores de Tarificación y Tarifa</a></li>
+<li class="chapter" data-level="8.3.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#modelo-de-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.2</b> Modelo de Tarifa Multiplicativa</a></li>
+<li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson-para-la-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.3</b> Regresión de Poisson para la Tarifa Multiplicativa</a></li>
+<li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejemplos-numéricos"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplos numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimación-de-modelos-de-regresión-de-poisson"><i class="fa fa-check"></i>TS 8.A – Estimación de Modelos de Regresión de Poisson</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a><ul>
+<li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introducción-a-las-aplicaciones-de-la-teoría-de-la-credibilidad"><i class="fa fa-check"></i><b>9.1</b> Introducción a las Aplicaciones de la Teoría de la Credibilidad</a></li>
+<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:frequency"><i class="fa fa-check"></i><b>9.2.1</b> Credibilidad Completa para la Frecuencia de Siniestralidad</a></li>
+<li class="chapter" data-level="9.2.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-siniestralidad-agregada-y-la-prima-pura"><i class="fa fa-check"></i><b>9.2.2</b> Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura</a></li>
+<li class="chapter" data-level="9.2.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-severidad"><i class="fa fa-check"></i><b>9.2.3</b> Credibilidad Completa para la Severidad</a></li>
+<li class="chapter" data-level="9.2.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-parcial"><i class="fa fa-check"></i><b>9.2.4</b> Credibilidad parcial</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibilidad Z, <em>EPV</em>, y <em>VHM</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann-straub"><i class="fa fa-check"></i><b>9.4</b> Credibilidad de Bühlmann-Straub</a></li>
+<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.5</b> Otros Recursos y Colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a><ul>
+<li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introducción-a-las-carteras-de-seguros"><i class="fa fa-check"></i><b>10.1</b> Introducción a las Carteras de Seguros</a></li>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#clasificación-basada-en-los-momentos"><i class="fa fa-check"></i><b>10.2.1</b> Clasificación Basada en los Momentos</a></li>
+<li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparación-basada-en-el-comportamiento-de-colas-con-límites"><i class="fa fa-check"></i><b>10.2.2</b> Comparación basada en el comportamiento de colas con límites</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#medidas-de-riesgo-coherentes"><i class="fa fa-check"></i><b>10.3.1</b> Medidas de Riesgo Coherentes</a></li>
+<li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.2</b> Valor en Riesgo</a></li>
+<li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#cola-del-valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.3</b> Cola del Valor en Riesgo</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Reaseguro Proporcional</a></li>
+<li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Reaseguro No-Proporcional</a></li>
+<li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Acuerdos de Reaseguro Adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#recursos-y-colaboradores-adicionales"><i class="fa fa-check"></i><b>10.5</b> Recursos y Colaboradores adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:claim-types"><i class="fa fa-check"></i><b>11.1.1</b> Siniestros cerrados, IBNR, y RBNS</a></li>
+<li class="chapter" data-level="11.1.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#por-qué-reservar"><i class="fa fa-check"></i><b>11.1.2</b> ¿Por qué reservar?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#de-micro-a-macro"><i class="fa fa-check"></i><b>11.2.1</b> De Micro a Macro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#triángulos-de-desarrollo"><i class="fa fa-check"></i><b>11.2.2</b> Triángulos de desarrollo</a></li>
+<li class="chapter" data-level="11.2.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#notación-de-provisiones"><i class="fa fa-check"></i><b>11.2.3</b> Notación de provisiones</a></li>
+<li class="chapter" data-level="11.2.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Rcode"><i class="fa fa-check"></i><b>11.2.4</b> Código R para resumir datos de provisión de pérdidas</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:DeterministicCL"><i class="fa fa-check"></i><b>11.3.1</b> Chain-Ladder Determinista</a></li>
+<li class="chapter" data-level="11.3.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#modelo-chain-ladder-de-distribución-libre-de-mack"><i class="fa fa-check"></i><b>11.3.2</b> Modelo Chain-ladder de distribución libre de Mack</a></li>
+<li class="chapter" data-level="11.3.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#código-r-para-las-predicciones-chain-ladder"><i class="fa fa-check"></i><b>11.3.3</b> Código R para las predicciones Chain-Ladder</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#especificación-del-modelo"><i class="fa fa-check"></i><b>11.4.1</b> Especificación del modelo</a></li>
+<li class="chapter" data-level="11.4.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#estimación-y-predicción-del-modelo"><i class="fa fa-check"></i><b>11.4.2</b> Estimación y predicción del modelo</a></li>
+<li class="chapter" data-level="11.4.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#bootstrap"><i class="fa fa-check"></i><b>11.4.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
+<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#tipos-y-fuentes-de-datos"><i class="fa fa-check"></i><b>13.1.1</b> Tipos y Fuentes de Datos</a></li>
+<li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#estructuras-de-datos-y-almacenamiento"><i class="fa fa-check"></i><b>13.1.2</b> Estructuras de Datos y Almacenamiento</a></li>
+<li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#calidad-de-los-datos"><i class="fa fa-check"></i><b>13.1.3</b> Calidad de los Datos</a></li>
+<li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#limpieza-de-los-datos"><i class="fa fa-check"></i><b>13.1.4</b> Limpieza de los Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Proceso de Análisis de Datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratorio-versus-confirmatorio"><i class="fa fa-check"></i><b>13.2.2</b> Exploratorio versus Confirmatorio</a></li>
+<li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervisado-versus-no-supervisado"><i class="fa fa-check"></i><b>13.2.3</b> Supervisado versus No Supervisado</a></li>
+<li class="chapter" data-level="13.2.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#paramétricos-versus-no-paramétricos"><i class="fa fa-check"></i><b>13.2.4</b> Paramétricos versus No Paramétricos</a></li>
+<li class="chapter" data-level="13.2.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:expred"><i class="fa fa-check"></i><b>13.2.5</b> Explicación versus Predicción</a></li>
+<li class="chapter" data-level="13.2.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#modelación-de-datos-versus-modelación-algorítmica"><i class="fa fa-check"></i><b>13.2.6</b> Modelación de Datos versus Modelación Algorítmica</a></li>
+<li class="chapter" data-level="13.2.7" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-de-grandes-volúmenes-de-datos-big-data"><i class="fa fa-check"></i><b>13.2.7</b> Análisis de Grandes Volúmenes de Datos (Big Data)</a></li>
+<li class="chapter" data-level="13.2.8" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-reproducibles"><i class="fa fa-check"></i><b>13.2.8</b> Análisis Reproducibles</a></li>
+<li class="chapter" data-level="13.2.9" data-path="C-DataSystems.html"><a href="C-DataSystems.html#problemas-éticos"><i class="fa fa-check"></i><b>13.2.9</b> Problemas Éticos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-exploratorias"><i class="fa fa-check"></i><b>13.3.1</b> Técnicas exploratorias</a></li>
+<li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-confirmatorias"><i class="fa fa-check"></i><b>13.3.2</b> Técnicas confirmatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#algunas-funciones-de-r"><i class="fa fa-check"></i><b>13.4</b> Algunas funciones de R</a></li>
+<li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#resumen"><i class="fa fa-check"></i><b>13.5</b> Resumen</a></li>
+<li class="chapter" data-level="13.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#DS:further-reading-and-resources"><i class="fa fa-check"></i><b>13.6</b> Otros recursos y colaboradores</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Dependence Modeling</a><ul>
+<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Qualitative Variables</a></li>
+<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Quantitative Variables</a></li>
+<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#multivariate-variables"><i class="fa fa-check"></i><b>14.1.3</b> Multivariate Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Classic Measures of Scalar Associations</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
+<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
+<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
+<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#data-description"><i class="fa fa-check"></i><b>14.4.1</b> Data Description</a></li>
+<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#marginal-models"><i class="fa fa-check"></i><b>14.4.2</b> Marginal Models</a></li>
+<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#probability-integral-transformation"><i class="fa fa-check"></i><b>14.4.3</b> Probability Integral Transformation</a></li>
+<li class="chapter" data-level="14.4.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#joint-modeling-with-copula-function"><i class="fa fa-check"></i><b>14.4.4</b> Joint Modeling with Copula Function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Types of Copulas</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#elliptical-copulas"><i class="fa fa-check"></i><b>14.5.1</b> Elliptical Copulas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#archimedian-copulas"><i class="fa fa-check"></i><b>14.5.2</b> Archimedian Copulas</a></li>
+<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a><ul>
+<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="C-AppA.html"><a href="C-AppA.html#muestreo-aleatorio"><i class="fa fa-check"></i><b>15.1.1</b> Muestreo Aleatorio</a></li>
+<li class="chapter" data-level="15.1.2" data-path="C-AppA.html"><a href="C-AppA.html#distribución-muestral"><i class="fa fa-check"></i><b>15.1.2</b> Distribución Muestral</a></li>
+<li class="chapter" data-level="15.1.3" data-path="C-AppA.html"><a href="C-AppA.html#teorema-central-del-límite"><i class="fa fa-check"></i><b>15.1.3</b> Teorema Central del Límite</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="C-AppA.html"><a href="C-AppA.html#método-de-estimación-de-momentos"><i class="fa fa-check"></i><b>15.2.1</b> Método de Estimación de Momentos</a></li>
+<li class="chapter" data-level="15.2.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:MLE"><i class="fa fa-check"></i><b>15.2.2</b> Estimación por Máxima Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE:ED"><i class="fa fa-check"></i><b>15.3.1</b> Distribución Exacta para la Media de Muestra Normal</a></li>
+<li class="chapter" data-level="15.3.2" data-path="C-AppA.html"><a href="C-AppA.html#propiedades-de-muestra-grande-del-estimador-mle"><i class="fa fa-check"></i><b>15.3.2</b> Propiedades de Muestra Grande del Estimador MLE</a></li>
+<li class="chapter" data-level="15.3.3" data-path="C-AppA.html"><a href="C-AppA.html#intervalo-de-confianza"><i class="fa fa-check"></i><b>15.3.3</b> Intervalo de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="C-AppA.html"><a href="C-AppA.html#conceptos-básicos"><i class="fa fa-check"></i><b>15.4.1</b> Conceptos Básicos</a></li>
+<li class="chapter" data-level="15.4.2" data-path="C-AppA.html"><a href="C-AppA.html#contraste-t-student-basado-en-el-estimador-mle"><i class="fa fa-check"></i><b>15.4.2</b> Contraste <span class="math inline">\(t\)</span>-Student Basado en el Estimador MLE</a></li>
+<li class="chapter" data-level="15.4.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:LRT"><i class="fa fa-check"></i><b>15.4.3</b> Prueba de la Razón de Verosimilitud</a></li>
+<li class="chapter" data-level="15.4.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:IC"><i class="fa fa-check"></i><b>15.4.4</b> Criterios de Información</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a><ul>
+<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="C-AppB.html"><a href="C-AppB.html#distribución-condicional"><i class="fa fa-check"></i><b>16.1.1</b> Distribución Condicional</a></li>
+<li class="chapter" data-level="16.1.2" data-path="C-AppB.html"><a href="C-AppB.html#caso-continuo"><i class="fa fa-check"></i><b>16.1.2</b> Caso Continuo</a></li>
+<li class="chapter" data-level="16.1.3" data-path="C-AppB.html"><a href="C-AppB.html#esperanza-condicional-y-varianza-condicional"><i class="fa fa-check"></i><b>16.1.3</b> Esperanza Condicional y Varianza Condicional</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-las-esperanzas-iteradas"><i class="fa fa-check"></i><b>16.2.1</b> Ley de las Esperanzas Iteradas</a></li>
+<li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-la-varianza-total"><i class="fa fa-check"></i><b>16.2.2</b> Ley de la Varianza Total</a></li>
+<li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#aplicación"><i class="fa fa-check"></i><b>16.2.3</b> Aplicación</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#familia-exponencial-lineal"><i class="fa fa-check"></i><b>16.3.1</b> Familia Exponencial Lineal</a></li>
+<li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#distribuciones-conjugadas"><i class="fa fa-check"></i><b>16.3.2</b> Distribuciones Conjugadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="C-AppC.html"><a href="C-AppC.html#la-función-de-verosimilitud-y-de-log-verosimilitud"><i class="fa fa-check"></i><b>17.1.1</b> La Función de Verosimilitud y de Log-verosimilitud</a></li>
+<li class="chapter" data-level="17.1.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-de-las-funciones-de-verosimilitud"><i class="fa fa-check"></i><b>17.1.2</b> Propiedades de las Funciones de Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="C-AppC.html"><a href="C-AppC.html#definición-y-derivación-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.1</b> Definición y Derivación del Estimador MLE</a></li>
+<li class="chapter" data-level="17.2.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-asintóticas-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.2</b> Propiedades Asintóticas del Estimador MLE</a></li>
+<li class="chapter" data-level="17.2.3" data-path="C-AppC.html"><a href="C-AppC.html#uso-de-la-estimación-de-máxima-verosimilitud"><i class="fa fa-check"></i><b>17.2.3</b> Uso de la Estimación de Máxima Verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#contraste-de-hipótesis"><i class="fa fa-check"></i><b>17.3.1</b> Contraste de Hipótesis</a></li>
+<li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> Validación del Modelo y MLE</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a><ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab0"><i class="fa fa-check"></i><b>18.1.1</b> La clase (a,b,0)</a></li>
+<li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab1"><i class="fa fa-check"></i><b>18.1.2</b> La clase (a,b,1)</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-un-parámetro"><i class="fa fa-check"></i><b>18.2.1</b> Distribuciones Un Parámetro</a></li>
+<li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-dos-parámetros"><i class="fa fa-check"></i><b>18.2.2</b> Distribuciones Dos Parámetros</a></li>
+<li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-tres-parámetros"><i class="fa fa-check"></i><b>18.2.3</b> Distribuciones Tres Parámetros</a></li>
+<li class="chapter" data-level="18.2.4" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribución-cuatro-parámetros"><i class="fa fa-check"></i><b>18.2.4</b> Distribución Cuatro Parámetros</a></li>
+<li class="chapter" data-level="18.2.5" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#otras-distribuciones"><i class="fa fa-check"></i><b>18.2.5</b> Otras Distribuciones</a></li>
+<li class="chapter" data-level="18.2.6" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-con-soporte-finito"><i class="fa fa-check"></i><b>18.2.6</b> Distribuciones con Soporte Finito</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#valor-esperado-limitado"><i class="fa fa-check"></i><b>18.3</b> Valor Esperado Limitado</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/OpenActTexts/Loss-Data-Analytics" target="blank">Loss Data Analytics on GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Loss Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="C:Intro" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introducción a la Analítica de Datos de Pérdida</h1>
+<p><em>Resumen del capítulo</em>. Este libro presenta los métodos de análisis de datos de seguros. La sección <a href="C-Intro.html#S:Intro">1.1</a> comienza con una discusión de por qué el uso de datos es importante en la industria de seguros. La sección <a href="C-Intro.html#S:PredModApps">1.2</a> ofrece una descripción general de los objetivos en el análisis de datos de seguros, que se complementa con estudio de un caso en la Sección <a href="C-Intro.html#S:LGPIF">1.3</a>. Naturalmente, existe una gran distancia entre los objetivos generales resumidos en la descripción general y la aplicación a un caso de estudio concreto; esta distancia se cubre mediante los métodos y técnicas de análisis de datos que se tratan en el resto del texto.</p>
+<div id="S:Intro" class="section level2">
+<h2><span class="header-section-number">1.1</span> Relevancia de la Analítica para las Actividades de Seguros</h2>
+<hr />
+<p>En esta sección, se aprende a:</p>
+<ul>
+<li>Resumir la importancia de los seguros para los consumidores y la economía.</li>
+<li>Describir la analítica de datos.</li>
+<li>Identificar cómo se generan los datos a lo largo de la vida de un contrato de seguro estándar.</li>
+</ul>
+<hr />
+<div id="naturaleza-y-relevancia-del-seguro" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Naturaleza y relevancia del seguro</h3>
+<p>Este libro presenta un proceso que consiste en usar datos para tomar decisiones en el contexto de los seguros. No se asume que los lectores estén familiarizados con los seguros, e introduce los conceptos de seguros según va siendo necesario. Si el lector es nuevo en el mundo de los seguros, probablemente lo más fácil es pensar en una póliza de seguro que cubra el contenido de un apartamento o casa que en el que se vive en alquiler (conocido como el seguro de inquilinos) o el contenido y propiedad de un edificio del que un amigo o uno mismo es el propietario (conocido como el seguro de propietarios). Otro ejemplo muy habitual es el seguro de automóvil. En caso de accidente, esta póliza puede cubrir daños al vehículo, daños a otros vehículos involucrados en el accidente, así como los gastos médicos de los heridos en el accidente.</p>
+<p>Una forma de pensar en la naturaleza del seguro es centrarse en quién lo contrata. Los seguros para inquilinos, propietarios de viviendas y automóviles son ejemplos de seguro personal en el sentido de que se trata de pólizas emitidas a personas. Las empresas también contratan seguros, como la cobertura de sus propiedades, y esto se conoce como seguro comercial. El vendedor, la compañía de seguros, también se conoce como aseguradora. Incluso las propias compañías de seguros necesitan un seguro; esto se conoce como reaseguro.</p>
+<p>Otra forma de pensar sobre la naturaleza del seguro es centrarse en el tipo de riesgo que se cubre. En los EE. UU., las pólizas como las de inquilinos y propietarios de viviendas se conocen como un seguro de propiedad mientras que una póliza como la de automóvil que cubre los daños a las personas se conocen como un seguro de accidentes. En el resto del mundo, ambos se conocen como seguros de no vida o seguros generales, para distinguirlos del seguro de vida.</p>
+<p>Tanto los seguros de vida como los seguros de no vida son componentes importantes de la economía mundial. El <span class="citation">Insurance Information Institute (<a href="#ref-III2016" role="doc-biblioref">2016</a>)</span> estima que las primas de seguros directos en el mundo en 2014 fueron de 2.654.549 en vida y 2.123.699 no-vida; estas cifras son en <em>millones de dólares estadounidenses</em> y el total representa el 6,2% del PIB mundial. Dicho de otra manera, los seguros de vida representan el 55,5% de las primas y el 3,4% del PIB mundial, mientras que los de no vida representan el 44,5% de las primas de seguros y el 2,8% del PIB mundial. Tanto vida como no-vida representan actividades económicas importantes.</p>
+<p>El seguro puede que no sea tan entretenido como la industria del deporte (otra industria que depende en gran medida de los datos) pero afecta a los medios de subsistencia financiera de muchos. Se mire como se mire, los seguros son una actividad económica importante. A nivel mundial, como ya se ha dicho antes, las primas de seguros representaron aproximadamente el 6,2% del PIB en 2014, <span class="citation">(Insurance Information Institute <a href="#ref-III2016" role="doc-biblioref">2016</a>)</span>. Por ejemplo, las primas de los seguros representaron el 18,9% del PIB en Taiwán (el porcentaje más alto en el estudio) y el 7,3% del PIB en los Estados Unidos. A nivel personal, casi todos los propietarios de una casa tienen un seguro para protegerse en caso de incendio, tormenta de granizo o algún otro episodio catastrófico. En casi todos los países del mundo se exige un seguro para quienes conducen un automóvil. En resumen, aunque no sea un campo particularmente entretenido, el seguro juega un papel importante en las economías de las naciones y en la vida de las personas.</p>
+</div>
+<div id="qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</h3>
+<p>Los seguros son una industria basada en datos. Como todas las grandes corporaciones y organizaciones, las aseguradoras usan datos cuando intentan decidir cuánto pagar a los empleados, cuántos empleados retener, cómo comercializar sus servicios y productos, cómo pronosticar tendencias financieras, etc. Los daos que se usan para esta finalidad representan áreas generales de actividades que no son específicas de la industria de seguros. Aunque cada sector tiene sus propios matices y necesidades de datos, la recopilación, análisis y uso de datos es una actividad compartida por todos, desde los gigantes de Internet hasta la pequeña empresa, pasando por organizaciones públicas y gubernamentales, y, por lo tanto no es una tarea específica de la industria de seguros. En este texto se muestra cómo los métodos y herramientas de recopilación y análisis de datos son relevantes para todos.</p>
+<p>En cualquier industria basada en datos, la analítica es clave para derivar y extraer información de los datos. Pero, ¿qué es la analítica? El concepto relacionado con la toma de decisiones empresariales en base a los datos se han descrito como analítica de negocios (en inglés business analytics), inteligencia empresarial (en inglés business intelligence) y ciencia de datos. Estos términos, entre otros, a veces se usan indistintamente y, a veces, se refieren a distintas aplicaciones. <em>La inteligencia empresarial</em> se centra en los procesos de recopilación de datos, a menudo a través de bases de datos, mientras que <em>la analítica de negocios</em> utiliza herramientas y métodos para el análisis estadístico de datos. A diferencia de estos dos términos que enfatizan las aplicaciones empresariales, el término <em>ciencia de datos</em> abarca aplicaciones más amplias relacionadas con los datos en muchos dominios científicos.</p>
+<p>Para nuestros propósitos, usamos el término analítica (en inglés analytics) para referirnos al proceso de uso de datos para tomar decisiones. Este proceso implica la recopilación de datos, la comprensión de conceptos y modelos de incertidumbre, la realización de inferencias generales y la comunicación de resultados.</p>
+<p>Al introducir los métodos de análisis de datos en este texto, nos centraremos en medir y analizar las pérdidas que surgen de, o están relacionadas con, obligaciones en los contratos de seguro. Esto podría ser la cantidad de daño que ha sufrido un apartamento sujeto a un contrato de seguro de inquilino, la cantidad necesaria para compensar a alguien que sufrió una lesión en un accidente de conducción, y ejemplos por el estilo. A estas obligaciones las llamamos siniestro asegurado. Con este enfoque, podremos introducir y utilizar directamente herramientas y técnicas estadísticas de aplicación general.</p>
+</div>
+<div id="S:InsProcesses" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Procesos en los seguros</h3>
+<p>Sin embargo, otra forma de pensar acerca de la naturaleza del seguro es por la duración de un contrato de seguro, conocido como su periodo de cobertura. Este texto se centrará en los contratos de seguro a corto plazo. Por corto plazo, nos referimos a contratos en los que la cobertura de seguro se proporciona normalmente durante un año o seis meses. La mayoría de los contratos comerciales y personales son por un año, por lo que esta será nuestra duración predeterminada. Una excepción importante son las pólizas de automóviles de EE.UU. que suelen tener una duración de seis meses. Por el contrario, normalmente pensamos en el seguro de vida como un contrato donde por defecto se tiene un contrato que dura varios años. Por ejemplo, si una persona de 25 años contrata una póliza de vida que indemniza al fallecer el asegurado y esa persona no muere hasta los 100 años, entonces el contrato tiene una vigencia de 75 años.</p>
+<p>Hay otras diferencias importantes entre productos de vida y no vida. En los seguros de vida, la cuantía a pagar al beneficiario a menudo se estipula en las disposiciones del contrato. Por el contrario, la mayoría de los contratos de no-vida proporcionan cobertura para la indemnización de los daños asegurados que se desconocen antes de que ocurra el accidente. (Por lo general, se imponen límites a la cuantía máxima de la compensación.) En un contrato de seguro de vida que se extiende a lo largo de muchos años, el valor del dinero a lo largo del tiempo juega un papel destacado. En cambio, en un contrato de no-vida, la aleatoriedad en la cantidad a indemnizar es primordial.</p>
+<p>Tanto en los seguros de vida como en los seguros no-vida, la frecuencia de las reclamaciones por siniestros es muy importante. Para muchos contratos de seguro de vida, el evento asegurado (como el fallecimiento) ocurre solo una vez. Por el contrario, para los seguros no-vida como el de automóviles, es habitual que los individuos (especialmente los conductores jóvenes varones) tengan más de un accidente durante un año. Entonces, nuestros modelos necesitan reflejar esta condición; presentaremos diferentes modelos de frecuencia que también puede usarse también al estudiar algunos seguros de vida.</p>
+<p>Para los seguros a corto plazo, el marco del modelo probabilístico es simple. Pensamos en un modelo de un período (la duración del período, por ejemplo, igual a un año, se especificará en cada situación).</p>
+<ul>
+<li>Al comienzo del período, el asegurado paga al asegurador una cantidad conocida como prima acordada por ambas partes del contrato.</li>
+<li>Al final del período, el asegurador reembolsa al asegurado una (posiblemente multivariante) pérdida aleatoria.</li>
+</ul>
+<p>Este marco se desarrollará a medida que avancemos; pero primero nos centramos en analizar cómo se generan los datos en este contexto. Desde el punto de vista de una aseguradora, los contratos pueden ser solo por un año, pero tienden a renovarse. Además, los pagos derivados de reclamaciones durante el año pueden retrasarse mucho más allá de un solo año. Una forma de describir los datos que surgen de las operaciones de una compañía de seguros es utilizar un enfoque granular de cronograma. Un enfoque de <strong>proceso</strong> proporciona una visión general de los sucesos que ocurren durante la vida de un contrato de seguro y su naturaleza: sucesos aleatorios o planificados, siniestros (reclamaciones) y sucesos de cambios de contrato, etc. En esta visión micro orientada, podemos pensar en lo que le sucede a un contrato en varias etapas de su existencia.</p>
+<p>La figura <a href="C-Intro.html#fig:StochOperations">1.1</a> traza una línea de tiempo de un contrato de seguro estándar. Durante la vigencia del contrato, la aseguradora procesa periódicamente sucesos como el cobro de primas y la valoración, descritas en la Sección <a href="C-Intro.html#S:PredModApps">1.2</a>; estas están marcados con una <strong>x</strong> en la línea de tiempo. También ocurren sucesos no regulares e imprevistos.
+Para ilustrar, <span class="math inline">\(\mathrm{t}_2\)</span> y <span class="math inline">\(\mathrm{t}_4\)</span> marcan la ocurrencia de un siniestro (algunos contratos, como los seguros de vida, pueden tener un único siniestro). Los instantes <span class="math inline">\(\mathrm{t}_3\)</span> y <span class="math inline">\(\mathrm{t}_5\)</span> marcan momentos en los que un asegurado desea alterar ciertas características de su contrato, como la elección de una franquicia o la cantidad de cobertura. Desde la perspectiva de una empresa aseguradora, incluso se puede pensar en el inicio del contrato (llegada, en el momento <span class="math inline">\(\mathrm{t}_1\)</span>) y finalización del contrato (salida, en el momento <span class="math inline">\(\mathrm{t}_6\)</span>) como eventos inciertos. (Alternativamente, para algunos propósitos, se puede condicionar a estos eventos y tratarlos como ciertos).</p>
+
+<div class="figure" style="text-align: center"><span id="fig:StochOperations"></span>
+<img src="LossDataAnalytics_files/figure-html/StochOperations-1.png" alt="Cronograma de una póliza de seguro estándar. Las flechas marcan las ocurrencias de eventos aleatorios. Cada x marca el instante de los eventos programados que normalmente no son aleatorios." width="100%" />
+<p class="caption">
+Figure 1.1: Cronograma de una póliza de seguro estándar. Las flechas marcan las ocurrencias de eventos aleatorios. Cada x marca el instante de los eventos programados que normalmente no son aleatorios.
+</p>
+</div>
+</div>
+</div>
+<div id="S:PredModApps" class="section level2">
+<h2><span class="header-section-number">1.2</span> Operaciones de la Compañía de Seguros</h2>
+<hr />
+<p>En esta sección, se aprenderá a:</p>
+<ul>
+<li>Describir cinco áreas operativas principales de las compañías de seguros.</li>
+<li>Identificar el papel de las oportunidades que aportan los datos y la analítica dentro de cada área operativa.</li>
+</ul>
+<hr />
+<p>Usando los datos de seguros, el objetivo final es utilizar los datos para tomar decisiones. Aprenderemos más sobre métodos de análisis y extrapolación de datos en capítulos futuros. Para empezar, pensemos por qué queremos hacer el análisis.
+Tomaremos el punto de vista de la compañía de seguros (no el de la persona asegurada) e introduciremos formas de cobrar dinero, pagarlo, administrar los costes y asegurarnos de que tengamos suficiente capital para cumplir con las obligaciones de un asegurador. El énfasis está en las operaciones específicas de seguros más que en las actividades comerciales generales como la publicidad, el marketing y la gestión de recursos humanos.</p>
+<p>Específicamente, en muchas compañías de seguros, se acostumbra a agregar los procesos de seguros concretos en unidades operativas más grandes; muchas empresas utilizan varias áreas funcionales para segregar las actividades de los empleados y sus áreas de responsabilidad. Los actuarios, otros analistas financieros y los reguladores de seguros trabajan dentro de estas unidades y utilizan datos para las siguientes actividades:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Inicio del seguro</strong>. En esta etapa, la empresa toma una decisión sobre si debe asumir o no un riesgo (la etapa de suscripción) y asigna una prima (o tarifa). El análisis de seguros tiene sus raíces actuariales en <em>la elaboración de tarifas</em>, donde los analistas buscan determinar el precio correcto por el riesgo correcto.</li>
+<li><strong>Renovación del seguro</strong>. Muchos contratos, particularmente en seguros generales, tienen duraciones relativamente cortas, como 6 meses o un año. Aunque existe una expectativa implícita de que todos los contratos se renovarán, el asegurador tiene la oportunidad de rechazar la cobertura y ajustar la prima. También se utiliza la analítica en esta etapa de renovación de la póliza donde el objetivo es retener a los clientes rentables.</li>
+<li><strong>Gestión de siniestros</strong>. La analítica de datos se ha utilizado durante mucho tiempo para (1) detectar y prevenir el fraude en las reclamaciones sinestros, (2) administrar los costes de los siniestros, incluyendo el identificar el soporte adecuado para los gastos de tramitación de siniestros, así como (3) comprender los tramos de exceso de coste para fijar la retención y el reaseguro.</li>
+<li><strong>Reserva de pérdidas</strong>. Las herramientas analíticas se utilizan para proporcionar a los gestores una estimación adecuada de las obligaciones futuras y para cuantificar la incertidumbre de esas estimaciones.</li>
+<li><strong>Solvencia y Asignación de Capital</strong>. Decidir sobre el requisito de cantidad de capital y sobre las formas de asignar capital entre las inversiones alternativas también son actividades analíticas esenciales. Las empresas deben evaluar cuánto capital es necesario para tener un flujo de efectivo disponible suficiente para cumplir con sus obligaciones cuando llegue el momento de que se materialicen (solvencia). Esta es una pregunta importante que concierne no solo a los gerentes de la empresa, sino también a los clientes, los accionistas de la empresa, las autoridades reguladoras, así como a la sociedad en general. Relacionado con la cuestión de cuánto capital es necesario, hay que abordar la cuestión de cómo asignar ese capital a los diferentes proyectos financieros, por lo general para maximizar un retorno de la inversión. Aunque esta pregunta puede surgir a varios niveles, las compañías de seguros generalmente se preocupan por cómo asignar capital a sus diferentes líneas de negocio dentro de la empresa y a diferentes filiales de una misma empresa matriz.</li>
+</ol>
+<p>Aunque los datos representan un componente crítico para el cálculo del capital de solvencia y la asignación, otros componentes, incluido el marco económico local y global, el entorno de inversiones financieras y los requisitos específicos fijados por el entorno regulatorio del momento, también son importantes. Debido a los conocimientos previos requeridos para abordar estos temas, no abordaremos cuestiones de solvencia, asignación de capital y regulación en este texto.</p>
+<p>No obstante, para todas las funciones operativas, enfatizamos que la analítica en la industria de seguros no es un ejercicio que un pequeño grupo de analistas pueden hacer por sí mismos. Requiere que una aseguradora realice importantes inversiones en tecnología de la información, marketing, suscripción, y funciones actuariales. Como estas áreas representan los principales objetivos finales del análisis de datos, en las siguientes subsecciones se presentan los antecedentes adicionales de cada unidad operativa.</p>
+<div id="inicio-del-seguro" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Inicio del seguro</h3>
+<p>Fijar el precio de un producto de seguro puede ser un problema desconcertante. Ello contrasta con otras industrias, como la fabricación, donde el coste de un producto es (relativamente) conocido y proporciona un punto de referencia para evaluar un precio de demanda del mercado. De manera similar, en otras áreas de servicios financieros, los precios de mercado están disponibles y proporcionan la base para una estructura de precios de productos coherente con el mercado. Sin embargo, para muchas líneas de seguros, el coste de un producto es incierto y los precios de mercado no están disponibles. La esperanza del coste aleatorio es un razonable punto de partida para fijar un precio. (Si se ha estudiado finanzas, se recordará que una esperanza es el precio óptimo para una aseguradora neutral al riesgo). Ha sido tradicional en la fijación de precios de seguros empezar siempre con el coste esperado. Las aseguradoras luego agregan márgenes a este coste esperado, para tener en cuenta el riesgo del producto, los gastos incurridos en el mantenimiento del producto y una provisión para beneficios/excedentes de la empresa.</p>
+<p>El uso de los costes esperados como base para la fijación de precios prevalece en algunas líneas del negocio de seguros como los seguros para propietarios de viviendas y los seguros de automóviles. Para estas tipologías, la analítica ha servido para mejora el precio que llega al mercado al hacer que el cálculo del coste esperado del producto sea más preciso. La creciente disponibilidad de Internet por parte de los consumidores también ha servido para aumentar la transparencia en los precios. En el mercado actual, los consumidores tienen fácil acceso a los precios ofertados por una gran cantidad de aseguradoras. Las aseguradoras buscan aumentar su cuota de mercado mediante el perfeccionamiento de sus sistemas de clasificación de riesgo, logrando así una mejor aproximación de precios en determinados productos y permitiendo estrategias de suscripción de los clientes óptimos (“cream-skimming” es una frase que se utiliza cuando la aseguradora suscribe solo los mejores riesgos). Algunas encuestas recientes (por ejemplo, <span class="citation">Earnix (<a href="#ref-survey2013" role="doc-biblioref">2013</a>)</span>) indican que la fijación de precios es el área donde más se usa la analítica en las aseguradoras.</p>
+<p><em>Suscripción</em>, el proceso de clasificación de riesgos en categorías homogéneas y la asignación de asegurados a esas categorías, se encuentra en el núcleo de la elaboración de tarifas. Los asegurados de cada una de las clases (categorías) tienen un perfil de riesgo similar y, por lo tanto, se les cobra un mismo precio por el seguro que suscriben. Este es el concepto de prima actuarialmente justa; es justo cobrar tarifas diferentes si los asegurados muestran diferencias identificables en los factores de riesgo. En un artículo pionero, <em>Two Studies in Automobile Insurance Ratemaking</em> <span class="citation">(Bailey and LeRoy <a href="#ref-bailey1960" role="doc-biblioref">1960</a>)</span> proporcionó un catalizador para la aceptación de métodos analíticos en el sector de los seguros. Este trabajo abordaba el problema de la clasificación en tarificación. Describía un ejemplo de seguro de automóvil con cinco clases de clasificación cruzada por uso y cuatro tipos de bonificación relacionados con el mérito del asegurado. Hasta ese momento, la dependencia de las primas por uso y tipo de bonificación se determinaban por separado. Tener en cuenta la interacción de los efectos de las diferentes variables de clasificación es un problema más difícil de resolver.</p>
+</div>
+<div id="renovación-del-seguro" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Renovación del seguro</h3>
+<p>El seguro es un tipo de servicio financiero y, como muchos otros servicios o contratos, la cobertura del seguro a menudo se acuerda por un tiempo limitado, cuyo transcurso marca la finalización del compromiso de proporcionar cobertura. En particular para los seguros generales, la necesidad de cobertura continúa, por lo que se hace un esfuerzo para emitir un nuevo contrato que brinde una cobertura similar, cuando el contrato existente llega al final de su vigencia. A esto se le llama renovación de la póliza. También puede surgir la necesidad de renovación de las pólizas en los seguros de vida, por ejemplo, en el seguro de vida temporal. No sucede lo mismo en otros contratos, como en el seguro de rentas vitalicias, que termina con el fallecimiento del asegurado y, por lo tanto, en el que la cuestiones relativas a la renovación son irrelevantes.</p>
+<p>En ausencia de restricciones legales, en la renovación, el asegurador tiene la oportunidad de:</p>
+<ul>
+<li>aceptar o negarse a suscribir el riesgo; y</li>
+<li>determinar una nueva prima, posiblemente junto con una nueva clasificación del riesgo.</li>
+</ul>
+<p>La clasificación y tarificación del riesgo en el momento de la renovación se basa en dos tipos de información. Primero, en la etapa inicial, el asegurador tiene muchas variables de calificación disponibles para poder tomar una decisión. Muchas variables no cambiarán posteriormente, por ejemplo el sexo, mientras que es probable que otras cambien, por ejemplo la edad, y otras pueden cambiar o no, por ejemplo, la valoración crediticia.
+En segundo lugar, a diferencia de la etapa inicial, en la renovación, el asegurador tiene a su disposición un historial de la experiencia de las pérdidas sufridas por el titular de la póliza, y este historial puede proporcionar información sobre el asegurado que no estaba disponible en la tarificación mediante las variables iniciales. La modificación de primas con historial de siniestros se conoce como <em>tarificación basada en la experiencia</em>, también conocida como <em>tarificación por méritos</em>.</p>
+<p>Los métodos de tarificación basada en la experiencia se aplican retrospectivamente o prospectivamente. Con los métodos retrospectivos, se proporciona al tomador de la póliza un reembolso de una parte de la prima si se dan de ciertas condiciones de experiencia favorable (para la aseguradora). Las primas retrospectivas son habituales en los acuerdos de seguros de vida (donde los asegurados ganan dividendos en los EE. UU., bonificaciones en el Reino Unido y participación en las ganancias en la cobertura de vida temporal en Israel). En los seguros generales, los métodos prospectivos son más frecuentes, y se recompensa la experiencia favorable del asegurado a través de una prima de renovación más baja.</p>
+<p>El historial de siniestralidad puede proporcionar información sobre el apetito al riesgo del asegurado. Por ejemplo, en líneas personales se suele usar una variable para indicar si se ha producido o no un siniestro en los últimos tres años.
+Otro ejemplo es el de una línea comercial como el seguro de empleo u ocupación, en el que se puede observar la frecuencia o gravedad promedio de las reclamaciones de siniestros de un asegurado durante los últimos tres años. El historial de siniestros puede revelar información que de otro modo estaría oculta (para la aseguradora) sobre el titular de la póliza.</p>
+</div>
+<div id="gestión-de-productos-y-siniestros" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Gestión de productos y siniestros</h3>
+<p>En algunas áreas de los seguros, el proceso de pago de reclamaciones para los siniestros que están cubiertos es relativamente sencillo. Por ejemplo, en los seguros de vida, un certificado de defunción simple es todo lo que se necesita para percibir la cuantía que corresponde al beneficiario tal como se estipule en el contrato. Sin embargo, en áreas no relacionadas con la vida como en los seguros de propiedad y accidentes, el proceso puede ser mucho más complejo. Pensemos por ejemplo en un suceso relativamente simple como un accidente de automóvil. Aquí, a menudo se requiere determinar qué parte tiene la culpa del accidente, es necesario evaluar los daños a todos los vehículos y personas involucrados en el siniestro, tanto asegurados como no asegurados, los gastos incurridos en la evaluación de los daños también deben evaluarse, y así sucesivamente. El proceso de determinación de cobertura, responsabilidad legal y resolución de reclamaciones se conoce como tramitación de siniestros.</p>
+<p>Los aseguradores a veces usan el concepto de fuga o escape para referirse al dinero perdido en las ineficiencias de la gestión de siniestros. Hay muchas formas en las que la analítica de datos puede ayudar a gestionar el proceso de tramitación, <span class="citation">Gorman and Swenson (<a href="#ref-SASsurvey" role="doc-biblioref">2013</a>)</span>. Históricamente, la tarea más importante ha sido la detección de fraudes.
+El proceso de tramitación de siniestros implica reducir la asimetría de información (el reclamante sabe lo que pasó; la empresa sabe sólo algo de lo que pasó). Mitigar el fraude es una parte importante del proceso de gestión de siniestros.</p>
+<p>La detección de fraudes es solo un aspecto de la gestión de las reclamaciones. En términos más generales, se puede pensar que la gestión de siniestros consta de los siguientes componentes:</p>
+<p><strong>Triaje de siniestros</strong>. Al igual que en el mundo médico, la identificación precoz y el manejo apropiado de los siniestros de elevada cuantía (pacientes, en el mundo médico), puede conducir a ahorros substanciales. Por ejemplo, en los seguros de empleo, las aseguradoras buscan lograr la identificación temprana de aquellos siniestros que corren el riesgo de incurrir en elevados costes médicos y un largo período de pago. La intervención temprana en estos casos podría dar a las aseguradoras un mayor control sobre la gestión del siniestro, el tratamiento médico y los costes generales para lograr un retorno al trabajo lo más pronto posible.</p>
+<p><strong>Tramitación de siniestros</strong>. El objetivo es utilizar la analítica para identificar siniestros muy habituales que se prevé que tendrán un coste pequeño. Las situaciones más complejas pueden requerir peritos más experimentados y asistencia legal para manejar adecuadamente las reclamaciones con un coste potencial elevado.</p>
+<p><strong>Decisiones de peritaje</strong>. Una vez se identifica un siniestro complejo y se asigna a un perito, se pueden establecer rutinas analíticas para ayudar a los procesos posteriores de toma de decisiones. Dichos procesos también pueden ser útiles para los peritos en el cálculo reservas, una estimación de la responsabilidad futura del asegurador. Esta es una información importante para calcular las reservas por pérdidas de la aseguradora, descritas en la Sección <a href="C-Intro.html#S:Reserving">1.2.4</a>.</p>
+<p>Además del reembolso de las pérdidas que satisface el asegurador, éste también debe preocuparse por otra fuente de pérdida de ingresos, los gastos. Los gastos de peritaje de las pérdidas son parte del coste de gestión de los siniestros de una aseguradora. La analítica de datos se puede utilizar para reducir gastos directamente relacionados con la gestión de siniestros (asignados) así como el tiempo del personal que en general se usa para supervisar los procesos de gestión de los siniestros (no asignados). El sector asegurador tiene costes operativos elevados en relación con otras organizaciones del sector de los servicios financieros.</p>
+<p>Además de los pagos de las reclamaciones, hay muchas otras formas en las que las aseguradoras utilizan datos para gestionar sus productos. Ya hemos discutido la necesidad de analizar la suscripción, es decir, la clasificación de los riesgos en las etapas iniciales de adquisición y renovación. Las aseguradoras también están interesadas en qué tipo de asegurados deciden renovar su contrato y, al igual que con otros productos, están interesadas en monitorizar la fidelidad de sus clientes.</p>
+<p>La analítica también se puede utilizar para gestionar una cartera de pólizas o el conjunto de riesgos que ha suscrito una aseguradora. Cuando se presenta inicialmente el riesgo, la aseguradora puede actuar imponiendo parámetros contractuales que modifiquen las condiciones ligadas a los pagos que prevé el contrato. Los capítulos <a href="C-Severity.html#C:Severity">3</a> y <a href="C-PortMgt.html#C:PortMgt">10</a> describen las modificaciones más usuales que incluyen el coaseguro, las franquicias y los límites superiores de la póliza.</p>
+<p>Una vez acordados los términos del contrato con un asegurado, el asegurador puede todavía modificar su obligación neta mediante la celebración de un convenio de reaseguro. Este tipo de contrato se realiza con un reasegurador, un asegurador de un asegurador. Es completamente normal que las compañías de seguros adquieran seguros para su cartera de riesgos a fin de obtener protección contra sucesos inusuales, al igual que las personas y otras empresas lo hacen.</p>
+</div>
+<div id="S:Reserving" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Provisiones</h3>
+<p>Una característica importante que distingue a los seguros de otros sectores de la economía es el momento del intercambio de los bienes. En la industria manufacturera, los pagos por bienes generalmente se realizan en el momento de una transacción. Por el contrario, en el caso de los seguros, el dinero recibido de un cliente se obtiene antes de los beneficios o servicios; estos se concretan en una fecha posterior, en la que ocurre el hecho asegurado. Esto lleva a la necesidad de disponer de una reserva de capital para hacer frente a las obligaciones futuras respecto de las obligaciones asumidas y para ganarse la confianza de los asegurados respecto a que la empresa podrá cumplir con sus compromisos. El tamaño de esta reserva de capital y la importancia de garantizar su adecuación es una de las principales preocupaciones de la industria de seguros.</p>
+<p>La reserva de capital para siniestros impagados se conoce como reserva por pérdidas; en algunas jurisdicciones, las reservas también se conocen como <em>provisiones técnicas</em>. En la Figura <a href="C-Intro.html#fig:StochOperations">1.1</a> se aprecia las veces en las que una empresa cierra su posición financiera; estos momentos se conocen como fechas de valoración.
+Los siniestros que se declaran antes de las fechas de valoración normalmente ya se han pagado, están en proceso de pago o están a punto de pagarse; Se desconocen los siniestros que se devengarán tras las fechas de valoración. Una empresa debe estimar estos pasivos pendientes al determinar su solidez financiera. Determinar con precisión las provisiones es importante para las aseguradoras por muchas razones.</p>
+<ol style="list-style-type: decimal">
+<li>Las provisiones representan una reclamación anticipada que la aseguradora debe a sus clientes.
+Una provisión insuficiente puede acabar en un incumplimiento de las responsabilidades de la reclamación de un siniestro. Por el contrario, una aseguradora con excesivas provisiones puede presentar una peor posición financiera de la que realmente tiene.</li>
+<li>Las provisiones proporcionan una estimación del coste no pagado del seguro que se pueden utilizar para calcular precios de nuevos contratos.</li>
+<li>Las leyes y regulaciones exigen el establecimiento de provisiones. La sociedad tiene sumo interés en que se pueda garantizar la solidez financiera y la solvencia de las aseguradoras.</li>
+<li>Además de la administración y los reguladores de las compañías de seguros, otras partes interesadas, como inversores y clientes, toman decisiones que dependen de las provisiones que tenga una empresa.</li>
+</ol>
+<p>Las provisiones son un área del seguro en la que existen diferencias sustanciales entre los seguros de vida y los seguros generales (también conocido como no-vida). En los seguros de vida, la gravedad (cuantía de la pérdida) a menudo no es una fuente de incertidumbre ya que los pagos a realizar se especifican en el contrato. La frecuencia, determinada por la curva de mortalidad de los asegurados, es lo que preocupa. Sin embargo, debido a la cantidad de tiempo que transcurre hasta la liquidación de los contratos de seguros de vida, el valor temporal de la incertidumbre monetaria medida desde la emisión hasta la fecha de pago puede dominar las preocupaciones sobre la frecuencia. Por ejemplo, para un asegurado que compra un contrato de vida a los 20 años, no sería raro que el contrato siguiera abierto al cabo de 60 años, cuando el asegurado celebrase su 80 cumpleaños. Para más información, ver, por ejemplo, <span class="citation">Bowers et al. (<a href="#ref-bowers1986actuarial" role="doc-biblioref">1986</a>)</span> o <span class="citation">Dickson, Hardy, and Waters (<a href="#ref-dickson2013actuarial" role="doc-biblioref">2013</a>)</span> para obtener información sobre cómo reservar un seguro de vida.</p>
+</div>
+</div>
+<div id="S:LGPIF" class="section level2">
+<h2><span class="header-section-number">1.3</span> Caso de Estudio: Fondo de Propiedad de Wisconsin</h2>
+<hr />
+<p>En esta sección, usamos el Fondo de Propiedad de Wisconsin como un caso de estudio. Se aprenderá a:</p>
+<ul>
+<li>Describir cómo los sucesos que generan la información pueden producir datos de interés para los analistas de seguros.</li>
+<li>Producir estadísticas descriptivas relevantes para cada variable.</li>
+<li>Describir cómo se pueden utilizar estos resultados en cada una de las principales áreas operativas de una compañía de seguros.</li>
+</ul>
+<hr />
+<p>Ilustremos el tipo de datos bajo consideración y los objetivos que deseamos lograr mediante el análisis de la Local Government Property Insurance Fund (LGPIF), un conjunto de pólizas de seguros administrado por la Oficina del Comisionado de Seguros de Wisconsin. La LGPIF se creó para proporcionar seguros de propiedad para entidades gubernamentales locales que incluían condados, ciudades, pueblos, aldeas, distritos escolares y de bibliotecas.
+El fondo asegura toda propiedad del gobierno local, como los edificios gubernamentales, las escuelas, las bibliotecas y los vehículos de motor. El fondo cubre toda pérdida que afecta a la propiedad, excepto las que son consecuencia de inundaciones, terremotos, desgaste,
+temperaturas extremas, moho, guerras, reacciones nucleares y malversación de fondos o robo por parte de un empleado.</p>
+<p>El fondo cubre más de mil entidades gubernamentales locales que pagan aproximadamente 25 millones de dólares en primas cada año y reciben una cobertura de seguro de aproximadamente 75 mil millones de dólares. Los edificios del gobierno estatal no están cubiertos; la LGPIF es para entidades del gobierno local que tienen responsabilidades presupuestarias separadas y que necesitan un seguro para moderar los efectos presupuestarios de sucesos asegurables inciertos. La cobertura a la propiedad del gobierno local ha estado vigente en Wisconsin desde 1911, proporcionando así una gran cantidad de datos históricos.</p>
+<p>En esta ilustración, restringimos el análisis a los siniestros de la cobertura de los edificios y su contenido; no consideramos siniestros de vehículos motorizados y equipos especializados que son propiedad de las entidades locales (como máquinas quitanieves). También consideramos solo las reclamaciones que están cerradas, con obligaciones totalmente cumplidas.</p>
+<div id="S:OutComes" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Variables de siniestralidad del fondo: frecuencia y severidad</h3>
+<p>Fundamentalmente, las compañías de seguros aceptan primas a cambio de promesas de compensar al asegurado en caso de que ocurra un siniestro contemplado en la póliza. La indemnización es la compensación proporcionada por la aseguradora por los daños, pérdidas o daños incurridos que están cubiertos por la póliza. Esta compensación también se conoce como <em>siniestro</em>. La magnitud de la cuantía del pago, conocido como <em>severidad</em>, es un gasto financiero clave para una aseguradora.</p>
+<p>En términos de gasto monetario, a una aseguradora le es indiferente tener diez siniestros de 100 que un siniestro de 1000. No obstante, es habitual que las aseguradoras estudien la frecuencia con la que se producen los siniestros, conocida como la <em>frecuencia</em> de siniestralidad. La frecuencia es importante para calcular los gastos, pero también influye en la determinación de los parámetros contractuales (como la franquicia y los límites de la póliza que se describen más adelante) que se establecen en función de la ocurrencia concreta de cada siniestro y se va controlando periódicamente por el supervisor de los seguros, y puede ser un factor clave en la determinación del compromiso de indemnización global del asegurador. Consideraremos la frecuencia y la severidad como las dos principales variables de siniestralidad que deseamos comprender, modelar y gestionar.</p>
+<p>Por ejemplo, en 2010 había 1.110 asegurados en el fondo de propiedad que sufrieron un total de 1.377 siniestros. La tabla <a href="C-Intro.html#tab:Frequency2010">1.1</a> muestra la distribución. Casi dos tercios (0,637) de los asegurados no tuvieron ningún siniestro y un 18,8% adicional tuvo solo un siniestro. El 17,5% restante (= 1-0,637-0,188) tuvo más de un siniestro; el asegurado con el mayor número de siniestros registró un total de 239. El número medio de siniestros en esta muestra fue 1,24 (= 1377/1110).</p>
+<table>
+<caption><span id="tab:Frequency2010">Table 1.1: </span> 2010 Distribución de frecuencia de los siniestros</caption>
+<thead>
+<tr class="header">
+<th align="left">Tipo</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Número</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9 o más</td>
+<td>Suma</td>
+</tr>
+<tr class="even">
+<td align="left">Frec.</td>
+<td>707</td>
+<td>209</td>
+<td>86</td>
+<td>40</td>
+<td>18</td>
+<td>12</td>
+<td>9</td>
+<td>4</td>
+<td>6</td>
+<td>19</td>
+<td>1110</td>
+</tr>
+<tr class="odd">
+<td align="left">Siniestros</td>
+<td>0</td>
+<td>209</td>
+<td>172</td>
+<td>120</td>
+<td>72</td>
+<td>60</td>
+<td>54</td>
+<td>28</td>
+<td>48</td>
+<td>617</td>
+<td>1377</td>
+</tr>
+<tr class="even">
+<td align="left">Proporción</td>
+<td>0,637</td>
+<td>0,188</td>
+<td>0,077</td>
+<td>0,036</td>
+<td>0,016</td>
+<td>0,011</td>
+<td>0,008</td>
+<td>0,004</td>
+<td>0,005</td>
+<td>0,017</td>
+<td>1,000</td>
+</tr>
+</tbody>
+</table>
+<h5 style="text-align: center;">
+<a id="displayCode.T:Frequency.1" href="javascript:togglecode('toggleCode.T:Frequency.1','displayCode.T:Frequency.1');"><i><strong>Código R para la Tabla de Frecuencias </strong></i></a>
+</h5>
+<div id="toggleCode.T:Frequency.1" style="display: none">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Insample.csv&quot;</span>, <span class="dt">header=</span>T,  <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">Insample2010 &lt;-<span class="st"> </span><span class="kw">subset</span>(Insample, Year<span class="op">==</span><span class="dv">2010</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">table</span>(Insample2010<span class="op">$</span>Freq)</a></code></pre></div>
+</div>
+<p>Para analizar la distribución de la severidad, el enfoque habitual es examinar la distribución de la muestra de los 1.377 siniestros. Sin embargo, otra alternativa consiste en examinar la distribución del promedio de los siniestros de los asegurados que sufrieron algún siniestro. En nuestra muestra de 2010, hubo 403 (= 1110-707) asegurados que sufrieron algún siniestro. Para 209 de dichos asegurados con un solo siniestro, el coste medio es igual al coste del único siniestro que tuvieron. Para el asegurado con mayor frecuencia, el coste medio es un promedio de 239 siniestros declarados por separado. Este promedio también se conoce como la prima pura o <em>coste del siniestro</em>.</p>
+<p>La tabla <a href="C-Intro.html#tab:Severity2010">1.2</a> resume la distribución de la muestra de las severidades promedio de los 403 asegurados que presentaron una reclamación de siniestro; muestra que el coste medio los siniestros fue igual a 56.330 (todos los costes están expresados en dólares estadounidenses). Sin embargo, el promedio solo da una mirada limitada de la distribución. Se puede extraer más información de los estadísticos descriptivos resumen que muestran un siniestro muy grande con una cuantía igual a 12.920.000. La figura <a href="C-Intro.html#fig:SeverityFig">1.2</a> proporciona más información sobre la distribución del coste de los siniestros de la muestra, y revela una distribución que está dominada por este único gran siniestro de modo que el histograma no es muy útil. Incluso al eliminar el siniestro elevado, nos encontramos ante una distribución que está sesgada a la derecha. En general, la técnica más aceptada es trabajar con severidades expresadas en unidades logarítmicas, especialmente cuando se analizan gráficos; la figura correspondiente en el panel de la derecha es mucho más fácil de interpretar.</p>
+<table style="width:88%;">
+<caption><span id="tab:Severity2010">Table 1.2: </span> Distribución de la severidad promedio en 2010</caption>
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="12%" />
+<col width="12%" />
+<col width="15%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Mínimo</th>
+<th align="right">Primer
+Cuartil</th>
+<th align="right">Mediana</th>
+<th align="right">Media</th>
+<th align="right">Tercer
+Cuartil</th>
+<th align="right">Máximo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">167</td>
+<td align="right">2.226</td>
+<td align="right">4.951</td>
+<td align="right">56.330</td>
+<td align="right">11.900</td>
+<td align="right">12.920.000</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:SeverityFig"></span>
+<img src="LossDataAnalytics_files/figure-html/SeverityFig-1.png" alt="Distribución del promedio de severidades positivas" width="80%" />
+<p class="caption">
+Figure 1.2: Distribución del promedio de severidades positivas
+</p>
+</div>
+<h5 style="text-align: center;">
+<a id="displayCode.SeverityFig.1" href="javascript:togglecode('toggleCode.SeverityFig.1','displayCode.SeverityFig.1');"><i><strong> Código R para la Tabla y Figuras de la distribución de la severidad</strong></i></a>
+</h5>
+<div id="toggleCode.SeverityFig.1" style="display: none">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/PropertyFundInsample.csv&quot;</span>, <span class="dt">header=</span>T, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2">Insample2010 &lt;-<span class="st"> </span><span class="kw">subset</span>(Insample, Year<span class="op">==</span><span class="dv">2010</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">InsamplePos2010 &lt;-<span class="st"> </span><span class="kw">subset</span>(Insample2010, yAvg<span class="op">&gt;</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co"># Tabla</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="kw">summary</span>(InsamplePos2010<span class="op">$</span>yAvg)</a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw">length</span>(InsamplePos2010<span class="op">$</span>yAvg)</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co"># Figuras</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="kw">hist</span>(InsamplePos2010<span class="op">$</span>yAvg, <span class="dt">main=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Siniestros medios&quot;</span>)</a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="kw">hist</span>(<span class="kw">log</span>(InsamplePos2010<span class="op">$</span>yAvg), <span class="dt">main=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Siniestros medios en logaritmos&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="S:FundVariables" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Variables de clasificación del fondo</h3>
+<p>El objetivo de los primeros capítulos de este texto es desarrollar modelos para representar y gestionar las dos variables principales en el análisis de la siniestralidad, frecuencia y severidad.
+Sin embargo, cuando los actuarios y otros analistas financieros utilizan esos modelos, lo hacen usando variables externas. En general, usando terminología estadística, se podría llamar a dichas variables las variables explicativas o predictoras; hay muchos otros nombres en estadística, economía, psicología y otras disciplinas. Debido a nuestro enfoque en seguros, vamos a llamarlas variables de tarificación ya que serán útiles para establecer tarifas y primas de seguros.</p>
+<p>Habíamos empezado considerando las observaciones de una muestra de 1.110 asegurados que, en principio, podían parecer muchos. Sin embargo, como veremos en nuestras próximas aplicaciones, debido a la elevada presencia de ceros y a la elevada asimetría en los siniestros, los actuarios normalmente desean tener más datos. Un enfoque muy habitual, que adoptamos aquí, es examinar los resultados de varios años, aumentando así el tamaño de la muestra. Discutiremos las fortalezas y limitaciones de esta estrategia más adelante, pero, de momento, solo vamos a explicar al lector cómo funciona.</p>
+<p>Específicamente, la Tabla <a href="C-Intro.html#tab:CoverageBCIM">1.3</a> muestra que ahora consideramos pólizas vigentes en cinco años con datos disponibles, 2006, …, 2010, incluido. Los datos comienzan en 2006 porque hubo un cambio en la codificación de los siniestros en 2005, por lo que no es posible realizar comparaciones con años anteriores. Para mitigar el efecto de los siniestros abiertos, sólo consideraremos los años anteriores a 2011. Un siniestro abierto significa que todavía no se conocen todas las obligaciones que implica dicho siniestro en el momento del análisis; para algunos siniestros, como cuando existe una lesión a una persona en un accidente de automóvil o en el lugar de trabajo, se sabe que pueden pasar años antes de que los costes sean completamente conocidos.</p>
+<table style="width:93%;">
+<caption><span id="tab:CoverageBCIM">Table 1.3: </span> Resumen de siniestralidad por póliza</caption>
+<colgroup>
+<col width="19%" />
+<col width="16%" />
+<col width="19%" />
+<col width="18%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Año</th>
+<th align="right">Promedio
+Frecuenc.</th>
+<th>Promedio
+Severid.</th>
+<th align="right">Promedio
+Coberturas</th>
+<th align="right">Número de
+Asegurados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="right">0,951</td>
+<td>9.695</td>
+<td align="right">32.498.186</td>
+<td align="right">1.154</td>
+</tr>
+<tr class="even">
+<td align="left">2007</td>
+<td align="right">1,167</td>
+<td>6.544</td>
+<td align="right">35.275.949</td>
+<td align="right">1.138</td>
+</tr>
+<tr class="odd">
+<td align="left">2008</td>
+<td align="right">0,974</td>
+<td>5.311</td>
+<td align="right">37.267.485</td>
+<td align="right">1.125</td>
+</tr>
+<tr class="even">
+<td align="left">2009</td>
+<td align="right">1,219</td>
+<td>4.572</td>
+<td align="right">40.355.382</td>
+<td align="right">1.112</td>
+</tr>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="right">1,241</td>
+<td>20.452</td>
+<td align="right">41.242.070</td>
+<td align="right">1.110</td>
+</tr>
+</tbody>
+</table>
+<h5 style="text-align: center;">
+<a id="displayCode.CoverageBC.1" href="javascript:togglecode('toggleCode.CoverageBC.1','displayCode.CoverageBC.1');"><i><strong>Código R para resumen de siniestralidad por póliza</strong></i></a>
+</h5>
+<div id="toggleCode.CoverageBC.1" style="display: none">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/PropertyFundInsample.csv&quot;</span>, <span class="dt">header=</span>T, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(doBy)</a>
+<a class="sourceLine" id="cb4-3" title="3">T1A &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Freq <span class="op">~</span><span class="st"> </span>Year, <span class="dt">data =</span> Insample, </a>
+<a class="sourceLine" id="cb4-4" title="4">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x), <span class="dt">num=</span><span class="kw">length</span>(x)) } )</a>
+<a class="sourceLine" id="cb4-5" title="5">T1B &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(yAvg    <span class="op">~</span><span class="st"> </span>Year, <span class="dt">data =</span> Insample,   </a>
+<a class="sourceLine" id="cb4-6" title="6">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x), <span class="dt">num=</span><span class="kw">length</span>(x)) } )</a>
+<a class="sourceLine" id="cb4-7" title="7">T1C &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(BCcov    <span class="op">~</span><span class="st"> </span>Year, <span class="dt">data =</span> Insample,   </a>
+<a class="sourceLine" id="cb4-8" title="8">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x), <span class="dt">num=</span><span class="kw">length</span>(x)) } )</a>
+<a class="sourceLine" id="cb4-9" title="9">Table1In &lt;-<span class="st"> </span><span class="kw">cbind</span>(T1A[<span class="dv">1</span>],T1A[<span class="dv">2</span>],T1B[<span class="dv">2</span>],T1C[<span class="dv">2</span>],T1A[<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="kw">names</span>(Table1In) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Año&quot;</span>, <span class="st">&quot;Promedio Frecuencia&quot;</span>,<span class="st">&quot;Promedia Severidada&quot;</span>, <span class="st">&quot;Media&quot;</span>,<span class="st">&quot;Número de Asegurados&quot;</span>)</a>
+<a class="sourceLine" id="cb4-11" title="11">Table1In</a></code></pre></div>
+</div>
+<p>La tabla <a href="C-Intro.html#tab:CoverageBCIM">1.3</a> muestra que el siniestro medio varía a lo largo del tiempo, especialmente con un valor alto en el año 2010 (que vimos que estaba provocado por un único siniestro elevado).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> El número total de asegurados va disminuyendo progresivamente y, por el contrario, la cobertura va aumentando. La variable de cobertura es la cantidad de cobertura de la propiedad y de los contenidos. Aproximadamente, se puede entender como el pago máximo posible que podría llegar a pagar el asegurador. Para nuestros propósitos inmediatos, la cobertura es nuestra primera variable de tarificación. En igualdad de condiciones, lo que esperamos es que titulares de pólizas con mayor cobertura tengan siniestros de coste más elevado.
+Concretaremos mucho más esta idea a medida que avancemos en nuestro análisis, y también justificaremos esta expectativa a través de los datos.</p>
+<p>Para tener una visión diferente de los datos de 2006-2010, la table <a href="C-Intro.html#tab:DeductCov">1.4</a> resume la distribución de nuestros dos resultados, frecuencia y coste del siniestro. En cada caso, el promedio excede la mediana, lo que sugiere que las dos distribuciones tienen asimetría a la derecha. Además, la table resume nuestras variables continuas de tarificación, cuantía de la cobertura y de la franquicia. La tabla muestra que estas variables también tienen distribuciones asimétricas a la derecha.</p>
+<table style="width:85%;">
+<caption><span id="tab:DeductCov">Table 1.4: </span> Resumen de la frecuencia y coste de siniestros, franquicia y coberturas</caption>
+<colgroup>
+<col width="26%" />
+<col width="13%" />
+<col width="12%" />
+<col width="13%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Mínimo</th>
+<th align="right">Mediana</th>
+<th align="right">Media</th>
+<th align="right">Máximo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Frecuencia</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1,109</td>
+<td align="right">263</td>
+</tr>
+<tr class="even">
+<td>Severidad</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">9.292</td>
+<td align="right">12.922.218</td>
+</tr>
+<tr class="odd">
+<td>Franquicia</td>
+<td align="right">500</td>
+<td align="right">1.000</td>
+<td align="right">3.365</td>
+<td align="right">100.000</td>
+</tr>
+<tr class="even">
+<td>Cobertura (miles)</td>
+<td align="right">8,937</td>
+<td align="right">11.354</td>
+<td align="right">37.281</td>
+<td align="right">2.444.797</td>
+</tr>
+</tbody>
+</table>
+<h5 style="text-align: center;">
+<a id="displayCode.DeductCov.1" href="javascript:togglecode('toggleCode.DeductCov.1','displayCode.DeductCov.1');"><i><strong>Código R de resumen de la frecuencia y coste de siniestros, franquicia y cobertura </strong></i></a>
+</h5>
+<div id="toggleCode.DeductCov.1" style="display: none">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/PropertyFundInsample.csv&quot;</span>, <span class="dt">header=</span>T, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">t1&lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Insample<span class="op">$</span>Freq <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Insample, </a>
+<a class="sourceLine" id="cb5-3" title="3">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">ma=</span><span class="kw">min</span>(x), <span class="dt">m1=</span><span class="kw">median</span>(x),<span class="dt">m=</span><span class="kw">mean</span>(x),<span class="dt">mb=</span><span class="kw">max</span>(x)) } )</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">names</span>(t1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mínimo&quot;</span>, <span class="st">&quot;Mediana&quot;</span>,<span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Máximo&quot;</span>)</a>
+<a class="sourceLine" id="cb5-5" title="5">t2 &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Insample<span class="op">$</span>yAvg <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Insample, </a>
+<a class="sourceLine" id="cb5-6" title="6">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">ma=</span><span class="kw">min</span>(x), <span class="dt">m1=</span><span class="kw">median</span>(x), <span class="dt">m=</span><span class="kw">mean</span>(x),<span class="dt">mb=</span><span class="kw">max</span>(x)) } )</a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="kw">names</span>(t2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mínimo&quot;</span>, <span class="st">&quot;Mediana&quot;</span>,<span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Máximo&quot;</span>)</a>
+<a class="sourceLine" id="cb5-8" title="8">t3 &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Deduct <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Insample, </a>
+<a class="sourceLine" id="cb5-9" title="9">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">ma=</span><span class="kw">min</span>(x), <span class="dt">m1=</span><span class="kw">median</span>(x), <span class="dt">m=</span><span class="kw">mean</span>(x),<span class="dt">mb=</span><span class="kw">max</span>(x)) } )</a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="kw">names</span>(t3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mínimo&quot;</span>, <span class="st">&quot;Mediana&quot;</span>,<span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Máximo&quot;</span>)</a>
+<a class="sourceLine" id="cb5-11" title="11">t4 &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(BCcov<span class="op">/</span><span class="dv">1000</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Insample, </a>
+<a class="sourceLine" id="cb5-12" title="12">   <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">ma=</span><span class="kw">min</span>(x), <span class="dt">m1=</span><span class="kw">median</span>(x), <span class="dt">m=</span><span class="kw">mean</span>(x),<span class="dt">mb=</span><span class="kw">max</span>(x)) } )</a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="kw">names</span>(t4) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mínimo&quot;</span>, <span class="st">&quot;Mediana&quot;</span>,<span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Máximo&quot;</span>)</a>
+<a class="sourceLine" id="cb5-14" title="14">Table2 &lt;-<span class="st"> </span><span class="kw">rbind</span>(t1,t2,t3,t4)</a>
+<a class="sourceLine" id="cb5-15" title="15">Table2a &lt;-<span class="st"> </span><span class="kw">round</span>(Table2,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-16" title="16">Rowlable &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="st">&quot;Frequencia de siniestros&quot;</span>,<span class="st">&quot;Coste de siniestros&quot;</span>,<span class="st">&quot;Franquicia&quot;</span>,<span class="st">&quot;Cobertura (en miles)&quot;</span>)</a>
+<a class="sourceLine" id="cb5-17" title="17">Table2aa &lt;-<span class="st"> </span><span class="kw">cbind</span>(Rowlable,<span class="kw">as.matrix</span>(Table2a))</a>
+<a class="sourceLine" id="cb5-18" title="18">Table2aa</a></code></pre></div>
+</div>
+<p>El siguiente gráfico describe las variables de tarificación consideradas en este capítulo. Lo que deseamos que ocurra es que estas variables estén relacionadas de forma natural con la siniestralidad. Se puede obtener más información sobre dichas variables en <span class="citation">Frees, Lee, and Yang (<a href="#ref-frees2016multivariate" role="doc-biblioref">2016</a>)</span>. Para eliminar a asimetría, de ahora en adelante nos centraremos en las transformaciones logarítmicas de coberturas y franquicias.</p>
+<p>** Descripción de las variables de tarificación **</p>
+<p><span class="math display">\[
+{\small \begin{matrix}
+\begin{array}{ l | l}
+\hline
+Variable    &amp; Descripción \\
+\hline
+\text{EntityType}   &amp; \text{Variable cualitativa que toma uno de los seis valores siguientes:  (Village, City,} \\
+&amp; ~~~~ \text{County, Misc, School, or Town)} \\
+\text{LnCoverage}   &amp; \text{Total de cobertura del continente (edificio) y contenido, en logaritmo de millones de dólares}\\
+\text{LnDeduct}     &amp; \text{Franquicia, en logaritmo de dólares} \\
+\text{AlarmCredit}  &amp; \text{ Variable cualitativa que toma uno de los cuatro valores siguientes:    (0, 5, 10, o 15)} \\
+ &amp;  ~~~~   \text{para alarmas de humo en habitación principal} \\
+\text{NoClaimCredit}    &amp; \text{Variable binaria que indica ausencia de siniestros en los dos años anteriores} \\
+\text{Fire5 }           &amp; \text{Variable binaria que indica que la categoría de incendios está por debajo de 5} \\
+&amp; ~~~~ \text{(El rango de las categorías de incendios va de 0 a 10)} \\
+\hline
+\end{array}
+\end{matrix}}
+\]</span></p>
+<!-- <Descripción de las variables de tarificación >(\#tab:VarDesc)  -->
+<p>Para tener una idea de la relación entre las variables de tarificación no continuas y los siniestros, la Tabla <a href="C-Intro.html#tab:ClaimRateVar">1.5</a> presenta los resultados de siniestralidad cruzados con dichas variables categóricas. La Tabla <a href="C-Intro.html#tab:ClaimRateVar">1.5</a> muestra una variación sustancial en la frecuencia de siniestros y su severidad media según el tipo de entidad. También se observa mayor frecuencia y gravedad según la variable <span class="math inline">\({\tt Fire5}\)</span> variable y lo contrario para la variable <span class="math inline">\({\tt NoClaimCredit}\)</span>. La relación obtenida para la variable <span class="math inline">\({\tt Fire5}\)</span> es contraintuitiva, ya que se esperarían cuantías más bajas para los asegurados en áreas con mejor protección pública (cuando el código de protección es cinco o menos). Naturalmente, existen otras variables que influyen en esta relación. En seguida veremos cómo afectan otras variables del fondo en el análisis de regresión multivariante, donde hallaremos un signo intuitivo y convincente (negativo) para el efecto de la variable <span class="math inline">\({\tt Fire5}\)</span>.</p>
+<table style="width:81%;">
+<caption><span id="tab:ClaimRateVar">Table 1.5: </span> Resumen de siniestralidad según el tipo de entidad, la clase de incendio y la puntuación por ausencia de siniestros</caption>
+<colgroup>
+<col width="30%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="right">Número de
+Pólizas</th>
+<th align="right">Frecuencia
+Siniestros</th>
+<th align="right">Coste
+Medio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><em>EntityType</em></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Village</td>
+<td align="right">1.341</td>
+<td align="right">0,452</td>
+<td align="right">10.645</td>
+</tr>
+<tr class="odd">
+<td align="left">City</td>
+<td align="right">793</td>
+<td align="right">1,941</td>
+<td align="right">16.924</td>
+</tr>
+<tr class="even">
+<td align="left">County</td>
+<td align="right">328</td>
+<td align="right">4,899</td>
+<td align="right">15.453</td>
+</tr>
+<tr class="odd">
+<td align="left">Misc</td>
+<td align="right">609</td>
+<td align="right">0,186</td>
+<td align="right">43.036</td>
+</tr>
+<tr class="even">
+<td align="left">School</td>
+<td align="right">1.597</td>
+<td align="right">1,434</td>
+<td align="right">64.346</td>
+</tr>
+<tr class="odd">
+<td align="left">Town</td>
+<td align="right">971</td>
+<td align="right">0,103</td>
+<td align="right">19.831</td>
+</tr>
+<tr class="even">
+<td align="left"><em>Fire</em></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Fire5=0</td>
+<td align="right">2.508</td>
+<td align="right">0,502</td>
+<td align="right">13.935</td>
+</tr>
+<tr class="even">
+<td align="left">Fire5=1</td>
+<td align="right">3.131</td>
+<td align="right">1,596</td>
+<td align="right">41.421</td>
+</tr>
+<tr class="odd">
+<td align="left"><em>No Claims Credit</em></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">NoClaimCredit=0</td>
+<td align="right">3.786</td>
+<td align="right">1,501</td>
+<td align="right">31.365</td>
+</tr>
+<tr class="odd">
+<td align="left">NoClaimCredit=1</td>
+<td align="right">1.853</td>
+<td align="right">0,310</td>
+<td align="right">30.499</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Total</strong></td>
+<td align="right">5.639</td>
+<td align="right">1,109</td>
+<td align="right">31.206</td>
+</tr>
+</tbody>
+</table>
+<h5 style="text-align: center;">
+<a id="displayCode.ClaimRateVar.1" href="javascript:togglecode('toggleCode.ClaimRateVar.1','displayCode.ClaimRateVar.1');"><i><strong>Resumen de siniestralidad según el tipo de entidad, la clase de incendio y la puntuación por ausencia de siniestros</strong></i></a>
+</h5>
+<div id="toggleCode.ClaimRateVar.1" style="display: none">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">ByVarSumm&lt;-<span class="cf">function</span>(datasub){</a>
+<a class="sourceLine" id="cb6-2" title="2">  tempA &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Freq    <span class="op">~</span><span class="st"> </span><span class="dv">1</span> , <span class="dt">data =</span> datasub,   </a>
+<a class="sourceLine" id="cb6-3" title="3">     <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x), <span class="dt">num=</span><span class="kw">length</span>(x)) } )</a>
+<a class="sourceLine" id="cb6-4" title="4">  datasub1 &lt;-<span class="st">  </span><span class="kw">subset</span>(datasub, yAvg<span class="op">&gt;</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5">  tempB &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(yAvg   <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> datasub1,<span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x)) } )</a>
+<a class="sourceLine" id="cb6-6" title="6">  tempC &lt;-<span class="st"> </span><span class="kw">merge</span>(tempA,tempB,<span class="dt">all.x=</span>T)[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)]</a>
+<a class="sourceLine" id="cb6-7" title="7">  tempC1 &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(tempC)</a>
+<a class="sourceLine" id="cb6-8" title="8">  <span class="kw">return</span>(tempC1)</a>
+<a class="sourceLine" id="cb6-9" title="9">  }</a>
+<a class="sourceLine" id="cb6-10" title="10">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeVillage <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);   </a>
+<a class="sourceLine" id="cb6-11" title="11">t1 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-12" title="12">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeCity <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);      </a>
+<a class="sourceLine" id="cb6-13" title="13">t2 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-14" title="14">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeCounty <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);   </a>
+<a class="sourceLine" id="cb6-15" title="15">t3 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-16" title="16">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeMisc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);      </a>
+<a class="sourceLine" id="cb6-17" title="17">t4 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-18" title="18">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeSchool <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);    </a>
+<a class="sourceLine" id="cb6-19" title="19">t5 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-20" title="20">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeTown <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);      </a>
+<a class="sourceLine" id="cb6-21" title="21">t6 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-22" title="22">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, Fire5 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>);                      </a>
+<a class="sourceLine" id="cb6-23" title="23">t7 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-24" title="24">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, Fire5 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);                      </a>
+<a class="sourceLine" id="cb6-25" title="25">t8 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-26" title="26">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, Insample<span class="op">$</span>NoClaimCredit <span class="op">==</span><span class="st"> </span><span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb6-27" title="27">t9 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-28" title="28">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, Insample<span class="op">$</span>NoClaimCredit <span class="op">==</span><span class="st"> </span><span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb6-29" title="29">t10 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb6-30" title="30">t11 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(Insample)</a>
+<a class="sourceLine" id="cb6-31" title="31">Tablea &lt;-<span class="st"> </span><span class="kw">rbind</span>(t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11)</a>
+<a class="sourceLine" id="cb6-32" title="32">Tableaa &lt;-<span class="st"> </span><span class="kw">round</span>(Tablea,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-33" title="33">Rowlable &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="st">&quot;Village&quot;</span>,<span class="st">&quot;City&quot;</span>,<span class="st">&quot;County&quot;</span>,<span class="st">&quot;Misc&quot;</span>,<span class="st">&quot;School&quot;</span>,</a>
+<a class="sourceLine" id="cb6-34" title="34">          <span class="st">&quot;Town&quot;</span>,<span class="st">&quot;Fire5--No&quot;</span>,<span class="st">&quot;Fire5--Yes&quot;</span>,<span class="st">&quot;NoClaimCredit--No&quot;</span>,</a>
+<a class="sourceLine" id="cb6-35" title="35">        <span class="st">&quot;NoClaimCredit--Yes&quot;</span>,<span class="st">&quot;Total&quot;</span>)</a>
+<a class="sourceLine" id="cb6-36" title="36">Table4 &lt;-<span class="st"> </span><span class="kw">cbind</span>(Rowlable,<span class="kw">as.matrix</span>(Tableaa))</a>
+<a class="sourceLine" id="cb6-37" title="37">Table4</a></code></pre></div>
+</div>
+<p>La tabla <a href="C-Intro.html#tab:RateAlarmCredit">1.6</a> muestra la experiencia de siniestralidad según la puntuación de alarma.
+Se demuestra la dificultad de examinar las variables individualmente.
+Por ejemplo, cuando miramos la experiencia de todas las entidades, vemos que los titulares de pólizas sin puntuación de alarma tienen un coste medio de siniestros y una frecuencia más baja que los asegurados con mayor puntuación de alarma (un 15% de los asegurados cuentan con sistemas de vigilancia las 24h a través de una estación de bomberos o empresa de seguridad). En particular, cuando miramos el tipo de entidad “School”, la frecuencia es 0,422 y la severidad 25.523 si no hay puntuación de alarma, mientras que para el nivel de alarma más alto los valores ascienden a 2,008 y 85.140, respectivamente. Esto puede significar simplemente que las entidades con más siniestros son las que probablemente tengan tendencia a poner un sistema de alarma. En resumen, las tablas no examinan los efectos multivariantes; por ejemplo, la tabla <a href="C-Intro.html#tab:ClaimRateVar">1.5</a> ignora cómo el efecto del tamaño (las cuantía de cobertura) afecta a la siniestralidad.</p>
+<table style="width:98%;">
+<caption><span id="tab:RateAlarmCredit">Table 1.6: </span> Resumen la siniestralidad según el tipo de entidad y la categoría de puntuación de alarma (AC)</caption>
+<colgroup>
+<col width="12%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Entidad
+Tipo</th>
+<th align="right">AC0
+Sini.
+Frecuencia</th>
+<th align="right">AC0
+Pro.
+Severidad</th>
+<th align="right">AC0
+Núm.
+Pólizas</th>
+<th align="right">AC5
+Sini.
+Frecuencia</th>
+<th align="right">AC5
+Pro.
+Severidad</th>
+<th align="right">AC5
+Núm.
+Polizas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Village</td>
+<td align="right">0,326</td>
+<td align="right">11.078</td>
+<td align="right">829</td>
+<td align="right">0,278</td>
+<td align="right">8.086</td>
+<td align="right">54</td>
+</tr>
+<tr class="even">
+<td align="left">City</td>
+<td align="right">0,893</td>
+<td align="right">7.576</td>
+<td align="right">244</td>
+<td align="right">2,077</td>
+<td align="right">4.150</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">County</td>
+<td align="right">2,140</td>
+<td align="right">16.013</td>
+<td align="right">50</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Misc</td>
+<td align="right">0,117</td>
+<td align="right">15.122</td>
+<td align="right">386</td>
+<td align="right">0,278</td>
+<td align="right">13.064</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="left">School</td>
+<td align="right">0,422</td>
+<td align="right">25.523</td>
+<td align="right">294</td>
+<td align="right">0,410</td>
+<td align="right">14.575</td>
+<td align="right">122</td>
+</tr>
+<tr class="even">
+<td align="left">Town</td>
+<td align="right">0,083</td>
+<td align="right">25.257</td>
+<td align="right">808</td>
+<td align="right">0,194</td>
+<td align="right">3.937</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">0,318</td>
+<td align="right">15.118</td>
+<td align="right">2.611</td>
+<td align="right">0,431</td>
+<td align="right">10.762</td>
+<td align="right">239</td>
+</tr>
+</tbody>
+</table>
+<table style="width:98%;">
+<caption>Resumen de la siniestralidad según el tipo de entidad y la categoría de puntuación de alarma (AC)</caption>
+<colgroup>
+<col width="12%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Entidad
+Tipo</th>
+<th align="left">AC10
+Sini.
+Frequencia</th>
+<th align="center">AC10
+Pro.
+Severidad</th>
+<th align="center">AC10
+Núm.
+Pólizas</th>
+<th align="right">AC15
+Sini.
+Frequencia</th>
+<th align="right">AC15
+Pro.
+Severidad</th>
+<th align="right">AC15
+Núm.
+Pólizas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Village</td>
+<td align="left">0,500</td>
+<td align="center">8.792</td>
+<td align="center">50</td>
+<td align="right">0,725</td>
+<td align="right">10.544</td>
+<td align="right">408</td>
+</tr>
+<tr class="even">
+<td align="left">City</td>
+<td align="left">1,258</td>
+<td align="center">8.625</td>
+<td align="center">31</td>
+<td align="right">2,485</td>
+<td align="right">20.470</td>
+<td align="right">505</td>
+</tr>
+<tr class="odd">
+<td align="left">County</td>
+<td align="left">2,125</td>
+<td align="center">11.688</td>
+<td align="center">8</td>
+<td align="right">5,513</td>
+<td align="right">15.476</td>
+<td align="right">269</td>
+</tr>
+<tr class="even">
+<td align="left">Misc</td>
+<td align="left">0,077</td>
+<td align="center">3.923</td>
+<td align="center">26</td>
+<td align="right">0,341</td>
+<td align="right">87.021</td>
+<td align="right">179</td>
+</tr>
+<tr class="odd">
+<td align="left">School</td>
+<td align="left">0,488</td>
+<td align="center">11.597</td>
+<td align="center">168</td>
+<td align="right">2,008</td>
+<td align="right">85.140</td>
+<td align="right">1,013</td>
+</tr>
+<tr class="even">
+<td align="left">Town</td>
+<td align="left">0,091</td>
+<td align="center">2.338</td>
+<td align="center">44</td>
+<td align="right">0,261</td>
+<td align="right">9.490</td>
+<td align="right">88</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="left">0,517</td>
+<td align="center">10.194</td>
+<td align="center">327</td>
+<td align="right">2,093</td>
+<td align="right">41.458</td>
+<td align="right">2.462</td>
+</tr>
+</tbody>
+</table>
+<h5 style="text-align: center;">
+<a id="displayCode.RateAlarmCredit.1" href="javascript:togglecode('toggleCode.RateAlarmCredit.1','displayCode.RateAlarmCredit.1');"><i><strong>Código R para el resumen de siniestralidad según el tipo de entidad y la categoría de puntuación de alarma</strong></i></a>
+</h5>
+<div id="toggleCode.RateAlarmCredit.1" style="display: none">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">#Resumen de siniestralidad según el tipo de entidad y la categoría de #puntuación de alarma </span></a>
+<a class="sourceLine" id="cb7-2" title="2">ByVarSumm&lt;-<span class="cf">function</span>(datasub){</a>
+<a class="sourceLine" id="cb7-3" title="3">  tempA &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(Freq    <span class="op">~</span><span class="st"> </span>AC00 , <span class="dt">data =</span> datasub,   </a>
+<a class="sourceLine" id="cb7-4" title="4">                     <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x), <span class="dt">num=</span><span class="kw">length</span>(x)) } )</a>
+<a class="sourceLine" id="cb7-5" title="5">  datasub1 &lt;-<span class="st">  </span><span class="kw">subset</span>(datasub, yAvg<span class="op">&gt;</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-6" title="6">  <span class="cf">if</span>(<span class="kw">nrow</span>(datasub1)<span class="op">==</span><span class="dv">0</span>) { n&lt;-<span class="kw">nrow</span>(datasub)</a>
+<a class="sourceLine" id="cb7-7" title="7">    <span class="kw">return</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,n))</a>
+<a class="sourceLine" id="cb7-8" title="8">  } <span class="cf">else</span> </a>
+<a class="sourceLine" id="cb7-9" title="9">  {</a>
+<a class="sourceLine" id="cb7-10" title="10">    tempB &lt;-<span class="st"> </span><span class="kw">summaryBy</span>(yAvg   <span class="op">~</span><span class="st"> </span>AC00, <span class="dt">data =</span> datasub1,</a>
+<a class="sourceLine" id="cb7-11" title="11">                       <span class="dt">FUN =</span> <span class="cf">function</span>(x) { <span class="kw">c</span>(<span class="dt">m =</span> <span class="kw">mean</span>(x)) } )</a>
+<a class="sourceLine" id="cb7-12" title="12">    tempC &lt;-<span class="st"> </span><span class="kw">merge</span>(tempA,tempB,<span class="dt">all.x=</span>T)[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>)]</a>
+<a class="sourceLine" id="cb7-13" title="13">    tempC1 &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(tempC)</a>
+<a class="sourceLine" id="cb7-14" title="14">    <span class="kw">return</span>(tempC1)</a>
+<a class="sourceLine" id="cb7-15" title="15">  }</a>
+<a class="sourceLine" id="cb7-16" title="16">}</a>
+<a class="sourceLine" id="cb7-17" title="17">AlarmC &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">*</span>(Insample<span class="op">$</span>AC00<span class="op">==</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>(Insample<span class="op">$</span>AC05<span class="op">==</span><span class="dv">1</span>)<span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>(Insample<span class="op">$</span>AC10<span class="op">==</span><span class="dv">1</span>)<span class="op">+</span><span class="st"> </span><span class="dv">4</span><span class="op">*</span>(Insample<span class="op">$</span>AC15<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-18" title="18">ByVarCredit&lt;-<span class="cf">function</span>(ACnum){</a>
+<a class="sourceLine" id="cb7-19" title="19">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeVillage <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span><span class="st"> </span>ACnum); </a>
+<a class="sourceLine" id="cb7-20" title="20">  t1 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-21" title="21">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeCity <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span><span class="st"> </span>ACnum);      </a>
+<a class="sourceLine" id="cb7-22" title="22">  t2 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-23" title="23">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeCounty <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span><span class="st"> </span>ACnum);   </a>
+<a class="sourceLine" id="cb7-24" title="24">  t3 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-25" title="25">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeMisc <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span><span class="st"> </span>ACnum);</a>
+<a class="sourceLine" id="cb7-26" title="26">  t4 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-27" title="27">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeSchool <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span><span class="st"> </span>ACnum);    </a>
+<a class="sourceLine" id="cb7-28" title="28">  t5 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-29" title="29">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, TypeTown <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>AlarmC <span class="op">==</span>ACnum);      </a>
+<a class="sourceLine" id="cb7-30" title="30">  t6 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-31" title="31">datasub &lt;-<span class="st">  </span><span class="kw">subset</span>(Insample, AlarmC <span class="op">==</span><span class="st"> </span>ACnum);  </a>
+<a class="sourceLine" id="cb7-32" title="32">  t7 &lt;-<span class="st"> </span><span class="kw">ByVarSumm</span>(datasub)</a>
+<a class="sourceLine" id="cb7-33" title="33">Tablea &lt;-<span class="st"> </span><span class="kw">rbind</span>(t1,t2,t3,t4,t5,t6,t7)</a>
+<a class="sourceLine" id="cb7-34" title="34">Tableaa &lt;-<span class="st"> </span><span class="kw">round</span>(Tablea,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb7-35" title="35">Rowlable &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="st">&quot;Village&quot;</span>,<span class="st">&quot;City&quot;</span>,<span class="st">&quot;County&quot;</span>,<span class="st">&quot;Misc&quot;</span>,<span class="st">&quot;School&quot;</span>,</a>
+<a class="sourceLine" id="cb7-36" title="36">                  <span class="st">&quot;Town&quot;</span>,<span class="st">&quot;Total&quot;</span>)</a>
+<a class="sourceLine" id="cb7-37" title="37">Table4 &lt;-<span class="st"> </span><span class="kw">cbind</span>(Rowlable,<span class="kw">as.matrix</span>(Tableaa))</a>
+<a class="sourceLine" id="cb7-38" title="38">}</a>
+<a class="sourceLine" id="cb7-39" title="39">Table4a &lt;-<span class="st"> </span><span class="kw">ByVarCredit</span>(<span class="dv">1</span>)    <span class="co">#Claims Summary by Entity Type and Alarm Credit==00</span></a>
+<a class="sourceLine" id="cb7-40" title="40">Table4b &lt;-<span class="st"> </span><span class="kw">ByVarCredit</span>(<span class="dv">2</span>)    <span class="co">#Claims Summary by Entity Type and Alarm Credit==05 </span></a>
+<a class="sourceLine" id="cb7-41" title="41">Table4c &lt;-<span class="st"> </span><span class="kw">ByVarCredit</span>(<span class="dv">3</span>)    <span class="co">#Claims Summary by Entity Type and Alarm Credit==10</span></a>
+<a class="sourceLine" id="cb7-42" title="42">Table4d &lt;-<span class="st"> </span><span class="kw">ByVarCredit</span>(<span class="dv">4</span>)    <span class="co">#Claims Summary by Entity Type and Alarm Credit==15</span></a></code></pre></div>
+</div>
+</div>
+<div id="operativa-del-fondo" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Operativa del fondo</h3>
+<p>Hasta ahora hemos visto las dos variables de siniestralidad del Fondo: una variable de recuento para el número de siniestros y una variable continua para el coste de las reclamaciones. También hemos introducido una variable de tarificación continua (cobertura); una variable cuantitativa discreta (franquicia en logarítmicos); dos variables de tarificación binarias (ausencia de siniestralidad y clase de incendio); y dos variables de tarificación categóricas (tipo de entidad y crédito de alarma). En los capítulos siguientes se explica cómo analizar y modelizar la distribución de dichas variables y sus relaciones. Antes de entrar en los detalles técnicos, pensemos a dónde queremos llegar. Las áreas funcionales de una compañía de seguros se describen en la Sección <a href="C-Intro.html#S:PredModApps">1.2</a>; veamos ahora cómo se aplicarían dichas áreas al contexto del fondo de propiedad que estamos analizando.</p>
+<div id="inicio-del-seguro-1" class="section level4 unnumbered">
+<h4>Inicio del seguro</h4>
+<p>Debido a que este es un fondo patrocinado por el gobierno, no tenemos que preocuparnos por seleccionar buenos riesgos o evitar malos riesgos; al fondo no se le permite denegar una solicitud de cobertura de una entidad gubernamental local. Por lo tanto, si no existe un proceso de suscripción, ¿qué hay que cobrar?</p>
+<p>Podríamos mirar la experiencia más reciente en 2010, donde el total de todos los siniestros del fondos alcanzó la cifra de 28,16 millones de USD (<span class="math inline">\(= 1377 \text{ siniestros} \times 20452 \text{ coste medio}\)</span>). Si lo dividimos entre
+1.110 asegurados, eso sugiere una prima igual a 24.370 (<span class="math inline">\(\approx\)</span> 28.160.000/1110). Sin embargo, 2010 fue un mal año; usando el mismo método, nuestra prima sería mucho menor según los datos de 2009. Este vaivén de las primas frustraría el propósito principal del fondo, que no es otro que fijar un precio constante que los administradores de propiedades locales puedan utilizar en sus presupuestos.</p>
+<p>Tener un precio único para todos los asegurados es bueno, pero difícilmente parece justo. Por ejemplo, la tabla <a href="C-Intro.html#tab:ClaimRateVar">1.5</a> sugiere que las escuelas tienen siniestros mucho más costosos que otras entidades y, por lo tanto, deberían pagar más. Sin embargo, hacer el cálculo entidad por entidad tampoco sería lo correcto. Por ejemplo, como vimos en la tabla <a href="C-Intro.html#tab:RateAlarmCredit">1.6</a> aquellas entidades con una puntuación de alarma del 15% (con un buen comportamiento, al tener los mejores sistemas de alarma) en realidad terminarían pagando más.</p>
+<p>Entonces, parece que tenemos los datos para calcular primas adecuadas pero hay que profundizar en el análisis. Exploraremos estos aspectos más adelante en el Capítulo <a href="C-PremiumFoundations.html#C:PremiumFoundations">7</a> sobre <em>fundamentos de cálculo de primas</em>.
+La selección de riesgos se introduce en el Capítulo <a href="C-RiskClass.html#C:RiskClass">8</a> sobre <em>clasificación de riesgos</em>.</p>
+</div>
+<div id="renovación-del-seguro-1" class="section level4 unnumbered">
+<h4>Renovación del seguro</h4>
+<p>Aunque el seguro de propiedad es típicamente un contrato de un año, la Table <a href="C-Intro.html#tab:CoverageBCIM">1.3</a> sugiere que los asegurados tienden a renovar; esto es lo más habitual en los seguros generales. Para renovar a los asegurados, además de sus variables de tarificación, tenemos su historial de siniestralidad, que puede ser un buen predictor de los siniestros que van a producirse en el futuro. Por ejemplo, la tabla <a href="C-Intro.html#tab:ClaimRateVar">1.5</a> muestra que los titulares de pólizas que no han sufrido ningún siniestro en los dos últimos años han tenido frecuencias de siniestralidad mucho más bajas que aquellos con al menos un accidente (0,310 frente a 1,501); una frecuencia predicha más baja generalmente resulta en una prima más baja. Por eso es normal que las aseguradoras utilicen variables como <span class="math inline">\({\tt NoClaimCredit}\)</span> en su tarificación. Este tema se trata más a fondo en el Capítulo <a href="C-Credibility.html#C:Credibility">9</a> sobre <em>tarificación a través de la experiencia de sinistralidad</em>.</p>
+</div>
+<div id="gestión-de-siniestros" class="section level4 unnumbered">
+<h4>Gestión de siniestros</h4>
+<p>Por supuesto, el protagonista de las pérdidas de 2010 fue el gran siniestro de más de 12 millones de dólares, casi la mitad de las reclamaciones de ese año. La pregunta es si esto podría haberse evitado o mitigado de alguna forma. ¿Hay maneras que el fondo se proteja contra sucesos con costes tan inusualmente elevados? Otra característica de lo ocurrido en 2010 fue la muy alta frecuencia de siniestros (239) para un único asegurado. Dado que solo hubo un total de 1377 reclamaciones de siniestro ese año, dicha frecuencia significa que un solo asegurado tuvo el 17,4% de los siniestros. Esto también indica que hay que realizar una adecuada gestión de siniestros, el tema del capítulo <a href="C-PortMgt.html#C:PortMgt">10</a>.</p>
+</div>
+<div id="reserva-por-pérdidas" class="section level4 unnumbered">
+<h4>Reserva por pérdidas</h4>
+<p>En nuestro estudio de caso, solo observamos los resultados de un año de siniestros cerrados (lo contrario de los siniestros abiertos). Sin embargo, como en muchas otras líneas de seguro, las obligaciones derivadas de sucesos asegurados que afectan a los edificios tales como incendios, granizo y similares, no se conocen de inmediato y pueden llegar a concretarse más tarde, a lo largo del tiempo. En otras líneas de negocio, incluidas aquellas en las que hay lesiones a las personas, los siniestros requieren incluso mucho más tiempo hasta que llegan a cerrarse. El capítulo <a href="C-LossReserves.html#C:LossReserves">11</a> presenta esta problemática y la <em>reserva por pérdidas</em> o <em>provisiones</em>, la disciplina que sirve para determinar cuánto debe reservar la compañía de seguros para cumplir con sus obligaciones.</p>
+</div>
+</div>
+</div>
+<div id="Intro-further-reading-and-resources" class="section level2">
+<h2><span class="header-section-number">1.4</span> Más Recursos y Colaboradores</h2>
+<div id="colaborador" class="section level4 unnumbered">
+<h4>Colaborador</h4>
+<ul>
+<li><strong>Edward W. (Jed) Frees</strong>, Universidad de Wisconsin-Madison, es el autor principal de la versión inicial de este capítulo. Correo electrónico: <a href="mailto:jfrees@bus.wisc.edu" class="email">jfrees@bus.wisc.edu</a> para comentarios sobre el capítulo y sugerencias de mejoras.</li>
+<li>Los revisores del capítulo incluyen: Yair Babad, Chunsheng Ban, Aaron Bruhn, Gordon Enderle, Hirokazu (Iwahiro) Iwasawa, Bell Ouelega.</li>
+<li>Traducción al español: Montserrat Guillen y Miguel Santolino (Universitat de Barcelona).</li>
+</ul>
+<p>Este libro presenta las herramientas analíticas de datos de pérdidas que son más relevantes para los actuarios y otros analistas de riesgos financieros. También se presentan la terminología nueva de seguros; se pueden encontrar más términos en el <span class="citation">NAIC Glossary (<a href="#ref-NAICGlossary" role="doc-biblioref">2018</a>)</span>. Aquí hay algunas referencias citadas en el capítulo.</p>
+
+</div>
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-bailey1960">
+<p>Bailey, Robert A., and J. Simon LeRoy. 1960. “Two Studies in Automobile Ratemaking.” <em>Proceedings of the Casualty Actuarial Society Casualty Actuarial Society</em> XLVII (I).</p>
+</div>
+<div id="ref-bowers1986actuarial">
+<p>Bowers, Newton L., Hans U. Gerber, James C. Hickman, Donald A. Jones, and Cecil J. Nesbitt. 1986. <em>Actuarial Mathematics</em>. Society of Actuaries Itasca, Ill.</p>
+</div>
+<div id="ref-dickson2013actuarial">
+<p>Dickson, David C. M., Mary Hardy, and Howard R. Waters. 2013. <em>Actuarial Mathematics for Life Contingent Risks</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-survey2013">
+<p>Earnix. 2013. “2013 Insurance Predictive Modeling Survey.” In. Earnix; Insurance Services Office, Inc. <a href="http://earnix.com/2013-insurance-predictive-modeling-survey/3594/">http://earnix.com/2013-insurance-predictive-modeling-survey/3594/</a>.</p>
+</div>
+<div id="ref-frees2016multivariate">
+<p>Frees, Edward W, Gee Lee, and Lu Yang. 2016. “Multivariate Frequency-Severity Regression Models in Insurance.” <em>Risks</em> 4 (1): 4.</p>
+</div>
+<div id="ref-SASsurvey">
+<p>Gorman, Mark, and Stephen Swenson. 2013. “Building Believers: How to Expand the Use of Predictive Analytics in Claims.” In. SAS. <a href="http://www.sas.com/resources/whitepaper/wp_59831.pdf">http://www.sas.com/resources/whitepaper/wp_59831.pdf</a>.</p>
+</div>
+<div id="ref-III2016">
+<p>Insurance Information Institute. 2016. “International Insurance Fact Book.” In. Insurance Information Institute. <a href="http://www.iii.org/sites/default/files/docs/pdf/international_insurance_factbook_2016.pdf">http://www.iii.org/sites/default/files/docs/pdf/international_insurance_factbook_2016.pdf</a>.</p>
+</div>
+<div id="ref-NAICGlossary">
+<p>NAIC Glossary. 2018. “Glossary of Insurance Terms.” In. National Association of Insurance Commissioners. <a href="https://www.naic.org/consumer_glossary.htm">https://www.naic.org/consumer_glossary.htm</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Notemos que la severidad promedio en la Tabla <a href="C-Intro.html#tab:CoverageBCIM">1.3</a> difiere de la que se presenta en la Tabla <a href="C-Intro.html#tab:Severity2010">1.2</a>. Esto ocurre porque en la primera se incluyen las pólizas que no han tenido siniestros mientras que en esta última los excluye. Esta es una distinción importante que se tratará en algunos apartados posteriores del texto.<a href="C-Intro.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="C-Frequency-Modeling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LossDataAnalytics.pdf", "LossDataAnalytics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

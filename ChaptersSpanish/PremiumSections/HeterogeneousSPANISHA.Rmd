@@ -1,0 +1,175 @@
+<!-- ###  Riesgos heterogéneos {#S:HeterogeneousRisks} -->
+
+Como se apuntó en la Sección \@ref(S:IntroductionRatemaking), hay mucha variabilidad en los riesgos que son asegurados, las características de los contratos, y en las personas aseguradas. Como ejemplo, podríamos tener un hermano o hermana gemelo que trabaja en la misma ciudad y gana una cantidad similar de dinero. Aún así, cuando llegara el momento de seleccionar opciones en el seguro de alquiler que cubriera los contenidos de nuestros apartamentos, nos podemos imaginar que existirían diferencias en la cantidad de contenidos asegurables, en las elecciones de las franquicias para definir la cantidad retenida, y quizás niveles diferentes de incertidumbre según la seguridad relativa de nuestros barrios. Las personas y los riesgos que se aseguran son diferentes.
+
+Cuando pensamos en una colección de riesgos diferentes, o `r Gloss('heterogéneos')`, una opción puede ser tarificar todos los  riesgos igual. Esta opción es común, por ejemplo, cuando el gobierno patrocina programas para el riesgo de inundación o el seguro de salud. Sin embargo, también es común tener precios diferentes, con diferencias que guarden relación con el riesgo asegurado.
+
+
+### Exposición al Riesgo {#S:ExposureToRisk}
+
+Una manera directa para hacer que los riesgos heterogéneos sean comparables es a través del concepto `r Gloss('exposición', '7.2, 7.4')`. Para explicar el concepto, podemos usar las *distribuciones de escala* que aprendimos en el Capítulo \@ref(C:Severity). Como recordatorio, una `r Gloss('distribución de escala', '7.4')`, supone que $X$ sigue una `r Gloss('distribución paramétrica')` y que definimos una versión reescalada con $R = X/E$, $E > 0$. Si $R$ pertenece a la misma familia paramétrica que $X$, entonces la distribución se denomina como distribución de escala. Como ya vimos, las distribuciones gamma, exponencial y Pareto son ejemplos de distribuciones de escala.
+
+Intuitivamente, la idea detrás de las exposiciones es conseguir que los riesgos sean más comparables uno con otro. Por ejemplo, puede ser que los riesgos $X_1, \ldots, X_n$ sigan distribuciones diferentes y aun así, con la elección de unas exposiciones correctas, los cocientes $R_1, \ldots, R_n$ sigan una misma distribución. Aquí, interpretaremos los cocientes $R_i = X_i/E_i$ como la siniestralidad dividida por la exposición.
+
+[Tabla 7.3] proporciona unos cuantos ejemplos.  Remarcamos que esta tabla se refiere a años "imputados" de automóviles y a años de hogar, conceptos que serán explicados en la Sección \@ref(S:TrendDevelopment).
+
+<a id=tab:7.3></a> 
+
+[Tabla 7.3]: \#tab:7.3
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{ll}
+\text{Tipo de Seguro} & \text{Exposición Base} \\\hline
+\text{Automóvil Particular} &  \text{Año Imputado Automóvil, Importe de la Cobertura de Seguro } \\
+\text{Hogar} &  \text{Año Imputado Hogar, Importe de la Cobertura de Seguro}\\
+\text{Accidentes de Trabajo}  & \text{Salario}\\
+\text{Responsabilidad Civil Comercial} &  \text{Facturación, Salario, Superficie cuadrada, Número de Unidades}\\
+\text{Daños Empresariales}  & \text{Importe de la Cobertura de Seguro}\\
+\text{Responsabilidad Civil Profesional del Médico}  & \text{Número de Años de Experiencia }\\
+\text{ Responsabilidad Civil Profesional}  & \text{Número de Profesionales (p.ej., Abogados o Contables)}\\
+\text{Objetos Personales} &  \text{Valor del Ítem} \\
+  \hline
+\end{array}
+\end{matrix}
+}
+$$
+
+[Tabla 7.3] : Exposiciones Comúnmente Utilizadas para Diferentes Tipos de Seguro
+
+Una exposición es un tipo de `r Gloss('factor de tarificación')`, concepto que definiremos explícitamente en la próxima Sección \@ref(S:RatingFactors). Es probablemente el factor más importante, tan importante que tanto las primas como los siniestros están definidos en términos de "por exposición".
+
+Para modelizar la frecuencia y la severidad, es habitual pensar en la frecuencia como proporcional a la exposición y en la severidad en términos de pérdida por reclamación (no dependiente de la exposición). Con todo, no siempre es así. Para muchos ramos, es conveniente usar exposiciones proporcionales a la inflación. La inflación no se relaciona habitualmente con la frecuencia, pero es proporcional a la severidad.
+
+
+#### Criterios para Escoger una Exposición  {-}
+
+Una base o medida de la exposición debería atender a los criterios siguientes:
+
+- ser una medida precisa de la exposición cuantitativa a la pérdida,
+- ser fácilmente determinada por el asegurador (cuando la póliza se calcula) y que no esté sujeta a manipulación por parte del asegurado,
+- ser fácil de entender para el asegurado y fácil de calcular para el asegurador,
+- que considere cualquier base de exposición preexistente establecida dentro de la industria, y
+- para algunos ramos, que sea proporcional a la inflación. De este modo, las tarifas no son sensibles al cambio de valor del dinero con el tiempo, al estar incluido en la base de exposición.
+
+Como ilustración, consideremos la cobertura particular de automóvil. En lugar de utilizar la base de exposición "año imputado automóvil," una medida más precisa de la exposición cuantitativa a la pérdida podría ser el número de millas conducidas. Sin embargo, esta medida es difícil de determinar cuando se emite la póliza y está sujeta a una potencial manipulación por parte del asegurado.
+
+En otro ejemplo, la medida de exposición en los `r Gloss('daños empresariales')`, p. ej. seguro de incendio, es a menudo la cantidad de cobertura del seguro. Como el valor de los objetos crecen con la inflación, el importe de la cobertura del seguro también aumentará. Así, las tarifas definidas a partir del importe de la cobertura del seguro son menos sensibles a la inflación que si lo fueran de otro modo.
+
+<!-- **Ejemplo: Accidentes de Trabajo.** (*Este ejemplo es de @werner2016basic . Probablemente demasiado detalle institucional para este libro. Con todo, una buena referencia.*) Consideramos el siguiente ejemplo presentado por Bouska (1989). Pensemos en dos empresas de construcción, una está sindicada y la otra no. Suponemos que las dos empresas tienen el mismo número de empleados, que realizan el mismo tipo de trabajo y que presentan similares números y tipos de experiencia de siniestralidad. Si la empresa sindicada paga más por empleado, entonces tiene una carga salarial más alta. Suponiendo que el salario es la base de exposición para la cobertura de accidentes de trabajo, pagará más por su cobertura que la otra empresa, aunque la experiencia de siniestralidad sea similar entre las dos empresas. Por un lado, esto será apropiado si los siniestros son principalmente debidos a la indemnización a sus empleados por el salario perdido al dejar de trabajar. Por otro lado, esto sería inapropiado si los siniestros son principalmente debidos a los pagos por servicios médicos, que deberían estar menos relacionados con la cantidad que una persona gana. -->
+
+
+<!-- Como aspecto práctico, esta injusticia para las empresas sindicadas no fue tan importante al establecer límites en el salario tomado como base de exposición. Bouska (1989) cita los cambios en los 80’s en los EE.UU. hacia el uso de salarios limitados. Algunos grupos propusieron utilizar una combinación de las horas trabajadas y el salario como base de exposición. En contraste, la agencia nacional (National Council on Compensation Insurance, NCCI) quiso utilizar salarios sin limitar porque (a) es fácil de verificar y (b) se ajusta naturalmente con inflación (reduciendo así la necesidad de revisiones de la tarifa anual). -->
+
+<!-- *** -->
+
+### Factores de Tarificación {#S:RatingFactors}
+
+Un factor de tarificación, o `r Gloss('variable de tarificación')`, es sencillamente una característica del asegurado o del riesgo asegurado por la que la tarifa cambia. Por ejemplo, cuando se adquiere un seguro de automóvil, es probable que el asegurador tenga tarifas distintas por edad, género, tipo de automóvil y donde se guarda, historial de accidentes, y otras variables. Estas variables son conocidas como factores de tarificación. A pesar de que algunas variables pueden ser continuas, como la edad, la mayoría son categóricas - `r Gloss('factor')` es una etiqueta utilizada para variables categóricas. De hecho, incluso para `r Gloss('variables continuas')` como la edad, es común categorizarlas para crear grupos como "jóvenes," "adultos," y "mayores" utilizados al tarificar.
+
+[Tabla 7.4] proporciona algunos ejemplos. En muchos países, el mercado de seguro de particulares (p. ej., automóvil y hogar) es muy competitivo, por lo que utilizar 10 o 20 variables para tarificar es habitual.
+
+<a id=tab:7.4></a> 
+
+[Tabla 7.4]: \#tab:7.4
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{l|l}\hline
+\text{Tipo de Seguro} & \text{Factores De Tarificación}\\\hline\hline
+\text{Automóvil Particulares }  & \text{Edad y Género del Conductor, Año del Modelo, Historial de Accidentes}\\
+\text{Hogar}  & \text{Importe del Seguro, Antigüedad del Hogar, Tipo de Construcción}\\
+\text{Accidentes de Trabajo}  & \text{Clase Ocupacional}\\
+\text{Responsabilidad Civil Empresarial}  & \text{Sector, Territorio, Límite de Responsabilidad}\\
+\text{Responsabilidad Civil Médica}  & \text{Especialidad, Territorio, Límite de Responsabilidad}\\
+\text{Automóvil Empresas}  & \text{Tipo de Conducción, Territorio, Límite de Responsabilidad}\\
+  \hline
+\end{array}
+\end{matrix}
+}
+$$
+[Tabla 7.4] : Factores de Clasificación Comúnmente Utilizados en Diferentes Tipos de Seguro
+
+
+***
+
+**Ejemplo. Siniestros y Prima por Importe del Seguro y Territorio.** Como ilustración, [Tabla 7.5] presenta unos sencillos datos ficticios tomados de @werner2016basic. Los datos constan de los siniestros y los gastos asociados de pérdida (*LossLAE* por sus siglas en inglés), segmentados por tres niveles de importe del seguro (*AOI* por sus siglas en inglés), y por tres territorios (*Terr*). Para cada combinación de *AOI* y *Terr*, también tenemos disponibles el número de pólizas emitidas, que actúa como *Exposición*.
+
+<a id=tab:7.5></a> 
+
+[Tabla 7.5]: \#tab:7.5
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{cc|rrr}
+\hline
+       AOI &       Terr &   Exposición &    LossLAE &    Prima \\\hline
+       \text{Bajo} &          1 &          7 &     210,93 &     335,99 \\
+    \text{Medio} &          1 &        108 &   4.458,05 &   6.479,87 \\
+      \text{Alto} &          1 &        179 &  10.565,98 &  14.498,71 \\\hline
+       \text{Bajo} &          2 &        130 &   6.206,12 &  10.399,79 \\
+    \text{Medio} &          2 &        126 &   8.239,95 &  12.599,75 \\
+      \text{Alto} &          2 &        129 &  12.063,68 &  17.414,65 \\\hline
+       \text{Bajo} &          3 &        143 &   8.441,25 &  14.871,70 \\
+    \text{Medio} &          3 &        126 &  10.188,70 &  16.379,68 \\
+      \text{Alto} &          3 &         40 &   4.625,34 &   7.019,86 \\
+      \hline
+       \text{Total}    &       & 988 &  65.000,00 &     99.664,01   \\\hline
+\hline
+\end{array}
+\end{matrix}
+}
+$$
+[Tabla 7.5] : Siniestros y Prima por Importe del Seguro y Territorio
+
+En este ejemplo, los factores de tarificación *AOI* y *Terr* producen nueve celdas. Nótese que se podría combinar la celda “territorio 1 con un nivel bajo de importe de seguro" con otra celda porque sólo hay 7 pólizas en dicha celda. Este cambio sería perfectamente aceptable - consideraciones de este tipo son unas de las principales tareas del analista. Una introducción sobre la selección de variables se encuentra en el Capítulo \@ref(C:RiskClass), incluyendo el Suplemento Técnico TS **8.B**. Alternativamente, también se podría pensar en reforzar la información sobre la celda (*Terr* 1, *AOI* Bajo) "tomando prestada" información de las celdas vecinas (p. ej., otros territorios con el mismo *AOI*, u otras cantidades de *AOI* dentro del *Terr* 1). Este enfoque es el tema de `r Gloss('credibilidad', '7.4')` que será desarrollado en el Capítulo \@ref(C:Credibilidad).
+
+***
+
+Para entender el impacto de los factores de tarificación, es habitual el uso de relatividades. Una `r Gloss('relatividad')` es la diferencia del riesgo esperado entre un nivel concreto de un factor de tarificación y un valor aceptado como referencia. En este libro, trabajamos con relatividades definidas a través de ratios; aunque también es posible definirlas mediante diferencias aritméticas. Por tanto, nuestras relatividades están definida como
+
+$$
+\text{Relatividad}_j = \frac{\text{(Siniestralidad/Exposición)}_j}{\text{( Siniestralidad/Exposición)}_{Base}} .
+$$
+
+***
+
+**Ejemplo. Siniestros y Prima por Importe del Seguro y Territorio - Continuación.** Los métodos tradicionales de clasificación sólo consideran una variable de clasificación a la vez - son univariantes. Por tanto, si quisiéramos relatividades de los siniestros y gastos (*LossLAE*) por importe del seguro, podríamos sumar territorios para conseguir la información mostrada en [Tabla 7.6].
+
+<a id=tab:7.6></a> 
+
+[Tabla 7.6]: \#tab:7.6
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{c|rrrr}
+\hline
+       AOI &   Exposición &    LossLAE & LossLAE/Exp &Relatividad \\\hline
+       \text{Bajo} &        280 &    14858,3 &   53,065   &0,835 \\
+    \text{Medio} &        360 &    22886,7 &    63,574  &1,000 \\
+      \text{Alto} &        348 &      27255,0 &   78,319  & 1,232 \\\hline
+       \text{Total}    &        988 &  65.000,0 &            \\\hline
+\hline
+\end{array}
+\end{matrix}
+}
+$$
+
+[Tabla 7.6] : Siniestros y Relatividades por Importe del Seguro
+
+Así, por ejemplo, los siniestros y gastos por unidad de exposición son un 23,2% más altos para los riesgos con un importe del seguro alto comparado con aquellos con un importe medio.  Estas relatividades no distinguen por territorio.
+
+***
+
+La introducción de factores de calificación permite al analista crear celdas que definen pequeñas colecciones de riesgos; el objetivo es elegir la combinación correcta de factores de calificación para que todos los riesgos de una celda puedan ser tratados de la misma manera. En la terminología estadística, queremos que todos los riesgos de una celda tengan la misma distribución (sujeta a un cambio de escala por una variable de exposición). Esta es la base de la tarificación de los seguros. Todos los riesgos de una casilla tienen el mismo precio, pero los riesgos de distintas casillas pueden tener precios diferentes. 
+
+Dicho de otro modo, los aseguradores pueden cobrar diferentes tarifas para riesgos diferentes; la `r Gloss('discriminación')` de los riesgos es legal y comúnmente realizada. Sin embargo, la base de la discriminación, la elección de los factores de riesgo, es un tema de extenso debate. La comunidad actuarial, los administradores del seguro, los reguladores, y las organizaciones de consumidores son todos participantes activos en este debate. El Suplemento Técnico TS **7.A** describe estos asuntos desde una perspectiva reguladora.
+
+A parte de criterios estadísticos para evaluar la importancia de un factor de tarificación, los analistas ponen mucha atención a las preocupaciones empresariales de la compañía (p. ej., ¿es caro implementar un factor de tarificación?), a criterios sociales (¿es una variable bajo el control del asegurado?), a criterios legales (¿existen regulaciones que prohíben el uso de un factor de tarificación como el género?), y a otros asuntos sociales. Estas cuestiones están, en gran parte, fuera del alcance de este texto. Con todo, al ser parte fundamental de la tarificación del seguro, daremos una breve visión general en el Capítulo \@ref(C:RiskClass), incluyendo el Suplemento Técnico TS **8.B.**
+
+
+

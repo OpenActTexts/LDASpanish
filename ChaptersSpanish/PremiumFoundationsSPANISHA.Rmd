@@ -1,0 +1,129 @@
+
+`r chapnum = 7`
+
+# Fundamentos de la Prima {#C:PremiumFoundations}
+
+*Resumen del capítulo.* Definir los precios para los productos aseguradores, las primas, es una tarea importante para los actuarios y otros analistas de datos. Este capítulo introduce las bases o fundamentos para tarificar productos de no-vida.
+
+
+
+## Introducción a la Tarificación {#S:IntroductionRatemaking}
+
+***
+En esta sección, se aprende cómo:
+
+- Definir la esperanza matemática como referencia del método para determinar las primas del seguro
+- Analizar una ecuación contable para relacionar primas con siniestros, gastos y beneficios
+- Resumir la estrategia para extender la tarificación en caso de riesgos heterogéneos y tendencias temporales
+
+***
+
+
+```{r child = 'ChaptersSpanish/PremiumSections/RatemakingIntroductionSPANISHA.Rmd'}
+```
+
+## Métodos de Tarificación Conjunta {#S:AggRateMaking}
+
+***
+En esta sección, se aprende cómo:
+
+- Definir una prima pura como un coste de siniestralidad, tanto en términos de frecuencia como de severidad
+- Calcular una tarifa específica utilizando primas puras, gastos, y márgenes de beneficio
+- Definir una ratio de siniestralidad (loss ratio, en inglés) 
+- Calcular un cambio de tarifa específica utilizando ratios de siniestralidad
+- Comparar los métodos de prima pura y de ratio de siniestralidad para determinar primas
+
+***
+
+```{r child = 'ChaptersSpanish/PremiumSections/AggRatemakingSPANISHA.Rmd'}
+```
+
+
+## Principios de Tarificación {#S:PricingPrinciples}
+
+***
+En esta sección, se aprende cómo:
+
+- Describir los principios actuariales de tarificación más comunes 
+- Describir las propiedades de los principios de tarificación
+- Escoger un principio de tarificación basándose en una propiedad deseada
+
+***
+
+
+```{r child = 'ChaptersSpanish/PremiumSections/PremPrinciplesSPANISHA.Rmd'}
+```
+
+
+
+## Riesgos Heterogéneos {#S:HeterogeneousRisks}
+
+***
+En esta sección, se aprende cómo:
+
+- Describir exposiciones de seguro en términos de escala de distribuciones
+- Explicar una exposición en términos de algunos tipos de seguro comunes, como los seguros de automóvil y hogar
+- Describir cómo los factores de tarificación pueden utilizarse para tener en cuenta la heterogeneidad entre los riesgos de una cartera
+- Medir el impacto de los factores de tarificación mediante relatividades
+
+***
+
+```{r child = 'ChaptersSpanish/PremiumSections/HeterogeneousSPANISHA.Rmd'}
+```
+
+## Desarrollo y Tendencia {#S:TrendDevelopment}
+
+***
+En esta sección, se aprende cómo:
+
+- Definir y calcular los diferentes tipos de medida resumen de la exposición y la prima que aparecen en los informes financieros 
+- Describir el desarrollo de una reclamación sobre varios pagos y enlazarlo con las medidas de los siniestros pendientes, incluyendo aquellos siniestros pendientes de declaración (IBNR por sus siglas en inglés, incurred but not reported) así como los siniestros pendientes de liquidación y pago
+- Comparar y contrastar las fortalezas y debilidades relativas de los métodos de tarificación de prima pura y de ratio de siniestralidad
+
+***
+
+
+```{r child = 'ChaptersSpanish/PremiumSections/TrendDevelopmentSPANISHA.Rmd'}
+```
+
+## Selección de Prima {#S:GiniStatistic}
+
+***
+En esta sección, se aprende cómo:
+
+- Describir distribuciones no simétricas mediante una curva de Lorenz y un índice de Gini 
+- Definir una curva de rendimiento y el correspondiente estadístico de Gini 
+- Utilizar la curva de rendimiento y el estadístico de Gini para seleccionar la prima mediante validación cruzada
+
+***
+
+
+```{r child = 'ChaptersSpanish/PremiumSections/PremiumSelectionSPANISHA.Rmd'}
+```
+
+
+
+## Otros Recursos y Colaboradores
+
+Este capítulo sirve como puente entre la introducción técnica de este libro y una introducción a la tarificación llevada a cabo por los actuarios en la práctica. Para los lectores interesados en aprender aspectos prácticos de la tarificación, recomendamos las introducciones de la Society of Actuaries en @friedland2013fundamentals y por la Casualty Actuarial Society en @werner2016basic. Para una introducción clásica de la gestión del riesgo para la tarificación, véase @niehaus2003risk. Véase también @finger2006risk y @frees2014frequency.
+
+@buhlmann1985premium fue el primero en la literatura académica en argumentar que la tarificación debería ser hecha primero a nivel de la cartera (se refería a esto como aproximación *top down*) para, posteriormente, ser ajustada a nivel de los contratos individuales. Véase también la discusión en @kaas2008modern, Capítulo 5.
+
+Para más referencias sobre los principios de tarificación, un tratamiento clásico es @gerber1979introduction y una aproximación más moderna es @kaas2008modern. Para una discusión desde un punto de vista económico-financiero, véase @bauer2013financial.
+
+
+- **Edward W. (Jed) Frees**, University of Wisconsin-Madison, y **José Garrido**, Concordia University son los autores principales de la versión inicial de este capítulo. Email: jfrees@bus.wisc.edu y/o jose.garrido@concordia.ca para comentarios del capítulo y sugerencias de mejora.
+- Revisores de los capítulos, entre otros: escribir a Jed o José para añadir su nombre aquí.
+- Traducción al español: Lluís Bermúdez (Universitat de Barcelona)
+
+
+### TS 7.A. Regulación de la Tarificación {-}
+
+```{r child = 'ChaptersSpanish/PremiumSections/RateRegulationSPANISHA.Rmd'}
+```
+
+
+
+
+
+

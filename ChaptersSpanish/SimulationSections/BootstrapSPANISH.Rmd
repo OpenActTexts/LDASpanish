@@ -1,0 +1,509 @@
+<!--  Bootstrap -->
+
+### Fundamentos del Bootstrap 
+
+La simulación presentada hasta ahora se basa en un muestreo a partir de una distribución **conocida**. La Sección \@ref(S:SimulationFundamentals) mostró como usar técnicas de simulación para obtener muestras y calcular cantidades de estas distribuciones conocidas. Sin embargo, la ciencia estadística se dedica a proporcionar inferencias sobre distribuciones que son *desconocidas*. Se recopilan estadísticos de resumen basados en esta distribución desconocida de una población. Pero, ¿cómo se puede realizar un muestreo de una distribución desconocida? 
+
+Naturalmente, no se pueden simular valores de una distribución desconocida pero sí que se pueden obtener valores de una muestra de observaciones. Si la muestra es una buena representación de una población, entonces nuestras extracciones simuladas de una muestra se aproximan bien a las extracciones simuladas de una población. El proceso de obtener una muestra de una muestra se llama *remuestreo* o *bootstrapping*. 
+
+El término `r Gloss('bootstrap')` proviene de la frase (en inglés) "pulling oneself up by one's bootstraps" (Efron, 1979). En el remuestreo, la muestra original juega el papel de la población y las estimaciones obtenidas a partir de la muestra juegan el papel de los verdaderos parámetros de la población.
+
+El algoritmo de remuestreo es el mismo que el introducido en la Sección \@ref(S:SimulationStatInference) excepto que ahora usa extracciones simuladas de la muestra. Es común usar $\{X_1, \ldots, X_n\}$ para denotar la muestra original y $\{X_1^*, \ldots, X_n^*\}$ para los valores simulados. Las extracciones se realizan con reemplazamiento para que los valores simulados sean independientes entre ellos, la misma suposición que para la muestra original. Para cada muestra, también se realizan *n* extracciones simuladas, el mismo valor que el tamaño muestral. Para distinguir este proceso de la simulación, es común usar *B* (de bootstrap) para representar el número de muestras simuladas. También se puede escribir $\{X_1^{(b)}, \ldots, X_n^{(b)}\}$, $b=1,\ldots, B$ lo cual resulta más claro.
+Hay dos métodos básicos de remuestreo, *model-free* y *model-based* (tomando sus nombres en inglés), que son, respectivamente, *no paramétrico* y *paramétrico*. En el `r Gloss('enfoque no paramétrico')`, no se hace ninguna suposición sobre la distribución de la población de origen. Las extracciones simuladas provienen de la función de distribución empírica $F_n(\cdot)$, por lo que cada extracción proviene de $\{X_1, \ldots, X_n\}$ con probabilidad 1/*n*. 
+
+Por contra, para el `r Gloss('enfoque paramétrico')`, se asume que se tiene conocimiento de la familia de la distribución *F*. La muestra original $X_1, \ldots, X_n$ se usa para estimar los parámetros de esa familia, es decir, $\hat{\theta}$. Entonces, las extracciones simuladas se toman de $F(\hat{\theta})$. En la Sección \@ref(S:ParametricBootStrap) se comenta este enfoque con más detalle.
+
+#### Bootstrap no paramétrico {-}
+
+La idea del bootstrap no paramétrico es usar el método inverso en $F_n$, la función de distribución empírica acumulada, representada en la Figura \@ref(fig:InverseDFboot).
+
+```{r InverseDFboot, fig.cap='Inversa de la función de distribución empírica', out.width='60%', fig.asp=.75, fig.align='center', echo=FALSE, cache = TRUE}
+plot.new()
+par(cex=1.3)
+set.seed(1)
+x <- sort(c(0,rexp(10, 1/6)))
+y<- (0:10)/10
+plot(x,y, xlim=c(0, 10), ylim=c(0, 1), lwd=2,
+        xlab="", type="s", ylab="",xaxs="i", yaxs="i", xaxt="n", yaxt="n")
+vx <- seq(0, 10, by=.01)
+vy<- 1-exp(-vx/6)
+lines(vx,vy,lty=2,col="red")
+x.6 <- x[9]
+y.6 <- (sum(x<x.6))/10-.03
+mtext("y=F(x)", side=2, line=2, cex=1.3, las=2, padj=-4, adj=.5) # PARA MOVERSE HACIA ARRIBA
+axis(1, at=x.6, labels=expression("x =" ~ F^{-1} *"(y)"))
+segments(x.6,0,x.6,y.6)
+segments(0,y.6,x.6,y.6)
+axis(1, at=0)
+axis(2, at=0)
+```
+
+Debido a que $F_n$ es una función escalonada, $F_n^{-1}$ toma valores en $\{x_1,\cdots,x_n\}$. Más concretamente, puede verse la ilustración de la Figura \@ref(fig:InverseDFboot2).
+- si $y\in(0,1/n)$ (con probabilidad $1/n$) se extrae el valor más pequeño ($\min\{x_i\}$)
+- si $y\in(1/n,2/n)$ (con probabilidad $1/n$) se extrae el segundo valor más pequeño,
+- ...
+- si $y\in((n-1)/n,1)$ (con probabilidad $1/n$) se extrae el mayor valor ($\max\{x_i\}$).
+
+```{r InverseDFboot2, fig.cap='Inversa de la función de distribución empírica', out.width='60%', fig.asp=.75, fig.align='center', echo=FALSE, cache = TRUE}
+plot.new()
+par(cex=1.3)
+set.seed(1)
+x <- sort(c(0,rexp(10, 1/6)))
+y<- (0:10)/10
+plot(x,y, xlim=c(0, 10), ylim=c(0, 1), lwd=2,
+        xlab="", type="s", ylab="",xaxs="i", yaxs="i", xaxt="n", yaxt="n")
+vx <- seq(0, 10, by=.01)
+clr <- c(rgb(0,1,0,.2),rgb(0,0,1,.2))
+for(i in 1:10){
+  rect(-10,(i-1)/10,100,i/10,col=clr[1+i%%2],border="white")
+}
+abline(v=x,col="white")
+lines(x,y,lwd=2,type="s")
+vy<- 1-exp(-vx/6)
+lines(vx,vy,lty=2,col="red")
+```
+
+Usar el método inverso con $F_n$ significa muestrear a partir de $\{x_1,\cdots,x_n\}$, con probabilidad $1/n$. Generar una muestra bootstrap de tamaño $B$ significa muestrear a partir de $\{x_1,\cdots,x_n\}$, con probabilidad $1/n$, con reemplazamiento. A continuación, se puede consultar el siguiente código de `R` ilustrativo.
+
+`r HideRCode('BootStrap.A','Muestra el código R para crear una muestra con Bootstrap')`
+
+```{r comment="", echo=SHOW_PDF}
+set.seed(1)
+n <- 10
+x <- rexp(n, 1/6)
+m <- 8
+bootvalues <- sample(x, size=m, replace=TRUE)
+```
+
+</div>
+
+```{r comment="", echo=FALSE}
+round(bootvalues,digits=4)
+```
+
+Se observa que el valor `r round(x[4],digits=4)` se ha obtenido tres veces.
+
+### Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)
+
+Se resume el procedimiento para el bootstrap no paramétrico como sigue:
+
+1. Para la muestra $\{X_1, \ldots, X_n\}$, se extrae una muestra de tamaño *n* (con reemplazamiento), es decir, $X_1^*, \ldots, X_n^*$. De las extracciones simuladas se calcula el estadístico de interés, denotado como $\hat{\theta}(X_1^*, \ldots, X_n^*)$. Se denomina $\hat{\theta}_b^*$ para la réplica *b*ésima.
+2. Se repite esto $b=1, \ldots, B$ veces para obtener una muestra de estadísticos, $\hat{\theta}_1^*, \ldots,\hat{\theta}_B^*$.
+3. Para la muestra de estadísticos en el paso 2, $\{\hat{\theta}_1^*, \ldots, \hat{\theta}_B^*\}$, se calcula una medida de resumen de interés.
+ 
+En esta sección, se centra el interés en tres medidas de resumen, el `r Gloss('sesgo')`, la desviación estándar, y el error cuadrático medio (*MSE*). [Tabla 6.2] resume estas tres medidas. Aquí, $\overline{\hat{\theta^*}}$ es el promedio de $\{\hat{\theta}_1^*, \ldots,\hat{\theta}_B^*\}$.
+
+[Tabla 6.2]:\#tab:62
+
+<a id=tab:62></a>
+
+$$
+{\small
+\begin{matrix}
+\text{Tabla 6.2. Medidas de resumen bootstrap}\\
+\begin{array}{l|c|c|c}
+\hline
+\text{Medida de la población}& \text{Definición de la población}&\text{Aproximación bootstrap }&\text{Símbolo bootstrap}\\
+\hline
+\text{Sesgo} & \mathrm{E}(\hat{\theta})-\theta&\overline{\hat{\theta^*}}-\hat{\theta}& Bias_{boot}(\hat{\theta})  \\\hline
+\text{Desviación estándar} &   \sqrt{\mathrm{Var}(\hat{\theta})}
+& \sqrt{\frac{1}{B-1} \sum_{b=1}^{B}\left(\hat{\theta}_b^* -\overline{\hat{\theta^*}} \right) ^2}&s_{boot}(\hat{\theta})  \\\hline
+\text{Error cuadrático medio} &\mathrm{E}(\hat{\theta}-\theta)^2 & \frac{1}{B} \sum_{b=1}^{B}\left(\hat{\theta}_b^* -\hat{\theta}
+\right)^2&MSE_{boot}(\hat{\theta})\\
+\hline
+\end{array}\end{matrix}
+}
+$$
+
+***
+
+**Ejemplo `r chapnum`.2.1. Siniestros con daños corporales y ratio de eliminación de pérdida.** Para mostrar cómo el bootstrap puede usarse para cuantificar la precisión de los estimadores, se retoma el Ejemplo 4.1.11 sobre los datos de siniestros con daños corporales donde se introdujo el estimador no paramétrico de la ratio de eliminación de pérdidas.
+
+[Tabla 6.3] resume los resultados de la estimación bootstrap. Por ejemplo, para $d=14000$, se vió en el Ejemplo 4.1.11 que la estimación no paramétrica de *LER* es 0.97678. Este valor tiene un sesgo estimado de 0.00018 con una desviación estándar de 0.00701. Para algunas aplicaciones, se puede desear aplicar el sesgo estimado a la estimación original para obtener un `r Gloss('estimador corregido por el sesgo')`. En ello se centra el próximo ejemplo. Para esta ilustración, el sesgo es pequeño por lo que dicha corrección no es relevante.
+
+`r HideRCode('LER6.2.1','Muestra el código R para la estimaciones bootstrap de LER')`
+
+```{r comment="", warning=FALSE, echo=SHOW_PDF}
+# Ejemplo de Derrig et al
+BIData <- read.csv("../../Data/DerrigResampling.csv", header =T)
+BIData$Censored <- 1*(BIData$AmountPaid >= BIData$PolicyLimit)
+BIDataUncensored <- subset(BIData, Censored == 0)
+LER.boot <- function(ded, data, indices){
+  resample.data <- data[indices,]
+  sumClaims <- sum(resample.data$AmountPaid)
+  sumClaims_d <- sum(pmin(resample.data$AmountPaid,ded))
+  LER <-   sumClaims_d/sumClaims
+  return(LER)  
+}
+##Derrig et al
+set.seed(2019)
+dVec2 <- c(4000, 5000, 10500, 11500, 14000, 18500)
+OutBoot <- matrix(0,length(dVec2),6)
+colnames(OutBoot) <- c("d","Estimación NP ","Sesgo bootstrap", "Bootstrap SD", 
+                           "Límite inferior del CI (intervalo de confianza, en sus siglas en inglés) Normal al 95%", "Límite superior del CI Normal al 95%")
+  for (i in 1:length(dVec2)) {
+OutBoot[i,1] <- dVec2[i]
+results <- boot(data=BIDataUncensored, statistic=LER.boot, R=1000, ded=dVec2[i])
+OutBoot[i,2] <- results$t0
+biasboot <- mean(results$t)-results$t0 -> OutBoot[i,3]
+sdboot <- sd(results$t) -> OutBoot[i,4]
+temp <- boot.ci(results)
+OutBoot[i,5] <- temp$normal[2]
+OutBoot[i,6] <- temp$normal[3]
+}
+```
+
+</div>
+
+[Tabla 6.3]:\#tab:63
+
+<a id=tab:63></a>
+
+##### Tabla 6.3. Estimaciones bootstrap para el LER en franquicias seleccionadas {-}
+
+```{r comment="", echo=FALSE}
+knitr::kable(OutBoot, digits=5)
+```
+
+La desviación estándar bootstrap proporciona una medida de precisión. Para una aplicación de las desviaciones estándar, se puede usar la aproximación normal para crear un intervalo de confianza. Por ejemplo, la función de `R` `boot.ci` produce intervalos de confianza normales al 95%. Se producen creando un intervalo de dos veces la amplitud de 1.95994 desviaciones estándar bootstrap, centrado en el estimador corregido por el sesgo (1.95994 es el cuantil 97.5 de la distribución normal estándar). Por ejemplo, el intervalo inferior del 95% CI normal en $d=14000$ es $(0.97678-0.00018)- 1.95994*0.00701$ $= 0.96286$. Más adelante se comentan los intervalos de confianza bootstrap en la siguiente sección.
+
+***
+
+**Ejemplo `r chapnum`.2.2. Estimar $\exp(\mu)$.** 
+
+El bootstrap se puede usar para cuantificar el sesgo de un estimador, por ejemplo. Consideramos una muestra $\mathbf{x}=\{x_1,\cdots,x_n\}$ que es `r Gloss('iid')` con media $\mu$.
+
+```{r comment="", echo=SHOW_PDF}
+sample_x <- c(2.46,2.80,3.28,3.86,2.85,3.67,3.37,3.40,5.22,2.55,
+              2.79,4.50,3.37,2.88,1.44,2.56,2.00,2.07,2.19,1.77)
+```
+
+Se supone que la cantidad de interés es $\theta=\exp(\mu)$. Un estimador natural sería $\widehat{\theta}_1=\exp(\overline{x})$. Este estimador tiene sesgo (debido a la `r Gloss('desigualdad Jensen')`) pero es asintóticamente insesgado. Para nuestra muestra, la estimación es como se muestra a continuación.
+
+```{r comment="", echo=SHOW_PDF}
+(theta_1 <- exp(mean(sample_x)))
+```
+
+Se puede usar el teorema central del límite para obtener una corrección usando
+
+$$
+\overline{X}\approx\mathcal{N}\left(\mu,\frac{\sigma^2}{n}\right)\text{ where }\sigma^2=\text{Var}[X_i] ,
+$$
+De modo que, con la función generatriz de momentos normal, se tiene
+
+$$
+\mathrm{E}~\exp[\overline{X}] \approx \exp\left(\mu+\frac{\sigma^2}{2n}\right) .
+$$
+Por tanto, se puede considerar
+
+$$
+\widehat{\theta}_2=\exp\left(\overline{x}-\frac{\widehat{\sigma}^2}{2n}\right) .
+$$
+Para nuestros datos, resulta lo siguiente.
+
+```{r comment="", echo=SHOW_PDF}
+n <- length(sample_x)
+(theta_2 <- exp(mean(sample_x)-var(sample_x)/(2*n)))
+```
+
+Otra estrategia (que no vamos a desarrollar aquí) sería usar una aproximación de Taylor para obtener un estimador más preciso (como en el método delta),
+
+$$
+g(\overline{x})=g(\mu)+(\overline{x}-\mu)g'(\mu)+(\overline{x}-\mu)^2\frac{g''(\mu)}{2}+\cdots
+$$
+La alternativa que se explora es usar una estrategia bootstrap: dada una muestra bootstrap, $\mathbf{x}^{\ast}_{b}$, sea $\overline{x}^{\ast}_{b}$ dsu media, y se establece
+
+$$
+\widehat{\theta}_3=\frac{1}{B}\sum_{b=1}^B\exp(\overline{x}^{\ast}_{b}) .
+$$
+Para implementarlo, se proporciona el siguiente código.
+
+`r HideRCode('bootstrapdisn.1','Se muestra el código R para crear muestras bootstrap')`
+
+```{r comment="", echo=SHOW_PDF}
+library(boot)
+results <- boot(data=sample_x, 
+                statistic=function(y,indices) exp(mean(y[indices])), 
+                R=1000)
+theta_3 <- mean(results$t)
+```
+
+</div>
+
+Entonces, se puede `plot(results)` y `print(results)` para observar lo siguiente.
+
+```{r BootstrapDistn, fig.cap='Distribución de las réplicas bootstrap. El panel de la izquierda es un histograma de réplicas. El panel de la derecha es un gráfico cuantil-cuantil, que compara la distribución bootstrap con la distribución normal estándar.', fig.align='center',  comment="", echo=FALSE}
+plot(results)
+print(results)
+```
+
+Esto resulta en tres estimadores, el estimador bruto $\widehat{\theta}_1=$ `r round(theta_1,digits=3)`, la corrección de segundo orden $\widehat{\theta}_2=$ `r round(theta_2,digits=3)`, y el estimador bootstrap $\widehat{\theta}_3=$ `r round(theta_3,digits=3)`.
+¿Como funciona esto con diferentes tamaños de muestra? Ahora se supone que $x_i$'s son generadas a partir de una distribución lognormal $LN(0,1)$, de modo que $\mu = \exp(0 + 1/2) = 1.648721$ y $\theta = \exp(1.648721)$ $= 5.200326$. Se usa la simulación para extraer los tamaños muestrales pero luego se actúa como si fueran un conjunto de observaciones realizadas. Véase el siguiente código ilustrativo.
+
+`r HideRCode('bootstrapdisn.2','Se muestral el código R para crear muestras bootstrap')`
+
+```{r  comment="", echo=SHOW_PDF}
+param <- function(x){
+  n <- length(x)
+  theta_1 <- exp(mean(x))
+  theta_2 <- exp(mean(x)-var(x)/(2*n))
+  results <- boot(data=x, 
+                statistic=function(y,indices) exp(mean(y[indices])), 
+                R=999)
+  theta_3 <- mean(results$t)
+  return(c(theta_1,theta_2,theta_3))
+}
+set.seed(2074)
+ns<- 200
+est <- function(n){
+call_param <- function(i) param(rlnorm(n,0,1))
+V <- Vectorize(call_param)(1:ns)
+apply(V,1,median)
+}
+VN=seq(15,100,by=5)
+Est <- Vectorize(est)(VN)
+```
+
+</div>
+
+Los resultados de la comparación se resumen en la Figura \@ref(fig:BootstrapCompare). Esta figura muestra que el estimador bootstrap está más cerca del verdadero valor del parámetro para casi todos los tamaños muestrales. El sesgo de los tres estimadores decrece al aumentar el tamaño muestral.
+
+```{r BootstrapCompare, fig.cap='Comparación de estimaciones. El verdadero valor del parámetro viene dado por la línea continua horizontal en 5.20.', fig.align='center',  comment="", echo=SHOW_PDF, cache = TRUE}
+matplot(VN,t(Est),type="l", col=2:4, lty=2:4, ylim=exp(exp(1/2))+c(-1,1),
+        xlab="sample size (n)", ylab="estimator")
+abline(h=exp(exp(1/2)),lty=1, col=1)
+legend("topleft", c("estimador bruto", "corrección de segundo orden", "bootstrap"),
+       col=2:4,lty=2:4, bty="n")
+```
+
+### Intervalos de confianza
+
+El procedimiento bootstrap genera *B* réplicas $\hat{\theta}_1^*, \ldots,\hat{\theta}_B^*$ del estimador $\hat{\theta}$. En el *Ejemplo `r chapnum`.2.1,* se mostró cómo usar las aproximaciones a la normal estándar para crear intervalos de confianza de los parámetros de interés. Sin embargo, dado que el interés se centra en usar el bootstrap para evitar confiar en supuestos de aproximación a la normal, no sorprende que haya disponibilidad de intervalos de confianza alternativos.
+
+Para un estimador $\hat{\theta}$, el intervalo de confianza *básico* bootstrap es
+
+\begin{equation} 
+  \left(2 \hat{\theta} - q_U, 2 \hat{\theta} - q_L \right) ,
+  (\#eq:basicBootCI)
+\end{equation}
+
+donde $q_L$ y $q_U$ son los cuantiles al 2.5% inferior y superior de la muestra bootstrap $\hat{\theta}_1^*, \ldots,\hat{\theta}_B^*$.
+Para ver de dónde viene esto, se toma como punto de partida la idea de que $(q_L, q_U)$ proporciona un intervalo al 95% para $\hat{\theta}_1^*, \ldots,\hat{\theta}_B^*$. Por tanto, para un $\hat{\theta}_b^*$ aleatorio, hay un 95% de probabilidades de que $q_L \le \hat{\theta}_b^* \le q_U$. Revirtiendo las desigualdades y añadiendo $\hat{\theta}$ a cada lado se obtiene un intervalo al 95% 
+
+$$
+\hat{\theta} -q_U \le \hat{\theta} - \hat{\theta}_b^* \le  \hat{\theta} -q_L .
+$$
+Por tanto, $\left( \hat{\theta}-q_U,  \hat{\theta} -q_L\right)$ es un intervalo al 95% para $\hat{\theta} - \hat{\theta}_b^*$. La idea de la aproximación bootstrap indica que ello es también un intervalo al 95% para $\theta - \hat{\theta}$. Añadiendo $\hat{\theta}$ a cada lado da un intervalo al 95% en la ecuación \@ref(eq:basicBootCI). 
+
+Hay muchos intervalos bootstrap alternativos. El más sencillo de explicar es el `r Gloss('intervalo basado en los percentiles bootstrap')` que se define como $\left(q_L, q_U\right)$. No obstante, presenta la desventaja de tener un comportamiento potencialmente pobre en las colas, lo cual puede ser un inconveniente en algunos problemas actuariales de interés.
+
+**Ejemplo `r chapnum`.2.3. Siniestros con daños corporales y medidas de riesgo.** Para ver cómo funcionan los intervalos de confianza bootstrap, se retoma los datos sobre siniestros del automóvil con daños corporales considerados en el Ejemplo 6.2.1. En lugar de la ratio de eliminación de pérdida, se desea estimar el percentil al 95% $F^{-1}(0.95)$ y una medida definida como
+$$
+TVaR_{0.95)}[X] = \mathrm{E}[X | X > F^{-1}(0.95)] .
+$$
+Esta medida se llama `r Gloss('tail value-at-risk')`; es el valor esperado de $X$ condicionado a que $X$ exceda el percentil al 95%. En la Sección 10.2 se explica como los cuantiles y el tail value-at-risk son los dos ejemplos más importantes de las llamadas *medidas de riesgo*. Por el momento, se considerarán simplemente como medidas que se quieren estimar. Para el percentil, se usa el estimador no paramétrico $F^{-1}_n(0.95)$ definido en la Sección 4.1.1.3. Para el tail value-at-risk, se usa el principio plug-in para definir el estimador no paramétrico
+
+$$
+TVaR_{n,0.95}[X] = \frac{\sum_{i=1}^n X_i I(X_i > F^{-1}_n(0.95))}{\sum_{i=1}^n I(X_i > F^{-1}_n(0.95))} ~.
+$$
+En esta expresión, el denominador cuenta el número de observaciones que exceden el percentil al 95% $F^{-1}_n(0.95)$. El numerador suma las pérdidas para aquellas observaciones que exceden $F^{-1}_n(0.95)$. [Tabla 6.4] resume el estimador para para fracciones seleccionadas.
+
+`r HideRCode('bootstrapquantiles.1','Se muestra el código R para crear muestras basadas en el cuantil Bootstrap')`
+
+```{r comment="", warning=FALSE, echo=SHOW_PDF}
+# Example from Derrig et al
+#BIData <- read.csv("./Data/DerrigResampling.csv", header =T)
+BIData$Censored <- 1*(BIData$AmountPaid >= BIData$PolicyLimit)
+BIDataUncensored <- subset(BIData, Censored == 0)
+set.seed(2017)
+PercentVec <- c(0.50, 0.80, 0.90, 0.95, 0.98)
+OutBoot1 <- matrix(0,5,10)
+colnames(OutBoot1) <- c("Fracción","Estimación NP ", "Sesgo bootstrap", "Bootstrap SD", 
+                        "Límite inferior del CI Normal al 95%", "Límite superior del CI Normal al 95%",
+                        "Límite inferior del CI básico al 95% ", "Límite superior del CI básico al 95%",
+                        "Límite inferior del CI percentil al 95%", "Límite superior del CI percentil al 95% ")
+for (i in 1:length(PercentVec)) {
+OutBoot1[i,1] <- PercentVec[i]
+results <- boot(data=BIDataUncensored$AmountPaid,
+                statistic=function(X,indices)
+                    quantile(X[indices],PercentVec[i]),
+                 R=1000)
+if (i==1){bootreal <- results$t}
+OutBoot1[i,2] <- results$t0
+OutBoot1[i,3] <- mean(results$t)-results$t0 
+OutBoot1[i,4] <- sd(results$t) 
+temp <- boot.ci(results, type = c("norm", "basic", "perc"))
+OutBoot1[i,5] <- temp$normal[2]
+OutBoot1[i,6] <- temp$normal[3]
+OutBoot1[i,7] <- temp$basic[4]
+OutBoot1[i,8] <- temp$basic[5]
+OutBoot1[i,9] <- temp$percent[4]
+OutBoot1[i,10] <- temp$percent[5]
+}
+```
+
+</div>
+
+[Tabla 6.4]:\#tab:64
+
+<a id=tab:64></a>
+
+##### Tabla 6.4. Estimaciones bootstrap de cuantiles en fracciones seleccionadas {-}
+
+```{r comment="", echo = FALSE}
+knitr::kable(OutBoot1,digits=2)
+```
+
+Por ejemplo, cuando la fracción es 0.50, se observa que los cuantiles al 2.5th por abajo y por arriba de las simulaciones bootstrap son $q_L=$ `r quantile(bootreal,.025, type=6)` y $q_u=$ `r quantile(bootreal,.975, type=6)`, respectivamente. Ello forma el intervalo de confianza percentil bootstrap. Con el estimador no paramétrico `r quantile(BIDataUncensored$AmountPaid,.5)`, se obtienen los límites inferiores y superiores de los intervalos de confianza básicos `r 2*quantile(BIDataUncensored$AmountPaid,.5)-quantile(bootreal,.975, type=6)`
+y `r 2*quantile(BIDataUncensored$AmountPaid,.5)-quantile(bootreal,.025, type=6)`, respectivamente. La [Tabla 6.4] también muestra las estimaciones bootstrap del sesgo, desviación estándar, y el intervalo de confianza normal, conceptos introducidos en la sección anterior.
+
+La [Tabla 6.5] muestra cálculos similares para el tail value-at-risk. En cada caso, se observa que la desviación estándar bootstrap aumenta a medida que la fracción aumenta. Ello es un reflejo de que cada vez hay menos observaciones disponibles para estimar los cuantiles a medida que la fracción aumenta, y por lo tanto hay una mayor imprecisión. La amplitud de los intervalos de confianza también aumenta. Resulta interesante ver que no parece haber el mismo patrón en las estimaciones del sesgo.
+
+`r HideRCode('bootstrapquantiles.2','Se muestra el código R para crear muestras basadas en el TVar Bootstrap')`
+
+```{r comment="", warning=FALSE, echo=SHOW_PDF}
+CTE.boot <- function(data, indices, RiskLevel){
+  resample.data <- data[indices,]
+  X <- resample.data$AmountPaid
+  cutoff <- quantile(X, RiskLevel)
+  CTE <- sum(X*(X > cutoff))/sum(X > cutoff)
+  return(CTE) 
+}
+set.seed(2017)  
+PercentVec <- c(0.50, 0.80, 0.90, 0.95, 0.98)
+OutBoot1 <- matrix(0,5,10)
+colnames(OutBoot1) <- c("Fracción","Estimación NP", "Sesgo bootstrap", 
+       "Bootstrap SD", "Límite inferior del CI normal al 95% ", "Límite superior del CI normal al 95% ",
+       "Límite inferior del CI básico al 95%", "Límite superior del CI básico al 95%",
+       "Límite inferior del CI percentil al 95%", "Límite superior del CI Percentil al 95% ")
+  for (i in 1:length(PercentVec)) {
+OutBoot1[i,1] <- PercentVec[i]
+results <- boot(data=BIDataUncensored, statistic=CTE.boot, R=1000, RiskLevel=PercentVec[i])
+OutBoot1[i,2] <- results$t0
+OutBoot1[i,3] <- mean(results$t)-results$t0 
+OutBoot1[i,4] <- sd(results$t) 
+temp <- boot.ci(results, type = c("norm", "basic", "perc"))
+OutBoot1[i,5] <- temp$normal[2]
+OutBoot1[i,6] <- temp$normal[3]
+OutBoot1[i,7] <- temp$basic[4]
+OutBoot1[i,8] <- temp$basic[5]
+OutBoot1[i,9] <- temp$percent[4]
+OutBoot1[i,10] <- temp$percent[5]
+  }
+```
+
+</div>
+
+[Tabla 6.5]:\#tab:65
+
+<a id=tab:65></a>
+
+##### Tabla 6.5. Estimación bootstrap del TVaR en niveles de riesgo seleccionados {-}
+
+```{r comment="", echo=FALSE}
+knitr::kable(OutBoot1,digits=2)
+```
+
+### Bootstrap paramétrico {#S:ParametricBootStrap}
+
+La idea del bootstrap no paramétrico es remuestrear extrayendo variables independientes a partir de la función de distribución acumulada empirica $F_n$. Por otra parte, en el bootstrap paramétrico, se extraen variables independientes de $F_{\widehat{\theta}}$ donde la distribución subyacente se asume que pertenece a una familia paramétrica $\mathcal{F}=\{F_{\theta},\theta\in\Theta\}$. Normalmente, los parámetros de la distribución se estiman en base a una muestra y se denotan como $\hat{\theta}$.
+
+**Ejemplo `r chapnum`.2.4. Distribución Lognormal.** Se considera nuevamente la base de datos  
+
+```{r, echo=SHOW_PDF}
+sample_x <- c(2.46,2.80,3.28,3.86,2.85,3.67,3.37,3.40,
+              5.22,2.55,2.79,4.50,3.37,2.88,1.44,2.56,2.00,2.07,2.19,1.77)
+```
+
+El bootstrap clásico (no paramétrico) se basaba en muestras
+
+```{r, echo=SHOW_PDF}
+x <- sample(sample_x,replace=TRUE)
+```
+
+Mientras que para el bootstrap paramétrico, se asume que la distribución de $x_i$'s es de una familia específica, por ejemplo la distribución lognormal.
+
+```{r comment="", warning=FALSE, echo=SHOW_PDF}
+library(MASS)
+fit <- fitdistr(sample_x, dlnorm, list(meanlog = 1, sdlog = 1))
+fit
+```
+
+Entonces se realiza la extracción partiendo de esta distribución.
+
+```{r,echo=SHOW_PDF}
+x <- rlnorm(length(sample_x), meanlog=fit$estimate[1], sdlog=fit$estimate[2])
+```
+
+`r HideRCode('BootTVar.1','Se muestra el código R para muestras con bootstrap paramétrico')`
+
+```{r comment="",echo=SHOW_PDF}
+set.seed(2074)
+CV <- matrix(NA,1e5,2)
+for(s in 1:nrow(CV)){
+x1 <- sample(sample_x,replace=TRUE)
+x2 <- rlnorm(length(sample_x), meanlog=fit$estimate[1], sdlog=fit$estimate[2])
+CV[s,] <- c(sd(x1)/mean(x1),sd(x2)/mean(x2))
+}
+```
+
+</div>
+
+La Figura \@ref(fig:CoefVarCompare) compara las distribuciones bootstrap para el coeficiente de variación, una de ellas basada en el enfoque no paramétrico y la otra basada en el enfoque paramétrico, asumiendo una distribución lognormal.
+
+```{r CoefVarCompare, fig.cap='Comparación de las distribuciones Bootstrap no paramétrico y paramétrico para el coeficiente de variación', fig.align='center',  comment="", echo=SHOW_PDF, cache = TRUE}
+plot(density(CV[,1]),col="red",main="",xlab="Coeficiente de variación", lty=1)
+lines(density(CV[,2]),col="blue",lty=2)
+abline(v=sd(sample_x)/mean(sample_x),lty=3)
+legend("topright",c("nonparametric","parametric(LN)"),
+       col=c("red","blue"),lty=1:2,bty="n")
+```
+
+***	
+
+**Ejemplo `r chapnum`.2.5. Bootstrap de observaciones censuradas.** El bootstrap paramétrico extrae realizaciones simuladas de una estimación paramétrica de una función de distribución. Del mismo modo, se pueden extraer realizaciones simuladas de la estimación de una función de distribución. A modo de ejemplo, se pueden realizar extracciones de estimaciones suavizadas de una función de distribución según lo introducido en la Sección 4.1.1.4. Otro caso especial, considerado aquí, es extraer una estimación del estimador de Kaplan-Meier introducido en la Sección 4.3.2.2. De esta forma, se pueden manejar observaciones que están censuradas.
+
+Concretamente, se consideran nuevamente los datos sobre daños corporales de los Ejemplos 6.2.1 y 6.2.3 pero ahora se incluyen `r sum(BIData$Censored)` siniestros que están censurados por límites en la póliza. En el Ejemplo 4.3.6, se usó esta base de datos completa para estimar el estimador de Kaplan-Meier de la función de supervivencia introducida en la Sección 4.3.2.2. La [Tabla 6.6] presenta las estimaciones bootstrap de los cuantiles obtenidos de la estimación de la función de supervivencia Kaplan-Meier. Incluye las estimaciones de la precisión bootstrap, sesgo y desviación estándar, así como el intervalo de confianza básico al 95%.
+
+`r HideRCode('KMCode.1','Muestra el código R para las estimaciones Bootstrap Kaplan-Meier')`
+
+```{r comment="", warning=FALSE,echo=SHOW_PDF}
+# Example from Derrig et al
+library(survival)                # for Surv(), survfit()
+BIData$UnCensored <- 1*(BIData$AmountPaid < BIData$PolicyLimit)
+## KM estimate
+KM0 <- survfit(Surv(AmountPaid, UnCensored) ~ 1,  
+               type="kaplan-meier", data=BIData)
+set.seed(2019)
+PercentVec <- c(0.50, 0.80, 0.90, 0.95, 0.98)
+OutBoot1 <- matrix(NA,5,6)
+colnames(OutBoot1) <- c("Fracción","Estimación KM NP", "Sesgo bootstrap",
+                        "Bootstrap SD",  "Intervalo inferior del CI básico al 95% ", "Intervalo superior del CI básico al 95% ")
+KM.survobj <- Surv(BIData$AmountPaid, BIData$UnCensored) 
+for (i in 1:length(PercentVec)) {
+OutBoot1[i,1] <- PercentVec[i]
+results <- bootkm(KM.survobj, q=1-PercentVec[i], B=1000, pr = FALSE)
+if (i==1){bootreal <- results}
+OutBoot1[i,2] <- quantile(KM0, PercentVec[i])$quantile
+OutBoot1[i,3] <- mean(results)-OutBoot1[i,2]
+OutBoot1[i,4] <- sd(results) 
+# temp <- boot.ci(results, type = c("norm",  "basic","perc"))
+OutBoot1[i,5] <- 2*OutBoot1[i,2]-quantile(results,.975, type=6)
+OutBoot1[i,6] <- 2*OutBoot1[i,2]-quantile(results,.025, type=6)
+}
+```
+
+</div>
+
+[Tabla 6.6]:\#tab:66
+
+<a id=tab:66></a>
+
+##### Tabla 6.6. Estimaciones Bootstrap Kaplan-Meier de cuantiles en fracciones seleccionadas {-}
+
+```{r comment="", echo=FALSE}
+knitr::kable(OutBoot1,digits=2)
+```
+
+Los resultados de la [Tabla 6.6] son consistentes con los resultados de la submuestra no censurada de la [Tabla 6.4]. En la [Tabla 6.6], se observa la dificultad de estimar cuantiles de fracciones grandes debido a la censura. No obstante, para fracciones de tamaños moderados (0.50, 0.80, y 0.90), las estimaciones del Kaplan-Meier no paramétrico (KM NP) del cuantil son consistentes con los resultados de la [Tabla 6.4]. La desviación estándar bootstrap es más pequeña al nivel de 0.50 (correspondiente a la mediana) pero mayor para los niveles 0.80 y 0.90. El análisis de los datos censurados resumido en [Tabla 6.6] usa más datos que el análisis de la submuestra no censurada que aparece en la [Tabla 6.4] pero también presenta dificultades para extraer información para cuantiles elevados.
+

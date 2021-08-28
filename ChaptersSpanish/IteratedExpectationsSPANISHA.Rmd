@@ -1,0 +1,340 @@
+# Apéndice B: Esperanzas Iteradas {#C:AppB}
+
+Este apéndice presenta las leyes relacionadas con las esperanzas iteradas. En particular, la Sección \@ref(S:AppB:CD) presenta los conceptos de distribución condicional y esperanza condicional. La sección \@ref(S:AppB:IE) presenta la Ley de las Esperanzas Iteradas y la Ley de la Varianza Total.
+
+En algunas situaciones, solo observamos un único resultado, pero podemos
+conceptualizar dicho resultado como la culminación de dos (o más) etapas en un
+proceso de modelización. Dichos tipos de modelos estadísticos se denominan modelos **de dos etapas** o **jerárquicos**. Algunos casos especiales de modelos jerárquicos incluyen:
+ 
+- modelos donde los parámetros de la distribución son variables aleatorias
+
+- distribución de la mixtura, donde la Etapa 1 representa la extracción de una subpoblación y la Etapa 2 representa una variable aleatoria de una distribución determinada por la subpoblación extraída en la Etapa 1;
+ 
+- una distribución compuesta, donde la Etapa 1 representa la realización del número de eventos y la Etapa 2 representa la cuantía de las pérdidas ocurridas en cada evento.
+
+En estas situaciones, el proceso da lugar a una distribución condicional de una variable aleatoria (el resultado de la Etapa 2) dada la otra (el resultado de la Etapa 1). La Ley de Esperanzas Iteradas puede ser útil para obtener la esperanza incondicional o la varianza de una variable aleatoria en tales casos.
+
+
+## Distribución Condicionada y Esperanza Condicional {#S:AppB:CD}
+
+<hr />
+
+En esta sección, se aprenden
+ 
+- los conceptos relacionados con la distribución condicional de una variable aleatoria dada otra
+- cómo definir la esperanza y varianza condicionadas en función de la función de distribución condicional
+ 
+<hr />
+
+
+Las esperanzas iteradas son las leyes relativas al cálculo de la esperanza y la varianza de una variable aleatoria que utiliza una distribución condicional de la variable dada otra variable. Por lo tanto, primero presentamos los conceptos relacionados con la distribución condicional, y el cálculo de la esperanza condicional y la variable en función de una distribución condicional determinada.
+
+### Distribución Condicional
+
+Aquí presentamos el concepto de distribución condicional para variables aleatorias discretas y continuas, respectivamente.
+
+#### Caso Discreto
+
+Supongamos que $X$ e $Y$ son variables aleatorias discretas, lo que significa que pueden tomar un número finito o contable de valores posibles con una probabilidad positiva. La función **de probabilidad conjunta (masa)** de ($X$, $Y$) se define como $$p(x, y) = \Pr [X = x, Y = y].$$
+
+Cuando $X$ y $Y$ son **independientes** (el valor de $X$ no depende del valor de $Y$), tenemos $$p (x, y) = p (x) p (y),$$
+con $p (x) = \Pr [X = x]$ y $p (y) = \Pr [Y = y]$ siendo cada **función de probabilidad marginal** de $X$ e $Y$, respectivamente.
+ 
+Dada la función de probabilidad conjunta, podemos obtener la función de probabilidad marginal de $Y$ como
+$$p (y) = \sum_x p (x, y),$$
+donde la suma es sobre todos los valores posibles de $x$, y la función de probabilidad marginal de $X$ se puede obtener de manera similar.
+
+La **función de probabilidad condicional (masa)** de $(Y | X)$ se define como
+$$p(y|x) =\Pr[Y=y|X=x]= \frac{p(x,y)}{\Pr[X=x]},$$ 
+donde podemos obtener la función de probabilidad condicional de $(X | Y)$ de manera similar. En particular, la probabilidad condicional anterior representa la probabilidad del evento $Y = y$ dado el evento $X = x$. Por tanto, incluso en los casos en que $\Pr [X = x] = 0$, la función se puede definir como caso particular, en aplicaciones reales.
+
+### Caso Continuo
+
+Para las variables aleatorias continuas $X$ y $Y$, podemos definir su función conjunta de probabilidad (densidad) basada en la función de distribución acumulada conjunta. La **función de distribución conjunta** de ($X$, $Y$) se define como
+$$F(x,y) = \Pr[X\leq x, Y\leq y].$$
+Cuando $X$ e $Y$ son *independientes*, tenemos
+$$F (x, y) = F (x) F (y),$$
+con $F (x) = \Pr [X \leq x]$ y $F (y) = \Pr [Y \leq y]$ siendo la **función de distribución** (cdf, según sus siglas en inglés) de $X$ e $Y$, respectivamente. La variable aleatoria $X$ se conoce como una variable aleatoria **continua** si su cdf es continua en $x$.
+
+Cuando la cdf $F (x)$ es continua en $x$, entonces definimos $f (x) = \partial F (x) / \partial x$ como la **función de densidad de probabilidad (marginal)** (pdf, según sus siglas en inglés) de $X$. De manera similar, si la cdf conjunta $F (x, y)$ es continua tanto en $x$ como en $y$, definimos
+$$f (x, y) = \frac {\partial^2 F (x, y)} {\partial x \partial y}$$
+como la **función de densidad de probabilidad conjunta** de ($X$, $Y$), en cuyo caso nos referimos a las variables aleatorias como **conjuntamente continuas**.
+ 
+Cuando $X$ y $Y$ son *independientes*, tenemos
+$$f (x, y) = f (x) f (y).$$
+
+
+Dada la función de densidad conjunta, podemos obtener la función de densidad marginal de $Y$ como
+$$f (y) = \int_x f (x, y) \, dx,$$
+donde la integral está definida sobre todos los valores posibles de $x$, y la función de densidad de probabilidad marginal de $X$ se puede obtener de manera similar.
+ 
+En base a la pdf conjunta y a la pdf marginal, definimos la **función de densidad condicional** de $(Y | X)$ como
+$$f (y | x) = \frac {f (x, y)} {f (x)},$$
+donde podemos obtener la función de densidad condicional de $(X | Y)$ de manera similar. Aquí, la función de densidad condicional es la función de densidad de $y$ dado $X = x$. Por lo tanto, incluso en los casos en que $\Pr [X = x] = 0$ o cuando $f (x)$ no está definida, la función se puede obtener como caso particular en aplicaciones reales.
+
+
+### Esperanza Condicional y Varianza Condicional
+
+Ahora definimos la esperanza y la varianza condicional en función de la distribución condicional definida en la subsección anterior.
+
+#### Caso Discreto
+
+Para una variable aleatoria discreta $Y$, su **esperanza** se define como $\mathrm{E} [Y] = \sum_y y \, p (y)$ si su valor es finito y su **varianza** se define como $\mathrm{Var}[Y]=\mathrm{E}\{(Y-\mathrm{E}[Y])^2\}=\sum_y y^2\,p(y)-\{\mathrm{E}[Y]\}^2$ si su valor es finito.
+
+Para una variable aleatoria discreta $Y$, la **esperanza condicional** de la variable aleatoria $Y$ dado el suceso $X = x$ se define como
+$$\mathrm{E}[Y|X=x]=\sum_y y\,p(y|x),$$
+donde $X$ no tiene por qué ser una variable discreta, para una función de probabilidad condicional conocida $p (y | x)$.
+
+Se ha de tener en cuenta que la esperanza condicional $\mathrm{E}[Y|X=x]$ es un número concreto. Cuando reemplazamos $x$ por $X$ en el lado derecho de la ecuación anterior, podemos definir la esperanza de $Y$ dada la variable aleatoria $X$ como
+$$\mathrm{E}[Y|X]=\sum_y y\,p(y|X),$$
+que ahora sigue siendo una *variable aleatoria*, y la aleatoriedad proviene de $X$.
+
+De manera similar, podemos definir la **varianza condicional** de la variable aleatoria $Y$ dado el suceso $X = x$ como
+$$\mathrm{Var}[Y|X=x]=\mathrm{E}[Y^2|X=x]-\{\mathrm{E}[Y|X=x]\}^2=\sum_y y^2\,p(y|x)-\{\mathrm{E}[Y|X=x]\}^2.$$
+
+La varianza de $Y$ dado $X$,  $\mathrm{Var}[Y|X]$ se puede definir reemplazando $x$ por $X$ en la ecuación anterior, y $\mathrm{Var}[Y|X]$ sigue siendo una variable aleatoria y la aleatoriedad proviene de $X$.
+
+#### Caso Continuo
+
+Para una variable aleatoria continua $Y$, su **esperanza** se define como $\mathrm{E}[Y]=\int_y y\,f(y)dy$ si la integral existe, y su **varianza** se define como $\mathrm{Var}[Y]=\mathrm{E}\{(X-\mathrm{E}[Y])^2\}=\int_y y^2\,f(y)dy-\{\mathrm{E}[Y]\}^2$ si su valor es finito.
+
+Para variables aleatorias continuas conjuntas $X$ e $Y$, la **esperanza condicional** de la variable aleatoria $Y$ dado $X = x$ se define como
+$$\mathrm{E}[Y|X=x]=\int_y y\,f(y|x)dy.$$
+donde $X$ no tiene que ser una variable continua, para la función de densidad de probabilidad condicional conocida $f (y | x)$.
+
+Del mismo modo, la esperanza condicional $\mathrm{E}[Y|X=x]$ es un número concreto. Cuando reemplazamos $x$ por $X$ en el lado derecho de la ecuación anterior, podemos definir la esperanza de $Y$ dada la variable aleatoria $X$ como
+$$\mathrm{E}[Y|X]=\int_y y\,p(y|X)\,dy,$$
+que sigue siendo una *variable aleatoria*, y la aleatoriedad proviene de $X$.
+
+De manera similar, podemos definir la **varianza condicional** de la variable aleatoria $Y$ dado el suceso $X = x$ como
+$$\mathrm{Var}[Y|X=x]=\mathrm{E}[Y^2|X=x]-\{\mathrm{E}[Y|X=x]\}^2=\int_y y^2\,f(y|x)\,dy-\{\mathrm{E}[Y|X=x]\}^2.$$
+
+La varianza de $Y$ dado $X$,  $\mathrm{Var}[Y|X]$ se puede definir reemplazando $x$ por $X$ en la ecuación anterior, y de manera similar $\mathrm{Var}[Y|X]$ también es una variable aleatoria y el carácter aleatorio proviene de $X$.
+
+## Esperanzas Iteradas y Varianza Total {#S:AppB:IE}
+
+<hr />
+
+En esta sección, se aprende
+ 
+- la Ley de Esperanzas Iteradas para calcular la esperanza de una variable aleatoria basada en su distribución condicional dada por otra variable aleatoria
+- la Ley de la Varianza Total para calcular la varianza de una variable aleatoria en función de su distribución condicional dada por otra variable aleatoria
+- cómo calcular la esperanza y la varianza en base a un ejemplo de un modelo de dos etapas
+
+<hr />
+
+### Ley de las Esperanzas Iteradas
+
+Considere dos variables aleatorias $X$ e $Y$, y $h (X, Y)$, una variable aleatoria que depende de la función $h$, $X$ e $Y$.
+
+Suponiendo que todas las esperanzas existen y son finitas, la **Ley de las Esperanzas Iteradas** establece que
+     $$\mathrm{E}[h(X,Y)]= \mathrm{E} \left\{ \mathrm{E} \left[ h(X,Y) | X \right] \right \},$$
+donde se toma la primera esperanza (interna) con respecto a la variable aleatoria $Y$ y la segunda esperanza (externa) con respecto a $X$.
+
+Para la Ley de las Esperanzas Iteradas, las variables aleatorias pueden ser discretas, continuas o una combinación híbrida de las dos. Utilizamos el ejemplo de variables discretas de $X$ e $Y$ para ilustrar el cálculo de la esperanza incondicional usando la Ley de las Esperanzas Iteradas. Para variables aleatorias continuas, solo necesitamos reemplazar el sumatorio con la integral, como se ilustra anteriormente en el apéndice.
+
+Siendo $p (y | x)$ la función de probabilidad condicional de $(Y | X)$, la esperanza condicional de $h (X, Y)$ dado el suceso $X = x$ se define como
+    $$\mathrm{E} \left[ h(X,Y) | X=x \right] = \sum_y h(x,y) p(y|x),$$
+y la esperanza condicional de $h (X, Y)$ dado que $X$ es una *variable aleatoria* puede escribirse como
+
+$$\mathrm{E} \left[ h(X,Y) | X \right] = \sum_y h(X,y) p(y|X).$$
+ 
+La esperanza no condicional de $h (X, Y)$ se puede obtener tomando la esperanza de $\mathrm{E} \left[ h(X,Y) | X \right]$ con respecto a la variable aleatoria $X$. Es decir, podemos obtener $\mathrm{E}[ h(X,Y)]$ como
+$$\begin{aligned}
+     \mathrm{E} \left\{ \mathrm{E} \left[ h(X,Y) | X \right] \right \}
+    &= \sum_x  \left\{\sum_y h(x,y) p(y|x) \right \} p(x) \\
+    &= \sum_x  \sum_y h(x,y) p(y|x)p(x) \\
+    &=  \sum_x  \sum_y h(x,y) p(x,y)
+    =  \mathrm{E}[h(X,Y)] \end{aligned}.$$
+
+La Ley de las Esperanzas Iteradas para los casos continuos e híbridos puede probarse de manera similar, reemplazando la(s) suma(s) correspondiente(s) por integral(es).
+
+
+### Ley de la Varianza Total
+
+Suponiendo que existan todas las varianzas y que sean finitas, la **Ley de la Varianza Total** establece que
+    $$\mathrm{Var}[h(X,Y)]= \mathrm{E} \left\{ \mathrm{Var} \left[h(X,Y) | X \right] \right \}
+    +\mathrm{Var} \left\{ \mathrm{E} \left[ h(X,Y) | X \right] \right \},$$
+donde se toma la primera esperanza/varianza (interna) con respecto a la variable aleatoria $Y$ y la segunda esperanza/varianza (externa) con respecto a $X$. Por lo tanto, la varianza no condicional es igual a la esperanza de la varianza condicional más la varianza de la esperanza condicional.
+ 
+
+*** 
+
+<h5 style="text-align: center;"><a id="EXM:S2a:LTV:display" href="javascript:toggleTheory('EXM:S2a:LTV','EXM:S2a:LTV:display');"><i><strong>Mostrar detalle técnico</strong></i></a></h5>
+<div id="EXM:S2a:LTV" style="display: none">
+
+Para verificar esta regla, primero tengamos en cuenta que podemos calcular una varianza condicional como $$\mathrm{Var} \left[ h(X,Y) | X \right]  = \mathrm{E} [ h(X,Y)^2 | X ] -\left\{\mathrm{E} \left[ h(X,Y) | X \right] \right\}^2.$$
+
+A partir de aquí, la esperanza de la varianza condicional es
+\begin{align}
+    \mathrm{E}\{\mathrm{Var} \left[ h(X,Y) | X \right] \} &=
+    \mathrm{E}\left\{\mathrm{E} \left[ h(X,Y)^2 | X \right] \right\} - \mathrm{E}\left(\left\{\mathrm{E} \left[ h(X,Y) | X \right] \right\}^2\right) \notag \\
+    &=\mathrm{E} \left[ h(X,Y)^2\right] - \mathrm{E}\left(\left\{\mathrm{E} \left[ h(X,Y) | X \right] \right\}^2\right).(\#eq:AppBEV1)
+\end{align}
+
+Además, si se tiene en cuenta que la esperanza condicional,
+    $\mathrm{E} \left[ h(X,Y) | X \right]$, es una función de $X$, denotada como $g(X)$. Entonces, $g(X)$ es una variable aleatoria cuya media es $\mathrm{E}[h(X,Y)]$ y su varianza es
+\begin{align}
+    \mathrm{Var} \left\{ \mathrm{E} \left[ h(X,Y) | X \right] \right \} &=\mathrm{Var}[g(X)]  \notag \\
+    &= \mathrm{E}[g(X)^2]\ - \left\{\mathrm{E}[g(X)]\right\}^2 \nonumber\\
+    &= \mathrm{E}\left(\left\{\mathrm{E} \left[ h(X,Y) | X \right] \right\}^2\right)
+    - \left\{\mathrm{E}[h(X,Y)]\right\}^2.(\#eq:AppBVE2)
+\end{align}
+
+
+Por lo tanto, agregando las ecuaciones \@ref(eq:AppBEV1) y \@ref(eq:AppBVE2) se obtienen la varianza no condicional $\mathrm{Var} \left[ h(X,Y) \right]$.
+
+</div>
+
+***
+
+### Aplicación
+
+Para aplicar la Ley de las Esperanzas Iteradas y la Ley de la Varianza Total, generalmente adoptamos el siguiente procedimiento.
+ 
+1. Se identifica la variable aleatoria a la que se está condicionando, normalmente se realiza en la etapa 1 (que no se observa).
+ 
+2. Condicionado al resultado en la etapa 1, se calculan las medidas de resumen como la media, varianza y similares.
+ 
+3. Se obtienen varios resultados en el paso 2, uno para cada resultado de la etapa 1. Luego, se combinan dichos resultados usando las reglas de las esperanzas iteradas o de la varianza total.
+ 
+
+**Mixturas de poblaciones finitas.** Supongamos que la variable aleatoria $N_1$ representa una realización del número de siniestros en un año de una póliza de la población de buenos conductores y $N_2$ representa la de la población de malos conductores. Para un conductor específico, hay una probabilidad $\alpha$ de que sea un buen conductor. Para una determinada variable $N$, tenemos
+    $$N =
+    \begin{cases}
+    N_1,  &  \text{si el(ella) es un(a) buen(a) conductor(a);}\\
+    N_2,  &   \text{en otro caso}.\\
+    \end{cases}$$
+
+Supongamos que $T$ es el indicador de si es un buen conductor, con $T = 1$ que representa que el conductor es un buen conductor con $\Pr [T = 1] = \alpha$ y $T = 2$ representa que el conductor es un mal conductor con $\Pr [T = 2] = 1- \alpha$.
+
+De la Ley de Esperanzas Iteradas, podemos obtener el número esperado de siniestros como $$\mathrm{E}[N]= \mathrm{E} \left\{ \mathrm{E} \left[ N | T \right] \right \}= \mathrm{E}[N_1] \times \alpha +  \mathrm{E}[N_2] \times (1-\alpha).$$
+
+De la Ley de la Varianza Total, podemos obtener la varianza de $N$ como
+    $$\mathrm{Var}[N]= \mathrm{E} \left\{ \mathrm{Var} \left[ N | T \right] \right \}
+    +\mathrm{Var} \left\{ \mathrm{E} \left[ N | T \right] \right \}.$$
+
+Para ser más concretos, supongamos que $N_j$ sigue una distribución de Poisson con media $\lambda_j$, $j = 1,2$. Entonces tenemos $$\mathrm{Var}[N|T=j]= \mathrm{E}[N|T=j] = \lambda_j, \quad j = 1,2.$$
+
+Por lo tanto, podemos derivar la esperanza de la varianza condicional como
+    $$\mathrm{E} \left\{ \mathrm{Var} \left[ N | T \right] \right \} = \alpha \lambda_1+ (1-\alpha) \lambda_2$$
+    y la varianza de la esperanza condicional como
+    $$\mathrm{Var} \left\{ \mathrm{E} \left[ N | T \right] \right \} = (\lambda_1-\lambda_2)^2 \alpha (1-\alpha).$$
+Cabe señalar que esta última es la varianza para una Bernoulli con resultados $\lambda_1$ y $\lambda_2$, y probabilidad binomial $\alpha$.
+
+En base a la Ley de la Varianza Total, la varianza no condicional de $N$ viene dada por
+$$\mathrm{Var}[N]= \alpha \lambda_1+ (1-\alpha) \lambda_2 + (\lambda_1-\lambda_2)^2 \alpha (1-\alpha).$$
+    
+## Distribuciones Conjugadas {#S:AppConjugateDistributions}
+
+
+Como se describe en la Sección \@ref(S:IntroBayes), para las distribuciones conjugadas, las distribuciones a posteriori y a priori provienen de la misma familia de distribuciones. En las aplicaciones de seguros, esto ocurre habitualmente en una "familia de familias de distribuciones" conocida como la familia exponencial lineal que presentamos a continuación.
+
+### Familia Exponencial Lineal
+
+**Definición.** La distribución de la *familia exponencial lineal* es
+\begin{equation}
+f( x; \gamma ,\theta ) =
+\exp \left( \frac{x\gamma -b(\gamma )}{\theta} +S\left( x,\theta \right) \right).
+\end{equation}
+
+Aquí, $x$ es una variable dependiente y $\gamma$ es el parámetro de interés. El valor $\theta$ es un parámetro de escala. El término $b (\gamma)$ depende solo del parámetro $\gamma$, no de la variable dependiente. El estadístico $S \left(x, \theta \right)$ es una función de la variable dependiente y el parámetro de escala, no del parámetro $\gamma$.
+
+La variable dependiente $x$ puede ser discreta, continua o una combinación híbrida de las dos. Por lo tanto, $f \left(. \right)$ puede interpretarse como una función de densidad o  de masa, dependiendo de la aplicación. La siguiente tabla proporciona varios ejemplos, incluida la distribución normal, binomial y de Poisson.
+
+
+$$
+{\small
+\begin{matrix}
+\text{Selección de distribuciones de la familia exponencial lineal}\\
+\begin{array}{l|ccccc}
+\hline
+             &             & \text{Densidad o} & & & \\
+\text{Distribución} & \text{Parámetros} & \text{Función de masa} & \text{Componentes} \\
+\hline \text{General} & \gamma,~ \theta & 
+\exp \left( \frac{x\gamma -b(\gamma )}{\theta} +S\left( x,\theta \right) \right) & 
+\gamma,~ \theta, b(\gamma), S(x, \theta)\\
+ \text{Normal} & \mu, \sigma^2  &
+\frac{1}{\sigma \sqrt{2\pi }}\exp \left(-\frac{(x-\mu )^{2}}{2\sigma ^{2}}\right) & 
+\mu, \sigma^2, \frac{\gamma^2}{2}, - \left(\frac{x^2}{2\theta} + \frac{\ln(2 \pi
+\theta)}{2} \right) \\
+\text{Binomal} & \pi & 
+{n \choose x} \pi ^x (1-\pi)^{n-x} & 
+\ln
+\left(\frac{\pi}{1-\pi} \right), 1, n \ln(1+e^{\gamma} ),  \\
+&  &  &  \ln {n \choose x} \\
+\text{Poisson} & \lambda & 
+\frac{\lambda^x}{x!} \exp(-\lambda)  & 
+\ln \lambda, 1, e^{\gamma}, - \ln (x!)  \\
+\text{Binomial } & 
+r,p &  \frac{\Gamma(x+r)}{x!\Gamma(r)} p^r ( 1-p)^x & 
+\ln(1-p), 1, -r \ln(1-e^{\gamma}), \\
+~~~\text{negativa}^{\ast} & & & ~~~\ln \left[ \frac{\Gamma(x+r)}{x!
+\Gamma(r)} \right] \\
+\text{Gamma} & \alpha, \theta  & \frac{1}{\Gamma (\alpha)\theta ^ \alpha}
+x^{\alpha -1 }\exp(-x/ \theta)  & - \frac{1}{\alpha \gamma},
+\frac{1}{\alpha}, - \ln ( - \gamma), -\theta^{-1} \ln \theta \\
+& & &  - \ln \left( \Gamma(\theta ^{-1}) \right) +
+(\theta^{-1} - 1) \ln x & & \\ \hline
+\end{array}\\
+^{\ast} \text{Se supone que el parámetro r es fijo pero no necesariamente un entero.}\\ 
+\end{matrix}
+}
+$$
+
+Las distribuciones Tweedie (ver Sección \@ref(S:TweedieDistribution)) e inversa gaussiana también son miembros de la familia exponencial lineal. La familia exponencial lineal de las familias de distribuciones se utiliza ampliamente como base de los modelos lineales generalizados como se describe, por ejemplo, en @frees2009regression.
+
+### Distribuciones Conjugadas
+
+Ahora supongamos que el parámetro $\gamma$ es aleatorio con distribución $\pi (\gamma, \tau)$, donde $\tau$ es un vector de parámetros que describe la distribución $\gamma$. En los modelos bayesianos, la distribución $\pi$ se conoce como a priori y refleja nuestra creencia o información sobre $\gamma$. La probabilidad $f (x | \gamma)$ es una probabilidad condicional en $\gamma$. La distribución de $\gamma$ con conocimiento de las variables aleatorias, $\pi (\gamma, \tau | x)$, se denomina distribución a posteriori. Para una distribución de probabilidad dada, las distribuciones a priori y a posteriori que provienen de la misma familia paramétrica se conocen como familias conjugadas de distribuciones.
+
+Para una verosimilitud exponencial lineal, existe una familia conjugada natural. Concretamente, consideremos una probabilidad de la forma
+$f(x|\gamma) = \exp \left\{(x\gamma -b(\gamma))/\theta\right\} \exp \left\{S\left( x,\theta \right) \right\}$. 
+Para esta probabilidad, definamos la distribución a priori
+$$\pi(\gamma,\tau) = C \exp\left\{
+\gamma a_1(\tau) - b(\gamma)a_2(\tau))\right\},$$
+donde $C$ es una constante de normalización. Aquí, $a_1 (\tau) = a_1$ y $a_2 (\tau) = a_2$ son funciones de los parámetros $\tau$, aunque simplificamos la notación eliminando la dependencia explícita de $\tau$. La distribución conjunta de $x$ y $\gamma$ viene dada por $f (x, \gamma) = f (x | \gamma) \pi (\gamma, \tau)$. Usando el Teorema de Bayes, la
+distribución a posteriori es
+$$\pi(\gamma,\tau|x) = C_1 \exp\left\{
+\gamma \left( a_1+\frac{x}{\theta}\right) - b(\gamma)\left( a_2+\frac{1}{\theta}\right)\right\},$$
+donde $C_1$ es una constante de normalización. Por lo tanto, vemos que $\pi (\gamma, \tau | x)$ tiene la misma forma que $\pi (\gamma, \tau)$.
+
+
+***
+
+**Caso particular. El modelo Poisson-Gamma.** Consideremos una verosimilitud de Poisson para la que $b (\gamma) = e^{\gamma}$ y el parámetro de escala ($\theta$) sea igual a uno. Por lo tanto, tenemos
+$$\pi(\gamma,\tau) = C \exp\left\{
+\gamma a_1 - a_2 e^{\gamma} \right\}=
+C ~ 
+\left(
+e^{\gamma}\right)^{a_1}
+\exp\left(-a_2e^{\gamma} \right).$$
+De la tabla de las distribuciones de la familia exponencial, se observa que es una distribución gamma. Es decir, tenemos que la distribución a priori de $\lambda = e^{\gamma}$ es una distribución gamma con parámetros $\alpha_{prior} = a_1 + 1$ y $\theta_ {prior}^{- 1} = a_2$. La distribución a posteriori es una distribución gamma con parámetros $\alpha_{post} = a_1 + x + 1 = \alpha_{prior} + x$ y $\theta_ {post}^{- 1} = a_2 + 1 = \theta_{prior}^{- 1} + 1$. Esto es consistente con el resultado de nuestra Sección \@ref(S:PosteriorDistribution).
+ 
+***
+
+**Caso especial. El modelo Normal-Normal.** 
+Consideremos una verosimilitud normal para la que $b(\gamma) = \gamma^2/2$ y el parámetro de escala es $\sigma^2$. Por lo tanto, tenemos
+$$\pi(\gamma,\tau) = C \exp\left\{
+\gamma a_1 - \frac{\gamma^2}{2}a_2\right\}=
+C_1(\tau)\exp\left\{ - \frac{a_2}{2}\left(\gamma -\frac{a_1}{a_2}\right)^2\right\},$$
+La distribución a priori de $\gamma$ es normal con una media igual a $a_1 / a_2$ y una varianza igual a $a_2^{-1}$. La distribución a posteriori de $\gamma$ dado $x$ es normal con una media $(a_1 + x / \sigma^2) / (a_2 + \sigma ^ {- 2})$ y la varianza $(a_2 + \sigma^{- 2})^{-1}$.
+ 
+***
+
+**Caso especial. El modelo Beta-Binomial.** Consideremos una distribución binomial para la que $b(\gamma) = n \ln(1+e^{\gamma})$ y el parámetro de escala es igual a uno. Entonces tenemos que
+$$\pi(\gamma,\tau) = C \exp\left\{
+\gamma a_1 - n a_2 \ln(1+e^{\gamma}) \right\}=
+C ~ 
+\left(
+\frac{e^{\gamma}}{1+e^{\gamma}}\right)^{a_1}
+\left(1-\frac{e^{\gamma}}{1+e^{\gamma}}\right)^{-na_2+a_1}.$$
+
+Esta es una distribución beta. Como en los otros casos, los parámetros a priori $a_1$ y $a_2$ se actualizan de forma que se convierten en parámetros a posteriori $a_1 + x$ y $a_2 + 1$.
+
+#### Autoría {-}
+
+- **Lei (Larry) Hua**, Northern Illinois University, y **Edward W. (Jed) Frees**, University of Wisconsin-Madison, son los autores principales de la versión inicial de este capítulo. Email: lhua@niu.edu o jfrees@bus.wisc.edu para enviar comentarios o sugerencias de mejora.
+
+- Traducción al español: Montserrat Guillen y Manuela Alcañiz (Universitat de Barcelona).
+

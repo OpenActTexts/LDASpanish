@@ -1,0 +1,1637 @@
+`r chapnum = 5`
+
+# Modelos de Pérdidas Agregadas {#C:AggLossModels}
+
+
+*Vista previa del capítulo*. Este capítulo presenta modelos de probabilidad para describir la siniestralidad agregada (siniestros totales) de una cartera de pólizas de seguro. Se presentan dos enfoques de modelización tradicionales, el modelo de riesgo individual y el modelo de riesgo colectivo. Además, se analizan estrategias para calcular la distribución de la siniestralidad agregada, entre los que se incluyen métodos exactos en casos específicos, recursión y simulación. Finalmente, se examinan los efectos de las modificaciones individuales en las pólizas, tales como deducibles, coaseguros e inflación, sobre las distribuciones de frecuencia y severidad y, por lo tanto, sobre la distribución de pérdidas agregadas.
+
+
+
+
+## Introducción
+
+El objetivo de este capítulo es construir un modelo de probabilidad para describir los siniestros totales de un sistema de seguros que ocurren en un período de tiempo determinado. El sistema de seguros puede ser una única póliza, un contrato de seguro colectivo, una línea de negocio o el conjunto total del negocio de una entidad aseguradora. En este capítulo, *siniestros totales* se refieren al número o al importe de los siniestros de una cartera de contratos de seguro. Sin embargo, la modelización que se presenta puede adaptarse fácilmente a una configuración más general.
+
+Considere una cartera de seguros de $n$ contratos individuales, donde $S$ representa las pérdidas agregadas de la cartera en un período de tiempo determinado. Existen dos enfoques para modelizar las pérdidas agregadas $S$, el modelo de riesgo individual y el modelo de riesgo colectivo. El *modelo de riesgo individual* considera la pérdida de cada contrato individual y representa las pérdidas agregadas como:
+
+$$\begin{aligned}
+S_n=X_1 +X_2 +\cdots+X_n,
+\end{aligned}$$
+
+donde $X_i~(i=1,\ldots,n)$ se interpreta como el importe de la pérdida del contrato $i$-ésimo. Cabe destacar que $n$ denota el número de contratos en la cartera y por lo tanto es un número conocido en lugar de una variable aleatoria. En el modelo de riesgo individual normalmente se asume que los $X_{i}$ son independientes. Debido a las diferentes características de cada contrato, como la cobertura y la exposición, los $X_{i}$ no se consideran necesariamente idénticamente distribuidos. Una particularidad de la distribución de cada $X_i$ es la masa de probabilidad en cero que corresponde al evento de no siniestros.
+
+El *modelo de riesgo colectivo* representa las pérdidas agregadas en base a una distribución de frecuencias y una distribución de gravedad:
+
+$$\begin{aligned}
+S_N=X_1 +X_2 +\cdots+X_N.
+\end{aligned}$$
+
+
+Aquí, uno piensa en un número aleatorio de siniestros $N$ que puede representar tanto el número de pérdidas como el número de pagos. En cambio, en el modelo de riesgo individual se considera un número fijo de contratos $n$. Supongamos que $X_1, X_2, \ldots, X_N$ representa la cuantía de cada pérdida. Cada pérdida puede o no corresponder a un mismo contrato. Por ejemplo, se pueden generar múltiples reclamaciones en un mismo contrato. Normalmente se considera $X_i>0$ ya que si $X_i=0$ entonces el siniestro no ha ocurrido. Frecuentemente se asume que condicionado a $N=n$, $X_{1},X_{2},\ldots ,X_{n}$ son variables aleatorias *iid*. La distribución de $N$ se denomina la *distribución de frecuencias*, y la distribución de $X$ se conoce como la *distribución de severidad*. Se asume además que $N$ y $X$ son independientes. En el modelo de riesgo colectivo las pérdidas agregadas se pueden descomponer en el proceso de frecuencia ($N$) y el modelo de gravedad ($X$). Esta flexibilidad permite al analista estudiar estas dos componentes por separado. Por ejemplo, el crecimiento de las ventas debido a una relajación de los criterios de suscripción podría dar lugar a una mayor frecuencia de pérdidas, pero podría no afectar a la gravedad de las mismas. Del mismo modo, la inflación u otros factores económicos podrían tener un impacto en la severidad pero no en la frecuencia.
+
+
+
+
+## Modelo de Riesgo Individual
+
+Como se menciona previamente, en el *modelo de riesgo individual*, $X_i$ se considera la pérdida del $i$-ésimo contrato y se interpreta
+
+\begin{eqnarray*}
+S_n=X_1 +X_2 +\cdots+X_n
+\end{eqnarray*}
+
+como la pérdida agregada de todos los contratos de una cartera o grupo de contratos. Aquí, las $X_i$ no se distribuyen necesariamente de forma idéntica y se cumple que
+
+$$\begin{aligned}
+    {\rm E}(S_n) &= \sum_{i=1}^{n} {\rm E}(X_i)~.
+\end{aligned}$$
+
+
+Bajo el supuesto de independencia de las $X_i$ (que implica $\mathrm{Cov}\left( X_i, X_j \right) = 0$ para todo $i \neq j$), se puede demostrar que 
+
+$$\begin{aligned}
+    {\rm Var}(S_n) &= \sum_{i=1}^{n} {\rm Var}(X_i) \\
+    P_{S_n}(z) &= \prod_{i=1}^{n}P_{X_i}(z) \\
+    M_{S_n}(t) &= \prod_{i=1}^{n}M_{X_i}(t), 
+ \end{aligned}$$
+
+
+
+donde $P_{S_n}(\cdot)$ y $M_{S_n}(\cdot)$ son la función generadora de probabilidad (*pgf*) y la función generadora de momentos (*mgf*) de $S_n$, respectivamente. La distribución de cada $X_i$ tiene masa de probabilidad en cero, que corresponde al caso en el que no han habido siniestros en el contrato $i$-ésimo. Una estrategia para incluir masa en cero en la distribución es construirla en dos partes:
+
+$$\begin{aligned}
+X_i = I_i\times B_i = \left\{\begin{array}{ll}
+                               0~, & \text{si }~ I_i=0 \\
+                               B_i~, & \text{si }~ I_i=1
+                             \end{array}
+             \right.
+\end{aligned}$$
+
+
+Aquí, $I_i$ es una variable de Bernoulli que indica si ocurren o no pérdidas en el contrato $i$-ésimo, y $B_i$ es una variable aleatoria con soporte no negativo que representa la cuantía de las pérdidas en el contrato condicionado a que han ocurrido. Supongamos que $I_1 ,\ldots,I_n ,B_1 ,\ldots,B_n$ son mutuamente independientes. Denotemos ${\rm Pr} (I_i =1)=q_i$, $\mu_i={\rm E}(B_i)$, y $\sigma_i^2={\rm Var}(B_i)$. Se demuestra (véase *Suplemento técnico `r chapnum`.A.1* para más detalles) que 
+
+$$\begin{aligned}
+\mathrm{E}(S_n)& =\sum_{i=1}^n ~q_i  ~\mu _i \\
+\mathrm{Var}(S_n) & =\sum_{i=1}^n \left( q_i \sigma _i^2+q_i (1-q_i)\mu_i^2 \right)\\
+P_{S_n}(z) & =\prod_{i=1}^n \left( 1-q_i+q_i P_{B_i}(z) \right)\\
+M_{S_n}(t) & =\prod_{i=1}^n \left( 1-q_i+q_i M_{B_i}(t) \right)
+\end{aligned}$$
+
+
+Un caso particular del modelo anterior es cuando $B_i$ sigue una distribución degenerada con $\mu_i=b_i$ y $\sigma^2_i=0$. Un ejemplo es un seguro de vida temporal o seguro de capital diferido en el que $b_i$ representa el importe del capital asegurado en el contrato $i$-ésimo.
+
+Otra estrategia para acomodar masa en cero en la pérdida de cada contrato es considerarlos globalmente a nivel de cartera, como en el *modelo de riesgo colectivo*. Aquí, la pérdida total es $S_{N} = X_1 + \cdots X_N$, donde $N$ es una variable aleatoria que representa el número de reclamaciones distintas de cero que se produjeron en todo el conjunto de contratos. Por lo tanto, todos los contratos de la cartera pueden no estar representados en esta suma, y $S_N=0$ cuando $N=0$. El modelo de riesgo colectivo se discutirá en detalle en la siguiente sección.
+
+
+
+***
+
+**Ejemplo `r chapnum`.2.1. Pregunta de Examen Actuarial.**
+Una compañía de seguros vendió 300 pólizas de seguro contra incendios de la siguiente forma:   
+
+$$
+{\small 
+\begin{matrix}
+	\begin{array}{c c c} \hline
+		\text{Número de} & \text{Máximo de la} & \text{Probabilidad de}\\
+		\text{Polizas} &  \text{Póliza} &  \text{Siniestro por póliza}\\ 
+		& (M_i) & (q_i) \\ \hline
+		100 & 400 & 0,05\\
+		200 & 300 & 0,06\\ \hline
+	\end{array}
+\end{matrix}
+}
+$$    
+
+Se sabe que:  
+ (i) El coste del siniestro por póliza, $X_i$, se distribuye uniformemente entre $0$ y el máximo de la póliza $M_i$.  
+ (ii) La probabilidad de ocurrencia de más de un siniestro por póliza es $0$.  
+ (iii) Los siniestros son independientes.    
+
+Calcular la media, $\mathrm{E~}(S_{300})$, y la varianza, $\mathrm{Var~}(S_{300})$, de la siniestralidad total. ¿Como variarán los resultados si ahora cada siniestro es igual al máximo de la póliza?  
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.2.1" href="javascript:toggleEX('toggleExampleAggLoss.2.1','displayTextExampleAggLoss.2.1');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.2.1" style="display: none">
+
+
+**Solución.**
+La siniestralidad total $S_{300} = X_1+\cdots+X_{300}$, donde $X_1, \ldots, X_{300}$ son independientes pero no idénticamente distribuidos. El coste de los siniestros se distribuye uniformemente en $(0,M_i)$, por lo que el coste medio del siniestro es $M_i/2$ y la varianza es $M_i^2/12$. Por tanto, para la póliza $i=1,\ldots,300$, se tiene
+$$
+{\small 
+\begin{matrix}
+	\begin{array}{ccccc} \hline
+		\text{Número de} & \text{Máximo de la} & \text{Probabilidad de} & \text{Media del} & \text{Varianza del}\\
+		\text{Polizas} &  \text{Póliza} &  \text{Siniestro por póliza} & \text{Coste} & \text{Coste}\\
+		& (M_i) & (q_{i}) & (\mu_{i}) & (\sigma_{i}^2) \\ \hline
+		100 & 400 & 0.05 & 200 & 400^2/12\\
+		200 & 300 & 0.06 & 150 & 300^2/12 \\ \hline
+	\end{array}
+\end{matrix}
+}
+$$  
+
+La media de la siniestralidad total es
+$$\mathrm{E~} (S_{300}) = \sum_{i=1}^{300} q_i \mu_i = 100\left\{0,05(200)\right\} + 200\left\{0,06 (150) \right\} = 2.800$$  
+
+La varianza de la siniestralidad total es
+\begin{eqnarray*}
+	\mathrm{Var~}(S_{300}) &=& \sum_{i=1}^{300} \left( q_i \sigma _i^2+q_i (1-q_i)\mu_i^2 \right) ~~~~ \text{dado que las } X_i \text{ son independientes} \\
+	&=& 100\left\{ 0,05 \left(\frac{400^2}{12}\right) +0,05 (1-0,05 )200^2 \right\}+
+	200\left\{
+	0,06 \left(\frac{300^2}{12}\right) +0,06 (1-0,06 )150^2 \right\}\\
+	&=& 600.467.
+\end{eqnarray*}
+
+</div>
+
+***   
+
+*Continuación.* Ahora supongamos que todos reciben el máximo de la póliza $M_i$ si ocurre un siniestro. ¿Cuál es la pérdida agregada esperada $\mathrm{E~}(\tilde{S})$ y la varianza de la pérdida agregada $\mathrm{Var~}(\tilde{S})$? 
+
+La cuantía del siniestro por póliza $X_i$ es ahora determinista y se establece en $M_i$ en vez de ser un valor aleatorio, así que $\sigma_i^2 = \mathrm{Var~} (X_i) = 0$ y $\mu_i = M_i$. Una vez más, la probabilidad que ocurra una reclamación para cada póliza es $q_i$. En este contexto, la pérdida agregada esperada es
+
+$$\begin{aligned}
+\mathrm{E~}(\tilde{S}) &= \sum_{i=1}^{300} q_i \mu_i = 100 \left\{0,05(400) \right\} + 200 \left\{ 0,06(300) \right\} = 5.600
+\end{aligned}$$  
+
+La varianza de la pérdida agregada es
+$$\begin{aligned}
+\mathrm{Var~}(\tilde{S}) &= \sum_{i=1}^{300} \left( q_i \sigma _i^2+q_i (1-q_i
+)\mu_i^2 \right) = \sum_{i=1}^{300} \left( q_i (1-q_i) \mu_i^2 \right) \\
+&= 100 \left\{(0,05) (1-0,05) 400^2\right\} +
+200 \left\{(0,06) (1-0,06)300^2\right\} \\
+&= 1.775.200
+\end{aligned}$$
+
+*** 
+
+El modelo de riesgo individual también puede utilizarse para la frecuencia de los siniestros. Si $X_i$ representa el número de siniestros para el $i$-ésimo contrato, entonces $S_n$ se interpreta como el número total de siniestros de la cartera. En este caso, la construcción de la distribución en dos partes se sigue aplicando, ya que continua existiendo masa de probabilidad en cero para las pólizas que no experimentan ningún siniestro. Supongamos que $X_i$ pertenece a la clase $(a,b,0)$ con *pmf* definida como $p_{ik} = \Pr(X_i=k)$ para $k=0,1,\ldots$ (véase Sección \@ref(S:the-a-b-0-class)). Así mismo, $X_i^{T}$ indica la distribución truncada en cero asociada de la clase $(a,b,1)$ con *pmf* $p_{ik}^T=p_{ik}/(1-p_{i0})$ para $k=1,2,\ldots$ (véase Sección \@ref(S:zero-truncation-or-modification)). Usando la relación entre sus funciones generadoras de probabilidad (véase *Suplemento Técnico `r chapnum`.A.2* para más detalles):
+$$\begin{aligned}
+P_{X_i}(z) = p_{i0} +(1-p_{i0}) P_{X_i^{T}}(z),
+\end{aligned}$$
+se puede escribir $X_i=I_i\times B_i$ con $q_i={\rm Pr}(I_i=1)={\rm Pr}(X_i>0)=1-p_{i0}$ y $B_i=X_i^T$. Como se puede observar, en este caso, se obtiene una distribución modificada en cero, ya que la variable $I_i$ recoge la masa de probabilidad modificada en cero con $q_i = \Pr(I_i=1)$, mientras que $B_i=X_i^T$ cubre la parte de frecuencia discreta que no es cero. Véase Sección \@ref(S:zero-truncation-or-modification) para la relación entre las distribuciones truncadas en cero y modificadas en cero.
+
+
+
+*** 
+
+**Ejemplo `r chapnum`.2.2.**
+
+Una compañía aseguradora ha vendido una cartera de 100 pólizas de seguro de hogar independientes entre si, en cada una de las cuales la frecuencia de siniestros sigue una distribución de Poisson modificada en cero, como se indica a continuación:  
+
+$$
+{\small 
+\begin{matrix}
+	\begin{array}{cccc} \hline
+		\text{Tipo de} & \text{Número de}  & \text{Probabilidad of} & \lambda \\
+		\text{Póliza} & \text{Pólizas}  &  \text{Al menos un siniestro} &  \\ \hline
+		\text{Riesgo bajo} & 40 & 0,03 & 1 \\
+		\text{Riesgo alto} & 60 & 0,05 & 2 \\ \hline
+	\end{array}
+\end{matrix}
+}
+$$
+Calcular el valor esperado y varianza de la frecuencia de siniestros para el conjunto de la cartera.  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.2.2" href="javascript:toggleEX('toggleExampleAggLoss.2.2','displayTextExampleAggLoss.2.2');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.2.2" style="display: none">
+
+
+
+**Solución.**
+Para cada póliza se puede escribir la frecuencia de siniestros Poisson cero modificada $N_i$ como $N_i = I_i \times B_i$, donde
+$$q_i = \Pr(I_i = 1) = \Pr(N_i > 0) = 1-p_{i0}$$
+
+Para las pólizas de bajo riesgo se tiene $q_i = 0,03$, y para las pólizas de alto riego $q_i=0,05$. Además, $B_i = N_i^T$, la versión truncada en cero de $N_i$. Por tanto, se tiene
+$$\begin{aligned}
+\mu_i &={\rm E}(B_i) = {\rm E}(N_i^T) = \frac{\lambda}{1-e^{-\lambda}} \\
+\sigma_i^2 &={\rm Var}(B_i) = {\rm Var}(N_i^T) = \frac{\lambda [1-(\lambda+1)e^{-\lambda}]}{(1-e^{-\lambda})^2}
+\end{aligned}$$
+
+
+La frecuencia de siniestros de la cartera sería $S_n = \sum_{i=1}^n N_i$. En base a las fórmulas anteriores, el número esperado de siniestros de la cartera es
+$$\begin{aligned}
+	\mathrm{E~} (S_n) &= \sum_{i=1}^{100} q_i \mu_i \\
+	& = 40\left[0,03 \left(\frac{1}{1-e^{-1}} \right) \right] + 60 \left[0,05 \left( \frac{2}{1-e^{-2}} \right) \right] \\
+	&= 40(0,03)(1,5820) + 60(0,05)(2,3130) = 8,8375
+\end{aligned}$$
+La varianza de la frecuencia de siniestros de la cartera es
+$$\begin{aligned}
+	\mathrm{Var~}(S_n) &= \sum_{i=1}^{100} \left( q_i \sigma _i^2+q_i (1-q_i
+	)\mu_i^2 \right) \\
+	&= 40 \left[ 0,03 \left(\frac{1-2e^{-1}}{(1-e^{-1})^2} \right) + 0,03(0,97)(1,5820^2) \right] + 60 \left[0,05 \left( \frac{2[1-3e^{-2}]}{ (1-e^{-2})^2} \right) + 0,05(0.95)(2,3130^2) \right] \\
+	&= 23,7214
+\end{aligned}$$
+Cabe señalar que, equivalentemente, se podría calcular la media y varianza de una póliza individual usando la relación entre la distribuciones de Poisson modificada en cero y truncada en cero (véase Sección \@ref(S:the-a-b-0-class)). 
+
+</div>
+
+
+
+*** 
+Para entender la distribución de la pérdida agregada se puede utilizar el teorema central del límite para aproximar la distribución de $S_n$ para valores grandes de $n$. Si se denota $\mu_{S_n}={\rm E}(S_n)$ y $\sigma^2_{S_n}={\rm Var}(S_n)$ y se considera $Z\sim N(0,1)$, una variable aleatoria normal estándar con *cdf* $\Phi$. Entonces, la *cdf* de $S_n$ se puede aproximar como:
+
+$$\begin{aligned}
+ F_{S_n}(s) &= {\rm Pr}({S_n}\leq s) = \Pr \left( \frac{S_n - \mu_{S_n}}{\sigma_{S_n}} \leq \frac{s-\mu_{S_n}}{\sigma_{S_n}} \right) \\
+ &\approx \Pr\left( Z \leq \frac{s-\mu_{S_n}}{\sigma_{S_n}} \right) = \Phi \left(\frac{s-\mu_S}{\sigma_S}\right).
+\end{aligned}$$  
+
+*** 
+**Ejemplo `r chapnum`.2.3. Pregunta Examen Actuarial - Continuación.**
+
+Como en el Ejemplo `r chapnum`.2.1, una compañía de seguros ha vendido 300 pólizas de seguro contra incendios, donde el coste del siniestro $X_i$ se distribuye uniformemente entre 0 y el máximo de la póliza $M_i$. Utilizando la aproximación normal, se pide calcular la probabilidad de que el importe total de los siniestros $S_{300}$ supere los $3.500\$$. 
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.2.3" href="javascript:toggleEX('toggleExampleAggLoss.2.3','displayTextExampleAggLoss.2.3');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.2.3" style="display: none">
+
+**Solución.**
+Previamente se ha obtenido que $\mathrm{E}(S_{300})=2.800$ y $\mathrm{Var}(S_{300}) = 600.467$. Por lo tanto,
+$$\begin{aligned}
+{\rm Pr}(S_{300} > 3.500) &= 1 - {\rm Pr}(S_{300} \leq 3.500) \\
+&\approx 1- \Phi \left( \frac{3.500-2.800}{\sqrt{600.467}} \right) = 1 - \Phi \left( 0,90334 \right) \\
+&= 1 – 0,8168 = 0,1832
+\end{aligned}$$
+
+</div>
+
+*** 
+
+En el caso que $n$ sea un valor pequeño, la distribución de $S_n$ será probablemente sesgada, y la aproximación normal no sería una buena elección. Para analizar la distribución de pérdidas agregada, se debe volver a los métodos básicos iniciales. En concreto, la distribución puede derivarse recursivamente. Si se define $S_k=X_1 + \cdots + X_k, k=1,\ldots,n$.
+
+Para $k=1$:
+$$F_{S_1}(s) = {\rm Pr}(S_1\leq s) = {\rm Pr}(X_1\leq s) = F_{X_1}(s).$$
+Para $k=2,\ldots,n$:
+   $$\begin{aligned}
+    F_{S_k}(s)&={\Pr}(X_1+\cdots+X_k\leq s) ={\Pr}(S_{k-1}+X_k\leq s) \\
+    &={\rm E}_{X_k}\left[{\rm Pr}(S_{k-1}\leq s-X_k|X_k)\right]= {\rm E}_{X_k}\left[F_{S_{k-1}}(s-X_k)\right].
+   \end{aligned}$$
+
+Un caso particular es cuando las $X_i$ se distribuyen igual. Supongamos que $F_X(x)={\Pr}(X\leq x)$ es la distribución común de $X_i, ~i=1,\ldots,n$. Se define
+$$F^{*n}_X(x)={\Pr}(X_1+\cdots+X_n\leq x)$$
+la convolución $n$-ésima de $F_X$. En general, $F_X^{\ast n}$ puede calcularse recursivamente. Se inicia la recursión en $k=1$ mediante $F_X^{\ast 1} \left(x \right) =F_X(x)$. Posteriormente, para $k=2$, se tiene
+
+\begin{eqnarray*}
+F_X^{\ast 2} \left(x \right) &=& \Pr(X_1 + X_2 \le x) = \mathrm{E}_{X_2} \left[ \Pr(X_1 \le x - X_2|X_2) \right] \\
+&=& \mathrm{E}_{X_2} \left[ F(x - X_2) \right] \\
+&=&\left\{\begin{array}{ll}
+\int_{0}^{x} F(x-y) f(y) dy & \text{para } X_i \text{ continuas } \\
+\sum_{y \le x} F(x-y) f(y) & \text{para } X_i \text{ discretas }\\
+\end{array}\right.
+\end{eqnarray*}
+
+Recuerde que $F(0) = 0$.  
+
+Del mismo modo, para $k=n$, se cumple que $S_n = X_1 + X_2 + \cdots + X_n$ y
+
+\begin{eqnarray*}
+F^{\ast n}\left(x\right) &=& \Pr(S_n \le x) = \Pr(S_{n-1} + X_n \le x)\\
+&=&\mathrm{E}_{X_n} \left[ \Pr(S_{n-1} \le x - X_n|X_n) \right] \\
+&=&\mathrm{E}_X \left[ F^{\ast(n-1)}(x - X) \right] \\
+&=& 
+\left\{\begin{array}{ll}
+\int_{0}^{x} F^{\ast(n-1)}(x-y)f(y)dy & \text{para } X_i \text{ continuas } \\
+\sum_{y \le x} F^{\ast(n-1)}(x-y)f(y) & \text{para } X_i \text{ discretas } \\
+\end{array}\right.
+\end{eqnarray*}  
+
+Cuando las $X_i$ son independientes y pertenecen a la misma familia de distribuciones, en algunos casos $S_n$ tiene una forma cerrada simple. Esto hace que sea fácil calcular $\Pr(S_n \le x)$. Esta propiedad se conoce como *cerrado bajo convolución*, es decir, la distribución de la suma de variables aleatorias independientes pertenece a la misma familia de distribuciones que la de las variables que la componen, pero con distintos parámetros. Algunos ejemplos son:
+
+$$
+{\small
+\begin{matrix}
+\text{Tabla de formas cerrada para la suma parcial de distribuciones}\\
+	\begin{array}{l|l|l} \hline
+		\text{Distribución de } X_i & \text{Abreviatura} & \text{Distribución de } S_n   \\ \hline
+\text{Normal con media } \mu_i \text{ y varianza } \sigma_i^2 & N(\mu_i,\sigma_i^2) & N\left(\sum_{i=1}^{n}\mu_i,~\sum_{i=1}^{n}\sigma_i^2\right) \\
+\text{Exponencial con media } \theta & Exp(\theta) & Gam(n,\theta)\\  
+\text{Gamma con parámetros de forma } \alpha_i \text{ y escala } \theta & Gam(\alpha_i,\theta) & Gam\left(\sum_{i=1}^n\alpha_i,\theta\right) \\  
+\text{Poisson con media (y varianza) } \lambda_i  & Poi(\lambda_i)& Poi\left(\sum_{i=1}^{n}\lambda_i\right)\\  
+\text{Binomial con } m_i \text{ intentos y probabilidad de éxito } q & Bin(m_i, q)& Bin\left(\sum_{i=1}^n m_i, q\right)\\  
+\text{Geométrica con media } \beta & Geo(\beta) & NB(\beta,n)\\  
+\text{Binomial Negativa con media } r_i \beta~ \text{ y varianza } ~r_i \beta (1+\beta) & NB(\beta,r_i)& NB\left(\beta,\sum_{i=1}^n r_i\right)\\  
+\hline
+	\end{array}
+\end{matrix}
+}
+$$
+
+*** 
+
+**Ejemplo `r chapnum`.2.4. Distribución Gamma.**
+Supongamos que $X_1,\ldots,X_n$ son variables aleatorias independientes con $X_i \sim Gam(\alpha_i, \theta)$. La *mgf* de $X_i$ es $M_{X_i}(t) = (1 - \theta t)^{- \alpha_i}$. Por tanto, la *mgf* de la suma $S_n = X_1 + \cdots + X_n$ es
+$$\begin{aligned}
+M_{S_n}(t) &= \prod_{i=1}^n M_{X_i}(t) ~~~~ \text{por la independencia de las } X_i \\
+&= \prod_{i=1}^n (1 - \theta t)^{- \alpha_i} = (1-\theta t)^{-\sum_{i=1}^n \alpha_i }~ ,
+\end{aligned}$$
+
+que es la *mgf* de una variable aleatoria gamma con parámetros $(\sum_{i=1}^n \alpha_i, \theta)$. Es decir, $S_n \sim Gam(\sum_{i=1}^n \alpha_i, \theta)$. 
+
+*** 
+
+**Ejemplo `r chapnum`.2.5. Distribución Negativa Binomial.** 
+Supongamos que $X_1,\ldots, X_n$ son variables aleatorias independientes con $X_i \sim NB(\beta, r_i)$. La *pgf* de $X_i$ is $P_{X_i}(z) = \left[1-\beta(z-1) \right]^{-r_i}$. Por lo tanto, la *pgf* de la suma $S_n =X_1+\cdots+X_n$ es
+
+$$\begin{aligned}
+P_{S_n}(z) &= \mathrm{E~}\left[ z^{S_n} \right] = \mathrm{E~}\left[ z^{X_1+\cdots+X_n} \right] = \mathrm{E~}\left[ z^{X_1} z^{X_2} \cdots z^{X_n} \right] \\
+&= \mathrm{E~}\left[z^{X_1}\right] \cdots \mathrm{E~}\left[z^{X_n}\right] ~~~~ \text{bajo independencia de las } X_i \\
+&= \prod_{i=1}^n P_{X_i}(z) = \prod_{i=1}^n \left[1-\beta(z-1) \right]^{-r_i} = \left[1-\beta(z-1) \right]^{-\sum_{i=1}^n r_i} ~,
+\end{aligned}$$
+
+que es la *pgf* de una variable aleatoria negativa binomial con parámetros $(\beta, \sum_{i=1}^n r_i)$. Es decir, $S_n \sim NB(\beta, \sum_{i=1}^n r_i)$. 
+
+***   
+
+**Ejemplo `r chapnum`.2.6. Pregunta Examen Actuarial (modificada).**
+El número anual de visitas al médico para cada miembro de una familia de 4 tiene una distribución geométrica con una media de 1,5. El número anual de visitas de los miembros de la familia es independiente entre sí. Un seguro paga 100 por visita al médico a partir de la cuarta visita de la familia. Calcula la probabilidad de que la familia cobre del seguro este año.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.2.6"
+href="javascript:toggleEX('toggleExampleAggLoss.2.6','displayTextExampleAggLoss.2.6');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.2.6" style="display: none">
+
+**Solución.**
+El número de visitas al médico para un miembro de la familia es $X_i \sim Geo(\beta=1,5)$ y el número de visitas del conjunto de la familia es $S_4 = X_1 + X_2 + X_3 + X_4$. La suma de 4 variables aleatorias geométricas independientes, cada una con una media $\beta=1,5$, siguen una distribución binomial negativa, i.e. $S_4 \sim NB(\beta=1,5, r=4)$.  
+
+Si el seguro paga 100 por visita a partir de la cuarta visita de la familia, entonces la familia no cobrará del seguro si tienen menos de 4 siniestros. Esta probabilidad es 
+
+$$\begin{aligned}
+	\Pr(S_4 < 4) &= \Pr(S_4 = 0) + \Pr(S_4 = 1) + \Pr(S_4 = 2) +\Pr(S_4 = 3) \\
+	&= (1+1,5)^{-4} + \frac{4(1,5)}{(1+1,5)^5} + \frac{4(5)(1,5^2)}{2(1+1,5)^6} + \frac{4(5)(6)(1,5^3)}{3!(1+1,5)^7}\\
+	&= 0,0256 + 0,0614 + 0,0922 + 0,1106 = 0,2898
+\end{aligned}$$
+
+</div>
+
+*** 
+## Modelo de Riesgo Colectivo
+
+### Momentos y distribución
+
+Bajo el modelo de riesgo colectivo $S_N=X_1+\cdots+X_N$, las $\{X_i\}$ son *iid*, e independientes de $N$. Supongamos que $\mu = {\rm E}\left( X_{i}\right)$ y $\sigma ^{2} = {\rm Var}\left(X_{i}\right)$ para todo $i$. Utilizando la ley de esperanza iterada, la media de la pérdida agregada es
+
+\begin{eqnarray*}
+{\rm E}(S_N)={\rm E}_N[{\rm E}_S(S|N)] = {\rm E}_N(N\mu) = \mu {\rm E}(N).
+\end{eqnarray*}
+Utilizando la ley de varianza total, la varianza de la pérdida agregada es
+$$\begin{aligned}
+{\rm Var}(S_N) &= {\rm E}_N[{\rm Var}(S_N|N)] + {\rm Var}_N[{\rm E}(S_N|N)] \\
+&= \mathrm{E}_N \left[ \mathrm{Var}(X_1+\cdots+X_N) \right] + \mathrm{Var}_N\left[ \mathrm{E}(X_1+\cdots+X_N) \right] \\
+&= \mathrm{E}_N \left[ \mathrm{Var}(X_1)+\cdots+ \mathrm{Var}(X_N) + 2\mathrm{Cov}(X_1, X_2) + \cdots + \mathrm{Cov}(X_{N-1}, X_N) \right] + \mathrm{Var}_N\left[ \mathrm{E}(X_1) + \cdots + \mathrm{E}(X_N) \right]  \\
+&={\rm E}_N[N\sigma^2] + {\rm Var}_N[N\mu] ~~~~ \text{dado que } \mathrm{Cov}(X_i, X_j)=0 \text{ para todo } i\neq j \text{ debido a la independencia} \\
+&=\sigma^2{\rm E}[N] + \mu^2{\rm Var}[N]
+\end{aligned}$$  
+
+**Caso particular: Frecuencia distribuida según una Poisson.**
+Si $N \sim Poi (\lambda)$, entonces
+$$\begin{aligned}
+\mathrm{E}(N) &= \mathrm{Var}(N) = \lambda\\
+\mathrm{E}(S) &= \lambda \mathrm{E}(X)\\
+\mathrm{Var}(S) &= \lambda (\sigma^2 + \mu^2) = \lambda ~\mathrm{E} (X^2) .
+\end{aligned}$$
+
+***
+
+**Ejemplo `r chapnum`.3.1. Pregunta de Examen Actuarial.**
+
+El número de accidentes sigue una distribución de Poisson con media 12. Cada accidente genera 1, 2 ó 3 reclamantes con probabilidades 1/2, 1/3 y 1/6, respectivamente.  
+
+Calcular la varianza en el número total de reclamantes.  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.1" href="javascript:toggleEX('toggleExampleAggLoss.3.1','displayTextExampleAggLoss.3.1');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.1" style="display: none">
+
+**Solución.**
+$$\begin{aligned} 
+& \mathrm{E}(X^2) = 1^2 \left( \frac{1}{2}\right) + 2^2\left(\frac{1}{3} \right) + 3^2\left(\frac{1}{6}\right)
+= \frac{10}{3} \\
+\Rightarrow &\mathrm{Var}(S_N) = \lambda \ \mathrm{E}(X^2) = 12\left(\frac{10}{3}\right) = 40
+\end{aligned}$$  
+
+Alternativamente, utilizando la expresión genérica, $\mathrm{Var}(S_N) = \sigma^2 \mathrm{E}(N) + \mu^2 \mathrm{Var}(N)$, donde
+
+$$\begin{aligned}
+\mathrm{E}(N) &= \mathrm{Var}(N) = 12 \\
+\mu &= \mathrm{E}(X) = 1\left(\frac{1}{2}\right) + 2\left(\frac{1}{3}\right) + 3\left(\frac{1}{6}\right)
+= \frac{5}{3} \\
+\sigma^2 &= \mathrm{E}(X^2) - [\mathrm{E}(X)]^2 = \frac{10}{3} - \frac{25}{9}
+= \frac{5}{9} \\
+\Rightarrow \ \mathrm{Var}(S) &= \left(\frac{5}{9}\right)\left(12\right) + \left(\frac{5}{3}\right)^2\left(12\right) = 40 .
+\end{aligned}$$
+</div>
+
+*** 
+
+En general, los momentos de $S_N$ pueden derivarse de su función generadora de momentos (*mgf*). Como las $X_i$ son *iid*, denotaremos la *mgf* de $X$ como $M_{X}(t) = \mathrm{E~}(e^{tX})$. Usando la ley de esperanza iterada, la *mgf* de $S_N$ es
+
+$$\begin{aligned}
+M_{S_N}(t) &= \mathrm{E}(e^{t S_N})=\mathrm{E}_N[~\mathrm{E}(e^{tS_N}|N)~]\\
+&= \mathrm{E}_N \left[ ~\mathrm{E}\left( e^{t(X_1+\cdots+X_N)}\right) ~\right] = 
+\mathrm{E}_N \left[ \mathrm{E}(e^{tX_1})\cdots\mathrm{E}(e^{tX_N}) \right] ~~~~ \text{dado que las } X_i \text{ son independientes} \\
+&= \mathrm{E}_N[~(M_{X}(t))^N~]
+\end{aligned}$$
+
+Ahora, recuerde que la función generadora de probabilidad (*pgf*) de $N$ es $P_N(z) = \mathrm{E}(z^N)$. Denotemos $M_{X}(t)=z$. Sustituyendo en la expresión de la *mgf* de $S_N$ anterior, se demuestra
+
+$$\begin{aligned}
+M_{S_N}(t) = \mathrm{E~}(z^N)  = P_{N}(z) = P_{N}[M_{X}(t)].
+\end{aligned}$$
+
+Del mismo modo, si $S_N$ es discreta, se obtiene que la *pgf* de $S_N$ es:
+$$\begin{aligned}
+P_{S_N}(z) = P_{N}[P_{X}(z)].
+\end{aligned}$$
+
+Para  obtener $\mathrm{E}(S_N) = M_{S_N}'(0)$, se usa la regla de la cadena
+\[
+M_{S_N}'(t) = \frac{\partial}{\partial t} P_{N}(M_{X}(t)) = P_{N}'(M_{X}(t)) M_{X}'(t)\\
+\]
+y recuerde que $M_{X}(0) = 1, M_{X}'(0) = \mathrm{E}(X) = \mu, P_{N}'(1) = \mathrm{E}(N)$. Por lo tanto,
+$$\begin{aligned}
+\mathrm{E}(S_N) = M_{S_N}'(0) = P_{N}'(M_{X}(0)) M_{X}'(0) = \mu {\rm E}(N)
+\end{aligned}$$
+
+De forma similar, se puede utilizar la relación $\mathrm{E}(S_N^2) = M_{S_N}''(0)$ para obtener
+\[\mathrm{Var}(S_N) = \sigma^2 \mathrm{E}(N) + \mu^2 \mathrm{Var}(N).\]  
+
+**Caso particular. Frecuencia según una Poisson.** 
+Supongamos que $N \sim Poi (\lambda)$. Entonces, la *pgf* de $N$ es $P_N (z) = e^{\lambda(z-1)}$ y la *mgf* de $S_N$ es
+$$\begin{aligned}
+M_{S_N}(t) &= P_N[M_X(t)] = e^{\lambda(M_{X}(t) - 1)}.
+\end{aligned}$$
+
+Derivando se obtiene
+$$\begin{aligned}
+M_{S_N}'(t) &= e^{\lambda(M_{X}(t) - 1)}~ \lambda~ M_{X}'(t) = M_{S_N}(t) ~\lambda ~M_{X}'(t)\\
+M_{S_N}''(t) &= M_{S}(t) ~\lambda~ M_{X}''(t) + [~M_{S}(t)~\lambda~ M_{X}'(t)~] ~\lambda~ M_{X}'(t)
+\end{aligned}$$
+
+Si se evalúan en $t=0$ se tiene
+$$\begin{aligned}
+\mathrm{E}(S_N) &= M_{S_N}'(0) =  \lambda \mathrm{E}(X) = \lambda \mu
+\end{aligned}$$ y
+
+$$\begin{aligned} M_{S_N}''(0) &= \lambda \mathrm{E}(X^2) + \lambda^2 \mu^2\\
+\Rightarrow \mathrm{Var}(S_N) &= \lambda \mathrm{E}(X^2) + \lambda^2 \mu^2 - (\lambda \mu)^2 = \lambda~ \mathrm{E}(X^2).
+\end{aligned}$$
+
+*** 
+
+**Ejemplo `r chapnum`.3.2. Pregunta de Examen Actuarial.**
+El productor de un concurso de televisión otorga premios en efectivo. El número de premios, $N$, y la cuantía de cada premio, $X$, tienen las siguientes distribuciones:  
+
+$$
+{\small 
+\begin{matrix}
+\begin{array}{ccccc}\hline
+    n & \Pr(N=n) & & x & \Pr(X=x)\\ \hline
+    1 & 0,8 & & 0 & 0,2 \\
+    2 & 0,2 & & 100 & 0,7 \\
+       &       & & 1000 & 0,1\\\hline
+  \end{array}
+\end{matrix}
+}
+$$   
+
+El presupuesto para premios es igual al valor esperado del total de los premios más la desviación estándar del valor total de los premios. Calcular el presupuesto.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.2" href="javascript:toggleEX('toggleExampleAggLoss.3.2','displayTextExampleAggLoss.3.2');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.2" style="display: none">
+
+**Solución.**
+Se debe calcular la media y la desviación estándar del total (suma) de los premios en efectivo. Los momentos de la distribución de frecuencias $N$ son
+
+$$\begin{aligned}
+\mathrm{E}(N) &= 1 (0,8) + 2 (0,2) =1,2\\
+\mathrm{E}(N^2) &=  1^2 (0,8) + 2^2 (0,2) =1,6\\
+\mathrm{Var}(N) &= \mathrm{E}(N^2) - \left[ \mathrm{E}(N) \right]^2= 0,16
+\end{aligned}$$
+Los momentos de la distribución de severidad $X$ son
+
+$$\begin{aligned}
+\mathrm{E}(X) &= 0 (0,2) + 100 (0,7) + 1000 (0,1) = 170 = \mu\\
+\mathrm{E}(X^2) &= 0^2 (0,2) + 100^2 (0,7) + 1000^2 (0,1) = 107.000\\
+\mathrm{Var}(X) &= \mathrm{E}(X^2) - \left[ \mathrm{E}(X) \right]^2=78.100 = \sigma^2
+\end{aligned}$$
+
+Por lo tanto, la media y la varianza del total de los premios en efectivo son
+
+$$\begin{aligned}
+\mathrm{E}(S_N)  &= \mu \mathrm{E}(N) = 170 (1,2) = 204 \\
+\mathrm{Var}(S_N) &= \sigma^2 \mathrm{E}(N) + \mu^2 \mathrm{Var}(N)\\
+&= 78.100 (1,2) + 170^2 (0,16) = 98.344
+\end{aligned}$$
+
+El presupuesto necesario es el siguiente
+
+$$\begin{aligned}
+Presupuesto &= \mathrm{E}(S_N) + \sqrt{\mathrm{Var}(S_N)} \\
+&= 204 + \sqrt{98.344} = 517,60 .
+\end{aligned}$$
+
+
+</div>
+
+*** 
+
+La distribución de $S_N$ se denomina *distribución compuesta*, y puede derivarse a partir de la convolución de $F_X$ como sigue:
+$$\begin{aligned}
+F_{S_N}(s) &= \Pr \left(X_1 + \cdots + X_N \le s \right) \\
+&=  \mathrm{E} \left[ \Pr \left(X_1 + \cdots + X_N  \le s|N=n \right) \right]\\
+&=  \mathrm{E} \left[ F_{X}^{\ast N}(s) \right] \\
+&=  p_0 + \sum_{n=1}^{\infty }p_n F_{X}^{\ast n}(s)
+\end{aligned}$$  
+
+***
+
+**Ejemplo `r chapnum`.3.3. Pregunta de examen actuarial.**
+El número de siniestros en un determinado período sigue una distribución geométrica de media $4$. La cauantía de cada siniestro $X$ tiene la siguiente distribución $\Pr(X=x) = 0,25, \ x=1,2,3,4$, es decir, discreta uniforme en $\{1,2,3,4\}$. El número de siniestros y los importes de los mismos son independientes. Si $S_N$ denota la cuantía total de la siniestralidad durante el período, calcular $F_{S_N}(3)$.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.3" href="javascript:toggleEX('toggleExampleAggLoss.3.3','displayTextExampleAggLoss.3.3');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.3" style="display: none">
+
+
+**Solución.**
+Por definición, se sabe que 
+$$\begin{aligned}
+F_{S_N}\left(3 \right) &= {\rm Pr}\left(\sum_{i=1}^N X_i \leq 3\right) = \sum_{n=0}^\infty {\rm Pr}\left(\sum_{i=1}^n X_i\leq 3|N=n\right){\rm Pr}(N=n) \\
+&= \sum_n F^{\ast n} \left(3 \right) p_n = \sum_{n=0}^3 F^{\ast n}(3) p_n \\
+&= p_0 + F^{\ast 1}(3) \ p_1 + F^{\ast 2}(3) \ p_2 + F^{\ast 3}(3) \ p_3
+\end{aligned}$$
+Dado que $N \sim Geo(\beta=4)$, entonces 
+$$\begin{aligned}
+p_n &= \frac{1}{1+\beta}
+\left(\frac{\beta}{1+ \beta} \right)^n = \frac{1}{5} \left(\frac{4}{5} \right)^n
+\end{aligned}$$
+Para la distribución de la severidad de la siniestralidad, de forma recursiva, se dispone de
+$$\begin{aligned}
+F^{\ast 1}(3) &= \Pr(X \le 3) = \frac{3}{4} \\
+F^{\ast 2}(3) &= \sum_{y \le 3} F^{\ast 1} (3-y) f(y) = F^{\ast 1}(2)f(1) + F^{\ast 1}(1)f(2) \\
+&= \frac{1}{4}\left[F^{\ast 1} (2) + F^{\ast 1}(1)\right] = \frac{1}{4}\left[{\rm Pr}(X\leq 2) + {\rm Pr}(X \leq 1) \right] \\
+&= \frac{1}{4} \left(\frac{2}{4} + \frac{1}{4} \right) = \frac{3}{16}\\
+F^{\ast 3}(3) &= \Pr(X_1+X_2 + X_3 \le 3) = \Pr(X_1=X_2=X_3=1) = \left(\frac{1}{4} \right)^3
+\end{aligned}$$
+
+
+Cabe señalar que no es necesario calcular recursivamente $F^{\ast 3}(3)$ ya que como cada $X \in \{1,2,3,4\}$, la única forma de obtener $X_1+X_2+X_3 \leq 3$ es tener $X_1=X_2=X_3=1$. Además, para $n \geq 4$, $F^{\ast n} (3)=0$ dado que la suma de 4 o más $X$ no puede ser menor a 3. Para $n=0$, $F^{\ast 0}(3) = 1$ ya que la suma de cero  veces $X$ es 0, que es siempre menor a 3. Si se establecen sistemáticamente las probabilidades, 
+
+$$\begin {matrix}
+\begin{array}{c c c c}\hline
+	x & F^{\ast 1}(x) & F^{\ast 2}(x) & F^{\ast 3}(x)\\ \hline
+	0 & & & \\
+	1 & \frac{1}{4} & 0 & \\
+	2 & \frac{2}{4} & \left( \frac{1}{4} \right)^2 & \\
+	3 & \frac{3}{4} & \frac{3}{16} & \left( \frac{1}{4} \right)^3 \\ \hline
+\end{array}
+\end{matrix}$$
+
+Finalmente,
+$$\begin{aligned}
+F_{S_N}(3) &= p_0 + F^{\ast 1}(3) \ p_1 + F^{\ast 2}(3) \ p_2 + F^{\ast 3}(3) \ p_3 \\
+&= \frac{1}{5} + \frac{3}{4}\left(\frac{4}{25} \right) + \frac{3}{16} \left( \frac{16}{125} \right) + \frac{1}{64} \left( \frac{64}{625}\right) = 0,3456\\
+\end{aligned}$$
+
+</div>
+
+***
+
+
+
+Si se conocen $\mathrm{E}(N)$ y $\mathrm{Var}(N)$, también se puede utilizar el teorema central del límite para aproximar la distribución de $S_N$ como en el modelo de riesgo individual. Es decir, $\frac{S_N - \mathrm{E}(S_N)}{\sqrt{\mathrm{Var}(S_N)}}$ sigue aproximadamente la distribución normal estándar $N(0,1)$.
+
+
+***
+
+**Ejemplo `r chapnum`.3.4. Pregunta Examen Actuarial.**
+Se sabe lo siguiente:
+
+$$
+{\small 
+\begin{matrix}
+  \begin{array}{ c | c  c }
+    \hline
+      & \text{Media} & \text{Desviación estándar}\\ \hline
+    \text{Número de siniestros} & 8 & 3\\
+    \text{Pérdidas individuales} & 10.000 & 3.937\\
+    \hline
+  \end{array}
+\end{matrix}
+}
+$$
+Mediante la aproximación normal, determinar la probabilidad que la pérdida total supere el 150$\%$ de la pérdida esperada.  
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.4" href="javascript:toggleEX('toggleExampleAggLoss.3.4','displayTextExampleAggLoss.3.4');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.4" style="display: none">
+
+**Solución.**
+Para utilizar la aproximación normal, primero debemos encontrar la media y la varianza de la pérdida agregada $S$
+$$\begin{aligned}
+\mathrm{E}(S_N) &= \mu \ \mathrm{E}(N) = 10.000(8) = 80.000\\
+\mathrm{Var}(S_N) &= \sigma^2 \ \mathrm{E}(N) + \mu^2 \ \mathrm{Var}(N)\\
+&= 3937^2(8) + 10000^2 (3^2) = 1.023.999.752\\
+\sqrt{\mathrm{Var}(S_N)} &= 31.999,996 \approx 32.000
+\end{aligned}$$
+
+Bajo la aproximación normal, la pérdida agregada $S_N$ es aproximadamente normal con media 80.000 y desviación estándar 32.000. La probabilidad que $S_N$ supere el 150$\%$ de la pérdida agregada esperada es, por lo tanto 
+$$\begin{aligned}
+\Pr(S_N>1,5 \mathrm{E}(S_N)~) &= \Pr \left( \frac{S_N - \mathrm{E} (S_N)}{\sqrt{\mathrm{Var}(S_N)}} > \frac{1,5 ~\mathrm{E}(S_N) - \mathrm{E} (S_N)}{\sqrt{\mathrm{Var}(S_N)}} \right) \\
+&\approx \Pr \left( Z > \frac{0,5~ \mathrm{E}(S_N)}{\sqrt{\mathrm{Var}(S_N)} } \right), ~~~~ \text{donde } Z\sim N(0,1) \\
+&= \Pr \left( Z > \frac{0,5(80.000)}{32.000} \right) = \Pr( Z > 1,25) \\
+&= 1-\Phi(1,25) = 0,1056
+\end{aligned}$$
+
+
+</div>
+
+*** 
+
+**Ejemplo `r chapnum`.3.5. Pregunta Examen Actuarial.**
+Para un individuo de más de $65$:  
+	(i) El número de reclamaciones por cobertura de medicinas es una variable aleatoria de Poisson con media $25$.  
+	(ii) La cuantía de cada reclamación por cobertura de medicinas se distribuye uniformemente entre $5$ y $95$.  
+	iii) Las cuantías de las reclamaciones y el número de reclamaciones son independientes entre sí.  
+
+Estimar la probabilidad que el coste total de las reclamaciones del individuo supere los $2000$ mediante la aproximación normal.
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.5" href="javascript:toggleEX('toggleExampleAggLoss.3.5','displayTextExampleAggLoss.3.5');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.5" style="display: none">
+
+**Solución.**
+Se sabe que la frecuencia de siniestros $N \sim Poi(\lambda = 25)$ y severidad de los siniestros $X \sim U \left(5, 95 \right)$. Para utilizar la aproximación normal, se necesita encontrar la media y varianza del coste total de las reclamaciones $S_N$. Note que 
+
+$$\begin{matrix}
+\begin{array}{lll}
+\mathrm{E} (N) = 25 & & \mathrm{Var} (N) = 25\\
+\mathrm{E}(X) = \frac{5+95}{2} = 50 = \mu & & \mathrm{Var}(X) = \frac{(95-5)^2}{12} = 675 = \sigma^2\\
+\end{array}
+\end{matrix}$$
+
+Por lo tanto, para $S_N$,
+$$\begin{aligned}
+\mathrm{E}(S_N) &= \mu \ \mathrm{E} (N) = 50(25) = 1.250\\
+\mathrm{Var}(S_N) &= \sigma^2 \ \mathrm{E}(N) + \mu^2 \ \mathrm{Var}(N)\\
+&= 675 (25) + 50^2 (25) = 79.375
+\end{aligned}$$  
+
+Utilizando la aproximación normal, $S_N$ es aproximadamente normal con media 1.250 y varianza 79.375. La probabilidad de $S_N$ exceda de 2.000 es
+$$\begin{aligned}
+\Pr(S_N>2.000) &= \Pr \left(\frac{S_N - \mathrm{E} (S_N)}{\sqrt{\mathrm{Var} (S_N)}} > \frac{2.000- \mathrm{E} (S_N)}{\sqrt{\mathrm{Var} (S_N)}} \right) \\
+&= \Pr\left( Z > \frac{2.000-1.250}{\sqrt{79.375}} \right), ~~~~ \text{donde } Z\sim N(0,1) \\
+&= \Pr (Z > 2,662) = 1-\Phi(2,662) = 0,003884
+\end{aligned}$$
+
+</div>
+
+***   
+
+### Seguro Stop-loss
+
+
+Recuerde las modificaciones de cobertura a nivel de póliza individual en la Sección \@ref(S:CoverageModifications). El seguro sobre la pérdida total $S_N$, sujeto a un deducible $d$, se llama *seguro neto stop-loss*. El valor esperado de la cantidad de la pérdida total que excede al deducible,
+
+
+\begin{eqnarray*}
+\mathrm{E}[(S-d)_+]
+\end{eqnarray*}
+Se denomina *prima neta stop-loss*. 
+
+La prima neta stop-loss se calcula como
+
+\begin{eqnarray*}
+\mathrm{E}(S_N-d)_+ 
+&=&
+\left\{\begin{array}{ll}
+\int_{d}^{\infty}(s-d) f_{S_N}(s) ds& \text{para  } S_N\text{ continua }\\
+ \sum_{s>d}(s-d) f_{S_N}(s) & \text{para } S_N \text{ discreta }\\
+ \end{array}\right.\\
+&=& \mathrm{E}(S_N) - \mathrm{E}(S_N\wedge d)\\
+\end{eqnarray*}  
+
+***
+
+**Ejemplo `r chapnum`.3.6. Pregunta Examen Actuarial.**
+
+En una determinada semana el número de proyectos en los que se requiere trabajar horas extras sigue una distribución geométrica con $\beta=2$. En cada proyecto la distribución del número de horas extras en la semana, $X$, es la siguiente:  
+
+$$
+{\small 
+\begin{matrix}
+\begin{array}{ccc} \hline
+    x &  & f(x)\\ \hline
+    5 &  & 0,2 \\
+    10 & & 0,3 \\
+    20 & & 0,5\\ \hline
+  \end{array}
+\end{matrix}
+}
+$$  
+
+El número de proyectos y el número de horas extras son independientes. Se pagan las horas extras cuando exceden las 15 horas semanales. Calcular el número esperado de horas extras por las que se cobrará en la semana.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.3.6" href="javascript:toggleEX('toggleExampleAggLoss.3.6','displayTextExampleAggLoss.3.6');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.3.6" style="display: none">
+
+**Solución.**
+El número de proyectos en una semana que requieren horas extras sigue una distribución $N \sim Geo(\beta=2)$, mientras que el número de horas extras trabajadas por proyecto sigue la distribución $X$ descrita previamente. El número total de horas extras en una semana es $S_N$ y, por lo tanto, se quiere saber
+
+$$\mathrm{E}(S_N-15)_+ = \mathrm{E}(S_N) - \mathrm{E}(S_N \wedge 15).$$
+
+Para encontrar $\mathrm{E}(S_N) = \mathrm{E}(X) ~\mathrm{E}(N)$, se sabe
+$$\begin{aligned}
+&\mathrm{E}(X) = 5(0,2) + 10(0,3)+ 20(0,5)= 14 \\
+&\mathrm{E}(N) = 2 \\
+\Rightarrow \ &\mathrm{E}(S) = \mathrm{E}(X) ~ \mathrm{E}(N) = 14(2) = 28
+\end{aligned}$$
+
+Para encontrar $\mathrm{E} (S_N \wedge 15) = 0 \Pr (S_N=0) + 5 \Pr(S_N=5) + 10 \Pr(S_N=10) + 15 \Pr(S_N \geq 15)$, se sabe
+$$\begin{aligned}
+\Pr(S_N=0) &= \Pr(N=0) = \frac{1}{1+\beta} = \frac{1}{3} \\
+\Pr(S_N=5) &= \Pr(X=5, \ N=1) = 0,2 \left(\frac{2}{9} \right)= \frac{0,4}{9}\\
+\Pr(S_N=10) &= \Pr(X=10, \ N=1) + \Pr(X_1=X_2=5, N=2) \\
+&= 0,3 \left(\frac{2}{9} \right) + (0,2)(0,2) \left( \frac{4}{27} \right)= 0,0726 \\
+\Pr(S_N \geq 15) &= 1 - \left(\frac{1}{3} + \frac{0,4}{9} + 0,0726 \right) = 0,5496\\
+\Rightarrow \mathrm{E}(S_N \wedge 15) &= 0 \Pr (S_N=0) + 5 \Pr(S_N=5) + 10 \Pr(S_N=10) + 15 \Pr(S_N \geq 15) \\
+&= 0 \left( \frac{1}{3} \right) + 5
+\left( \frac{0,4}{9} \right) + 10 (0,0726) + 15 (0,5496) = 9,193\\
+\end{aligned}$$
+Por lo tanto,
+$$\begin{aligned}
+\mathrm{E}(S_N-15)_+ &= \mathrm{E}(S_N) - \mathrm{E}(S_N \wedge 15) \\
+&= 28 – 9,193 = 18,807
+\end{aligned}$$
+
+</div>
+
+*** 
+
+**Cálculo recursivo de la prima neta Stop-Loss**. En el caso discreto, se puede calcular recursivamente como
+$$\begin{aligned}
+\mathrm{E}\left[ \left( S_N-(j+1)h \right) _{+} \right]=\mathrm{E}\left[ ( S_N-jh )_{+} \right] -h \left( 1-F_{S_N}(jh)
+\right) .
+\end{aligned}$$
+
+
+Se asume que el soporte de $S_N$ está igualmente espaciado en unidades de $h$.
+
+Para mostrar lo anterior, asumamos que $h=1$. Se tiene que
+
+$$\begin{aligned}
+\mathrm{E}\left[ \left( S_N-(j+1) \right) _{+} \right] &=\mathrm{E}(S_N) - \mathrm{E}[S_N\wedge (j+1)] \ ,\ \text{ y } \\
+\mathrm{E}\left[ \left( S_N - j \right)_+ \right] &=\mathrm{E}(S_N) - \mathrm{E}[S_N\wedge j]
+\end{aligned}$$
+
+Por lo tanto,
+$$\begin{aligned}
+\mathrm{E}\left[ \left(S_N-(j+1) \right) _{+}\right] - \mathrm{E}\left[ ( S_N-j )_{+} \right] 
+&= \left\{\mathrm{E}(S_N) - \mathrm{E}(S_N\wedge (j+1)) \right\}   -  \left\{\mathrm{E}(S_N) - \mathrm{E}(S_N\wedge j) \right\} \\
+&= \mathrm{E}\left(S_N \wedge j \right) - \mathrm{E}\left[ S \wedge (j+1) \right]
+\end{aligned}$$
+
+Puede expresarse como 
+$$\begin{aligned}
+\mathrm{E}\left[S_N\wedge (j+1)\right] &= \sum_{x=0}^{j}xf_{S_N}(x) + (j+1)~\Pr(S_N \ge j+1) \\
+&= \sum_{x=0}^{j-1}x f_{S_N}(x) + j~\Pr(S_N=j) + (j+1)~\Pr(S_N \ge j+1)
+\end{aligned}$$
+
+Del mismo modo,
+$$\begin{aligned}
+\mathrm{E}(S_N\wedge j) = \sum_{x=0}^{j-1}xf_{S_N}(x) + j~\Pr(S_N\ge j)
+\end{aligned}$$
+
+Con estas expresiones se tiene que
+$$\begin{aligned}
+\mathrm{E}\left[ \left( S_N-(j+1) \right) _{+} \right] - \mathrm{E~}\left[ ( S_N-j )_{+} \right] 
+&= \mathrm{E}\left(S_N \wedge j \right) - \mathrm{E}\left[ S \wedge (j+1) \right] \\
+&= \left\{ \sum_{x=0}^{j-1}xf_{S_N}(x) + j~\Pr(S_N\ge j) \right\}
+- \left\{ \sum_{x=0}^{j-1}x f_{S_N}(x) + j~\Pr(S_N=j) + (j+1)~\Pr(S_N \ge j+1) \right\} \\
+&= j~\left[\Pr(S_N \geq j) - \Pr(S_N=j) \right]- (j+1)~\Pr(S_N \ge j+1) \\
+&= j~\Pr( S_N > j) - (j+1)~\Pr(S_N \ge j+1) ~~~~ \text{ (nótese que } \Pr(S_N > j) = \Pr(S_N \geq j+1) \text{)} \\
+&= -\Pr(S_N\ge j+1) = -\left[1 - F_{S_N}(j)\right],
+\end{aligned}$$
+como se buscaba.
+
+***  
+
+**Ejemplo `r chapnum`.3.7. Pregunta Examen Actuarial - Continuación.**
+Recordemos que el objetivo de esta pregunta era calcular $\mathrm{E~}(S_N-15)_+$. Tenga en cuenta que el soporte de $S_N$ está igualmente espaciado en unidades de 5, por lo que esta pregunta también puede resolverse recursivamente mediante la expresión anterior con $h=5$:  
+
+
+* Paso 1:  
+	$$\begin{aligned}
+	\mathrm{E~}(S_N-5)_+ &= \mathrm{E}(S_N) - 5 [1-\Pr(S_N \leq 0) ]\\ %\Pr (S_N\geq 5) \\
+	&= 28 - 5 \left(1 - \frac{1}{3}\right) = \frac{74}{3}=24,6667
+	\end{aligned}$$  
+	
+* Paso 2:  
+	$$\begin{aligned}
+	\mathrm{E~}(S_N-10)_+ &= \mathrm{E~}(S_N-5)_+ - 5 [1-\Pr(S_N \leq 5)]\\ %\Pr (S_N\ge 10) \\
+	&= \frac{74}{3} - 5\left( 1 - \frac{1}{3} - \frac{0,4}{9}\right) = 21,555
+	\end{aligned}$$  
+	
+* Paso 3:
+	$$\begin{aligned}
+	\mathrm{E~}(S_N-15)_+ &= \mathrm{E~}(S_N-10)_+ - 5 [1-\Pr(S_N \leq 10)] \\ %\Pr (S_N\ge 15) \\
+	&= \mathrm{E~}(S_N-10)_+ - 5\Pr (S_N\ge 15) \\
+	&= 21,555 - 5 (0,5496) = 18,807
+	\end{aligned}$$  
+
+***
+
+### Resultados analíticos
+
+Existen algunas combinaciones de distribuciones de frecuencia y severidad de los siniestros que generan una distribución fácil de utilizar para las pérdidas agregadas. Esta sección proporciona algunos ejemplos sencillos. Aunque estos ejemplos son convenientes desde el punto de vista computacional, por lo general son demasiado sencillos para ser utilizados en la práctica.  
+
+***
+
+**Ejemplo `r chapnum`.3.8.**
+Se obtiene una expresión cerrada para la distribución de la pérdida agregada cuando se considera una distribución geométrica para la frecuencia y una distribución exponencial para la severidad.
+
+Supongamos que el número de siniestros $N$ sigue una geométrica con media $\mathrm{E}(N)=\beta$, y que la cuantía del siniestro $X$ sigue una exponencial con $\mathrm{E}(X)=\theta$. Recuerde que la *pgf* de $N$ y la *mgf* de $X$ son:
+
+$$\begin{aligned}
+P_N (z) &=\frac{1}{1- \beta (z-1)}\\
+M_{X}(t) &=\frac{1}{1-\theta t}
+\end{aligned}$$
+Por lo tanto, la *mgf* de la pérdida agregada $S_N$ puede expresarse de dos formas (para más detalles, véase *Suplemento Técnico `r chapnum`.A.3*)
+\begin{eqnarray}
+M_{S_N}(t) &=& P_N [M_{X}(t)] = \frac{1}{1 - \beta \left( \frac{1}{1-\theta t} - 1\right)} \nonumber\\
+&=& 1+ \frac{\beta}{1+\beta} \left([1-\theta(1+\beta)t]^{-1}-1 \right)\\
+&=& \frac{1}{1+\beta}(1) +\frac{\beta}{1+\beta}
+\left( \frac{1}{1-\theta (1+\beta)t}\right)
+\end{eqnarray}
+
+A partir de (`r chapnum`.1), se aprecia que $S_N$ es equivalente a una distribución compuesta de $S_N=X^{*}_1+\cdots+X^{*}_{N^{*}}$, donde $N^{*}$ es una Bernoulli con media $\beta/(1+\beta)$ y $X^{*}$ es una exponencial con media $\theta(1+\beta)$. Para obtenerlo, se analiza la *mgf* de $S$:
+$$\begin{aligned}
+M_{S_N}(t) = P_N [M_{X}(t)] = P_{N^{*}} [M_{X^{*}}(t)],
+\end{aligned}$$
+donde
+$$\begin{aligned}
+P_{N^*} (z) &=1+ \frac{\beta}{1+ \beta} (z-1),\\
+M_{X^*} (t) &=\frac{1}{1- {{\theta(1+\beta)}} t}.
+\end{aligned}$$
+
+A partir de (`r chapnum`.2), se aprecia que $S_N$ es también equivalente a una mixtura de dos puntos en 0 y en $X^{*}$. En concreto,
+\begin{eqnarray*}
+S_N &=&
+\left\{
+\begin{array}{cl}
+0 & {\rm con~ probabilidad ~Pr}(N^*=0) = 1/(1+\beta) \\
+Y^{*} & {\rm con~ probabilidad ~Pr}(N^*=1) = \beta/(1+\beta)
+\end{array}
+\right..
+\end{eqnarray*}
+La función de distribución de $S_N$ es:
+\begin{eqnarray*}
+\Pr(S_N=0) &=& \frac{1}{1+\beta}\\
+\Pr(S_N>s) &=& \Pr(X^*>s) =\frac{\beta}{1+\beta} \exp\left( -\frac{s}{
+\theta (1+\beta)}\right)
+\end{eqnarray*}
+con *pdf*
+\begin{eqnarray*}
+f_{S_N}(s) = \frac{\beta}{\theta (1+\beta)^2}\exp\left( -\frac{s}{
+\theta (1+\beta)}\right).
+\end{eqnarray*}
+
+***  
+
+**Ejemplo `r chapnum`.3.9.**
+Supongamos un modelo de riesgo colectivo en el que la severidad sigue una exponencial y con una distribución de frecuencias arbitraria. Recordemos que si $X_i\sim Exp(\theta)$, la suma de *iid* exponenciales, $S_n=X_1+\cdots+X_n$, sigue una distribución gamma, es decir, $S_n\sim Gam(n,\theta)$. Su cdf es:
+
+\begin{eqnarray*}
+F_{X}^{\ast n}(s) &=& \Pr (S_n \le s) = \int_{0}^{s} \frac{1}{\Gamma(n)\theta^n}s^{n-1}\exp\left(-\frac{s}{\theta}\right) ds\\
+&=& 1-\sum_{j=0}^{n-1}\frac{1}{j!}\left( \frac{s}{\theta}\right)^j e^{-s/\theta } .
+\end{eqnarray*}
+La última igualdad se deriva aplicando integración por partes $n-1$ veces.
+
+Para la distribución de pérdidas agregadas, se puede intercambiar el orden de las sumas en la segunda línea, obteniendo
+
+\begin{eqnarray*}
+F_{S}\left(s\right) &=& p_{0}+\sum_{n=1}^{\infty }p_n F_{X}^{\ast n}\left(s\right)\\
+&=& 1 - \sum_{n=1}^{\infty }p_n \sum_{j=0}^{n-1}\frac{1}{j!}
+\left( \frac{s}{\theta}\right)^j e^{-s/\theta }\\
+&=& 1-e^{-s/\theta}\sum_{j=0}^{\infty} \frac{1}{j!}
+\left( \frac{s}{\theta} \right)^j \overline{P}_j
+\end{eqnarray*}
+donde $\overline{P}_j =p_{j+1}+p_{j+2}+\cdots = \Pr (N>j)$ es la "función de supervivencia" de la distribución del número de siniestros. 
+
+***
+
+### Distribución Tweedie
+
+En esta sección se analiza una distribución compuesta concreta en la que el número de siniestros sigue una distribución de Poisson y la cuantía del siniestro sigue una distribución gamma. Esta especificación genera lo que se conoce como *distribución Tweedie*. La distribución Tweedie tiene masa de probabilidad en cero y una componente continua para valores positivos. Esta característica hace que sea ampliamente utilizada en la modelización de la siniestralidad en seguros, donde la masa en cero se interpreta como ningún siniestro y la componente positiva como el coste de los siniestros.
+
+Concretamente, consideremos el modelo de riesgo colectivo $S_N=X_1+\cdots+X_N$. 
+Supongamos que $N$ sigue una distribución Poisson con media $\lambda$, y cada $X_i$ sigue una distribución gamma con parámetro de forma $\alpha$ y parámetro de escala $\gamma$. La distribución Tweedie se deriva como la suma de Poisson de variables gamma. Para comprender la distribución de $S_N$, primero examinemos la masa de probabilidad en cero. La pérdida total es cero cuando no se producen siniestros, es decir,
+$${\rm Pr}(S_N=0)= {\rm Pr}(N=0)=e^{-\lambda}.$$
+Además, cabe señalar que $S_N$ condicionada a $N=n$, denotada como $S_n=X_1+\cdots+X_n$, sigue una distribución gamma con parámetro de forma $n\alpha$ y escala $\gamma$. Para $s>0$ la densidad de la distribución Tweedie se calcula como
+$$\begin{aligned}
+f_{S_n}(s)&=\sum_{n=1}^{\infty} p_n f_{S_n}(s)\\
+&=\sum_{n=1}^{\infty}e^{-\lambda}\frac{(\lambda)^n}{n!}\frac{\gamma^{na}}{\Gamma(n\alpha)}s^{n\alpha-1}e^{-s\gamma}
+\end{aligned}$$
+
+Así, la distribución Tweedie se puede interpretar como una mixtura en cero y una distribución para valores positivos, lo que la convierte en una herramienta adecuada para la modelización de la siniestralidad y para el cálculo de las primas puras en seguros. La media y la varianza del modelo Tweedie-Poisson compuesto son:
+$${\rm E} (S_N)=\lambda\frac{\alpha}{\gamma}~~~~{\rm y}~~~~{\rm Var} (S)=\lambda\frac{\alpha(1+\alpha)}{\gamma^2}.$$
+Otra característica importante es que la distribución Tweedie es un caso especial de los modelos de *dispersión exponencial*, una clase de modelos utilizados para describir la componente aleatoria en los modelos lineales generalizados. Para apreciarlo, consideremos la siguiente reparametrización:
+
+\begin{equation*}
+\lambda=\frac{\mu^{2-p}}{\phi(2-p)},~~~~\alpha=\frac{2-p}{p-1},~~~~\frac{1}{\gamma}=\phi(p-1)\mu^{p-1}
+\end{equation*}
+A partir de estas relaciones se puede demostrar que la distribución de $S_N$ es
+
+$$f_{S_N}(s)=\exp\left[\frac{1}{\phi}\left(\frac{-s}{(p-1)\mu^{p-1}}-\frac{\mu^{2-p}}{2-p}\right)+C(s;\phi)\right]$$
+donde
+\begin{equation*}
+C(s;\phi/\omega_i)=\left\{\begin{array}{ll}
+                    \displaystyle 0 & {\rm if}~ y=0 \\
+                   \displaystyle \ln \sum\limits_{n\ge 1} \left\{\frac{(1/\phi)^{1/(p-1)}y^{(2-p)/(p-1)}}{(2-p)(p-1)^{(2-p)/(p-1)}}\right\}^{n}\frac{1}{n!\Gamma(n(2-p)/(p-1))s} & {\rm if}~ y>0
+                  \end{array}\right.
+\end{equation*}
+
+Por tanto, la distribución de $S_N$ pertenece a la familia exponencial con parámetros $\mu$, $\phi$, y $1 < p < 2$, y se obtiene que
+$${\rm E} (S_N)=\mu~~~~{\rm y}~~~~{\rm Var} (S_N)=\phi\mu^{p}.$$
+
+Lo anterior permite utilizar la distribución Tweedie para modelizar los siniestros en los modelos lineales generalizados. Cabe mencionar los dos casos límite del modelo Tweedie: $p\rightarrow 1$ conduce a la distribución Poisson y $p\rightarrow 2$ conduce a la distribución gamma. De este modo, el modelo Tweedie se sitúa entre las distribuciones gamma y Poisson, lo que intuitivamente tiene sentido ya que es la suma de Poisson de variables aleatorias gamma. 
+
+
+## Cálculo de la Distribución de Pérdidas Agregadas
+
+El cálculo de la distribución de pérdidas agregadas es un problema difícil e importante. Como se ha visto, tanto para el modelo de riesgo individual como para el modelo de riesgo colectivo, el cálculo de la distribución frecuentemente implica la evaluación de una convolución de orden $n$. Para hacer manejable el problema, una posible estrategia es considerar una distribución que sea fácil de evaluar para aproximar la distribución de pérdidas agregadas. Por ejemplo, la distribución normal es una elección natural basada en el teorema central del límite, en el que los parámetros de la distribución normal pueden estimarse calculando los momentos. Este enfoque tiene ventajas y limitaciones. La principal ventaja es la facilidad de cálculo. La desventaja es: primero, el tamaño y la dirección del error de aproximación son desconocidos; segundo, la aproximación puede fallar en capturar algunas características especiales de la pérdida agregada tales como la masa en el punto cero.
+
+Esta sección describe dos enfoques prácticos para calcular la distribución de la pérdida agregada, el método recursivo y la simulación.
+
+### Método recursivo
+
+El método recursivo se aplica a los modelos compuestos en los que la componente de la frecuencia $N$ pertenece a la clase $(a,b,0)$ o $(a,b,1)$ (véanse las Secciones \@ref(S:the-a-b-0-class) y \@ref(S:zero-truncation-or-modification)) y la componente de la severidad $X$ sigue una distribución discreta. En caso que $X$ sea continua, una práctica habitual es primero discretizar la distribución de la severidad y, posteriormente, aplicar el método recursivo.
+
+Supongamos que $N$ está en la clase $(a,b,1)$ tal que $p_{k}=\left( a+\frac{b}{k} \right) p_{k-1}, k = 2,3,\ldots$. Supongamos además que el soporte de $X$ es $\{0,1,\ldots,m\}$, discreto y finito. Entonces, la función de probabilidad de $S_N$ es:
+
+$$\begin{aligned}
+f_{S_N}(s)&=\Pr (S=s) \\
+&=\frac{1}{1-af_{X}(0)}\left\{ \left[ p_1 -(a+b)p_{0}\right]
+f_X (s)+\sum_{x=1}^{s\wedge m}\left( a+\frac{bx}{s} \right) f_X (x)f_{S_N}(s-x)\right\}.
+\end{aligned}$$
+Si $N$ está en la clase $(a,b,0)$, entonces $p_1=(a+b)p_0$ y, por tanto,
+\[
+f_{S_N}(s)=\frac{1}{1-af_X (0)}\left\{ \sum_{x=1}^{s\wedge m}\left( a+\frac{bx
+}{s}\right) f_X (x)f_{S_N}(s-x)\right\}.
+\]
+**Caso particular: Frecuencia según una Poisson.** Si $N \sim Poi(\lambda)$, entonces $a=0$ y $b=\lambda$, y, por tanto,
+\[
+f_{S_N}(s)=\frac{\lambda }{s}\left\{ \sum_{x=1}^{s \wedge
+m} x f_X (x) f_{S_N} (s-x)\right\} .
+\]
+
+***
+
+**Ejemplo `r chapnum`.4.1. Pregunta Examen Actuarial.**
+El número de siniestros en un determinado período $N$ sigue una distribución geométrica de media 4. La cuantía de cada siniestro $X$ tiene ${\rm Pr} (X = x) = 0,25$, para $x = 1,2,3,4$. El número de siniestros y la cuantía de los mismos son independientes. $S_N$ es el coste total de los siniestros en el período. Calcular $F_{S_N}(3)$.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.4.1" href="javascript:toggleEX('toggleExampleAggLoss.4.1','displayTextExampleAggLoss.4.1');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.4.1" style="display: none">
+
+**Solución.**
+La distribución de severidad $X$ es la siguiente
+$$f_X (x) = \frac{1}{4}, \ \ x=1, 2, 3, 4.$$
+La distribución de frecuencias $N$ es geométrica de media 4, la cual pertenece a la clase $(a,b,0)$ con $b=0$, $a=\frac{\beta}{1+\beta} = \frac{4}{5}$, y $p_0 = \frac{1}{1+\beta} = \frac{1}{5}$. El soporte de la componente de severidad $X$ es $\{1,\ldots,m=4 \}$, discreto y finito. Por lo tanto, se puede utilizar el método recursivo
+$$\begin{aligned}
+f_{S_N} (x) &= 1 \sum_{y=1}^{x\wedge m} (a+0) f_X (y) f_{S_N} (x-y) \\
+&= \frac{4}{5} \sum_{y=1}^{x\wedge m} f_X (y) f_{S_N} (x-y)
+\end{aligned}$$
+En concreto, se tiene que
+$$\begin{aligned}
+f_{S_N} (0) &= \Pr(N=0) = p_0=\frac{1}{5}\\
+f_{S_N} (1) &= \frac{4}{5}\sum_{y=1}^{1} f_X (y) f_{S_N} (1-y) = \frac{4}{5} f_X(1) f_{S_N}(0)\\
+&= \frac{4}{5}\left( \frac{1}{4}\right)\left(\frac{1}{5} \right) = \frac{1}{25}\\
+f_{S_N} (2) &=  \frac{4}{5}\sum_{y=1}^{2} f_X (y) f_{S_N} (2-y) = \frac{4}{5} \left[ f_X(1)f_{S_N}(1) + f_X(2) f_{S_N}(0) \right] \\
+&= \frac{4}{5}\left[ \frac{1}{4} \left( \frac{1}{25} + \frac{1}{5}\right) \right] =
+\frac{4}{5}\left( \frac{6}{100}\right) = \frac{6}{125}\\
+f_{S_N} (3) &= \frac{4}{5} \left[ f_X(1) f_{S_N}(2) + f_X(2)f_{S_N}(1) + f_X(3) f_{S_N}(0) \right]\\
+&= \frac{4}{5}\left[ \frac{1}{4} \left( \frac{1}{25} + \frac{1}{5} +
+\frac{6}{125}\right) \right] = \frac{1}{5}\left( \frac{5+25+6}{125}\right) = 0,0576\\
+\Rightarrow \ F_{S_N} (3) &= f_{S_N} (0)+f_{S_N} (1)+f_{S_N} (2) +f_{S_N} (3) = 0,3456
+\end{aligned}$$
+
+</div>
+
+*** 
+
+### Simulación
+
+La distribución de pérdidas agregadas puede evaluarse mediante simulación de Monte Carlo. La idea es que se puede calcular la distribución empírica de $S_N$ utilizando una muestra aleatoria. El valor esperado y la varianza de la pérdida agregada también pueden estimarse a partir de la media muestral y varianza muestral de los valores simulados. A continuación se resumen los procedimientos de simulación para los modelos de pérdidas agregadas. Supongamos que $m$ es el tamaño de la muestra aleatoria generada de pérdidas agregadas.
+
+1. Modelo de Riesgo Individual $S_n=X_1+\cdots+X_n$
+
+    + Supongamos el contador $j=1,\ldots,m$. Se fija $j=1$.
+    + Se genera cada realización de pérdida individual $x_{ij}$ para $i=1,\ldots,n$. Por ejemplo, se puede utilizar el método de transformación inversa (Sección 6.2).
+    + Se calcula la pérdida total $s_j = x_{1j} + \cdots + x_{nj}$.
+    + Se repiten los dos pasos anteriores para $j=2,\ldots,m$ hasta obtener una muestra de tamaño $m$ de $S_n$, es decir, $\{s_1,\ldots,s_m\}$.
+
+
+
+2. Modelo de riesgo colectivo $S_N=X_1+\cdots+X_N$  
+
+    + Supongamos el contador $j=1,\ldots,m$. Se fija $j=1$.
+    + Se genera el número de siniestros $n_j$ de la distribución de frecuencias $N$.
+    + Dado $n_j$, se genera a partir de la distribución de severidad $X$ la cuantía de cada siniestro independiente, denotado por $x_{1j},\ldots,x_{n_j j}$.
+    + Se calcula la pérdida agregada $s_j = x_{1j} + \cdots + x_{n_j j}$.
+    + Se repiten los tres pasos anteriores para $j=2,\ldots,m$ hasta obtener una muestra de tamaño $m$ de $S_N$, es decir, $\{s_1,\ldots, s_m\}$.
+
+A partir de la muestra aleatoria de $S$, la distribución empírica se puede calcular como
+$$\hat{F}_S(s)=\frac{1}{m}\sum_{i=1}^{m}I(s_i\leq s),$$
+donde $I(\cdot)$ es una función indicadora. La distribución empírica $\hat{F}_S(s)$ convergerá casi seguramente a ${F}_S(s)$ a medida que el tamaño muestral $m\rightarrow \infty$.
+
+
+El procedimiento anterior asume que se conocen las distribuciones de probabilidad, incluidos los valores de los parámetros, de las distribuciones de frecuencia y severidad. En la práctica, primero habría que seleccionar estas distribuciones, estimar sus parámetros a partir de los datos, y luego evaluar la calidad del ajuste del modelo utilizando diferentes herramientas de validación del modelo (véase el capítulo \@ref(C:ModelSelection)). Por ejemplo, los supuestos del modelo de riesgo colectivo sugieren una estimación en dos etapas, en la que se construye un modelo para el número de siniestros $N$ a partir de los datos de conteo de siniestros, y otro modelo para la severidad de los siniestros $X$ a partir de los datos del importe de los siniestros.
+***
+
+**Ejemplo `r chapnum`.4.2.**
+Consideremos el ejemplo `r chapnum`.3.5 con la frecuencia de siniestros del individuo $N \sim Poi(\lambda=25)$ y severidad de los siniestros $X \sim U(5,95)$. A partir de una muestra simulada de 10.000 observaciones, estimar la media y la varianza de la pérdida agregada $S_N$. Además, utilizar la muestra simulada para estimar la probabilidad que el coste total de la siniestralidad para esta persona será superior a 2000 y compararla con la estimación basada en la aproximación normal del ejemplo `r chapnum`.3.5.
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.4.2" href="javascript:toggleEX('toggleExampleAggLoss.4.2','displayTextExampleAggLoss.4.2');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.4.2" style="display: none">
+
+**Solución.**
+Se sigue el algoritmo para el modelo de riesgo colectivo, en el que primero se simulan las frecuencias $n_1,\ldots,n_{10000}$, y condicionado a $n_j,~j=1,\ldots,10000$, se simula cada pérdida individual $x_{ij},~i=1,\ldots n_j$. 
+
+```{r, warning=FALSE, message=FALSE}
+set.seed(4321)  # Para reproducir los resultados
+m <- 10000      # Número de observaciones a simular
+lambda <- 25    # Parámetro de la distribución de frecuencias N
+a <- 5; b <- 95 # Parámetros de la distribución de severidad X
+S <- rep(NA, m) # Creación un vector vacío para almacenar las observaciones S
+
+n <- rpois(m, lambda) # Se generan m=10000 observaciones de N de una Poisson
+for(j in 1:m){ 
+  n_j <- n[j] # A partir de cada n_j (j=1,...,m), se generan n_j observaciones de X de una uniforme
+  x_j <- runif(n_j, min=a, max=b)
+  s_j <- sum(x_j) # Se calcula la pérdida agregada s_j
+  S[j] <- s_j # Se almacena s_j en el vector de observaciones
+}
+mean(S) # Compararlo con el valor teórico de 1250
+var(S)  # Compararlo con el valor teórico de 79375
+mean(S>2000) # Proporción de observaciones simuladas s_j que son > 2000
+# Compararlo con el método de aproximación normal de 0,003884
+```
+A partir de la simulación se estima que la media y varianza de la siniestralidad agregada es aproximadamente `r round(mean(S),0)` y `r format(round(var(S),0),scientific=FALSE)` respectivamente, en comparación con los valores teóricos de 1.250 y 79.375. Además, se estima que la probabilidad que las pérdidas agregadas excedan 2000 es `r mean(S>2000)`, en comparación con la estimación de aproximación normal de 0,003884. 
+
+Se puede evaluar si es apropiada la aproximación normal comparando la distribución empírica de las pérdidas agregadas simuladas con la densidad de la distribución normal utilizada para la aproximación normal, $N(\mu=1,250~, ~\sigma^2=79,375)$:
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, out.width='70%', fig.asp=.70, fig.align='center'}
+hist(S, freq=F, col="lightgray", 
+     main="Distribución de las pérdidas agregadas simuladas", xlab="Pérdida agregada S")
+
+x <- seq(0,2500,by=0.01)
+fnorm = dnorm(x, mean=1250, sd=sqrt(79375))
+lines(x, fnorm, col="blue", lwd=2.5)
+legend("topright", c("Densidad Normal"), lty=1, cex=0.6, col = c("blue"))
+```
+
+Las pérdidas simuladas son ligeramente más asimétricas a la derecha que la distribución normal, con una cola a la derecha más pesada. Lo anterior explicaría el hecho que el estimador de $\Pr(S_N > 2000)$ de la aproximación normal es menor que el estimador basado en la simulación. 
+
+</div>
+
+*** 
+
+## Efectos de la Modificación de las Coberturas
+
+### Impacto de la exposición en la frecuencia
+
+Esta sección se centra en un modelo de riesgo individual para el número de siniestros. Recordemos que el modelo de riesgo individual implica un número fijo de contratos $n$ y variables aleatorias de pérdidas independientes $X_i$. Considere el número de siniestros de un grupo de pólizas $n$:
+
+$$S=X_1+\cdots+X_n$$
+donde se asume que las $X_i$ son *iid* que representan el número de siniestros de cada póliza $i$. En este caso, la exposición de la cartera es $n$, utilizando la póliza como base de exposición. La *pgf* de $S$ es
+$$\begin{aligned}
+P_{S}(z)&={\rm E}(z^S)={\rm E}\left(z^{\sum_{i=1}^nX_i}\right)\\
+&=\prod_{i=1}^n{\rm E}(z^{X_i})=[P_X(z)]^n
+\end{aligned}$$
+
+**Caso particular: Poisson.** Si $X_i\sim Poi(\lambda)$, su *pgf* es $P_X(z)=e^{\lambda(z-1)}$. Entonces la *pgf* de $S$ es
+  $$P_{S}(z)=[e^{\lambda(z-1)}]^n=e^{n\lambda(z-1)}.$$
+Por tanto $S\sim Poi(n\lambda)$. Es decir, la suma de $n$ variables aleatorias de Poisson independientes, cada una de media $\lambda$, sigue una distribución de Poisson de media $n\lambda$. 
+
+***
+
+**Caso particular: Binomial Negativa.** Si $X_i\sim NB(\beta,r)$, su *pgf* es $P_X(z)=[1-\beta(z-1)]^{-r}$. Entonces la *pgf* de $S$ es
+  $$P_{S}(z)=[[1-\beta(z-1)]^{-r}]^n=[1-\beta(z-1)]^{-nr}.$$
+Por tanto $S\sim NB(\beta,nr)$.
+
+***
+
+**Ejemplo `r chapnum`.5.1.**
+Supongamos que el número de siniestros por vehículo sigue una Poisson con media $\lambda$. Dados los siguientes datos sobre el número observado de siniestros para cada hogar, estima $\lambda$ por máxima verosimilitud.  
+
+$$
+{\small 
+\begin{matrix}
+\begin{array}{c|c|c}
+  \hline
+  \text{Hogar ID} & \text{Número de vehículos} & \text{Número de siniestros} \\
+  \hline
+  1 & 2 & 0 \\
+  2 & 1 & 2 \\
+  3 & 3 & 2 \\
+  4 & 1 & 0 \\
+  5 & 1 & 1 \\
+  \hline
+\end{array}
+\end{matrix}
+}
+$$  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.1" href="javascript:toggleEX('toggleExampleAggLoss.5.1','displayTextExampleAggLoss.5.1');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.1" style="display: none">
+
+**Solución.**
+Cada uno de los 5 hogares tiene un número de exposiciones $n_j$ (número de vehículos) y un número de siniestros $S_j$, $j=1,...,5$. En cada hogar el número de siniestros $S_j \sim Poi (n_j \lambda)$. La función de verosimilitud es
+
+$$\begin{aligned}
+L(\lambda) &= \prod_{j=1}^5 \Pr(S_j=s_j) = \prod_{j=1}^5 \frac{e^{-n_j\lambda} (n_j \lambda)^{s_j}}{s_j!} \\
+&= \left(\frac{e^{-2\lambda} (2 \lambda)^{0}}{0!} \right)
+\left(\frac{e^{-1\lambda} (1 \lambda)^{2}}{2!} \right)
+\left(\frac{e^{-3\lambda} (3 \lambda)^{2}}{2!} \right)
+\left(\frac{e^{-1\lambda} (1 \lambda)^{0}}{0!} \right)
+\left(\frac{e^{-1\lambda} (1 \lambda)^{1}}{1!} \right) \\
+&\propto e^{-8\lambda} \lambda^5
+\end{aligned}$$
+
+Tomando el logaritmo de verosimilid, se tiene
+
+$$\begin{aligned}
+l(\lambda) = \log L(\lambda) = -8\lambda + 5\log(\lambda)
+\end{aligned}$$
+Igualando a cero la primera derivada del logaritmo de verosimilitud, se obtiene
+$\hat{\lambda} = \frac{5}{8}$
+
+</div>
+
+*** 
+
+Si la exposición de la cartera cambia de $n_1$ a $n_2$, se puede establecer la siguiente relación entre el número total de siniestros: $$P_{S_{n_2}}(z)=[P_X(z)]^{n_2}=[P_X(z)^{n_1}]^{n_2/n_1}=P_{S_{n_1}}(z)^{n_2/n_1}.$$
+
+### Impacto de los deducibles en la frecuencia de siniestros {#S:MS:DedImpactClmFreq}
+
+Esta sección examina el efecto de los deducibles en la frecuencia de los siniestros. Intuitivamente, si se introduce un deducible en la póliza, disminuirán los siniestros reclamados ya que no se reclamará si la cuantía reclamada es inferior al deducible. Incluso si el asegurado realiza la reclamación, puede que no se realice ningún pago en la póliza, ya que puede denegarse el siniestro o que la cuantía del mismo se determine finalmente por debajo del deducible. Denotemos $N^L$ el número de pérdidas (es decir, el número de siniestros sin deducible), y $N^P$ el número de pagos cuando se establece un deducible $d$. El objetivo es identificar la distribución de $N^P$ dada la distribución de $N^L$. A continuación se demuestra que la relación entre $N^L$ y $N^P$ puede establecerse en el marco del modelo de riesgo agregado.
+
+Cabe señalar que, en ocasiones, cambios en los deducibles podrían afectar al comportamiento de siniestralidad del asegurado. Suponemos aquí que esto no ocurre, es decir, que las distribuciones subyacentes de pérdidas, tanto para la frecuencia como para la severidad, se mantienen sin cambios cuando varía el deducible.
+
+Dado que ocurren $N^L$ pérdidas, suponemos que $X_1,X_2\ldots,X_{N^L}$ son las cuantías asociadas de las pérdidas. Para $j=1,\ldots,N^L$, se define
+\begin{eqnarray*}
+I_j&=&
+\left \{
+\begin{array}{cc}
+1 & \text{si} ~X_j>d\\
+0 & \text{el resto de casos}\\
+\end{array}
+\right..
+\end{eqnarray*}
+
+Por tanto, se establece
+$$N^P=I_1+I_2+\cdots+I_{N_L},$$
+
+Es decir, el número total de pagos es igual al número de pérdidas por encima del valor del deducible. Dado que las $I_j$ son variables aleatorias de Bernoulli independientes con probabilidad de éxito $v=\Pr(X>d)$, la suma de un *número fijo* de estas variables es una variable aleatoria binomial. Condicionado a $N^L$, $N^P$ sigue una distribución binomial, es decir, $N^P | N^L \sim Bin(N^L, v)$, donde $v=\Pr(X>d)$. Lo anterior implica que
+$$\begin{aligned}
+\mathrm{E}\left(z^{N^P}|N^L\right)&= \left[ 1+v(z-1)\right]^{N^L}
+\end{aligned}$$
+
+Por tanto, la *pgf* de $N^P$ es
+$$\begin{aligned}
+P_{N^P}(z)&= \mathrm{E}_{N^P}\left(z^{N^P}\right)=\mathrm{E}_{N^L}\left[\mathrm{E}_{N^P}\left(z^{N^P}|N^L\right)\right]\\
+&= \mathrm{E}_{N^L}\left[(1+v(z-1))^{N^L}\right]\\
+&= P_{N^L}\left(1+v(z-1)\right)
+\end{aligned}$$
+
+Así, se puede definir la *pgf* de $N^P$ como la *pgf* de $N^L$, evaluada en un nuevo argumento $z^* =  1+v(z-1)$. Esto es, $P_{N^P}(z)=P_{N^L}(z^*)$.  
+
+**Casos particulares:**  
+
+* $N^L\sim Poi (\lambda)$. La *pgf* de $N^L$ es $P_{N^L}=e^{\lambda(z-1)}$. De este modo, la *pgf* de $N^P$ es
+$$\begin{aligned}
+P_{N^P}(z) &= e^{ \lambda(1+v(z-1)-1)} \\
+&= e^{\lambda v(z-1)} ,
+\end{aligned}$$  
+Por tanto, $N^P \sim Poi(\lambda v)$. Esto significa que el número de pagos tiene la misma distribución que el número de pérdidas, pero con un número esperado de pagos igual a $\lambda v = \lambda \Pr(X>d)$. 
+
+* $N^L \sim NB(\beta, r)$. La *pgf* de $N^L$ es $P_{N^{L}}\left( z\right) =\left[ 1-\beta \left( z-1\right)\right]^{-r}$. De este modo, la *pgf* de $N^P$ es
+$$\begin{aligned}
+P_{N^P}(z)&= \left( 1-\beta (1+v(z-1)-1)\right)^{-r}\\
+&= \left( 1-\beta v(z-1)\right)^{-r},
+\end{aligned}$$
+Por tanto, $N^P \sim NB(\beta v, r)$. Esto significa que el número de pagos tiene la misma distribución que el número de pérdidas, pero con parámetros $\beta v$ y $r$.  
+
+***
+
+**Ejemplo `r chapnum`.5.2.**
+Supongamos que las pérdidas $X_i\sim Pareto(\alpha=4,\ \theta=150)$. Sabemos que la frecuencia de pérdidas es $N^L\sim Poi(\lambda)$ y la frecuencia de pagos es $N^{P}_1\sim Poi(0,4)$ con un deducible de valor igual a $d_1=30$. Encontrar la distribución de la frecuencia de pagos $N^{P}_2$ cuando el valor del deducible es $d_2=100$. 
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.2" href="javascript:toggleEX('toggleExampleAggLoss.5.2','displayTextExampleAggLoss.5.2');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.2" style="display: none">
+
+**Solución.**
+Al ser la frecuencia de pérdidas $N^L$ Poisson, las medias de la distribución de pérdidas $N^L$ y la primera distribución de pagos $N^{P}_1$ (con deducible $d_1=30$) se relacionan como $0,4 = \lambda v_1$, donde 
+$$\begin{aligned}
+&v_1 = \Pr(X > 30) = \left( \frac{150}{30+150}\right)^4=\left( \frac{5}{6}\right)^4 \\
+\Rightarrow \ & \lambda = 0.4 \left( \frac{6}{5} \right)^4
+\end{aligned}$$
+Ahora, se puede definir la segunda distribución de pagos $N^{P}_2$ (con deducible $d_2=100$) como Poisson con media $\lambda_2 = \lambda v_2$, donde
+$$\begin{aligned}
+& v_2 = \Pr(X>100)=\left( \frac{150}{100+150}\right)^4=\left( \frac{3}{5}\right)^4 \\
+\Rightarrow \ & \lambda_2 = \lambda v_2 = 0,4\left( \frac{6}{5} \right)^4 \left( \frac{3}{5} \right)^4 = 0,1075
+\end{aligned}$$
+
+</div>
+
+*** 
+
+**Ejemplo `r chapnum`.5.3. Continuación.**
+Ahora supongamos que la frecuencia de pérdidas es $N^L \sim NB(\beta,\ r)$ y para el deducible $d_1=30$, la frecuencia de pagos $N^{P}_1$ es negativa binomial con media $0,4$. Encontrar la media de la frecuencia de pagos $N^{P}_2$ para el deducible $d_2=100$.  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.3" href="javascript:toggleEX('toggleExampleAggLoss.5.3','displayTextExampleAggLoss.5.3');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.3" style="display: none">
+
+**Solución.**
+Al ser  la frecuencia de pérdidas $N^L$ una binomial negativa, el parámetro $\beta$ de la distribución $N^L$ y el parámetro $\beta_1$ de la primera distribución de pagos $N^{P}_1$ se relacionan como $\beta_1 = \beta v_1$, donde $$v_1 = \Pr(X > 30) = \left( \frac{5}{6} \right)^4$$ Así, la media de $N^{P}_1$ y la media de $N^L$ se relacionan vía
+
+$$\begin{aligned}
+&0,4 =  r \beta_1 = r \left(\beta v_1\right) \\
+\Rightarrow \ & r\beta = \frac{0,4}{v_1} = 0,4 \left(\frac{6}{5} \right)^4
+\end{aligned}$$
+Nótese que $v_2 = \Pr(X > 100) = \left( \frac{3}{5}\right)^4$ como en el ejemplo original. Entonces, la segunda distribución de frecuencia de pagos con deducible $d_2=100$ es $N^{P}_2 \sim NB(\beta v_2, \ r)$ con media
+$$\begin{aligned}
+r (\beta v_2) = (r \beta) v_2 = 0,4 \left( \frac{6}{5}\right)^4 \left( \frac{3}{5} \right)^4 = 0,1075
+\end{aligned}$$
+
+</div>
+
+***
+
+A continuación, se examina el caso más general en el que $N^L$ es una distribución cero modificada. Recordemos que una distribución cero modificada puede definirse en términos de una distribución no modificada (como se señala en la Sección \@ref(S:zero-truncation-or-modification)). Es decir,
+$$\begin{aligned}
+p_k^M = c~p_k^0, {~\rm para~} k=1,2,3,\ldots,  {~\rm con~}c = \frac{1-p_0^M}{1-p_0^0},
+\end{aligned}$$
+donde $p^0_k$ es la *pmf* de una distribución no modificada. En el caso que $p_0^M=0$, se denomina una distribución *cero truncada*, o $ZT$. Para otros valores arbitrarios de $p_0^M$, es una distribución cero modificada, o $ZM$. La *pgf* de la distribución modificada se obtiene como
+$$\begin{aligned}
+P^M(z) &= 1-c+c~P^0(z),
+\end{aligned}$$
+expresada en términos de la *pgf* de la distribución no modificada, $P^0(z)$. Cuando $N^L$ sigue una distribución cero modificada, la distribución de $N^P$ se establece usando la misma relación anterior, $P_{N^P}(z)=P_{N^L}\left(1+v(z-1)\right)$.
+
+**Casos particulares:**
+
+* $N^{L}$ es una variable aleatoria ZM-Poisson con parámetros $\lambda$ y $p_0^{M}$. La *pgf* de $N^L$ es
+$$P_{N^{L}}(z)=1-\cfrac{1-p_0^{M}}{1-e^{-\lambda}}+\cfrac{1-p_0^{M}}{1-e^{-\lambda}}\left( e^{\lambda(z-1)} \right).$$
+Por tanto, la *pgf* de $N^P$ es
+$$P_{N^{P}}(z)=1-\cfrac{1-p_0^{M}}{1-e^{-\lambda}}+\cfrac{1-p_0^{M}}{1-e^{-\lambda}}\left( e^{\lambda v(z-1)} \right).$$
+Así el número de pagos sigue también una distribución ZM-Poisson con parámetros $\lambda v$ y $p_0^{M}$. La probabilidad en cero se puede evaluar mediante 
+${\rm Pr}(N^P=0) = P_{N^P}(0)$.  
+
+
+* $N^{L}$ es una variable aleatoria ZM-binomial negativa con parámetros $\beta$, $r$, y $p_0^{M}$. La *pgf* de $N^L$ es
+$$P_{N^{L}}(z)=1-\cfrac{1-p_0^{M}}{1-(1+\beta)^{-r}}+\cfrac{1-p_0^{M}}{1-(1+\beta)^{-r}}\left[ 1-\beta \left( z-1\right)\right]^{-r}.$$
+Por tanto, la *pgf* de $N^P$ es
+$$P_{N^{P}}(z)=1-\cfrac{1-p_0^{M}}{1-(1+\beta)^{-r}}+\cfrac{1-p_0^{M}}{1-(1+\beta)^{-r}}\left[ 1-\beta v\left( z-1\right)\right]^{-r}.$$
+Así, el número de pagos sigue también una distribución ZM-binomial negativa con parámetros $\beta v$, $r$, y $p_0^{M}$. Del mismo modo, la probabilidad en cero se puede evaluar mediante 
+${\rm Pr}(N^P=0) = P_{N^P}(0)$.
+
+***
+
+**Ejemplo `r chapnum`.5.4.**
+Las pérdidas agregadas se modelizan de la siguiente manera:  
+(i) El número de pérdidas sigue una distribución Poisson modificada en cero con $\lambda=3$ y $p_0^M = 0,5$.  
+(ii) La cuantía de la pérdida sigue una distribución Burr con $\alpha=3, \theta=50, \gamma=1$.  
+(iii) Se introduce un deducible $d=30$ para cada pérdida.  
+(iv) El número de pérdidas y su cuantía son independientes entre sí.  
+
+Calcular $\mathrm{E}(N^P)$ y $\mathrm{Var}(N^P)$.  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.4" href="javascript:toggleEX('toggleExampleAggLoss.5.4','displayTextExampleAggLoss.5.4');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.4" style="display: none">
+
+**Solución.**
+Dado que $N^L$ sigue una distribución ZM-Poisson con parámetros $\lambda$ y $p_0^M$, sabemos que $N^P$ también sigue una distribución ZM-Poisson, pero con parámetros $\lambda v$ y $p_0^M$, donde
+
+$$v = \Pr(X>30) = \left( \frac{1}{1+(30/50)} \right)^3 = 0,2441$$
+
+Por tanto, $N^P$ sigue una distribución ZM-Poisson con parámetros $\lambda^\ast = \lambda v= 0,7324$ y $p_0^M = 0,5$. Finalmente,
+$$\begin{aligned}
+\mathrm{E} (N^P) &= (1-p_0^M) \frac{\lambda^\ast}{1-e^{-\lambda^\ast}} = 0,5 \left( \frac{0,7324}{1-e^{-0,7324}} \right) \\
+&= 0,7053 \\
+\mathrm{Var} (N^P) &= (1-p_0^M) \left( \frac{\lambda^\ast[1-(\lambda^\ast + 1) e^{-\lambda^\ast}]}{(1-e^{-\lambda^\ast})^2} \right) + p_0^M(1-p_0^M) \left(\frac{\lambda^\ast}{1-e^{-\lambda^\ast}} \right)^2 \\
+&= 0,5 \left( \frac{0,7324(1-1,7324 e^{-0,7324})}{(1-e^{-0,7324})^2} \right) + 0,5^2 \left( \frac{0,7324}{1-e^{-0,7324}} \right)^2 \\
+&= 0,7244
+\end{aligned}$$
+
+</div>
+
+***
+
+
+### Impacto de las modificaciones de la póliza en la siniestralidad agregada
+
+En esta sección, se examina el efecto de un cambio en el deducible sobre los pagos agregados de una cartera de seguros. Se asume que la presencia de límites en la póliza ($u$), coaseguro ($\alpha$) e inflación ($r$) no tienen ningún efecto en la distribución subyacente de la frecuencia de pagos realizados por la aseguradora. Al igual que en la sección anterior, asumimos que cambios en los deducibles tampoco afectan las distribuciones subyacentes de pérdidas, ni la de frecuencia ni la de severidad.
+
+Recordar la notación $N^L$ para el número de pérdidas. Con la cuantía de la pérdida inicial $X$ y el deducible de la póliza $d$, se usa
+$N^P$ para el número de pagos (como se definió en la sección anterior \@ref(S:MS:DedImpactClmFreq)). Asimismo, se define el importe en base a las pérdidas
+
+\begin{eqnarray*}
+    X^{L}&=\left\{
+      \begin{array}{ll}
+        0 ~, & \text{si } ~X<\cfrac{d}{1+r} \\
+        \alpha[(1+r)X-d]~, & \text{si } ~\cfrac{d}{1+r}\leq X<\cfrac{u}{1+r} \\
+        \alpha(u-d)~, &  \text{si } ~X \ge \cfrac{u}{1+r}\\
+      \end{array}
+\right.,
+\end{eqnarray*}
+y la cuantía en base a los pagos 
+\begin{eqnarray*}
+    X^{P}&=\left\{
+      \begin{array}{ll}
+        {\rm indeterminado} ~, & \text{si }~ X<\cfrac{d}{1+r} \\
+        \alpha[(1+r)X-d]~, & \text{si }~ \cfrac{d}{1+r}\leq X<\cfrac{u}{1+r} \\
+        \alpha(u-d)~, &  \text{si } ~ X \ge \cfrac{u}{1+r}\\
+      \end{array}
+\right..
+\end{eqnarray*}
+Aquí, $r$, $u$, y $\alpha$ representan la tasa de inflación, el límite de la póliza y el coseguro, respectivamente. Por lo tanto, los costes agregados (cuantías de los pagos) pueden expresarse ya sea en base a pérdidas o a pagos:
+
+$$\begin{aligned}
+S &= X^L_1 + \cdots + X^L_{N^L} \\
+&=X^P_1 + \cdots + X^P_{N^P} ~.
+\end{aligned}$$
+
+Los fundamentos del modelo de riesgo colectivo pueden aplicarse. Por ejemplo, se tiene que:
+$$\begin{aligned}
+  {\rm E}(S) &= {\rm E}\left(N^L\right) {\rm E}\left(X^L\right) = {\rm E}\left(N^P\right) {\rm E}\left(X^P\right)\\
+  {\rm Var}(S) &= {\rm E}\left(N^L\right) {\rm Var}\left(X^L\right) + \left[{\rm E}\left(X^L\right)\right]^2 {\rm Var}(N^L) \\
+  &= {\rm E}\left(N^P\right) {\rm Var}\left(X^P\right) + \left[{\rm E}\left(X^P\right)\right]^2 {\rm Var}(N^P)\\
+  M_S(z)&=P_{N^L}\left[M_{X^L}(z)\right]=P_{N^P}\left[M_{X^P}(z)\right]
+\end{aligned}$$  
+
+***
+
+**Ejemplo `r chapnum`.5.5. Pregunta Examen Actuarial.**
+Una póliza dental colectiva sigue una distribución binomial negativa en el número de siniestros con media 300 y varianza 800. La severidad inicial se indica en la siguiente tabla:  
+
+$$
+{\small 
+\begin{matrix}
+  \begin{array}{ c | c }
+    \hline
+      \text{Severidad} & \text{Probabilidad}\\ \hline
+    40 & 0.25\\
+    80 & 0.25\\
+    120 & 0.25\\
+    200 & 0.25\\
+    \hline
+  \end{array}
+\end{matrix}
+}
+$$  
+
+
+
+Se espera que la severidad aumente un 50\% sin cambiar de frecuencia. Se introduce un deducible de 100 por siniestro. Calcular el valor esperado de la pérdida agregada $S$ después de estos cambios.  
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.5" href="javascript:toggleEX('toggleExampleAggLoss.5.5','displayTextExampleAggLoss.5.5');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.5" style="display: none">
+
+**Solución.**
+El coste por pérdida con un incremento en la severidad del 50\% y un deducible por siniestro de 100 es
+\begin{eqnarray*}
+X^L &=&
+\left\{
+\begin{array}{cc}
+0 & 1,5x<100 \\
+1,5x-100 & 1,5x\ge 100\\
+\end{array}
+\right.
+\end{eqnarray*}
+El valor esperado es
+$$\begin{aligned}
+\mathrm{E}(X^L) &= \frac{1}{4} \left[ \left(1,5(40)-100\right)_+ +
+\left(1,5(80)-100\right)_+ + \left(1,5(120)-100\right)_+ +
+\left(1,5(200)-100\right)_+ \right]  \\
+&= \frac{1}{4}\left[ (60-100)_+ + (120-100)_+ + (180-100)_+ + (300-100)_+\right] \\
+&= \frac{1}{4}\left[ 0 + 20 + 80 + 200 \right] = 75
+\end{aligned}$$
+Por tanto, la pérdida agregada esperada es 
+$$\mathrm{E}(S)=\mathrm{E}(N) ~ \mathrm{E} \left(X^L \right)= 300 (75) = 22.500
+.$$
+
+</div>
+
+*** 
+
+**Ejemplo `r chapnum`.5.6. Continuación.**
+¿Cuál es la varianza de la pérdida agregada, $\mathrm{Var~}(S)$?  
+
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.6" href="javascript:toggleEX('toggleExampleAggLoss.5.6','displayTextExampleAggLoss.5.6');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.6" style="display: none">
+
+**Solución.** En base a las pérdidas se tiene
+$$\begin{aligned}
+\mathrm{Var}(S) &= \mathrm{E}(N) ~ \mathrm{Var}\left(  X^L \right) + \left[ \mathrm{E} \left(X^L\right) \right]^2 ~ \mathrm{Var} (N)
+\end{aligned}$$
+donde $\mathrm{E}(N) = 300$ y $\mathrm{Var}(N) = 800$. Se obtiene que
+$$\begin{aligned}
+&\mathrm{E} \left[ (X^L)^2 \right] = \frac{1}{4} \left[ 0^2 + 20^2 + 80^2 + 200^2 \right] = 11.700 \\
+\Rightarrow \ & \mathrm{Var}(X^L) = \mathrm{E} \left[ (X^L)^2 \right] - \left[ \mathrm{E}(X^L) \right]^2 = 11.700 - 75^2 = 6.075
+\end{aligned}$$
+Por tanto, la varianza del coste total de siniestralidad es
+$$\begin{aligned}
+\mathrm{Var}(S) &= 300(6.075) + 75^2 (800) = 6.322.500
+\end{aligned}$$
+
+
+</div>
+
+*** 
+
+*Método alternativo: en base a los pagos.* Anteriormente, se ha calculado el coste total esperado de siniestralidad multiplicando el número esperado de pérdidas por el coste esperado *por pérdida*. Recuerde que también podemos multiplicar el número esperado de pagos por el coste esperado *por pago*. En este caso, tenemos
+
+
+\[S=X_1^P + \cdots + X_{N_P}^P \]
+La probabilidad de un pago es
+\[\Pr(1,5X \ge 100)=\Pr(X \ge 66,\bar{6})=\frac{3}{4} .\]
+
+Por tanto, el número de pagos, $N^P$ tiene una distribución binomial negativa (véase el caso particular de la binomial negativa en Sección \@ref(S:MS:DedImpactClmFreq))
+con media
+$$\mathrm{E}(N^P) =  \mathrm{E}(N^L)~\Pr(1,5X \geq 100) = 300 \left(\frac{3}{4} \right)=225$$
+El coste por pago es
+\begin{eqnarray*}
+X^P &=&
+\left\{
+\begin{array}{ll}
+\text{indeterminado}~, & \text{si }~ 1,5x<100 \\
+1,5x-100~, & \text{si } ~ 1,5x\ge 100\\
+\end{array}
+\right.
+\end{eqnarray*}
+Su esperanza es
+$$\mathrm{E}(X^P)=\frac{\mathrm{E}(X^L)}{\Pr(1,5X > 100)}=\frac{75}{(3/4)}=100$$
+Por lo tanto, al igual que antes, la pérdida esperada agregada es
+$$\mathrm{E}(S)=\mathrm{E}(X^P) ~ \mathrm{E}(N^P) =
+100(225)=22.500$$
+
+***
+
+**Ejemplo `r chapnum`.5.7. Pregunta Examen Actuarial.**
+Una compañía asegura una flota de vehículos. Las pérdidas agregadas siguen una distribución compuesta de Poisson. El número esperado de pérdidas es 20. 
+Las pérdidas, independientemente del tipo de vehículo, siguen una distribución exponencial con $\theta=200$. Para reducir el coste del seguro, se introducen dos modificaciones:  
+(i) No se asegurará a un cierto tipo de vehículos. Se estima que reducirá la frecuencia de pérdidas en un 20$\%$.  
+(ii) Se incluirá un deducible de 100 por pérdida.  
+
+Calcular la cantidad total esperada que pagará la compañía después de las modificaciones.
+
+<h5 style="text-align: center;"><a id="displayTextExampleAggLoss.5.7" href="javascript:toggleEX('toggleExampleAggLoss.5.7','displayTextExampleAggLoss.5.7');"><i><strong>Mostrar Solución de Ejemplo </strong></i></a> </h5>
+<div id="toggleExampleAggLoss.5.7" style="display: none">
+
+
+**Solución.**
+En base a las pérdidas, se incluye un deducible de 100. Por tanto, el valor esperado por pérdida es
+$$\begin{aligned}
+\mathrm{E}( X^L) &= E[(X-100)_+] = E(X) - E(X\wedge 100) \\
+&= 200 - 200(1-e^{-100/200}) = 121.31
+\end{aligned}$$
+Dado que la frecuencia de pérdidas se ha reducido en un 20$\%$, el número esperado de pérdidas es
+$$\mathrm{E}(N^L) = 0,8(20) = 16$$
+Por tanto, la cantidad total esperada que pagará después de las modificaciones es
+$$\mathrm{E}(S) = \mathrm{E}(X^L)~ \mathrm{E} (N^L) = 121,31(16) = 1.941$$
+
+</div>
+
+*** 
+ 
+*Método alternativo: en base a los pagos.* La cantidad total esperada que pagará después de las modificaciones también se puede calcular en base a los pagos. Con el deducible de 100, la probabilidad que ocurra un pago es $\Pr(X > 100) = e^{-100/200}$. Para la severidad por pago, tomando la expresión $\mathrm{E}(X^L)$ del ejemplo original, se tiene
+$$\begin{aligned}
+\mathrm{E} (X^P) = \frac{\mathrm{E} (X^L)}{\Pr(X > 100)} = \frac{200 - 200(1-e^{-100/200})}{e^{-100/200}} = 200
+\end{aligned}$$
+
+Este resultado es esperable—cabe recordar que la distribución exponencial no tiene memoria, por lo que el coste esperado de los siniestros por encima de 100 sigue distribuyéndose según una exponencial de media 200.
+
+Ahora, tomemos la fecuencia de pagos
+
+$$\mathrm{E} (N^P) = \mathrm{E}(N^L)~\Pr(X>100) = 16 ~e^{-100/200} = 9,7$$
+Combinando ambos resultados, se obtiene la misma respuesta en base a los pagos que la obtenida anteriormente en base a las pérdidas
+$$\mathrm{E}(S) = \mathrm{E} (X^P)~ \mathrm{E} (N^P)= 200(9,7) = 1.941$$
+
+
+
+
+
+***  
+
+## Otros Recursos y Colaboradores {#AL-further-reading-and-resources}
+
+
+#### Ejercicios 
+
+Aquí se ofrece un conjunto de ejercicios que guían al lector a través de algunos de los fundamentos teóricos de **Loss Data Analytics**. Cada tutorial se basa en una o más preguntas de los exámenes actuariales profesionales, normalmente el Examen C de la Society of Acturies.
+
+<p style="text-align: center;">
+[Aggregate Loss Guided Tutorials](https://www.ssc.wisc.edu/~jfrees/loss-data-analytics/aggregate-loss-guided-tutorials/)
+</p>
+
+
+#### Colaboradores {-}
+
+- **Peng Shi** y **Lisa Gao**, Universidad de Wisconsin-Madison, son los principales autores de la version inicial de este capítulo. Email: pshi@bus.wisc.edu para comentarios sobre los capítulos y posibles mejoras.
+- Revisores de los capítulos, entre otros: Vytaras Brazauska, Mark Maxwell, Jiadong Ren, Di (Cindy) Xu.
+- Traducción al español: Miguel Santolino (Universitat de Barcelona)
+<!-- ##Suplemento técnico `r chapnum`.A. Modelos de pérdidas agregadas {-} -->
+
+###TS `r chapnum`.A.1. Propiedades del Modelo de Riesgo Individual {-}
+
+El valor esperado de la pérdida agregada en el modelo de riesgo individual,
+
+$$\begin{aligned}
+\mathrm{E}(S_n) &=\sum_{i=1}^n ~ \mathrm{E}(X_i) = \sum_{i=1}^n ~ \mathrm{E}(I_i \times B_i) = \sum_{i=1}^n ~ \mathrm{E}(I_i) ~~ \mathrm{E}(B_i) ~~~~ \text{dada la independencia entre las } I_i \text{ y las } B_i \\
+&= \sum_{i=1}^n \Pr(I_i=1) ~ \mu_i ~~~~ \text{ya que el valor esperado de la variable indicadora es igual a  la probabilidad que sea } 1 \\
+&= \sum_{i=1}^n ~ q_i ~ \mu_i
+\end{aligned}$$
+
+La varianza de la pérdida agregada en el modelo de riesgo individual,
+
+$$\begin{aligned}
+\mathrm{Var}(S_n) &= \sum_{i=1}^n \mathrm{Var}(X_i) ~~~~ \text{ dada la independencia entre las } X_i \\
+&= \sum_{i=1}^n ~ \left( ~ \mathrm{E}\left[ \mathrm{Var}(X_i | I_i) \right] + \mathrm{Var}\left[ \mathrm{E}(X_i|I_i) \right] ~ \right) ~~~~ \text{a partir de las formulas de varianza condicionada}  \\
+&= \sum_{i=1}^n \left( q_i ~ \sigma_i^2 ~ + ~ q_i ~ (1-q_i) ~ \mu_i^2 \right)
+\end{aligned}$$
+
+Para verlo, tenga en cuenta que
+$$\begin{aligned}
+\mathrm{E}\left[ \mathrm{Var}(X_i | I_i) \right] &= \mathrm{Var}(X_i|I_i=0) ~ \Pr(I_i=0) + \mathrm{Var}(X_i|I_i=1) ~ \Pr(I_i=1) \\
+&= q_i ~ \sigma_i^2 + (1-q_i) ~ (0) = q_i ~ \sigma_i^2, 
+\end{aligned}$$
+
+y 
+$$\begin{aligned}
+\mathrm{Var}\left[ \mathrm{E}(X_i|I_i) \right] &= q_i ~ (1-q_i) ~ \mu_i^2~,
+\end{aligned}$$
+
+en base a la varianza de la Bernoulli ya que $\mathrm{E}(X_i|I_i) = 0$ cuando $I_i=0$ (probabilidad $\Pr(I_i=0) = 1-q_i$) y $\mathrm{E}(X_i|I_i) = \mu_i$ cuando $I_i=1$ (probabilidad $\Pr(I_i=1)= q_i$).
+
+La función generadora de probabilidad de la pérdida agregada en el modelo de riesgo individual,
+
+$$\begin{aligned}
+P_{S_n}(z) &= \prod_{i=1}^n ~ P_{X_i}(z) ~~~~ \text{dada la independencia de las } X_i \\
+&= \prod_{i=1}^n ~ \mathrm{E}(z^{~X_i}) = \prod_{i=1}^n ~ \mathrm{E}(z^{~I_i \times B_i}) = \mathrm{E} \left[ \mathrm{E}(z^{~I_i \times B_i} | I_i) \right] ~~~~ \text{por la ley de esperanza iterada} \\
+&= \prod_{i=1}^n \left[ ~ E\left(z^{~I_i \times B_i} | I_i=0\right) ~ \Pr(I_i=0) + E\left(z^{~I_i \times B_i} | I_i=1\right) ~ \Pr(I_i=1) ~ \right] \\
+&= \prod_{i=1}^n ~ \left[ ~ (1) ~ (1-q_i) + P_{B_i}(z) ~ q_i ~ \right] = \prod_{i=1}^n \left(~ 1-q_i + q_i ~ P_{B_i}(z) ~\right)
+\end{aligned}$$
+
+Por último, la función generadora de momentos de la pérdida agregada en el modelo de riesgo individual,
+
+$$\begin{aligned}
+M_{S_n}(t) &= \prod_{i=1}^n ~ M_{X_i}(t) ~~~~ \text{dada la independencia de las } X_i \\
+&= \prod_{i=1}^n ~ \mathrm{E}(e^{t~X_i}) = \prod_{i=1}^n ~ \mathrm{E}\left(e^{~t~(I_i \times B_i)} \right) = \prod_{i=1}^n ~ \mathrm{E} \left[ \mathrm{E} \left( e^{~t~(I_i \times B_i)} | I_i \right) \right] ~~~~ \text{por la ley de esperanza iterada} \\
+&= \prod_{i=1}^n ~ \left[~ \mathrm{E}\left(e^{~t~(I_i \times B_i)} | I_i=0 \right) ~ \Pr(I_i=0) + \mathrm{E}\left( e^{~t~(I_i \times B_i)} | I_i=1 \right) ~ \Pr(I_i=1) ~\right] \\
+&= \prod_{i=1}^n ~ \left[ ~ (1) ~ (1-q_i) + M_{B_i}(t) ~ q_i ~ \right] = \prod_{i=1}^n \left(~ 1-q_i + q_i ~ M_{B_i}(t) ~\right)
+\end{aligned}$$
+
+***
+
+###TS `r chapnum`.A.2. Relación entre las funciones generadoras de probabilidad de $X_i$ y $X_i^T$ {-}
+
+Supongamos que $X_i$ pertenece a la clase $(a,b,0)$ con *pmf* $p_{ik} = \Pr(X_i = k)$ para $k=0,1,\ldots$ y $X_i^T$ es la distribución asociada truncada en cero de la clase $(a,b,1)$ con *pmf* $p_{ik}^T = p_{ik}/(1-p_{i0})$ para $k=1,2,\ldots$. La relación entre la *pgf* de $X_i$ y la *pgf* de $X_i^T$ es la siguiente
+
+$$\begin{aligned}
+P_{X_i}(z) &= \mathrm{E~}(z^{X_i}) = \mathrm{E}\left[  \mathrm{E}\left( z^{X_i} | X_i \right) \right] ~~~~ \text{por la ley de esperanza iterada} \\ 
+&= \mathrm{E}\left( z^{X_i} | X_i=0 \right)~ \Pr(X_i=0) + \mathrm{E}\left( z^{X_i} | X_i>0 \right) ~ \Pr(X_i>0) \\
+&= (1)~ p_{i0} + \mathrm{E}(z^{X_i^T}) ~ (1-p_{i0}) ~~~~ \text{dado que } (X_i | X_i>0) \text{ es la variable aleatoria truncada en cero } X_i^T \\
+&= p_{i0} +(1-p_{i0}) P_{X_i^{T}}(z)
+\end{aligned}$$
+
+***
+
+###TS `r chapnum`.A.3. Ejemplo `r chapnum`.3.8 Función generadora de momentos de la pérdida agregada $S_N$ {-}
+
+En el caso que $N\sim Geo(\beta)$ y $X\sim Exp(\theta)$, se obtiene
+
+$$\begin{aligned}
+P_N (z) &=\frac{1}{1- \beta (z-1)}\\
+M_{X}(t) &=\frac{1}{1-\theta t}
+\end{aligned}$$
+
+Por tanto, la *mgf* de la pérdida agregada $S_N$ es
+$$\begin{aligned}
+M_{S_N}(t) &= P_N [M_{X}(t)] = \frac{1}{1 - \beta \left( \frac{1}{1-\theta t} - 1\right)} \\
+&= \frac{1}{1 - \beta \left( \frac{\theta t}{1-\theta t} \right)} + 1 - 1 
+= 1+ \frac{\beta \left( \frac{\theta t}{1-\theta t} \right)}{1 - \beta \left( \frac{\theta t}{1-\theta t} \right)} \\
+&= 1 + \frac{\beta \theta t}{(1-\theta t) - \beta \theta t} = 1+ \frac{\beta \theta t}{1-\theta t (1+\beta)} \cdot \frac{1+\beta}{1+\beta} \\
+&= 1 + \frac{\beta}{1+\beta} \left[ \frac{\theta (1+\beta) t}{1-\theta(1+\beta)t} \right] \\
+&= 1 + \frac{\beta}{1+\beta} \left[ \frac{1}{1-\theta(1+\beta)t} - 1 \right], \\
+\end{aligned}$$
+que coincide con la expresión (`r chapnum`.1). Para la expresión alternativa de la *mgf* (`r chapnum`.2), se puede continuar a partir de aquí:
+
+$$\begin{aligned}
+M_{S_N}(t) &=  1 + \frac{\beta}{1+\beta} \left[ \frac{\theta (1+\beta) t}{1-\theta(1+\beta)t} \right] \\
+&= \frac{1+\beta}{1+\beta} +  \frac{\beta}{1+\beta} \left[ \frac{\theta (1+\beta) t}{1-\theta(1+\beta)t} \right] \\
+&= \frac{1}{1+\beta} + \frac{\beta}{1+\beta} + \frac{\beta}{1+\beta} \left[ \frac{\theta (1+\beta) t}{1-\theta(1+\beta)t} \right]  \\
+&= \frac{1}{1+\beta} + \frac{\beta}{1+\beta}\left[1 + \frac{\theta (1+\beta) t}{1-\theta (1+\beta)t} \right] \\
+&= \frac{1}{1+\beta} +\frac{\beta}{1+\beta} \left[ \frac{1}{1-\theta (1+\beta)t}\right]
+\end{aligned}$$
+
+

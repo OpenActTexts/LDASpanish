@@ -1,0 +1,166 @@
+
+<!-- ## MCMC -->
+
+La idea de las técnicas de Monte Carlo se basa en la ley de los grandes números (que asegura la convergencia de la media hacia la integral) y el teorema central del límite (que se usa para cuantificar la incertidumbre en los cálculos). Es necesario recordar que si $(X_i)$ es una secuencia i.id. de variables aleatorias con distribución $F$, entonces
+
+$$
+\frac{1}{\sqrt{n}}\left(\sum_{i=1}^n h(X_i)-\int h(x)dF(x)\right)\overset{\mathcal{L}}{\rightarrow }\mathcal{N}(0,\sigma^2),\text{ as }n\rightarrow\infty.
+$$
+para alguna varianza $\sigma^2>0$. Pero de hecho, el `r Gloss('teorema ergódico')` se puede usar para rebajar el resultado anterior, dado que no es neceario tener independencia de las variables. Más concretamente, si $(X_i)$ es un `r Gloss('proceso de Markov')` con `r Gloss('medida invariante')` $\mu$, bajo algunos supuestos técnicos adicionales, se puede obtener que
+
+$$
+\frac{1}{\sqrt{n}}\left(\sum_{i=1}^n h(X_i)-\int h(x)d\mu(x)\right)\overset{\mathcal{L}}{\rightarrow }\mathcal{N}(0,\sigma_\star^2),\text{ as }n\rightarrow\infty.
+$$
+para alguna varianza $\sigma_\star^2>0$.
+
+Por lo tanto, de esta propiedad, se puede ver que es posible no necesariamente generar valores independientes a partir de $F$, sino también generar un proceso de markov con medida invariante $F$, y considerar medias sobre el proceso (no necesariamente independiente).
+Se considera el caso de un vector Gausiano restringido: se desean generar parejas aleatorias de un vector aleatorio $\boldsymbol{X}$, pero sólo interesa el caso en que la suma de los ('composants')` es suficientemente grande, lo que puede expresarse como $\boldsymbol{X}^T\boldsymbol{1}> m$ para algún valor real $m$. Por supuesto, es posible usar el algoritmo *aceptación-rechazo*, pero se ha vito que puede ser bastante ineficiente. Se puede usar el `r Gloss('Hastings Metropolis')` y el `r Gloss('muestreo de Gibbs')` para generar un proceso de Markov con esta medida invariante.
+
+### Hastings Metropolis
+
+El algoritmo es bastante simple de generar a partir de $f$: se comienza con un valor factible $x_1$. Entonces, en el paso $t$, se necesita especificar una transición núcleo: dado $x_t$, se necesita la distribución condicional de $X_{t+1}$ dado $x_t$. El algoritmo funcionará bien si la distribución condicional se puede simular fácilmente. Sea $\pi(\cdot|x_t)$ esta probabilidad.
+Se obtiene un valor potencial $x_{t+1}^\star$, y $u$, de una distribución uniforme. Se calcula 
+
+$$
+R=  \frac{f(x_{t+1}^\star)}{f(x_t)}
+$$
+y 
+
+- si $u < r$, entonces $x_{t+1}=x_t^\star$
+- si $u\leq r$, entonces $x_{t+1}=x_t$
+
+Aquí $r$ se denomina ratio-*aceptación*: se acepta el nuevo valor con probabilidad $r$ (o en realidad el menor entre $1$ y $r$ dado que $r$ puede exceder $1$).
+
+Por ejemplo, se asume que $f(\cdot|x_t)$ es uniforme en $[x_t-\varepsilon,x_t+\varepsilon]$ para algún $\varepsilon>0$, y donde $f$ (la distribución objetivo) es la $\mathcal{N}(0,1)$. Nunca se realizarán *extracciones* de $f$, pero se usará para calcular la ratio de aceptación en cada paso.
+
+`r HideRCode('MCMC.1','Se muestra el código R')`
+
+```{r echo=SHOW_PDF}
+metrop1 <- function(n=1000,eps=0.5){
+ vec <- matrix(NA, n, 3)
+ x=0
+ vec[1] <- x
+ for (i in 2:n) {
+ innov <- runif(1,-eps,eps)
+ mov <- x+innov
+ R <- min(1,dnorm(mov)/dnorm(x))
+ u <- runif(1)
+ if (u < R) x <- mov
+ vec[i,] <- c(x,mov,R)
+ }
+return(vec)}
+```
+
+</div>
+
+En el código de arriba, `vec` contiene los valores de $\boldsymbol{x}=(x_1,x_2,\cdots)$, `innov` es la innovación.
+
+`r HideRCode('MCMC.2','Se muestra el código R')`
+
+```{r eval = ANIMATION, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+#install.packages('gifski')
+#if (packageVersion('knitr') < '1.20.14') {
+#  remotes::install_github('yihui/knitr')
+#}
+vec <- metrop1(25)
+u=seq(-3,3,by=.01)
+pic_ani = function(k){
+  plot(1:k,vec[1:k,1],pch=19,xlim=c(0,25),ylim=c(-2,2),xlab="",ylab="")
+    if(vec[k+1,1]==vec[k+1,2]) points(k+1,vec[k+1,1],col="blue",pch=19)
+    if(vec[k+1,1]!=vec[k+1,2]) points(k+1,vec[k+1,1],col="red",pch=19)
+  points(k+1,vec[k+1,2],cex=1.5)
+  arrows(k+1,vec[k,1]-.5,k+1,vec[k,1]+.5,col="green",angle=90,code = 3,length=.1)
+  polygon(c(k+dnorm(u)*10,rep(k,length(u))),c(u,rev(u)),col=rgb(0,1,0,.3),
+          border=NA)  
+  segments(k,vec[k,1],k+dnorm(vec[k,1])*10,vec[k,1])
+  segments(k,vec[k+1,2],k+dnorm(vec[k+1,2])*10,vec[k+1,2])
+  text(k,2,round(vec[k+1,3],digits=3))
+}
+```
+
+</div>
+
+```{r sampleani_HM_1, eval = ANIMATION, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK}
+for (k in 2:23) {pic_ani(k)}
+```
+
+Ahora, si se usan más simulaciones, se obtiene
+
+```{r  eval = ANIMATION, echo=SHOW_PDF, cache = TRUE}
+vec <- metrop1(10000)
+simx <- vec[1000:10000,1]
+par(mfrow=c(1,4))
+plot(simx,type="l")
+hist(simx,probability = TRUE,col="light blue",border="white")
+lines(u,dnorm(u),col="red")
+qqnorm(simx)
+acf(simx,lag=100,lwd=2,col="light blue")
+```
+
+### Muestreo de Gibbs
+
+Se considera algún vector $\boldsymbol{X}=(X_1,\cdots,X_d)$ con components independientes, $X_i\sim\mathcal{E}(\lambda_i)$. Se realiza un muestro para muestrear de $\boldsymbol{X}$ dado $\boldsymbol{X}^T\boldsymbol{1}>s$ para algún umbral $s>0$.
+
+- se comienza con algún valor inicial $\boldsymbol{x}_0$ tal que 
+- se elige (aleatoriamente) $i\in\{1,\cdots,d\}$
+- $X_i$ dado que $X_i > s-\boldsymbol{x}_{(-i)}^T\boldsymbol{1}$ tiene una distribucion Exponencial $\mathcal{E}(\lambda_i)$
+- se extrae $Y\sim \mathcal{E}(\lambda_i)$ y se establece $x_i=y +(s-\boldsymbol{x}_{(-i)}^T\boldsymbol{1})_+$ hasta que 
+$\boldsymbol{x}_{(-i)}^T\boldsymbol{1}+x_i>s$
+
+`r HideRCode('Gibbs.1','Se muestra el Código R')`
+
+```{r echo=SHOW_PDF}
+sim <- NULL
+ lambda <- c(1,2)
+ X <- c(3,3)
+ s <- 5
+ for(k in 1:1000){
+ i <- sample(1:2,1)
+ X[i] <- rexp(1,lambda[i])+max(0,s-sum(X[-i]))
+ while(sum(X)<s){
+ X[i] <- rexp(1,lambda[i])+max(0,s-sum(X[-i])) }
+ sim <- rbind(sim,X) }
+```
+
+</div>
+
+```{r echo=SHOW_PDF}
+plot(sim,xlim=c(1,11),ylim=c(0,4.3))
+polygon(c(-1,-1,6),c(-1,6,-1),col="red",density=15,border=NA)
+abline(5,-1,col="red")
+```
+
+La construcción de la secuencia (los algoritmos `r Gloss('MCMC')` son iterativos) puede visualizarse abajo
+
+`r HideRCode('Gibbs.2','Se muestra el código R')`
+
+```{r, echo=SHOW_PDF, cache = TRUE}
+lambda <- c(1,2)
+X <- c(3,3)
+sim <- X
+s <- 5
+for(k in 1:100){
+ set.seed(k)
+ i <- sample(1:2,1)
+ X[i] <- rexp(1,lambda[i])+max(0,s-sum(X[-i]))
+ while(sum(X)<s){
+ X[i] <- rexp(1,lambda[i])+max(0,s-sum(X[-i])) }
+ sim <- rbind(sim,X) }
+pic_ani = function(n){
+plot(sim[1:n,],xlim=c(1,11),ylim=c(0,5),xlab="",ylab="")
+i=which(apply(sim[(n-1):n,],2,diff)==0)
+if(i==1) abline(v=sim[n,1],col="grey")
+if(i==2) abline(h=sim[n,2],col="grey")
+if(n>=1) points(sim[n,1],sim[n,2],pch=19,col="blue",cex=1.4)
+if(n>=2) points(sim[n-1,1],sim[n-1,2],pch=19,col="red",cex=1.4)
+polygon(c(-1,-1,6),c(-1,6,-1),col="red",density=15,border=NA)
+abline(5,-1,col="red")
+}
+```
+
+</div>
+
+```{r sampleani_HM, eval = ANIMATION, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+for (i in 2:100) {pic_ani(i)}
+```
+

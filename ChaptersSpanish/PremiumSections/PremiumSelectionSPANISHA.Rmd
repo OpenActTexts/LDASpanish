@@ -1,0 +1,357 @@
+<!-- ###  PremiumSelection.Rmd {#S:GiniStatistic} -->
+
+
+En una cartera de contratos de seguro, los aseguradores reciben primas y pagan siniestros. Después de realizar sendos ajustes para los gastos y las consideraciones sobre beneficio, podrían resultar útiles herramientas para comparar las distribuciones de primas y siniestros a la hora de seleccionar un principio de cálculo de la prima.
+
+### Curva de Lorenz Clásica 
+
+En economía del bienestar, es común comparar distribuciones vía la `r Gloss('curva de Lorenz')`, desarrollada por Max Otto Lorenz [@lorenz1905methods]. Una curva de Lorenz es un gráfico de la proporción de una población en el eje horizontal y una función de distribución de interés en el eje vertical. Normalmente se utiliza para representar distribuciones de ingresos. Cuando la distribución de ingresos está perfectamente alineada con la distribución de población, la curva de Lorenz resultante es una recta de 45 grados denominada como `r Gloss('línea de igualdad')`. Como el gráfico compara dos funciones de distribución, podemos pensar en la curva de Lorenz como un tipo de `r Gloss('pp plot')` que fue introducido en la Sección \@ref(S:MS:GraphComparison). El área entre la curva de Lorenz y la línea de igualdad es una medida de la discrepancia entre las distribuciones de ingresos y población. Dos veces esta área nos proporciona el conocido `r Gloss('índice de Gini', '7.6')`, introducido por Corrado Gini en 1912.
+
+
+```{r echo=FALSE}  
+# Curva de Lorenz
+set.seed(2017) #fijar semilla para reproducir los resultados 
+nTot<-2000  #número de simulaciones
+alpha<-2
+theta<-100
+Losses<-rgamma(nTot,alpha,scale = theta)  
+y <- Losses[order(Losses)]
+DFLosses = cumsum(y)/sum(y)
+DFLine <- (1:nTot)/nTot
+GiniLoss = 2*(sum(rank(y)*y)/sum(y) - (nTot+1)/2)/nTot
+
+```
+
+
+**Ejemplo -- Curva de Lorenz Clásica.**  Para un ejemplo asegurador, la Figura \@ref(fig:ClassicLorenz) muestra una distribución de los siniestros de un seguro. Esta figura está basada en una muestra aleatoria de `r nTot` siniestros. El lado izquierdo muestra un histograma con asimetría por la derecha de los siniestros. El lado derecho proporciona la correspondiente curva de Lorenz, mostrando de nuevo una distribución asimétrica. Por ejemplo, la flecha marca el punto donde el 60 por ciento de los asegurados tienen el 30 por ciento de los siniestros. La línea de 45 grados es la línea de igualdad; si cada asegurado tuviera la misma siniestralidad, entonces la distribución de siniestralidad coincidiría con esta línea. El índice de Gini, dos veces la área entre la curva de Lorenz y la línea de 45 grados, es un `r round(GiniLoss*100,1)` por ciento para este conjunto de datos.
+
+
+```{r, ClassicLorenz, fig.cap='Distribución de los Siniestros de un Seguro. El lado izquierdo es la función de densidad de los siniestros. El lado derecho muestra los mismos datos mediante la curva de Lorenz.', out.width='90%', fig.asp=0.5, fig.align='center', echo=FALSE}
+par(mfrow=c(1,2))
+plot(density(Losses), main="", xlab="Siniestros")
+plot(DFLine,DFLosses, cex=0.25, xlab="Proporción de observaciones", ylab="Proporción de Siniestros")
+abline(0,1)
+arrows(0.8, 0.2, 0.6, 0.3,length=0.1, angle = 30)
+text(.85, .15, "(0,60, 0,30)", cex=.6)
+
+```
+
+### Curva de Rendimiento y Estadístico de Gini 
+
+Ahora podemos introducir una modificación de la clásica curva de Lorenz y del índice de Gini que sea útil para aplicaciones del seguro. Específicamente, introducimos una `r Gloss('curva de rendimiento')` que, en este caso, es un gráfico de la distribución de siniestros versus la de primas, donde ambas están ordenadas por prima. Para concretar ideas, proporcionamos alguna notación y consideramos $i=1, \ldots, n$ pólizas. Para la $i$-ésima póliza, 
+
+* $y_i$ denota el siniestro del seguro,
+* $\mathbf{x}_i$ es un conjunto de variables de tarificación conocidas por el analista, y 
+$P_i=P(\mathbf{x}_i)$ es la prima asociada, que es una función que depende de $\mathbf{x}_i$.
+
+El conjunto de información utilizada para calcular la curva de rendimiento para la $i$-ésima póliza es $(y_i, P_i)$. 
+
+#### Curva de rendimiento {-}
+
+En primer lugar, es conveniente ordenar el conjunto de pólizas según las primas (de más pequeñas a más grandes) y, a continuación, calcular las distribuciones de primas y siniestros. La distribución de primas es
+\begin{equation}
+\hat{F}_P(s) =  \frac{ \sum_{i=1}^n P_i ~\mathrm{I}(P_i \leq s) }{\sum_{i=1}^n P_i}   ,
+(\#eq:EmpPremDF)
+\end{equation}
+
+Y la distribución de siniestros es
+
+\begin{equation}
+\hat{F}_{L}(s) =  \frac{ \sum_{i=1}^n y_i ~\mathrm{I}(P_i \leq s) }{\sum_{i=1}^n y_i} ,
+(\#eq:EmpLossDF)
+\end{equation}
+
+donde $\mathrm{I}(\cdot)$ es una función indicador, que devuelve 1 si el acontecimiento es cierto y cero en caso contrario. Para un valor dado $s$, $\hat{F}_P(s)$ nos da la proporción de primas menores o iguales a $s$, y $\hat{F}_{L}(s)$ nos da la proporción de siniestros para aquellos asegurados con primas menores o iguales a $s$. El gráfico $\left(\hat{F}_P(s),\hat{F}_{L}(s) \right)$ es conocido como *curva de rendimiento**.
+
+
+**Ejemplo -- Distribución de Siniestralidad.** Suponemos que tenemos $n=5$ asegurados con el siguiente historial. Los datos han sido ordenados por primas.
+
+
+Variable             $i$                             1   2    3   4   5  
+----------          -----------------                -   -   --  --  --  
+Prima               $P(\mathbf{x}_i)$                2   4    5   7  16   
+Primas Acumuladas    $\sum_{j=1}^i P(\mathbf{x}_j)$   2   6   11  18  34 
+Siniestralidad                $y_i$                   2   5    6   6  17 
+Siniest. Acumul.      $\sum_{j=1}^i y_j$               2   7   13  19  36
+----------          -----------------                -   -   --  --  --
+
+La Figura \@ref(fig:LorenzVsOrdered) compara la curva de Lorenz con la curva de rendimiento. En el lado izquierdo se muestra la curva de Lorenz. En el eje horizontal tenemos las proporciones acumuladas de asegurados (0, 0,2, 0,4, y en adelante) y en el eje vertical tenemos la proporción acumulada de siniestros (0, 2/36, 7/36, y en adelante). Para la curva de Lorenz, primero ordenamos por la cuantía del siniestro (lo que para este sencillo ejemplo representa lo mismo que ordenar por primas). Esta figura muestra una gran separación entre las distribuciones de siniestralidad y asegurados.
+
+El lado derecho nos muestra la curva de rendimiento. Como las observaciones están ordenadas por prima, el primer punto después del origen (leyendo de izquierda a derecha) es (2/34, 2/36). El segundo punto es (6/34, 7/36). De la figura, vemos que hay poca separación entre siniestros y primas.
+
+
+```{r echo=FALSE} 
+GiniLossCalc <- function(Loss){
+y <- Loss[order(Loss)]
+nTot = length(y)
+DFLosses = cumsum(y)/sum(y)
+DFLine <- (1:nTot)/nTot
+GiniLoss = 2*(sum(rank(y)*y)/sum(y) - (nTot+1)/2)/nTot
+return(GiniLoss)
+}
+
+GiniCalc <- function(Claims,PIx,Sx){
+   y   <- Claims/mean(Claims)
+   PIx <- PIx/mean(PIx)
+   Sx  <- Sx/mean(Sx)
+   Rx  <- Sx/PIx       #Relatividad
+   n   <- length(PIx)
+   origorder <- (1:n)
+   PSRmat <- data.frame(cbind(PIx,Sx,Rx,y,origorder))
+   PSRmatOrder <- PSRmat[order(Rx),]  #  Ordenado por relatividad
+#  PRIMAS, SINIESTROS Funciones Distribución
+   DFPrem <- cumsum(PSRmatOrder$PIx)/n
+   DFLoss <- cumsum(PSRmatOrder$y)/n
+#  GINI CÁLCULO
+   DFPremdiff <- DFPrem[2:n]-DFPrem[1:(n-1)]
+   DFPremavg  <- (DFPrem[2:n]+DFPrem[1:(n-1)])/2
+   DFLossavg  <- (DFLoss[2:n]+DFLoss[1:(n-1)])/2
+   (Gini <- 2*crossprod(DFPremdiff,DFPremavg-DFLossavg)) 
+#  STANDARD ERROR CÁLCULO
+   h1 <- 0.5* (PSRmatOrder$PIx*DFLoss + PSRmatOrder$y*(1-DFPrem) ) #  PROYECCIÓN CÁLCULO
+   h1bar   <- mean(h1) 
+   sigmah  <- var(h1)
+   sigmahy <- cov(h1,PSRmatOrder$y)
+   sigmahpi <- cov(h1,PSRmatOrder$PIx)
+   sigmay  <- var(y)
+   sigmapi <- var(PIx)
+   sigmaypi <- cov(PSRmatOrder$y,PSRmatOrder$PIx)
+   temp1= 4*sigmah + h1bar^2*sigmay + h1bar^2*sigmapi -
+           4*h1bar*sigmahy - 4*h1bar*sigmahpi +
+           2*h1bar^2*sigmaypi
+   sigmaGini  <- 4*temp1
+   stderrGini <- sqrt(sigmaGini/n) 
+   #check <- var(PIx-Sx)
+   #Gini  <- Gini*(check != 0)
+   #stderrGini <- stderrGini*(check != 0)
+   Retmat <- data.frame(cbind(DFPrem,DFLoss)) 
+   RetmatGini<-list(Retmat,Gini,stderrGini)
+     return(RetmatGini)
+}
+
+```
+
+
+
+```{r, LorenzVsOrdered, fig.cap='Curva Lorenz versus Curva Rendimiento', out.width='90%', fig.asp=0.5, fig.align='center', echo=FALSE}
+# EJEMPLO
+P = c(2,4,5,7,16)
+y = c(2,5,6,6,17)
+n1 = length(y)
+XYmat = data.frame(cbind(y,P))
+XYmatYOrder = XYmat[order(y),]  #  Ordenado por siniestros y
+origorder = (1:n1)
+DFy1 = c(0,cumsum(XYmatYOrder$y)/sum(y))
+DFx1 = c(0,origorder/n1) 
+XYmatPOrder = XYmat[order(P),]  #  Ordenado por primas P
+DFy2 = c(0,cumsum(XYmatPOrder$y)/sum(y))
+DFx2 = c(0,cumsum(XYmatPOrder$P)/sum(P))
+
+#  FIGURA 3
+par(mfrow=c(1, 2))
+#  Curva Lorenz 
+plot(DFx1,DFy1,xlim=c(0,1),ylim=c(0,1), type="b",
+xlab="Dist. Población",ylab="", main="Lorenz");abline(0,1)
+mtext("Dist. Siniest.", side=2, line=-0.5, at=1.1,   las=1, cex=1.0)
+#  Curva Rendimiento
+plot(DFx2,DFy2,xlim=c(0,1),ylim=c(0,1), type="b",
+xlab="Dist. Primas",ylab="", main="Rendimiento");abline(0,1)
+mtext("Dist. Siniest.", side=2, line=-0.5, at=1.1,   las=1, cex=1.0)
+
+GiniLoss = GiniLossCalc(Loss=y)
+temp = GiniCalc(Claims=y,PIx=P,Sx=1)
+Results=temp[[1]]
+Gini <- temp[[2]];#Gini
+stderrorGini <- temp[[3]];#Standard Error
+
+```
+
+
+***
+
+La curva de rendimiento puede ser útil al analista que trata de formar carteras rentables para el asegurador. Por ejemplo, supongamos que $s$ es escogido para representar el percentil 95 de la distribución de primas. Entonces, el eje horizontal, $\hat{F}_P(s)$, representa la fracción de primas para esta cartera y el eje vertical, $\hat{F}_L(s)$, la fracción de siniestros para esta cartera. Cuando se plantean los principios de tarificación, los analistas buscan evitar situaciones no rentables y conseguir beneficios.
+
+La esperanza del numerador en la ecuación \@ref(eq:EmpLossDF) es $\sum_{i=1}^n \mathrm{E}~ y_i=\sum_{i=1}^n \mu_i$. Así, si el principio de tarificación es escogido tal que $P_i= \mu_i$, entonces esperaremos una relación muy próxima entre las distribuciones de prima y siniestralidad, resultando una línea de 45 grados. La línea de 45 grados iguala primas y siniestros, una situación de equilibrio que es una referencia para la tarificación de seguros.
+
+#### Estadístico de Gini {-}
+
+La curva de Lorenz clásica muestra la proporción de asegurados en el eje horizontal y la función de distribución de la siniestralidad en el eje vertical. La curva de rendimiento extiende la curva de Lorenz clásica en dos maneras, (1) a través de la ordenación de riesgos y precios por primas y (2) permitiendo que los precios varíen por observación. Podemos resumir la curva de rendimiento de la misma manera que la curva de Lorenz clásica, utilizando un estadístico de Gini, definido como dos veces el área entre la curva y la línea de 45 grados. El analista busca las curvas de rendimiento que mejor se aproximen a la línea de 45 grados; éstas tienen menos separación entre las distribuciones de siniestros y primas y, por tanto, un estadístico de Gini menor.
+
+Específicamente, el estadístico de Gini puede ser calculado como sigue. Suponemos que la curva de rendimiento empírica viene dada por $\{ (a_0=0, b_0=0), (a_1, b_1), \ldots,$ $(a_n=1, b_n=1) \}$ para una muestra de $n$ observaciones. Aquí, utilizamos $a_j = \hat{F}_P(P_j)$ y $b_j = \hat{F}_{L}(P_j)$. Entonces, el estadístico de Gini empírico es
+
+\begin{eqnarray}
+\widehat{Gini} 
+&=&  2\sum_{j=0}^{n-1} (a_{j+1} - a_j) \left \{
+\frac{a_{j+1}+a_j}{2} - \frac{b_{j+1}+b_j}{2} \right\} \nonumber \\
+&=& 1 - \sum_{j=0}^{n-1} (a_{j+1} - a_j) (b_{j+1}+b_j) .
+(\#eq:GiniDefn)
+\end{eqnarray}
+
+
+`r HideExample('AreaDemo', 'Mostrar Detalles de la Fórmula de Gini')`
+
+Para comprender la fórmula del estadístico de Gini, aquí presentamos un croquis de un paralelogramo que conecta los puntos $(a_1, b_1)$, $(a_2, b_2)$, y una línea de 45 grados. Podemos utilizar geometría básica para comprobar que el área de la figura es $Área = (a_2 - a_1) \left \{\frac{a_2+a_1}{2} - \frac{b_2+b_1}{2} \right\}$. La definición del estadístico de Gini en la ecuación \@ref(eq:GiniDefn) es sencillamente dos veces la suma del paralelogramo. La segunda igualdad en la ecuación \@ref(eq:GiniDefn) es el resultado de aplicar sencillos cálculos.
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#  FIGURA 3
+x = 1:100/100
+plot(x,x, type="l", xlab="",ylab="", main="", yaxt="n", xaxt="n")
+text(.45, .10, expression(paste("(",a[1], ",", b[1],")")), cex=.8)
+text(.75, .25, expression(paste("(",a[2], ",", b[2],")")), cex=.8)
+points(.45, .15, pch = 19)
+points(.75, .30, pch = 19)
+arrows(.45, .15, .75, .30,length=0.1, angle = 0)
+arrows(.45, .15, .45, .45,length=0.1, angle = 0)
+arrows(.75, .30, .75, .75,length=0.1, angle = 0)
+text(.15, .35, "Línea 45 grados")
+text(.60, .40, "Área")
+arrows(.15, .32, .20, .25,length=0.1, angle = 30)
+
+```
+
+
+***
+
+</div>
+
+
+**Ejemplo -- Distribución de Siniestralidad: Continuación.** El estadístico de Gini para la curva de Lorenz (lado izquierdo de la Figura \@ref(fig:LorenzVsOrdered)) es un `r round(100*GiniLoss,digits=1)` por ciento. En contraste, el estadístico de Gini para la curva de rendimiento (lado derecho) es un `r round(100*Gini,digits=1)` por ciento. 
+
+
+### Validación Cruzada 
+
+Los beneficios de la validación cruzada (out-of-sample validation, en inglés) para la selección de modelos fueron introducidos en la Sección 4.2. Ahora mostraremos el uso del estadístico de Gini y la curva de rendimiento en este contexto. El procedimiento sería:
+
+1.  Usar la muestra de entrenamiento para la estimación de los diferentes modelos a comparar, cada uno produciendo una función de prima.
+2.  Designar una muestra de validación a partir de $\{(y_i, \mathbf{x}_i), i=1,\ldots,n\}$.
+3.  Utilizar las variables explicativas de la muestra de validación para calcular las primas de la forma $P(\mathbf{x}_i)$.
+4.  Calcular el estadístico de Gini para cada modelo. Escoger el modelo con el menor estadístico de Gini.
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE} 
+set.seed(2017)
+NInsamp  = 200
+NOutsamp = 100
+Nstate   = 25
+InClaims   <- matrix(0,NInsamp,Nstate)
+OutClaims  <- matrix(0,NOutsamp,Nstate)
+PredClaims <- matrix(0,NOutsamp,Nstate)
+ for (iState in  1:Nstate) { 
+InClaims[,iState]   <- rgamma(NInsamp, shape = 5, scale = 18+iState*2)
+PredClaims[,iState] <- rep(mean(InClaims[,iState]),NOutsamp)
+OutClaims[,iState]  <- rgamma(NOutsamp, shape = 5, scale = 18+iState*2)
+ }
+
+Predvec  <- as.vector(PredClaims)
+Flatpred <- Predvec*0+mean(PredClaims)
+Outy     <- as.vector(OutClaims)
+```
+
+*Ejemplo – Tarificación Comunitaria versus Primas que Varían por Estado.** Suponemos que tenemos experiencia histórica de `r Nstate` estados y que, para cada estado, tenemos disponibles `r NInsamp` observaciones que pueden servir para pronosticar siniestros futuros. Por simplicidad, suponemos que el analista conoce que estos siniestros siguen, o fueron generados por, una distribución gamma con un parámetro de forma común igual a 5. Desconocido para el analista, los parámetros de escala varían para cada estado, desde 20 a `r 18+2*(Nstate-1)`. 
+
+* Para calcular las primas de base, el analista supone un parámetro de escala que es común para todos los estados y que se estima a partir de los datos. Podemos pensar de esta prima común como una prima basada en un principio de `r Gloss('tarificación comunitaria')`. 
+* Como alternativa, el analista deja que los parámetros de escala varíen para cada estado y otra vez utilizará los datos para estimar dichos parámetros.
+
+Una muestra de validación de `r NOutsamp` siniestros está disponible para cada estado. Para cada uno de los dos procedimientos de tarificación, determinar la curva de rendimiento y el correspondiente estadístico de Gini. Escoger el procedimiento de tarificación con el menor estadístico de Gini.
+
+`r HideExample('Lorenze', 'Solución del Ejemplo')`
+
+***
+
+Recordemos que para la distribución gamma la media es igual al producto de los parámetros de forma y escala, para nuestro ejemplo, 5 veces el parámetro de escala. Podemos comprobar que los estimadores máximo-verosímiles son sencillamente las medias históricas.
+
+Para nuestra prima base, suponemos una distribución común para todos los estados. Para estos datos simulados, la media de los siniestros en la muestra de entrenamiento es $P_1$=`r round(mean(InClaims),digits=2)`.
+
+Como alternativa, utilizamos las medias para cada estado en concreto; estas medias forman nuestras primas $P_2$. Como este ejemplo utiliza medias que varían para cada estado, esperaremos que este procedimiento alternativo sea preferido al procedimiento de tarificación comunitaria. 
+
+Los siniestros de la muestra de validación fueron generados a partir de la misma distribución gamma de la muestra de entrenamiento, con `r NOutsamp` observaciones para cada estado. El siguiente código en `R` nos muestra cómo calcular las curvas de rendimiento.
+
+
+```{r echo=FALSE} 
+GiniCalc <- function(Claims,PIx,Sx){
+   y   <- Claims/mean(Claims)
+   PIx <- PIx/mean(PIx)
+   Sx  <- Sx/mean(Sx)
+   Rx  <- Sx/PIx       #Relatividad
+   n   <- length(PIx)
+   origorder <- (1:n)
+   PSRmat <- data.frame(cbind(PIx,Sx,Rx,y,origorder))
+   PSRmatOrder <- PSRmat[order(Rx),]  #  Ordenado por relatividad
+#  PRIMAS, SINIESTROS Funciones Distribución
+   DFPrem <- cumsum(PSRmatOrder$PIx)/n
+   DFLoss <- cumsum(PSRmatOrder$y)/n
+#  GINI CALC
+   DFPremdiff <- DFPrem[2:n]-DFPrem[1:(n-1)]
+   DFPremavg  <- (DFPrem[2:n]+DFPrem[1:(n-1)])/2
+   DFLossavg  <- (DFLoss[2:n]+DFLoss[1:(n-1)])/2
+   (Gini <- 2*crossprod(DFPremdiff,DFPremavg-DFLossavg)) 
+#  STANDARD ERROR CALC
+   h1 <- 0.5* (PSRmatOrder$PIx*DFLoss + PSRmatOrder$y*(1-DFPrem) ) #  PROYECCIÓN CALC
+   h1bar   <- mean(h1) 
+   sigmah  <- var(h1)
+   sigmahy <- cov(h1,PSRmatOrder$y)
+   sigmahpi <- cov(h1,PSRmatOrder$PIx)
+   sigmay  <- var(y)
+   sigmapi <- var(PIx)
+   sigmaypi <- cov(PSRmatOrder$y,PSRmatOrder$PIx)
+   temp1= 4*sigmah + h1bar^2*sigmay + h1bar^2*sigmapi -
+           4*h1bar*sigmahy - 4*h1bar*sigmahpi +
+           2*h1bar^2*sigmaypi
+   sigmaGini  <- 4*temp1
+   stderrGini <- sqrt(sigmaGini/n) 
+   #check <- var(PIx-Sx)
+   #Gini  <- Gini*(check != 0)
+   #stderrGini <- stderrGini*(check != 0)
+   Retmat <- data.frame(cbind(DFPrem,DFLoss)) 
+   RetmatGini<-list(Retmat,Gini,stderrGini)
+     return(RetmatGini)
+}
+Gini1 <- GiniCalc(Claims=Outy,PIx=Flatpred,Sx=Flatpred)[[2]];#Gini
+Gini2 <- GiniCalc(Claims=Outy,PIx=Predvec,Sx=Flatpred)[[2]];#Gini
+
+```
+
+
+```{r, fig.cap='', out.width='90%', fig.align='center', echo=SHOW_PDF} 
+y <- Outy 
+P1 <- Flatpred
+P2 <- Predvec
+n1 = length(y)
+XYmat = data.frame(cbind(y,P1,P2))
+XYmatPOrder = XYmat[order(P1),]  #  Ordenado por primas P1
+DFy1 = c(0,cumsum(XYmatPOrder$y)/sum(y))
+DFx1 = c(0,cumsum(XYmatPOrder$P1)/sum(P1))
+XYmatPOrder = XYmat[order(P2),]  #  Ordenado por primas P2
+DFy2 = c(0,cumsum(XYmatPOrder$y)/sum(y))
+DFx2 = c(0,cumsum(XYmatPOrder$P2)/sum(P2))
+
+#  FIGURA 3
+par(mfrow=c(1, 2))
+#  Curva Lorenz 
+plot(DFx1,DFy1,xlim=c(0,1),ylim=c(0,1), type="b", cex= 0.2,
+xlab="Dist. Primas",ylab="", main="Comunitaria");abline(0,1)
+mtext("Dist. Siniest", side=2, line=-0.5, at=1.1,   las=1, cex=1.0)
+#  Curva rendimiento
+plot(DFx2,DFy2,xlim=c(0,1),ylim=c(0,1), type="b", cex= 0.2,
+xlab="Dist. Primas",ylab="", main="Por Estado");abline(0,1)
+mtext("Dist. Siniest", side=2, line=-0.5, at=1.1,   las=1, cex=1.0)
+
+```
+
+
+
+Para estos datos, los estadísticos de Gini son un `r round(100*Gini1,digits=1)` por ciento para la prima de tarificación comunitaria o plana y un `r round(100*Gini2,digits=3)` por ciento para la prima alternativa que discrimina por estado.  Esto indica que el procedimiento alternativo es mucho más preferible que el procedimiento de tarificación comunitaria.
+
+***
+
+</div>
+
+#### Discusión {-}
+
+En la modelización de los siniestros de seguros, las medidas estándar de validación cruzada no son las más informativas debido a las altas proporciones de ceros (pólizas con ninguna reclamación) y a la alta asimetría de la distribución para los valores positivos. En contraste, el estadístico de Gini funciona muy bien en presencia de muchos ceros (véase la demostración en [@frees2014insurance]). 
+
+El valor de las curvas de rendimiento y los estadísticos de Gini han sido recientemente tratadas en el artículo de @denuit2019concentrationGini. Las propiedades de una versión extendida, tratando con relatividades para las primas nuevas, fue desarrollada por @frees2011summarizing y @frees2014insurance. En estos artículos se pueden encontrar las fórmulas para los errores estándares y otra información adicional.
+
+
+

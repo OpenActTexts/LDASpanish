@@ -1,0 +1,349 @@
+<!-- ###  TrendDevelopment.Rmd {#S:TrendDevelopment} -->
+
+Como vimos en la Sección \@ref(S:AggRateMaking), los aseguradores consideran información agregada para la tarificación tal como las exposiciones al riesgo, las primas, los gastos, las reclamaciones, y los pagos. Esta información agregada también es útil para gestionar otras actividades de los aseguradores; por ejemplo, los informes financieros deben ser generalmente reportados al menos anualmente y a menudo trimestralmente. En cualquier momento de realización de dichos informes, la información sobre reclamaciones y pólizas estará en proceso y necesariamente incompleta; esta sección introduce conceptos para proyectar la información del riesgo de modo que sea útil para propósitos de tarificación.
+La información sobre los riesgos (exposiciones, primas, cuentas de reclamaciones, siniestros, y factores de tarificación) se encuentra habitualmente estructurada en tres bases de datos:
+
+* *Base de datos de pólizas* - contiene la información sobre el riesgo asegurado, el tomador/asegurado, y las disposiciones contractuales.
+* *Base de datos de reclamaciones* - contiene información sobre cada reclamación; estos datos están enlazados con la base de datos de pólizas.
+* *Base de datos de pagos* - contiene información sobre cualquier transacción de cada reclamación, normalmente pagos pero también cambios en las *provisiones por siniestros pendientes*. Estos datos están enlazados con la base de datos de reclamaciones.
+
+Con este nivel de detalle de las bases de datos, es sencillo (en principio) resumir a nivel de póliza para agregar la información requerida por los informes financieros. Esta sección describe varias medidas de resumen generalmente utilizadas.
+
+### Exposiciones y Primas
+
+Un periodo de reporte financiero es una longitud de tiempo fijada en el calendario; utilizaremos el periodo del 1 de enero hasta el 31 de diciembre para los ejemplos de este libro, aunque otros periodos puedan ser usados habitualmente. El periodo de reporte es fijo pero las pólizas pueden empezar en cualquier momento del año. Incluso si todas las pólizas tuvieran la misma longitud de contrato de (pongamos) un año, debido a los diferentes tiempos de inicio, pueden acabar en cualquier momento de tiempo del periodo de reporte financiero. La Figura \@ref(fig:Exposures) presenta cuatro pólizas ilustrativas. Debido a los diferentes momentos de inicio y fin, son necesarios algunos estándares sobre qué tipos de medidas son más útiles para resumir la experiencia en un determinado periodo de reporte.
+
+
+\@ref(fig:Exposures) Cronograma de Exposiciones para Cuatro Pólizas de 12 Meses.
+```{r Exposures, fig.cap='(ref:Exposures)', out.width='50%',  fig.asp=0.5, fig.align='center', echo=FALSE}
+plot.new()
+par(mar = c(0,0,0,0), cex = 0.9)
+y <- 1:5/2 +2
+plot.window(xlim = c(0,20), ylim = c(2.2,5))
+x <- 2*(1:10)
+#  Main Time Line
+arrows(x[1], y[5] , x[10], y[5], code = 2, lwd = 4, angle = 25, length = 0.10)
+text(0,y[5]+.5,labels="Tiempo Calendario", adj = 0, cex = 1.2)
+text(x[1],y[5],labels="X", adj = 0, cex = 1.4)
+text(x[1], y[5]+.25, labels="1 Ene 2019", adj = 0, cex = 0.8)
+text(x[5],y[5],labels="X", adj = 0, cex = 1.4)
+text(x[5], y[5]+.25, labels="1 Ene 2020", adj = 0, cex = 0.8)
+text(x[9],y[5],labels="X", adj = 0, cex = 1.4)
+text(x[9], y[5]+.25, labels="1 Ene 2021", adj = 0, cex = 0.8)
+# Póliza A
+arrows(x[1], y[4] , x[5], y[4], code = 2, lwd = 1, angle = 0, length = 0.10)
+text(0,y[4],labels="A", adj = 0, cex = 1.0)
+text(x[1],y[4],labels="|", adj = 0, cex = 1.4)
+text(x[5],y[4],labels="|", adj = 0, cex = 1.4)
+# Póliza B
+arrows(x[2], y[3] , x[6], y[3], code = 2, lwd = 1, angle = 0, length = 0.10)
+text(0,y[3],labels="B", adj = 0, cex = 1.0)
+text(x[2],y[3],labels="|", adj = 0, cex = 1.4)
+text(x[6],y[3],labels="|", adj = 0, cex = 1.4)
+# Póliza C
+arrows(x[3], y[2] , x[7], y[2], code = 2, lwd = 1, angle = 0, length = 0.10)
+text(0,y[2],labels="C", adj = 0, cex = 1.0)
+text(x[3],y[2],labels="|", adj = 0, cex = 1.4)
+text(x[7],y[2],labels="|", adj = 0, cex = 1.4)
+# Póliza D
+arrows(x[4], y[1] , x[8], y[1], code = 2, lwd = 1, angle = 0, length = 0.10)
+text(0,y[1],labels="D", adj = 0, cex = 1.0)
+text(x[4],y[1],labels="|", adj = 0, cex = 1.4)
+text(x[8],y[1],labels="|", adj = 0, cex = 1.4)
+
+```
+
+Algunas medidas de exposición utilizadas comúnmente son:
+
+- `r Gloss('exposiciones emitidas')`, la cantidad de exposición en las pólizas emitidas (devengadas y no devengadas) durante el periodo en cuestión,
+- `r Gloss('exposiciones devengadas')`, las unidades de exposición efectivamente expuestas a la pérdida durante el periodo, esto es, la cobertura que ya ha sido proporcionada,
+- `r Gloss('exposiciones no devengadas')`, representan la porción de las exposiciones emitidas para las que todavía no se ha proporcionado cobertura en este periodo de tiempo, y
+-  `r Gloss('exposiciones en vigor')`, unidades de exposición expuestas a pérdida en un momento determinado.
+
+La [Tabla 7.12] muestra cálculos ilustrativos detallados para las cuatro pólizas.
+
+<a id=tab:7.12></a>
+
+[Tabla 7.12]: \#tab:7.12
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{cl|cc|cc|cc|c}
+  \hline
+&  & & & & & &&\text{En Vigor} \\
+&\text{Efectivo} & \text{Emitida}& \text{Exposición} & \text{Devengada} &\text{Exposición}& \text{No Devengada} &\text{Exposición}&  \text{Exposición} \\
+{Póliza} &\text{Fecha}         & 2019 & 2020 & 2019 & 2020 & 2019 & 2020 & \text{1 Enero 2020} \\   \hline
+\text{A}&\text{1 Enero 2019}   & 1,00 & 0,00 & 1,00 & 0,00& 0,00 & 0,00 & 0,00 \\
+\text{B}&\text{1 Abril 2019} & 1,00 & 0,00 & 0,75 & 0,25 & 0,25 & 0,00& 1,00 \\
+\text{C}&\text{1 Julio 2019}  & 1,00 & 0,00 & 0,50 & 0,50 & 0,50 & 0,00& 1,00 \\
+\text{D}&\text{1 Octub 2019}   & 1,00 & 0,00 & 0,25 & 0,75 & 0,75 & 0,00& 1,00 \\ \hline
+ &  Total       & 4,00 & 0,00 & 2,50 & 1,50 & 1,50 & 0,00 & 3,00 \\
+  \hline
+  \hline
+\end{array}
+\end{matrix}
+}
+$$
+[Tabla 7.12]:  Exposiciones para Cuatro Pólizas de 12 Meses
+
+
+Esta medida de resumen se suele denominar `r Gloss('método del año de calendario')`, en contraste al denominado `r Gloss('método del año de póliza')`. En el último método, todas las pólizas empiezan a principios de año. Este método es útil para los métodos de tarificación basados en contratos individuales que nosotros no trataremos aquí.
+
+Del mismo modo que para las exposiciones, podemos resumir (o agregar) primas. Las primas, igualmente, pueden ser también *emitidas*, *devengadas*, *no devengadas*, o *en vigor*. Considerar el ejemplo siguiente.
+
+**Ejemplo. `r chapnum`.5.1. CAS Examen 5, 2003, Número 10.** Una póliza de 12 meses ha sido emitida el 1 de marzo de 2002 con una prima de 900$. El 31 de diciembre de 2002, ¿cuál de los siguientes casos es cierto?
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{l|ccc}
+  \hline
+& \text{Año Calendario} & \text{Año Calendario} \\
+& \text{2002 Emitida} & \text{2002 Devengada} & \text{En vigor} \\
+& \text{Prima} & \text{Prima}  & \text{Prima}  \\\hline
+A. & 900 & 900 & 900 \\
+B. & 750 & 750 & 900 \\
+C. & 900 & 750 & 750 \\
+D. & 750 & 750 & 750 \\
+E. & 900 & 750 & 900 \\\hline
+\end{array}
+\end{matrix}
+}
+$$
+
+`r HideExample('7.5.1', 'Solución del Ejemplo')`
+
+Únicamente la prima devengada difiere de la prima emitida y la prima en vigor y, por tanto, es necesario calcularla. Así, la prima devengada a 31 de diciembre es igual a $900\$ \times 10/12 = 750\$$. Respuesta E.
+
+***
+
+</div>
+
+### Siniestros, Reclamaciones y Pagos
+
+En términos generales, los términos `r Gloss('siniestro')` y `r Gloss('reclamación')` se refieren a la cantidad de la compensación pagada o potencialmente pagable al reclamante bajo los términos previstos en la póliza de seguro. Las definiciones pueden variar:
+
+* A veces, el término *reclamación* se utiliza indistintamente con el término *siniestro*.
+* En algún seguro y en fuentes actuariales, el término *siniestro* es utilizado como la cantidad del daño ocasionado en un evento asegurado. La *reclamación* es la cantidad pagada por el asegurador, con alguna diferencia debido a las franquicias, límites de la póliza, y similares.
+* En usos económicos, una *reclamación* es una demanda de pago hecha por un asegurado o por una víctima que actúa como tercero bajo los términos y condiciones de un contrato de seguro y el *siniestro* es la cantidad pagada por el asegurador.
+
+En este texto seguiremos el segundo punto. Con todo, al leer otras referencias, deberemos estar alerta sobre las definiciones utilizadas para los términos siniestro y reclamación.
+
+Para establecer más terminología, es útil seguir el cronograma de una reclamación tal y como se desarrolla. En la Figura \@ref(fig:ClaimDevelopment), el evento de la reclamación ocurre en el momento $t_1$ y se notifica a la compañía aseguradora en el momento $t_3$. Puede haber un largo intervalo de tiempo entre la ocurrencia y la notificación, tal que dicho intervalo de tiempo incluya el momento de cierre del periodo de reporte financiero ($t_2$), conocido como `r Gloss('fecha de evaluación')`. En este caso, la reclamación se denomina como `r Gloss('pendiente de declaración')` en esta fecha de evaluación.
+
+Después de ser notificada, puede haber uno o más pagos de siniestro. No siempre todos los pagos pueden ser realizados antes de la próxima fecha de evaluación ($t_4$).
+
+A medida que la reclamación se desarrolla, finalmente, la compañía considera sus obligaciones financieras para que la reclamación sea resuelta y declara la reclamación como `r Gloss('cerrada')`. Aun así, es posible que nuevos hechos ocurran y que la reclamación deba ser reabierta, dando lugar a pagos de siniestro adicionales antes de ser cerrada otra vez.
+
+(ref:ClaimDevelopment) Cronograma del Desarrollo de una Reclamación.
+
+```{r ClaimDevelopment, fig.cap='(ref:ClaimDevelopment)', out.width='75%',  fig.asp=0.5, fig.align='center', echo=FALSE}
+plot.new()
+par(mar=c(0,0,0,0), cex=1.1)
+plot.window(xlim=c(0,20),ylim=c(0,10))
+
+arrows(1,1,19.8,1,code=2,lwd=2,angle=25,length=0.10)
+text(0,2,labels="Ocurrencia",adj=0, cex=0.8)
+
+text(3,4,labels="Fecha \nEvaluación 1",adj=0, cex=0.8)
+text(4,2,labels="Notificación",adj=0, cex=0.8)
+text(6,8,labels="Pagos Siniestro",adj=0, cex=0.8)
+text(9,4,labels="Fecha \nEvaluación 2",adj=0, cex=0.8)
+text(11,8,labels="Pagos Siniestro",adj=0, cex=0.8)
+text(13,2,labels="Cierre",adj=0, cex=0.8)
+text(14.5,4,labels="Re-abertura",adj=0, cex=0.8)
+text(16,8,labels="Pagos Siniestro",adj=0, cex=0.8)
+text(18,4,labels="Cierre",adj=0, cex=0.8)
+
+arrows(3.8,3.3,3.8,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(9.8,3.3,9.8,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(15.3,3.3,15.3,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(18.8,3.3,18.8,1.2,code=2,lwd=2,angle=25,length=0.10)
+
+arrows(6.8,7.7,6.8,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(7.1,7.7,7.1,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(7.9,7.7,7.9,1.2,code=2,lwd=2,angle=25,length=0.10)
+
+arrows(11.4,7.2,11.4,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(12,7.2,12,1.2,code=2,lwd=2,angle=25,length=0.10)
+
+arrows(16.6,7.2,16.6,1.2,code=2,lwd=2,angle=25,length=0.10)
+arrows(17,7.2,17,1.2,code=2,lwd=2,angle=25,length=0.10)
+
+text(1,1,labels="X",adj=0, cex=0.8)
+text(4.8,1,labels="X",adj=0, cex=0.8)
+text(13.8,1,labels="X",adj=0, cex=0.8)
+
+text(1,0.3,expression(t[1]),adj=0, cex=0.8)
+text(3.8,0.3,expression(t[2]),adj=0, cex=0.8)
+text(4.8,0.3,expression(t[3]),adj=0, cex=0.8)
+text(9.8,0.3,expression(t[4]),adj=0, cex=0.8)
+```
+
+[Tabla 7.12]:  Exposiciones para Cuatro Pólizas de 12 Meses
+
+- `r Gloss('Fecha de Accidente')` - la fecha de ocurrencia que dio origen a la reclamación. También conocida como *fecha de siniestro* o *fecha de ocurrencia*.
+- `r Gloss('Fecha de Declaración')` - la fecha en la que el asegurador recibe la notificación de la reclamación. Los siniestros (o reclamaciones) no conocidos actualmente por el asegurador se conocen como siniestros pendientes de declaración o *incurred but not reported (IBNR) claims*, en inglés.
+
+Hasta que la reclamación está resuelta o liquidada, la reclamación declarada se considera como una `r Gloss('reclamación abierta')`. Una vez la reclamación está resuelta, se clasifica como *reclamación cerrada*. En algunos casos, puede ocurrir algo más después que la reclamación esté cerrada, y la reclamación puede ser reabierta.
+
+Recordemos que un siniestro es la cantidad pagada o pagable a un reclamante bajo los términos previstos en una póliza de seguro. Además, tenemos
+
+
+
+- *Siniestros pagados* son aquellos siniestros de un periodo determinado que ya han sido pagados a los reclamantes.
+- Cuando hay una previsión de que un pago deberá ser hecho en el futuro, la reclamación tendrá una reserva por siniestros pendientes de liquidación y pago, *case reserve* en inglés, que representa la cantidad estimada de ese pago.
+- *Siniestros declarados*, también conocidos en inglés por *case incurred*, son Siniestros pagados + Reserva de siniestros pendientes de liquidación y pago.
+
+La *siniestralidad definitiva* es la cantidad de dinero necesaria para cerrar y resolver todas las reclamaciones para un grupo determinado de pólizas.
+
+
+
+
+### Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad {#S:CompareMethods}
+
+Una vez que hemos aprendido como las exposiciones, las primas, y las reclamaciones se desarrollan en el tiempo, podemos considerar cómo pueden ser utilizadas para la tarificación. Hemos visto que los aseguradores ofrecen muchos tipos diferentes de pólizas que dan cobertura a diferentes asegurados con diferentes cantidades de riesgos. Esta agregación se denomina a veces como `r Gloss('mezcla de negocio')`. Es importante hacer notar que a lo largo del tiempo pueden existir cambios en esta mezcla ya que los asegurados van y vienen, las cantidades de los riesgos varían, etcétera. Las exposiciones, las primas, y los tipos de riesgos de un informe financiero previo pueden no ser representativos del periodo para el que se calculen las tarifas. El proceso de extrapolar exposiciones, primas, y tipos de riesgo es conocido como **de tendencia**. Por ejemplo, una `r Gloss('prima devengada nivelada')` es aquella prima devengada que resultaría de considerar para todo el periodo las tarifas aplicadas según el periodo efectivo de experiencia. La mayoría de métodos de tendencia son matemáticamente sencillos en la práctica, aunque pueden complicarse por circunstancias contractuales y administrativas. Para más detalle, dirigimos al lector a las referencias estándares tales como @werner2016basic y @friedland2013fundamentals.
+
+#### Método de Ratio de Siniestralidad {-}
+
+La expresión para el factor de cambio de tarifa del método de ratio de siniestralidad en la ecuación \@ref(eq:IndicatedChangeFactor) supone una determinada consistencia en la experiencia de la cartera a lo largo del tiempo. Para otro enfoque, podemos definir la `r Gloss('ratio de siniestralidad histórica')` como:
+
+$$
+\small{
+RS_{histórica} = \frac{\text{siniestros históricos}}{\text{exposición devengada del periodo histórico }\times \text{tarifa actual}}.
+}
+$$
+
+Aquí, podemos pensar en la exposición devengada del periodo histórico $\times$ tarifa actual como la prima histórica.
+
+Utilizando la ecuación \@ref(eq:PremiumEquation), podemos escribir una ratio de siniestralidad como
+ $$
+\small{
+RS = \frac{\text{Siniestros}}{\text{Primas}}=\frac{1-V-Q}{\text{(Siniestros + Fijos)}/\text{Siniestros}}=\frac{1-V-Q}{1+G} ~,
+}
+$$
+
+donde $G = \text{Fijos} / \text{Siniestros}$, es la ratio de gastos fijos sobre siniestros. Con esta expresión, definimos la *ratio de siniestralidad objetivo*
+
+$$
+\small{
+RS_{objetivo} =
+\frac{1-V-Q}{1+G} = \frac{1-\text{factor de gastos variables – factor de beneficio y contingencias}}
+{1+\text{ratio de gastos fijos sobre siniestros}}  .
+}
+$$
+
+
+Con esto, el factor de cambio de tarifa es
+
+\begin{equation}
+\small{
+FC =\frac{RS_{histórica}}{RS_{objetivo}}.
+}
+(\#eq:RevisedIndicatedChangeFactor)
+\end{equation}
+
+
+Comparando la ecuación \@ref(eq:IndicatedChangeFactor) con \@ref(eq:RevisedIndicatedChangeFactor), podemos ver que la última ofrece más flexibilidad para incorporar explícitamente tendencias históricas. Como el método de ratio de siniestralidad está basado en cambios de proporciones, esta flexibilidad está ciertamente garantizada.
+
+
+#### Comparación de Métodos {-}
+
+Suponiendo que exposiciones, primas y reclamaciones han sido tratadas para ser representativas del periodo para el que las tarifas están siendo calculadas, estamos preparados para comparar los métodos de tarificación de prima pura y ratio de siniestralidad. Empezaremos haciendo notar que con los mismos datos de entrada, estas dos aproximaciones producen los mismos resultados. Esto es, son algebraicamente equivalentes. Sin embargo, se basan en diferentes enfoques:
+
+$$
+\small{
+\begin{array}{l|l}\hline
+\text{Método Prima Pura} & \text{Método Ratio Siniestralidad} \\ \hline
+\text{Basado en exposiciones} & \text{Basado en primas} \\
+\text{No requiere tarifas existentes} & \text{Requiere tarifas existentes} \\
+\text{No utiliza primas niveladas} & \text{Utiliza primas niveladas} \\
+\text{Produce tarifas} & \text{Produce cambios de tarifas} \\
+  \hline
+\end{array}
+}
+$$
+
+Comparando los métodos de tarificación de prima pura y ratio de siniestralidad, podemos ver que:
+
+- El método de prima pura requiere una exposiciones bien definidas y sensibles al cambio.
+- El método de ratio de siniestralidad no puede ser utilizado para un nuevo ramo porque produce cambios de la tarifa actual.
+- El método de prima pura es preferible cuando puede ser difícil calcular la prima nivelada.  En algunos casos, como los ramos de negocios donde los ajustes de la tarifa del riesgo individual se hacen a pólizas individuales, es difícil determinar la prima devengada nivelada necesaria para utilizar el método de ratio de siniestralidad.
+
+
+En muchos países desarrollados como los EE.UU. donde la mayoría de ramos existen desde hace décadas, el método de ratio de siniestralidad es el más popular.
+
+**Ejemplo. `r chapnum`.5.2. CAS Examen 5, 2006, Número 36.**  Sea la información siguiente :
+
+- Primas devengadas niveladas para el periodo de experiencia = 500.000$
+- Siniestros con tendencia según periodo de experiencia = 300.000$
+- Exposición devengada del periodo de experiencia = 10.000
+- Factor de gastos variables = 23%
+- Gastos fijos = 21.000$
+- Factor de beneficios y contingencias = 5%
+
+(a) Calcula el cambio de nivel de tarifa utilizando el método de ratio de siniestralidad.
+(b) Calcula el cambio de nivel de tarifa utilizando el método de prima pura.
+(c) Describe una situación en la que es preferible utilizar el método de ratio de siniestralidad, y una situación en la que es preferible utilizar el método de prima pura.
+
+`r HideExample('7.5.2', 'Mostrar solución del ejemplo')`
+
+(a) calcularemos las ratios de siniestralidad histórica y objetivo, y entonces haremos el cociente de las dos para obtener el cambio de tarifa. La ratio de siniestralidad histórica es
+$$
+\small{
+RS_{histórica} =  \frac{\text{siniestros históricos }}{\text{primas históricas}} =\frac{300000}{500000} = 0,60.
+}
+$$
+
+La ratio de siniestralidad objetivo es:
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{ll}
+RS_{objetivo}
+&= \frac{1-V-Q}{1+G} = \frac{1-\text{factor gastos variables – factor beneficios y contingencias}}
+{1+\text{ratio de gastos fijos sobre siniestros}}\\
+&= \frac{1-0,23 – 0,05}{1+0,07} = 0,673  .
+\end{array}
+\end{matrix}
+}
+$$
+
+Donde la ratio de gastos fijos sobre siniestros es $G = \frac{21000}{300000} = 0,07$.
+
+Por tanto, el (nuevo) cambio de nivel de tarifa es
+
+$$
+\small{
+FC =\frac{RS_{histórica}}{RS_{objetivo}} -1  = \frac{0,60}{0,673} -1 = -10,8\%.
+}
+$$
+(b) Utilizando el método de prima pura, el factor de cambio $FC$ es
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{ll}
+FC
+&= \frac{\text{Siniestros + Fijos}}{\text{Prima} \times (1 - Q - V)}\\
+&= \frac{300000+ 21000}{500000 \times (1 – 0,23 – 0,05)} = 0,892.
+\end{array}
+\end{matrix}
+}
+$$
+
+Por tanto, el factor de cambio de nivel de tarifa es $0,892 -1 = -10,8\%$.
+
+(c) El método de ratio de siniestralidad es preferible cuando la unidad de exposición no está disponible.
+
+El método de ratio de siniestralidad es preferible cuando la unidad de exposición no es razonablemente compatible entre riesgos.
+
+El método de prima pura es preferible para un nuevo ramo.
+
+El método de prima pura es preferible cuando las primas niveladas son difíciles de calcular.
+
+</div>
+
+

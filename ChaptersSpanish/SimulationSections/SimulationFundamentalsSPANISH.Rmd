@@ -1,0 +1,724 @@
+<!-- ## Fundamentos de simulación -->
+
+### Generación de observaciones uniformes independientes
+
+Las `r Gloss('simulaciones')` que consideramos son generadas por ordenadores. La principal ventaja de este enfoque es que pueden ser replicadas, permitiéndonos realizar comprobaciones y mejorar nuestro trabajo. Naturalmente, esto también significa que no son realmente aleatorias. Sin embargo, se han desarrollado algoritmos para que los resultados se comporten como aleatorios a efectos prácticos. En concreto, pasan test de independencia sofisticados y pueden ser diseñados de modo que provengan de una única distribución – nuestro supuesto `r Gloss('iid')`, idénticamente e independientemente distribuidas, según sus siglas en inglés. 
+
+Para tener una idea de lo que estos algoritmos hacen, consideramos un método de importancia histórica.
+
+**Generador Lineal Congruencial.** Para generar una secuencia de números aleatorios, comenzamos con $B_0$, un valor inicial que es conocido como *semilla*. Este valor se actualiza utilizando la relación recursiva
+$$B_{n+1} = a B_n + c  \text{ modulo }m, ~~ n=0, 1, 2, \ldots .$$
+Este algoritmo se denomina `r Gloss('generador lineal congruencial ')`. El caso $c=0$ se denomina generador congruencial *multiplicativo*; es particularmente útil para cálculos realmente rápidos.
+
+Como valores ilustrativos de $a$ y $m$, Microsoft's Visual Basic usa
+$m=2^{24}$, $a=1,140,671,485$, y $c = 12,820,163$ (ver
+<https://en.wikipedia.org/wiki/Linear_congruential_generator>). Este es el generador subyacente en la generación de números aleatorios en el programa Microsoft Excel.
+
+La secuencia usada por el analista se define como $U_n=B_n/m.$ El analista puede interpretar la secuencia 
+{$U_{i}$} como (aproximadamente) idénticamente e independientemente uniformemente distribuida en el intervalo (0,1). Para ilustrar el  algoritmo, se considera lo siguiente.
+
+**Ejemplo `r chapnum`.1.1. Secuencia ilustrativa.**
+
+Se asume $m=15$, $a=3$, $c=2$ y $B_0=1$. Entonces se tiene:
+
+   paso $n$  $B_n$                                      $U_n$
+  ---------- --------------------------------- ------------------------
+      0      $B_0=1$                           
+      1      $B_1 =\mod(3 \times 1 +2) = 5$      $U_1 = \frac{5}{15}$
+      2      $B_2 =\mod(3 \times 5 +2) = 2$      $U_2 = \frac{2}{15}$
+      3      $B_3 =\mod(3 \times 2 +2) = 8$     $U_3 = \frac{8}{15}$
+      4      $B_4 =\mod(3 \times 8 +2) = 11$    $U_4 = \frac{11}{15}$
+  ---------- --------------------------------- ------------------------
+  
+A veces, a los resultados aleatorios generados por ordenadores se les conoce como `r Gloss("números pseudo-aleatorios")`, para reflejar el hecho de que son generados por una máquina y pueden ser replicados. Es decir, a pesar de que {$U_{i}$} parece ser 
+i.i.d, puede ser reproducido usando el mismo valor de semilla (y el mismo algoritmo). 
+
+**Ejemplo `r chapnum`.1.2. Generación de números aleatorios uniformes en `R`.**
+
+El siguiente código muestra como generar tres números uniformes (0,1) en `R` usando el comando `runif`. La función `set.seed()` establece el valor inicial de la semilla. En muchos paquetes informáticos, la semilla inicial se establece usando el reloj del sistema, si no se especifica otra cosa.
+
+##### Tres variables aleatorias uniformes {-}
+
+```{r myirischunk, results = 'asis', comment = "", echo=SHOW_PDF}
+set.seed(2017)
+U <- runif(3)
+knitr::kable(U, digits=5, align = "c", col.names = "Uniforme")
+```
+
+***
+
+El generador lineal congruencial es simplemente un método para generar valores pseudo-aleatorios. Es fácil entender y es (todavía) ampliamente usado. El generador lineal congruencial tiene limitaciones, incluyendo el hecho de que es posible detectar patrones a largo plazo en el tiempo en las secuencias que genera (es necesario recordar que se puede interpretar *independencia* como una falta total de patrón funcional). No sorprende que se hayan desarrollado técnicas avanzadas para hacer frente a algunos de estos inconvenientes.
+
+### Método de la transformada inversa {#S:InverseTransform}
+
+Se parte de una secuencia de números aleatorios uniformes, y a continuación se transforma en la distribución de interés, sea $F$. Una técnica destacada es el `r Gloss('método de la transformada inversa')`, definido como
+
+$$
+X_i=F^{-1}\left( U_i \right) .
+$$
+Aquí, se recuerda que en la Sección 4.1.1 se ha introducido la función de distribución inversa, $F^{-1}$, también referenciada como `r Gloss('función cuantil')`. En concreto, se define como 
+
+$$
+F^{-1}(y) = \inf_x ~ \{ F(x) \ge y \} .
+$$
+Se recuerda que $\inf$ representa *ínfimo* o el `r Gloss('máxima cota inferior')`. Es en esencia el valor más pequeño de *x* que satisface la desigualdad $\{F(x) \ge y\}$. El resultado es que la secuencia {$X_{i}$} es aproximadamente *iid* con función de distribución $F$.
+
+El resultado de la transformada inversa puede obtenerse cuando la variable aleatoria es continua, discreta o una combinación híbrida de ambas. Ahora se presenta una serie de ejemplos para ilustrar el alcance de sus aplicaciones.
+
+**Ejemplo `r chapnum`.1.3. Generar valores aleatorios exponenciales.**
+
+Se desea generar observaciones según una distribución exponencial con parámetro de escala $\theta$ de manera que $F(x) = 1 - e^{-x/\theta}$. Para calcular la transformada inversa, se siguen los siguientes pasos: 
+
+$$
+\begin{aligned}
+ y = F(x) &\iff  y = 1-e^{-x/\theta} \\
+  &\iff-\theta \ln(1-y) = x = F^{-1}(y) .
+\end{aligned}
+$$
+Por tanto, si $U$ tiene una distribución uniforme (0,1), entonces $X = -\theta \ln(1-U)$ tiene una distribución exponencial con parámetro $\theta$.
+
+El siguiente código de `R` muestra como se puede comenzar con los mismos tres números aleatorios uniformes del *Ejemplo 6.1.2* y transformarlos en variables aleatorias exponenciales independientes con media 10. Alternativamente, se puede usar directamente la función `rexp` de `R` para generar valores aleatorios según una distribución exponencial. El algoritmo que se construye en esta rutina es diferente por eso incluso con el mismo valor inicial de semilla, las realizaciones individuales pueden ser diferentes.
+
+```{r, echo=SHOW_PDF}
+set.seed(2017)
+U <- runif(3)
+X1 <- -10*log(1-U)
+set.seed(2017)
+X2 <- rexp(3, rate = 1/10)
+```
+
+##### Tres variables aleatorias uniformes {-}
+
+```{r echo = FALSE}
+outmat <- cbind(U,X1,X2)
+colnames(outmat) <- c("Uniforme","Exponencial 1", "Exponencial 2")
+knitr::kable(outmat, digits=5)
+```
+
+***
+
+**Ejemplo `r chapnum`.1.4. Generar valores aleatorios Pareto.**
+
+Se desea generar observaciones según una distribución de Pareto con parámetros $\alpha$ y
+$\theta$ de modo que $F(x) = 1 - \left(\frac{\theta}{x+\theta} \right)^{\alpha}$. Para calcular la transformada inversa, se pueden seguir los siguientes pasos: 
+
+$$
+\begin{aligned}
+ y = F(x) &\Leftrightarrow 1-y = \left(\frac{\theta}{x+\theta} \right)^{\alpha} \\
+  &\Leftrightarrow \left(1-y\right)^{-1/\alpha} = \frac{x+\theta}{\theta} = \frac{x}{\theta} +1 \\
+    &\Leftrightarrow \theta \left((1-y)^{-1/\alpha} - 1\right) = x = F^{-1}(y) .\end{aligned}
+$$
+    
+Por tanto, $X = \theta \left((1-U)^{-1/\alpha} - 1\right)$ tiene una distribución de Pareto con parámetros $\alpha$ y $\theta$.
+
+***
+
+**Justificación de la transformada inversa.** ¿Por qué la variable aleatoria $X = F^{-1}(U)$ tiene función de distribución $F$?
+<h5 style="text-align: center;"><a id="displayTheory.1" href="javascript:toggleTheory('ShowTheory.1','displayTheory.1');"><i><strong>Mostrar un fragmento de teoría</strong></i></a> </h5><div id="ShowTheory.1" style="display: none">
+
+***
+
+Esto es fácil de establecer en el caso continuo. Dado que $U$ es una variable aleatoria uniforme en (0,1), se sabe que $\Pr(U \le y) = y$, para $0 \le y \le 1$. Entonces, 
+
+$$
+\begin{aligned}
+\Pr(X \le x) &= \Pr(F^{-1}(U) \le x) \\
+ &= \Pr(F(F^{-1}(U)) \le F(x)) \\
+&= \Pr(U \le F(x)) = F(x)
+\end{aligned}
+$$
+Tal y como es requerido. El paso clave es que $F(F^{-1}(u)) = u$ para cada $u$, es claramente cierto cuando $F$ es estrictamente creciente.
+
+***
+
+</div>
+
+Ahora se consideran algunos ejemplos discretos.
+
+**Ejemplo `r chapnum`.1.5. Generar valores aleatorios Bernoulli.**
+
+Se desea simular variables aleatorias que siguen una distribución Bernoulli con parámetro $p=0.85$.
+
+```{r BinaryDF, fig.cap='Función de distribución de una variable aleatoria binaria', out.width='50%', fig.asp=.75, fig.align='center', echo=FALSE, cache = TRUE}
+time = seq(-1,2,0.01)
+Ftime = c(rep(0,100),rep(.85,100),rep(1,101))
+plot(time,Ftime, ylim=c(0,1), xlab="x",ylab="",pch=19, cex=.2)#,type="l")
+mtext("F(x)", side=2, at=1.1, las=1, cex=1.2, adj=1.6)
+segments(0,0,0,0.85)#,code=4)
+segments(1,0.85,1,1)#,code=4)
+symbols(0,.85,circles=.03, add=TRUE,bg="black",inches=FALSE)
+symbols(0,0,circles=.03, add=TRUE,inches=FALSE)
+symbols(1,.85,circles=.03, add=TRUE,inches=FALSE)
+symbols(1,1,circles=.03, add=TRUE,bg="black",inches=FALSE)
+```
+
+El gráfico de la función de distribución de la Figura \@ref(fig:BinaryDF) muestra que la función cuantil puede expresarse como
+
+$$
+\begin{aligned}
+F^{-1}(y) = \left\{ \begin{array}{cc}
+              0 & 0<y \leq 0.85 \\
+              1 & 0.85 < y  \leq  1.0 .
+            \end{array} \right.
+\end{aligned}
+$$
+Por tanto, con la transformada inversa se puede definir 
+
+$$
+\begin{aligned}
+X = \left\{ \begin{array}{cc}
+              0 & 0<U \leq 0.85  \\
+              1 &  0.85 < U  \leq  1.0
+            \end{array} \right.
+\end{aligned}
+$$
+A modo ilustrativo, se generan tres números aleatorios para obtener
+
+```{r, echo=SHOW_PDF}
+set.seed(2017)
+U <- runif(3)
+X <- 1*(U > 0.85)
+```
+
+#### Tres variables aleatorias {-}
+
+```{r echo = FALSE}
+outmat <- cbind(U,X)
+colnames(outmat) <- c("Uniforme","Binaria X")
+knitr::kable(outmat, digits=5)
+```
+
+**Ejemplo `r chapnum`.1.6. Generación de valores aleatorios de una distribución discreta.**
+
+Se considera el tiempo hasta que tiene lugar el fallo de una máquina en los primeros cinco años. La distribución de los tiempos de fallo viene dada por:
+
+##### Distribución discreta {-}
+
+```{r echo = FALSE, fig.align='center'}
+time <- 1:5
+probs <- c(0.1,0.2,0.1, 0.4, 0.2)
+df <- cumsum(probs)
+outmat <- rbind(time, probs, df)
+rownames(outmat) <- c("Tiempo","Probabilidad","Función de distribución $F(x)$    ")
+knitr::kable(outmat, align=c('rrrrr'), col.names = rep("$~~~~~~~~~~$",5))
+```
+
+```{r DiscreteDF, fig.cap='Función de Distribución de una Variable Aleatoria Discreta', out.width='60%', fig.asp=.75, fig.align='center', echo=FALSE}
+time = seq(0,6,0.01)
+Ftime = c(rep(0,100),rep(0.1,100),rep(0.3,100),rep(0.4,100),
+          rep(0.8,100),rep(1,101))
+plot(time,Ftime, ylim=c(0,1), xlab="x",ylab="",pch=19, cex=.2)#,type="l")
+mtext("F(x)", side=2, at=1.1, las=1, cex=1.2, adj=1.6)
+segments(1,0,1,0.1)#,code=4)
+segments(2,0.1,2,.3)#,code=4)
+segments(3,0.3,3,.4)#,code=4)
+segments(4,0.4,4,.8)#,code=4)
+segments(5,0.8,5,1)#,code=4)
+symbols(1,0,circles=.05, add=TRUE,inches=FALSE)
+symbols(1,.1,circles=.05, add=TRUE,bg="black",inches=FALSE)
+symbols(2,.1,circles=.05, add=TRUE,inches=FALSE)
+symbols(2,.3,circles=.05, add=TRUE,bg="black",inches=FALSE)
+symbols(3,.3,circles=.05, add=TRUE,inches=FALSE)
+symbols(3,.4,circles=.05, add=TRUE,bg="black",inches=FALSE)
+symbols(4,.4,circles=.05, add=TRUE,inches=FALSE)
+symbols(4,.8,circles=.05, add=TRUE,bg="black",inches=FALSE)
+symbols(5,.8,circles=.05, add=TRUE,inches=FALSE)
+symbols(5,1,circles=.05, add=TRUE,bg="black",inches=FALSE)
+```
+
+Usando el gráfico de la función de distribución en la Figura \@ref(fig:DiscreteDF), con la transformada inversa se define
+
+$$
+\small{
+\begin{aligned}
+X = \left\{ \begin{array}{cc}
+              1 &   0<U  \leq 0.1  \\
+              2 &  0.1 < U  \leq  0.3\\
+              3 &  0.3 < U  \leq  0.4\\
+              4 &  0.4 < U  \leq  0.8  \\
+              5 &  0.8 < U  \leq  1.0     .
+            \end{array} \right.
+\end{aligned}
+}
+$$
+
+***
+
+Para variables aleatorias discretas en general puede no existir una ordenación de valores. Por ejemplo, una persona puede tener uno de los cinco posibles tipos de seguros de vida y en ese caso el siguiente algoritmo se puede usar para generar valores aleatorios:
+ 
+$$
+{\small
+\begin{aligned}
+X = \left\{ \begin{array}{cc}
+  \textrm{whole life} &   0<U  \leq 0.1  \\
+ \textrm{endowment} &  0.1 < U  \leq  0.3\\
+\textrm{term life} &  0.3 < U  \leq  0.4\\
+  \textrm{universal life} &  0.4 < U  \leq  0.8  \\
+  \textrm{variable life} &  0.8 < U  \leq  1.0 .
+            \end{array} \right.
+\end{aligned}
+}
+$$ 
+            
+Otro analista puede usar un procedimiento alternativo como este: 
+
+$$
+{\small
+\begin{aligned}
+X = \left\{ \begin{array}{cc}
+  \textrm{whole life} &   0.9<U<1.0  \\
+ \textrm{endowment} &  0.7 \leq U < 0.9\\
+\textrm{term life} &  0.6 \leq U < 0.7\\
+  \textrm{universal life} &  0.2 \leq U < 0.6  \\
+  \textrm{variable life} &  0 \leq U < 0.2 .
+            \end{array} \right.
+\end{aligned}
+}
+$$
+                        
+Ambos algoritmos producen (a largo plazo) las mismas probabilidades, e.g., $\Pr(\textrm{whole life})=0.1$, etcétera. Por eso, ninguno es incorrecto. Es necesario tener en cuenta que hay muchos caminos para llegar a un mismo resultado. De manera similar, se podría emplear un algoritmo alternativo para valores ordenados (como los tiempos de fallo 1, 2, 3, 4, o 5, o más).
+
+**Ejemplo `r chapnum`.1.7. Generar valores aleatorios de una distribución híbrida.**
+
+Se considera una variable aleatoria que es 0
+con probabilidad 70% y tiene distribución exponencial con parámetro
+$\theta= 10,000$ con probabilidad 30%. En una aplicación actuarial, esto podría corresponder a un 70% de probabilidad de no tener un siniestro y un 30% de probabilidades de tenerlo – si un siniestro ocurre, tiene una distribución exponencial. La función de distribución, representada en la Figura \@ref(fig:MixedDF), viene dada por
+
+$$
+\begin{aligned}
+F(y) = \left\{ \begin{array}{cc}
+              0 &  x<0  \\
+              1 - 0.3 \exp(-x/10000) & x \ge 0 .
+            \end{array} \right.
+\end{aligned}
+$$
+            
+```{r MixedDF, fig.cap='Función de distribución de una variable aleatoria híbrida', out.width='60%', fig.asp=.75, fig.align='center', echo=FALSE}
+time = seq(-1000,40000,10)
+Ftime = 1 - .3*exp(-0.0001*time)
+Ftime = Ftime*(time>0)
+plot(time,Ftime, ylim=c(0,1), xlab="x",ylab="",pch=19, cex=.2)#,xaxt="n")
+#axis(1, at=seq(0,40000, by=10000), font=10, cex=0.005, tck=0.01)
+mtext("F(x)", side=2, at=1.1, las=1, cex=1.2, adj=1.6)
+segments(0,0,0,0.7)#,code=4)
+symbols(0,0,circles=500, add=TRUE,inches=FALSE)
+symbols(0,.7,circles=500, add=TRUE,bg="black",inches=FALSE)
+```
+
+En la Figura \@ref(fig:MixedDF), se puede ver que la transformada inversa para generar variables aleatorias con esta función de distribución es
+
+$$
+\begin{aligned}
+X = F^{-1}(U) = \left\{ \begin{array}{cc}
+              0 &  0< U  \leq  0.7  \\
+              -1000 \ln (\frac{1-U}{0.3}) & 0.7 < U < 1 .
+            \end{array} \right.
+\end{aligned}
+$$
+Para variables aleatorias discretas e híbridas, la clave es dibujar el gráfico de la función de distribución que permita visualizar valores potenciales de la función inversa.
+
+### Precisión de la simulación
+
+De las subsecciones anteriores, se sabe cómo simular valores independientes de una distribución de interés. Con estas realizaciones, se puede construir una distribución empírica y aproximar la distribución subyacente con la precisión necesaria. A medida que se introduzcan más aplicaciones actuariales en este libro, se verá que la simulación puede ser aplicada en una gran variedad de contextos.
+
+Muchas de estas aplicaciones pueden reducirse a un problema de aproximar $\mathrm{E~}h(X)$, donde $h(\cdot)$ es una función conocida. En base a $R$ simulaciones (réplicas), se obtiene $X_1,\ldots,X_R$. A partir de esta muestra simulada, se puede calcular la media 
+
+$$
+\overline{h}_R=\frac{1}{R}\sum_{i=1}^{R} h(X_i)
+$$
+que se usa como la aproximación simulada (estimación) de $\mathrm{E~}h(X)$. Para estimar la precisión de esta aproximación se usa la varianza de la simulación
+
+$$
+s_{h,R}^2 = \frac{1}{R-1} \sum_{i=1}^{R}\left( h(X_i) -\overline{h}_R
+\right) ^2.
+$$
+A partir del supuesto de independencia, el error estándar de la estimación es $s_{h,R}/\sqrt{R}$. Esto se puede hacer tan pequeño como se desee incrementando el número de réplicas $R$.
+
+```{r warning=FALSE, message=FALSE, comment="", echo=FALSE}
+# Para la distribución gamma, se usa
+alpha1 <- 2;      theta1 <- 100
+alpha2 <- 2;      theta2 <- 200
+# Franquicias
+M <- 400
+nSim <- 1e6  #número de simulaciones
+```
+
+**Ejemplo. `r chapnum`.1.8. Gestión de carteras.** 
+
+En la Sección 3.4, se explicó como calcular el valor esperado de pólizas con franquicias. Como ejemplo de algo que no puede hacerse con expresiones cerradas, se consideran ahora dos riesgos. Esta es una variación de un ejemplo más complejo que será presentado como *Ejemplo 10.3.6*.
+
+Se consideran dos riesgos patrimoniales de una empresa de telecomunicaciones:
+
+- $X_1$ - edificios, modelizado usando una distribución gamma con media `r alpha1*theta1` y parámetro de escala `r theta1`.
+- $X_2$ - vehículos de motor, modelizado con una distribución gamma con media `r alpha2*theta2` y parámetro de escala `r theta2`.
+
+El riesgo total se denota como $X = X_1 + X_2.$ Por simplicidad, se asume que los riesgos son independientes. 
+
+Para gestionar el riesgo, se busca la protección de un seguro. Se desea gestionar internamente cuantías pequeñas asociadas a edificios y vehículos de motor, hasta $M$. El riesgo retenido es $Y_{retenido}=$ $\min(X_1 + X_2,M)$. La porción del asegurador es $Y_{asegurador} =  X- Y_{retenido}$.
+
+Para ser más concretos, se usa $M=$ `r M` así como $R=$ `r nSim` simulaciones. 
+
+**a.** Con las especificaciones, se desea determinar la cuantía esperada de siniestros y la desviación estándar asociada de (i) lo retenido, (ii) lo aceptado por el asegurador, y (iii) la cuantía total.
+
+`r HideRCode('PortMgt1.8.1', 'Se muestra el código R para la definición de los riesgos')`
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment="", echo=SHOW_PDF}
+# Simulación de los riesgos
+nSim <- 1e6  #número de simulaciones
+set.seed(2017) #se fija la semilla para reproducir la secuencia generada
+X1 <- rgamma(nSim,alpha1,scale = theta1)  
+X2 <- rgamma(nSim,alpha2,scale = theta2)  
+# Riesgos de la cartera
+X         <- X1 + X2 
+Yretained <- pmin(X, M)
+Yinsurer  <- X - Yretained
+```
+</div>
+
+Aquí está el código para las cuantías de siniestros esperadas.
+
+`r HideRCode('PortMgt1.8.2', 'Se muestra el código R para calcular las cuantías')`
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment="", echo=SHOW_PDF}
+# Cuantías esperadas de siniestros
+ExpVec <- t(as.matrix(c(mean(Yretained),mean(Yinsurer),mean(X))))
+sdVec <- t(as.matrix(c(sd(Yretained),sd(Yinsurer),sd(X))))
+outMat <- rbind(ExpVec, sdVec)
+colnames(outMat) <- c("Retenido", "Asegurador","Total")
+row.names(outMat) <- c("Media","Desviación estándar")
+round(outMat,digits=2)
+```
+</div>
+
+Los resultados de estos cálculos son:
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment="", echo=SHOW_PDF}
+round(outMat,digits=2)
+```
+
+**b.** Para siniestros asegurados, la aproximación del error estandar de la simulación es $s_{h,R}/\sqrt{1000000} =$ `r 
+round(sd(Yinsurer),digits=2)` $/\sqrt{1000000} =$  `r round(sd(Yinsurer)/sqrt(1000000), digits=3)`. Para este ejemplo, la simulación es rápida y un valor grande como 1000000 es una elección fácil. En cualquier caso, para problemas complejos, el tamaño de la simulación puede ser un problema. 
+
+`r HideRCode('PortMgt1.8.3', 'Se muestra el código R para establecer la visualización')`
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment="", echo=SHOW_PDF}
+Yinsurefct <- function(numSim){
+X1 <- rgamma(numSim,alpha1,scale = theta1)  
+X2 <- rgamma(numSim,alpha2,scale = theta2)  
+# Riesgos de la cartera
+X         <- X1 + X2 
+Yinsurer <- X - pmin(X, M)
+return(Yinsurer)
+}
+R <- 1e3
+nPath <- 20
+set.seed(2017)
+simU <- matrix(Yinsurefct(R*nPath),R,nPath)
+sumP2 <- apply(simU, 2, cumsum)/(1:R)
+```
+</div>
+
+La Figura \@ref(fig:PortfolioDF) permite visualizar el desarrollo de la aproximación a medida que aumenta el número de simulaciones.
+
+```{r PortfolioDF, warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment="", fig.cap = 'Estimación del número de siniestros esperados por el asegurador versus número de simulaciones.', echo=SHOW_PDF}
+matplot(1:R,sumP2[,1:20],type="l",col=rgb(1,0,0,.2), ylim=c(100, 400),
+        xlab=expression(paste("Número de simulaciones (", italic('R'), ")")), ylab="Siniestros esperados por el asegurador")
+abline(h=mean(Yinsurer),lty=2)
+bonds <- cbind(1.96*sd(Yinsurer)*sqrt(1/(1:R)),-1.96*sd(Yinsurer)*sqrt(1/(1:R)))
+matlines(1:R,bonds+mean(Yinsurer),col="red",lty=1)
+```
+
+***
+
+**Determinación del número de simulaciones**
+
+¿Cuántos valores simulados se recomiendan? ¿100? ¿1,000,000? Se puede usar el `r Gloss('teorema central del límite', '6.1')` para responder a esta cuestión. 
+
+Como criterio para la confianza en el resultado, se supone que se desea estar dentro del 1% de la media con 95% de certeza. Es decir, se desea $\Pr \left( |\overline{h}_R - \mathrm{E~}h(X)| \le 0.01 \mathrm{E~}h(X) \right) \le 0.95$. De acuerdo con el teorema central del límite, la estimación debe tener distribución aproximadamente normal, por lo que se desea que $R$ sea suficientemente grande para satisfacer $0.01 \mathrm{E~}h(X)/\sqrt{\mathrm{Var~}h(X)/R}) \ge 1.96$. (Se recuerda que 1.96 es el percentil 97.5 de una distribución normal estándar.) Reemplazando $\mathrm{E~}h(X)$ y $\mathrm{Var~}h(X)$ con sus estimaciones, se continúa la simulación hasta 
+
+$$
+\frac{.01\overline{h}_R}{s_{h,R}/\sqrt{R}}\geq 1.96
+$$
+o equivalentemente
+
+\begin{equation}
+R \geq 38,416\frac{s_{h,R}^2}{\overline{h}_R^2}.
+(\#eq:NumSimulations)
+\end{equation}
+
+Este criterio es una aplicación directa de la aproximación a la normal. Nótese que $\overline{h}_R$ y $s_{h,R}$ no son conocidos de antemano, por lo que se tendrán que hacer estimaciones, bien haciendo un pequeño estudio piloto de antemano o interrumpiendo el procedimiento intermitentemente para ver si el criterio se satisface.
+
+**Ejemplo. `r chapnum`.1.8. Gestión de carteras - continuación** 
+
+En este ejemplo, el número medio de siniestros es `r round(mean(Yinsurer), digits=3)` y la correspondiente desviación estándar es `r round(sd(Yinsurer), digits=3)`. Usando la ecuación \@ref(eq:NumSimulations), para estar dentro del 10% de la media, se requerirán al menos `r round(38416*(sd(Yinsurer)/mean(Yinsurer))^2/1000,digits=2)` miles de simulaciones. Sin embargo, para estar dentro del 1% se necesitarán al menos `r round(100*38416*(sd(Yinsurer)/mean(Yinsurer))^2/1000000,digits=2)` millones de simulaciones.
+
+***
+
+**Ejemplo. `r chapnum`.1.9. Elección de la aproximación.** 
+
+Una importante aplicación de la simulación es la aproximación de $\mathrm{E~}h(X)$. En este ejemplo, se muestra que la elección de la función $h(\cdot)$ y de la distribución de $X$ pueden jugar un papel importante.
+
+Se considera la siguiente pregunta: ¿cuál es $\Pr[X>2]$ cuando $X$ tiene una `r Gloss('distribución de Cauchy')`, con densidad $f(x) =\left(\pi(1+x^2)\right)^{-1}$, en la recta real? El valor real es 
+
+$$
+\Pr\left[X>2\right] = \int_2^\infty \frac{dx}{\pi(1+x^2)} .
+$$
+Se puede usar una función de integración numérica en `R` (que funciona normalmente bien con integrales impropias)
+
+```{r, echo=SHOW_PDF}
+true_value <- integrate(function(x) 1/(pi*(1+x^2)),lower=2,upper=Inf)$value
+```
+
+que es igual a `r round(true_value,digits=5)`.
+
+Alternativamente, se pueden usar técnicas de simulación para aproximar la cantidad. Usando el cálculo, se puede comprobar que la función cuantil de una distribución de Cauchy es $F^{-1}(y) = \tan \left( \pi(y-0.5) \right)$. Entonces, con variables uniformes (0,1) simuladas, $U_1, \ldots, U_R$, se puede construir el estimador 
+
+$$
+p_1 = \frac{1}{R}\sum_{i=1}^R \mathrm{I}(F^{-1}(U_i)>2) = \frac{1}{R}\sum_{i=1}^R \mathrm{I}(\tan \left( \pi(U_i-0.5) \right)>2) .
+$$
+
+`r HideRCode('Approximationchoices.1.9.1', 'Se muestra el código R')`
+
+```{r comment = "", echo=SHOW_PDF}
+Q <- function(u) tan(pi*(u-.5))
+R <- 1e6
+set.seed(1)
+X <- Q(runif(R))
+p1 <- mean(X>2)
+se.p1 <- sd(X>2)/sqrt(R)
+p1
+se.p1
+```
+</div>
+
+Con un millón de simulaciones, se obtiene una estimación de `r round(p1,digits=5)` con error estándar `r round(se.p1*1000,digits=3)` (dividido por 1000). Se puede demostrar que la varianza de $p_1$ es de orden $0.127/R$.
+
+
+```{r eval=FALSE, echo = FALSE}
+true_value <- integrate(function(x) 1/(pi*(1+x^2)),lower=2,upper=Inf)$value
+n <- 1e3
+ns <- 20
+set.seed(1)
+simU <- matrix(Q(runif(n*ns))>2,n,ns)
+sumP1 <- apply(simU, 2, cumsum)/(1:n)
+matplot(1:n,sumP1[,1:20],type="l",col=rgb(1,0,0,.2),ylim=c(.1,.2),
+        xlab="Número de simulaciones (n)",ylab="Aproximación de la integral")
+abline(h=true_value,lty=2)
+bonds <- cbind(1.96*sqrt(.127/(1:n)),-1.96*sqrt(.127/(1:n)))
+matlines(1:n,bonds+true_value,col="red",lty=1)
+```
+
+Con otras elecciones de $h(\cdot)$ y $F(\cdot)$, es en realidad posible reducir la incertidumbre incluso usando el mismo número de simulaciones en `R`. Para empezar, se puede usar la simetría de la distribución de Cauchy para determinar que $\Pr[X>2]=0.5\cdot\Pr[|X|>2]$. Con ello, se puede construir un nuevo estimador
+
+$$
+p_2 = \frac{1}{2R}\sum_{i=1}^R \mathrm{I}(|F^{-1}(U_i)|>2) .
+$$
+
+```{r echo = FALSE}
+set.seed(1)
+p2 <- mean(abs(Q(runif(R)))>2)/2
+se.p2 <- sd(abs(Q(runif(R)))>2)/(2*sqrt(R))
+```
+
+Con un millón de simulaciones, se obtiene una estimación de `r round(p2,digits=5)` con error estándar `r round(se.p2*1000,digits=3)` (dividido por 1000). Se puede demostrar que la varianza de $p_2$ es de orden $0.052/R$.
+
+<!—Esto puede visualizarse abajo -->
+
+```{r eval=FALSE, echo = FALSE}
+n <- 1e3
+ns <- 20
+set.seed(1)
+simU <- matrix(abs(Q(runif(n*ns)))>2,n,ns)
+sumP2 <- apply(simU, 2, cumsum)/(1:n)/2
+matplot(1:n,sumP2[,1:20],type="l",col=rgb(1,0,0,.2),ylim=c(.1,.2),
+        xlab="Número de simulaciones (n)",ylab="Aproximación de la  integral")
+abline(h=true_value,lty=2)
+bonds <- cbind(1.96*sqrt(.052/(1:n)),-1.96*sqrt(.052/(1:n)))
+matlines(1:n,bonds+true_value,col="red",lty=1)
+```
+
+Pero se puede ir un paso más adelante. La integral impropia puede expresarse como una integral definida por su simple propiedad de simetría (dado que la función es simétrica y la integral en la recta real es igual a $1$)
+
+$$
+\int_2^\infty \frac{dx}{\pi(1+x^2)}=\frac{1}{2}-\int_0^2\frac{dx}{\pi(1+x^2)} .
+$$
+De esta expresión, una aproximación natural sería
+
+$$
+p_3 = \frac{1}{2}-\frac{1}{R}\sum_{i=1}^R h_3(2U_i), ~~~~~~\text{where}~h_3(x)=\frac{2}{\pi(1+x^2)} .
+$$
+
+```{r echo = FALSE}
+h <- function(x) 2/(pi*(1+x^2))
+set.seed(1)
+p3 <- .5-mean(h(2*runif(R)))
+se.p3 <- sd(h(2*runif(R)))/sqrt(R)
+```
+
+Con un millón de simulaciones, se obtiene una estimación de `r round(p3,digits=5)` 
+con error estándar `r signif(se.p3*1000,digits=3)` (divido por 1000).  Se  puede probar que la varianza de $p_3$ es del orden $0.0285/R$.
+
+
+```{r eval=FALSE, echo = FALSE}
+n <- 1e3
+ns <- 20
+set.seed(1)
+simU <- matrix((h(2*runif(n*ns))),n,ns)
+sumP3 <- .5-apply(simU, 2, cumsum)/(1:n)
+matplot(1:n,sumP3[,1:20],type="l",col=rgb(1,0,0,.2),ylim=c(.1,.2),
+        xlab="Número de simulaciones (n)",ylab="Aproximación de la integral")
+abline(h=true_value,lty=2)
+bonds <- cbind(1.96*sqrt(.0285/(1:n)),-1.96*sqrt(.0285/(1:n)))
+matlines(1:n,bonds+true_value,col="red",lty=1)
+```
+
+Finalmente, también se puede considerar algún cambio de variable en la integral
+
+$$
+\int_2^\infty \frac{dx}{\pi(1+x^2)}=\int_0^{1/2}\frac{y^{-2}dy}{\pi(1-y^{-2})} .
+$$
+De esta expresión, una aproximación natural sería
+
+$$
+p_4 = \frac{1}{R}\sum_{i=1}^R h_4(U_i/2),~~~~~\text{where}~h_4(x)=\frac{1}{2\pi(1+x^2)} .
+$$
+La expresión parece bastante similar a la anterior, 
+
+```{r echo = FALSE}
+set.seed(1)
+h4 <- function(x) 1/(2*pi*(1+x^2))
+p4 <- mean(h4(runif(R)/2))
+se.p4 <- sd(h4(runif(R)/2))/sqrt(R)
+```
+
+Con un millón de simulaciones, se obtiene una estimación de `r round(p4,digits=5)` con error estándar `r round(se.p4*1000,digits=3)` (dividido por 1000). Se puede probar que la varianza de $p_4$ es de orden $0.00009/R$, que es mucho menor que los valores obtenidos hasta ahora!
+
+
+```{r eval=FALSE, echo = FALSE}
+n <- 1e3
+ns <- 20
+set.seed(1)
+simU <- matrix((h(runif(n*ns)/2)),n,ns)
+sumP4 <- apply(simU, 2, cumsum)/(1:n)
+matplot(1:n,sumP4[,1:20],type="l",col=rgb(1,0,0,.2),ylim=c(.1,.2),
+        xlab="Número de simulaciones (n)",ylab="Aproximación de la integral")
+abline(h=true_value,lty=2)
+bonds <- cbind(1.96*sqrt(.00009/(1:n)),-1.96*sqrt(.00009/(1:n)))
+matlines(1:n,bonds+true_value,col="red",lty=1)
+```
+
+[Tabla 6.1] resume las cuatro elecciones de $h(\cdot)$ y $F(\cdot)$ para aproximar $\Pr[X>2] =$ `r round(true_value,digits=5)`. El error estándar varía notablemente. Por tanto, si se desea un determinado grado de precisión, entonces el *número de simulaciones* depende mucho de cómo se escriban las integrales que se desean aproximar.
+
+[Tabla 6.1]:\#tab:61
+<a id=tab:61></a>
+<div align="center">
+```{r ,tab:ApproximationChoices, echo = FALSE, message=FALSE, warning=FALSE}
+library(htmlTable)
+x1 <- c(
+  "$p_1$", 
+  "$\\frac{1}{R}\\sum_{i=1}^R \\mathrm{I}(F^{-1}(U_i)>2)$",
+   "$~~~~~~F^{-1}(u)=\\tan \\left( \\pi(u-0.5) \\right)~~~~~~~$",round(c(p1,se.p1),digits=6))
+x2 <- c(
+  "$p_2$", 
+  "$\\frac{1}{2R}\\sum_{i=1}^R \\mathrm{I}(|F^{-1}(U_i)|>2)$",
+   "$F^{-1}(u)=\\tan \\left( \\pi(u-0.5) \\right)$",round(c(p2,se.p2),digits=6))
+x3 <- c(
+  "$p_3$", 
+  "$\\frac{1}{2}-\\frac{1}{R}\\sum_{i=1}^R h_3(2U_i)$",
+"$h_3(x)=\\frac{2}{\\pi(1+x^2)}$",round(c(p3,se.p3),digits=6))
+x4 <- c(
+  "$p_4$", 
+  "$\\frac{1}{R}\\sum_{i=1}^R h_4(U_i/2)$",
+  "$h_4(x)=\\frac{1}{2\\pi(1+x^2)}$",format(round(c(p4,se.p4),digits=6), scientific = FALSE))
+outMat <- rbind(x1,x2,x3,x4)
+rownames(outMat) <- NULL
+htmlTable(outMat, header =  c("Estimador", "Definición",
+                            "Función de soporte", "Estimación", " Error estándar"),
+          caption = "Tabla 6.1. Resumen de las cuatro elecciones para aproximar $\\Pr[X>2]$. ",
+          align = "cccrr")     
+```
+</div>
+
+### Simulación e inferencia estadística {#S:SimulationStatInference}
+
+Las simulaciones no solo ayudan a aproximar valores esperados, sino que también son útiles para calcular otros aspectos de las funciones de distribución. En particular, son muy útiles cuando las distribuciones de los estadísticos de prueba son muy complicadas de derivar; en este caso, se pueden usar simulaciones para aproximar la distribución de referencia. Se ilustra esto con el `r Gloss("test de Kolmogorov-Smirnov ")` que se presenta en la Sección 4.1.2.2. 
+
+**Ejemplo. `r chapnum`.1.10. Distribución del test de Kolmogorov-Smirnov.** 
+Se tiene disponible $n=100$ observaciones $\{x_1,\cdots,x_n\}$ que, sin que lo sepa el analista, han sido generadas por una distribución gamma de parámetros $\alpha = 6$ y $\theta=2$. El analista cree que los datos provienen de una distribución lognormal con parámetros 1 y 0.4 y desearía comprobar esta hipótesis.
+
+El primer paso es visualizar los datos. 
+
+`r HideRCode('KSTest.1.10.1','Se muestra el código R para establecer la visualización')`
+
+```{r fig.align='center', comment="", echo=SHOW_PDF}
+set.seed(1)
+n <- 100
+x <- rgamma(n, 6, 2)
+u=seq(0,7,by=.01)
+vx = c(0,sort(x))
+vy = (0:n)/n
+```
+</div>
+
+A partir de aquí, la Figura \@ref(fig:KSTestData) proporciona un gráfico del histograma y distribución empírica. A modo de referencia, se superpone con línea rojas discontinua la distribución lognormal. 
+
+```{r KSTestData, fig.align='center', comment="", fig.cap = 'Histograma y función de distribución empírica de los datos usados en el test de Kolmogorov-Smirnov. Las líneas rojas discontinuas son ajustadas en base a una (incorrecta) hipótesis de distribución lognormal.', echo=SHOW_PDF}
+par(mfrow=c(1,2))
+hist(x,probability = TRUE,main="Histogram", col="light blue",border="white",xlim=c(0,7),ylim=c(0,.4))
+lines(u,dlnorm(u,1,.4),col="red",lty=2)
+plot(vx,vy,type="l",xlab="x",ylab="Cumulative Distribution",main="Empirical cdf")
+lines(u,plnorm(u,1,.4),col="red",lty=2)
+```
+
+Es necesario recordad qeu el estadístico de Kolmogorov-Smirnov es igual a la mayor discrepancia entre la distribución empírica y la correspondiente a la hipótesis. Esto es $\max_x |F_n(x)-F_0(x)|$, donde $F_0$ es la distribución lognormal de la hipótesis. Se puede calcular esto de forma directa como:
+
+`r HideRCode('KSTest.1.10.2','Se muestra el código R para el cálculo directo del estadístico KS')`
+
+```{r comment="", echo=SHOW_PDF}
+# test statistic
+D <- function(data, F0){
+   F <- Vectorize(function(x) mean((data<=x)))
+   n <- length(data)
+   x <- sort(data)
+   d1=abs(F(x+1e-6)-F0(x+1e-6))
+   d2=abs(F(x-1e-6)-F0(x-1e-6))
+   return(max(c(d1,d2)))
+}
+D(x,function(x) plnorm(x,1,.4))
+```
+</div>
+
+Afortunadamente, para la distribución lognormal, `R` ha construido test que permiten determinar esto sin necesidad de realizar una programación complicada:
+
+```{r comment="", echo=SHOW_PDF}
+ks.test(x, plnorm, mean=1, sd=0.4)
+```
+
+Sin embargo, para muchas distribuciones de interés actuarial, no se dispone de programas pre-construidos. Se puede usar la simulación para comprobar la relevancia de un estadístico de prueba. En concreto, para calcular el $p$-valor, se generan miles de muestras aleatorias de una distribución $LN(1,0.4)$ (con el mismo tamaño), y se calcula empíricamente la distribución del estadístico,
+
+`r HideRCode('KSTest.1.10.3','Se muestra el código R para la distribución simulada del estadístico KS')`
+
+```{r fig.align='center', comment="", cho=SHOW_PDF}
+ns <- 1e4
+d_KS <- rep(NA,ns)
+# cálculo de los estadísticos de prueba para un valor elevado de ns (número de muestras simuladas, según sus siglas en inglés) 
+for(s in 1:ns) d_KS[s] <- D(rlnorm(n,1,.4),function(x) plnorm(x,1,.4))
+mean(d_KS>D(x,function(x) plnorm(x,1,.4)))
+```
+</div>
+
+```{r KSSimulatedDistribution, fig.align='center', comment="", fig.cap = 'Distribución simulada del estadístico de prueba de Kolmogorov-Smirnov. La línea roja discontinua vertical marca el estadístico de prueba para una muestra de 100.', echo=SHOW_PDF}
+hist(d_KS,probability = TRUE,col="light blue",border="white",xlab="Estadístico de prueba",main="")
+lines(density(d_KS),col="red")
+abline(v=D(x,function(x) plnorm(x,1,.4)),lty=2,col="red")
+```
+
+La distribución simulada basada en 10,000 muestras aleatorias se resume en la Figura \@ref(fig:KSSimulatedDistribution). Aquí, el estadístico excede el valor empírico (`r format(D(x,function(x) plnorm(x,1,.4)),digits=4)`) en `r 100*mean(d_KS>D(x,function(x) plnorm(x,1,.4)))`% de los escenarios, mientras que el $p$-valor *teórico* es `r round(ks.test(x,plnorm,mean=1,sd=.4)$p.value, digits=4)`. Tanto para la simulación como para los $p$-valores teóricos, las conclusiones son las mismas; los datos no proporcionan evidencia suficiente para rechazar la hipótesis de la distribución lognormal.
+
+Aunque se trate solo de una aproximación, el enfoque basado en la simulación funciona en una gran variedad de distribuciones y estadísticos de prueba sin necesitar desarrollar los detalles de la teoría de base en cada situación. Se puede resumir el procedimiento para desarrollar distribuciones simuladas y *p*-valores como sigue:
+
+1. Obtén una muestra de tamaño *n*, es decir, $X_1, \ldots, X_n$, de una función de distribución conocida $F$. Calcula el estadístico de interés, denotado por $\hat{\theta}(X_1, \ldots, X_n)$. Se le llama $\hat{\theta}^r$ para la réplica *r*ésima.
+2. Se repite $r=1, \ldots, R$ veces para obtener una muestra de estadísticos, $\hat{\theta}^1, \ldots,\hat{\theta}^R$.
+3. De la muestra de estadísticos en el paso 2, $\{\hat{\theta}^1, \ldots,\hat{\theta}^R\}$, se calcula una medida de resumen de interés, como el *p*-valor.
+ 
+

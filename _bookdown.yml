@@ -1,0 +1,30 @@
+book_filename: "LossDataAnalytics"
+output_dir: "docs"
+rmd_files: ["index.Rmd", 
+           "References/Packages.Rmd",
+           "References/Glossary.Rmd",
+           "References/PdfOutput.Rmd",
+           "Chapters/Preface.Rmd", 
+           "ChaptersSpanish/IntroductionSPANISHA.Rmd",
+           "ChaptersSpanish/FrequencySPANISHA.Rmd",
+           "ChaptersSpanish/LossSeveritySPANISHA.Rmd", 
+           "ChaptersSpanish/ModelSelectionSPANISHA.Rmd",
+           "ChaptersSpanish/AggregateLossModelsSPANISHA.Rmd",           
+           "ChaptersSpanish/SimulationSPANISH.Rmd", 
+           "ChaptersSpanish/PremiumFoundationsSPANISHA.Rmd",
+           "ChaptersSpanish/RiskClassificationSPANISHA.Rmd",           
+           "ChaptersSpanish/CredibilitySPANISHA.Rmd",
+           "ChaptersSpanish/PortfolioMgtSPANISHA.Rmd",
+           "ChaptersSpanish/LossReservesSPANISHA.Rmd",           
+           "Chapters/ExpRatingBonusMalus.Rmd",
+           "ChaptersSpanish/DataSystemsSPANISHA.Rmd",
+           "Chapters/DependenceModels.Rmd",
+           "ChaptersSpanish/ReviewStatInferenceSPANISHA.Rmd", 
+           "ChaptersSpanish/IteratedExpectationsSPANISHA.Rmd", 
+           "ChaptersSpanish/MaximumLikeTheorySPANISHA.Rmd",            
+           "ChaptersSpanish/DistributionTableSPANISHA.Rmd",
+           "Chapters/Bibliography.Rmd"]
+           
+language:
+  ui:
+    chapter_name: "Chapter "

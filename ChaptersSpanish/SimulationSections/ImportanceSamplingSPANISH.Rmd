@@ -1,0 +1,120 @@
+<!-- ## Importancia del muestreo -->
+
+En la Sección \@ref(S:SimulationFundamentals) se introducen las técnicas de Monte Carlo usando la técnica de la inversa: generar una variable aleatoria $X$ con distribución $F$, aplicar $F^{-1}$ para llamar a un generador aleatorio (uniforme en el intervalo unitario). ¿Qué pasa si queremos realizar extracciones de acuerdo con $X$, condicionado a $X\in[a,b]$ ?
+
+Se puede usar un `r Gloss('mecanismo de aceptación-rechazo')` : extraer $x$ de la distribución $F$
+
+- si $x\in[a,b]$ : se mantiene ("*aceptación*")
+- si $x\notin[a,b]$ : se extrae otro ("*rechazo*")
+
+Se observa que de $n$ valores inicialmente generados, se mantienen sólo $[F(b)-F(a)]\cdot n$ extracciones, en promedio.
+
+**Ejemplo `r chapnum`.4.1. Extracciones de una distribución Normal.**  
+Supongamos que se realizan extracciones de una distribución normal con media 2.5 y varianza 1, $N(2.5,1)$, pero sólo se tiene interés en extracciones en extracciones mayores que $a \ge 2$ y menores que $b \le 4$. Es decir, se puede usar sólo una proporción de extracciones igual a $F(4)-F(2) = \Phi(4-2.5)-\Phi(2-2.5)$ = `r round(pnorm(4,2.5,1),digits=4)` - `r round(pnorm(2,2.5,1),digits=4)` = `r round(pnorm(4,2.5,1)-pnorm(2,2.5,1),digits=4)`. La Figura \@ref(fig:sampleani1) demuestra que algunas extracciones caen en el intervalo $(2,4)$ y otras están fuera.
+
+`r HideRCode('ImportanceSampling.1','Muestra el código R para el mecanismo de aceptación-rechazo')`
+
+```{r eval = ANIMATION, comment = "", fig.align='center', out.width='50%', fig.asp=.75, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+mu = 2.5
+sigma = 1
+a = 2
+b = 4
+Fa = pnorm(a,mu,sigma)
+Fb = pnorm(b,mu,sigma)
+pic_ani = function(){
+  u=seq(0,5,by=.01)
+  plot(u,pnorm(u,mu,sigma),col="white",ylab="",xlab="")
+  rect(-1,-1,6,2,col=rgb(1,0,0,.2),border=NA)
+  rect(a,Fa,b,Fb,col="white",border=NA)
+  lines(u,pnorm(u,mu,sigma),lwd=2)
+  abline(v=c(a,b),lty=2,col="red")
+  ru <- runif(1)
+  clr <- "red"
+  if((qnorm(ru,mu,sigma)>=a)&(qnorm(ru,mu,sigma)<=b)) clr <- "blue"
+  segments(-1,ru,qnorm(ru,mu,sigma),ru,col=clr,lwd=2)
+  arrows(qnorm(ru,mu,sigma),ru,qnorm(ru,mu,sigma),0,col=clr,lwd=2,length = .1)
+}
+```
+
+</div>
+
+```{r sampleani1, animation.hook=ANIMATIONHOOK, fig.cap='Demostración animada de extracciones dentro y fuera de (2,4)', eval = ANIMATION, comment = "", fig.align='center', out.width='50%', fig.asp=.75, echo=SHOW_PDF, cache = TRUE}
+for (i in 1:numAnimation) {pic_ani()}
+```
+
+***
+
+En su lugar, se pueden realizar extracciones de acuerdo con la distribución condicional $F^{\star}$ definida como
+
+$$
+F^{\star}(x) = \Pr(X \le x | a < X \le b) =\frac{F(x)-F(a)}{F(b)-F(a)}, \ \  \ \text{for } a < x \le b .
+$$
+Usando el método de la transformada inversa de la Sección \@ref(S:InverseTransform), se tiene que la extracción
+
+$$
+X^\star=F^{\star-1}\left( U \right) = F^{-1}\left(F(a)+U\cdot[F(b)-F(a)]\right)
+$$
+tiene distribución $F^{\star}$. Expresado de otra forma, se define
+
+$$
+\tilde{U} = (1-U)\cdot F(a)+U\cdot F(b)
+$$
+y entonces se usa $F^{-1}(\tilde{U})$. Con este enfoque, cada extracción cuenta.
+
+Esto puede estar relacionado con la `r Gloss('importancia del mecanismo de muestreo')` : se realizan extracciones más frecuentemente en regiones donde se espera tener cantidades que tienen algún interés. Esta transformación puede ser considerada como "un cambio de medida."
+
+`r HideRCode('ImportanceSampling.2','Muestra el código R para la importancia del muestreo por el método de la transformada inversa')`
+
+```{r eval = ANIMATION, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+pic_ani = function(){
+  u=seq(0,5,by=.01)
+  plot(u,pnorm(u,mu,sigma),col="white",ylab="",xlab="")
+  rect(-1,-1,6,2,col=rgb(1,0,0,.2),border=NA)
+  rect(a,Fa,b,Fb,col="white",border=NA)
+  lines(u,pnorm(u,mu,sigma),lwd=2)
+  abline(h=pnorm(c(a,b),mu,sigma),lty=2,col="red")
+  ru <- runif(1)
+  rutilde <- (1-ru)*Fa+ru*Fb
+  segments(-1,rutilde,qnorm(rutilde,mu,sigma),rutilde,col="blue",lwd=2)
+  arrows(qnorm(rutilde,mu,sigma),rutilde,qnorm(rutilde,mu,sigma),0,col="blue",lwd=2,length = .1)
+}
+```
+
+</div>
+
+```{r sampleani_IS_2, eval = ANIMATION, fig.align='center', out.width='50%', fig.asp=.75, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+for (i in 1:numAnimation) {pic_ani()}
+```
+
+En el Ejemplo `r chapnum`.4.1., la inversa de la distribución normal está disponible fácilmente (en `R`, la función es `qnorm`). Sin embargo, para otras aplicaciones, este no es el caso. Entonces, simplemente se usan métodos numéricos para determinar $X^\star$ como la solución de la ecuación $F(X^\star) =\tilde{U}$ donde $\tilde{U}=(1-U)\cdot F(a)+U\cdot F(b)$. Véase el siguiente código ilustrativo.
+
+`r HideRCode('ImportanceSampling.3','Muestra el código R para la importancia del muestreo via soluciones numéricas')`
+
+```{r eval = ANIMATION, comment = "", echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+pic_ani = function(){
+  u=seq(0,5,by=.01)
+  plot(u,pnorm(u,mu,sigma),col="white",ylab="",xlab="")
+  rect(-1,-1,6,2,col=rgb(1,0,0,.2),border=NA)
+  rect(2,-1,4,2,col="white",border=NA)
+  lines(u,pnorm(u,mu,sigma),lty=2)
+  pnormstar <- Vectorize(function(x){
+    y=(pnorm(x,mu,sigma)-Fa)/(Fb-Fa)
+    if(x<=a) y <- 0
+    if(x>=b) y <- 1
+    return(y)
+    })
+  qnormstar <- function(u) as.numeric(uniroot((function (x) pnormstar(x) - u), lower = 2, upper = 4)[1])
+  lines(u,pnormstar(u),lwd=2)
+  abline(v=c(2,4),lty=2,col="red")
+  ru <- runif(1)
+  segments(-1,ru,qnormstar(ru),ru,col="blue",lwd=2)
+  arrows(qnormstar(ru),ru,qnormstar(ru),0,col="blue",lwd=2,length = .1)
+}
+```
+
+</div>
+
+```{r sampleani_IS_1, eval = ANIMATION, comment = "", fig.align='center', out.width='50%', fig.asp=.75, echo=SHOW_PDF, animation.hook=ANIMATIONHOOK, cache = TRUE}
+for (i in 1:numAnimation) {pic_ani()}
+```
+

@@ -1,0 +1,195 @@
+
+Es común considerar la experiencia conjunta de una cartera de seguros. Compatible con la notación anterior, consideramos una colección de *n* contratos con siniestros $X_1, \ldots, X_n$. En esta sección, suponemos que los contratos tienen la misma distribución de siniestralidad, en otras palabras forman una cartera homogénea, y, por tanto, son `r Gloss('iid')`. Como justificación, podemos pensar en un seguro personal como el de automóvil o hogar, donde los aseguradores suscriben muchos contratos de riesgos muy similares. En tal caso, la suposición de distribuciones idénticas no es tan limitativa como podríamos pensar en un principio. En la Sección \@ref(S:ExposureToRisk)  introduciremos la idea de una `r Gloss('exposición', '7.2, 7.4')` variable que nos permitirá rescalar la experiencia de siniestralidad para hacerla comparable. Por ejemplo, rescalando los siniestros seremos capaces de tratar los siniestros de hogar de una casa de 100.000 y los de una casa de 200.000 como pertenecientes a una misma distribución. Por ahora, sencillamente suponemos que $X_1, \ldots, X_n$ son *iid*.
+
+
+<!-- ## Método de la Prima Pura -->
+
+### Método de la Prima Pura {#S:PurePremium}
+
+Si el número en el grupo, *n*, es grande, entonces la media proporciona una buena aproximación de la siniestralidad esperada
+
+$$
+\small{
+\mathrm{E}(X) \approx \frac{\sum_{i=1}^n X_i}{n} = \frac{\text{Siniestralidad}}{\text{Exposición}} = \text{Prima Pura}.
+}
+$$
+
+Con este enfoque, definimos la `r Gloss('prima pura')` como la suma de los siniestros dividida por la exposición; y que también es conocida como `r Gloss('coste de siniestralidad')`. En el caso de `r Gloss('riesgos homogéneos')`, todas las pólizas son tratadas igual y  podemos utilizar el número de pólizas *n* para la exposición. En la Sección \@ref(S:ExposureToRisk) extendemos el concepto de exposición cuando las pólizas no son iguales.
+
+Podemos multiplicar y dividir por el número de reclamaciones, `claim count` en inglés, para conseguir
+
+$$
+\small{
+\text{Prima Pura} = \frac{\text{número de reclamaciones}}{\text{Exposición}} \times \frac{\text{Siniestralidad}}{\text{número de reclamaciones}} = \text{frecuencia} \times \text{severidad} .
+}
+$$
+
+Por lo tanto, cuando calculamos las primas utilizando el método de la prima pura, podemos considerar tanto la siniestralidad media (coste de siniestralidad) como la aproximación frecuencia-severidad.
+
+Para conseguir estar más cerca de las aplicaciones prácticas, volvemos ahora a la ecuación \@ref(eq:AccountingEquation) que también incluye los gastos. La ecuación \@ref(eq:AccountingEquation) también se refiere al `Margen de beneficio` para incluir el beneficio de suscripción. Si éste lo relacionamos con las primas, lo denominaremos `r Gloss('recargo de beneficio')`. Como los siniestros son inciertos, el asegurador debe disponer de capital suficiente para asegurar que todas las reclamaciones serán pagadas. Mantener este capital extra es un coste del propio negocio, los inversores de la compañía deben ser compensados por ello, de ahí el recargo extra.
+
+A continuación, descomponemos los `Gastos` en aquellos que varían según la prima, `Variables`, y los que no, `Fijos` de modo que `Gastos = Variables + Fijos`. Pensando en los gastos variables y los beneficios como una fracción de las primas, definimos
+
+$$
+\small{
+V =  \frac{\text{Variables}}{\text{Prima}} ~~~ \text{y}~~~
+Q = \frac{\text{Margen de beneficio}}{\text{Prima}} ~.
+}
+$$
+
+Con estas definiciones y la ecuación \@ref(eq:AccountingEquation), podemos escribir
+
+$$
+\small{
+\begin{matrix}
+\begin{array}{ll}
+\text{Prima} &= \text{Siniestros + Fijos} + \text{Prima} \times \frac{\text{Variables + Margen de beneficio }}{\text{Prima}}  \\
+& = \text{Siniestros + Fijos} + \text{Prima} \times (V+Q) .
+\end{array}
+\end{matrix}
+}
+$$
+
+Despejando
+
+\begin{equation}
+\small{
+\text{Prima} = \frac{\text{Siniestros + Fijos}}{1-V-Q} .
+}
+(\#eq:PremiumEquation)
+\end{equation}
+
+Dividiendo por la exposición, la tarifa puede ser calculada como
+
+$$
+\begin{matrix}
+\begin{array}{ll}
+\text{Tarifa} &= \frac{\text{Prima}}{\text{Exposición}} = \frac{\text{Siniestros/Exposición + Fijos/Exposición}}{1-V-Q} \\
+&=   \frac{\text{Prima pura + Fijos/Exposición}}{1-V-Q} ~.
+\end{array}
+\end{matrix}
+$$
+
+En otros términos, esto es
+
+$$
+\small{
+\text{Tarifa} =\frac{\text{prima pura + gastos fijos por exposición }}{\text{1 – factor de gastos variables – factor de beneficio y contingencias}}  .
+}
+$$
+
+**Ejemplo. CAS Examen 5, 2004, Número 13.** Determinar la `r Gloss('tarifa de referencia')` por unidad de exposición, dada la información siguiente:
+
+- Frecuencia por unidad de exposición = 0,25
+- Severidad = \$100
+- Gasto fijo por unidad de exposición = \$10
+- Factor de gasto variable = 20\%
+- Factor de beneficio y contingencias = 5\%
+
+`r HideExample('7.1.1',  'Solución del Ejemplo')`
+
+**Solución.** Bajo el método de la prima pura, la tarifa de referencia es
+
+$$
+\begin{matrix}
+\begin{array}{ll}
+\text{Tarifa} &=  \frac{\text{prima pura + gastos fijos por exposición}}{\text{1 – factor de gastos variables – factor de beneficio y contingencias}}\\
+&= \frac{\text{frecuencia} \times \text{severidad} ~+~10}{1-0,20-0,05} = \frac{0,25 \times 100 +10}{1-0,20-0,05} = 46,67.
+\end{array}
+\end{matrix}
+$$
+
+***
+
+</div>
+
+Del ejemplo, nótese que las tarifas calculadas por el método de la prima pura son generalmente denominadas como *tarifa de referencia *.
+
+De nuestra exposición, nótese también que el beneficio está asociado con aspectos de la suscripción y no con inversiones. Las primas son habitualmente pagadas al principio del contrato por lo que los aseguradores reciben ingresos por la inversión de este dinero. Sin embargo, debido a la naturaleza a corto plazo de estos contratos, los ingresos por la inversión son normalmente ignorados al tarificar. Esto aporta un poco de conservadurismo al proceso, lo que es bien recibido por los aseguradores. Probablemente esto es más relevante en ramos de cola muy larga, como el de accidentes laborales o el de malas prácticas médicas. En estos ramos, a veces pueden pasar 20 años, o incluso más, para resolver las reclamaciones. Pero estos ramos son también los más volátiles; los pagos de siniestros en un futuro lejano son menos extremos cuando se ven desde la perspectiva del descuento financiero.
+
+
+### Método de la Ratio de Siniestralidad {#S:LossRatio}
+
+La `r Gloss('ratio de siniestralidad')` (loss ratio, en inglés) es el cociente entre la suma de los siniestros y la prima
+
+$$
+\small{
+\mathrm{E}(X) \approx \frac{\sum_{i=1}^n X_i}{n} = \frac{\text{Siniestralidad}}{\text{Exposición}} = \text{Prima Pura}.
+}
+$$
+
+Cuando calculamos primas, es un poco contra intuitivo focalizarnos en esta ratio porque la componente prima está incorporada en su denominador. Como veremos, la idea es que el método de ratio de siniestralidad proporciona **cambios** de tarifa más que tarifas en sí; podemos utilizar cambios de tarifa para actualizar la experiencia pasada y así determinar la tarifa actual. Para hacer esto, los cambios de tarifa consisten en la ratio entre la ratio de siniestralidad observada y la ratio de siniestralidad objetivo. Este factor de ajuste es entonces aplicado a las tarifas actuales para conseguir las nuevas tarifas.
+
+Para ver cómo esto funciona en un contexto sencillo, volvemos a la ecuación \@ref(eq:AccountingEquation) pero ahora ignorando los gastos: $\small{\text{Prima = Siniestros + Margen Beneficio}}$. Dividiendo por la prima
+
+$$
+\small{
+\frac{\text{Margen Beneficio}}{\text{Prima}} = 1 - RS = 1 - \frac{\text{Siniestralidad}}{\text{Prima}} .
+}
+$$
+
+Supongamos que tenemos un nuevo "objetivo" del recargo de beneficio, $Q_{objetivo}$. Suponiendo que los siniestros, la exposición, y otros elementos se mantienen igual, entonces para conseguir el nuevo objetivo de beneficio debemos ajustar la prima. Usamos *FC* como el `r Gloss('factor de cambio')` que está definido según la expresión
+
+$$
+\small{
+\frac{\text{nuevo Margen Beneficio}}{\text{Prima}} = Q_{objetivo} =  1 - \frac{\text{Siniestralidad}}{FC \times \text{Prima}}.
+}
+$$
+
+Despejando para *FC*, obtenemos
+
+$$
+\small{
+FC = \frac{\text{Siniestralidad}}{\text{Prima} \times (1-Q_{objetivo})} = \frac{RS}{1-Q_{objetivo}}.
+}
+$$
+
+Por ejemplo, si tenemos un ratio de siniestralidad actual = 85% y un objetivo de recargo de beneficio $\small{Q_{objetivo}=0,20}$, entonces $\small{FC = 0,85/0,80 = 1,0625}$, lo que significa que  aumentamos primas en un 6,25%.
+
+Ahora veamos cómo funciona incluyendo los gastos en la ecuación \@ref(eq:AccountingEquation). Podemos utilizar el mismo planteamiento que en la Sección \@ref(S:PurePremium) e iniciar con la ecuación \@ref(eq:PremiumEquation) y despejando por el recargo de beneficio
+
+$$
+\small{
+Q = 1 - \frac{\text{Siniestralidad+Fijos}}{\text{Prima}} - V .
+}
+$$
+Interpretamos la cantidad `Fijos/Prima + V` como la "ratio de gastos operacionales." Y ahora, fijamos un porcentaje de beneficio *Q* como objetivo y ajustamos las primas según el "factor de cambio" $FC$
+
+$$
+\small{
+Q_{objetivo} = 1
+-\frac{\text{Siniestralidad+Fijos}}{\text{Prima}\times FC} - V .
+}
+$$
+
+Despejando para $FC$ 
+
+\begin{equation}
+\small{
+FC = \frac{\text{Siniestralidad+Fijos}}{\text{Prima} \times (1 - V - Q_{objetivo})}.
+}
+(\#eq:IndicatedChangeFactor)
+\end{equation}
+
+**Ejemplo. Factor de Cambio de Ratio de Siniestralidad.** Suponemos la información siguiente:
+
+- Ratio de siniestralidad proyectado = 65%
+- Ratio de gastos fijos proyectados = 6,5%
+- Gastos variables = 25%
+- Margen Beneficio objetivo = 10%
+
+Con estos supuestos y la ecuación \@ref(eq:IndicatedChangeFactor), el factor de cambio puede ser calculado como
+
+$$
+\small{
+FC = \frac{\text{(Siniestralidad+Fijos)}/\text{Prima}}{1 - V - Q_{objetivo}} = \frac{0,65 + 0,065}{1- 0,25 – 0,10} = 1,10.
+}
+$$
+
+Esto significa que el nivel general de la tarifa tendría que ser aumentado en un 10%.
+
+***
+
+
+
+Más adelante, en la Sección \@ref(S:CompareMethods), proporcionaremos una comparación entre los métodos de prima pura y ratio de siniestralidad. Como avance, esta sección requerirá los conocimientos sobre exposiciones, tendencias y primas definidos en la Sección \@ref(S:TrendDevelopment).

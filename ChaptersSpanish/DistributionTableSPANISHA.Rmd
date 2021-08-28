@@ -1,0 +1,37 @@
+
+
+
+# Apéndice D: Resumen de Distribuciones {#C:SummaryDistributions}
+
+**Notas del usuario**
+
+* Las funciones `R` son de los paquetes `actuar` e `invgamma`.
+* Las tablas aparecen cuando el navegador las carga por primera vez. Para ocultarlas, haga clic en una de las distribuciones, por ejemplo, *Poisson*, y luego haga clic en el botón *Ocultar*.
+* Más información sobre los códigos `R` está disponible en el sitio [R Codes for Loss Data Analytics](https://ewfrees.github.io/LDARcode/index.html).
+
+
+## Distribuciones Discretas
+
+
+**Resumen.** Esta sección resume las distribuciones de probabilidad discretas seleccionadas que se utilizan en *Loss Data Analytics*. Se proporcionan las funciones pertinentes y el código `R`.
+
+```{r child = 'ChaptersSpanish/DistributionTableSections/DiscreteSPANISHA.Rmd', eval = TRUE}
+```
+
+## Distribuciones Continuas
+
+
+**Resumen.** Esta sección resume una selección de distribuciones de probabilidad continuas que se utilizan en *Loss Data Analytics*. Se proporcionan funciones relevantes, código `R` y gráficos ilustrativos.
+
+```{r child = 'ChaptersSpanish/DistributionTableSections/ContinuousSPANISHA.Rmd', eval = TRUE}
+```
+
+
+## Valor Esperado Limitado
+
+**Resumen.** Esta sección resume el valor esperado limitado para determinadas distribuciones continuas.
+
+```{r child = 'ChaptersSpanish/DistributionTableSections/LimitedExpValueSPANISHA.Rmd', eval = TRUE}
+```
+
+

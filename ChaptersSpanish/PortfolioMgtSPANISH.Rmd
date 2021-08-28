@@ -1,0 +1,1301 @@
+#Gestión de Carteras de Seguros incluyendo Reaseguro {#C:PortMgt}
+
+`r chapnum = 10`
+
+*Contenido*. Una cartera de seguros es simplemente un conjunto de contratos de seguros. Para ayudar a gestionar la incertidumbre de la cartera, este capítulo 
+
+- cuantifica coberturas inusualmente extremas examinando las colas de la distribución, 
+- cuantifica el riesgo global introduciendo indicadores conocidos como medidas de riesgo, y 
+- analiza las opciones de repartir el riesgo de la cartera a través del reaseguro, la contratación de cobertura de seguro por la propia entidad aseguradora.
+
+## Introducción a las Carteras de Seguros
+
+La mayoría de nuestros análisis en los capítulos previos se han realizado a nivel de contrato, definido como un acuerdo entre el tomador y el asegurador. Los aseguradores tienen, y gestionan, <a href="#" class="tooltip" style="color:green">*carteras*<span style="font-size:8pt">una colección de contratos</span></a>  que son simplemente conjuntos de pólizas. Como en otras áreas financieras, existen elecciones sobre los procesos de gestión que se producen solo a nivel de cartera. Por ejemplo, las decisiones estratégicas no ocurren a nivel de contrato. Se producen en la sala de reuniones, donde los gestores revisan los datos disponibles y posiblemente pongan en marcha nuevas estrategias. Desde la perspectiva de la cartera, los aseguradores quieren planear su capacidad, establecer políticas de gestión, y equilibrar el mix de productos que se distribuyen para aumentar los ingresos mientras se controla la volatilidad.
+
+Conceptualmente, uno puede pensar en una compañía de seguros como nada más que un conjunto, o cartera, de contratos de seguros. En el Capítulo \@ref(C:AggLossModels) se ha aprendido sobre la modelización de carteras de seguros como la suma de contratos individuales, teniendo en cuenta hipótesis de independencia entre los contratos. Teniendo en cuenta su importancia, este capítulo se centra directamente en las distribuciones de carteras.
+
+- Las carteras de seguros representan las obligaciones de los aseguradores y, por ello, se está particularmente interesado en las probabilidades de grandes riesgos, dado que ellos representan grandes obligaciones o coberturas extraordinarias. Para formalizar este concepto se introduce el concepto de distribución de colas pesadas en la Sección \@ref(S:Tails).
+
+- Las carteras de seguros representan las obligaciones de la compañía y por ello los aseguradores mantienen una cantidad equivalente de activos para cumplir con dichas obligaciones. Las *Medidas de riesgo*, introducidas en la Sección \@ref(S:RiskMeasure), resumen la distribución de la cartera de seguros y son usadas para cuantificar la cantidad de activos que un asegurador necesita tener para cumplir con sus obligaciones.
+
+-  En la Sección \@ref(S:CoverageModifications) se aprendieron mecanismos que los tomadores usan para repartir riesgos como franquicias y límites de cobertura. De la misma forma, los aseguradores usan mecanismos similares para repartir los riesgos de cartera. Compran protecciones del riesgo mediante el reaseguro, una compañía de seguros para los aseguradores. Este reparto del riesgo de cartera de seguros se describe en la Sección \@ref(S:Reinsurance).
+
+##Colas de las Distribuciones {#S:Tails}
+
+***
+En esta sección, se aprende como:
+
+- Describir una distribución de cola pesada intuitivamente.
+- Clasificar la pesadez de las colas de una distribución basada en los momentos.
+- Comparar las colas de dos distribuciones.
+
+***
+
+
+En 1998 cayó lluvia helada en el este de Ontario, al suroeste de Canadá, durante seis días. El suceso supuso el doble de precipitaciones experimentadas en la zona en cualquier tormenta de hielo anterior, y provocó una catástrofe que derivó en más de 840,000 reclamaciones de seguros. Esta cifra es un 20$\%$ superior a los siniestros causados por el Huracán Andrew – uno de los mayores desastres naturales en la historia de Norteamérica. La catástrofe supuso aproximadamente 1.44 miles de millones de dólares Canadienses en acuerdos de seguros lo que representa  la mayor cantidad para pérdidas en la historia de Canadá. Este no es un ejemplo aislado – sucesos catastróficos similares que causaron pérdidas  extremas para el seguro son los Huracanes Harvey y Sandy, el terremoto y tsunami japonès de 2011, y otros.
+
+En el contexto asegurador, las pérdidas muy grandes y poco frecuentes que afectan a las carteras convirtiéndose en siniestros representan habitualmente la mayor parte de las indemnizaciones pagadas por las compañías aseguradoras. Dichas pérdidas, también llamadas 'extremas', son modelizadas cuantitativamente mediante las colas de las distribuciones de probabilidad asociadas. Desde el punto de vista de la modelización cuantitativa, confiar en modelos probabilísticos que no recogen bien el comportamiento de las colas puede resultar desalentador. Por ejemplo, los periodos de crisis financera pueden aparecer con mayor frecuencia de loesperado, y las pérdidas en seguros pueden producirse con mayor severidad. Por tanto, el estudio del comportamiento probabilístico en las colas de los modelos actuariales es de suma importancia en el contexto moderno de la gestión cuantitativa del riesgo. Por esta razón, esta sección se dedica a la introduccción de unas pocas nociones matemáticas que caracterizan el peso de la cola de variables aleatorias (*v.a.*). La aplicación de esas nociones será útil en la construcción y selección de modelos apropiados con las propiedades matemáticas deseadas en las colas, que serán adecuadas para el alcance de determinados objetivos.
+
+Formalmente, se define $X$ como las obligaciones (aleatorias) que pueden derivarse de un conjunto (cartera) de pólizas de seguros. Se está especialmente interesado en estudiar la cola derecha de la distribución de $X$, que representa la ocurrencia de grandes pérdidas. Informalmente, *una v.a. se define como de cola pesada si las probabilidades altas se asignan a los valores grandes.* Destacar que esto no significa que las funciones de densidad/masa de probabilidad vayan creciendo cuando el valor de *v.a.* tienda a infinito. De hecho para una *v.a.* continua, la <a href="#" class="tooltip" style="color:green">*pdf*<span style="font-size:8pt">función de densidad de probabilidad</span></a>/<a href="#" class="tooltip" style="color:green">*pmf*<span style="font-size:8pt">función de masa de probabilidad</span></a> debe disminuir en el infinito para garantizar que la probabilidad total es igual a uno. En cambio, lo que preocupa es la tasa de decrecimiento de la función de probabilidad. Es más probable que se produzcan resultados no deseados en carteras de seguros descritas por una *v.a.* de pérdidas con cola (derecha) pesada. El peso de la cola puede ser un concepto absoluto o relativo.  Específicamente, desde el primer punto de vista, se puede considerar que una *v.a.* es de cola pesada si se cumplen ciertas propiedades matemáticas de la distribución de probabilidad. Desde el segundo punto de vista, se puede decir que la cola de una distribución es más pesada que la otra si algunas medidas de cola son mayores/menores.
+
+Se han propuesto diferentes enfoques cuantitativos para clasificar y comparar el peso de las colas. Entre ellos, la <a href="#" class="tooltip" style="color:green">*función de supervivencia*<span style="font-size:8pt">Uno menos la función de distribución. Proporciona la probabilidad de que la v.a. supere un determinado valor</span></a> sirve como base de análisis.  A continuación, se introducen dos métodos de clasificación de colas simples pero muy utilizados, basados en el comportamiento de la función de supervivencia de $X$.
+
+### Clasificación Basada en los Momentos
+
+Una forma de clasificar el peso de la cola de una distribución es evaluando la existencia de momentos ordinarios o respecto al origen.  Ya que nuestro mayor interés recae en las colas derechas de las distribuciones, de ahora en adelante se asume que la obligación o pérdida *v.a.* $X$ es positiva. Al principio, el momento ordinario $k-$th de una *v.a.*\ $X$ continua, introducido en la Sección \@ref(S:BasicQuantities), puede calcularse como
+
+\begin{eqnarray*}
+    \mu_k' &=& k \int_0^{\infty} x^{k-1} S(x) dx, \\
+\end{eqnarray*}
+    
+donde $S(\cdot)$ es la función de supervivencia de $X$. Esta expresión pone de manifiesto que la existencia de los momentos ordinarios depende del comportamiento asintótico de la función de supervivencia en el infinito.  Dicho de otro modo, cuanto más rápido tiende a cero la función de supervivencia, mayor será el orden del momento finito (*k*) que la *v.a.* asociada posee. Se puede interpretar $k^{\ast}$ como el mayor valor de *k* para que el momento sea finito. Formalmente, se define $k^{\ast}:=\sup\{k > 0:\mu_k'<\infty \}$, donde $sup$ representa el elemento supremo. Esta observación nos conduce al método de clasificación del peso de las colas basado en los momentos, que se define formalmente a continuación.
+
+<!-- \label{def:moment-base} -->
+
+**Definición  `r chapnum`.1.**  Consideremos una variable aleatoria de pérdidas positiva $X$.
+
+- Si todos los momentos ordinarios positivos existen, llámemosle el máximo orden del momento finito $k^{\ast}=\infty$, entonces $X$ se denomina de **cola ligera** en base al método de los momentos. 
+- Si $k^{\ast} < \infty$, entonces $X$ se denomina de **cola pesada** en base al método de los momentos. 
+- Además, para dos variables aleatorias de pérdidas positivas $X_1$ y $X_2$ con máximos órdenes del momento $k^{\ast}_1$ y $k^{\ast}_2$ respectivamente, se dice que $X_1$ tiene una **cola (derecha) más pesada** que  $X_2$ si $k^{\ast}_1\leq k^{\ast}_2$.
+
+La primera parte de la Definición  `r chapnum`.1 es un concepto absoluto de peso de cola, mientras que la segunda parte es un concepto relativo de peso de cola que compara las colas (derechas) entre dos distribuciones. A continuación, se presentan unos cuantos ejemplos que ilustran las aplicaciones del método basado en los momentos para comparar el peso de las colas. 
+
+<!-- \label{exm:gamma}   -->
+**Ejemplo `r chapnum`.1.1. Naturaleza de la cola ligera de la distribución gamma.** Sea $X\sim gamma(\alpha,\theta)$, con $\alpha>0$ y $\theta>0$, entonces para todo $k>0$, demuestra que $\mu_k' < \infty$.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.1.1" href="javascript:toggleEX('toggleExamplePortMgt.1.1','displayTextExamplePortMgt.1.1');"><i><strong>Muestra solución del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.1.1" style="display: none">
+
+**Solución.**
+
+\begin{eqnarray*}
+    \mu_k' &=& \int_0^{\infty} x^k \frac{x^{\alpha-1} e^{-x/\theta}}{\Gamma(\alpha) \theta^{\alpha}} dx \\
+    &=& \int_0^{\infty} (y\theta)^k  \frac{(y\theta)^{\alpha-1} e^{-y}}{\Gamma(\alpha) \theta^{\alpha}} \theta dy \\
+    &=& \frac{\theta^k}{\Gamma(\alpha)} \Gamma(\alpha+k) < \infty.
+\end{eqnarray*}
+  
+Dado que todos los momentos positivos existen, por tanto, $k^{\ast}=\infty$, de acuerdo con el método de clasificación basado en los momentos de la Definición  `r chapnum`.1, la distribución gamma es de cola ligera.  
+
+</div>
+
+*** 
+
+
+**Ejemplo `r chapnum`.1.2. Naturaleza de la cola ligera de la distribución Weibull.**
+Sea $X\sim Weibull(\theta,\tau)$, con $\theta>0$ y $\tau>0$, entonces para todo $k>0$, demuestra que $\mu_k' < \infty$.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.1.2" href="javascript:toggleEX('toggleExamplePortMgt.1.2','displayTextExamplePortMgt.1.2');"><i><strong>Muestra solución del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.1.2" style="display: none">
+
+**Solución.**
+
+
+\begin{eqnarray*}
+    \mu_k' &=& \int_0^{\infty} x^k \frac{\tau x^{\tau-1} }{\theta^{\tau}} e^{-(x/\theta)^{\tau}}dx \\
+    &=& \int_0^{\infty}  \frac{ y^{k/\tau} }{\theta^{\tau}} e^{-y/\theta^{\tau}}dy \\
+    &=& \theta^{k} \Gamma(1+k/\tau) < \infty.
+\end{eqnarray*}
+    
+De nuevo, debido a la existencia de todos los momentos positivos, la distribution Weibull es de cola ligera.
+
+</div>
+
+*** 
+
+Las distribuciones gamma y Weibull se utilizan ampliamente en la práctica actuarial. Las aplicaciones de estas dos distribuciones son extensas e incluyen, entre otras, la modelización de la severidad de los siniestros de seguros, la evaluación de solvencia, reservas, la aproximación del riesgo agregado o conjunto, e ingeniería de fiabilidad y análisis de errores o fallos.  Hasta ahora se han visto dos ejemplos de aplicación del método basado en los momentos para analizar distribuciones de cola ligera.  A continuación se presenta un ejemplo de cola pesada.
+
+**Ejemplo `r chapnum`.1.3. Naturaleza de la cola pesada de la distribución  de pareto.**
+Sea $X\sim Pareto(\alpha,\theta)$, con $\alpha>0$ y $\theta>0$, entonces para $k>0$
+
+\begin{eqnarray*}
+    \mu_k^{'} &=& \int_0^{\infty} x^k \frac{\alpha \theta^{\alpha}}{(x+\theta)^{\alpha+1}} dx \\
+    &=& \alpha \theta^{\alpha} \int_{\theta}^{\infty} (y-\theta)^k {y^{-(\alpha+1)}} dy.
+\end{eqnarray*}
+
+Se considera una integración similar:
+
+\begin{eqnarray*}
+  g_k:=\int_{\theta}^{\infty} {y^{k-\alpha-1}} dy=\left\{
+  \begin{array}{ll}
+    <\infty, & \hbox{for } k<\alpha;\\
+    =\infty, & \hbox{for } k\geq \alpha.
+  \end{array}
+\right.
+\end{eqnarray*}
+
+Mientras tanto,
+
+\[\lim_{y\rightarrow \infty} \frac{(y-\theta)^k {y^{-(\alpha+1)}}}{y^{k-\alpha-1}}=\lim_{y\rightarrow \infty}
+(1-\theta/y)^{k}=1.\]
+
+La aplicación del teorema de comparación de límites para integrales impropias indica que $\mu_k'$ es finita si y solo si $g_k$ es finita. Por tanto se puede concluir que los momentos ordinarios de una *rv* Pareto existen solo hasta $k<\alpha$, es decir, $k^{\ast}=\alpha$, y de este modo la distribución es de cola pesada.  Aún más, el máximo orden del momento finito depende solo del parámetro de forma $\alpha$ y es una función creciente de $\alpha$. 
+En otras palabras, en base al método de los momentos, el peso de la cola de una *v.a.* Pareto cambia únicamente en función de $\alpha$ --  cuanto más pequeño es el valor de $\alpha$, más fuerte es el peso de la cola.  Dado que $k^{\ast}<\infty$, la cola de una distribución de Pareto es más pesada que la de las distribuciones gamma y Weibull.  
+
+*** 
+
+Se concluye esta sección con una discusión abierta sobre las limitaciones del método basado en los momentos.  A pesar de su implementación sencilla  y de su interpretación intuitiva, existen determinadas situaciones en las que la aplicación del método basado en los momentos no es factible. Primero, en el caso de los modelos probabilísticos más complejos, el $k$-th momento ordinario puede no ser simple de derivar, y de este modo, la identificación del máximo orden del momento finito puede convertirse en un desafío.  Segundo, el método basado en los momentos no cumple bien con el cuerpo principal de la teoría de la cola pesada definido en la literatura.  Específicamente, la existencia de las funciones generadoras de momentos es sin duda el método más popular para clasificar la cola pesada frente a la cola ligera dentro de la comunidad de los actuarios académicos.  Sin embargo, para algunas *v.a.* como la *v.a.* lognormal, sus funciones generadoras de momentos no existen, incluso cuando todos los momentos positivos son finitos.  En esos casos, las aplicaciones de los métodos basados en los momentos pueden conduir a diferentes evaluaciones del peso de la cola.  Tercero, cuando se necesita comparar el peso de la cola entre dos distribuciones de cola ligera para las cuales existen todos los momentos positivos, el método basado en los momentos no es informativo (ver, por ejemplo, Ejemplos `r chapnum`.1.1 y `r chapnum`.1.2).
+
+
+### Comparación basada en el comportamiento de colas con límites
+
+Para resolver las dificultades anteriormente comentadas en relación al uso del método de clasificación basado en los momentos, una aproximación alternativa para comparar el peso de las colas es estudiar directamente los límites de las funciones de supervivencia.
+
+**Definición  `r chapnum`.2.** Para dos *v.a.* $X$ e $Y$, sea
+
+$$
+\gamma:=\lim_{t\rightarrow \infty}\frac{S_X(t)}{S_Y(t)}.
+$$
+Se dice que
+
+* $X$ tiene una **cola derecha más pesada** que $Y$ si $\gamma=\infty$;  
+* $X$ e $Y$ son **proporcionalmente equivalentes en la cola derecha** si $\gamma =c\in \mathbf{R}_+$;
+* $X$ tiene una **cola derecha más ligera** que $Y$ si $\gamma=0$. 
+
+**Ejemplo `r chapnum`.1.4. Comparación de las distribuciones Pareto y Weibull.**
+Sea $X\sim Pareto(\alpha, \theta)$ e $Y\sim Weibull(\tau, \theta)$, para $\alpha>0$, $\tau>0$, y $\theta>0$. Demostrar que la distribución Pareto tiene una cola derecha más pesada que la Weibull.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.1.4" 
+href="javascript:toggleEX('toggleExamplePortMgt.1.4','displayTextExamplePortMgt.1.4');"><i><strong>Muestra solución del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.1.4" style="display: none">
+
+**Solución.**
+
+
+\begin{eqnarray*}
+    \lim_{t\rightarrow \infty}\frac{S_X(t)}{S_Y(t)} &=& \lim_{t\rightarrow \infty}\frac{(1+t/\theta)^{-\alpha}}{\exp\{-(t/\theta)^{\tau}\}} \\
+    &=& \lim_{t\rightarrow \infty}\frac{\exp\{t/\theta^{\tau} \}}{(1+t^{1/\tau}/\theta)^{\alpha}} \\
+    &=& \lim_{t\rightarrow \infty}\frac{\sum_{i=0}^{\infty}\left(\frac{t}{\theta^{\tau}}\right)^{i}/i!}{(1+t^{1/\tau}/\theta)^{\alpha}}\\
+    &=& \lim_{t\rightarrow \infty} \sum_{i=0}^{\infty} \left(t^{-i/\alpha}+\frac{t^{(1/\tau-i/\alpha)}}{\theta} \right)^{-\alpha}/\theta^{\tau i}i!\\
+    &=& \infty.
+\end{eqnarray*}
+
+Por tanto, la distribución de Pareto tiene una cola más pesada que la distribución Weibull. Se puede observar que las exponenciales tienden a infinito más rápido que las polinómicas, por tanto, el límite antes mencionado debe ser infinito.
+
+</div>
+
+*** 
+
+
+Para algunas distribuciones para las que las funciones de supervivencia no admiten expresiones explícitas, se puede encontrar la siguiente fórmula alternativa:
+
+\begin{eqnarray*}
+    \lim_{t\to \infty} \frac{S_X(t)}{S_Y(t)} &=& \lim_{t \to \infty} \frac{S_X^{'}(t)}{S_Y^{'}(t)} \\
+    &=& \lim_{t \to \infty} \frac{-f_X(t)}{-f_Y(t)}\\
+ &=& \lim_{t\to \infty} \frac{f_X(t)}{f_Y(t)}.
+\end{eqnarray*}
+
+dado que existen las funciones de densidad.
+
+
+**Ejemplo `r chapnum`.1.5. Comparación de las distribuciones Pareto y gamma.**
+Sea $X\sim Pareto(\alpha, \theta)$ e $Y\sim gamma(\alpha, \theta)$, para $\alpha>0$ y $\theta>0$. Demostrar que la Pareto tiene una cola derecha más pesada que la gamma.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.1.5" 
+href="javascript:toggleEX('toggleExamplePortMgt.1.5','displayTextExamplePortMgt.1.5');"><i><strong>Muestra solución del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.1.5" style="display: none">
+
+**Solución.**
+
+
+\begin{eqnarray*}
+    \lim_{t\to \infty} \frac{f_{X}(t)}{f_{Y}(t)} &=& \lim_{t \to \infty} \frac{\alpha \theta^{\alpha} (t+ \theta)^{-\alpha-1}}{t^{\tau-1} e^{-t/\lambda} \lambda^{-\tau} \Gamma(\tau)^{-1}} \\
+ &\propto&  \lim_{t\to \infty} \frac{e^{t/\lambda}}{(t+\theta)^{\alpha+1} t^{\tau-1}} \\
+    &=& \infty,
+\end{eqnarray*}
+
+Dado que las exponenciales tienden a infinito más rápido que las polinómicas.
+
+</div>
+
+*** 
+
+
+## Medidas de Riesgo {#S:RiskMeasure}
+
+***
+En esta sección, se aprende como:
+
+- Definir la idea de *coherencia* y determinar si una medida de riesgo es o no coherente.
+- Definir el valor en riesgo y calcular este valor para una distribución dada.
+- Definir la cola del valor en riesgo y calcular este valor para una distribución dada.
+
+***
+
+En la sección previa, se estudian dos métodos para clasificar el peso de las colas de la distribución.  Se puede afirmar que el riesgo asociado con una distribución es más peligroso que otros(asintóticamente)si la cola es más pesada.  Sin embargo, saber que un riesgo es más peligroso (asintóticamente) que otros puede no ser suficiente a nivel informativo para una gestión de riesgos sofisticada, y adicionalmente, se puede estar interesado en cuantificar cuanto más lo es. De hecho, la magnitud del riesgo asociada con una distribución dada de pérdidas es un input fundamental para muchas aplicaciones de seguros, tales como la tarificación actuarial, el cálculo de reservas, el diseño de coberturas, la supervisión regulatoria de seguros, y otras.
+
+### Medidas de Riesgo Coherentes
+
+Para comparar la magnitud del riesgo de una forma conveniente, se busca una función que represente la *v.a.* pérdida en un valor numérico indicativo del nivel de riesgo, denominada <a href="#" class="tooltip" style="color:green">*medida de riesgo*<span style="font-size:8pt">una medida que resume el riesgo, o incertidumbre, de una distribución</span></a>.  A nivel matemático, la medida de riesgo simplemente resume la función de distribución de una *v.a.* mediante un solo número. Dos medidas de riesgo sencillas son la media $\mathrm{E}[X]$ y la desviación estándar $\mathrm{SD}(X)=\sqrt{\mathrm{Var}(X)}$. Otros ejemplos clásicos de medidas de riesgo incluyen el *principio* de desviación estándar 
+
+<!-- \label{eqn:SD-principle} -->
+
+\begin{equation}
+H_{\mathrm{SD}}(X):=\mathrm{E}[X]+\alpha \mathrm{SD}(X),\text{ para } \alpha\geq 0,
+(\#eq:SD-principle) 
+\end{equation}
+
+
+y el principio de varianza
+$$
+H_{\mathrm{Var}}(X):=\mathrm{E}[X]+\alpha \mathrm{Var}(X),\text{ para } \alpha\geq 0.
+$$
+Es sencillo comprobar que todas las funciones antes mencionadas son medidas de riesgo en las que se introduce la *v.a.* pérdida y las funciones generan un valor numérico.  Sin embargo, la función $H^{\ast}(X):=\alpha X^{\beta}$ para cualquier valor real $\alpha,\beta\neq 0$, no es una medida de riesgo porque $H^{\ast}$ produce otra *v.a.* en lugar de un único valor numérico.
+
+Como las medidas de riesgo son medidas escalares que tienen como objetivo utilizar un único valor numérico para describir la naturaleza estocástica de la *v.a.* pérdidas, no debería sorprendernos que no haya ninguna medida de riesgo que pueda capturar toda la información de riesgo de las *v.a.* asociadas. Por tanto, al buscar medidas de riesgo útiles, es importante tener en cuenta que las medidas deben ser al menos
+
+* fácilmente interpretables;  
+* convenientemente computables; y  
+* capaces de reflejar la información más crítica sobre el riesgo que sustenta la distribución de pérdidas.  
+
+En la literatura se han desarrollado varias medidas de riesgo. Desafortunadamente, no hay una mejor medida de riesgo que pueda superar a las demás, y la selección de la medida de riesgo adecuada depende principalmente de lo que se esté analizando.  En este sentido, es necesario subrayar que *riesgo* es un concepto subjetivo, y por tanto, incluso delante del mismo problema, existen enfoques alternativos para su evaluación. Sin embargo, en aplicaciones de gestión de riesgos, existe un amplio consenso en el hecho de que las medidas de riesgo utilizadas desde un punto de vista económico deben cumplir cuatro axiomas principales que se describen con detalle a continuación. Las medidas de riesgo que satisfacen estos axiomas se denominan <a href="#" class="tooltip" style="color:green">*medidas de riesgo coherentes*<span style="font-size:8pt">una medida de riesgo que es subaditiva, monótona, tiene homgeneidad positiva, y es invariante a desplazamientos </span></a>.
+
+Consideramos a continuación una medida de riesgo $H(\cdot)$, de forma que $H$ es una **medida de riesgo coherente** si se satisfacen los siguientes axiomas.  
+
+* **Axioma 1.** *Subaditividad:* $H(X+Y)\leq H(X)+H(Y)$.  La implicación económica de este axioma es que existen beneficios de diversificación si se combinan diferentes riesgos.  
+* **Axioma 2.** *Monotonicidad:* si $\Pr[X\leq Y]=1$, entonces $H(X)\leq H(Y)$. Destacar que $X$ e $Y$ son *v.a.* que representan pérdidas, la implicación económica subyacente es que las pérdidas más altas conducen esencialmente a un mayor nivel de riesgo.     
+* **Axioma 3.** *Homogeneidad positiva:* $H(cX)=cH(X)$ para cualquier constante positiva $c$. Una implicación económica posible de este axioma es que la medida de riesgo debe ser independiente de las unidades monetarias en las que se mide el riesgo. Por ejemplo, sea $c$ el tipo de cambio entre los dólares estadounidenses y canadienses, entonces el riesgo de pérdidas aleatorias medidas en dólares estadounidenses (es decir, X) y dólares canadienses (es decir, cX) debe ser diferente solo en términos del tipo de cambio $c$ (es decir, $cH(x)=H(cX)$).  
+* **Axioma 4.** *Invarianza a los desplazamientos:* $H(X+c)=H(X)+c$ para cualquier constante positiva $c$.  Si la constante $c$ se interpreta como un efectivo libre de riesgo, este axioma indica que no se crea riesgo adicional al añadir liquidez a una cartera de seguros, y añadir un capital libre de riesgo de cuantía $c$ puede reducir solo el riesgo en la misma cantidad.  
+
+
+Verificar las propiedades coherentes para algunas medidas de riesgo puede ser bastante sencillo, pero a veces puede complicarse.  Por ejemplo, es sencillo comprobar que la media es una medida de riesgo coherente.
+
+**Ejemplo. La Media es una Medida de Riesgo Coherente.**
+
+Para cualquier par de *v.a.* $X$ e $Y$ con medias finitas y la constante $c>0$,
+
+* validación de la *subaditividad*: $\mathrm{E}[X+Y]=\mathrm{E}[X]+\mathrm{E}[Y]$;
+* validación de la *monotonicidad*: si $\Pr[X\leq Y]=1$, entonces $\mathrm{E}[X]\leq \mathrm{E}[Y]$;
+* validación de *homogeneidad positiva*: $\mathrm{E}[cX]=c\mathrm{E}[X]$;
+* validación de *invarianza a los desplazamientos*: $\mathrm{E}[X+c]=\mathrm{E}[X]+c$
+
+***
+
+Con un poco más de esfuerzo, se puede determinar lo siguiente.
+
+**Ejemplo. La Desviación Estándar no es una Medida de Riesgo Coherente.**
+
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.1" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.1','displayTextExamplePortMgt.2.1');"><i><strong>Mostrar verificación del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.1" style="display: none">
+
+La desviación estándar no es una medida de riesgo coherente. De forma específica, se puede comprobar que la desviación estándar satisface
+
+* validación de la *subaditividad*: 
+
+\begin{eqnarray*} 
+\mathrm{SD}[X+Y]&=&\sqrt{\mathrm{Var}(X)+\mathrm{Var}(Y)+2\mathrm{Cov}(X,Y)}\\
+      &\leq& \sqrt{\mathrm{SD}(X)^2+\mathrm{SD}(Y)^2+2\mathrm{SD}(X)\mathrm{SD}(Y)}\\
+      &=& \mathrm{SD}(X)+\mathrm{SD}(Y);
+\end{eqnarray*}
+
+* validación de la *homogeneidad positiva*: $\mathrm{SD}[cX]=c~\mathrm{SD}[X]$.  
+
+Sin embargo, la desviación estándar no cumple con la propiedad de la invarianza ante desplazamientos dado que para cualquier constante positiva $c$,
+$$
+\mathrm{SD}(X+c)=\mathrm{SD}(X)<\mathrm{SD}(X)+c.
+$$
+Además, la desviación estándar tampoco satisface la propiedad de monotonicidad.  Para demostrarlo, se consideran las dos *v.a.* siguientes:
+<!-- \label{eqn:special_x} -->
+
+\begin{eqnarray}
+X=\left\{
+    \begin{array}{ll}
+      0, & \hbox{con probabilidad $0.25$;} \\
+      4, & \hbox{con probabilidad $0.75$,}
+    \end{array}
+  \right.
+(\#eq:special-x)
+\end{eqnarray}
+
+e $Y$ es una *v.a.* tal que
+<!-- \label{eqn:special_y} -->
+
+\begin{eqnarray}
+\Pr[Y = 4] = 1.
+(\#eq:special-y)
+\end{eqnarray}
+
+Es fácil comprobar que $\Pr[X\leq Y]=1$, pero $\mathrm{SD}(X)=\sqrt{4^2\cdot 0.25\cdot 0.75}=\sqrt{3}>\mathrm{SD}(Y)=0$.
+
+
+</div>
+
+*** 
+
+Hasta ahora se ha comprobado que $\mathrm{E}[\cdot]$ es una medida de riesgo coherente, pero no $\mathrm{SD}(\cdot)$.  Se procede ahora a estudiar la propiedad de coherencia para el principio de desviación estándar \@ref(eq:SD-principle) que es una combinación linear de medidas  de riesgo coherentes y no coherentes.  
+
+***
+
+**Ejemplo. El Principio de Desviación Estándar \@ref(eq:SD-principle) es una Medida de Riesgo Coherente.**
+
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.2" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.2','displayTextExamplePortMgt.2.2');"><i><strong>Mostrar verificación del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.2" style="display: none">
+
+
+Con este fin, para una $\alpha>0$ dada, comprobamos los cuatro axiomas para $H_{\mathrm{SD}}(X+Y)$ uno por uno:
+
+* validación de *subaditividad:*
+
+\begin{eqnarray*}
+  H_{\mathrm{SD}}(X+Y) &=& \mathrm{E}[X+Y]+\alpha \mathrm{SD}(X+Y) \\
+  &\leq& \mathrm{E}[X]+\mathrm{E}[Y]+\alpha [\mathrm{SD}(X) +\mathrm{SD}(Y)]\\
+  &=& H_{\mathrm{SD}}(X)+ H_{\mathrm{SD}}(Y);
+\end{eqnarray*}
+
+* validación de *homogeneidad positiva:*
+$$
+H_{\mathrm{SD}}(cX)=c\mathrm{E}[X]+c\alpha\mathrm{SD}(X)=cH_{\mathrm{SD}}(X);
+$$
+* validación de *invarianza en los desplazamientos:*
+$$
+H_{\mathrm{SD}}(X+c)=\mathrm{E}[X]+c+\alpha\mathrm{SD}(X)=H_{\mathrm{SD}}(X)+c.
+$$
+
+Solo queda por verificar la propiedad de monotonicidad, que puede cumplirse o no dependiendo del valor de $\alpha$.  Para analizarlo, se considera de nuevo \@ref(eq:special-x) y \@ref(eq:special-y) donde $\Pr[X\leq Y]=1$.  Sea $\alpha=0.1\cdot \sqrt{3}$, entonces $H_{\mathrm{SD}}(X)=3+0.3=3.3< H_{\mathrm{SD}}(Y)=4$ y se cumple la condición de monotonicidad.  Por otro lado, sea $\alpha=\sqrt{3}$, entonces $H_{\mathrm{SD}}(X)=3+3=6> H_{\mathrm{SD}}(Y)=4$ y la condición de monotinicidad no se satisface. De forma más precisa, estableciendo
+
+$$
+  H_{\mathrm{SD}}(X) = 3+\alpha\sqrt{3} \leq4= H_{\mathrm{SD}}(Y),
+$$
+
+Se observa que la condición de monotonicidad se satisface solo para  $0\leq\alpha\leq 1/\sqrt{3}$, y de este modo el principio de desviación estándar $H_{\mathrm{SD}}$ es coherente.  Este resultado es muy intuitivo ya que el principio de desviación estándar $H_{\mathrm{SD}}$ es una combinación lineal de dos medidas de riesgo de las cuales una es coherente y la otra no lo es.  Si $\alpha\leq 1/\sqrt{3}$, entonces la medida coherente domina a la no coherente, y de este modo la medida resultante $H_{\mathrm{SD}}$ es coherente y viceversa. Destacar que dicha conclusión no puede generalizarse a cualquier par de *v.a.* $X$ e $Y$.
+
+</div>
+
+*** 
+
+
+La literatura sobre medidas de riesgo ha crecido rápidamente en popularidad e importancia. En las dos secciones siguientes, se introducen dos índices que han ganado mucho interés recientemente entre teóricos, empíricos y reguladores.  Son las medidas denominadas *Valor en Riesgo* (*VaR*)  y *Cola del Valor en Riesgo* (*TVaR*).  La racionalidad económica detrás de estas dos medidas de riesgo es similar a la de los métodos de clasificación de colas introducidos en la sección anterior, con las que se espera captar el riesgo de pérdidas extremas representadas por las colas de la distribución. 
+
+
+### Valor en Riesgo
+
+En la Sección \@ref(S:MS:QuantileEstimator), se define el cuantil de una distribución. Se presenta ahora una caso especial de éste y se ofrece una definición formal del <a href="#" class="tooltip" style="color:green">*valor en riesgo*<span style="font-size:8pt">una medida de riesgo basada en la función cuantílica</span></a>, o *VaR*.  
+
+**Definición  `r chapnum`.3.**
+Se considera la variable aleatoria pérdidas en seguros $X$.  La medida valor en riesgo de $X$ con un nivel de confianza $q\in (0,1)$ se formula como
+
+\begin{eqnarray}
+VaR_q[X]:=\inf\{x:F_X(x)\geq q\}.
+(\#eq:Value-at-Risk)
+\end{eqnarray}
+
+Aquí, $inf$ es el operador ínfimo de modo que la medida *VaR* proporciona el valor más pequeño de $X$ tal que la <a href="#" class="tooltip" style="color:green">*cdf*<span style="font-size:8pt">función de distribución acumulada</span></a> asociada supera o iguala a $q$. 
+
+Así es como debemos interpretar el *VaR* en el contexto de las aplicaciones actuariales. El *VaR* es una medida de la pérdida probable 'máxima' para un cartera/producto de seguros o una inversión con riesgo  produciéndose $q\times 100\%$ veces,  a lo largo de un periodo de tiempo específico (típicamente, un año).  Por ejemplo, sea $X$ la *v.a.* pérdida anual para un producto de seguros, $VaR_{0,95}[X]=100$ millones de dólares significa que hay un $5\%$ de probabilidad de que la pérdida supere 100 millones en un año dado.  Debido a esta interpretación tan relevante, el *VaR* se ha convertido en una medida estándar en la medición de riesgos financieros y aseguradores desde 1990.  Los conglomerados financieros, los reguladores, y los académicos usan a menudo el *VaR* para medir riesgos de capital, garantizar el cumplimiento de las reglas regulatorias, y divulgar las posiciones financieras.
+
+A continuación, se presentan unos cuantos ejemplos sobre el cálculo del  *VaR*.  
+
+<!-- \label{exm:exponential}-->
+**Ejemplo `r chapnum`.2.1. *VaR* para la distribución exponencial.**
+Se considera una *v.a.* pérdidas en seguros $X\sim Exp(\theta)$ para $\theta>0$, entonces la *cdf* de $X$ viene dada por 
+$$
+F_X(x)=1-e^{-x/\theta}, \text{ para } x>0.
+$$
+Obtener una expresión cerrada para el *VaR*.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.1" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.1','displayTextExamplePortMgt.2.1');"><i><strong>Mostrar solución del ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.1" style="display: none">
+
+**Solución.**
+
+Dado que la distribución exponencial es una distribución continua, el valor más pequeño tal que la *cdf* excede o iguala a $q \in (0,1)$ debe ser el valor $x_q$ que satisface
+$$
+q=F_X(x_q)=1-\exp\{-x_q/\theta \}.
+$$
+De este modo
+$$
+VaR_q[X]=F_X^{-1}(q)=-\theta[\log(1-q)].
+$$
+</div>
+
+*** 
+
+El resultado presentado en el Ejemplo `r chapnum`.2.1 puede generalizarse a cualquier *v.a.* continua con una *cdf* estrictamente creciente.  Específicamente, el *VaR* de cualquier *v.a* continua es simplemente la inversa de la correspondiente *cdf*.  Se considera otro ejemplo de una *v.a.* continua desde el infinito negativo hasta el infinito positivo.
+
+
+**Ejemplo `r chapnum`.2.2. *VaR* para la distribución normal.**
+Se considera una *v.a.* pérdida en seguros $X\sim Normal(\mu,\sigma^2)$ con $\sigma>0$.  En este caso, se pueden interpretar los valores negativos de $X$ como beneficio o ingreso.  Obtener una expresión cerrada para el *VaR*.
+
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.2" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.2','displayTextExamplePortMgt.2.2');"><i><strong>Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.2" style="display: none">
+
+**Solución.**
+
+Como la distribución normal es una distribución continua, el *VaR* de $X$ debe satisfacer
+
+\begin{eqnarray*}
+ q &=& F_X(VaR_q[X])\\
+&=&\Pr\left[(X-\mu)/\sigma\leq (VaR_q[X]-\mu)/\sigma\right]\\
+&=&\Phi((VaR_q[X]-\mu)/\sigma).
+\end{eqnarray*}
+
+Por tanto, se tiene
+$$
+VaR_q[X]=\Phi^{-1}(q)\ \sigma+\mu.
+$$
+
+</div>
+
+*** 
+
+En muchas aplicaciones de seguros se tiene que trabajar con transformaciones de *v.a.*.  Por ejemplo, en el Ejemplo `r chapnum`.2.2, la *v.a.*\ pérdida $X\sim Normal(\mu, \sigma^2)$ puede interpretarse como una transformación lineal de una normal estándar *v.a.*\ $Z\sim Normal(0,1)$, denominada $X=Z\sigma+\mu$.  Estableciendo $\mu=0$ y $\sigma=1$, es directo comprobar que $VaR_q[Z]=\Phi^{-1}(q).$  Un resultado relevante obtenido a partir del Ejemplo `r chapnum`.2.2 es que el *VaR* de una transformación lineal de las *v.a.* normales es equivalente a la transformación lineal del *VaR* de las *v.a.* originales.  Este resultado se puede generalizar a cualquier *v.a.* siempre y cuando las transformaciones sean estrictamente crecientes. 
+
+**Ejemplo `r chapnum`.2.3. *VaR* para variables transformadas.**
+Se considera una *v.a.* pérdida de seguros\ $Y\sim lognormal(\mu,\sigma^2)$, para $\mu\in \mathbf{R}$ y $\sigma>0$. Obtener una expresión para el $VaR$ de $Y$ en función de la inversa normal estándar *cdf*.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.3" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.3','displayTextExamplePortMgt.2.3');"><i><strong>Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.3" style="display: none">
+
+**Solución.**
+
+Señalar que $\log Y\sim Normal(\mu,\sigma^2)$, o de forma equivalente sea $X\sim Normal(\mu,\sigma^2)$, entonces $Y\overset{d}{=}e^{X}$ que es una transformación estrictamente creciente.  Aquí, la notación `$\overset{d}{=}$' significa igualdad en la distribución.  El *VaR* de $Y$ viene dado de esta forma por la transformación exponencial del *VaR* de $X$.  Precisamente, para $q\in (0,1)$,
+$$
+VaR_{q}[Y]= e^{VaR_q[X]}=\exp\{\Phi^{-1}(q)\ \sigma+\mu\}.
+$$
+
+</div>
+
+*** 
+
+Hasta ahora se han visto una serie de ejemplos sobre el *VaR* para  *v.a.* continuas. Se presenta ahora un ejemplo sobre el *VaR* de una *v.a.* discreta.
+
+<!-- \label{exm:discrete} -->
+**Ejemplo `r chapnum`.2.4. *VaR* para una variable aleatoria discreta.**
+Se considera una *v.a.* pérdida en seguros con la siguiente distribución de probabilidad:
+$$
+{\small
+\Pr[X=x]=\left\{
+                  \begin{array}{ll}
+                    1, & \hbox{con probabilidad $0,75$} \\
+                    3, & \hbox{con probabilidad $0,20$} \\
+                    4, & \hbox{con probabilidad $0,05$.}
+                  \end{array}
+                \right.
+}
+$$
+Determina el *VaR* para $q = 0,6, 0,9, 0,95, 0,95001$.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.4" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.4','displayTextExamplePortMgt.2.4');"><i><strong> Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.4" style="display: none">
+
+**Solución.**
+
+
+La correspondiente *cdf* de $X$ es
+$$
+F_X(x)=\left\{
+         \begin{array}{ll}
+           0, & \hbox{ $x<1$;} \\
+           0,75, & \hbox{ $1\leq x<3$;} \\
+           0,95, & \hbox{ $3\leq x<4$;} \\
+           1, & \hbox{ $4\leq x$.}
+         \end{array}
+       \right.
+$$
+A partir de la definición del *VaR*, tenemos que
+
+* *$VaR_{0,6}[X]=1$;*
+* *$VaR_{0,9}[X]=3$;*
+* *$VaR_{0,95}[X]=3$;*
+* *$VaR_{0,950001}[X]=4$.*
+
+</div>
+
+*** 
+
+Se concluye esta subsección con una discusión abierta sobre la medida del *VaR*.  Algunas ventajas de utilizar el *VaR* incluyen  
+
+* proporciona una interpretación práctica y sencilla;
+* es relativamente sencillo de calcular para muchas funciones de distribución de forma cerrada;
+* no se requieren supuestos adicionales para el cálculo del *VaR*.
+
+Por otro lado, las limitaciones del *VaR* pueden ser particularmente pronunciadas para algunas prácticas de gestión de riesgos.  Algunas de ellas pueden ser:  
+
+* la selección del nivel de confianza $q\in (0,1)$ es muy subjetiva, mientras el *VaR* puede ser muy sensible a la elección de $q$ (por ejemplo, en el Ejemplo `r chapnum`.2.4, $VaR_{0,95}[X]=3$ y $VaR_{0,950001}[X]=4$);
+* los escenarios/información de pérdidas que están por encima del $(1-p)\times 100\%$ peor suceso, están completamente descuidados;
+* el *VaR* no es una medida de riesgo coherente (específicamente, el *VaR* no satisface el axioma de subaditividad, lo que significa que los beneficios de la diversificación pueden no quedar suficientemente reflejados).
+
+
+### Cola del Valor en Riesgo
+
+Recalcar que el *VaR* representa $(1-p)\times100\%$ la máxima pérdida.  Como se mencionó en la sección previa, uno de los mayores inconvenientes del *VaR* es que no refleja las pérdidas extremas que se producen más allá del $(1-p)\times100\%$ peor escenario.  Con fines ilustrativos, se considera el siguiente ejemplo poco realista pero inspirador.  
+
+**Ejemplo `r chapnum`.2.5.**
+Se consideran dos *v.a.* de pérdidas $X\sim Uniform [0,100]$, e $Y\sim Exp(31,71)$.  Se usa el *VaR* al $95\%$ de nivel de confianza para medir el riesgo de $X$ e $Y$.  Mediante cálculos simples (ver, también, Ejemplo `r chapnum`.2.1),
+$$
+VaR_{0,95}[X]=VaR_{0,95}[Y]=95,
+$$
+y de ese modo estas dos distribuciones de pérdidas tienen el mismo nivel de riesgo según el $VaR_{0,95}$.  Sin embargo, está claro que $Y$ tiene mayor riesgo que $X$ si las pérdidas extremas son más preocupantes ya que  $X$ está limitada por arriba mientras que $Y$ no lo está. La simple cuantificación del riesgo mediante el uso del *VaR* a un nivel de confianza específico podría ser engañosa y no reflejar la verdadera naturaleza del riesgo.
+
+Para remediarlo, fue propuesta la *Cola del Valor en Riesgo* (*TVaR*) para medir las pérdidas extremas que están por encima de un nivel dado del *VaR* como una media.  Se presenta a continuación la definición del *TVaR*. Para simplificar, nos vamos a limitar a las *v.a.* positivas continuas, que se utilizan con más frecuencia en el contexto de la gestión de riesgos de seguros.  Se remite al lector interesado a @hardy2006 para una discusión más completa del *TVaR* para *v.a.* discretas y continuas.
+
+<!-- \label{def:TVaR}-->
+**Definición  `r chapnum`.4.**
+Dado $q\in (0,1)$, la  <a href="#" class="tooltip" style="color:green">*cola del valor en riesgo*<span style="font-size:8pt">el valor esperado de un riesgo dado que el riesgo excede el valor en riesgo</span></a> de una *v.a.* (continua) $X$ se define como
+
+\begin{eqnarray*}
+  TVaR_q[X] &:=& \mathrm{E}[X|X>VaR_q[X]],
+\end{eqnarray*}
+
+dado que el valor esperado existe.
+
+Teniendo en cuenta la Definición  `r chapnum`.4, el cálculo del *TVaR* típicamente consta de dos partes - el *VaR* y la media de pérdidas que están por encima del *VaR*. El *TVaR* se puede calcular por medio de fórmulas. Se considera una *v.a.*\ $X$ positiva continua, por conveniencia notacional, escrita de ahora en adelante $\pi_q:=VaR_q[X]$. Por definición, el *TVaR* puede calcularse vía
+<!-- \label{eqn:cte-pdf} -->
+
+\begin{eqnarray}
+TVaR_{q}[X]=\frac{1}{(1-q)}\int_{\pi_q}^{\infty}xf_X(x)dx.
+(\#eq:cte-pdf)
+\end{eqnarray}
+
+
+**Ejemplo `r chapnum`.2.6. *TVaR* para una distribución normal.**
+Se considera una *v.a.* pérdida de seguros \ $X\sim Normal (\mu,\sigma^2)$ con $\mu\in \mathbf{R}$ y $\sigma>0$. Obtener una expresión para el *TVaR*.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.6" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.6','displayTextExamplePortMgt.2.6');"><i><strong>Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.6" style="display: none">
+
+**Solución.**
+
+Sea $Z$ la *v.a.* normal estándar. Para $q\in(0,1)$, el *TVaR* de $X$ puede calcularse como
+
+\begin{eqnarray*}
+  TVaR_q[X] &=& \mathrm{E}[X|X>VaR_q[X]]\\
+&=&\mathrm{E}[\sigma Z+\mu|\sigma Z+\mu>VaR_q[X]]\\
+&=& \sigma\mathrm{E}[Z|Z>(VaR_q[X]-\mu)/\sigma]+\mu\\
+&\overset{(1)}{=}& \sigma\mathrm{E}[Z|Z>VaR_q[Z]]+\mu,
+\end{eqnarray*}
+
+donde `$\overset{(1)}{=}$' debido a los resultados presentados en el Ejemplo `r chapnum`.2.2.  A continuación, se estudia $TVaR_q[Z]=\mathrm{E}[Z|Z>VaR_q[Z]]$.  Sea $\omega(q)=(\Phi^{-1}(q))^2/2$, se tiene
+
+\begin{eqnarray*}
+  (1-q)\ TVaR_q[Z] &=& \int_{\Phi^{-1}(q)}^{\infty} z \frac{1}{\sqrt{2\pi}} e^{-z^2/2}dz\\
+&=& \int_{\omega(q)}^{\infty}  \frac{1}{\sqrt{2\pi}} e^{-x}dx\\
+&=& \frac{1}{\sqrt{2\pi}} e^{-\omega(q)}\\
+&=& \phi(\Phi^{-1}(q)).
+\end{eqnarray*}
+
+De este modo,
+$$
+TVaR_q[X]=\sigma\frac{\phi(\Phi^{-1}(q))}{1-q}+\mu.
+$$
+</div>
+
+*** 
+
+Se mencionó anteriormente en la subsección previa que el *VaR* de una función estrictamente creciente de una *v.a.* es igual a la función *VaR* de la *v.a.* original.  Como consecuencia de los resultados del Ejemplo `r chapnum`.2.6, se puede demostrar que el *TVaR* de una *v.a.* transformación lineal estrictamente creciente es igual a la función *VaR* de la *v.a.* original.  Esto es debido a la propiedad de linealidad de los valores esperados.  Sin embargo, el resultado anterior no puede extenderse a funciones no lineales.  El siguiente caso de *v.a.* lognormales sirve como ejemplo.  
+
+**Ejemplo `r chapnum`.2.7. *TVaR* de una distribución lognormal.**
+Se considera una *v.a.* de pérdidas de seguros \ $X\sim lognormal (\mu,\sigma^2)$, con $\sigma>0$. Demuestra que
+
+\begin{eqnarray*}
+  TVaR_q[X] &=& \frac{e^{\mu+\sigma^2/2}}{(1-q)} \Phi(\Phi^{-1}(q)-\sigma).
+\end{eqnarray*}
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.7" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.7','displayTextExamplePortMgt.2.7');"><i><strong>Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.7" style="display: none">
+
+**Solución.**
+
+Recordar que la *pdf* de una distribución lognormal se formula como
+$$
+f_X(x)=\frac{1}{\sigma\sqrt{2\pi} x}\exp\{-(\ln x-\mu )^2/2\sigma^2 \}, \text{ para } x>0.
+$$
+Dado que $q\in(0,1)$, entonces el *TVaR* de $X$ se puede calcular como
+
+<!-- \label{eqn:cte-normal} -->
+
+\begin{eqnarray}
+  TVaR_q[X] &=& \frac{1}{(1-q)} \int_{\pi_q}^{\infty} x f_X(x)dx \nonumber\\
+&=&\frac{1}{(1-q)} \int_{\pi_q}^{\infty} \frac{1}{\sigma \sqrt{2\pi}} \exp\left\{ -\frac{(\log x-\mu)^2}{2\sigma^2}
+\right\}dx\nonumber\\
+&\overset{(1)}{=}&\frac{1}{(1-q)} \int_{\omega(q)}^{\infty} \frac{1}{\sqrt{2\pi}} e^{ -\frac{1}{2}w^2+\sigma w+\mu}dw\nonumber\\
+&=&\frac{e^{\mu+\sigma^2/2}}{(1-q)} \int_{\omega(q)}^{\infty} \frac{1}{\sqrt{2\pi}} e^{ -\frac{1}{2}(w-\sigma)^2}dw\nonumber\\
+&=&\frac{e^{\mu+\sigma^2/2}}{(1-q)} \Phi(\omega(q)-\sigma),
+(\#eq:cte-normal)
+\end{eqnarray}
+
+donde $\overset{(1)}{=}$ aplicando un cambio de variable $w=(\log x-\mu)/\sigma$, y $\omega(q)=(\log \pi_q-\mu)/\sigma$.  Recordando la fórmula del *VaR* para la *v.a.* lognormal presentada en el Ejemplo  `r chapnum`.2.2, se puede simplificar la expresión \@ref(eq:cte-normal) en
+
+\begin{eqnarray*}
+  TVaR_q[X] &=& \frac{e^{\mu+\sigma^2/2}}{(1-q)} \Phi(\Phi^{-1}(q)-\sigma).
+\end{eqnarray*}
+
+</div>
+
+*** 
+
+De forma clara, el *TVaR* de una *v.a.* lognormal no es la exponencial del *TVaR* de una *v.a.* normal.
+
+Cuando las funciones de distribución son más fáciles de trabajar, se puede aplicar la integración por partes para reescribir la ecuación \@ref(eq:cte-pdf) como
+
+\begin{eqnarray*}
+TVaR_{q}[X]&=&\left[-x S_X(x)\big |_{\pi_q}^{\infty}+\int_{\pi_q}^{\infty}S_X(x)dx\right]\frac{1}{(1-q)}\\
+&=& \pi_q +\frac{1}{(1-q)}\int_{\pi_q}^{\infty}S_X(x)dx.
+\end{eqnarray*}
+
+
+**Ejemplo  `r chapnum`.2.8. *TVaR* de una distribución exponencial.**
+Se considera una *v.a.* pérdida de seguros \ $X\sim Exp(\theta)$ para $\theta>0$. Obtener una expresión para el *TVaR*.
+
+<h5 style="text-align: center;"><a id="displayTextExamplePortMgt.2.8" 
+href="javascript:toggleEX('toggleExamplePortMgt.2.8','displayTextExamplePortMgt.2.8');"><i><strong>Mostrar solución al ejemplo</strong></i></a> </h5>
+<div id="toggleExamplePortMgt.2.8" style="display: none">
+
+**Solución.**
+
+Se ha visto en la subsección previa que
+$$
+\pi_q=-\theta[\log(1-q)].
+$$
+Consideremos ahora el *TVaR*:
+
+\begin{eqnarray*}
+  TVaR_q[X] &=& \pi_q+\int_{\pi_q}^{\infty} e^{-x/\theta}dx/(1-q)\\
+&=& \pi_q+\theta e^{-\pi_q/\theta}/(1-q)\\
+&=& \pi_q+\theta.
+\end{eqnarray*}
+
+</div>
+
+*** 
+
+Puede ser también provechoso expresar el *TVaR* en términos de valores esperados limitados.  Específicamente tenemos
+
+
+\begin{eqnarray}
+  TVaR_q[X] &=& \int_{\pi_q}^{\infty} (x-\pi_q+\pi_q)f_X(x)dx/(1-q) \nonumber\\
+&=& \pi_q+\frac{1}{(1-q)}\int_{\pi_q}^{\infty} (x-\pi_q)f_X(x)dx\nonumber\\
+&=& \pi_q+e_X(\pi_q)\nonumber\\
+&=& \pi_q +\frac{\left({\mathrm{E}[X]-\mathrm{E}[X\wedge\pi_q]}\right)}{(1-q)},
+(\#eq:cte-expectation)
+\end{eqnarray}
+donde $e_X(d):=\mathrm{E}[X-d|X>d]$ para $d>0$ indica la *función de exceso de pérdida media *. Para muchas de las distribuciones paramétricas comúnmente usadas, las fórmulas para calcular  $\mathrm{E}[X]$ y $\mathrm{E}[X\wedge\pi_q]$ pueden ser encontradas en una tabla de distribuciones.
+
+
+**Ejemplo  `r chapnum`.2.9. *TVaR* de la distribución Pareto.**
+Se considera una *v.a.* de pérdida\ $X\sim Pareto(\theta,\alpha)$ con $\theta>0$ y $\alpha>0$.  La *cdf* de $X$ viene dada por
+$$
+F_X(x)=1-\left(\frac{\theta}{\theta+x} \right)^{\alpha}, \text{ para } x>0 .
+$$ 
+
+Estableciendo $q\in (0,1)$ y siendo $F_X(\pi_q)=q$, fácilmente se obtiene
+<!-- \label{eqn:var-pareto} -->
+
+\begin{eqnarray}
+\pi_q=\theta\left[(1-q)^{-1/\alpha}-1 \right].
+(\#eq:var-pareto)
+\end{eqnarray}
+De acuerdo a la tabla de distribuciones facilitada en la Sociedad de Actuarios, se sabe que
+$$
+\mathrm{E}[X]=\frac{\theta}{\alpha-1},
+$$
+y 
+$$
+\mathrm{E}[X\wedge \pi_q]=\frac{\theta}{\alpha-1}\left[
+1-\left(\frac{\theta}{\theta+\pi_q}\right)^{\alpha-1}
+\right].
+$$
+Recordando la ecuación \@ref(eq:cte-expectation) se tiene 
+
+\begin{eqnarray*}
+  TVaR_q[X] &=& \pi_q+\frac{\theta}{\alpha-1} \frac{(\theta/(\theta+\pi_q))^{\alpha-1}}
+{(\theta/(\theta+\pi_q))^{\alpha}}\\
+&=&\pi_q +\frac{\theta}{\alpha-1}\left( \frac{\pi_q+\theta}{\theta} \right)\\
+&=& \pi_q+\frac{\pi_q+\theta}{\alpha-1},
+\end{eqnarray*}
+
+donde $\pi_q$ viene dada por \@ref(eq:var-pareto).  
+
+A partir de un cambio de variables, se puede también reescribir la ecuación \@ref(eq:cte-pdf) como
+
+
+\begin{eqnarray}
+  TVaR_{q}[X] &=& \frac{1}{(1-q)}\int_{q}^{1} VaR_{\alpha}[X]\ d\alpha.
+  (\#eq:cte-var)
+\end{eqnarray}
+Lo que esta fórmula alternativa \@ref(eq:cte-var) indica es que el *TVaR* es de hecho la media del $VaR_{\alpha}[X]$ con un nivel de confianza variable $\alpha\in [q,1]$.  Por tanto, el *TVaR* resuelve efectivamente la mayoría de las limitaciones del *VaR* señaladas en la subsección previa.  Primero, debido al efecto promedio, el *TVaR* puede ser menos sensible al cambio del nivel de confianza comparado con el *VaR*.  Segundo, todas las pérdidas extremas que están por encima de $(1-q)\times 100\%$ representando los peores sucesos probables son tenidas en cuenta.
+
+En este sentido, es fácil ver que para cualquier $q\in (0,1)$ 
+$$
+TVaR_q[X]\geq VaR_q[X].
+$$
+Tercero y tal vez de forma más relevante, el *TVaR* es una medida de riesgo coherente y de este modo es capaz de capturar de modo más acertado los efectos de la diversificación de la cartera de seguros.  En este caso, no se formula el objetivo de proporcionar la demostración de la característica coherente para el *TVaR*, que se considera técnicamente cambiante.
+
+
+##Reaseguro {#S:Reaseguro}
+
+
+***
+En esta sección, se aprende como:
+
+- Definir tipos básicos de reaseguro incluyendo el proporcional, cuota- parte, no-proporcional, stop-loss, exceso de pérdida, y excedente.
+- Interpretar la optimalidad de la cuota para los reaseguradores y calcular los acuerdos óptimos de repartos de cuotas. 
+- Interpretar la optimalidad del stop-loss para los aseguradores.
+- Interpretar y calcular los límites óptimos de retención de exceso de pérdidas.
+
+***
+
+
+Recordar que <a href="#" class="tooltip" style="color:green">*reaseguro*<span style="font-size:8pt">seguro comprado por un asegurador</span></a> es simplemente el seguro comprado por un asegurador. El seguro comprado por no-aseguradores se conoce algunas veces como  <a href="#" class="tooltip" style="color:green">*seguro primario*<span style="font-size:8pt">seguro comprado por un no-asegurador</span></a> para distinguirlo del reaseguro. El reaseguro difiere de un seguro personal comprado por los individuos, como el seguro de automóviles o el seguro del hogar, en la flexibilidad del contrato. Al igual que los seguros comprados por las grandes empresas, los programas de reaseguro suelen adaptarse mucho al comprador. Por el contrario, los compradores de seguros personales normalmente no pueden negociar los términos del contrato aunque pueden tener una variedad de diferentes opciones (contratos) para elegir.
+
+Los dos tipos más amplios de reaseguro son el proporcional y el no-proporcional. Un contrato de 
+<a href="#" class="tooltip" style="color:green">*reaseguro proporcional *<span style="font-size:8pt">un acuerdo entre un reasegurador y una compañía cedente (también conocida como reasegurada) en el cual el reasegurador asume un porcentaje dado de pérdidas y primas</span></a> es un acuerdo entre un reasegurador y una <a href="#" class="tooltip" style="color:green">*compañía cedente*<span style="font-size:8pt">una compañía que compra reaseguro (también conocida como reasegurada)</span></a> (también conocida como la *reasegurada*) en el cual el reasegurador asume un porcentaje dado de pérdidas y primas. Un contrato de reaseguro se conoce también como un <a href="#" class="tooltip" style="color:green">*acuerdo*<span style="font-size:8pt">un contrato de reaseguro</span></a>. Los acuerdos no-proporcionales son simplemente todo lo demás. Como ejemplos de acuerdos no-proporcionales, este capítulo se centra en <a href="#" class="tooltip" style="color:green">*stop-loss*<span style="font-size:8pt">bajo un acuerdo stop-loss, el asegurador establece un nivel de retención y paga siniestros hasta ese nivel con el reasegurador pagando el exceso</span></a> y <a href="#" class="tooltip" style="color:green">,*exceso de pérdida* <span style="font-size:8pt">bajo un contrato de exceso de pérdida, el asegurador establece un nivel de retención para cada siniestro y paga indemnizaciones inferiores a dicho nivel mientras que el reasegurador paga el exceso contratado</span></a>. Para todos los tipos de acuerdos, se divide el riesgo total $X$ entre la porción que asume el reasegurador, $Y_{reasegurador}$, y el retenido por el asegurador, $Y_{asegurador}$, es decir, $X= Y_{asegurador}+Y_{reasegurador}$.
+
+La estructura matemática de un contrato de reaseguro básico es la misma que la considerada en las modificacions de cobertura para seguros personales analizados en el Capítulo 3. Para un reaseguro proporcional, la transformación $Y_{asegurador} = c X$ es idéntica a un ajuste de coaseguro en un seguro personal. Para un reaseguro stop-loss, la transformación $Y_{reasegurador} = \max(0,X-M)$ es la misma que el pago de un asegurador con una franquicia $M$ e $Y_{asegurador} = \min(X,M) = X \wedge M$ es equivalente a lo que un tomador paga con una franquicia $M$. Para aplicaciones matemáticas prácticas, en los seguros personales el foco está generalmente en los valores esperados como el ingrediente principal usado en tarificación. Por el contrario, en reaseguro el foco está en la distribución completa del riesgo, dado que los valores extremos son la principal preocupación de la estabilidad financera del asegurador y del reasegurador.
+
+Esta sección describe los fundamentos y cuestiones más básicas de los acuerdos de reaseguro: Sección \@ref(S:ProportionalRe) para el reaseguro proporcional y Sección \@ref(S:NonProportionalRe) para el reaseguro no-proporcional. La Sección \@ref(S:AdditionalRe) da una pincelada a los contratos más complejos.
+
+### Reaseguro Proporcional {#S:ProportionalRe}
+
+El ejemplo más sencillo de contratos proporcionales se denomina<a href="#" class="tooltip" style="color:green">*cuota parte*<span style="font-size:8pt">Un acuerdo proporcional donde el reasegurador recibe un porcentaje determinado de la prima por la cartera de negocio reasegurado y paga un porcentaje de las pérdidas, incluyendo los gastos asignados de ajuste de pérdidas. El reasegurador puede también pagar a la compañía cedente una comisión de cesión diseñada para reflejar las diferencias en los gastos incurridos en la suscripción.</span></a>.
+
+-   En un contrato de cuota parte, el reasegurador recibe un porcentaje determinado, digamos el 50%, de la prima por la cartera de negocio reasegurado.
+
+-   A cambio, el reasegurador paga el 50% de las pérdidas, incluidos los gastos asignados de ajuste de pérdidas.
+
+-   El reasegurador también paga a la compañía cedente una comisión de cesión diseñada para reflejar las diferencias en los gastos de suscripción incurridos.
+        
+Las cantidades pagadas por el asegurador de directo y el reasegurador se resumen como
+$$
+Y_{asegurador} = c X \ \ \text{y} \ \ \ Y_{reasegurador} = (1-c) X,
+$$
+donde $c\in (0,1)$ representa la proporción retenida por el asegurador.
+Destacar que $Y_{asegurador}+Y_{reasegurador}=X$.
+
+**Ejemplo `r chapnum`.3.1. Distribución de pérdidas bajo un contrato cuota parte.** Para tener en cuenta una idea sobre el efecto de un contrato cuota parte en la distribución de pérdidas, se presenta a continuación una demostración breve en `R` usando simulación. Tener en cuenta las formas relativas de las distribuciones de las pérdidas totales, la parte retenida (del asegurador), y la parte del reasegurador.
+
+```{r comment="", message=FALSE, echo=FALSE, fig.width=10, fig.height=4, fig.align='center'}
+set.seed(2018)
+theta = 1000
+alpha = 3
+nSim = 10000
+library(actuar)
+X <-  rpareto(nSim, shape = alpha, scale = theta)
+
+par(mfrow=c(1,3))
+plot(density(X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Total Loss", xlab="Losses")
+plot(density(0.75*X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Insurer (75%)", xlab="Losses")
+plot(density(0.25*X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Reinsurer (25%)", xlab="Losses")
+```
+
+
+<h6 style="text-align: center;"><a id="displayQuotaShare" href="javascript:togglecode('toggleQuotaShare','displayQuotaShare');"><i><strong>Mostrar el Código R </strong></i></a> </h6>
+<div id="toggleQuotaShare" style="display: none">
+
+```{r comment="", message=FALSE, eval=FALSE, fig.width=10, fig.height=4, fig.align='center'}
+set.seed(2018)
+theta = 1000
+alpha = 3
+nSim = 10000
+library(actuar)
+X <-  rpareto(nSim, shape = alpha, scale = theta)
+
+par(mfrow=c(1,3))
+plot(density(X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Total Loss", xlab="Losses")
+plot(density(0.75*X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Insurer (75%)", xlab="Losses")
+plot(density(0.25*X), xlim=c(0,3*theta), ylim=c(0,0.008), main="Reinsurer (25%)", xlab="Losses")
+```
+
+
+</div>
+
+#### El Cuota Parte es deseable para los Reaseguradores
+
+El contrato cuota parte es particularmente deseable para el reasegurador. Para entenderlo, supongamos que un asegurador y un reasegurador desean firmar un contrato para repartir las pérdidas totales $X$ tal que  $$Y_{asegurador}=g(X) \ \ \ \text{y} \ \ \ \ Y_{reasegurador}=X-g(X),$$
+para alguna función genérica $g(\cdot)$ (conocida como la función  *retención*). Supongamos además que el asegurador solo se preoucupa por la variabilidad de los siniestros retenidos y es indiferente a la elección de $g$ siempre que $Var(Y_{asegurador})$ sea la misma e igual, digamos, $Q$. Entonces, el siguiente resultado demuestra que el contrato de reaseguro de cuota parte minimiza la incertidumbre del reasegurador medida por $Var(Y_{reasegurador})$.
+
+**Proposición**. Se supone que $Var(Y_{asegurador})=Q.$ Entonces, $Var ((1-c)X) \le Var(g(X))$ para todo $g(.)$, donde $c=Q/Var(X)$.
+
+<h6 style="text-align: center;"><a id="displayProof" href="javascript:togglecode('toggleProof','displayProof');"><i><strong>Mostrar la Justificación de la Proposición</strong></i></a> </h6>
+<div id="toggleProof" style="display: none">
+
+**Demostración de la Proposición**. Donde $Y_{reasegurador} = X - Y_{asegurador}$ y la ley de la variación total
+
+$$
+\begin{array}{ll}
+Var (Y_{reasegurador}) &= Var (X-Y_{asegurador}) \\
+&= Var (X) + Var (Y_{asegurador})  - 2 Cov (X,Y_{asegurador}) \\
+&=Var (X) + Q - 2 Corr (X,Y_{asegurador}) \times \sqrt{Q} \sqrt{Var (X)}
+\end{array}
+$$
+En esta expresión, vemos que $Q$ y $Var(X)$ no cambian con la elección de $g$. De este modo, se puede minimizar $Var (Y_{reasegurador})$ maximizando la correlación $Corr (X,Y_{asegurador})$. Si se usa un contrato de reaseguro cuota parte, entonces $Corr (X,Y_{asegurador})=Corr (X,(1-c)X)=1$, la máxima correlación posible. Esto muestra la proposición.
+<p style="text-align:right;">$\Box$`</p>
+</div>
+
+***
+
+La propuesta es intuitivamente atractiva – con un contrato de cuota parte, el reasegurador comparte la responsabilidad para siniestros muy grandes en la cola de la distribución. Esto contrasta con los acuerdos no proporcionales donde los reaseguradores se responsabilizan de las grandes reclamaciones.
+
+#### Optimizando los Contratos Cuota Parte para Aseguradores
+
+Ahora se asumen $n$ riesgos en la cartera, $X_1, \ldots, X_n,$ tal que la suma de la cartera es $X= X_1 + \cdots + X_n$. Por simplicidad, nos centramos en el caso de riesgos independientes. Se considera una variación del contrato básico de cuota parte donde la cantidad retenida por el asegurador puede variar con cada riesgo, digamos $c_i$. De este modo, la parte que el asegurador asume del riesgo de la cartera es  $Y_{asegurador} = \sum_{i=1}^n c_i X_i$. ¿Cuál es la mejor elección de las partes $c_i$?
+
+Para formalizar esta pregunta, tratamos de encontrar aquellos valores de $c_i$ que minimizan $Var  (Y_{asegurador})$ teniendo en cuenta la restricción de que $E (Y_{asegurador}) = K.$ El requisito de que $E (Y_{asegurador}) = K$ sugiere que los aseguradores prefieren retener un ingreso como mínimo de la cantidad de la constante $K$. Sujeto a esta restricción sobre el ingreso, el asegurador prefiere minimizar la incertidumbre de los riesgos retenidos medida por la varianza.
+
+<h6 style="text-align: center;"><a id="displayDerivationProof" href="javascript:togglecode('toggleDerivationProof','displayDerivationProof');"><i><strong>Mostrar las Proporciones de Retención Óptimas </strong></i></a> </h6>
+<div id="toggleDerivationProof" style="display: none">
+
+**Las Proporciones de Retención Óptimas**
+
+La minimización de $Var(Y_{asegurador})$ sujeta a $E(Y_{asegurador}) = K$ es un problema de optimización restringida – se puede usar el método de los multiplicadores de Lagrange, una técnica de cálculo, para resolverlo. Para ello, se define el Lagrangiano
+
+$$
+\begin{array}{ll}
+L &= Var (Y_{asegurador}) - \lambda (E (Y_{asegurador}) - K) \\
+&= \sum_{i=1}^n c_i^2 ~Var(X_i) - \lambda (\sum_{i=1}^n c_i ~E(X_i) - K) 
+\end{array}
+$$
+Calculando la derivada parcial respecto a $\lambda$ y fijándola igual a cero simplemente significa que se fuerza la restricción, $E(Y_{asegurador}) = K$, y se tienen que elegir las proporciones $c_i$ para satisfacer esta restricción. Además, obteniendo la derivada parcial respecto a cada proporción $c_i$ se obtiene
+$$
+\frac{\partial}{\partial c_i} L = 2 c_i ~Var(X_i) - \lambda ~E(X_i) = 0 
+$$
+
+Tal que
+
+$$
+c_i  =  \frac{\lambda}{2} \frac{E(X_i)}{Var(X_i)} .
+$$
+Con la restricción, se puede determinar $\lambda$ como la solución de 
+
+$$
+\begin{array}{ll}
+K &= \sum_{i=1}^3 c_i \mathrm{E}(X_i) \\
+&= \frac{\lambda}{2} \sum_{i=1}^3 \frac{\mathrm{E}(X_i)^2}{Var(X_i)} 
+\end{array}
+$$
+Y usar este valor de $\lambda$ para determinar las proporciones.
+
+</div>
+
+***
+
+Desde el punto de vista matemático, se observa que la constante para el riesgo $i$th, $c_i$ es proporcional a $\frac{E(X_i)}{Var (X_i)}$. Esto es intuitivamente interesante. Si el resto permanece igual, un mayor ingreso medido por $E (X_i)$ significa un valor más alto de $c_i$. De la misma forma, un mayor grado de incertidumbre medido por $Var(X_i)$significa un menor valor de $c_i$. El factor de escala proporcional se determina por el requisito de ingreso $E(Y_{asegurador}) = K$. El siguiente ejemplo ayuda a entender esta relación.
+
+**Ejemplo `r chapnum`.3.2. Tres riesgos Pareto.** Se consideran tres riesgos que siguen una distribución de Pareto. Generar un gráfico, y el código necesario, que proporcionan valores de $c_1$, $c_2$, y $c_3$ para un ingreso determinado $K$. Observar si esos valores aumentan linealmente con $K$.
+
+<h6 style="text-align: center;"><a id="displayParetoRisksProp" href="javascript:togglecode('toggleParetoRisksProp','displayParetoRisksProp');"><i><strong>Mostrar un Ejemplo con Tres Riesgos Pareto</strong></i></a> </h6>
+<div id="toggleParetoRisksProp" style="display: none">
+
+
+```{r comment="", message=FALSE,  fig.width=8, fig.height=4, fig.align='center'}
+
+theta1 = 1000; theta2 = 2000; theta3 = 3000;
+alpha1 = 3; alpha2 = 3; alpha3 = 4;
+library(actuar)
+propnfct <- function(alpha,theta){
+  mu    <- mpareto(shape=alpha, scale=theta, order=1)
+  var   <- mpareto(shape=alpha, scale=theta, order=2) - mu^2
+  mu/var
+}
+temp <- propnfct(alpha1, theta1)*mpareto(shape=alpha1, scale=theta1, order=1)+
+        propnfct(alpha2, theta2)*mpareto(shape=alpha2, scale=theta2, order=1)+
+        propnfct(alpha3, theta3)*mpareto(shape=alpha3, scale=theta3, order=1)  
+KVec <- seq(100, 2500, length.out=20)
+Lambdavec <- 2*KVec/temp
+c1 <- propnfct(alpha1, theta1)
+c2 <- propnfct(alpha2, theta2)
+c3 <- propnfct(alpha3, theta3)
+c1Vec <- c2Vec <- c3Vec <- 0*KVec 
+for (j in 1:20) {
+  c1Vec[j] <- (Lambdavec[j]/2) * propnfct(alpha1, theta1)
+  c2Vec[j] <- (Lambdavec[j]/2) * propnfct(alpha2, theta2)
+  c3Vec[j] <- (Lambdavec[j]/2) * propnfct(alpha3, theta3)
+  }
+plot(KVec, c1Vec, type="l", ylab="proportion", xlab="required revenue (K)", ylim=c(0,1))
+lines(KVec, c2Vec)
+lines(KVec, c3Vec)
+text(1200,0.80, expression(c[1]))
+text(2000,0.75, expression(c[2]))
+text(1500,0.30, expression(c[3]))
+
+```
+
+</div>
+
+### Reaseguro No-Proporcional {#S:NonProportionalRe}
+
+####La Optimalidad del Seguro Stop-Loss 
+
+Bajo un contrato **stop-loss**, el asegurador establece un nivel de retención $M (>0)$ y paga en su totalidad los siniestros para los que $X  \le M$. Además, para los siniestros con $X > M$, el asegurador de directo paga $M$ y el reasegurador para la cantidad restante $X-M$. De este modo, el asegurador retiene una cantidad $M$ del riesgo. Resumiendo, las cantidades pagadas por el asegurador de directo y el reasegurador son
+    
+$$
+Y_{asegurador} =
+\begin{cases}
+X & \text{for } X \le M\\
+M & \text{for } X >M \\
+\end{cases} \ \ \ \ = \min(X,M) = X \wedge M
+$$
+
+y
+
+$$
+Y_{reasegurador} =
+\begin{cases}
+0 & \text{for } X \le M\\
+X- M &  \text{for } X >M \\
+\end{cases} \ \ \ \  = \max(0,X-M) .
+$$
+
+Como antes, notar que $Y_{asegurador}+Y_{reasegurador}=X$.
+
+El tipo de contrato stop-loss es particularmente deseable para el asegurador. Similar a lo visto anteriormente, se supone que un asegurador y un reasegurador desean establecer un contrato tal que  $Y_{asegurador}=g(X)$ e $Y_{reasegurador}=X-g(X)$ para alguna función de retención genérica $g(\cdot)$. Se supone además que el asegurador solo se encarga de la variabilidad de los siniestros retenidos y es indiferente respecto a la elección de $g$ siempre que la $Var(Y_{asegurador})$ pueda ser minimizada. De nuevo, se impone la restricción de que $E(Y_{asegurador}) = K$; el asegurador tiene que retener un ingreso $K$. Sujeto a esta restricción de ingreso, el asegurador desea minimizar la incertidumbre de los riesgos retenidos (medida por la varianza). Entonces, se obtiene el siguiente resultado que indica que el acuerdo de reaseguro stop-loss minimiza la incertidumbre del reasegurador medida por  $Var(Y_{reasegurador})$.
+
+
+**Proposición**. Se supone que $E(Y_{asegurador})=K.$ Entonces, $Var (X \wedge M) \le Var(g(X))$ para todo $g(.)$, donde $M$ es tal que $E(X \wedge M)=K$.
+
+<h6 style="text-align: center;"><a id="displayProofStopLoss" href="javascript:togglecode('toggleProofStopLoss','displayProofStopLoss');"><i><strong>Mostrar la Justificación de la Proposición</strong></i></a> </h6>
+<div id="toggleProofStopLoss" style="display: none">
+
+**Demostración de la Proposición**. Añadir y restar una constante $M$ y generar el cuadrado 
+$$
+\begin{array}{ll}
+Var(g(X)) &= E (g(X) - K)^2 = E (g(X) -M +M- K)^2 \\
+&= E (g(X) -M)^2 +  (M- K)^2 +2 E (g(X) -M)(M- K) \\
+&= E (g(X) -M)^2 -  (M- K)^2 ,
+\end{array}
+$$
+Porque $E(g(X))= K.$
+
+Ahora, para cualquier función de retención, se tiene $g(X) \le X$, es decir, los siniestros retenidos por el asegurador son menores o iguales que el total de los siniestros. Usando la notación $g_{SL}(X) = X \wedge M$ para los seguros stop-loss, se tiene
+
+$$
+\begin{array}{ll}
+M- g_{SL}(X) &= M-(X \wedge M) \\
+&= (M-X) \wedge 0 \\
+&\le (M-g(X)) \wedge 0 .
+\end{array}
+$$
+Elevando al cuadrado cada parte se tiene  
+$$(M- g_{SL}(X))^2 \le (M-g(X))^2 \wedge 0 \le (M-g(X))^2.$$
+
+Volviendo a la expresión de la varianza, 
+$$
+\begin{array}{ll}
+Var(g_{SL}(X)) &= E (g_{SL}(X) -M)^2 -  (M- K)^2 \\
+&\le E (g(X) -M)^2 -  (M- K)^2 = Var(g(X)) ,
+\end{array}
+$$
+para cualquier función de retención $g$. Esto demuestra la proposición.
+<p style="text-align:right;">$\Box$`</p>
+
+</div>
+
+La proposición es intuitivamente interesante – con el seguro stop-loss, el reasegurador es responsable de los siniestros muy grandes en la cola de la distribución, no el asegurador. 
+
+#### Exceso de Pérdida
+Una forma cerrada de reaseguro no-proporcional es la cobertura <a href="#" class="tooltip" style="color:green">*exceso de pérdida* <span style="font-size:8pt">Bajo un acuerdo de exceso de pérdida, el asegurador establece un nivel de retención para cada siniestro y paga indemnizaciones inferiores a dicho nivel con el reasegurador pagando el exceso</span></a>. Bajo este contrato, se asume que el riesgo total $X$ puede entenderse como una composición de $n$ riesgos separados $X_1, \ldots, X_n$ y que cada uno de esos riesgos están sujetos a un límite superior, digamos, $M_i$. De este modo el asegurador retiene
+
+$$
+Y_{i,asegurador} = X_i \wedge M_i \ \ \ \ Y_{asegurador} = \sum_{i=1}^n Y_{i,asegurador}
+$$
+y el reasegurador es responsable del exceso, $Y_{reasegurador}=X - Y_{asegurador}$. Los límites de retención pueden variar según el riesgo o pueden ser los mismos para todos los riesgos, $M_i =M$, para todo $i$.
+
+####Elección Óptima de los Límites de Retención para Exceso de Pérdidas
+
+¿Cuál es la mejor elección de los límites de retención del exceso de pérdidas $M_i$? Para formalizar esta pregunta, se propone encontrar aquellos valores de $M_i$ que minimizan $Var(Y_{asegurador})$ sujetos a la restricción de que $E(Y_{asegurador}) = K.$ Sujeto a esta restricción de ingresos, el asegurador desea minimizar la incertidumbre de los riesgos retenidos (medidos por la varianza).
+
+<h6 style="text-align: center;"><a id="displayDerivationProofExcess" href="javascript:togglecode('toggleDerivationProofExcess','displayDerivationProofExcess');"><i><strong>Mostrar las Proporciones de Retención Óptimas</strong></i></a> </h6>
+<div id="toggleDerivationProofExcess" style="display: none">
+
+**Los Límites de Retención Óptimos**
+
+Minimizar $Var(Y_{asegurador})$ sujeto a $E(Y_{asegurador}) = K$ es un problema de optimización restringida – se puede usar el método de los multiplicadores de Lagrange, una técnica de cálculo, para resolverlo. Como antes, se define el Lagrangiano 
+$$
+\begin{array}{ll}
+L &= Var (Y_{asegurador}) - \lambda (E(Y_{asegurador}) - K) \\
+&= \sum_{i=1}^n ~Var (X_i \wedge M_i) - \lambda (\sum_{i=1}^n ~E(X_i \wedge M_i)- K).
+\end{array}
+$$
+
+En primer lugar se presentan las relaciones
+
+$$
+E(X \wedge M) = \int_0^M ~(1- F(x))dx
+$$
+y
+
+$$
+E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
+$$
+
+Calculando la derivada parcial respecto a $\lambda$ y fijándola igual a cero simplemente significa que se fuerza la restricción, $E(Y_{asegurador}) = K$, y se han de elegir los límites $M_i$ para satisfacer dicha restricción. Además, calculando la derivada parcial respecto a cada límite $M_i$ se obtiene
+
+$$
+\begin{array}{ll}
+\frac{\partial}{\partial M_i} L 
+&= \frac{\partial}{\partial M_i}  ~Var(X_i \wedge M_i)  - \lambda \frac{\partial}{\partial M_i} ~E(X_i \wedge M_i) \\
+&= \frac{\partial}{\partial M_i} \left(E(X_i \wedge M_i)^2 -(E(X_i \wedge M_i))^2\right) - \lambda (1-F_i(M_i)) \\
+&= 2 M_i (1-F_i(M_i)) - 2 E(X_i \wedge M_i) (1-F_i(M_i))-
+\lambda (1-F_i(M_i)).
+\end{array}
+$$
+
+Estableciendo $\frac{\partial}{\partial M_i} L =0$ y resolviendo para $\lambda$, se obtiene
+
+$$
+\lambda = 2 (M_i - E(X_i \wedge M_i)) .
+$$
+</div>
+
+Desde el punto de vista matemático se obtiene que el límite de retención menos los siniestros esperados por el asegurador, $M_i - E(X_i \wedge M_i)$, es el mismo para *todos* los riesgos. Esto es intuitivamente interesante.
+
+
+**Ejemplo `r chapnum`.3.3. Exceso de pérdidas para tres riesgos de Pareto .** Se consideran tres riesgos que siguen una distribución de Pareto, cada uno definido por un set diferente de parámetros (de forma que son independientes pero no-idénticos). Demostrar numéricamente que los límites óptimos de retención $M_1$, $M_2$, y $M_3$ calulados como los límites de retención menos los siniestros esperados por el asegurador, $M_i - E(X_i \wedge M_i)$, son los mismos para todos los riesgos, como se demuestra teóricamente. Además, comparar gráficamente la distribución de todos los riesgos con la de los retenidos por el asegurador y el reasegurador.
+
+<h6 style="text-align: center;"><a id="displayParetoRisksExcess" href="javascript:togglecode('toggleParetoRisksExcess','displayParetoRisksExcess');"><i><strong>Mostrar un Ejemplo con Tres Riesgos Pareto</strong></i></a> </h6>
+<div id="toggleParetoRisksExcess" style="display: none">
+
+
+Primero se optimiza el Lagrangiano usando el paquete `R` `alabama` para *Algoritmo de Minimización de la Barrera Adaptativa del Lagrangiano Aumentado*. 
+
+
+```{r comment="", message=FALSE, warning=FALSE, fig.width=8, fig.height=4, fig.align='center'}
+
+theta1 = 1000;theta2 = 2000;theta3 = 3000;
+alpha1 = 3;   alpha2 = 3;   alpha3 = 4;
+Pmin <- 2000
+library(actuar)
+VarFct <- function(M){
+  M1=M[1];M2=M[2];M3=M[3]
+  mu1    <- levpareto(limit=M1,shape=alpha1, scale=theta1, order=1)
+  var1   <- levpareto(limit=M1,shape=alpha1, scale=theta1, order=2)-mu1^2
+  mu2    <- levpareto(limit=M2,shape=alpha2, scale=theta2, order=1)
+  var2   <- levpareto(limit=M2,shape=alpha2, scale=theta2, order=2)-mu2^2
+  mu3    <- levpareto(limit=M3,shape=alpha3, scale=theta3, order=1)
+  var3   <- levpareto(limit=M3,shape=alpha3, scale=theta3, order=2)-mu3^2
+  varFct <- var1 +var2+var3
+  meanFct <- mu1+mu2+mu3
+  c(meanFct,varFct)
+  }
+f <- function(M){VarFct(M)[2]}
+h <- function(M){VarFct(M)[1] - Pmin}
+library(alabama)
+par0=rep(1000,3)
+op <- auglag(par=par0,fn=f,hin=h,control.outer=list(trace=FALSE))
+```
+
+
+Los límites de retención óptimos $M_1$, $M_2$, y $M_3$ calculados como los límites de retención menos los siniestros esperados del asegurador, $M_i - E(X_i \wedge M_i)$, son los mismos para todos los riesgos, como se ha derivado teóricamente. 
+
+```{r comment="", message=FALSE, warning=FALSE, fig.width=8, fig.height=4, fig.align='center'}
+
+M1star = op$par[1];M2star = op$par[2];M3star = op$par[3]
+M1star -levpareto(M1star,shape=alpha1, scale=theta1,order=1)
+M2star -levpareto(M2star,shape=alpha2, scale=theta2,order=1)
+M3star -levpareto(M3star,shape=alpha3, scale=theta3,order=1)
+```
+
+Gráficamente se compara la distribución de los riesgos totales con los retenidos por el asegurador y el reasegurador.
+
+```{r comment="", message=FALSE, warning=FALSE, fig.width=8, fig.height=4, fig.align='center'}
+set.seed(2018)
+nSim = 10000
+library(actuar)
+Y1 <- rpareto(nSim, shape = alpha1, scale = theta1)
+Y2 <- rpareto(nSim, shape = alpha2, scale = theta2)
+Y3 <- rpareto(nSim, shape = alpha3, scale = theta3)
+YTotal <- Y1 + Y2 + Y3
+Yinsur <-  pmin(Y1,M1star)+pmin(Y2,M2star)+pmin(Y3,M3star)
+Yreinsur <- YTotal - Yinsur
+
+par(mfrow=c(1,3))
+plot(density(YTotal),   xlim=c(0,10000), main="Total Loss", xlab="Losses")
+plot(density(Yinsur),   xlim=c(0,10000), main="Insurer",    xlab="Losses")
+plot(density(Yreinsur), xlim=c(0,10000), main="Reinsurer",  xlab="Losses")
+```
+
+</div>
+
+***
+
+### Acuerdos de Reaseguro Adicionales  {#S:AdditionalRe}
+
+#### Acuerdo Surplus Share Proportional Treaty
+
+Otro acuerdo proporcional es el denominado <a href="#" class="tooltip" style="color:green">*surplus share*<span style="font-size:8pt">Un acuerdo de reaseguro proporcional que es frecuente en seguros de daños comerciales. Un acuerdo surplus share permite al reasegurado limitar su exposición en un determinado riesgo a una cantidad dada (el pleno de retención). El reasegurador asume una parte del riesgo en proporción a la cantidad que el valor asegurado excede el pleno de retención, hasta un límite dado (expresado como un múltiplo del pleno de retención, o número de plenos).</span></a>; este tipo de contratos es frecuente en seguros de daños comerciales.
+
+-   Un acuerdo surplus share permite al reasegurado limitar su exposición a un determinado riesgo a una cantidad dada (el *pleno de retención*).
+-   El reasegurador asume una parte del riesgo en proporción a la cantidad que el valor asegurado excede el pleno de retención, hasta un límite dado (expresado como un múltiplo del pleno de retención, o número de plenos).
+
+Por ejemplo, sea el pleno de retención \$100,000 y el límite 4 veces el pleno (\$400,000). Entonces, si $X$ es la pérdida, la parte del reasegurador es $\min(400000, (X-100000)_+)$.
+
+
+#### Layers de cobertura
+
+Se pueden extender los acuerdos de reaseguro no-proporcionales stop-loss introduiendo partes adicionales al contrato. Por ejemplo, en lugar de simplemente un asegurador y un reasegurador o un asegurador y un tomador, pensar en una situación con las tres partes, tomador, asegurador, y reasegurador, los cuales se ponen de acuerdo en como repartir el riesgo. De forma más general, se consideran $k$ partes. Si $k=3$, podria tratarse de un asegurador y dos reaseguradores diferentes.
+
+
+**Ejemplo `r chapnum`.3.4. Layers de cobertura para tres partes.**
+
+-   Se supone que hay $k=3$ partes. La primera parte es responsable de los siniestros hasta 100, la segunda es responsable de los siniestros entre 100 y 3000, y la tercera es responsable de los siniestros por encima de 3000.
+
+-   Si hay cuatro siniestros de cuantías 50, 600, 1800 y 4000, entonces estarían repartidos entre las partes de la forma:
+
+
+
+  Layer       Siniestro 1  Siniestro 2  Siniestro 3  Siniestro 4  Total
+  ----------  -----------  -----------  -----------  ----------- -------
+  (0, 100\]          50        100          100          100       350
+  (100, 3000\]        0        500         1700         2900      5100
+  (3000, $\infty$)    0          0            0         1000      1000
+  Total              50        600         1800         4000      6450
+
+
+***
+
+Para considerar la situación general con $k$ grupos, se divide la línea de los reales positivos en $k$ intervalos usando los puntos de corte
+$$0 = M_0 < M_1 < \cdots < M_{k-1} < M_k = \infty.$$
+
+Observar que el intervalo $j$th es $(M_{j-1}, M_j]$. Ahora sea $Y_j$ la cuantía de riesgo compartida por la parte $j$th. Para ilustrarlo, si una pérdida $x$ es tal que $M_{j-1} <x \le M_j$, entonces
+$$\left(\begin{array}{c}
+    Y_1\\ Y_2 \\ \vdots \\ Y_j \\Y_{j+1} \\ \vdots \\Y_k
+    \end{array}\right)
+    =\left(\begin{array}{c}
+    M_1-M_0 \\ M_2-M_1  \\ \vdots \\ x-M_{j-1}  \\ 0 \\ \vdots \\0
+    \end{array}\right)$$
+
+De forma más clara, podemos escribir
+    $$Y_j = \min(X,M_j) - \min(X,M_{j-1}) .$$
+
+Con la expresión $Y_j = \min(X,M_j) - \min(X,M_{j-1})$, se observa que la parte $j$th es responsable de los siniestros en el intervalo  $(M_{j-1}, M_j].$ Con esto, es fàcil comprobar que $X = Y_1 + Y_2 + \cdots + Y_k.$ Como se destaca en el siguiente ejemplo, también se puede remarcar que las partes no necesitan ser diferentes.
+
+
+**Ejemplo `r chapnum`.3.5.**
+-   Suponer que un tomador es responsable de los primeros 500 y todos los siniestros en exceso de 100.000. El asegurador coge siniestros entre 100 y 100.000.
+-   Entonces, se deberían usar $M_1 = 100$, $M_2 =100000$.
+-   El tomador es responsable de $Y_1 =\min(X,100)$ y
+        $Y_3 = X - \min(X,100000) = \max(0, X-100000)$.
+
+
+Para saber más, consultar en [Wisconsin Property Fund site](https://sites.google.com/a/wisc.edu/local-government-property-insurance-fund/home/reinsurance) un ejemplo de layers de reaseguro.
+    
+
+####Ejemplo de Gestión de Cartera
+
+Pueden encontrarse muchas otras variaciones de los contratos originales. Para tener más ilustraciones, se considera lo siguiente.
+
+
+```{r warning=FALSE, message=FALSE, comment="", echo=FALSE}
+# Para la distribución gamma, usar
+alpha1 <- 2;      theta1 <- 100
+alpha2 <- 2;      theta2 <- 200
+# Para la distribución Pareto, usar
+alpha3 <- 2;      theta3 <- 1000
+alpha4 <- 3;      theta4 <- 2000
+#Franquicias
+M1 <- 100
+M2 <- 200
+```
+
+**Ejemplo. `r chapnum`.3.6. Gestión de carteras.** Tú eres el jefe de riesgos de una empresa de telecomunicaciones. Tu empresa tiene varios riesgos de daños y responsabilidad. Se considera:
+
+- $X_1$ - edificios, modelizados por medio de una distribución gamma de media `r alpha1*theta1` y parámetro de escala `r theta1`.
+- $X_2$ - vehículos a motor, modelizados usando una distribución gamma con media `r alpha2*theta2` y parámetro de escala `r theta2`.
+- $X_3$ - responsabilidad de directores y ejecutivos, modelizada usando una distribución de Pareto con media `r round(theta3/(alpha3-1),digits=8)` y parámetro de escala `r theta3`.
+- $X_4$ - ciberriesgos, modelizados usando una distribución de Pareto con media `r theta4/(alpha4-1)` y parámetro de escala `r theta4`.
+
+Se describe el riesgo total como $$X = X_1 + X_2 + X_3 + X_4 .$$
+
+Por simplicidad, se asume que esos riesgos son independientes. 
+
+Para controlar el riesgo, se contrata algún tipo de cobertura aseguradora. Se puede preferir controlar internamente pequeñas cantidades relacionades con edificios y vehículos a motor, hasta $M_1$ y $M_2$, respectivamente. Se recurre al seguro para cubrir todos los demás riesgos. Específicamente, la parte del asegurador es
+$$ Y_{asegurador} = (X_1 - M_1)_+ + (X_2 - M_2)_+ + X_3 + X_4 ,$$
+De forma que tu riesgo retenido es $Y_{retenido}= X- Y_{asegurador} =$ $\min(X_1,M_1) +  \min(X_2,M_2)$. Usando franquicias $M_1=$ `r M1` y $M_2=$ `r M2`:
+
+a. Determinar de la cuantía esperada por siniestro (i)la retenida, (ii) la aceptada por el asegurador, y (iii) la cuantía total.
+b. Determinar los percentiles 80, 90, 95, y 99 para (i) la parte retenida, (ii) la parte aceptada por el asegurador, y (iii) la cuantía total. 
+c. Comparar las distribuciones graficando las densidades para (i) la parte retenida, (ii) la aceptada por el asegurador, y (iii) la cuantía total.
+
+
+<h6 style="text-align: center;"><a id="displayPortMgtExample" href="javascript:togglecode('togglePortMgtExample','displayPortMgtExample');"><i><strong>Mostrar Solución al Ejemplo con Código R </strong></i></a> </h6>
+<div id="togglePortMgtExample" style="display: none">
+
+En preparación, se adjunta el código necesario para establecer los parámetros.
+
+```{r warning=FALSE, message=FALSE, comment="", eval=FALSE}
+# Para la distribución gamma, usar
+alpha1 <- 2;      theta1 <- 100
+alpha2 <- 2;      theta2 <- 200
+# Para la distribución de Pareto, usar
+alpha3 <- 2;      theta3 <- 1000
+alpha4 <- 3;      theta4 <- 2000
+# Límites
+M1     <- 100
+M2     <- 200
+```
+
+Con estos parámetros, se pueden simular acaecimientos de los riesgos de la cartera.
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment=""}
+# Simular los riesgos
+nSim <- 10000  #número de simulaciones
+set.seed(2017) #establecer la seed para reproducir el trabajo 
+X1 <- rgamma(nSim,alpha1,scale = theta1)  
+X2 <- rgamma(nSim,alpha2,scale = theta2)  
+# Para la Distribución de Pareto, usar
+library(actuar)
+X3 <- rpareto(nSim,scale=theta3,shape=alpha3)
+X4 <- rpareto(nSim,scale=theta4,shape=alpha4)
+# Riesgos de Cartera
+X         <- X1 + X2 + X3 + X4
+Yretenido <- pmin(X1,M1) + pmin(X2,M2)
+Yasegurador  <- X - Yretenido
+```
+
+**(a)** Aquí está el código para las cantidades esperadas por siniestro.
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment=""}
+# Cantidades esperadas por siniestro
+ExpVec <- t(as.matrix(c(mean(Yretenido),mean(Yasegurador),mean(X))))
+colnames(ExpVec) <- c("Retenido", "Asegurador","Total")
+round(ExpVec,digits=2)
+```
+
+**(b)** Aquí está el código para los cuantiles.
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment=""}
+# Cuantiles
+quantMat <- rbind(
+  quantile(Yretenido, probs=c(0.80, 0.90, 0.95, 0.99)),
+  quantile(Yasegurador,  probs=c(0.80, 0.90, 0.95, 0.99)),
+  quantile(X       ,  probs=c(0.80, 0.90, 0.95, 0.99)))
+rownames(quantMat) <- c("Retenido", "Asegurador","Total")
+round(quantMat,digits=2)
+```
+
+**(c)** Aquí está el código para los gráficos de densidades del riesgo retenido, del asegurador y el total de riesgo de cartera.
+
+```{r warning=FALSE, message=FALSE, fig.width=8, fig.height=4, fig.align='center', comment=""}
+
+par(mfrow=c(1,3))
+plot(density(Yretenido), xlim=c(0,500), main="Riesgo de Cartera Retenido", xlab="Pérdida (Tener en cuenta la escala horizontal diferente)", ylab = "Densidad (Tener en cuenta la diferente escala vertical)")
+plot(density(Yasegurador), xlim=c(0,15000), main="Riesgo de Cartera del Asegurador", xlab="Pérdida")
+plot(density(X), xlim=c(0,15000), main="Riesgo Total de Cartera", xlab="Pérdida")
+```
+
+</div>
+
+## Recursos y Colaboradores adicionales 
+
+- **Edward W. (Jed) Frees**, University of Wisconsin-Madison, y **Jianxi Su**, Purdue University son los autores principales de la versión inicial de este capítulo. Email: jfrees@bus.wisc.edu y/o jianxi@purdue.edu para comentarios sobre el capítulo y mejoras sugeridas.
+- Revisores del Capítulo: Fei Huang, Hirokazu (Iwahiro) Iwasawa, Peng Shi, Ping Wang, Chengguo Weng.
+- Traducción al español: Mercedes Ayuso (Universitat de Barcelona)
+
+Algunos de los ejemplos de este capítulo se tomaron de @clark1996basics, @klugman2012, y @bahnemann2015distributions. Estas referencias proporcionan excelentes Fuentes para discusiones adicionales y ejemplos.
+
+```{js echo=FALSE}
+function togglecode(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show";}
+      else {ele.style.display = "block"; text.innerHTML = "Hide";}}
+```

@@ -1,0 +1,799 @@
+`r chapnum = 8`
+
+# Clasificación de Riesgos {#C:RiskClass}
+
+*Resumen del capítulo.* Este capítulo motiva el uso de la clasificación de riesgos en la fijación de precios de seguros y presenta a los lectores la regresión de Poisson como un ejemplo destacado de clasificación de riesgos. En la Sección \@ref(S:RC:Introduction) explicamos por qué las aseguradoras necesitan incorporar diversas características de riesgo, o factores de tarificación, de los asegurados individuales en los precios de los contratos de seguro. Luego presentamos la Sección \@ref(S:RC:PoissonRegression) donde mostramos la regresión de Poisson como una herramienta de fijación de precios para lograr diferencias en las primas. El concepto de exposición también se introduce en esta sección. Como la mayoría de los factores de tarificación son categóricos, en la Sección \@ref(S:CatVarMultiTarriff) mostramos cómo se puede incorporar el modelo de tarifa multiplicativa en el modelo de regresión de Poisson en la práctica, junto con ejemplos numéricos para ilustrarlo.
+
+## Introducción {#S:RC:Introduction}
+
+***
+
+En esta sección, se aprende:
+
+- Por qué las primas deben variar entre los asegurados según sus diferentes clases de riesgo.
+- El significado de la espiral de selección adversa.
+- La necesidad de clasificar los riesgos.
+
+***
+
+A través de los contratos de seguro, los asegurados transfieren de manera efectiva sus riesgos a la aseguradora a cambio de primas. Para que la aseguradora permanezca en el negocio, el ingreso de la prima recaudada de un grupo de asegurados debe ser al menos igual al beneficio que se obtiene. En los productos de seguros generales donde se cobra una prima por un solo período, por ejemplo, anual, la prima bruta del seguro basada en el principio de equivalencia se define como
+
+$$
+\text{Prima Pura = Pérdidas esperadas + Gastos esperados + Beneficio}.
+$$
+
+
+Por lo tanto, ignorando los gastos denominados “de fricción” asociados con los gastos administrativos y el beneficio, la prima neta o pura cobrada por el asegurador debe ser igual a las pérdidas esperadas que se producen por el riesgo que se transfiere por parte del tomador del seguro.
+
+Si todos los asegurados en una cartera tienen perfiles de riesgo idénticos, la aseguradora simplemente cobra la misma prima para todos los asegurados porque tienen la misma pérdida esperada. En realidad, sin embargo, los asegurados no son necesariamente homogéneos. Por ejemplo, el riesgo de mortalidad en el seguro de vida depende de las características del asegurado, como la edad, el sexo y el estilo de vida. En el seguro de automóviles, esas características pueden incluir la edad, la ocupación, el tipo o el uso del automóvil y el área donde reside el conductor. El conocimiento de estas características o variables puede mejorar la capacidad de calcular primas justas para los asegurados individuales, ya que pueden usarse para estimar o predecir las pérdidas esperadas con mayor precisión.
+
+**Selección adversa.** De hecho, si el asegurador no diferencia las características de riesgo de los asegurados individuales y simplemente cobra la misma prima a todos los asegurados en función de la pérdida promedio en la cartera, el asegurador se enfrenta a la llamada *selección adversa *, una situación en la que las personas con una mayor probabilidad de pérdidas son atraídas hacia la cartera y las personas de bajo riesgo son repelidas. Por ejemplo, consideremos una entidad de seguros de salud donde el tabaquismo es un factor de riesgo importante para la mortalidad y la morbilidad. La mayoría de las aseguradoras de salud en el mercado establecen primas diferentes según la condición de fumador, por lo que los fumadores pagan primas más altas que los no fumadores, con otras características idénticas. Ahora supongamos que hay una aseguradora, llamémosla  EquitabAll, que ofrece la misma prima a todos los asegurados, independientemente de su condición de fumador, a diferencia de otros competidores. La prima neta de EquitabAll se calcula, naturalmente, a partir de una pérdida con la mortalidad promedio que representa tanto a los fumadores como a los no fumadores. Es decir, la prima neta es un promedio ponderado de las pérdidas, siendo las ponderaciones la proporción de fumadores y no fumadores, respectivamente. Por lo tanto, es fácil ver que un fumador tiene un mayor incentivo para contratar un seguro de EquitabAll que de otras aseguradoras, ya que la prima ofrecida por EquitabAll es relativamente menor. Al mismo tiempo, los no fumadores prefieren contratar un seguro en otra compañía donde se ofrezcan primas más bajas, calculadas sólo para el grupo de no fumadores. Como resultado, habrá más fumadores y menos no fumadores en la cartera de EquitabAll, lo que conduce a pérdidas mayores de lo esperado y, por lo tanto, a una prima más alta para los asegurados en el próximo período para cubrir los costos más altos. Con el aumento de la nueva prima en el próximo período, los no fumadores en EquitabAll tendrán incentivos aún mayores para cambiar de aseguradora. A medida que este ciclo continúa con el tiempo, EquitabAll retendría gradualmente a más fumadores y menos no fumadores en su cartera con la prima elevándose continuamente, lo que eventualmente llevaría al colapso del negocio. En la literatura, este fenómeno se conoce como *espiral de selección adversa* o espiral de muerte. Por lo tanto, incorporar y diferenciar características de riesgo importantes de las personas en el proceso de fijación de precios del seguro es una componente relevante tanto para la determinación de la prima justa para los asegurados individuales como para la sostenibilidad a largo plazo de las aseguradoras.
+
+**Factores de tarificación**. Para incorporar las características de riesgo relevantes de los asegurados en el proceso de fijación de precios, las aseguradoras mantienen un sistema de clasificación que asigna cada asegurado a una de las clases de riesgo en función de un número relativamente pequeño de características de riesgo que se consideran las más relevantes. Estas características utilizadas en el sistema de clasificación se denominan *factores de tarificación*, que son variables *a priori* en el sentido de que se conocen antes de que comience el contrato (por ejemplo, sexo, estado de salud, tipo de vehículo, etc., se conocen durante la suscripción). Todos los asegurados que comparten factores de riesgo idénticos se asignan a la misma clase de riesgo y se consideran homogéneos desde el punto de vista de los precios; la aseguradora en consecuencia les cobra la misma prima o precio.
+
+
+
+Con respecto a los factores de riesgo y las primas, el *Estándar de Práctica Actuarial * (ASOP No. 12) de @ASBStandards establece que el actuario debe seleccionar las características de riesgo que están relacionadas con los resultados esperados, y que las primas dentro de un sistema de clasificación de riesgos se consideran equitativas si sus diferencias reflejan diferencias materiales en el coste esperado de las características de riesgo. En el proceso de elección de los factores de riesgo, ASOP también requiere que el actuario considere lo siguiente: relación de las características de riesgo y los resultados esperados, causalidad, objetividad, practicidad, ley aplicable, prácticas de la industria y prácticas comerciales.
+
+En el lado cuantitativo, una tarea importante para el actuario en la construcción de cualquier clasificación de riesgos es construir un modelo estadístico que pueda determinar la pérdida esperada dados los diversos factores de clasificación de un asegurado. El enfoque estándar es adoptar un modelo de regresión que produzca la pérdida esperada como resultado cuando los factores de riesgo relevantes se den como inputs. En este capítulo aprendemos la regresión de Poisson, que se puede usar cuando la pérdida es una variable de conteo, como un ejemplo destacado de una herramienta de fijación de precios de seguros.
+
+<!-- %\subsection{Conceptos fundamentales en la tarificación en seguros} -->
+<!-- %================================ -->
+
+## Modelo de Regresión de Poisson{#S:RC:PoissonRegression}
+
+
+
+El modelo de regresión de Poisson se ha utilizado con éxito en una amplia gama de aplicaciones y tiene la ventaja de permitir expresiones de forma cerrada para cantidades importantes, lo que proporciona una intuición e interpretación informativa. En esta sección presentamos la regresión de Poisson como una extensión natural de la distribución de Poisson.
+
+***
+
+
+En esta sección, se aprende a:
+
+- Entender las regresiones de Poisson como una herramienta útil para combinar distribuciones individuales de Poisson de manera unificada.
+- Conocer el concepto de exposición y su importancia.
+- Aprender formalmente cómo formular el modelo de regresión de Poisson utilizando variables indicadoras cuando las variables explicativas son categóricas.
+
+***
+
+
+### Necesidad de la Regresión de Poisson {#S:RC:Need.Poi.reg}
+
+
+**Distribución de Poisson**  
+Para presentar la regresión de Poisson, consideremos una cartera hipotética de seguros de salud donde todos los asegurados son de la misma edad y solo un factor de riesgo, el tabaquismo, es relevante. Por lo tanto, el estado de ser fumador es una variable categórica que contiene dos tipos diferentes: fumador y no fumador. En la literatura estadística, los diferentes tipos en una variable categórica dada se denominan comúnmente *niveles*. Como hay dos niveles para el estado de fumar, podemos denotar fumadores y no fumadores por nivel 1 y 2, respectivamente. Aquí la numeración es arbitraria y nominal. Supongamos ahora que estamos interesados en fijar el precio de un seguro de salud en el que la prima de cada asegurado se determina por la cantidad de visitas ambulatorias al consultorio del médico durante un año. Se supone que el coste médico para cada visita es el mismo, independientemente del estado de si es fumador o no por simplicidad. Por lo tanto, si creemos que el tabaquismo es un factor de riesgo válido en este seguro de salud, es natural considerar los datos por separado para cada grupo de tabaquismo. En la [Tabla 8.1] presentamos los datos para esta cartera.
+
+<a id=tab:8.1></a>  
+
+[Table 8.1]: \#tab:8.1
+
+
+$$
+{\small
+\begin{matrix}
+\begin{array}{cc|cc|cc}
+\hline
+\text{Fumador} & \text{(Nivel 1)}  & \text{No fumador}&\text{(Nivel 2)}  & & \text{Ambos}\\
+  \text{Valor} & \text{Observaciones} &  \text{Valor} & \text{Observaciones}  &   \text{Valor} & \text{Observaciones} \\ \hline
+0 & 2213 &   0 & 6671 &  0 & 8884 \\
+1 & 178  &   1 & 430  &  1 & 608 \\
+2 & 11   &   2 & 25   &  2 & 36 \\
+3 & 6    &   3 & 9    &  3 & 15 \\
+4 & 0    &   4 & 4    &  4 & 4 \\
+5 & 1    &   5 & 2    &  5 & 3 \\ \hline
+\text{Total} & 2409  &   \text{Total} & 7141 & \text{Total} & 9550 \\
+\text{Media} & 0,0926 &   \text{Media} & 0,0746 & \text{Media} & 0,0792 \\
+\hline
+    \end{array}
+\end{matrix}
+}
+$$
+
+[Table 8.1] : Número de visitas a la consulta médica el año pasado
+
+Como este conjunto de datos contiene recuentos aleatorios, intentamos ajustar una distribución de Poisson para cada nivel.
+
+Como se introdujo en la Sección  \@ref(S:poisson-distribution), la función de densidad de probabilidad de Poisson con media $\mu$ viene dada por:
+
+\begin{equation}
+\Pr(Y=y)=\frac{\mu^y e^{-\mu}}{y!},\qquad y=0,1,2, \ldots
+(\#eq:Pois-pmf)
+\end{equation}  
+
+y $\mathrm{E~}{(Y)}=\mathrm{Var~}{(Y)}=\mu$. En contextos de regresión, es habitual usar $\mu$ para parámetros que denotan la media en lugar del parámetro de Poisson $\lambda$, aunque ciertamente ambos símbolos son adecuados. Como vimos en la sección
+\@ref(S:estimating-frequency-distributions), la *mle* de la distribución de Poisson viene dada por la media muestral. Por lo tanto, si denotamos el parámetro media de Poisson para cada nivel por $\mu_{(1)}$ (fumador) y $\mu_{(2)}$ (no fumador), vemos en la [Tabla 8.1] que $\hat{\mu}_{(1)}= 0,0926$ y $\hat{\mu}_{(2)} = 0,0746$. Este simple ejemplo muestra la idea básica de clasificación de riesgo. Dependiendo de la condición de fumador, un asegurado tendrá una característica de riesgo diferente y ésta puede incorporarse a través del parámetro variable de Poisson en el cálculo de la prima justa. En este ejemplo, la proporción de frecuencias de pérdida esperadas es $\frac{\hat{\mu} _{(1)}}{\hat{\mu}_{(2)}}= 1,2402$, lo que implica que los fumadores tienden a visitar la consulta médica 24,02$\%$ veces más frecuentemente en comparación con los no fumadores.
+
+También es informativo tener en cuenta que si la aseguradora cobra la misma prima a todos los asegurados, independientemente del estado de ser fumador, en función de la característica promedio de la cartera, como fue el caso de la compañía EquitabAll descrito en la Introducción, la frecuencia esperada (o la prima) $\hat{\mu}$ es 0,0792, obtenida de la última columna de [Tabla 8.1]. Se verifica fácilmente que:
+
+\begin{equation}
+\hat{\mu} = \left(\frac{n_1}{n_1+n_2}\right)\hat{\mu}_{(1)}+\left(\frac{n_2}{n_1+n_2}\right)\hat{\mu}_{(2)}=0,0792,
+(\#eq:coll-prem-avg)
+\end{equation}
+
+donde $n_i$ es el número de observaciones en cada nivel. Claramente, esta prima es un promedio ponderado de las primas para cada nivel con un peso igual a la proporción de asegurados en ese nivel.  
+
+**Una regresión de Poisson simple** 
+En el ejemplo anterior, hemos ajustado una distribución de Poisson para cada nivel por separado, pero en realidad podemos combinarlos de manera unificada para que un solo modelo de Poisson pueda abarcar los estados de fumadores y no fumadores. Esto se puede hacer relacionando el parámetro medio de Poisson con el factor de riesgo. En otras palabras, hacemos que la media de Poisson, que es la frecuencia de pérdida esperada, responda al cambio en el estado de ser o no fumador. El enfoque convencional para tratar con una variable categórica es adoptar indicadores o variables ficticias que toman valores 1 o 0, de modo que activemos el interruptor para un nivel y lo apaguemos para otros. Por lo tanto, podemos proponernos usar:
+\begin{equation}
+\mu=\beta_0+\beta_1 x_1
+(\#eq:lin-mu)
+\end{equation}
+
+o bien, como se hace habitualmente, en forma log lineal:
+
+\begin{equation}
+\log \mu=\beta_0+\beta_1 x_1,
+(\#eq:log-lin-mu)
+\end{equation}
+
+donde $x_1$ es una variable indicadora con
+
+\begin{equation}
+x_1=
+\begin{cases}
+     1 & \text{si fuma}, \\
+     0 & \text{en caso contrario}.
+\end{cases}
+(\#eq:dummy-x1)
+\end{equation}
+
+En general, preferimos la relación log lineal \@ref(eq:log-lin-mu) frente a la lineal de \@ref(eq:lin-mu)  para prevenir los efectos no deseados de producir valores negativos para $\mu$, que podrían darse cuando hay una gran variedad de factores de riesgo diferentes y niveles distintos. La especificación de \@ref(eq:log-lin-mu) y \@ref(eq:dummy-x1) entonces proporciona parámetros de frecuencia de Poisson diferentes dependiendo del nivel del correspondiente factor de riesgo:
+
+\begin{equation}
+\log \mu=
+\begin{cases}
+     \beta_0+\beta_1 \\
+     \beta_0 
+\end{cases}
+\quad \text{o equivalentemente,}\qquad \mu= \begin{cases}
+     e^{\beta_0+\beta_1} & \text{si fuma (nivel 1)}, \\
+     e^{\beta_0} & \text{si no fuma (nivel 2)},
+\end{cases} 
+(\#eq:ind-mu)
+\end{equation} 
+
+consiguiendo el resultado que perseguimos. Ésta es la forma más simple de la regresión de Poisson. Tengamos en cuenta que requerimos una sola variable indicadora para modelar dos niveles en este caso. Alternativamente, también es posible usar dos variables indicadoras a través de un esquema de codificación diferente. Este esquema requiere eliminar el término constante para que \@ref(eq:log-lin-mu) quede como
+
+\begin{equation}
+\log \mu=\beta_1 x_1+\beta_2 x_2,
+(\#eq:log-lin-mu-2)
+\end{equation}
+
+donde $x_2$ es la segunda variable indicadora tal que
+
+\begin{equation}
+x_2=
+\begin{cases}
+     1 & \text{si no fuma}, \\
+     0 & \text{en caso contrario}.
+\end{cases}
+(\#eq:dummy-x-2)
+\end{equation}
+
+Entonces obtenemos, a partir de \@ref(eq:log-lin-mu-2),
+
+\begin{equation}
+\log \mu=
+\begin{cases}
+     \beta_1 \\
+     \beta_2 
+\end{cases}
+\quad \text{or}\qquad \mu= \begin{cases}
+     e^{\beta_1} & \text{si fuma (level 1)}, \\
+     e^{\beta_2} & \text{si no fuma (level 2)}.
+\end{cases}
+(\#eq:ind-mu-2)
+\end{equation}
+
+El resultado numérico de \@ref(eq:ind-mu) es el mismo que \@ref(eq:ind-mu-2) ya que todos los coeficientes se dan como números en la estimación real, siendo la configuración inicial más común en la mayoría textos; usaremos la inicial aquí también.
+
+Con este modelo de regresión de Poisson, podemos comprender fácilmente cómo los coeficientes $\beta_0$ y $\beta_1$ están vinculados a la frecuencia de pérdida esperada en cada nivel. Según \@ref(eq:ind-mu), la media de Poisson de los fumadores, $\mu_{(1)}$, viene dada por
+
+\begin{equation}
+\mu_{(1)}=e^{\beta_0+\beta_1}=\mu_{(2)} \,e^{\beta_1} \quad \text{or}\quad  \mu_{(1)}/\mu_{(2)} =e^{\beta_1}
+(\#eq:no-label)
+\end{equation}
+
+donde $\mu_{(2)}$ es la media de la distribución de Poisson  para los no fumadores. Esta relación entre los fumadores y los no fumadores sugiere una forma útil de comparar los riesgos incluidos en diferentes niveles de un factor de riesgo dado. Es decir, el aumento proporcional en la frecuencia de pérdida esperada de los fumadores en comparación con la de los no fumadores se da simplemente por un factor multiplicativo $e^{\beta_1}$. Dicho de otra manera, si establecemos la frecuencia de pérdida esperada de los no fumadores como el valor base, la frecuencia de pérdida esperada de los fumadores se obtiene aplicando el factor $e^{\beta_1}$ al valor base.
+
+**Manejo de casos de niveles múltiples**  
+
+Podemos extender fácilmente el caso de dos niveles a uno de varios niveles en el que intervienen $l$ diferentes niveles para un solo factor de tarificación. Para esto, generalmente necesitamos $l-1$ variables indicadoras para formular
+
+\begin{equation}
+\log \mu=\beta_0+\beta_1 x_1+\cdots+\beta_{l-1} x_{l-1},
+(\#eq:log-lin-mu-1)
+\end{equation} 
+
+
+donde $x_k$ es una variable indicadora que toma el valor 1 si la póliza pertenece al nivel $k$ y 0 en caso contrario, para $k=1,2, \ldots, l-1$. Al omitir la variable indicadora asociada con el último nivel en \@ref(eq:log-lin-mu-1) , elegimos efectivamente el nivel $l$ como el caso base, pero esta elección es arbitraria y no importa numéricamente. El parámetro de Poisson resultante para las pólizas el nivel $k$ se convierte, a partir de \@ref(eq:log-lin-mu-1),
+
+\begin{equation}
+\nonumber
+\mu= \begin{cases}
+     e^{\beta_0+\beta_k} & \text{si la póliza pertenece al nivel $k$ (k=1,2, ..., l-1)}, \\
+     e^{\beta_0} & \text{si la póliza pertenece al nivel $l$}.
+\end{cases}
+\end{equation}
+
+Por lo tanto, si denotamos el parámetro de Poisson para pólizas en el nivel $k$ como $\mu_{(k)}$, podemos relacionar el parámetro de Poisson para diferentes niveles a través de $\mu_{(k)} = \mu_{(l)}\, e^{\beta_k}$, $k= 1,2,\ldots, l-1$. Esto indica que, al igual que en el caso de dos niveles, la frecuencia de pérdida esperada del nivel $k$-ésimo se obtiene a partir del valor base multiplicado por el factor relativo $e^{\beta_k}$.
+
+Esta interpretación relativa se vuelve extremadamente útil cuando hay muchos factores de riesgo con niveles múltiples, y nos lleva a una mejor comprensión del riesgo subyacente y una predicción más precisa de las pérdidas futuras. Finalmente, observamos que la media de una distribución de Poisson está completamente determinada por los parámetros $\beta_k$’s, que se estiman a partir del conjunto de datos; El procedimiento de estimación de parámetros se discute más adelante en este capítulo.
+
+### Regresión de Poisson
+
+Ahora describimos la regresión de Poisson en un entorno formal y más general. Supongamos que hay $n$ asegurados independientes con un conjunto de factores de tarificación caracterizados por un vector variable de dimensión $k$[^8.1]. El factor de tarificación del asegurado $i$-ésimo se denota así por el vector $\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}$, y el asegurado se dice que ha registrado un valor de pérdidas igual a  $y_i \in \{0,1,2, \ldots \}$ desde el último período de observación de pérdidas, para $i=1, \ldots, n$. En la literatura de regresión, los valores  $x_{i1}, \ldots, x_{ik}$ se conocen generalmente como *variables explicativas*, ya que estas son medidas que proporcionan información sobre la variable de interés $y_i$. En esencia, el análisis de regresión es un método para cuantificar la relación entre una variable de interés y variables explicativas.
+
+
+[^8.1]: Por ejemplo, si hay 3 factores de riesgo, cuyo número de niveles es 2, 3 y 4, respectivamente, tenemos $k=(2-1)\times(3-1)\times (4-1)=6$.
+
+También asumimos, por ahora, que todos los asegurados tienen un mismo período de observación de pérdidas igual a una unidad, o la misma exposición de 1, para mantener las cosas simples; discutiremos más detalles sobre la exposición en la siguiente subsección.
+
+
+Como se hizo anteriormente, describimos la regresión de Poisson a través de su función de la media. Para esto, primero denotamos que $\mu_i$ es el número entero que representa las pérdida esperada del titular de la póliza $i$-ésima mediante la especificación de Poisson \@ref(eq:Pois-pmf):
+
+\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n.
+(\#eq:mui-glm)
+\end{equation}
+
+La condición dentro de la operación de la esperanza en \@ref(eq:mui-glm)) indica que la frecuencia de pérdida $\mu_i$ es el output del modelo que responde al conjunto dado de factores de riesgo o variables explicativas.
+En principio, la media condicional $\mathrm{E~}{(y_i|\mathbf{ x}_i)}$ en \@ref(eq:mui-glm) puede tomar diferentes formas dependiendo de cómo especifiquemos la relación entre $\mathbf{x}$ y $y$. La opción estándar para la regresión de Poisson es adoptar la función exponencial, como mencionamos anteriormente, de forma que
+
+\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=e^{\mathbf{ x}^{\prime}_i\beta}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n.
+(\#eq:mean-ft-Pois)
+\end{equation}
+
+Aquí $\beta=(\beta_0, \ldots, \beta_k)^{\prime}$ es el vector de coeficientes de manera que $\mathbf{ x}^{\prime}_i\beta=\beta_0+\beta_1x_{i1} +\ldots+\beta_k x_{ik}$. 
+La función exponencial en \@ref(eq:mean-ft-Pois) asegura que $\mu_i >0$ para cualquier conjunto de factores de tarificación $\mathbf{ x}_i$. A menudo \@ref(eq:mean-ft-Pois) se reescribe en forma log lineal
+
+\begin{equation}
+\log \mu_i=\log \mathrm{E~}{(y_i|\mathbf{ x}_i)}=\mathbf{ x}^{\prime}_i\beta, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n
+(\#eq:mean-ft-Pois-2)
+\end{equation} 
+
+para poner explícitamente que la relación entre la parte de la derecha está expresada en forma lineal, $\mathbf{ x}^{\prime}_i\beta$. De nuevo, vemos que la correspondencia funciona bien dado que ambos lados de \@ref(eq:mean-ft-Pois-2), $\log \mu_i$ y $\mathbf{ x}_i\beta$, pueden cubrir todos los valores reales. 
+
+
+Esta es la formulación de la regresión de Poisson, suponiendo que todos los asegurados tienen el mismo período unitario de exposición. Sin embargo, cuando las exposiciones difieren entre los asegurados, como es el caso en la mayoría de los casos prácticos, necesitamos revisar esta formulación agregando el componente de exposición como un término adicional en \@ref(eq:mean-ft-Pois-2).
+
+### Incorporación de la exposición
+
+
+**Concepto de Exposición**  
+
+
+Para determinar el tamaño de las pérdidas potenciales en cualquier tipo de seguro, siempre se debe conocer la exposición correspondiente. El concepto de exposición es un ingrediente extremadamente importante en la fijación de precios de seguros, aunque generalmente lo damos por sentado. Por ejemplo, cuando decimos que la frecuencia de reclamaciones esperada de una póliza de seguro de salud es 0,2, no significa nada sin la especificación de la exposición, como, en este caso, por mes o por año. De hecho, todas las primas y pérdidas necesitan especificar la exposición con precisión y deben explicitarse en consecuencia; de lo contrario, todos los análisis estadísticos y predicciones posteriores se distorsionarán.
+
+
+
+En la sección anterior asumimos la misma unidad de exposición para todos los asegurados, pero esto no es realista en la práctica. En el seguro de salud, por ejemplo, dos asegurados diferentes con diferentes períodos de cobertura de seguro (por ejemplo, 3 meses y 12 meses, respectivamente) podrían haber registrado el mismo número de reclamaciones. Como el número esperado de reclamaciones sería proporcional a la duración de la cobertura, no debemos tratar las experiencias de pérdida de estos dos asegurados de manera idéntica en el proceso de modelización. Esto motiva la necesidad de usar el concepto de *exposición* en la regresión de Poisson.
+
+La distribución de Poisson en \@ref(eq:Pois-pmf)  se parametriza a través de su media. Para comprender la exposición, parametrizamos alternativamente el parametro de la *pmf* de Poisson en términos del parámetro *tasa* $\lambda$, según la definición del proceso de Poisson:
+
+\begin{equation}
+\Pr(Y=y)=\frac{(\lambda t)^y e^{-\lambda t}}{y!},\qquad y=0,1,2, \ldots
+(\#eq:Pois-pmf-2)
+\end{equation} 
+
+
+
+con $\mathrm{E~}{(Y)}=\mathrm{Var~}{(Y)}=\lambda t$. Aquí $\lambda$ se conoce como la tasa o intensidad por unidad de período del proceso de Poisson y $t$ representa el período de tiempo o *exposición*, que ha de ser un valor constante conocido. Para $\lambda$ dados, la distribución de Poisson \@ref(eq:Pois-pmf-2) produce un mayor valor en el conteo de pérdidas esperadas a medida que la exposición $t$ aumenta.
+Claramente, \@ref(eq:Pois-pmf-2)  se reduce a \@ref(eq:Pois-pmf) cuando $t=1$, lo que significa que la media y la tasa se vuelven iguales para la unidad de exposición, el caso que consideramos en la subsección anterior.
+
+En principio, la exposición no necesita ser medida en unidades de tiempo y puede representar diferentes cosas dependiendo del problema en cuestión. Por ejemplo:
+
+1. En el seguro de salud, la tasa puede ser la aparición de una enfermedad específica por cada 1.000 personas y la exposición es el número de personas consideradas en la unidad de 1.000.
+2. En el seguro de automóviles, la tasa puede ser el número de accidentes por año de un conductor y la exposición es la duración del período observado para el conductor en la unidad de un año.
+3. En la compensación a trabajadores que cubre la pérdida salarial como resultado de una lesión o enfermedad relacionada con el trabajo de un empleado, la tasa puede ser la probabilidad de lesión durante el tiempo del empleo por dólar y la exposición es la cuantía de la nómina en dólares.
+4. En marketing, la tasa puede ser la cantidad de clientes que ingresan a una tienda por hora y la exposición es la cantidad de horas observadas.
+5. En ingeniería civil, la tasa puede ser el número de grietas importantes en el camino pavimentado 10 kms y la exposición es la longitud del camino considerado en la unidad de 10 kms.
+6. En la modelización del riesgo de crédito, la tasa puede ser el número de eventos de incumplimiento por cada 1000 empresas y la exposición es el número de empresas consideradas en unidades de 1.000.
+ 
+
+
+Los actuarios pueden usar diferentes bases de exposición para una pérdida asegurable determinada. Por ejemplo, en el seguro de automóviles, tanto el número de kilómetros recorridos como el número de meses cubiertos por el seguro pueden usarse como bases de exposición. Aquí, el primero es más preciso y útil para modelizar las pérdidas por accidentes automovilísticos, pero es más difícil de medir y administrar para las aseguradoras. Por lo tanto, una buena base de exposición puede no ser la mejor en teoría debido a varias limitaciones prácticas. Por regla general, una base de exposición debe ser fácil de determinar, medible con precisión, legal y socialmente aceptable y libre de posibles manipulaciones por parte de los asegurados.
+
+**Incorporación de la exposición en la regresión de Poisson**
+
+Como las exposiciones afectan la media de Poisson, la construcción de regresiones de Poisson requiere que separemos cuidadosamente la tasa y la exposición en el proceso de modelización. Centrándonos en el contexto del seguro, denotemos la tasa del evento de pérdida del asegurado $i$-ésimo como $\lambda_i$, la exposición conocida (la duración de la cobertura) como $m_i$ y el valor del conteo de pérdidas esperado bajo la exposición dada por $\mu_i$. Luego, la formulación de regresión de Poisson en \@ref(eq:mean-ft-Pois) y \@ref(eq:mean-ft-Pois-2) debe revisarse según \@ref(eq:Pois-pmf-2) como
+
+\begin{equation}
+\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=m_i \,\lambda_i=m_i \, e^{\mathbf{ x}^{\prime}_i\beta}, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots, n,
+(\#eq:mean-ft-Pois-6)
+\end{equation} 
+
+lo que produce
+
+\begin{equation}
+\log \mu_i=\log m_i+\mathbf{ x}^{\prime}_i\beta, \qquad y_i \sim Pois(\mu_i), \, i=1, \ldots,
+(\#eq:mean-ft-Pois-7)
+\end{equation}
+
+Añadiendo $\log m_i$ en \@ref(eq:mean-ft-Pois-7) no supone ningún problema en el ajuste dado que siempre podemos especificar esto como una variable explicativa adicional, puesto que es una constante conocida, y fijar su coeficiente a  1. En la literatura, el logaritmo de la exposición, $\log m_i$, se suele denominar el **offset**.
+
+
+### Ejercicios
+<!-- %=================== -->
+1. Respecto a la [Table 8.1] contestad lo siguiente.  
+    (a) Verificad la media de los valores de la tabla.  
+    (b) Verificad el número en la ecuación \@ref(eq:coll-prem-avg).  
+    (c) Producid los valores de conteo ajustados en la distribución de Poisson para cada nivel de la situación de fumador en la tabla.  
+
+2. En la formulación de la regresión de Poisson \@ref(eq:mui-glm), considera el uso de $\mu_i=\mathrm{E~}{(y_i|\mathbf{ x}_i)}=({\mathbf{ x}^{\prime}_i\beta})^2$, para  $i=1, \ldots, n$, en lugar de la función exponencial.  ¿Qué problema potencial puede aperecer?
+
+<!-- %3. Verifica ecuación \@ref(eq:Inf-mtx-Poi) diferenciando el logaritmo de verosimilitud \@ref(eq:ll-Poi-reg). -->
+
+
+## Variables Categóricas y Tarifa Multiplicativa {#S:CatVarMultiTarriff}
+
+***
+
+En esta sección, se aprende:  
+
+
+- El modelo de tarifa multiplicativa cuando los factores de tarificación son categóricos.
+- Cómo construir el modelo de regresión de Poisson basado en la estructura tarifaria multiplicativa.
+
+***
+
+### Factores de Tarificación y Tarifa
+
+
+
+En la práctica, la mayoría de los factores de tarificación en seguros son *variables categóricas*, lo que significa que toman uno de la cantidad predeterminada de valores posibles. Los ejemplos de variables categóricas incluyen el sexo, el tipo de automóviles, la región de residencia y la ocupación del conductor. Las variables continuas, como la edad o el kilometraje del vehículo, también pueden agruparse por intervalos y tratarse como variables categóricas. Por lo tanto, podemos imaginar que, con un pequeño número de factores de tarificación, habrá muchos asegurados que caigan en la misma clase de riesgo, y pagarán la misma prima. Para el resto de este capítulo asumimos que todos los factores de tarificación son variables categóricas.
+
+
+  
+  Para ilustrar cómo se utilizan las variables categóricas en el proceso de fijación de precios, consideramos un seguro hipotético para automóviles con solo dos factores:
+
+ * Tipo de vehículo: Tipo A (propiedad personal) y B (propiedad de la empresa). Usamos el índice $j = 1$ y $2$ para representar respectivamente cada nivel de este factor de tarificación.
+ * Grupo de edad del conductor: joven (edad $<$ 25), adulto (25 $\le$ edad $<$ 60) y mayor (edad $\ge$ 60). Utilizamos el índice $k = 1, 2$ y $3$, respectivamente, para este factor.
+ 
+<!-- %  \item  -->
+
+
+
+A partir de esta regla de clasificación, podemos crear una tabla o lista organizada, como la que se muestra en la [Tabla 8.2], que recopila a todos los asegurados. Claramente hay $2\times 3 = 6$ diferentes clases de riesgo en total. Cada fila de la tabla muestra una combinación de diferentes características de riesgo de los asegurados individuales. Nuestro objetivo es calcular seis primas diferentes para cada una de estas combinaciones. Una vez que se ha determinado la prima para cada fila utilizando la exposición y el número de reclamaciones dadas, la aseguradora puede reemplazar las dos últimas columnas en la [Tabla 8.2] con una sola columna que contiene las primas calculadas. Esta nueva tabla puede servir como un manual para determinar la prima para un nuevo asegurado dados los factores de tarificación durante el proceso de suscripción. En los seguros no de vida, una tabla (o un conjunto de tablas) o una lista que contiene cada conjunto de factores de tarificación y la prima asociada se conoce como una *tarifa*. Cada combinación única de los factores de calificación en una tarifa se llama *celda de tarifa*; así, en la [Tabla 8.2] el número de celdas de tarifa es seis, igual que el número de clases de riesgo.
+<a id=tab:8.2></a>  
+
+
+[Table 8.2]: \#tab:8.2
+
+$$
+{\small
+\begin{matrix}
+\begin{array}{ccrrc}
+ \hline
+\text{Factores} &\text{Tarificación}  &   \text{Exposición} & \text{Número de reclamaciones} \\
+\text{Tipo }(j) & \text{Edad }(k) &  \text{anual} & \text{observadas}\\
+\hline \hline
+j=1 & k=1 &  89,1 & 9\\
+1 & 2   & 208,5& 8\\
+1 & 3  & 155,2 & 6  \\
+2  & 1  & 19,3 & 1 \\
+2  & 2  & 360,4 & 13 \\
+2   & 3  & 276,7 & 6 \\ \hline
+\end{array}
+\end{matrix}
+}
+$$
+
+[Table 8.2] : Ilustración de registro de pérdidas en el seguro de automóviles
+
+
+Veamos ahora la información sobre pérdidas en la [Tabla 8.2] más de cerca. La exposición en cada fila representa la suma de la duración de las coberturas de seguro, o los tiempos vigentes, en la unidad de año, de todos los asegurados en esa celda de tarifa. Del mismo modo, el recuento de reclamaciones en cada fila es el número de reclamaciones en cada celda. Naturalmente, las exposiciones y los recuentos de reclamaciones varían debido a la diferente cantidad de conductores en las celdas, así como a diferentes períodos de tiempo de vigencia entre los conductores dentro de cada celda.
+
+En el marco de la regresión de Poisson, denotamos la exposición y el recuento de reclamaciones  de la celda $(j, k)$ como $m_ {jk}$ y $y_ {jk}$, respectivamente, y definimos el recuento de reclamaciones por unidad de exposición como
+
+\begin{equation}
+\nonumber
+z_{jk}= \frac{y_{jk}}{ m_{jk}}, \qquad j=1,2;\, k=1, 2,3.
+\end{equation}
+
+
+Por ejemplo, $z_{12}=8/208,5=0,03837$, lo que significa que un asegurado en la celda de tarifa (1,2) tendría 0,03837 accidentes si estuviera asegurado durante un año completo en promedio. El conjunto de valores de $z_{ij}$ corresponde al parámetro de tasa media en la distribución de Poisson \@ref(eq:Pois-pmf-2), ya que son las tasas de ocurrencia de eventos por unidad de exposición. Es decir, tenemos $z_{jk}=\hat{\lambda}_{jk}$  donde ${\lambda}_{jk}$ es el parámetro tasa de la Poisson. Sin embargo, generando los valores de $z_ {ij}$ lo que se hace simplemente es comparar las frecuencias de pérdida promedio entre las clases de riesgo. Para explotar completamente el conjunto de datos, construiremos un modelo de precios a partir de la [Tabla 8.2] utilizando la regresión de Poisson en el resto del capítulo.
+
+Comentar que los registros de pérdidas reales utilizados por las aseguradoras generalmente incluyen muchos más factores de riesgo, en cuyo caso el número de celdas crece exponencialmente. La tarifa consiste entonces en un conjunto de tablas, en lugar de una, separadas por algunos de los factores básicos de tarificación, como el sexo o el territorio.
+
+### Modelo de Tarifa Multiplicativa
+
+<!-- %\noindent\textbf{Concept of tariff}\\ -->
+
+En esta subsección, presentamos el modelo de tarifa multiplicativa, una estructura de precios muy utilizada que puede usarse naturalmente dentro del marco de regresión de Poisson. Los desarrollos aquí se basan en la [Tabla 8.2]. Recordemos que el recuento de pérdidas de un asegurado se describe mediante el modelo de regresión de Poisson con tasa o media $\lambda$ y exposición $m$, de modo que el recuento de pérdidas esperado se convierte en $m \lambda$. Como $m$ es una constante conocida, estamos esencialmente interesados en modelizar $\lambda$, de modo que responda al cambio en los factores de tarificación.
+
+Entre otras formas funcionales posibles, comúnmente elegimos la relación multiplicativa [^8.2] para modelar la tasa de Poisson $\lambda_{jk}$ para el factor de tarificación ($j,k$):
+
+\begin{equation}
+\lambda_{jk}= f_0 \times f_{1j} \times f_{2k}, \qquad j=1,2;\, k=1, 2,3.
+(\#eq:multiplicative-tarrif)
+\end{equation}
+
+[^8.2]: Ya se mencionó laa preferencia por la forma multiplicativa frente a otras (por ejemplo, la aditiva) en \@ref(eq:log-lin-mu).
+  
+
+Aquí $\{ f_{1j}, j=1,2\}$ son los parámetros asociados con los dos niveles en el primer factor de calificación, tipo de automóvil y $\{ f_{2k}, k=1,2,3\}$ están asociados con los tres niveles de la franja de edad, el segundo factor de tarificación. Por ejemplo, la media de Poisson para un asegurado de mediana edad (adulto) con un vehículo Tipo B viene dada por $\lambda_{22}=f_0 \times f_{12} \times f_{22}$. El primer término $f_0$ es un valor base que se discutirá en breve. Por lo tanto, estos seis parámetros se entienden como representaciones numéricas de los niveles dentro de cada factor de tarificación y deben estimarse a partir del conjunto de datos.
+
+La forma multiplicativa \@ref(eq:multiplicative-tarrif) ) es fácil de entender y usar, porque muestra claramente cómo cambia el recuento de pérdidas esperadas (por unidad de exposición) a medida que varía cada factor de tarificación. Por ejemplo, si $f_{11}=1$ y $f_{12}=1,2$, el recuento de pérdidas esperadas de un asegurado con un vehículo del tipo B sería un 20$\%$ mayor que el tipo A, cuando el resto de factores son los mismos. En los seguros no de vida, los parámetros $f_{1j}$ y $f_{2k}$ se conocen como *relatividades*, ya que determinan la cantidad de pérdida esperada que debería cambiar en relación con el valor base $f_0$. La idea de la relatividad es bastante útil en la práctica, ya que podemos decidir la prima para un asegurado simplemente multiplicando una serie de relatividades correspondientes al valor base.
+
+
+Eliminar un factor de calificación existente o agregar uno nuevo también es transparente con esta estructura multiplicativa. Además, la aseguradora puede ajustar fácilmente la prima general para todos los asegurados controlando el valor base $f_0$ sin cambiar las relatividades individuales. Sin embargo, al adoptar la forma multiplicativa, asumimos implícitamente que no existe una interacción importante entre los factores de riesgo.
+
+Cuando se usa la forma multiplicativa, debemos abordar un problema de identificación. Es decir, para cualquier $c> 0$, podemos escribir
+
+\begin{equation}
+\lambda_{jk}= f_0 \times \frac{f_{1j}}{c} \times c\,f_{2k}. 
+\end{equation}
+
+Al comparar con \@ref(eq:multiplicative-tarrif)), vemos que se puede obtener exactamente el mismo parámetro de tasa  $\lambda_{jk}$ para relatividades individuales muy diferentes. Esta sobre-parametrización, que significa que muchos conjuntos diferentes de parámetros llegan a un modelo idéntico, obviamente requiere alguna restricción sobre $f_{1j}$ y $f_{2k}$. La práctica estándar es hacer que una relatividad en cada factor de tarificación sea igual a uno. Esto puede hacerse arbitrariamente en teoría, pero la práctica estándar es hacer que la relatividad de la clase más común (clase base) sea igual a uno. Asumiremos que los vehículos de tipo A y los conductores jóvenes son las clases más frecuentes, es decir, $f_{11} = 1$ y $f_{21} = 1$. De esta manera, todas las demás relatividades se determinan de manera única. La celda de tarifa $(j,k) = (1,1)$ se llama entonces *celda de tarifa base*, donde la tasa simplemente se convierte en $\lambda_{11} = f_0$, correspondiente al valor base de acuerdo con \@ref(eq:multiplicative-tarrif). Por lo tanto, el valor base $f_0$ generalmente se interpreta como la media de Poisson de la celda de tarifa base.
+
+
+De nuevo, \@ref(eq:multiplicative-tarrif) se transforma mediante el logaritmo y puede re-escribirse como:
+
+\begin{equation}
+\log \lambda_{jk}= \log f_0 + \log f_{1j} + \log f_{2k},
+(\#eq:log-linear-tariff)
+\end{equation} 
+
+ya que es más fácil trabajar en el proceso de estimación, similar a \@ref(eq:mean-ft-Pois-2). Esta forma lineal de registro hace que las relatividades de registro del nivel base en cada factor de tarificación sean iguales a cero, es decir, $\log f_{11}=\log f_{21}=0$, y nos lleva a la siguiente alternativa, que es una expresión más explícita para  \@ref(eq:log-linear-tariff):
+
+\begin{equation}
+\log \lambda=\begin{cases}
+      \log f_0 + \quad 0 \quad \,\,+ \quad 0 \quad \,\,& \text{para una póliza en a celda $(1,1)$}, \\
+            \log f_0+ \quad 0 \quad \,\,+\log f_{22}& \text{para una póliza en a celda $(1,2)$}, \\
+                  \log f_0+ \quad 0 \quad \,\,+\log f_{23}& \text{para una póliza en a celda $(1,3)$}, \\
+                        \log f_0+\log f_{12}+ \quad 0 \quad \,\,& \text{para una póliza en a celda $(2,1)$}, \\
+                              \log f_0+\log f_{12}+\log f_{22}& \text{para una póliza en a celda $(2,2)$}, \\
+                                    \log f_0+\log f_{12}+\log f_{23}& \text{para una póliza en a celda $(2,3)$}. \\
+\end{cases}
+(\#eq:log-rate-Poi-tariff-3)
+\end{equation}
+
+
+Esto muestra claramente que el parámetro de Poisson $\lambda$ varía según las diferentes celdas de la tarifa, con la misma forma lineal logarítmica utilizada en el marco de la regresión de Poisson. De hecho, se puede ver que\@ref(eq:log-rate-Poi-tariff-3) es una versión extendida de la expresión anterior  \@ref(eq:ind-mu) con múltiples factores de riesgo y que las relatividades logarítmicas ahora juegan el papel de los parámetros $\beta_i$.
+Por lo tanto, todas las relatividades pueden estimarse fácilmente mediante el ajuste de una regresión de Poisson con un conjunto de variables indicadoras elegidas adecuadamente.
+
+### Regresión de Poisson para la Tarifa Multiplicativa
+
+**Variables Indicadoras para las Celdas de Tarifa**  
+
+
+Ahora explicamos cómo se pueden incorporar las relatividades en la regresión de Poisson. Como se vio al principio de este capítulo, utilizamos variables indicadoras para tratar con variables categóricas. Por lo tanto, para nuestra aseguradora de automóviles del ejemplo, definimos una variable indicadora para el primer factor de calificación como
+
+\begin{equation}
+x_1=
+\begin{cases}
+      1 & \text{ para vehículos de tipo B}, \\
+      0 & \text{ en caso contrario}.
+\end{cases}
+\end{equation}
+
+
+Para el segundo factor de tarificación, empleamos dos variables indicadoras para el grupo de edad, es decir,
+
+\begin{equation}
+x_2=
+\begin{cases}
+     1 & \text{para el grupo de edad 2}, \\
+     0 & \text{en caso contrario}.
+\end{cases}
+\end{equation}
+
+y
+
+\begin{equation}
+x_3=
+\begin{cases}
+     1 & \text{para el grupo de edad3}, \\
+     0 & \text{en caso contrario}.
+\end{cases}
+\end{equation}
+ 
+
+La tripleta $(x_1, x_2, x_3)$ puede determinar de manera efectiva y única cada clase de riesgo. Al observar que las variables indicadoras asociadas con el Tipo A y el grupo de edad 1 se omiten, vemos que la celda de tarifa $(j, k) = (1,1)$ juega el papel de la celda base. Hacemos hincapié en que nuestra elección de las tres variables indicadoras anteriores se ha realizado cuidadosamente para que sea coherente con la elección de los niveles base en el modelo de tarifa multiplicativa en la subsección anterior (es decir, $f_{11}=1$ and $f_{21}=1$).
+<!-- % -->
+<!-- % In addition, there is a one-to-one mapping between the tariff cell index $(j,k)$ and the triple $(x_1, x_2, x_3)$.  -->
+<!-- %For example, cell $(j,k)=(2,2)$ corresponds to $(1, 1, 0)$, and the base cell $(j,k)=(1,1)$ corresponds to $(0, 0, 0)$.  -->
+<!-- % -->
+
+Con las variables indicadoras propuestas, podemos reescribir la tasa de registro \@ref(eq:log-linear-tariff) como
+
+\begin{equation}
+\log \lambda_{}= \log f_0+ \log f_{12}  \times x_1 + \log f_{22} \times x_2 +\log f_{23} \times x_3,
+(\#eq:log-linear-tariff-3)
+\end{equation}
+
+que es idéntico a \@ref(eq:log-rate-Poi-tariff-3) cuando cada valor de la tripleta se aplica como corresponde. Por ejemplo, podemos verificar que la celda de tarifa base $(j,k)=(1,1)$ corresponde a $(x_1, x_2,x_3)=(0, 0, 0)$, y a su vez produce $\log \lambda=\log f_0$ o $\lambda=f_0$ en  \@ref(eq:log-linear-tariff-3) según sea necesario.
+
+
+
+**Regresion de Poisson para el modelo de tarificación**  
+
+Bajo esta especificación, consideremos a los $n$ asegurados en la cartera con las características de riesgo del asegurado $i$-ésimo dadas por un vector de variables explicativas $\mathbf{ x}_i=(x_{i1}, x_{i2},x_{i3})^{\prime}$, para $i = 1, \ldots, n$.
+Entonces establecemos \@ref(eq:log-linear-tariff-3) como
+\begin{equation}
+\log \lambda_{i}= \beta_0+ \beta_1 \, x_{i1} + \beta_{2} \, x_{i2} +\beta_3  \, x_{i3}=\mathbf{ x}^{\prime}_i\beta, \qquad i=1, \ldots, n,
+\end{equation}
+
+donde $\beta_0, \ldots, \beta_3$ se pueden asignar a las relatividades de registro correspondientes en \@ref(eq:log-linear-tariff-3). Ésta es exactamente la misma configuración que en \@ref(eq:mean-ft-Pois-7) excepto por el componente de exposición. Por lo tanto, al incorporar la exposición en cada clase de riesgo, el modelo de regresión de Poisson para este modelo de tarifa multiplicativa finalmente se convierte en
+
+\begin{equation}
+\log \mu_i=\log \lambda_{i}+\log m_i= \log m_i+ \beta_0+ \beta_1 \, x_{i1} + \beta_{2} \, x_{i2} +\beta_3  \, x_{i3}=\log m_i+\mathbf{ x}^{\prime}_i\beta, 
+\end{equation}
+
+para $i=1, \ldots, n$. 
+Como resultado, las relatividades vienen dadas por
+
+\begin{equation}
+{f}_0=e^{\beta_0}, \quad {f}_{12}=e^{\beta_1}, \quad {f}_{22}=e^{\beta_2} \quad \text{and}\quad {f}_{23}=e^{\beta_3},
+(\#eq:relativity-1)
+\end{equation} 
+
+con $f_{11}=1$ y $f_{21}=1$ de la especificación inicial. Para el conjunto de datos real, $\beta_i$, $i = 0,1, 2, 3$, se reemplaza con  su estimación *mle* $b_i$ usando el método en el suplemento técnico al final de este capítulo (Sección `r chapnum `.A).
+
+### Ejemplos numéricos
+
+
+Presentamos dos ejemplos numéricos de la regresión de Poisson. En el primer ejemplo, construimos un modelo de regresión de Poisson a partir de la [Tabla 8.2], que es un conjunto de datos de una hipotética compañía de seguro del automóvil. El segundo ejemplo utiliza un conjunto de datos real de una entidad aseguradora con más factores de riesgo. Como nuestro propósito es mostrar cómo se puede usar el modelo de regresión de Poisson bajo una regla de clasificación dada, no nos preocupa la calidad del ajuste del modelo de Poisson en este capítulo.
+
+**Ejemplo `r chapnum`.1: Regresión de Poisson para el seguro del automóvil del ejemplo**  
+
+
+En las últimas subsecciones anteriores, hemos considerado un conjunto de datos de una compañía aseguradora hipotética de automóviles con dos factores de riesgo, como se muestra en la [Tabla 8.2]. Ahora aplicamos el modelo de regresión de Poisson a este conjunto de datos. Como se hizo anteriormente, hemos establecido $(j, k) = (1,1)$ como la celda de tarifa base, de modo que $f_{11} = f_{21} = 1$. El resultado de la regresión da las estimaciones de coeficientes siguientes $(b_0, b_1, b_2, b_3) = (- 2,3359, -0,3004, -0,7837, -1,0655)$, que a su vez produce las correspondientes relatividades
+
+\begin{equation}
+\nonumber
+{f}_0=0,0967, \quad {f}_{12}=  0,7405, \quad {f}_{22}=0,4567 \quad \text{y}\quad {f}_{23}=0,3445.
+\end{equation}
+
+a partir de la relación dada por \@ref(eq:relativity-1). El programa en `R` y los resultados son los siguientes
+
+<h5 style="text-align: center;"><a id="displayCodeRiskClass.1" href="javascript:togglecode('toggleCodeRiskClass.1','displayCodeRiskClass.1');"><i><strong>Muestral código R</strong></i></a> </h5>
+<div id="toggleCodeRiskClass.1" style="display: none">
+
+```latex
+> mydat1<- read.csv("eg1_v1a.csv")
+> mydat1
+  Vtype Agebnd Expsr Claims
+1     1      1  89.1      9
+2     1      2 208.5      8
+3     1      3 155.2      6
+4     2      1  19.3      1
+5     2      2 360.4     13
+6     2      3 276.7      6
+> VtypeF <- relevel(factor(Vtype), ref="1") # treat Vtype as factors with 1 as base.
+> AgebndF <- relevel(factor(Agebnd), ref="1") # treat Age band as factors.
+> Pois_reg1 = glm(Claims ~ VtypeF + AgebndF,
+	                data = mydat1, family = poisson(link = log), offset = log(Expsr) )
+> Pois_reg1
+
+Coefficients:
+(Intercept)      VtypeF2     AgebndF2     AgebndF3  
+    -2.3359      -0.3004      -0.7837      -1.0655  
+
+Degrees of Freedom: 5 Total (i.e. Null);  2 Residual
+Null Deviance:	    8.774 
+Residual Deviance: 0.6514 	AIC: 30.37
+```
+
+</div>
+
+*** 
+
+
+**Ejemplo `r chapnum`.2. Regresión de Poisson para datos de siniestros en seguros en Singapur**  
+
+
+Este conjunto de datos real es un subconjunto de los datos utilizados por [@frees2008hierarchical]. Los datos provienen de la Asociación de Seguros Generales de Singapur, una organización que agrupa aseguradoras de no vida en Singapur. Los datos contienen el número de accidentes automovilísticos para $n = 7.483$ pólizas de seguro de auto con varias variables explicativas categóricas y la exposición para cada póliza. Las variables explicativas incluyen cuatro factores de riesgo: el tipo de vehículo asegurado (automóvil (A) u otro (O), denotado por $\tt{Vtype}$), la edad del vehículo en años ($\tt{Vage}$), el sexo del titular de la póliza ($\tt{Sex}$) y la edad del titular de la póliza (en años, agrupados en siete categorías, indicados $\tt{Age}$).
+
+Según la descripción de los datos, hay varias cosas a recordar antes de construir un modelo. Primero, hay 3.842 pólizas con vehículo tipo A (automóvil) y 3.641 pólizas con otros tipos de vehículos. Sin embargo, la información sobre edad y sexo está disponible solo para las pólizas del vehículo tipo A; Se registra que los conductores de todos los demás tipos de vehículos tienen 21 años de edad o menos con sexo no especificado, excepto en una póliza, lo que indica que no se ha recopilado información del conductor para vehículos que no sean automóviles. Segundo, todos los vehículos tipo A están clasificados como vehículos privados y los demás tipos no.
+
+Cuando incluimos estos factores de riesgo, asumimos que todo sexo no especificado es masculino. Como la información sobre la edad solo es aplicable a los vehículos tipo A, configuramos el modelo en consecuencia. Es decir, aplicamos la variable de edad solo a los vehículos del tipo A. También utilizamos cinco franjas de antigüedad del vehículo, simplificando los siete grupos originales, combinando las edades de los vehículos 0, 1 y 2; el intervalo combinado se codifica como nivel 2 [^8.3] en el archivo de datos. Por lo tanto, nuestro modelo de Poisson tiene la siguiente forma explícita:
+\begin{align*}
+\log \mu_i= \mathbf{ x}^{\prime}_i\beta+&\log m_i=\beta_0+\beta_1 I(Sex_i=M)+ \sum_{t=2}^6 \beta_t\, I(Vage_i=t) \\
+&+  \sum_{t=7}^{13} \beta_t \,I(Vtype_i=A)\times I(Age_i=t-7)+\log m_i.
+\end{align*}
+
+[^8.3]: corresponde a $\texttt{VAgecat1}$
+
+El resultado del ajuste se proporciona en la [Table 8.3], para la que hacemos varios comentarios.  
+
+* La frecuencia de reclamaciones es mayor para hombres en un 17,3\%, cuando otros factores de tarificación se mantienen fijos. Sin embargo, esto puede estar afectado por el hecho de que todo el sexo no especificado se ha asignado como hombre.
+* Con respecto a la edad del vehículo, la frecuencia de reclamaciones disminuye gradualmente a medida que el vehículo envejece, cuando otros factores de tarificación se mantienen fijos. El nivel comienza desde 2 para esta variable pero, nuevamente, la numeración es nominal y no afecta el resultado numérico.
+* La variable de edad del titular de la póliza solo se aplica al vehículo tipo A (automóvil), y no existe una póliza en el primer grupo de edad. Podemos especular que los conductores más jóvenes, menores de 21 años, conducen los automóviles de sus padres en lugar de tener el suyo debido a las altas primas de seguro o las regulaciones relacionadas. La falta de relatividad puede estimarse mediante alguna interpolación o a juicio profesional del actuario. La frecuencia de siniestros es la más baja para las franjas de edad 3 y 4, pero se vuelve sustancialmente más alta para los grupos de mayor edad, un patrón razonable visto en muchos conjuntos de datos de costes en el seguro de automóviles.
+
+También observamos que no existe un nivel base en la variable de edad del titular de la póliza, en el sentido de que ninguna relatividad es igual a 1. Esto se debe a que la variable solo es aplicable al tipo de vehículo A. Esto no causa un problema numérico, pero se puede establecer la relatividad básica de la siguiente manera si es necesario para otros fines. Como no hay ninguna póliza en el grupo de edad 0, consideramos el grupo 1 como el caso base. Específicamente, tratamos su relatividad como un producto de 0,918 y 1, donde la primera es la relatividad común (es decir, la reducción de prima común) aplicada a todas las pólizas con vehículo tipo A y la segunda es el valor base para la franja de edad 1. Entonces, la relatividad de la franja de edad 2 puede obtenerse como $0,917 = 0,918 \times 0,999$, donde 0,999 se entiende como la relatividad para la franja de edad 2. Los grupos de edad restantes pueden tratarse de manera similar.
+
+<a id=tab:8.3></a>  
+
+
+[Table 8.3]: \#tab:8.3
+
+
+$$
+{\small 
+\begin{matrix}
+\begin{array}{clcc}
+\hline
+\text{Factor} & \text{Nivel} & \text{Relatividad en la tarifa} & \text{Nota}\\ \hline\hline
+\text{Valor base}  &  & 0.167 & f_0\\ \hline
+\text{Sexo} & 1 (F) & 1.000 & \text{Base}\\
+ & 2 (M) & 1.173 &\\\hline
+ \text{Edad del vehículo} & 2 (0-2\text{ años}) & 1.000 & \text{Base}\\
+  & 3 (3-5\text{ años}) & 0,843 \\
+  & 4 (6-10\text{ años}) & 0,553 \\
+  & 5 (11-15\text{ años}) & 0,269 \\
+  & 6 (16+\text{ años}) & 0,189 &\\\hline
+  \text{Edad del asegurado} & 0 (0-21) & \text{N. D.} & \text{Sin pólizas} \\
+  \text{(Sólo aplicable a} & 1 (22-25) & 0,918 \\
+ \text{Tipo de vehículo A)}  & 2 (26-35) & 0,917 \\
+  & 3 (36-45) & 0,758 \\
+  & 4 (46-55) & 0,632 \\
+  & 5 (56-65) &  1,102\\
+  & 6 (65+) & 1,179\\ \hline \hline
+\end{array}
+\end{matrix}
+}
+$$
+
+[Table 8.3] : Datos de siniestros en seguros en Singapur
+
+Probemos varios ejemplos basados en la [Tabla 8.3]. Supongamos que un titular de póliza masculino de 40 años que posee un vehículo de tipo A de 7 años de edad. La frecuencia de reclamaciones esperada para este titular de póliza viene dada por
+\begin{equation}
+\lambda=0,167 \times 1,173 \times 0,553 \times 0,758 = 0,082.
+\end{equation}
+
+Como otro ejemplo, considere a una asegurada de 60 años que posee un vehículo de 3 años del tipo O. La frecuencia de reclamaciones esperada para este asegurado es
+\begin{equation}
+\lambda=0,167 \times 1 \times 0,843  = 0,141.
+\end{equation}
+
+
+Tengamos en cuenta que para esta póliza, la variable de grupo de edad no se utiliza ya que el tipo de vehículo no es A. La secuencia de comandos `R` se proporciona de la siguiente manera.
+
+<h5 style="text-align: center;"><a id="displayCodeRiskClass.2" href="javascript:togglecode('toggleCodeRiskClass.2','displayCodeRiskClass.2');"><i><strong>Muestra código R</strong></i></a> </h5>
+<div id="toggleCodeRiskClass.2" style="display: none">
+
+```latex
+mydat <- read.csv("SingaporeAuto.csv",  quote = "", header = TRUE)
+attach(mydat)
+
+# create vehicle type as factor
+TypeA = 1 * (VehicleType == "A")
+table(VehicleType)
+VtypeF <- as.character(VehicleType)
+VtypeF[VtypeF != "A"] <- "O"
+VtypeF = relevel(factor(VtypeF), ref="A")
+
+# create gender as factor
+Female = 1 * (SexInsured == "F" )
+Sex = as.character(SexInsured)
+Sex[Sex != "F"] <- "M"
+SexF = relevel(factor(Sex), ref = "F")
+
+# create driver age as factor
+AgeCat = pmax(AgeCat - 1, 0)
+AgeCatF = relevel(factor(AgeCat), ref = "0")
+table(AgeCatF) # No policy in the first age band
+
+# create vehicle age as factor
+VAgeCatF = relevel( factor(VAgeCat), ref = "0" )
+VAgecat1 = factor(VAgecat1, labels = 
+             		c("Vage0-2", "Vage3-5", "Vage6-10", "Vage11-15", "Vage15+") )
+VAgecat1F = relevel( factor(VAgecat1), ref = "Vage0-2" )
+
+# Poisson reg model
+Pois_reg2 = glm(Clm_Count ~ SexF + TypeA:AgeCatF + VAgecat1F, 
+                   offset = LNWEIGHT, poisson(link = log) )
+summary(Pois_reg2) 
+
+# compute relativities
+exp(Pois_reg2$coefficients)
+
+detach(mydat)
+```
+
+</div>
+
+*** 
+
+Como observación final, comentar que la regresión de Poisson no es el único modelo de regresión posible para datos de conteo. En realidad, la distribución de Poisson puede ser restrictiva en el sentido de que tiene un único parámetro y su media y la varianza son siempre iguales. Existen otros modelos de regresión para conteos que permiten una estructura de distribución más flexible, como las regresiones binomiales negativas y las regresiones infladas en cero (ZI); Los detalles de estas regresiones alternativas se pueden encontrar en otros textos enumerados en la siguiente sección.
+
+## Más Recursos y Colaboradores {#RC:further-reading-and-resources }
+
+
+#### Más Información y Referencias {-}
+
+La regresión de Poisson es un caso especial de una clase de modelo de regresión más general conocido como modelo lineal generalizado (glm). El glm establece un marco de regresión unificado para conjuntos de datos cuando las variables de respuesta son continuas, binarias o discretas. El modelo de regresión lineal clásico con error normal también es miembro del glm. Hay muchos textos estadísticos estándar que tratan sobre el glm, incluido [@mccullagh1989generalized]. Los textos más accesibles son [@dobson2008introduction], [@agresti1996introduction] y [@faraway2016extending]. Para las aplicaciones actuariales y de seguros del glm, consulte [@frees2009regression], [@de2008generalized]. Además, [@ohlsson2010non] analiza el glm en el contexto de fijación de precios de seguros no vida con análisis de tarifas.
+
+#### Colaboradores {-}
+
+- **Joseph H. T. Kim**, Yonsei University, es el autor principal de la versión inicial de este capítulo. Email: <jhtkim@yonsei.ac.kr> para comentarios del capítulo y sugerencias de mejora.
+- Revisores del capítulo: Chun Yong Chew, Lina Xu, Jeffrey Zheng.
+- Traducción al español: Montserrat Guillen (Universitat de Barcelona)
+
+### TS `r chapnum`.A -- Estimación de Modelos de Regresión de Poisson {-}
+
+Los principios de la estimación de máxima verosimilitud (*mle*) se presentan en las Secciones \@ref(S:parameter-estimation) y \@ref(S:MaxLikeEstimation), definidos en la Sección \@ref(S:AppA:MLE), y desarrollados teóricamente en el Capítulo \@ref(C:AppC). Aquí presentamos el procedimiento *mle* de la regresión de Poisson para que el lector pueda ver cómo se tratan las variables explicativas para maximizar la función de verosimilitud en el ámbito de la regresión.
+
+**Máxima Verosimilitud para Datos Individuales**  
+
+En la regresión de Poisson, la media de la distribución de Poisson está determinada por los parámetros $\beta_i$’s, como se muestra en \@ref(eq:mean-ft-Pois-7). En esta subsección usamos el método de máxima verosimilitud para estimar estos parámetros. Nuevamente, asumimos que hay $n$ asegurados y el asegurado $i$-ésimo se caracteriza por $\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}$ con la pérdida observada como una frecuencia $y_i$. Luego, partiendo de \@ref(eq:mean-ft-Pois-6) y \@ref(eq: mean-ft-Pois-7), la función log-verosimilitud del vector$\beta=(\beta_0, \dots, \beta_k)$ viene dada por
+
+\begin{align}
+\nonumber \log L(\beta)    &= l(\beta)=\sum^n_{i=1} \left( -\mu_i +y_i \, \log \mu_i -\log y_i! \right)  \\
+    &  = \sum^n_{i=1} \left( -m_i \exp(\mathbf{ x}^{\prime}_i\beta) +y_i \,(\log m_i+\mathbf{ x}^{\prime}_i\beta)  -\log y_i! \right)
+(\#eq:ll-Poi-reg)
+\end{align}
+
+Para obtener la *mle* de $\beta=(\beta_0, \ldots, \beta_k)^{\prime}$, diferenciamos[^8.4] $l(\beta)$ respecto al vector $\beta$ e igualamos a cero:
+
+\begin{equation}
+\frac{\partial}{\partial \beta}l(\beta)\Bigg{|}_{\beta=\mathbf{b}}=\sum^n_{i=1} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i=\mathbf{ 0}.
+(\#eq:score-ft-Poi)
+\end{equation}  
+
+[^8.4]: Usamos derivada matricial
+
+
+Solucionando numéricamente este sistema de ecuaciones obtenemos la *mle* de $\beta$, denotada como $\mathbf{ b}=(b_0, b_1, \ldots, b_k)^{\prime}$.
+Es importante ver que, como $\mathbf{ x}_i=(1, x_{i1}, \ldots, x_{ik})^{\prime}$ es un vector columna, la ecuación \@ref(eq:score-ft-Poi) es un sistema con  $k+1$ ecuaciones donde ambos lados están escritos como un vector columna de dimensión $k+1$. Si denotamos $\hat{\mu}_i=m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b})$, podemos escribir \@ref(eq:score-ft-Poi) como
+
+\begin{equation}
+\sum^n_{i=1} \left(y_i -\hat{\mu}_i \right)\mathbf{ x}_i=\mathbf{ 0}.
+\end{equation}
+
+Dado que la solución $\mathbf{ b}$ satisface esta ecuación, se deduce que la primera de las  $k+1$ ecuaciones, que corresponde al primer elemento constante de  $\mathbf{ x}_i$, implica que
+
+\begin{equation}
+\sum^n_{i=1}\left( y_i -\hat{\mu}_i \right)\times 1={ 0},
+\end{equation}
+
+lo que implica que tenemos
+
+\begin{equation}
+n^{-1}\sum_{i=1}^n y_i =\bar{y}=n^{-1}\sum_{i=1}^n \hat{\mu}_i.
+\end{equation}
+
+
+Esta es una propiedad interesante que dice que el promedio de las pérdidas individuales observadas, $\bar{y}$, es el mismo que el promedio de los valores estimados. Es decir, la media muestral se conserva bajo el modelo de regresión de Poisson ajustado.
+
+**Estimación por Máxima Verosimilitud con Datos Agrupados** 
+
+
+Algunas veces los datos no están disponibles a nivel de póliza individual. Por ejemplo, la [Tabla 8.2] proporciona información sobre pérdidas colectivas para cada clase de riesgo después de agrupar pólizas individuales. Cuando este es el caso, $y_i$ y $m_i$, las cantidades necesarias para el cálculo de la *mle* en \@ref(eq:score-ft-Poi) no están disponibles para cada $i$. Sin embargo, esto no plantea un problema siempre que tengamos los recuentos de pérdidas totales y la exposición total para cada clase de riesgo.
+
+Para ver el detalle, supongamos que hay $K$ diferentes clases de riesgo, y además que, en la clase de riesgo $k$-ésima, tenemos  $n_k$ pólizas con la exposición total $m_{(k)}$ y el promedio pérdidas $\bar{y}_{(k)}$, para $k = 1, \ldots, K$; el recuento total de pérdidas para la clase de riesgo $k$-ésima es entonces $n_k \, \bar {y} _ {(k)}$. Denotamos el conjunto de índices de las pólizas que pertenecen a la clase $k$-ésima para $C_k$. Como todas las pólizas en una clase de riesgo dada comparten las mismas características de riesgo, podemos denotar
+$\mathbf{x} _i = \mathbf{x} _{(k)}$ para las pólizas $i \in C_k$. Con esta notación, podemos reescribir \@ref(eq:score-ft-Poi) como
+
+\begin{align}
+\nonumber \sum^n_{i=1} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i &= \sum^K_{k=1}\Big{\{}\sum_{i \in C_k} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b}) \right)\mathbf{ x}_i  \Big{\}} \\
+\nonumber     &  =\sum^K_{k=1}\Big{\{} \sum_{i \in C_k} \left(y_i -m_i \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \right)\mathbf{ x}_{(k)}  \Big{\}} \\
+\nonumber     &  =\sum^K_{k=1}\Big{\{}  \Big(\sum_{i \in C_k}y_i -\sum_{i \in C_k}m_i \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \Big)\mathbf{ x}_{(k)}  \Big{\}} \\
+      &  =\sum^K_{k=1} \Big(n_k\, \bar{y}_{(k)}-m_{(k)} \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ b}) \Big)\mathbf{ x}_{(k)} =0.
+(\#eq:score-ft-Poi-2)
+\end{align}
+
+
+Como $n_k \, \bar{y}_{(k)}$ en \@ref(eq:score-ft-Poi-2) representa el recuento total de pérdidas para la clase de riesgo $k$-ésima y $m_{( k)}$ es su exposición total, vemos que para la regresión de Poisson la *mle* de $\mathbf {b}$ es el misma si usamos los datos individuales o los datos agrupados.
+
+**Matriz de Información**  
+La Sección \@ref(S:AppC:LF) define las matrices de información. Tomando las segundas derivadas en \@ref(eq:ll-Poi-reg) proporciona la matriz de información de los estimadores *mle*,
+
+\begin{equation}
+\mathbf{ I}(\beta)=-\mathrm{E~}{\left( \frac{\partial^2}{\partial \beta\partial \beta^{\prime}}l(\beta) \right)}=\sum^n_{i=1}m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ \beta})\mathbf{ x}_i \mathbf{ x}_i^{\prime}=\sum^n_{i=1} {\mu}_i \mathbf{ x}_i \mathbf{ x}_i^{\prime}.
+(\#eq:Inf-mtx-Poi)
+\end{equation} 
+
+Para conjuntos de datos individuales, ${\mu}_i$ en \@ref(eq:Inf-mtx-Poi) se reemplaza por $\hat{\mu}_i=m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ b})$ para estimar las varianzas y covarianzas relevantes de los estimadores *mle* $\mathbf{ b}$ o sus funciones.  
+
+Para conjuntos de datos agrupados, tenemos
+
+\begin{equation}
+\mathbf{ I}(\beta)=\sum^K_{k=1} \Big{\{}\sum_{i \in C_k}m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ \beta})\mathbf{ x}_i \mathbf{ x}_i^{\prime} \Big{\}}=\sum^K_{k=1} m_{(k)} \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ \beta})\mathbf{ x}_{(k)} \mathbf{ x}_{(k)}^{\prime}.
+\end{equation}
+
+
+

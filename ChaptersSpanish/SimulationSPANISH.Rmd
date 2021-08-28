@@ -1,0 +1,94 @@
+
+```{r include = FALSE}
+chapnum = 6
+```
+# Simulación y Remuestreo {#C:Simulation}
+
+*Vista previa del capítulo.* La simulación es un método computacionalmente intenso usado para resolver problemas difíciles. En lugar de crear procesos físicos y experimentar con ellos para entender sus características operacionales, un estudio de simulación se basa en una representación computacional – considera varias condiciones hipotéticas como inputs y resume los resultados. Aunque se trata de una simulación, un gran número de condiciones hipotéticas pueden ser rápidamente examinadas con un bajo coste. La sección \@ref(S:SimulationFundamentals) introduce la simulación, una herramienta computacional maravillosa que es especialmente útil en entornos complejos multivariantes.
+
+También podemos usar la simulación para realizar extracciones de una distribución empírica – proceso que se llama remuestreo. El remuestreo permite valorar la incertidumbre de las estimaciones en modelos complejos. La sección \@ref(S:Bootstrap) introduce el remuestreo en el contexto del bootstrapping para determinar la precisión de los estimadores.
+
+Las secciones siguientes introducen otros temas del remuestreo. La Sección \@ref(S:CrossValidation) sobre la validación cruzada muestra como usarla para la selección y validación de modelos. La sección \@ref(S:ImportanceSampling) sobre la importancia del muestreo describe el remuestreo en áreas específicas de interés, como en aplicaciones actuariales con colas largas. La sección \@ref(S:MCMC) sobre el método de Monte Carlo basado en cadenas de Markov (MCMC, en sus siglas en inglés) introduce la simulación y el motor del remuestreo que apunta en buena medida el análisis Bayesiano moderno.
+
+## Fundamentos de la Simulación {#S:SimulationFundamentals}
+
+***
+
+En esta sección, se muestra como:
+
+-   Generar realizaciones aproximadamente independientes distribuidas uniformemente
+-   Transformar las realizaciones distribuidas uniformemente en observaciones de la distribución de probabilidad de interés
+-   Calcular cantidades de interés y determinar la precisión de las cantidades calculadas
+
+***
+
+```{r eval =  TRUE, child = './ChaptersSpanish/SimulationSections/SimulationFundamentalsSPANISH.Rmd'}
+```
+
+## Bootstrapping y Remuestreo {#S:Bootstrap}
+
+***
+
+En esta sección, se muestra como:
+
+-   Generar una distribución no paramétrica bootstrap para un estadístico de interés
+-   Usar la distribución bootstrap para generar estimaciones de la precisión del estadístico de interés, incluyendo sesgo, desviaciones estándar, e intervalos de confianza
+-   Realizar análisis bootstrap para distribuciones paramétricas
+
+***
+
+```{r eval = TRUE, child = 'ChaptersSpanish/SimulationSections/BootstrapSPANISH.Rmd'}
+```
+
+## Validación Cruzada {#S:CrossValidation}
+
+En esta sección, se muestra como:
+
+-  Comparar y contrastar la validación cruzada a las técnicas de simulación y los métodos bootstrap.
+-  Usar técnicas de validación cruzada para la selección de modelos
+-  Explicar el método jackknife como caso especial de validación cruzada y calcular las estimaciones jackknife del sesgo y de los errores estándar
+
+***
+
+```{r eval = TRUE, child = './ChaptersSpanish/SimulationSections/CrossValidationSPANISH.Rmd'}
+```
+
+## Importance Sampling {#S:ImportanceSampling}
+
+```{r eval = TRUE, child = './ChaptersSpanish/SimulationSections/ImportanceSamplingSPANISH.Rmd'}
+```
+
+## Monte Carlo Markov Chain (MCMC)  {#S:MCMC}
+
+***
+
+**Esta sección se está escribiendo y no está complete ni editada. El contenido que se muestra es para haceros una idea de lo que contendrá la versión final.**
+
+***
+
+```{r eval = TRUE, child = './ChaptersSpanish/SimulationSections/MCMCSPANISH.Rmd'}
+```
+
+## Recursos Adicionales y Colaboradores {#Simulation:further-reading-and-resources}
+
+-  Include historical references for jackknife (Quenouille, Tukey, Efron)
+-  Aquí se muestran algunos links para aprender más sobre [reproducibilidad y aleatoriedad](https://freakonometrics.hypotheses.org/6470) y cómo ir
+[de un generador aleatorio a una función muestra](https://freakonometrics.hypotheses.org/6638).
+
+#### Colaboradores {-}
+
+- **Arthur Charpentier**, Universit&eacute; du Quebec &aacute; Montreal, y **Edward W. (Jed) Frees**, University of Wisconsin-Madison, son los principales autores de la versión inicial de este capítulo. Email: jfrees@bus.wisc.edu y/o arthur.charpentier@gmail.com para comentarios sobre este capítulo y sugerencias de mejora.
+- Revisores del capítulo: Escribir a Jed o Arthur; para añadir tu nombre aquí.
+- Traducción al español: Ana María Pérez-Marín (Universitat de Barcelona).
+
+### TS `r chapnum`.A. Bootstrap Applications in Predictive Modeling
+
+***
+
+**This section is being written.**
+
+***
+
+```{r eval =  FALSE, child = './ChaptersSpanish/SimulationSections/BootstrapPredictModelsSPANISH.Rmd'}
+```
+
