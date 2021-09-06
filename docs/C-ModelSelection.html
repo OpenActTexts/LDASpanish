@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,9 +311,9 @@ document.getElementById("defaultOpen").click();
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -321,14 +322,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -337,9 +340,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -389,10 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
@@ -641,28 +645,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
-<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
-<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
-<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-la-evolución-de-las-primas"><i class="fa fa-check"></i><b>12.4.4</b> Programa R para la evolución de las Primas</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
-<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
-<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
-<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
@@ -950,7 +954,7 @@ Se determinan los cuantiles correspondientes a los percentiles 20, 50 y 95.
 <div id="toggleExampleSelect.1.2" style="display: none">
 <p><strong>Solución</strong>.
 Se considera la Figura <a href="C-ModelSelection.html#fig:EDFToy">4.1</a>. El caso de <span class="math inline">\(q=0,20\)</span> corresponde al panel central, por lo que el percentil 20 es 15. El caso de <span class="math inline">\(q=0,50\)</span> corresponde al panel derecho, por lo que la mediana es cualquier número entre 20 y 23, ambos inclusive. Muchos paquetes de software usan el promedio de 21,5 (por ejemplo, <code>R</code>, como se ve a continuación). Para el percentil 95, la solución es 30. Podemos ver en el gráfico que 30 también corresponde a los percentiles 99 y 99,99.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">quantile</span>(xExample, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>), <span class="dt">type=</span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="C-ModelSelection.html#cb18-1"></a><span class="kw">quantile</span>(xExample, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>), <span class="dt">type=</span><span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##  20%  50%  95% 
 ## 15.0 21.5 30.0</code></pre>
 </div>
@@ -1820,10 +1824,10 @@ Figure 4.14: Estimación de Kaplan-Meier de la función de supervivencia para si
 <a id="displayTextKaplanMeier.4f" href="javascript:togglecode('toggleKaplanMeier','displayTextKaplanMeier.4f');"><i><strong>Mostrar código R</strong></i></a>
 </h5>
 <div id="toggleKaplanMeier" style="display: none">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">library</span>(survival)                <span class="co"># para Surv(), survfit()</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="co">## KM estimación</span></a>
-<a class="sourceLine" id="cb21-3" title="3">KM0 &lt;-<span class="st"> </span><span class="kw">survfit</span>(<span class="kw">Surv</span>(AmountPaid, UnCensored) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, <span class="dt">data=</span>BIData)</a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="kw">plot</span>(KM0, <span class="dt">conf.int=</span><span class="ot">FALSE</span>, <span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Supervivencia de Kaplan Meier &quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="C-ModelSelection.html#cb21-1"></a><span class="kw">library</span>(survival)                <span class="co"># para Surv(), survfit()</span></span>
+<span id="cb21-2"><a href="C-ModelSelection.html#cb21-2"></a><span class="co">## KM estimación</span></span>
+<span id="cb21-3"><a href="C-ModelSelection.html#cb21-3"></a>KM0 &lt;-<span class="st"> </span><span class="kw">survfit</span>(<span class="kw">Surv</span>(AmountPaid, UnCensored) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, <span class="dt">data=</span>BIData)</span>
+<span id="cb21-4"><a href="C-ModelSelection.html#cb21-4"></a><span class="kw">plot</span>(KM0, <span class="dt">conf.int=</span><span class="ot">FALSE</span>, <span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Supervivencia de Kaplan Meier &quot;</span>)</span></code></pre></div>
 </div>
 <hr />
 </div>

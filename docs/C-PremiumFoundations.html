@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,9 +311,9 @@ document.getElementById("defaultOpen").click();
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -321,14 +322,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -337,9 +340,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -389,10 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
@@ -641,28 +645,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
-<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
-<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
-<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-la-evolución-de-las-primas"><i class="fa fa-check"></i><b>12.4.4</b> Programa R para la evolución de las Primas</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
-<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
-<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
-<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
@@ -1652,28 +1656,28 @@ Figure 7.4: Curva Lorenz versus Curva Rendimiento
 <p>Para nuestra prima base, suponemos una distribución común para todos los estados. Para estos datos simulados, la media de los siniestros en la muestra de entrenamiento es <span class="math inline">\(P_1\)</span>=221.36.</p>
 <p>Como alternativa, utilizamos las medias para cada estado en concreto; estas medias forman nuestras primas <span class="math inline">\(P_2\)</span>. Como este ejemplo utiliza medias que varían para cada estado, esperaremos que este procedimiento alternativo sea preferido al procedimiento de tarificación comunitaria.</p>
 <p>Los siniestros de la muestra de validación fueron generados a partir de la misma distribución gamma de la muestra de entrenamiento, con 100 observaciones para cada estado. El siguiente código en <code>R</code> nos muestra cómo calcular las curvas de rendimiento.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">y &lt;-<span class="st"> </span>Outy </a>
-<a class="sourceLine" id="cb95-2" title="2">P1 &lt;-<span class="st"> </span>Flatpred</a>
-<a class="sourceLine" id="cb95-3" title="3">P2 &lt;-<span class="st"> </span>Predvec</a>
-<a class="sourceLine" id="cb95-4" title="4">n1 =<span class="st"> </span><span class="kw">length</span>(y)</a>
-<a class="sourceLine" id="cb95-5" title="5">XYmat =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(y,P1,P2))</a>
-<a class="sourceLine" id="cb95-6" title="6">XYmatPOrder =<span class="st"> </span>XYmat[<span class="kw">order</span>(P1),]  <span class="co">#  Ordenado por primas P1</span></a>
-<a class="sourceLine" id="cb95-7" title="7">DFy1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>y)<span class="op">/</span><span class="kw">sum</span>(y))</a>
-<a class="sourceLine" id="cb95-8" title="8">DFx1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>P1)<span class="op">/</span><span class="kw">sum</span>(P1))</a>
-<a class="sourceLine" id="cb95-9" title="9">XYmatPOrder =<span class="st"> </span>XYmat[<span class="kw">order</span>(P2),]  <span class="co">#  Ordenado por primas P2</span></a>
-<a class="sourceLine" id="cb95-10" title="10">DFy2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>y)<span class="op">/</span><span class="kw">sum</span>(y))</a>
-<a class="sourceLine" id="cb95-11" title="11">DFx2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>P2)<span class="op">/</span><span class="kw">sum</span>(P2))</a>
-<a class="sourceLine" id="cb95-12" title="12"></a>
-<a class="sourceLine" id="cb95-13" title="13"><span class="co">#  FIGURA 3</span></a>
-<a class="sourceLine" id="cb95-14" title="14"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb95-15" title="15"><span class="co">#  Curva Lorenz </span></a>
-<a class="sourceLine" id="cb95-16" title="16"><span class="kw">plot</span>(DFx1,DFy1,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">cex=</span> <span class="fl">0.2</span>,</a>
-<a class="sourceLine" id="cb95-17" title="17"><span class="dt">xlab=</span><span class="st">&quot;Dist. Primas&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Comunitaria&quot;</span>);<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb95-18" title="18"><span class="kw">mtext</span>(<span class="st">&quot;Dist. Siniest&quot;</span>, <span class="dt">side=</span><span class="dv">2</span>, <span class="dt">line=</span><span class="op">-</span><span class="fl">0.5</span>, <span class="dt">at=</span><span class="fl">1.1</span>,   <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">1.0</span>)</a>
-<a class="sourceLine" id="cb95-19" title="19"><span class="co">#  Curva rendimiento</span></a>
-<a class="sourceLine" id="cb95-20" title="20"><span class="kw">plot</span>(DFx2,DFy2,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">cex=</span> <span class="fl">0.2</span>,</a>
-<a class="sourceLine" id="cb95-21" title="21"><span class="dt">xlab=</span><span class="st">&quot;Dist. Primas&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Por Estado&quot;</span>);<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb95-22" title="22"><span class="kw">mtext</span>(<span class="st">&quot;Dist. Siniest&quot;</span>, <span class="dt">side=</span><span class="dv">2</span>, <span class="dt">line=</span><span class="op">-</span><span class="fl">0.5</span>, <span class="dt">at=</span><span class="fl">1.1</span>,   <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">1.0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="C-PremiumFoundations.html#cb95-1"></a>y &lt;-<span class="st"> </span>Outy </span>
+<span id="cb95-2"><a href="C-PremiumFoundations.html#cb95-2"></a>P1 &lt;-<span class="st"> </span>Flatpred</span>
+<span id="cb95-3"><a href="C-PremiumFoundations.html#cb95-3"></a>P2 &lt;-<span class="st"> </span>Predvec</span>
+<span id="cb95-4"><a href="C-PremiumFoundations.html#cb95-4"></a>n1 =<span class="st"> </span><span class="kw">length</span>(y)</span>
+<span id="cb95-5"><a href="C-PremiumFoundations.html#cb95-5"></a>XYmat =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(y,P1,P2))</span>
+<span id="cb95-6"><a href="C-PremiumFoundations.html#cb95-6"></a>XYmatPOrder =<span class="st"> </span>XYmat[<span class="kw">order</span>(P1),]  <span class="co">#  Ordenado por primas P1</span></span>
+<span id="cb95-7"><a href="C-PremiumFoundations.html#cb95-7"></a>DFy1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>y)<span class="op">/</span><span class="kw">sum</span>(y))</span>
+<span id="cb95-8"><a href="C-PremiumFoundations.html#cb95-8"></a>DFx1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>P1)<span class="op">/</span><span class="kw">sum</span>(P1))</span>
+<span id="cb95-9"><a href="C-PremiumFoundations.html#cb95-9"></a>XYmatPOrder =<span class="st"> </span>XYmat[<span class="kw">order</span>(P2),]  <span class="co">#  Ordenado por primas P2</span></span>
+<span id="cb95-10"><a href="C-PremiumFoundations.html#cb95-10"></a>DFy2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>y)<span class="op">/</span><span class="kw">sum</span>(y))</span>
+<span id="cb95-11"><a href="C-PremiumFoundations.html#cb95-11"></a>DFx2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">cumsum</span>(XYmatPOrder<span class="op">$</span>P2)<span class="op">/</span><span class="kw">sum</span>(P2))</span>
+<span id="cb95-12"><a href="C-PremiumFoundations.html#cb95-12"></a></span>
+<span id="cb95-13"><a href="C-PremiumFoundations.html#cb95-13"></a><span class="co">#  FIGURA 3</span></span>
+<span id="cb95-14"><a href="C-PremiumFoundations.html#cb95-14"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb95-15"><a href="C-PremiumFoundations.html#cb95-15"></a><span class="co">#  Curva Lorenz </span></span>
+<span id="cb95-16"><a href="C-PremiumFoundations.html#cb95-16"></a><span class="kw">plot</span>(DFx1,DFy1,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">cex=</span> <span class="fl">0.2</span>,</span>
+<span id="cb95-17"><a href="C-PremiumFoundations.html#cb95-17"></a><span class="dt">xlab=</span><span class="st">&quot;Dist. Primas&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Comunitaria&quot;</span>);<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb95-18"><a href="C-PremiumFoundations.html#cb95-18"></a><span class="kw">mtext</span>(<span class="st">&quot;Dist. Siniest&quot;</span>, <span class="dt">side=</span><span class="dv">2</span>, <span class="dt">line=</span><span class="op">-</span><span class="fl">0.5</span>, <span class="dt">at=</span><span class="fl">1.1</span>,   <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">1.0</span>)</span>
+<span id="cb95-19"><a href="C-PremiumFoundations.html#cb95-19"></a><span class="co">#  Curva rendimiento</span></span>
+<span id="cb95-20"><a href="C-PremiumFoundations.html#cb95-20"></a><span class="kw">plot</span>(DFx2,DFy2,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">cex=</span> <span class="fl">0.2</span>,</span>
+<span id="cb95-21"><a href="C-PremiumFoundations.html#cb95-21"></a><span class="dt">xlab=</span><span class="st">&quot;Dist. Primas&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Por Estado&quot;</span>);<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb95-22"><a href="C-PremiumFoundations.html#cb95-22"></a><span class="kw">mtext</span>(<span class="st">&quot;Dist. Siniest&quot;</span>, <span class="dt">side=</span><span class="dv">2</span>, <span class="dt">line=</span><span class="op">-</span><span class="fl">0.5</span>, <span class="dt">at=</span><span class="fl">1.1</span>,   <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">1.0</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-179-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Para estos datos, los estadísticos de Gini son un 19.6 por ciento para la prima de tarificación comunitaria o plana y un -0.702 por ciento para la prima alternativa que discrimina por estado. Esto indica que el procedimiento alternativo es mucho más preferible que el procedimiento de tarificación comunitaria.</p>
 <hr />

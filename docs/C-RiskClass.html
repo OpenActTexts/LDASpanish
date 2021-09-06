@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,9 +311,9 @@ document.getElementById("defaultOpen").click();
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -321,14 +322,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -337,9 +340,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -389,10 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
@@ -641,28 +645,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
-<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
-<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
-<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-la-evolución-de-las-primas"><i class="fa fa-check"></i><b>12.4.4</b> Programa R para la evolución de las Primas</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
-<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
-<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
-<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
@@ -1203,28 +1207,28 @@ Como resultado, las relatividades vienen dadas por</p>
 <a id="displayCodeRiskClass.1" href="javascript:togglecode('toggleCodeRiskClass.1','displayCodeRiskClass.1');"><i><strong>Muestral código R</strong></i></a>
 </h5>
 <div id="toggleCodeRiskClass.1" style="display: none">
-<div class="sourceCode" id="cb96"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb96-1" title="1">&gt; mydat1&lt;- read.csv(&quot;eg1_v1a.csv&quot;)</a>
-<a class="sourceLine" id="cb96-2" title="2">&gt; mydat1</a>
-<a class="sourceLine" id="cb96-3" title="3">  Vtype Agebnd Expsr Claims</a>
-<a class="sourceLine" id="cb96-4" title="4">1     1      1  89.1      9</a>
-<a class="sourceLine" id="cb96-5" title="5">2     1      2 208.5      8</a>
-<a class="sourceLine" id="cb96-6" title="6">3     1      3 155.2      6</a>
-<a class="sourceLine" id="cb96-7" title="7">4     2      1  19.3      1</a>
-<a class="sourceLine" id="cb96-8" title="8">5     2      2 360.4     13</a>
-<a class="sourceLine" id="cb96-9" title="9">6     2      3 276.7      6</a>
-<a class="sourceLine" id="cb96-10" title="10">&gt; VtypeF &lt;- relevel(factor(Vtype), ref=&quot;1&quot;) # treat Vtype as factors with 1 as base.</a>
-<a class="sourceLine" id="cb96-11" title="11">&gt; AgebndF &lt;- relevel(factor(Agebnd), ref=&quot;1&quot;) # treat Age band as factors.</a>
-<a class="sourceLine" id="cb96-12" title="12">&gt; Pois_reg1 = glm(Claims ~ VtypeF + AgebndF,</a>
-<a class="sourceLine" id="cb96-13" title="13">                    data = mydat1, family = poisson(link = log), offset = log(Expsr) )</a>
-<a class="sourceLine" id="cb96-14" title="14">&gt; Pois_reg1</a>
-<a class="sourceLine" id="cb96-15" title="15"></a>
-<a class="sourceLine" id="cb96-16" title="16">Coefficients:</a>
-<a class="sourceLine" id="cb96-17" title="17">(Intercept)      VtypeF2     AgebndF2     AgebndF3  </a>
-<a class="sourceLine" id="cb96-18" title="18">    -2.3359      -0.3004      -0.7837      -1.0655  </a>
-<a class="sourceLine" id="cb96-19" title="19"></a>
-<a class="sourceLine" id="cb96-20" title="20">Degrees of Freedom: 5 Total (i.e. Null);  2 Residual</a>
-<a class="sourceLine" id="cb96-21" title="21">Null Deviance:      8.774 </a>
-<a class="sourceLine" id="cb96-22" title="22">Residual Deviance: 0.6514   AIC: 30.37</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb96-1"><a href="C-RiskClass.html#cb96-1"></a>&gt; mydat1&lt;- read.csv(&quot;eg1_v1a.csv&quot;)</span>
+<span id="cb96-2"><a href="C-RiskClass.html#cb96-2"></a>&gt; mydat1</span>
+<span id="cb96-3"><a href="C-RiskClass.html#cb96-3"></a>  Vtype Agebnd Expsr Claims</span>
+<span id="cb96-4"><a href="C-RiskClass.html#cb96-4"></a>1     1      1  89.1      9</span>
+<span id="cb96-5"><a href="C-RiskClass.html#cb96-5"></a>2     1      2 208.5      8</span>
+<span id="cb96-6"><a href="C-RiskClass.html#cb96-6"></a>3     1      3 155.2      6</span>
+<span id="cb96-7"><a href="C-RiskClass.html#cb96-7"></a>4     2      1  19.3      1</span>
+<span id="cb96-8"><a href="C-RiskClass.html#cb96-8"></a>5     2      2 360.4     13</span>
+<span id="cb96-9"><a href="C-RiskClass.html#cb96-9"></a>6     2      3 276.7      6</span>
+<span id="cb96-10"><a href="C-RiskClass.html#cb96-10"></a>&gt; VtypeF &lt;- relevel(factor(Vtype), ref=&quot;1&quot;) # treat Vtype as factors with 1 as base.</span>
+<span id="cb96-11"><a href="C-RiskClass.html#cb96-11"></a>&gt; AgebndF &lt;- relevel(factor(Agebnd), ref=&quot;1&quot;) # treat Age band as factors.</span>
+<span id="cb96-12"><a href="C-RiskClass.html#cb96-12"></a>&gt; Pois_reg1 = glm(Claims ~ VtypeF + AgebndF,</span>
+<span id="cb96-13"><a href="C-RiskClass.html#cb96-13"></a>                    data = mydat1, family = poisson(link = log), offset = log(Expsr) )</span>
+<span id="cb96-14"><a href="C-RiskClass.html#cb96-14"></a>&gt; Pois_reg1</span>
+<span id="cb96-15"><a href="C-RiskClass.html#cb96-15"></a></span>
+<span id="cb96-16"><a href="C-RiskClass.html#cb96-16"></a>Coefficients:</span>
+<span id="cb96-17"><a href="C-RiskClass.html#cb96-17"></a>(Intercept)      VtypeF2     AgebndF2     AgebndF3  </span>
+<span id="cb96-18"><a href="C-RiskClass.html#cb96-18"></a>    -2.3359      -0.3004      -0.7837      -1.0655  </span>
+<span id="cb96-19"><a href="C-RiskClass.html#cb96-19"></a></span>
+<span id="cb96-20"><a href="C-RiskClass.html#cb96-20"></a>Degrees of Freedom: 5 Total (i.e. Null);  2 Residual</span>
+<span id="cb96-21"><a href="C-RiskClass.html#cb96-21"></a>Null Deviance:      8.774 </span>
+<span id="cb96-22"><a href="C-RiskClass.html#cb96-22"></a>Residual Deviance: 0.6514   AIC: 30.37</span></code></pre></div>
 </div>
 <hr />
 <p><strong>Ejemplo 8.2. Regresión de Poisson para datos de siniestros en seguros en Singapur</strong></p>
@@ -1282,42 +1286,42 @@ Como resultado, las relatividades vienen dadas por</p>
 <a id="displayCodeRiskClass.2" href="javascript:togglecode('toggleCodeRiskClass.2','displayCodeRiskClass.2');"><i><strong>Muestra código R</strong></i></a>
 </h5>
 <div id="toggleCodeRiskClass.2" style="display: none">
-<div class="sourceCode" id="cb97"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb97-1" title="1">mydat &lt;- read.csv(&quot;SingaporeAuto.csv&quot;,  quote = &quot;&quot;, header = TRUE)</a>
-<a class="sourceLine" id="cb97-2" title="2">attach(mydat)</a>
-<a class="sourceLine" id="cb97-3" title="3"></a>
-<a class="sourceLine" id="cb97-4" title="4"># create vehicle type as factor</a>
-<a class="sourceLine" id="cb97-5" title="5">TypeA = 1 * (VehicleType == &quot;A&quot;)</a>
-<a class="sourceLine" id="cb97-6" title="6">table(VehicleType)</a>
-<a class="sourceLine" id="cb97-7" title="7">VtypeF &lt;- as.character(VehicleType)</a>
-<a class="sourceLine" id="cb97-8" title="8">VtypeF[VtypeF != &quot;A&quot;] &lt;- &quot;O&quot;</a>
-<a class="sourceLine" id="cb97-9" title="9">VtypeF = relevel(factor(VtypeF), ref=&quot;A&quot;)</a>
-<a class="sourceLine" id="cb97-10" title="10"></a>
-<a class="sourceLine" id="cb97-11" title="11"># create gender as factor</a>
-<a class="sourceLine" id="cb97-12" title="12">Female = 1 * (SexInsured == &quot;F&quot; )</a>
-<a class="sourceLine" id="cb97-13" title="13">Sex = as.character(SexInsured)</a>
-<a class="sourceLine" id="cb97-14" title="14">Sex[Sex != &quot;F&quot;] &lt;- &quot;M&quot;</a>
-<a class="sourceLine" id="cb97-15" title="15">SexF = relevel(factor(Sex), ref = &quot;F&quot;)</a>
-<a class="sourceLine" id="cb97-16" title="16"></a>
-<a class="sourceLine" id="cb97-17" title="17"># create driver age as factor</a>
-<a class="sourceLine" id="cb97-18" title="18">AgeCat = pmax(AgeCat - 1, 0)</a>
-<a class="sourceLine" id="cb97-19" title="19">AgeCatF = relevel(factor(AgeCat), ref = &quot;0&quot;)</a>
-<a class="sourceLine" id="cb97-20" title="20">table(AgeCatF) # No policy in the first age band</a>
-<a class="sourceLine" id="cb97-21" title="21"></a>
-<a class="sourceLine" id="cb97-22" title="22"># create vehicle age as factor</a>
-<a class="sourceLine" id="cb97-23" title="23">VAgeCatF = relevel( factor(VAgeCat), ref = &quot;0&quot; )</a>
-<a class="sourceLine" id="cb97-24" title="24">VAgecat1 = factor(VAgecat1, labels = </a>
-<a class="sourceLine" id="cb97-25" title="25">                    c(&quot;Vage0-2&quot;, &quot;Vage3-5&quot;, &quot;Vage6-10&quot;, &quot;Vage11-15&quot;, &quot;Vage15+&quot;) )</a>
-<a class="sourceLine" id="cb97-26" title="26">VAgecat1F = relevel( factor(VAgecat1), ref = &quot;Vage0-2&quot; )</a>
-<a class="sourceLine" id="cb97-27" title="27"></a>
-<a class="sourceLine" id="cb97-28" title="28"># Poisson reg model</a>
-<a class="sourceLine" id="cb97-29" title="29">Pois_reg2 = glm(Clm_Count ~ SexF + TypeA:AgeCatF + VAgecat1F, </a>
-<a class="sourceLine" id="cb97-30" title="30">                   offset = LNWEIGHT, poisson(link = log) )</a>
-<a class="sourceLine" id="cb97-31" title="31">summary(Pois_reg2) </a>
-<a class="sourceLine" id="cb97-32" title="32"></a>
-<a class="sourceLine" id="cb97-33" title="33"># compute relativities</a>
-<a class="sourceLine" id="cb97-34" title="34">exp(Pois_reg2<span class="ss">$coefficients)</span></a>
-<a class="sourceLine" id="cb97-35" title="35"></a>
-<a class="sourceLine" id="cb97-36" title="36"><span class="ss">detach(mydat)</span></a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb97-1"><a href="C-RiskClass.html#cb97-1"></a>mydat &lt;- read.csv(&quot;SingaporeAuto.csv&quot;,  quote = &quot;&quot;, header = TRUE)</span>
+<span id="cb97-2"><a href="C-RiskClass.html#cb97-2"></a>attach(mydat)</span>
+<span id="cb97-3"><a href="C-RiskClass.html#cb97-3"></a></span>
+<span id="cb97-4"><a href="C-RiskClass.html#cb97-4"></a># create vehicle type as factor</span>
+<span id="cb97-5"><a href="C-RiskClass.html#cb97-5"></a>TypeA = 1 * (VehicleType == &quot;A&quot;)</span>
+<span id="cb97-6"><a href="C-RiskClass.html#cb97-6"></a>table(VehicleType)</span>
+<span id="cb97-7"><a href="C-RiskClass.html#cb97-7"></a>VtypeF &lt;- as.character(VehicleType)</span>
+<span id="cb97-8"><a href="C-RiskClass.html#cb97-8"></a>VtypeF[VtypeF != &quot;A&quot;] &lt;- &quot;O&quot;</span>
+<span id="cb97-9"><a href="C-RiskClass.html#cb97-9"></a>VtypeF = relevel(factor(VtypeF), ref=&quot;A&quot;)</span>
+<span id="cb97-10"><a href="C-RiskClass.html#cb97-10"></a></span>
+<span id="cb97-11"><a href="C-RiskClass.html#cb97-11"></a># create gender as factor</span>
+<span id="cb97-12"><a href="C-RiskClass.html#cb97-12"></a>Female = 1 * (SexInsured == &quot;F&quot; )</span>
+<span id="cb97-13"><a href="C-RiskClass.html#cb97-13"></a>Sex = as.character(SexInsured)</span>
+<span id="cb97-14"><a href="C-RiskClass.html#cb97-14"></a>Sex[Sex != &quot;F&quot;] &lt;- &quot;M&quot;</span>
+<span id="cb97-15"><a href="C-RiskClass.html#cb97-15"></a>SexF = relevel(factor(Sex), ref = &quot;F&quot;)</span>
+<span id="cb97-16"><a href="C-RiskClass.html#cb97-16"></a></span>
+<span id="cb97-17"><a href="C-RiskClass.html#cb97-17"></a># create driver age as factor</span>
+<span id="cb97-18"><a href="C-RiskClass.html#cb97-18"></a>AgeCat = pmax(AgeCat - 1, 0)</span>
+<span id="cb97-19"><a href="C-RiskClass.html#cb97-19"></a>AgeCatF = relevel(factor(AgeCat), ref = &quot;0&quot;)</span>
+<span id="cb97-20"><a href="C-RiskClass.html#cb97-20"></a>table(AgeCatF) # No policy in the first age band</span>
+<span id="cb97-21"><a href="C-RiskClass.html#cb97-21"></a></span>
+<span id="cb97-22"><a href="C-RiskClass.html#cb97-22"></a># create vehicle age as factor</span>
+<span id="cb97-23"><a href="C-RiskClass.html#cb97-23"></a>VAgeCatF = relevel( factor(VAgeCat), ref = &quot;0&quot; )</span>
+<span id="cb97-24"><a href="C-RiskClass.html#cb97-24"></a>VAgecat1 = factor(VAgecat1, labels = </span>
+<span id="cb97-25"><a href="C-RiskClass.html#cb97-25"></a>                    c(&quot;Vage0-2&quot;, &quot;Vage3-5&quot;, &quot;Vage6-10&quot;, &quot;Vage11-15&quot;, &quot;Vage15+&quot;) )</span>
+<span id="cb97-26"><a href="C-RiskClass.html#cb97-26"></a>VAgecat1F = relevel( factor(VAgecat1), ref = &quot;Vage0-2&quot; )</span>
+<span id="cb97-27"><a href="C-RiskClass.html#cb97-27"></a></span>
+<span id="cb97-28"><a href="C-RiskClass.html#cb97-28"></a># Poisson reg model</span>
+<span id="cb97-29"><a href="C-RiskClass.html#cb97-29"></a>Pois_reg2 = glm(Clm_Count ~ SexF + TypeA:AgeCatF + VAgecat1F, </span>
+<span id="cb97-30"><a href="C-RiskClass.html#cb97-30"></a>                   offset = LNWEIGHT, poisson(link = log) )</span>
+<span id="cb97-31"><a href="C-RiskClass.html#cb97-31"></a>summary(Pois_reg2) </span>
+<span id="cb97-32"><a href="C-RiskClass.html#cb97-32"></a></span>
+<span id="cb97-33"><a href="C-RiskClass.html#cb97-33"></a># compute relativities</span>
+<span id="cb97-34"><a href="C-RiskClass.html#cb97-34"></a>exp(Pois_reg2<span class="ss">$coefficients)</span></span>
+<span id="cb97-35"><a href="C-RiskClass.html#cb97-35"></a></span>
+<span id="cb97-36"><a href="C-RiskClass.html#cb97-36"></a><span class="ss">detach(mydat)</span></span></code></pre></div>
 </div>
 <hr />
 <p>Como observación final, comentar que la regresión de Poisson no es el único modelo de regresión posible para datos de conteo. En realidad, la distribución de Poisson puede ser restrictiva en el sentido de que tiene un único parámetro y su media y la varianza son siempre iguales. Existen otros modelos de regresión para conteos que permiten una estructura de distribución más flexible, como las regresiones binomiales negativas y las regresiones infladas en cero (ZI); Los detalles de estas regresiones alternativas se pueden encontrar en otros textos enumerados en la siguiente sección.</p>
@@ -1329,7 +1333,7 @@ Como resultado, las relatividades vienen dadas por</p>
 <h4>Más Información y Referencias</h4>
 <p>La regresión de Poisson es un caso especial de una clase de modelo de regresión más general conocido como modelo lineal generalizado (glm). El glm establece un marco de regresión unificado para conjuntos de datos cuando las variables de respuesta son continuas, binarias o discretas. El modelo de regresión lineal clásico con error normal también es miembro del glm. Hay muchos textos estadísticos estándar que tratan sobre el glm, incluido <span class="citation">(Peter McCullagh and Nelder <a href="#ref-mccullagh1989generalized" role="doc-biblioref">1989</a>)</span>. Los textos más accesibles son <span class="citation">(Dobson and Barnett <a href="#ref-dobson2008introduction" role="doc-biblioref">2008</a>)</span>, <span class="citation">(Agresti <a href="#ref-agresti1996introduction" role="doc-biblioref">1996</a>)</span> y <span class="citation">(Faraway <a href="#ref-faraway2016extending" role="doc-biblioref">2016</a>)</span>. Para las aplicaciones actuariales y de seguros del glm, consulte <span class="citation">(Edward W. Frees <a href="#ref-frees2009regression" role="doc-biblioref">2009</a><a href="#ref-frees2009regression" role="doc-biblioref">a</a>)</span>, <span class="citation">(De Jong and Heller <a href="#ref-de2008generalized" role="doc-biblioref">2008</a>)</span>. Además, <span class="citation">(Ohlsson and Johansson <a href="#ref-ohlsson2010non" role="doc-biblioref">2010</a>)</span> analiza el glm en el contexto de fijación de precios de seguros no vida con análisis de tarifas.</p>
 </div>
-<div id="colaboradores-3" class="section level4 unnumbered">
+<div id="colaboradores-4" class="section level4 unnumbered">
 <h4>Colaboradores</h4>
 <ul>
 <li><strong>Joseph H. T. Kim</strong>, Yonsei University, es el autor principal de la versión inicial de este capítulo. Email: <a href="mailto:jhtkim@yonsei.ac.kr" class="email">jhtkim@yonsei.ac.kr</a> para comentarios del capítulo y sugerencias de mejora.</li>
@@ -1426,10 +1430,10 @@ La Sección <a href="C-AppC.html#S:AppC:LF">17.1</a> define las matrices de info
 <div class="footnotes">
 <hr />
 <ol start="9">
-<li id="fn9"><p>Por ejemplo, si hay 3 factores de riesgo, cuyo número de niveles es 2, 3 y 4, respectivamente, tenemos <span class="math inline">\(k=(2-1)\times(3-1)\times (4-1)=6\)</span>.<a href="C-RiskClass.html#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>Ya se mencionó laa preferencia por la forma multiplicativa frente a otras (por ejemplo, la aditiva) en <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a>.<a href="C-RiskClass.html#fnref10" class="footnote-back">↩</a></p></li>
-<li id="fn11"><p>corresponde a <span class="math inline">\(\texttt{VAgecat1}\)</span><a href="C-RiskClass.html#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>Usamos derivada matricial<a href="C-RiskClass.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>Por ejemplo, si hay 3 factores de riesgo, cuyo número de niveles es 2, 3 y 4, respectivamente, tenemos <span class="math inline">\(k=(2-1)\times(3-1)\times (4-1)=6\)</span>.<a href="C-RiskClass.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>Ya se mencionó laa preferencia por la forma multiplicativa frente a otras (por ejemplo, la aditiva) en <a href="C-RiskClass.html#eq:log-lin-mu">(8.4)</a>.<a href="C-RiskClass.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>corresponde a <span class="math inline">\(\texttt{VAgecat1}\)</span><a href="C-RiskClass.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Usamos derivada matricial<a href="C-RiskClass.html#fnref12" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

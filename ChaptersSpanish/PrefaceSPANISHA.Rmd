@@ -1,0 +1,216 @@
+
+<!-- # Prefacio {-} -->
+
+#### Descripción del libro {-}
+
+**Loss Data Analytics** es un texto interactivo, en línea y de libre acceso.
+
+- La versión en línea contiene muchos objetos interactivos (cuestionarios, demostraciones por ordenador, gráficos interactivos, vídeos, etc.) para promover un *aprendizaje más profundo*.
+- Un subconjunto del libro está disponible para su *lectura en línea* en formatos pdf y EPUB.
+- El texto en línea estará disponible en varios idiomas para promover el acceso a un *público mundial*.
+
+#### ¿Cómo será el éxito? {-}
+
+El texto en línea estará disponible gratuitamente para un público mundial. La versión en línea contendrá muchos objetos interactivos (cuestionarios, demostraciones, gráficos interactivos, vídeos, etc.) para promover un aprendizaje más profundo. Además, un subconjunto del libro estará disponible en formato pdf para su impresión a bajo coste. El texto en línea estará disponible en varios idiomas para promover el acceso a una audiencia mundial.
+
+#### ¿Cómo se utilizará el texto? {-}
+
+Este libro será útil en los planes de estudios actuariales de todo el mundo. Cubrirá los objetivos de aprendizaje en el análisis de datos de pérdidas de las principales organizaciones actuariales. Por lo tanto, será adecuado para el uso en el aula en las universidades, así como para el uso de los estudiantes de forma independiente que quieren aprobar los exámenes actuariales profesionales. Además, el texto también será útil para el desarrollo profesional continuo de los actuarios y otros profesionales de los seguros y de las industrias de gestión de riesgos financieros relacionadas.
+
+
+#### ¿Por qué es bueno para la profesión?  {-}
+
+Un texto en línea es un tipo de recurso educativo abierto (OER, según sus siglas en inglés). Un beneficio importante de un OER es que iguala el acceso al conocimiento, permitiendo así que una comunidad más amplia aprenda sobre la profesión actuarial. Además, tiene la capacidad de involucrar a los lectores a través de un aprendizaje activo que profundiza el proceso de aprendizaje, generando analistas capaces de realizar un trabajo actuarial más sólido.
+¿Por qué es bueno para los estudiantes y los profesores y otras personas implicadas en el proceso de aprendizaje? El coste se cita a menudo como un factor importante para estudiantes y profesores en la selección de libros de texto (véase un post reciente sobre el [libro de texto de 400 dólares](https://www.aei.org/publication/the-new-era-of-the-400-college-textbook-which-is-part-of-the-unsustainable-higher-education-bubble/)). Los estudiantes también apreciarán la posibilidad de "llevar el libro a todas partes" en sus dispositivos móviles.
+
+#### ¿Por qué el análisis de datos de pérdidas?  {-}
+
+La intención es que este tipo de recurso acabe impregnando todo el currículo actuarial. Dados los cambios dramáticos en la forma en que los actuarios tratan los datos, los datos de pérdidas parecen un lugar natural para empezar. La idea detrás del nombre *analítica de datos de pérdidas* (loss data analytics, en inglés) es integrar los modelos clásicos de probabilidad aplicada de datos de pérdidas con herramientas analíticas modernas. En particular, reconocemos que el big data (que incluye las redes sociales y los seguros basados en el uso) están aquí para quedarse y que la computación de alta velocidad es de fácil acceso.
+
+
+#### Objetivo del proyecto {-}
+
+El objetivo del proyecto es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Para participar, por favor visite nuestra [web del Proyecto de Libros de Texto Actuariales Abiertos](https://sites.google.com/a/wisc.edu/loss-data-analytics/).
+
+
+## Agradecimientos {-}
+
+Edward Frees agradece a la cátedra *John and Anne Oros Distinguished Chair for Inspired Learning in Business*, que proporcionó la financiación inicial para apoyar el proyecto. Frees y sus colegas de Wisconsin también agradecen la subvención de la *Society of Actuaries Center of Excellence Grant*, que proporcionó financiación para apoyar el trabajo de modelización de la dependencia y las iniciativas de salud. Wisconsin también proporcionó una subvención para la innovación educativa que proporcionó un apoyo parcial a los numerosos estudiantes que han trabajado en este proyecto.
+
+Agradecemos a la *Society of Actuaries* el permiso para utilizar problemas de sus exámenes.
+
+Agradecemos a Rob Hyndman, de la Universidad de Monash, que nos haya permitido utilizar sus excelentes archivos de estilo para elaborar la versión en línea del libro.
+
+Agradecemos a Yihui Xie y a sus colegas de [Rstudio](https://www.rstudio.com/) el paquete [R bookdown](https://bookdown.org/yihui/bookdown/) que nos permite producir este libro.
+
+También queremos agradecer el apoyo y el patrocinio de la [*International Association of Black Actuaries*](http://www.blackactuaries.org/) en nuestros esfuerzos conjuntos por ofrecer contenidos educativos actuariales a todos.
+
+<center>
+![](Figures\IABA.png){width=25%}
+</center>
+
+## Colaboradores {-}
+
+El objetivo del proyecto es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Los siguientes colaboradores han asumido un papel de liderazgo en el desarrollo de *Loss Data Analytics*.
+
+<img src = "ContributorPics\zeinab_amin_photo.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Zeinab Amin** es directora del Programa de Ciencias Actuariales y Decana Asociada de Estudios de Grado de la Facultad de Ciencias e Ingeniería de la Universidad Americana de El Cairo (AUC). Amin es doctora en Estadística y está asociada a la *Society of Actuaries*. Amin ha recibido el Premio a la Excelencia en el Servicio Académico 2016 y el Premio a la Excelencia en la Enseñanza 2009 de la AUC. Amin ha diseñado y enseñado una variedad de cursos de estadística y ciencias actuariales. El área de investigación actual de Amin incluye la evaluación cuantitativa del riesgo, la evaluación de la fiabilidad, la modelización estadística general y la estadística bayesiana.
+
+- **Katrien Antonio**, KU Leuven
+
+- **Jan Beirlant**, KU Leuven
+
+<img src = "ContributorPics\Charpentier.jpg" width = "150" height = "160" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Arthur Charpentier** es profesor del Departamento de Matemáticas de la Université du Québec á Montréal. Anteriormente, trabajó en una gran compañía de seguros generales en Hong Kong, China, y en la Federación Francesa de Aseguradores en París, Francia. Obtuvo un máster en economía matemática en la Universidad de París Dauphine y un máster en ciencias actuariales en la ENSAE (Escuela Nacional de Estadística) de París, y un doctorado en la KU Leuven (Bélgica). Sus intereses de investigación incluyen la econometría, la probabilidad aplicada y la ciencia actuarial. Ha publicado varios libros (el más reciente sobre *Computational Actuarial Science with R*, CRC) y artículos sobre diversos temas. Es miembro del Instituto Francés de Actuarios, y estuvo a cargo del programa 'Data Science for Actuaries' de 2015 a 2018.
+
+<img src = "ContributorPics\PhotoGaryDean.jpg" width = "150" height = "160" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Curtis Gary Dean** es *Lincoln Financial Distinguished Professor of Actuarial Science* en la Ball State University. Es miembro de la Casualty Actuarial Society y titular de la CFA.  Tiene una amplia experiencia práctica como actuario en American States Insurance, SAFECO y Travelers.  Ha servido a la CAS y a la profesión actuarial como presidente del Comité de Exámenes, primer editor-in-chief de *Variance: Advancing the Science of Risk*, y como miembro de la Junta Directiva y del Consejo Ejecutivo.  Ha contribuido con un capítulo a *Predictive Modeling Applications in Actuarial Science*, publicado por Cambridge University Press.
+
+<img src = "ContributorPics\Frees_Jed2018_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Edward W. (Jed) Frees** es profesor emérito, anteriormente la *Hickman-Larson Chair of Actuarial Science* de la Universidad de Wisconsin-Madison. Es miembro de la Society of Actuaries y de la American Statistical Association. Ha realizado numerosas publicaciones (ha ganado cuatro veces el premio Halmstad al mejor artículo publicado en la literatura actuarial) y ha escrito tres libros. También es coeditor de dos volúmenes de la serie *Predictive Modeling Applications in Actuarial Science* publicada por Cambridge University Press.
+
+
+<img src = "ContributorPics\GuojunGan.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Guojun Gan** es profesor asistente en el Departamento de Matemáticas de la Universidad de Connecticut, donde lleva desde agosto de 2014. Anteriormente, trabajó en una gran compañía de seguros de vida en Toronto, Canadá, durante seis años. Se licenció en la Universidad de Jilin (Changchun, China) en 2001 y obtuvo un máster y un doctorado en la Universidad de York (Toronto, Canadá) en 2003 y 2007, respectivamente. Sus intereses de investigación incluyen la minería de datos y la ciencia actuarial. Ha publicado varios libros y artículos sobre diversos temas, como la agrupación de datos, rentas vitalicias variables, finanzas matemáticas, estadística aplicada y programación VBA.
+
+<img src = "ContributorPics\Gao_Lisa_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Lisa Gao** es estudiante de doctorado en el departamento de Riesgos y Seguros de la Universidad de Wisconsin-Madison. Es licenciada en Ciencias Actuariales y Estadística por la Universidad de Waterloo y es asociada de la Society of Actuaries.  
+
+<br/>
+
+- **José Garrido**, Concordia University 
+
+<br/>
+
+<img src = "ContributorPics\Larry2018.png" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Lei (Larry) Hua** es profesor asociado de Ciencias Actuariales en la Universidad del Norte de Illinois. Se doctoró en Estadística por la Universidad de British Columbia. Es asociado de la Society of Actuaries. Su trabajo de investigación se centra en la modelización de la dependencia multivariante para fenómenos no gaussianos y en aplicaciones innovadoras para los sectores financiero y de seguros.
+
+<br/>
+
+<img src = "ContributorPics\Noriszura.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Noriszura Ismail** es profesora y directora del Programa de Ciencias Actuariales de la Universiti Kebangsaan Malaysia (UKM). Está especializada en modelos de riesgo y estadística aplicada. Obtuvo su licenciatura y su máster (Ciencias Actuariales) en 1991 y 1993 en la Universidad de Iowa, y su doctorado (Estadística) en 2007 en la UKM. También aprobó varios trabajos de la Society of Actuaries en 1994. Ha recibido varias becas de investigación del Ministerio de Educación Superior de Malasia (MOHE) y de la UKM, por un total de MYR 1,8 millones. Ha supervisado y co-supervisado con éxito a varios estudiantes de doctorado (13 completados y 11 en curso). En la actualidad cuenta con unas 180 publicaciones, 88 en revistas y 95 en actas.
+
+<img src = "ContributorPics\JosephKimPic.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Joseph H.T. Kim**, Doctor, FSA, CERA, es Profesor Asociado de Estadística Aplicada en la Universidad de Yonsei, Seúl, Corea. Es doctor en Ciencias Actuariales por la Universidad de Waterloo, en la que impartió clases como profesor adjunto. También ha trabajado en el sector de los seguros de vida. Ha publicado artículos en *Insurance Mathematics and Economics*, *Journal of Risk and Insurance*, *Journal of Banking and Finance*, *ASTIN Bulletin* y *North American Actuarial Journal*, entre otros.
+
+<img src = "ContributorPics\Okine_A.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Nii-Armah Okine** es disertante en la escuela de negocios de la Universidad de Wisconsin-Madison con especialización en ciencias actuariales. Obtuvo su máster en Ciencias Actuariales en la Universidad Estatal de Illinois. Sus intereses de investigación incluyen las reservas a nivel micro, la modelización conjunta longitudinal-supervivencia, la modelización de la dependencia, los microseguros y machine learning.
+
+
+
+<img src = "ContributorPics\Selin_pictureA.png" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Emine Selin Saridas** es doctoranda en el departamento de Estadística de la Universidad Mimar Sinan. Es licenciada en Ciencias Actuariales con especialización en Economía y tiene un máster en Ciencias Actuariales por la Universidad de Hacettepe. Sus intereses de investigación incluyen la modelización de la dependencia, la regresión, los modelos de pérdidas y las contingencias de vida.
+
+<br/>
+
+<img src = "ContributorPics\Shi_Peng_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Peng Shi** es profesor asociado del Departamento de Riesgos y Seguros de la Escuela de Negocios de Wisconsin. También es el profesor Charles & Laura Albright en Negocios y Finanzas. El profesor Shi es asociado de la Casualty Actuarial Society (ACAS) y miembro de la Society of Actuaries (FSA). Se doctoró en ciencias actuariales en la Universidad de Wisconsin-Madison. Sus intereses de investigación son los problemas en la intersección de los seguros y la estadística. Ha ganado varios premios de investigación, como el Charles A. Hachemeister Prize, el Ronald Bornhuetter Loss Reserve Prize y el American Risk and Insurance Association Prize.
+
+<img src = "ContributorPics\Shyamal.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Nariankadu D. Shyamalkumar (Shyamal)** es profesor asociado en el Departamento de Estadística y Ciencias Actuariales de la Universidad de Iowa. Es asociado de la Society of Actuaries y ha sido voluntario en varios puestos electos y no electos dentro de la SoA. Con un amplio interés teórico y por la informática, ha publicado en destacadas revistas actuariales, de informática, de teoría de la probabilidad y de estadística. Además, ha trabajado en la industria financiera y, desde entonces, ha sido consultor independiente del sector de los seguros. Tiene experiencia en la formación de actuarios tanto en México como en Estados Unidos, desempeñando las funciones de director de un programa de pregrado y de asesor de posgrado para estudiantes de máster y doctorado.
+
+<img src = "ContributorPics\jianxi_m.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Jianxi Su** es profesor adjunto del Departamento de Estadística de la Universidad de Purdue. Es el Director Asociado de Ciencias Actuariales de Purdue. Antes de incorporarse a Purdue en 2016, realizó el doctorado en la Universidad de York (2012-2015). Obtuvo el Fellow of the Society of Actuaries (FSA) en 2017. Sus conocimientos de investigación se centran en la modelización de la dependencia, la gestión del riesgo y la fijación de precios. Durante la candidatura al doctorado, Jianxi también trabajó como investigador asociado en el equipo de validación de modelos e implementación de ORSA de Sun Life Financial (oficina de Toronto).
+
+<img src = "ContributorPics\ChongItTan.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Chong It Tan** es profesor titular de la Universidad Macquarie en Australia, donde se ha desempeñado como director del programa actuarial de pregrado desde 2018. Obtuvo su doctorado en 2015 en la Universidad Tecnológica de Nanyang en Singapur. Es un actuario completamente calificado, con las credenciales de la Sociedad de Actuarios de los EE. UU. Y del Instituto de Actuarios de Australia. Sus principales intereses de investigación son el modelado de mortalidad, la gestión del riesgo de longevidad y los sistemas bonus-malus.
+
+
+<img src = "ContributorPics\TimVerdonck.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Tim Verdonck** es profesor asociado en la Universidad de Amberes. Es licenciado en Matemáticas y doctor en Ciencias Matemáticas, obtenidos en la Universidad de Amberes. Durante su doctorado cursó con éxito el Máster en Seguros y el Máster en Ingeniería Financiera y Actuarial, ambos en la KU Leuven. Su investigación se centra en la adaptación y aplicación de métodos estadísticos robustos para datos de seguros y finanzas.
+
+<br/>
+
+<img src = "ContributorPics\krupaviswanathan2.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" />
+
+- **Krupa Viswanathan** es profesora asociada del Departamento de Gestión de Riesgos, Seguros y Asistencia Sanitaria de la Fox School of Business de la Universidad de Temple.  Es asociada de la Society of Actuaries. Imparte cursos de Ciencias Actuariales y Gestión de Riesgos en los niveles de grado y postgrado. Sus intereses de investigación incluyen el gobierno corporativo de las compañías de seguros, la gestión del capital y el análisis de los sentimientos. Se doctoró en la Wharton School de la Universidad de Pensilvania.
+
+## Revisores {-}
+
+Nuestro objetivo es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Parte del proceso de escritura involucra a muchos revisores que generosamente donaron su tiempo para ayudar a mejorar este libro. Ellos son:
+
+- Yair Babab
+- Chunsheng Ban,	Ohio State University
+- Vytaras Brazauskas,	University of Wisconsin - Milwaukee
+- Chun Yong Chew, Universiti Tunku Abdul Rahman (UTAR)
+- Eren Dodd, University of Southampton
+- Gordon Enderle,	University of Wisconsin - Madison
+- Rob Erhardt,	Wake Forest University
+- Runhun Feng, University of Illinois
+- Liang (Jason) Hong,	Robert Morris University
+- Fei Huang, Australian National University
+- Hirokazu (Iwahiro) Iwasawa 
+- Himchan Jeong,	University of Connecticut
+- Min Ji, Towson University
+- Paul Herbert Johnson,	University of Wisconsin - Madison
+- Samuel Kolins, Lebonan Valley College
+- Andrew Kwon-Nakamura, Zurich North America
+- Ambrose Lo, University of Iowa
+- Mark Maxwell,	University of Texas at Austin
+- Tatjana Miljkovic,	Miami University
+- Bell Ouelega,	American University in Cairo
+- Zhiyu (Frank) Quan, University of Connecticut
+- Jiandong Ren,	Western University
+- Rajesh V. Sahasrabuddhe, Oliver Wyman
+- Ranee Thiagarajah,	Illinois State University
+- Ping Wang, Saint Johns University
+- Chengguo Weng,	University of Waterloo
+- Toby White,	Drake University
+- Michelle Xia, Northern Illinois University
+- Di (Cindy) Xu,	University of Nebraska - Lincoln
+- Lina Xu, Columbia University
+- Lu Yang, University of Amsterdam
+- Jorge Yslas, University of Copenhagen
+- Jeffrey Zheng,	Temple University
+- Hongjuan Zhou, Arizona State University
+
+## Traducción al español {-}
+
+La traducción al español del libro ha sido llevada a cabo por los siguientes revisores:
+
+- Manuela Alcañiz, Riskcenter-IREA, University of Barcelona.
+- Ramon Alemany, Riskcenter-IREA, University of Barcelona.
+- Mercedes Ayuso, Riskcenter-IREA, University of Barcelona.
+- Lluís Bermúdez, Riskcenter-IREA, University of Barcelona.
+- Catalina Bolancé, Riskcenter-IREA, University of Barcelona.
+- Montserrat Guillén, Riskcenter-IREA, University of Barcelona.
+- Ana-María Pérez-Marín, Riskcenter-IREA, University of Barcelona.
+- Miguel Santolino, Riskcenter-IREA, University of Barcelona.
+- Armando Zarruk, Universidad Nacional de Colombia
+
+
+## Para nuestros lectores {-}
+
+Esperamos que este libro os resulte útil e incluso agradable. Para vuestra comodidad, en nuestra [Github Landing web] (https://openacttexts.github.io/), encontraréis enlaces al libro que puede descargar (libremente) para su lectura sin conexión, incluyendo una versión en pdf (para Adobe Acrobat) y una versión en EPUB adecuada para dispositivos móviles.[Los datos](https://github.com/OpenActTexts/Loss-Data-Analytics/tree/master/Data) para ejecutar nuestros ejemplos están disponibles en el mismo sitio.
+
+En el desarrollo de este libro, hacemos hincapié en la [versión en línea](https://openacttexts.github.io/Loss-Data-Analytics/index.html) que tiene diferentes características como un glosario, el código y las soluciones a los ejemplos que se pueden revelar de forma interactiva. Por ejemplo, encontraréis que el código estadístico está oculto y sólo puede verse haciendo clic en términos como
+
+`r HideRCode('SeverityFig.1Intro',"Código R para tabla de frecuencias")`
+
+```{r, echo=SHOW_PDF, eval=FALSE}
+Insample <- read.csv("Insample.csv", header=T,  na.strings=c("."), 
+                      stringsAsFactors=FALSE)
+Insample2010 <- subset(Insample, Year==2010)
+table(Insample2010$Freq)
+```
+</div>
+
+Ocultamos el código porque no queremos insistir en que se utilice el software estadístico `R` (aunque nos gusta). Aun así, os animamos a que probéis algún código estadístico mientras leéis el libro: hemos optado por facilitar el aprendizaje de `R` sobre la marcha. Incluso hemos creado un sitio separado [R Code for Loss Data Analytics](https://openacttexts.github.io/LDARcode) para explicar más detalles del código.
+
+Los libros de texto interactivos de libre acceso representan una nueva aventura en la educación actuarial y necesitamos tu aportación. Aunque se ha hecho un gran esfuerzo en el desarrollo, esperamos que haya problemas. Por favor, comunicad a vuestro instructor las oportunidades de mejora, escribidnos a través de nuestro sitio del proyecto o poneros en contacto directamente con los colaboradores de los capítulos para sugerirles mejoras.

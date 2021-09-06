@@ -150,13 +150,13 @@ El análisis de datos es parte de un estudio general. Por ejemplo, la figura \@r
 
 El objetivo del análisis de datos como se describió anteriormente se enfoca en la explicación de algún fenómeno (Ver sección \@ref(S:expred)). 
 
-```{r, study, echo=FALSE, fig.cap='The process of a typical study in behavioral and social sciences.', out.width='80%', fig.align='center'}
+```{r, study, echo=FALSE, fig.cap='El proceso de un estudio típico en ciencias sociales y del comportamiento.', out.width='80%', fig.align='center'}
 knitr::include_graphics("Figures/Figure1.png")
 ```
 
 @shmueli2010model describió un proceso general para la modelación estadística que se muestra en la Figura \@ref(fig:modeling). Dependiendo del objetivo del análisis, los pasos difirieren en cuanto a la escogencia del método, los criterios, los datos y la información.
 
-```{r, modeling, echo=FALSE, fig.cap='The process of statistical modeling.', out.width='80%', fig.align='center'}
+```{r, modeling, echo=FALSE, fig.cap='El proceso de modelación estadística.', out.width='80%', fig.align='center'}
 knitr::include_graphics("Figures/Figure2.png")
 ```
 

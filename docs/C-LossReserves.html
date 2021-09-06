@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,9 +311,9 @@ document.getElementById("defaultOpen").click();
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -321,14 +322,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -337,9 +340,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -389,10 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
@@ -641,28 +645,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
-<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
-<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
-<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-la-evolución-de-las-primas"><i class="fa fa-check"></i><b>12.4.4</b> Programa R para la evolución de las Primas</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
-<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
-<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
-<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
@@ -942,8 +946,8 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <a id="displayCode.TriangleText.1" href="javascript:togglecode('toggleCode.TriangleText.1','displayCode.TriangleText.1');"><i><strong>Código R para importar datos de texto</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.1" style="display: none">
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">my_triangle_long &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Data/triangle_W_M_long.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb115-2" title="2"><span class="kw">head</span>(my_triangle_long)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="C-LossReserves.html#cb115-1"></a>my_triangle_long &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Data/triangle_W_M_long.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb115-2"><a href="C-LossReserves.html#cb115-2"></a><span class="kw">head</span>(my_triangle_long)</span></code></pre></div>
 <pre><code>   payment origin dev
 1  5946975   2004   0
 2  9668212   2004   1
@@ -957,8 +961,8 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <a id="displayCode.TriangleText.2" href="javascript:togglecode('toggleCode.TriangleText.2','displayCode.TriangleText.2');"><i><strong>Código R para la transformación en formato triangular</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.2" style="display: none">
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_long, <span class="dt">origin =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">dev =</span> <span class="st">&quot;dev&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;payment&quot;</span>)</a>
-<a class="sourceLine" id="cb117-2" title="2"><span class="kw">str</span>(my_triangle)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="C-LossReserves.html#cb117-1"></a>my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_long, <span class="dt">origin =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">dev =</span> <span class="st">&quot;dev&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;payment&quot;</span>)</span>
+<span id="cb117-2"><a href="C-LossReserves.html#cb117-2"></a><span class="kw">str</span>(my_triangle)</span></code></pre></div>
 <pre><code> &#39;triangle&#39; int [1:10, 1:10] 5946975 6346756 6269090 5863015 5778885 6184793 5600184 5288066 5290793 5675568 ...
  - attr(*, &quot;dimnames&quot;)=List of 2
   ..$ origin: chr [1:10] &quot;2004&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; ...
@@ -969,7 +973,7 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <a id="displayCode.TriangleText.3" href="javascript:togglecode('toggleCode.TriangleText.3','displayCode.TriangleText.3');"><i><strong>Código R para mostrar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.3" style="display: none">
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="C-LossReserves.html#cb119-1"></a><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1     2     3     4     5     6     7     8     9
   2004 5947 9668 10564 10772 10978 11041 11106 11121 11132 11148
@@ -991,17 +995,17 @@ origin    0    1     2     3     4     5     6     7     8     9
 <a id="displayCode.TriangleCSV.1" href="javascript:togglecode('toggleCode.TriangleCSV.1','displayCode.TriangleCSV.1');"><i><strong>Código R para importar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.1" style="display: none">
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">my_triangle_csv &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;Data/triangle_W_M.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb121-2" title="2">my_triangle_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(my_triangle_csv)</a>
-<a class="sourceLine" id="cb121-3" title="3"><span class="kw">dimnames</span>(my_triangle_matrix) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">origin =</span> <span class="dv">2004</span> <span class="op">:</span><span class="st"> </span><span class="dv">2013</span>, <span class="dt">dev =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">ncol</span>(my_triangle_matrix)<span class="op">-</span><span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="C-LossReserves.html#cb121-1"></a>my_triangle_csv &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;Data/triangle_W_M.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb121-2"><a href="C-LossReserves.html#cb121-2"></a>my_triangle_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(my_triangle_csv)</span>
+<span id="cb121-3"><a href="C-LossReserves.html#cb121-3"></a><span class="kw">dimnames</span>(my_triangle_matrix) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">origin =</span> <span class="dv">2004</span> <span class="op">:</span><span class="st"> </span><span class="dv">2013</span>, <span class="dt">dev =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">ncol</span>(my_triangle_matrix)<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
 </div>
 <p>Inspeccionamos el triángulo:</p>
 <h5 style="text-align: center;">
 <a id="displayCode.TriangleCSV.2" href="javascript:togglecode('toggleCode.TriangleCSV.2','displayCode.TriangleCSV.2');"><i><strong>Código R para mostrar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.2" style="display: none">
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_matrix) </a>
-<a class="sourceLine" id="cb122-2" title="2"><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="C-LossReserves.html#cb122-1"></a>my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_matrix) </span>
+<span id="cb122-2"><a href="C-LossReserves.html#cb122-2"></a><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1     2     3     4     5     6     7     8     9
   2004 5947 9668 10564 10772 10978 11041 11106 11121 11132 11148
@@ -1023,8 +1027,8 @@ origin    0    1     2     3     4     5     6     7     8     9
 <a id="displayCode.TriangleCSV.3" href="javascript:togglecode('toggleCode.TriangleCSV.3','displayCode.TriangleCSV.3');"><i><strong>Código R para pasar de visualización de datos acumulados a incrementales</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.3" style="display: none">
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">my_triangle_incr &lt;-<span class="st"> </span><span class="kw">cum2incr</span>(my_triangle) </a>
-<a class="sourceLine" id="cb124-2" title="2"><span class="kw">round</span>(my_triangle_incr<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="C-LossReserves.html#cb124-1"></a>my_triangle_incr &lt;-<span class="st"> </span><span class="kw">cum2incr</span>(my_triangle) </span>
+<span id="cb124-2"><a href="C-LossReserves.html#cb124-2"></a><span class="kw">round</span>(my_triangle_incr<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1   2   3   4   5  6  7  8  9
   2004 5947 3721 896 208 207  62 66 15 11 16
@@ -1043,7 +1047,7 @@ origin    0    1   2   3   4   5  6  7  8  9
 <div id="visualización-de-triángulos" class="section level4 unnumbered">
 <h4>Visualización de triángulos</h4>
 <p>Para explorar la evolución de los pagos acumulados por año de ocurrencia, la figura <a href="C-LossReserves.html#fig:plottriangle">11.9</a> muestra <code>my_triangle</code> usando la función <code>plot</code> disponible para los objetos de tipo <code>triangle</code> en el paquete <code>ChainLadder</code>. Cada línea de este gráfico muestra un año de ocurrencia (de 2004 a 2013, etiquetado como 1 a 10). Los períodos de desarrollo se etiquetan de 1 a 10 (en lugar de 0 a 9, como se usó anteriormente).</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">plot</span>(my_triangle)</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="C-LossReserves.html#cb126-1"></a><span class="kw">plot</span>(my_triangle)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plottriangle"></span>
 <img src="LossDataAnalytics_files/figure-html/plottriangle-1.png" alt="Desarrollo del siniestro por año de ocurrencia " width="80%" />
 <p class="caption">
@@ -1051,12 +1055,12 @@ Figure 11.9: Desarrollo del siniestro por año de ocurrencia
 </p>
 </div>
 <p>Alternativamente, el argumento <code>lattice</code> crea un gráfico por año de ocurrencia.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1"><span class="kw">plot</span>(my_triangle, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="C-LossReserves.html#cb127-1"></a><span class="kw">plot</span>(my_triangle, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_lattice-1.png" width="80%" style="display: block; margin: auto;" />
 En lugar de graficar el triángulo acumulado guardado en <code>my_triangle</code>, podemos graficar el triángulo de desarollo incremental.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">plot</span>(my_triangle_incr)</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="C-LossReserves.html#cb128-1"></a><span class="kw">plot</span>(my_triangle_incr)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_incr-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="kw">plot</span>(my_triangle_incr, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="C-LossReserves.html#cb129-1"></a><span class="kw">plot</span>(my_triangle_incr, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_incr-2.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -1269,8 +1273,8 @@ El resultado es la suma de los <em>MSEP</em> por período de ocurrencia más un 
 <a id="displayCode.MackModel.1" href="javascript:togglecode('toggleCode.MackModel.1','displayCode.MackModel.1');"><i><strong>Código R para las predicciones del modelo Mack</strong></i></a>
 </h5>
 <div id="toggleCode.MackModel.1" style="display: none">
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">CL &lt;-<span class="st"> </span><span class="kw">MackChainLadder</span>(my_triangle)</a>
-<a class="sourceLine" id="cb130-2" title="2">CL</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="C-LossReserves.html#cb130-1"></a>CL &lt;-<span class="st"> </span><span class="kw">MackChainLadder</span>(my_triangle)</span>
+<span id="cb130-2"><a href="C-LossReserves.html#cb130-2"></a>CL</span></code></pre></div>
 <pre><code>MackChainLadder(Triangle = my_triangle)
 
          Latest Dev.To.Date   Ultimate      IBNR Mack.S.E CV(IBNR)
@@ -1292,7 +1296,7 @@ Ultimate: 98,788,397.77
 IBNR:      6,047,063.77
 Mack.S.E     462,977.83
 CV(IBNR):          0.08</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">round</span>(<span class="kw">summary</span>(CL)<span class="op">$</span>Totals)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="C-LossReserves.html#cb132-1"></a><span class="kw">round</span>(<span class="kw">summary</span>(CL)<span class="op">$</span>Totals)</span></code></pre></div>
 <pre><code>             Totals
 Latest:    92741334
 Dev:              1
@@ -1302,14 +1306,14 @@ Mack S.E.:   462978
 CV(IBNR):         0</code></pre>
 </div>
 <p>Los factores de desarrollo se obtienen de la siguiente manera:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">round</span>(CL<span class="op">$</span>f,<span class="dt">digits =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="C-LossReserves.html#cb134-1"></a><span class="kw">round</span>(CL<span class="op">$</span>f,<span class="dt">digits =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code> [1] 1.4925 1.0778 1.0229 1.0148 1.0070 1.0051 1.0011 1.0010 1.0014 1.0000</code></pre>
 También podemos obtener el triángulo de desarrollo completo (incluyendo las predicciones).
 <h5 style="text-align: center;">
 <a id="displayCode.MackModel.1" href="javascript:togglecode('toggleCode.MackModel.1','displayCode.MackModel.1');"><i><strong>Código R para el triángulo completo modelo de Mack</strong></i></a>
 </h5>
 <div id="toggleCode.MackModel.1" style="display: none">
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">CL<span class="op">$</span>FullTriangle</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="C-LossReserves.html#cb136-1"></a>CL<span class="op">$</span>FullTriangle</span></code></pre></div>
 <pre><code>      dev
 origin       0       1        2        3        4        5        6        7
   2004 5946975 9668212 10563929 10771690 10978394 11040518 11106331 11121181
@@ -1336,15 +1340,15 @@ origin        8        9
   2013  9612728  9626383</code></pre>
 </div>
 <p>La MSEP para la reserva total a través de todos los períodos de ocurrencia se obtiene como:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">CL<span class="op">$</span>Total.Mack.S.E<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="C-LossReserves.html#cb138-1"></a>CL<span class="op">$</span>Total.Mack.S.E<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>           9 
 214348469061 </code></pre>
 <p>Se deben validar los supuestos de Mack comprobando que no hay tendencias en los gráficos de los residuos. Los últimos cuatro gráficos que obtenemos con el siguiente comando muestran respectivamente los residuos estandarizados frente a los valores ajustados, el período de origen, el período de calendario y el período de desarrollo.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">plot</span>(CL)</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="C-LossReserves.html#cb140-1"></a><span class="kw">plot</span>(CL)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/ResidualPlot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>El gráfico superior izquierdo es un gráfico de barras de la última posición de los siniestros más el IBNR y el error estándar de Mack por período de ocurrencia. El gráfico superior derecho muestra los patrones de desarrollo predichos para todos los períodos de ocurrencia (comenzando con 1 para el período de ocurrencia más antiguo).</p>
 <p>Al establecer el argumento <code>lattice=TRUE</code> se obtiene un gráfico del desarrollo, incluyendo la predicción y los errores estándar estimados por período de ocurrencia:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">plot</span>(CL, <span class="dt">lattice=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="C-LossReserves.html#cb141-1"></a><span class="kw">plot</span>(CL, <span class="dt">lattice=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/PlotLattice-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -1404,7 +1408,7 @@ De manera similar, se puede predecir una celda en el triángulo inferior como
 </div>
 <div id="LossRe:further-reading-and-resources" class="section level2">
 <h2><span class="header-section-number">11.5</span> Recursos adicionales y contribuciones</h2>
-<div id="colaboradores-5" class="section level4 unnumbered">
+<div id="colaboradores-6" class="section level4 unnumbered">
 <h4>Colaboradores</h4>
 <ul>
 <li><strong>Katrien Antonio</strong>, KU Leuven y University of Amsterdam, <strong>Jan Beirlant</strong>, KU Leuven, y <strong>Tim Veerdonck</strong>, University of Antwerp, son los autores principals de la version inicial de este capítulo. Email: <a href="mailto:katrien.antonio@kuleuven.be" class="email">katrien.antonio@kuleuven.be</a> para comentarios y posibles mejoras del capítulo.</li>

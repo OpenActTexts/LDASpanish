@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,9 +311,9 @@ document.getElementById("defaultOpen").click();
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -321,14 +322,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -337,9 +340,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -389,10 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
@@ -641,28 +645,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
-<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
-<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
-<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
-<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
-<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-la-evolución-de-las-primas"><i class="fa fa-check"></i><b>12.4.4</b> Programa R para la evolución de las Primas</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
-<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
-<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
-<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
@@ -818,83 +822,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
 <p style="text-align:right;">
-<em>Date: 28 August 2021</em>
+<em>Date: 06 September 2021</em>
 </p>
 
 
 
 
-<!-- # Preface {-} -->
-<div id="book-description" class="section level4 unnumbered">
-<h4>Book Description</h4>
-<p><strong>Loss Data Analytics</strong> is an interactive, online, freely available text.</p>
+<!-- # Prefacio {-} -->
+<div id="descripción-del-libro" class="section level4 unnumbered">
+<h4>Descripción del libro</h4>
+<p><strong>Loss Data Analytics</strong> es un texto interactivo, en línea y de libre acceso.</p>
 <ul>
-<li>The online version contains many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote <em>deeper learning</em>.</li>
-<li>A subset of the book is available for <em>offline reading</em> in pdf and EPUB formats.</li>
-<li>The online text will be available in multiple languages to promote access to a <em>worldwide audience</em>.</li>
+<li>La versión en línea contiene muchos objetos interactivos (cuestionarios, demostraciones por ordenador, gráficos interactivos, vídeos, etc.) para promover un <em>aprendizaje más profundo</em>.</li>
+<li>Un subconjunto del libro está disponible para su <em>lectura en línea</em> en formatos pdf y EPUB.</li>
+<li>El texto en línea estará disponible en varios idiomas para promover el acceso a un <em>público mundial</em>.</li>
 </ul>
 </div>
-<div id="what-will-success-look-like" class="section level4 unnumbered">
-<h4>What will success look like?</h4>
-<p>The online text will be freely available to a worldwide audience. The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. Moreover, a subset of the book will be available in pdf format for low-cost printing. The online text will be available in multiple languages to promote access to a worldwide audience.</p>
+<div id="cómo-será-el-éxito" class="section level4 unnumbered">
+<h4>¿Cómo será el éxito?</h4>
+<p>El texto en línea estará disponible gratuitamente para un público mundial. La versión en línea contendrá muchos objetos interactivos (cuestionarios, demostraciones, gráficos interactivos, vídeos, etc.) para promover un aprendizaje más profundo. Además, un subconjunto del libro estará disponible en formato pdf para su impresión a bajo coste. El texto en línea estará disponible en varios idiomas para promover el acceso a una audiencia mundial.</p>
 </div>
-<div id="how-will-the-text-be-used" class="section level4 unnumbered">
-<h4>How will the text be used?</h4>
-<p>This book will be useful in actuarial curricula worldwide. It will cover the loss data learning objectives of the major actuarial organizations. Thus, it will be suitable for classroom use at universities as well as for use by independent learners seeking to pass professional actuarial examinations. Moreover, the text will also be useful for the continuing professional development of actuaries and other professionals in insurance and related financial risk management industries.</p>
+<div id="cómo-se-utilizará-el-texto" class="section level4 unnumbered">
+<h4>¿Cómo se utilizará el texto?</h4>
+<p>Este libro será útil en los planes de estudios actuariales de todo el mundo. Cubrirá los objetivos de aprendizaje en el análisis de datos de pérdidas de las principales organizaciones actuariales. Por lo tanto, será adecuado para el uso en el aula en las universidades, así como para el uso de los estudiantes de forma independiente que quieren aprobar los exámenes actuariales profesionales. Además, el texto también será útil para el desarrollo profesional continuo de los actuarios y otros profesionales de los seguros y de las industrias de gestión de riesgos financieros relacionadas.</p>
 </div>
-<div id="why-is-this-good-for-the-profession" class="section level4 unnumbered">
-<h4>Why is this good for the profession?</h4>
-<p>An online text is a type of open educational resource (OER). One important benefit of an OER is that it equalizes access to knowledge, thus permitting a broader community to learn about the actuarial profession. Moreover, it has the capacity to engage viewers through active learning that deepens the learning process, producing analysts more capable of solid actuarial work.</p>
-<p>Why is this good for students and teachers and others involved in the learning process? Cost is often cited as an important factor for students and teachers in textbook selection (see a recent post on the <a href="https://www.aei.org/publication/the-new-era-of-the-400-college-textbook-which-is-part-of-the-unsustainable-higher-education-bubble/">$400 textbook</a>). Students will also appreciate the ability to “carry the book around” on their mobile devices.</p>
+<div id="por-qué-es-bueno-para-la-profesión" class="section level4 unnumbered">
+<h4>¿Por qué es bueno para la profesión?</h4>
+<p>Un texto en línea es un tipo de recurso educativo abierto (OER, según sus siglas en inglés). Un beneficio importante de un OER es que iguala el acceso al conocimiento, permitiendo así que una comunidad más amplia aprenda sobre la profesión actuarial. Además, tiene la capacidad de involucrar a los lectores a través de un aprendizaje activo que profundiza el proceso de aprendizaje, generando analistas capaces de realizar un trabajo actuarial más sólido.
+¿Por qué es bueno para los estudiantes y los profesores y otras personas implicadas en el proceso de aprendizaje? El coste se cita a menudo como un factor importante para estudiantes y profesores en la selección de libros de texto (véase un post reciente sobre el <a href="https://www.aei.org/publication/the-new-era-of-the-400-college-textbook-which-is-part-of-the-unsustainable-higher-education-bubble/">libro de texto de 400 dólares</a>). Los estudiantes también apreciarán la posibilidad de “llevar el libro a todas partes” en sus dispositivos móviles.</p>
 </div>
-<div id="why-loss-data-analytics" class="section level4 unnumbered">
-<h4>Why loss data analytics?</h4>
-<p>The intent is that this type of resource will eventually permeate throughout the actuarial curriculum. Given the dramatic changes in the way that actuaries treat data, loss data seems like a natural place to start. The idea behind the name <em>loss data analytics</em> is to integrate classical loss data models from applied probability with modern analytic tools. In particular, we recognize that big data (including social media and usage based insurance) are here to stay and that high speed computation is readily available.</p>
+<div id="por-qué-el-análisis-de-datos-de-pérdidas" class="section level4 unnumbered">
+<h4>¿Por qué el análisis de datos de pérdidas?</h4>
+<p>La intención es que este tipo de recurso acabe impregnando todo el currículo actuarial. Dados los cambios dramáticos en la forma en que los actuarios tratan los datos, los datos de pérdidas parecen un lugar natural para empezar. La idea detrás del nombre <em>analítica de datos de pérdidas</em> (loss data analytics, en inglés) es integrar los modelos clásicos de probabilidad aplicada de datos de pérdidas con herramientas analíticas modernas. En particular, reconocemos que el big data (que incluye las redes sociales y los seguros basados en el uso) están aquí para quedarse y que la computación de alta velocidad es de fácil acceso.</p>
 </div>
-<div id="project-goal" class="section level4 unnumbered">
-<h4>Project Goal</h4>
-<p>The project goal is to have the actuarial community author our textbooks in a collaborative fashion. To get involved, please visit our
-<a href="https://sites.google.com/a/wisc.edu/loss-data-analytics/">Open Actuarial Textbooks Project Site</a>.</p>
+<div id="objetivo-del-proyecto" class="section level4 unnumbered">
+<h4>Objetivo del proyecto</h4>
+<p>El objetivo del proyecto es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Para participar, por favor visite nuestra <a href="https://sites.google.com/a/wisc.edu/loss-data-analytics/">web del Proyecto de Libros de Texto Actuariales Abiertos</a>.</p>
 </div>
-<div id="acknowledgements" class="section level2 unnumbered">
-<h2>Acknowledgements</h2>
-<p>Edward Frees acknowledges the John and Anne Oros Distinguished Chair for Inspired Learning in Business which provided seed money to support the project. Frees and his Wisconsin colleagues also acknowledge a Society of Actuaries Center of Excellence Grant that provided funding to support work in dependence modeling and health initiatives. Wisconsin also provided an education innovation grant that provided partial support for the many students who have worked on this project.</p>
-<p>We acknowledge the Society of Actuaries for permission to use problems from their examinations.</p>
-<p>We thank Rob Hyndman, Monash University, for allowing us to use his excellent style files to produce the online version of the book.</p>
-<p>We thank Yihui Xie and his colleagues at <a href="https://www.rstudio.com/">Rstudio</a> for the <a href="https://bookdown.org/yihui/bookdown/">R bookdown</a> package that allows us to produce this book.</p>
-<p>We also wish to acknowledge the support and sponsorship of the <a href="http://www.blackactuaries.org/">International Association of Black Actuaries</a> in our joint efforts to provide actuarial educational content to all.</p>
+<div id="agradecimientos" class="section level2 unnumbered">
+<h2>Agradecimientos</h2>
+<p>Edward Frees agradece a la cátedra <em>John and Anne Oros Distinguished Chair for Inspired Learning in Business</em>, que proporcionó la financiación inicial para apoyar el proyecto. Frees y sus colegas de Wisconsin también agradecen la subvención de la <em>Society of Actuaries Center of Excellence Grant</em>, que proporcionó financiación para apoyar el trabajo de modelización de la dependencia y las iniciativas de salud. Wisconsin también proporcionó una subvención para la innovación educativa que proporcionó un apoyo parcial a los numerosos estudiantes que han trabajado en este proyecto.</p>
+<p>Agradecemos a la <em>Society of Actuaries</em> el permiso para utilizar problemas de sus exámenes.</p>
+<p>Agradecemos a Rob Hyndman, de la Universidad de Monash, que nos haya permitido utilizar sus excelentes archivos de estilo para elaborar la versión en línea del libro.</p>
+<p>Agradecemos a Yihui Xie y a sus colegas de <a href="https://www.rstudio.com/">Rstudio</a> el paquete <a href="https://bookdown.org/yihui/bookdown/">R bookdown</a> que nos permite producir este libro.</p>
+<p>También queremos agradecer el apoyo y el patrocinio de la <a href="http://www.blackactuaries.org/"><em>International Association of Black Actuaries</em></a> en nuestros esfuerzos conjuntos por ofrecer contenidos educativos actuariales a todos.</p>
 <center>
 <img src="Figures/IABA.png" style="width:25.0%" />
 </center>
 </div>
-<div id="contributors" class="section level2 unnumbered">
-<h2>Contributors</h2>
-<p>The project goal is to have the actuarial community author our textbooks in a collaborative fashion. The following contributors have taken a leadership role in developing <em>Loss Data Analytics</em>.</p>
+<div id="colaboradores" class="section level2 unnumbered">
+<h2>Colaboradores</h2>
+<p>El objetivo del proyecto es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Los siguientes colaboradores han asumido un papel de liderazgo en el desarrollo de <em>Loss Data Analytics</em>.</p>
 <p><img src = "ContributorPics/zeinab_amin_photo.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><p><strong>Zeinab Amin</strong> is the Director of the Actuarial Science Program and Associate Dean for Undergraduate Studies of the School of Sciences and Engineering at the American University in Cairo (AUC). Amin holds a PhD in Statistics and is an Associate of the Society of Actuaries. Amin is the recipient of the 2016 Excellence in Academic Service Award and the 2009 Excellence in Teaching Award from AUC. Amin has designed and taught a variety of statistics and actuarial science courses. Amin’s current area of research includes quantitative risk assessment, reliability assessment, general statistical modelling, and Bayesian statistics.</p></li>
+<li><p><strong>Zeinab Amin</strong> es directora del Programa de Ciencias Actuariales y Decana Asociada de Estudios de Grado de la Facultad de Ciencias e Ingeniería de la Universidad Americana de El Cairo (AUC). Amin es doctora en Estadística y está asociada a la <em>Society of Actuaries</em>. Amin ha recibido el Premio a la Excelencia en el Servicio Académico 2016 y el Premio a la Excelencia en la Enseñanza 2009 de la AUC. Amin ha diseñado y enseñado una variedad de cursos de estadística y ciencias actuariales. El área de investigación actual de Amin incluye la evaluación cuantitativa del riesgo, la evaluación de la fiabilidad, la modelización estadística general y la estadística bayesiana.</p></li>
 <li><p><strong>Katrien Antonio</strong>, KU Leuven</p></li>
 <li><p><strong>Jan Beirlant</strong>, KU Leuven</p></li>
 </ul>
 <p><img src = "ContributorPics/Charpentier.jpg" width = "150" height = "160" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Arthur Charpentier</strong> is a professor in the Department of Mathematics at the Université du Québec á Montréal. Prior to that, he worked at a large general insurance company in Hong Kong, China, and the French Federation of Insurers in Paris, France. He received a MS on mathematical economics at Université Paris Dauphine and a MS in actuarial science at ENSAE (National School of Statistics) in Paris, and a PhD degree from KU Leuven, Belgium. His research interests include econometrics, applied probability and actuarial science. He has published several books (the most recent one on <em>Computational Actuarial Science with R</em>, CRC) and papers on a variety of topics. He is a Fellow of the French Institute of Actuaries, and was in charge of the ‘Data Science for Actuaries’ program from 2015 to 2018.</li>
+<li><strong>Arthur Charpentier</strong> es profesor del Departamento de Matemáticas de la Université du Québec á Montréal. Anteriormente, trabajó en una gran compañía de seguros generales en Hong Kong, China, y en la Federación Francesa de Aseguradores en París, Francia. Obtuvo un máster en economía matemática en la Universidad de París Dauphine y un máster en ciencias actuariales en la ENSAE (Escuela Nacional de Estadística) de París, y un doctorado en la KU Leuven (Bélgica). Sus intereses de investigación incluyen la econometría, la probabilidad aplicada y la ciencia actuarial. Ha publicado varios libros (el más reciente sobre <em>Computational Actuarial Science with R</em>, CRC) y artículos sobre diversos temas. Es miembro del Instituto Francés de Actuarios, y estuvo a cargo del programa ‘Data Science for Actuaries’ de 2015 a 2018.</li>
 </ul>
 <p><img src = "ContributorPics/PhotoGaryDean.jpg" width = "150" height = "160" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Curtis Gary Dean</strong> is the Lincoln Financial Distinguished Professor of Actuarial Science at Ball State University. He is a Fellow of the Casualty Actuarial Society and a CFA charterholder. He has extensive practical experience as an actuary at American States Insurance, SAFECO, and Travelers. He has served the CAS and actuarial profession as chair of the Examination Committee, first editor-in-chief for <em>Variance: Advancing the Science of Risk</em>, and as a member of the Board of Directors and the Executive Council. He contributed a chapter to <em>Predictive Modeling Applications in Actuarial Science</em> published by Cambridge University Press.</li>
+<li><strong>Curtis Gary Dean</strong> es <em>Lincoln Financial Distinguished Professor of Actuarial Science</em> en la Ball State University. Es miembro de la Casualty Actuarial Society y titular de la CFA. Tiene una amplia experiencia práctica como actuario en American States Insurance, SAFECO y Travelers. Ha servido a la CAS y a la profesión actuarial como presidente del Comité de Exámenes, primer editor-in-chief de <em>Variance: Advancing the Science of Risk</em>, y como miembro de la Junta Directiva y del Consejo Ejecutivo. Ha contribuido con un capítulo a <em>Predictive Modeling Applications in Actuarial Science</em>, publicado por Cambridge University Press.</li>
 </ul>
 <p><img src = "ContributorPics/Frees_Jed2018_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Edward W. (Jed) Frees</strong> is an emeritus professor, formerly the Hickman-Larson Chair of Actuarial Science at the University of Wisconsin-Madison. He is a Fellow of both the Society of Actuaries and the American Statistical Association. He has published extensively (a four-time winner of the Halmstad and Prize for best paper published in the actuarial literature) and has written three books. He also is a co-editor of the two-volume series <em>Predictive Modeling Applications in Actuarial Science</em> published by Cambridge University Press.</li>
+<li><strong>Edward W. (Jed) Frees</strong> es profesor emérito, anteriormente la <em>Hickman-Larson Chair of Actuarial Science</em> de la Universidad de Wisconsin-Madison. Es miembro de la Society of Actuaries y de la American Statistical Association. Ha realizado numerosas publicaciones (ha ganado cuatro veces el premio Halmstad al mejor artículo publicado en la literatura actuarial) y ha escrito tres libros. También es coeditor de dos volúmenes de la serie <em>Predictive Modeling Applications in Actuarial Science</em> publicada por Cambridge University Press.</li>
 </ul>
 <p><img src = "ContributorPics/GuojunGan.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Guojun Gan</strong> is an assistant professor in the Department of Mathematics at the University of Connecticut, where he has been since August 2014. Prior to that, he worked at a large life insurance company in Toronto, Canada for six years. He received a BS degree from Jilin University, Changchun, China, in 2001 and MS and PhD degrees from York University, Toronto, Canada, in 2003 and 2007, respectively. His research interests include data mining and actuarial science. He has published several books and papers on a variety of topics, including data clustering, variable annuity, mathematical finance, applied statistics, and VBA programming.</li>
+<li><strong>Guojun Gan</strong> es profesor asistente en el Departamento de Matemáticas de la Universidad de Connecticut, donde lleva desde agosto de 2014. Anteriormente, trabajó en una gran compañía de seguros de vida en Toronto, Canadá, durante seis años. Se licenció en la Universidad de Jilin (Changchun, China) en 2001 y obtuvo un máster y un doctorado en la Universidad de York (Toronto, Canadá) en 2003 y 2007, respectivamente. Sus intereses de investigación incluyen la minería de datos y la ciencia actuarial. Ha publicado varios libros y artículos sobre diversos temas, como la agrupación de datos, rentas vitalicias variables, finanzas matemáticas, estadística aplicada y programación VBA.</li>
 </ul>
 <p><img src = "ContributorPics/Gao_Lisa_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Lisa Gao</strong> is a PhD candidate in the Risk and Insurance department at the University of Wisconsin-Madison. She holds a BMath in Actuarial Science and Statistics from the University of Waterloo and is an Associate of the Society of Actuaries.</li>
+<li><strong>Lisa Gao</strong> es estudiante de doctorado en el departamento de Riesgos y Seguros de la Universidad de Wisconsin-Madison. Es licenciada en Ciencias Actuariales y Estadística por la Universidad de Waterloo y es asociada de la Society of Actuaries.</li>
 </ul>
 <p><br/></p>
 <ul>
@@ -903,52 +906,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br/></p>
 <p><img src = "ContributorPics/Larry2018.png" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Lei (Larry) Hua</strong> is an Associate Professor of Actuarial Science at Northern Illinois University. He earned a PhD degree in Statistics from the University of British Columbia. He is an Associate of the Society of Actuaries. His research work focuses on multivariate dependence modeling for non-Gaussian phenomena and innovative applications for financial and insurance industries.</li>
+<li><strong>Lei (Larry) Hua</strong> es profesor asociado de Ciencias Actuariales en la Universidad del Norte de Illinois. Se doctoró en Estadística por la Universidad de British Columbia. Es asociado de la Society of Actuaries. Su trabajo de investigación se centra en la modelización de la dependencia multivariante para fenómenos no gaussianos y en aplicaciones innovadoras para los sectores financiero y de seguros.</li>
 </ul>
 <p><br/></p>
 <p><img src = "ContributorPics/Noriszura.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Noriszura Ismail</strong> is a Professor and Head of Actuarial Science Program, Universiti Kebangsaan Malaysia (UKM). She specializes in Risk Modelling and Applied Statistics. She obtained her BSc and MSc (Actuarial Science) in 1991 and 1993 from University of Iowa, and her PhD (Statistics) in 2007 from UKM. She also passed several papers from Society of Actuaries in 1994. She has received several research grants from Ministry of Higher Education Malaysia (MOHE) and UKM, totaling about MYR1.8 million. She has successfully supervised and co-supervised several PhD students (13 completed and 11 on-going). She currently has about 180 publications, consisting of 88 journals and 95 proceedings.</li>
+<li><strong>Noriszura Ismail</strong> es profesora y directora del Programa de Ciencias Actuariales de la Universiti Kebangsaan Malaysia (UKM). Está especializada en modelos de riesgo y estadística aplicada. Obtuvo su licenciatura y su máster (Ciencias Actuariales) en 1991 y 1993 en la Universidad de Iowa, y su doctorado (Estadística) en 2007 en la UKM. También aprobó varios trabajos de la Society of Actuaries en 1994. Ha recibido varias becas de investigación del Ministerio de Educación Superior de Malasia (MOHE) y de la UKM, por un total de MYR 1,8 millones. Ha supervisado y co-supervisado con éxito a varios estudiantes de doctorado (13 completados y 11 en curso). En la actualidad cuenta con unas 180 publicaciones, 88 en revistas y 95 en actas.</li>
 </ul>
 <p><img src = "ContributorPics/JosephKimPic.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Joseph H.T. Kim</strong>, Ph.D., FSA, CERA, is Associate Professor of Applied Statistics at Yonsei University, Seoul, Korea. He holds a Ph.D. degree in Actuarial Science from the University of Waterloo, at which he taught as Assistant Professor. He also worked in the life insurance industry. He has published papers in <em>Insurance Mathematics and Economics</em>, <em>Journal of Risk and Insurance</em>, <em>Journal of Banking and Finance</em>, <em>ASTIN Bulletin</em>, and <em>North American Actuarial Journal</em>, among others.</li>
+<li><strong>Joseph H.T. Kim</strong>, Doctor, FSA, CERA, es Profesor Asociado de Estadística Aplicada en la Universidad de Yonsei, Seúl, Corea. Es doctor en Ciencias Actuariales por la Universidad de Waterloo, en la que impartió clases como profesor adjunto. También ha trabajado en el sector de los seguros de vida. Ha publicado artículos en <em>Insurance Mathematics and Economics</em>, <em>Journal of Risk and Insurance</em>, <em>Journal of Banking and Finance</em>, <em>ASTIN Bulletin</em> y <em>North American Actuarial Journal</em>, entre otros.</li>
 </ul>
 <p><img src = "ContributorPics/Okine_A.jpg" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><p><strong>Nii-Armah Okine</strong> is a dissertator at the business school of University of Wisconsin-Madison with a major in actuarial science. He obtained his master’s degree in Actuarial science from Illinois State University. His research interests includes micro-level reserving, joint longitudinal-survival modeling, dependence modelling, micro insurance and machine learning.</p></li>
-<li><p><strong>Margie Rosenberg</strong> - University of Wisconsin</p></li>
+<li><strong>Nii-Armah Okine</strong> es disertante en la escuela de negocios de la Universidad de Wisconsin-Madison con especialización en ciencias actuariales. Obtuvo su máster en Ciencias Actuariales en la Universidad Estatal de Illinois. Sus intereses de investigación incluyen las reservas a nivel micro, la modelización conjunta longitudinal-supervivencia, la modelización de la dependencia, los microseguros y machine learning.</li>
 </ul>
 <p><img src = "ContributorPics/Selin_pictureA.png" width = "150" height = "150" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Emine Selin Sarıdaş</strong> is a doctoral candidate in the Statistics department of Mimar Sinan University. She holds a bachelor degree in Actuarial Science with a minor in Economics and a master degree in Actuarial Science from Hacettepe University. Her research interest includes dependence modeling, regression, loss models and life contingencies.</li>
+<li><strong>Emine Selin Saridas</strong> es doctoranda en el departamento de Estadística de la Universidad Mimar Sinan. Es licenciada en Ciencias Actuariales con especialización en Economía y tiene un máster en Ciencias Actuariales por la Universidad de Hacettepe. Sus intereses de investigación incluyen la modelización de la dependencia, la regresión, los modelos de pérdidas y las contingencias de vida.</li>
 </ul>
 <p><br/></p>
 <p><img src = "ContributorPics/Shi_Peng_150x188.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Peng Shi</strong> is an associate professor in the Risk and Insurance Department at the Wisconsin School of Business. He is also the Charles &amp; Laura Albright Professor in Business and Finance. Professor Shi is an Associate of the Casualty Actuarial Society (ACAS) and a Fellow of the Society of Actuaries (FSA). He received a Ph.D. in actuarial science from the University of Wisconsin-Madison. His research interests are problems at the intersection of insurance and statistics. He has won several research awards, including the Charles A. Hachemeister Prize, the Ronald Bornhuetter Loss Reserve Prize, and the American Risk and Insurance Association Prize.</li>
+<li><strong>Peng Shi</strong> es profesor asociado del Departamento de Riesgos y Seguros de la Escuela de Negocios de Wisconsin. También es el profesor Charles &amp; Laura Albright en Negocios y Finanzas. El profesor Shi es asociado de la Casualty Actuarial Society (ACAS) y miembro de la Society of Actuaries (FSA). Se doctoró en ciencias actuariales en la Universidad de Wisconsin-Madison. Sus intereses de investigación son los problemas en la intersección de los seguros y la estadística. Ha ganado varios premios de investigación, como el Charles A. Hachemeister Prize, el Ronald Bornhuetter Loss Reserve Prize y el American Risk and Insurance Association Prize.</li>
 </ul>
 <p><img src = "ContributorPics/Shyamal.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Nariankadu D. Shyamalkumar (Shyamal)</strong> is an associate professor in the Department of Statistics and Actuarial Science at The University of Iowa. He is an Associate of the Society of Actuaries, and has volunteered in various elected and non-elected roles within the SoA. Having a broad theoretical interest as well as interest in computing, he has published in prominent actuarial, computer science, probability theory, and statistical journals. Moreover, he has worked in the financial industry, and since then served as an independent consultant to the insurance industry. He has experience educating actuaries in both Mexico and the US, serving in the roles of directing an undergraduate program, and as a graduate adviser for both masters and doctoral students.</li>
+<li><strong>Nariankadu D. Shyamalkumar (Shyamal)</strong> es profesor asociado en el Departamento de Estadística y Ciencias Actuariales de la Universidad de Iowa. Es asociado de la Society of Actuaries y ha sido voluntario en varios puestos electos y no electos dentro de la SoA. Con un amplio interés teórico y por la informática, ha publicado en destacadas revistas actuariales, de informática, de teoría de la probabilidad y de estadística. Además, ha trabajado en la industria financiera y, desde entonces, ha sido consultor independiente del sector de los seguros. Tiene experiencia en la formación de actuarios tanto en México como en Estados Unidos, desempeñando las funciones de director de un programa de pregrado y de asesor de posgrado para estudiantes de máster y doctorado.</li>
 </ul>
 <p><img src = "ContributorPics/jianxi_m.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Jianxi Su</strong> is an Assistant Professor at the Department of Statistics at Purdue University. He is the Associate Director of Purdue’s Actuarial Science. Prior to joining Purdue in 2016, he completed the PhD at York University (2012-2015). He obtained the Fellow of the Society of Actuaries (FSA) in 2017. His research expertise are in dependence modelling, risk management, and pricing. During the PhD candidature, Jianxi also worked as a research associate at the Model Validation and ORSA Implementation team of Sun Life Financial (Toronto office).</li>
+<li><strong>Jianxi Su</strong> es profesor adjunto del Departamento de Estadística de la Universidad de Purdue. Es el Director Asociado de Ciencias Actuariales de Purdue. Antes de incorporarse a Purdue en 2016, realizó el doctorado en la Universidad de York (2012-2015). Obtuvo el Fellow of the Society of Actuaries (FSA) en 2017. Sus conocimientos de investigación se centran en la modelización de la dependencia, la gestión del riesgo y la fijación de precios. Durante la candidatura al doctorado, Jianxi también trabajó como investigador asociado en el equipo de validación de modelos e implementación de ORSA de Sun Life Financial (oficina de Toronto).</li>
+</ul>
+<p><img src = "ContributorPics/ChongItTan.jpg" width = "150" height = "180" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
+<ul>
+<li><strong>Chong It Tan</strong> es profesor titular de la Universidad Macquarie en Australia, donde se ha desempeñado como director del programa actuarial de pregrado desde 2018. Obtuvo su doctorado en 2015 en la Universidad Tecnológica de Nanyang en Singapur. Es un actuario completamente calificado, con las credenciales de la Sociedad de Actuarios de los EE. UU. Y del Instituto de Actuarios de Australia. Sus principales intereses de investigación son el modelado de mortalidad, la gestión del riesgo de longevidad y los sistemas bonus-malus.</li>
 </ul>
 <p><img src = "ContributorPics/TimVerdonck.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Tim Verdonck</strong> is associate professor at the University of Antwerp. He has a degree in Mathematics and a PhD in Science: Mathematics, obtained at the University of Antwerp. During his PhD he successfully took the Master in Insurance and the Master in Financial and Actuarial Engineering, both at KU Leuven. His research focuses on the adaptation and application of robust statistical methods for insurance and finance data.</li>
+<li><strong>Tim Verdonck</strong> es profesor asociado en la Universidad de Amberes. Es licenciado en Matemáticas y doctor en Ciencias Matemáticas, obtenidos en la Universidad de Amberes. Durante su doctorado cursó con éxito el Máster en Seguros y el Máster en Ingeniería Financiera y Actuarial, ambos en la KU Leuven. Su investigación se centra en la adaptación y aplicación de métodos estadísticos robustos para datos de seguros y finanzas.</li>
 </ul>
 <p><br/></p>
 <p><img src = "ContributorPics/krupaviswanathan2.jpg" width = "150" height = "170" style = "float:right; margin-left: 10px; margin-top: 7px" /></p>
 <ul>
-<li><strong>Krupa Viswanathan</strong> is an Associate Professor in the Risk, Insurance and Healthcare Management Department in the Fox School of Business, Temple University. She is an Associate of the Society of Actuaries. She teaches courses in Actuarial Science and Risk Management at the undergraduate and graduate levels. Her research interests include corporate governance of insurance companies, capital management, and sentiment analysis. She received her Ph.D. from The Wharton School of the University of Pennsylvania.</li>
+<li><strong>Krupa Viswanathan</strong> es profesora asociada del Departamento de Gestión de Riesgos, Seguros y Asistencia Sanitaria de la Fox School of Business de la Universidad de Temple. Es asociada de la Society of Actuaries. Imparte cursos de Ciencias Actuariales y Gestión de Riesgos en los niveles de grado y postgrado. Sus intereses de investigación incluyen el gobierno corporativo de las compañías de seguros, la gestión del capital y el análisis de los sentimientos. Se doctoró en la Wharton School de la Universidad de Pensilvania.</li>
 </ul>
 </div>
-<div id="reviewers" class="section level2 unnumbered">
-<h2>Reviewers</h2>
-<p>Our goal is to have the actuarial community author our textbooks in a collaborative fashion. Part of the writing process involves many reviewers who generously donated their time to help make this book better. They are:</p>
+<div id="revisores" class="section level2 unnumbered">
+<h2>Revisores</h2>
+<p>Nuestro objetivo es que la comunidad actuarial sea la autora de nuestros libros de texto de forma colaborativa. Parte del proceso de escritura involucra a muchos revisores que generosamente donaron su tiempo para ayudar a mejorar este libro. Ellos son:</p>
 <ul>
 <li>Yair Babab</li>
 <li>Chunsheng Ban, Ohio State University</li>
@@ -986,21 +992,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Hongjuan Zhou, Arizona State University</li>
 </ul>
 </div>
-<div id="for-our-readers" class="section level2 unnumbered">
-<h2>For our Readers</h2>
-<p>We hope that you find this book worthwhile and even enjoyable. For your convenience, at our <a href="https://openacttexts.github.io/">Github Landing site</a> (<a href="https://openacttexts.github.io/" class="uri">https://openacttexts.github.io/</a>), you will find links to the book that you can (freely) download for offline reading, including a pdf version (for Adobe Acrobat) and an EPUB version suitable for mobile devices. <a href="https://github.com/OpenActTexts/Loss-Data-Analytics/tree/master/Data">Data</a> for running our examples are available at the same site.</p>
-<p>In developing this book, we are emphasizing the <a href="https://openacttexts.github.io/Loss-Data-Analytics/index.html">online version</a> that has lots of great features such as a glossary, code and solutions to examples that you can be revealed interactively. For example, you will find that the statistical code is hidden and can only be seen by clicking on terms such as</p>
+<div id="traducción-al-español" class="section level2 unnumbered">
+<h2>Traducción al español</h2>
+<p>La traducción al español del libro ha sido llevada a cabo por los siguientes revisores:</p>
+<ul>
+<li>Manuela Alcañiz, Riskcenter-IREA, University of Barcelona.</li>
+<li>Ramon Alemany, Riskcenter-IREA, University of Barcelona.</li>
+<li>Mercedes Ayuso, Riskcenter-IREA, University of Barcelona.</li>
+<li>Lluís Bermúdez, Riskcenter-IREA, University of Barcelona.</li>
+<li>Catalina Bolancé, Riskcenter-IREA, University of Barcelona.</li>
+<li>Montserrat Guillén, Riskcenter-IREA, University of Barcelona.</li>
+<li>Ana-María Pérez-Marín, Riskcenter-IREA, University of Barcelona.</li>
+<li>Miguel Santolino, Riskcenter-IREA, University of Barcelona.</li>
+<li>Armando Zarruk, Universidad Nacional de Colombia</li>
+</ul>
+</div>
+<div id="para-nuestros-lectores" class="section level2 unnumbered">
+<h2>Para nuestros lectores</h2>
+<p>Esperamos que este libro os resulte útil e incluso agradable. Para vuestra comodidad, en nuestra [Github Landing web] (<a href="https://openacttexts.github.io/" class="uri">https://openacttexts.github.io/</a>), encontraréis enlaces al libro que puede descargar (libremente) para su lectura sin conexión, incluyendo una versión en pdf (para Adobe Acrobat) y una versión en EPUB adecuada para dispositivos móviles.<a href="https://github.com/OpenActTexts/Loss-Data-Analytics/tree/master/Data">Los datos</a> para ejecutar nuestros ejemplos están disponibles en el mismo sitio.</p>
+<p>En el desarrollo de este libro, hacemos hincapié en la <a href="https://openacttexts.github.io/Loss-Data-Analytics/index.html">versión en línea</a> que tiene diferentes características como un glosario, el código y las soluciones a los ejemplos que se pueden revelar de forma interactiva. Por ejemplo, encontraréis que el código estadístico está oculto y sólo puede verse haciendo clic en términos como</p>
 <h5 style="text-align: center;">
-<a id="displayCode.SeverityFig.1Intro" href="javascript:togglecode('toggleCode.SeverityFig.1Intro','displayCode.SeverityFig.1Intro');"><i><strong>R Code for Frequency Table</strong></i></a>
+<a id="displayCode.SeverityFig.1Intro" href="javascript:togglecode('toggleCode.SeverityFig.1Intro','displayCode.SeverityFig.1Intro');"><i><strong>Código R para tabla de frecuencias</strong></i></a>
 </h5>
 <div id="toggleCode.SeverityFig.1Intro" style="display: none">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Insample.csv&quot;</span>, <span class="dt">header=</span>T,  <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), </a>
-<a class="sourceLine" id="cb1-2" title="2">                      <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3">Insample2010 &lt;-<span class="st"> </span><span class="kw">subset</span>(Insample, Year<span class="op">==</span><span class="dv">2010</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">table</span>(Insample2010<span class="op">$</span>Freq)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a>Insample &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Insample.csv&quot;</span>, <span class="dt">header=</span>T,  <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>), </span>
+<span id="cb1-2"><a href="index.html#cb1-2"></a>                      <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</span>
+<span id="cb1-3"><a href="index.html#cb1-3"></a>Insample2010 &lt;-<span class="st"> </span><span class="kw">subset</span>(Insample, Year<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb1-4"><a href="index.html#cb1-4"></a><span class="kw">table</span>(Insample2010<span class="op">$</span>Freq)</span></code></pre></div>
 </div>
-<p>We hide the code because we don’t want to insist that you use the <code>R</code> statistical software (although we like it). Still, we encourage you to try some statistical code as you read the book – we have opted to make it easy to learn <code>R</code> as you go. We have even set up a separate <a href="https://openacttexts.github.io/LDARcode">R Code for Loss Data Analytics</a> site to explain more of the details of the code.</p>
-<p>Freely available, interactive textbooks represent a new venture in actuarial education and we need your input. Although a lot of effort has gone into the development, we expect hiccoughs. Please let your instructor know about opportunities for improvement, write us through our project site, or contact chapter contributors directly with suggested improvements.</p>
+<p>Ocultamos el código porque no queremos insistir en que se utilice el software estadístico <code>R</code> (aunque nos gusta). Aun así, os animamos a que probéis algún código estadístico mientras leéis el libro: hemos optado por facilitar el aprendizaje de <code>R</code> sobre la marcha. Incluso hemos creado un sitio separado <a href="https://openacttexts.github.io/LDARcode">R Code for Loss Data Analytics</a> para explicar más detalles del código.</p>
+<p>Los libros de texto interactivos de libre acceso representan una nueva aventura en la educación actuarial y necesitamos tu aportación. Aunque se ha hecho un gran esfuerzo en el desarrollo, esperamos que haya problemas. Por favor, comunicad a vuestro instructor las oportunidades de mejora, escribidnos a través de nuestro sitio del proyecto o poneros en contacto directamente con los colaboradores de los capítulos para sugerirles mejoras.</p>
 
 </div>
 </div>
