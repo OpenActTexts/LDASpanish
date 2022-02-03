@@ -32,6 +32,7 @@
   
 <link rel="prev" href="C-Intro.html"/>
 <link rel="next" href="C-Severity.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,19 +310,20 @@ document.getElementById("defaultOpen").click();
 </script>
 
 
+
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -342,7 +343,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -391,69 +392,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Loss Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
-<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
+<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#naturaleza-y-relevancia-del-seguro"><i class="fa fa-check"></i><b>1.1.1</b> Naturaleza y relevancia del seguro</a></li>
 <li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</a></li>
 <li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Procesos en los seguros</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a><ul>
+<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="C-Intro.html"><a href="C-Intro.html#inicio-del-seguro"><i class="fa fa-check"></i><b>1.2.1</b> Inicio del seguro</a></li>
 <li class="chapter" data-level="1.2.2" data-path="C-Intro.html"><a href="C-Intro.html#renovación-del-seguro"><i class="fa fa-check"></i><b>1.2.2</b> Renovación del seguro</a></li>
 <li class="chapter" data-level="1.2.3" data-path="C-Intro.html"><a href="C-Intro.html#gestión-de-productos-y-siniestros"><i class="fa fa-check"></i><b>1.2.3</b> Gestión de productos y siniestros</a></li>
 <li class="chapter" data-level="1.2.4" data-path="C-Intro.html"><a href="C-Intro.html#S:Reserving"><i class="fa fa-check"></i><b>1.2.4</b> Provisiones</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a><ul>
+<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="C-Intro.html"><a href="C-Intro.html#S:OutComes"><i class="fa fa-check"></i><b>1.3.1</b> Variables de siniestralidad del fondo: frecuencia y severidad</a></li>
 <li class="chapter" data-level="1.3.2" data-path="C-Intro.html"><a href="C-Intro.html#S:FundVariables"><i class="fa fa-check"></i><b>1.3.2</b> Variables de clasificación del fondo</a></li>
 <li class="chapter" data-level="1.3.3" data-path="C-Intro.html"><a href="C-Intro.html#operativa-del-fondo"><i class="fa fa-check"></i><b>1.3.3</b> Operativa del fondo</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="C-Intro.html"><a href="C-Intro.html#Intro-further-reading-and-resources"><i class="fa fa-check"></i><b>1.4</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a><ul>
-<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:how-frequency-augments-severity-information"><i class="fa fa-check"></i><b>2.1.1</b> Cómo la frecuencia incrementa la información sobre la cuantía</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a><ul>
+<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:foundations"><i class="fa fa-check"></i><b>2.2.1</b> Fundamentos</a></li>
 <li class="chapter" data-level="2.2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:generating-functions"><i class="fa fa-check"></i><b>2.2.2</b> Funciones Generadoras de Momentos y de Probabilidad</a></li>
 <li class="chapter" data-level="2.2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:important-frequency-distributions"><i class="fa fa-check"></i><b>2.2.3</b> Distribuciones de Frecuencias Importantes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> La Clase (a, b, 0)</a></li>
-<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Estimación de los parámetros</a></li>
 <li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> MLE de las distribuciones de frecuencias</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:zero-truncation-or-modification"><i class="fa fa-check"></i><b>2.5.1</b> Modificación o Truncamiento en Cero</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Distribuciones Mixtas</a></li>
 <li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Bondad del Ajuste</a></li>
 <li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
-<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a><ul>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. Código R para Gráficos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a><ul>
-<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a><ul>
+<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Momentos</a></li>
 <li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#cuantiles"><i class="fa fa-check"></i><b>3.1.2</b> Cuantiles</a></li>
 <li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#función-generatriz-de-momentos"><i class="fa fa-check"></i><b>3.1.3</b> Función generatriz de momentos</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Distribución gamma</a></li>
 <li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#distribución-pareto"><i class="fa fa-check"></i><b>3.2.2</b> Distribución Pareto</a></li>
 <li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Distribución Weibull</a></li>
 <li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#distribución-beta-generalizada-de-segundo-tipo"><i class="fa fa-check"></i><b>3.2.4</b> Distribución Beta Generalizada de segundo tipo</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a><ul>
+<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="C-Severity.html"><a href="C-Severity.html#funciones-de-variables-aleatorias-y-sus-distribuciones"><i class="fa fa-check"></i><b>3.3.1</b> Funciones de variables aleatorias y sus distribuciones</a></li>
 <li class="chapter" data-level="3.3.2" data-path="C-Severity.html"><a href="C-Severity.html#multiplicación-por-una-constante"><i class="fa fa-check"></i><b>3.3.2</b> Multiplicación por una constante</a></li>
 <li class="chapter" data-level="3.3.3" data-path="C-Severity.html"><a href="C-Severity.html#elevación-a-una-potencia"><i class="fa fa-check"></i><b>3.3.3</b> Elevación a una potencia</a></li>
@@ -461,35 +477,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.5" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-finitas"><i class="fa fa-check"></i><b>3.3.5</b> Mixturas finitas</a></li>
 <li class="chapter" data-level="3.3.6" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-continuas"><i class="fa fa-check"></i><b>3.3.6</b> Mixturas continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a><ul>
+<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Franquicias</a></li>
 <li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Límites de la póliza</a></li>
 <li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coseguro-e-inflación"><i class="fa fa-check"></i><b>3.4.3</b> Coseguro e inflación</a></li>
 <li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reaseguro</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#estimadores-de-máxima-verosimilitud-para-datos-completos"><i class="fa fa-check"></i><b>3.5.1</b> Estimadores de máxima verosimilitud para datos completos</a></li>
 <li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Estimadores por máxima verosimilitud usando datos modificados</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Recursos y Contribuciones Adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a><ul>
-<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a><ul>
+<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica"><i class="fa fa-check"></i><b>4.1.1</b> Estimación No Paramétrica</a></li>
 <li class="chapter" data-level="4.1.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ToolsModelSelection"><i class="fa fa-check"></i><b>4.1.2</b> Herramientas para la Selección de Modelos y Diagnósticos</a></li>
 <li class="chapter" data-level="4.1.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#valores-iniciales"><i class="fa fa-check"></i><b>4.1.3</b> Valores Iniciales</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a><ul>
+<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-iterativa"><i class="fa fa-check"></i><b>4.2.1</b> Selección del Modelo Iterativa</a></li>
 <li class="chapter" data-level="4.2.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-entrenamiento"><i class="fa fa-check"></i><b>4.2.2</b> Selección de Modelo basada en un Conjunto de Datos de Entrenamiento</a></li>
 <li class="chapter" data-level="4.2.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-prueba"><i class="fa fa-check"></i><b>4.2.3</b> Selección de Modelo basada en un Conjunto de Datos de Prueba</a></li>
 <li class="chapter" data-level="4.2.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-basada-en-validación-cruzada"><i class="fa fa-check"></i><b>4.2.4</b> Selección del Modelo basada en Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a><ul>
+<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-paramétrica-usando-datos-modificados"><i class="fa fa-check"></i><b>4.3.1</b> Estimación Paramétrica usando Datos Modificados</a></li>
 <li class="chapter" data-level="4.3.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica-utilizando-datos-modificados"><i class="fa fa-check"></i><b>4.3.2</b> Estimación no Paramétrica Utilizando Datos Modificados</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a><ul>
+<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:IntroBayes"><i class="fa fa-check"></i><b>4.4.1</b> Introducción a la Inferencia Bayesiana</a></li>
 <li class="chapter" data-level="4.4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#modelo-bayesiano"><i class="fa fa-check"></i><b>4.4.2</b> Modelo Bayesiano</a></li>
 <li class="chapter" data-level="4.4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#inferencia-bayesiana"><i class="fa fa-check"></i><b>4.4.3</b> Inferencia Bayesiana</a></li>
@@ -497,164 +520,201 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introducción"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
 <li class="chapter" data-level="5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-individual"><i class="fa fa-check"></i><b>5.2</b> Modelo de Riesgo Individual</a></li>
-<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a><ul>
+<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
 <li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#método-recursivo"><i class="fa fa-check"></i><b>5.4.1</b> Método recursivo</a></li>
 <li class="chapter" data-level="5.4.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#simulación"><i class="fa fa-check"></i><b>5.4.2</b> Simulación</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a><ul>
+<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-la-exposición-en-la-frecuencia"><i class="fa fa-check"></i><b>5.5.1</b> Impacto de la exposición en la frecuencia</a></li>
 <li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impacto de los deducibles en la frecuencia de siniestros</a></li>
 <li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-las-modificaciones-de-la-póliza-en-la-siniestralidad-agregada"><i class="fa fa-check"></i><b>5.5.3</b> Impacto de las modificaciones de la póliza en la siniestralidad agregada</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a><ul>
-<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a><ul>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generación-de-observaciones-uniformes-independientes"><i class="fa fa-check"></i><b>6.1.1</b> Generación de observaciones uniformes independientes</a></li>
 <li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:InverseTransform"><i class="fa fa-check"></i><b>6.1.2</b> Método de la transformada inversa</a></li>
 <li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-de-la-simulación"><i class="fa fa-check"></i><b>6.1.3</b> Precisión de la simulación</a></li>
 <li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulación e inferencia estadística</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a><ul>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#fundamentos-del-bootstrap"><i class="fa fa-check"></i><b>6.2.1</b> Fundamentos del Bootstrap</a></li>
 <li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-del-bootstrap-sesgo-desviación-estándar-y-mse-error-cuadrático-medio-en-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>6.2.2</b> Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)</a></li>
 <li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>6.2.3</b> Intervalos de confianza</a></li>
 <li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Bootstrap paramétrico</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a><ul>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-k-fold"><i class="fa fa-check"></i><b>6.3.1</b> Validación cruzada k-fold</a></li>
 <li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-dejando-uno-fuera"><i class="fa fa-check"></i><b>6.3.2</b> Validación cruzada dejando uno fuera</a></li>
 <li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-y-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Validación cruzada y Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
-<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
 <li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#muestreo-de-gibbs"><i class="fa fa-check"></i><b>6.5.2</b> Muestreo de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a><ul>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-bootstrap-applications-in-predictive-modeling"><i class="fa fa-check"></i><b>6.6.1</b> TS 6.A. Bootstrap Applications in Predictive Modeling</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a><ul>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introducción a la Tarificación</a></li>
-<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a><ul>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Método de la Prima Pura</a></li>
 <li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Método de la Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a><ul>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.1</b> Principios de Tarificación</a></li>
 <li class="chapter" data-level="7.3.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#propiedades-de-los-principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.2</b> Propiedades de los Principios de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a><ul>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposición al Riesgo</a></li>
 <li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Factores de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a><ul>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposiciones-y-primas"><i class="fa fa-check"></i><b>7.5.1</b> Exposiciones y Primas</a></li>
 <li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#siniestros-reclamaciones-y-pagos"><i class="fa fa-check"></i><b>7.5.2</b> Siniestros, Reclamaciones y Pagos</a></li>
 <li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a><ul>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-lorenz-clásica"><i class="fa fa-check"></i><b>7.6.1</b> Curva de Lorenz Clásica</a></li>
 <li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-rendimiento-y-estadístico-de-gini"><i class="fa fa-check"></i><b>7.6.2</b> Curva de Rendimiento y Estadístico de Gini</a></li>
 <li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#validación-cruzada"><i class="fa fa-check"></i><b>7.6.3</b> Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-regulación-de-la-tarificación"><i class="fa fa-check"></i>TS 7.A. Regulación de la Tarificación</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a><ul>
+<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
-<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a><ul>
+<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Necesidad de la Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson"><i class="fa fa-check"></i><b>8.2.2</b> Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporación-de-la-exposición"><i class="fa fa-check"></i><b>8.2.3</b> Incorporación de la exposición</a></li>
 <li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejercicios-3"><i class="fa fa-check"></i><b>8.2.4</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a><ul>
+<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#factores-de-tarificación-y-tarifa"><i class="fa fa-check"></i><b>8.3.1</b> Factores de Tarificación y Tarifa</a></li>
 <li class="chapter" data-level="8.3.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#modelo-de-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.2</b> Modelo de Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson-para-la-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.3</b> Regresión de Poisson para la Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejemplos-numéricos"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplos numéricos</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimación-de-modelos-de-regresión-de-poisson"><i class="fa fa-check"></i>TS 8.A – Estimación de Modelos de Regresión de Poisson</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a><ul>
+<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introducción-a-las-aplicaciones-de-la-teoría-de-la-credibilidad"><i class="fa fa-check"></i><b>9.1</b> Introducción a las Aplicaciones de la Teoría de la Credibilidad</a></li>
-<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a><ul>
+<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:frequency"><i class="fa fa-check"></i><b>9.2.1</b> Credibilidad Completa para la Frecuencia de Siniestralidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-siniestralidad-agregada-y-la-prima-pura"><i class="fa fa-check"></i><b>9.2.2</b> Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura</a></li>
 <li class="chapter" data-level="9.2.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-severidad"><i class="fa fa-check"></i><b>9.2.3</b> Credibilidad Completa para la Severidad</a></li>
 <li class="chapter" data-level="9.2.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-parcial"><i class="fa fa-check"></i><b>9.2.4</b> Credibilidad parcial</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a><ul>
+<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibilidad Z, <em>EPV</em>, y <em>VHM</em></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann-straub"><i class="fa fa-check"></i><b>9.4</b> Credibilidad de Bühlmann-Straub</a></li>
-<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.5</b> Otros Recursos y Colaboradores</a></li>
+<li class="chapter" data-level="9.7" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.7</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a><ul>
+<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introducción-a-las-carteras-de-seguros"><i class="fa fa-check"></i><b>10.1</b> Introducción a las Carteras de Seguros</a></li>
-<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a><ul>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#clasificación-basada-en-los-momentos"><i class="fa fa-check"></i><b>10.2.1</b> Clasificación Basada en los Momentos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparación-basada-en-el-comportamiento-de-colas-con-límites"><i class="fa fa-check"></i><b>10.2.2</b> Comparación basada en el comportamiento de colas con límites</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a><ul>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#medidas-de-riesgo-coherentes"><i class="fa fa-check"></i><b>10.3.1</b> Medidas de Riesgo Coherentes</a></li>
 <li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.2</b> Valor en Riesgo</a></li>
 <li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#cola-del-valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.3</b> Cola del Valor en Riesgo</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a><ul>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Reaseguro Proporcional</a></li>
 <li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Reaseguro No-Proporcional</a></li>
 <li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Acuerdos de Reaseguro Adicionales</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#recursos-y-colaboradores-adicionales"><i class="fa fa-check"></i><b>10.5</b> Recursos y Colaboradores adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a><ul>
+<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a>
+<ul>
 <li class="chapter" data-level="11.1.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:claim-types"><i class="fa fa-check"></i><b>11.1.1</b> Siniestros cerrados, IBNR, y RBNS</a></li>
 <li class="chapter" data-level="11.1.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#por-qué-reservar"><i class="fa fa-check"></i><b>11.1.2</b> ¿Por qué reservar?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a><ul>
+<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#de-micro-a-macro"><i class="fa fa-check"></i><b>11.2.1</b> De Micro a Macro</a></li>
 <li class="chapter" data-level="11.2.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#triángulos-de-desarrollo"><i class="fa fa-check"></i><b>11.2.2</b> Triángulos de desarrollo</a></li>
 <li class="chapter" data-level="11.2.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#notación-de-provisiones"><i class="fa fa-check"></i><b>11.2.3</b> Notación de provisiones</a></li>
 <li class="chapter" data-level="11.2.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Rcode"><i class="fa fa-check"></i><b>11.2.4</b> Código R para resumir datos de provisión de pérdidas</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a><ul>
+<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:DeterministicCL"><i class="fa fa-check"></i><b>11.3.1</b> Chain-Ladder Determinista</a></li>
 <li class="chapter" data-level="11.3.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#modelo-chain-ladder-de-distribución-libre-de-mack"><i class="fa fa-check"></i><b>11.3.2</b> Modelo Chain-ladder de distribución libre de Mack</a></li>
 <li class="chapter" data-level="11.3.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#código-r-para-las-predicciones-chain-ladder"><i class="fa fa-check"></i><b>11.3.3</b> Código R para las predicciones Chain-Ladder</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a><ul>
+<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#especificación-del-modelo"><i class="fa fa-check"></i><b>11.4.1</b> Especificación del modelo</a></li>
 <li class="chapter" data-level="11.4.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#estimación-y-predicción-del-modelo"><i class="fa fa-check"></i><b>11.4.2</b> Estimación y predicción del modelo</a></li>
 <li class="chapter" data-level="11.4.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#bootstrap"><i class="fa fa-check"></i><b>11.4.3</b> Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
 <li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
 <li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
 <li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
@@ -662,21 +722,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
 <li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
 <li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
 <li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
 <li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
-<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a><ul>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#tipos-y-fuentes-de-datos"><i class="fa fa-check"></i><b>13.1.1</b> Tipos y Fuentes de Datos</a></li>
 <li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#estructuras-de-datos-y-almacenamiento"><i class="fa fa-check"></i><b>13.1.2</b> Estructuras de Datos y Almacenamiento</a></li>
 <li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#calidad-de-los-datos"><i class="fa fa-check"></i><b>13.1.3</b> Calidad de los Datos</a></li>
 <li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#limpieza-de-los-datos"><i class="fa fa-check"></i><b>13.1.4</b> Limpieza de los Datos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a><ul>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a>
+<ul>
 <li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Proceso de Análisis de Datos</a></li>
 <li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratorio-versus-confirmatorio"><i class="fa fa-check"></i><b>13.2.2</b> Exploratorio versus Confirmatorio</a></li>
 <li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervisado-versus-no-supervisado"><i class="fa fa-check"></i><b>13.2.3</b> Supervisado versus No Supervisado</a></li>
@@ -687,7 +751,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.8" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-reproducibles"><i class="fa fa-check"></i><b>13.2.8</b> Análisis Reproducibles</a></li>
 <li class="chapter" data-level="13.2.9" data-path="C-DataSystems.html"><a href="C-DataSystems.html#problemas-éticos"><i class="fa fa-check"></i><b>13.2.9</b> Problemas Éticos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a><ul>
+<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a>
+<ul>
 <li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-exploratorias"><i class="fa fa-check"></i><b>13.3.1</b> Técnicas exploratorias</a></li>
 <li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-confirmatorias"><i class="fa fa-check"></i><b>13.3.2</b> Técnicas confirmatorias</a></li>
 </ul></li>
@@ -695,96 +760,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#resumen"><i class="fa fa-check"></i><b>13.5</b> Resumen</a></li>
 <li class="chapter" data-level="13.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#DS:further-reading-and-resources"><i class="fa fa-check"></i><b>13.6</b> Otros recursos y colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Dependence Modeling</a><ul>
-<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Variable Types</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Qualitative Variables</a></li>
-<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Quantitative Variables</a></li>
-<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#multivariate-variables"><i class="fa fa-check"></i><b>14.1.3</b> Multivariate Variables</a></li>
+<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Modelización de la Dependencia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Tipos de Variables</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Variables Cualitativas</a></li>
+<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Variables Cuantitativas</a></li>
+<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-multivariantes"><i class="fa fa-check"></i><b>14.1.3</b> Variables Multivariantes</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Classic Measures of Scalar Associations</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
-<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
-<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
-<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
-<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
-<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
+<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Medidas clásicas de asociaciones escalares</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-de-asociación-para-variables-ordinales"><i class="fa fa-check"></i><b>14.2.1</b> Medidas de Asociación para Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-basadas-en-rangos"><i class="fa fa-check"></i><b>14.2.2</b> Medidas Basadas en Rangos</a></li>
+<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-nominales"><i class="fa fa-check"></i><b>14.2.3</b> Variables Nominales</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-ordinales"><i class="fa fa-check"></i><b>14.2.4</b> Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-de-intervalo"><i class="fa fa-check"></i><b>14.2.5</b> Variables de Intervalo</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-discretas-y-continuas"><i class="fa fa-check"></i><b>14.2.6</b> Variables discretas y continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
-<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#data-description"><i class="fa fa-check"></i><b>14.4.1</b> Data Description</a></li>
-<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#marginal-models"><i class="fa fa-check"></i><b>14.4.2</b> Marginal Models</a></li>
-<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#probability-integral-transformation"><i class="fa fa-check"></i><b>14.4.3</b> Probability Integral Transformation</a></li>
-<li class="chapter" data-level="14.4.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#joint-modeling-with-copula-function"><i class="fa fa-check"></i><b>14.4.4</b> Joint Modeling with Copula Function</a></li>
+<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introducción a Copulas</a></li>
+<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Aplicación usando Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#descripción-de-los-datos"><i class="fa fa-check"></i><b>14.4.1</b> Descripción de los Datos</a></li>
+<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelos-marginales"><i class="fa fa-check"></i><b>14.4.2</b> Modelos Marginales</a></li>
+<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelización-conjunta-con-función-de-cópula"><i class="fa fa-check"></i><b>14.4.3</b> Modelización Conjunta con Función de Cópula</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Types of Copulas</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#elliptical-copulas"><i class="fa fa-check"></i><b>14.5.1</b> Elliptical Copulas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#archimedian-copulas"><i class="fa fa-check"></i><b>14.5.2</b> Archimedian Copulas</a></li>
-<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
+<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Tipos de Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-elípticas"><i class="fa fa-check"></i><b>14.5.1</b> Cópulas Elípticas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-arquimedianas"><i class="fa fa-check"></i><b>14.5.2</b> Cópulas Arquimedianas</a></li>
+<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#propiedades-de-las-cópulas"><i class="fa fa-check"></i><b>14.5.3</b> Propiedades de las Cópulas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
-<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
+<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> ¿Por qué es importante la modelización de la dependencia?</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Más Recursos y Contribuciones</a>
+<ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-otras-medidas-clásicas-de-asociaciones-escalares"><i class="fa fa-check"></i>TS 14.A. Otras Medidas Clásicas de Asociaciones Escalares</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a><ul>
-<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a><ul>
+<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="C-AppA.html"><a href="C-AppA.html#muestreo-aleatorio"><i class="fa fa-check"></i><b>15.1.1</b> Muestreo Aleatorio</a></li>
 <li class="chapter" data-level="15.1.2" data-path="C-AppA.html"><a href="C-AppA.html#distribución-muestral"><i class="fa fa-check"></i><b>15.1.2</b> Distribución Muestral</a></li>
 <li class="chapter" data-level="15.1.3" data-path="C-AppA.html"><a href="C-AppA.html#teorema-central-del-límite"><i class="fa fa-check"></i><b>15.1.3</b> Teorema Central del Límite</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a><ul>
+<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a>
+<ul>
 <li class="chapter" data-level="15.2.1" data-path="C-AppA.html"><a href="C-AppA.html#método-de-estimación-de-momentos"><i class="fa fa-check"></i><b>15.2.1</b> Método de Estimación de Momentos</a></li>
 <li class="chapter" data-level="15.2.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:MLE"><i class="fa fa-check"></i><b>15.2.2</b> Estimación por Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a><ul>
+<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a>
+<ul>
 <li class="chapter" data-level="15.3.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE:ED"><i class="fa fa-check"></i><b>15.3.1</b> Distribución Exacta para la Media de Muestra Normal</a></li>
 <li class="chapter" data-level="15.3.2" data-path="C-AppA.html"><a href="C-AppA.html#propiedades-de-muestra-grande-del-estimador-mle"><i class="fa fa-check"></i><b>15.3.2</b> Propiedades de Muestra Grande del Estimador MLE</a></li>
 <li class="chapter" data-level="15.3.3" data-path="C-AppA.html"><a href="C-AppA.html#intervalo-de-confianza"><i class="fa fa-check"></i><b>15.3.3</b> Intervalo de confianza</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a><ul>
+<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a>
+<ul>
 <li class="chapter" data-level="15.4.1" data-path="C-AppA.html"><a href="C-AppA.html#conceptos-básicos"><i class="fa fa-check"></i><b>15.4.1</b> Conceptos Básicos</a></li>
 <li class="chapter" data-level="15.4.2" data-path="C-AppA.html"><a href="C-AppA.html#contraste-t-student-basado-en-el-estimador-mle"><i class="fa fa-check"></i><b>15.4.2</b> Contraste <span class="math inline">\(t\)</span>-Student Basado en el Estimador MLE</a></li>
 <li class="chapter" data-level="15.4.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:LRT"><i class="fa fa-check"></i><b>15.4.3</b> Prueba de la Razón de Verosimilitud</a></li>
 <li class="chapter" data-level="15.4.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:IC"><i class="fa fa-check"></i><b>15.4.4</b> Criterios de Información</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a><ul>
-<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a><ul>
+<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a>
+<ul>
 <li class="chapter" data-level="16.1.1" data-path="C-AppB.html"><a href="C-AppB.html#distribución-condicional"><i class="fa fa-check"></i><b>16.1.1</b> Distribución Condicional</a></li>
 <li class="chapter" data-level="16.1.2" data-path="C-AppB.html"><a href="C-AppB.html#caso-continuo"><i class="fa fa-check"></i><b>16.1.2</b> Caso Continuo</a></li>
 <li class="chapter" data-level="16.1.3" data-path="C-AppB.html"><a href="C-AppB.html#esperanza-condicional-y-varianza-condicional"><i class="fa fa-check"></i><b>16.1.3</b> Esperanza Condicional y Varianza Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a><ul>
+<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a>
+<ul>
 <li class="chapter" data-level="16.2.1" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-las-esperanzas-iteradas"><i class="fa fa-check"></i><b>16.2.1</b> Ley de las Esperanzas Iteradas</a></li>
 <li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-la-varianza-total"><i class="fa fa-check"></i><b>16.2.2</b> Ley de la Varianza Total</a></li>
 <li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#aplicación"><i class="fa fa-check"></i><b>16.2.3</b> Aplicación</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a><ul>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#familia-exponencial-lineal"><i class="fa fa-check"></i><b>16.3.1</b> Familia Exponencial Lineal</a></li>
 <li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#distribuciones-conjugadas"><i class="fa fa-check"></i><b>16.3.2</b> Distribuciones Conjugadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a><ul>
-<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a><ul>
+<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.1.1" data-path="C-AppC.html"><a href="C-AppC.html#la-función-de-verosimilitud-y-de-log-verosimilitud"><i class="fa fa-check"></i><b>17.1.1</b> La Función de Verosimilitud y de Log-verosimilitud</a></li>
 <li class="chapter" data-level="17.1.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-de-las-funciones-de-verosimilitud"><i class="fa fa-check"></i><b>17.1.2</b> Propiedades de las Funciones de Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.2.1" data-path="C-AppC.html"><a href="C-AppC.html#definición-y-derivación-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.1</b> Definición y Derivación del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-asintóticas-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.2</b> Propiedades Asintóticas del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.3" data-path="C-AppC.html"><a href="C-AppC.html#uso-de-la-estimación-de-máxima-verosimilitud"><i class="fa fa-check"></i><b>17.2.3</b> Uso de la Estimación de Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#contraste-de-hipótesis"><i class="fa fa-check"></i><b>17.3.1</b> Contraste de Hipótesis</a></li>
 <li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> Validación del Modelo y MLE</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a><ul>
-<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a><ul>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a>
+<ul>
 <li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab0"><i class="fa fa-check"></i><b>18.1.1</b> La clase (a,b,0)</a></li>
 <li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab1"><i class="fa fa-check"></i><b>18.1.2</b> La clase (a,b,1)</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a><ul>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a>
+<ul>
 <li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-un-parámetro"><i class="fa fa-check"></i><b>18.2.1</b> Distribuciones Un Parámetro</a></li>
 <li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-dos-parámetros"><i class="fa fa-check"></i><b>18.2.2</b> Distribuciones Dos Parámetros</a></li>
 <li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-tres-parámetros"><i class="fa fa-check"></i><b>18.2.3</b> Distribuciones Tres Parámetros</a></li>
@@ -815,11 +901,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="C:Frequency-Modeling" class="section level1">
+<div id="C:Frequency-Modeling" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Modelización de la Frecuencia</h1>
 <p><em>Resumen del capítulo.</em> Uno de los objetivos primordiales de las aseguradoras es estimar la magnitud de las pérdidas agregadas que debe soportar en virtud de sus contratos de seguro. Las pérdidas agregadas se ven afectadas tanto por la frecuencia de los eventos asegurados como por la cuantía del evento asegurado. Descomponer las pérdidas agregadas en estos dos componentes, cada uno de los cuales requiere una gran atención, es fundamental para el análisis y tarificación. En este capítulo se examinan las distribuciones de frecuencia, las medidas resumen y las técnicas de estimación de los parámetros.</p>
 <p>En la Sección <a href="C-Frequency-Modeling.html#S:frequency-distributions">2.1</a>, presentamos la terminología y discutimos las razones por las que estudiamos la frecuencia y la cuantía por separado. Los fundamentos de las distribuciones y medidas de frecuencia se presentan en la Sección <a href="C-Frequency-Modeling.html#S:basic-frequency-distributions">2.2</a> junto con tres de las principales distribuciones: binomial, Poisson, y binomial negativa. Estas tres distribuciones son miembros de lo que se conoce como la clase de distribuciones (a,b,0), una característica distintiva e identificadora que permite un cálculo eficiente de las probabilidades, que se discute con más detalle en la Sección <a href="C-Frequency-Modeling.html#S:the-a-b-0-class">2.3</a>. Cuando se ajusta una distribución a un conjunto de datos, es necesario estimar los valores de los parámetros y en la Sección <a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions">2.4</a>, se explica el procedimiento para la estimación por máxima verosimilitud. En el caso de los datos de seguros, la observación de 0, que indica la ocurrencia de cero de un evento concreto, es frecuente y puede merecer una atención adicional. Según el tipo de datos, y explicado con más detalle en la Sección <a href="C-Frequency-Modeling.html#S:other-frequency-distributions">2.5</a>, puede ser imposible tener un cero del suceso estudiado, o la probabilidad de cero puede ser de tal magnitud que el ajuste directo llevaría a estimaciones inadecuadas. Las técnicas de truncamiento o modificación del cero permiten un mejor ajuste de la distribución. Cabe señalar que nuestra cartera de seguros podría estar compuesta por diferentes subgrupos, cada uno con su propio conjunto de características individuales, la Sección <a href="C-Frequency-Modeling.html#S:mixture-distributions">2.6</a> introduce las distribuciones mixtas y la metodología para permitir esta heterogeneidad dentro de una cartera. La Sección <a href="C-Frequency-Modeling.html#S:goodness-of-fit">2.7</a> describe la bondad de ajuste que mide la razonabilidad de las estimaciones de los parámetros. Los ejercicios se presentan en la Sección <a href="C-Frequency-Modeling.html#S:exercises">2.8</a> and la Sección <a href="C-Frequency-Modeling.html#S:rcode">2.9.1</a> concluye el capítulo con el código <code>R</code> para los gráficos mostrados en la Sección <a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions">2.4</a>.</p>
-<div id="S:frequency-distributions" class="section level2">
+<div id="S:frequency-distributions" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Distribuciones de Frecuencias</h2>
 <hr />
 <p>En esta sección se aprende a analizar la importancia de la modelización de las frecuencias en términos</p>
@@ -830,18 +916,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>razones administrativas/regulatorias.</li>
 </ul>
 <hr />
-<div id="S:how-frequency-augments-severity-information" class="section level3">
+<div id="S:how-frequency-augments-severity-information" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Cómo la frecuencia incrementa la información sobre la cuantía</h3>
-<div id="S:basic-terminology" class="section level4">
+<div id="S:basic-terminology" class="section level4" number="2.1.1.1">
 <h4><span class="header-section-number">2.1.1.1</span> Terminología básica</h4>
 <p>En este capítulo, <strong>pérdida</strong>, también llamada daño económico, denota la cantidad sufrida por el asegurado. Denominamos <strong>siniestro</strong> para indicar la indemnización cuando ocurre un evento asegurado, por lo tanto, la cantidad que paga el asegurador. Aunque algunos textos utilizan <strong>pérdida</strong> y <strong>siniestro</strong> indistintamente, hacemos aquí una distinción para remarcar cómo las disposiciones contractuales de los seguros, tales como las deducciones y los límites, afectan a la cuantía de la reclamación derivada de una pérdida. La frecuencia representa la frecuencia con la que ocurre un evento asegurado, normalmente dentro de un contrato de póliza. Aquí nos centramos en las variables aleatorias de recuento que representan el número de siniestros, es decir, la frecuencia con la que se produce un evento. La cuantía indica la cantidad, o tamaño, de cada pago de un evento asegurado. En futuros capítulos, se examina el modelo agregado, que combina modelos de frecuencia con modelos de cuantía o severidad.</p>
 </div>
-<div id="S:the-importance-of-frequency" class="section level4">
+<div id="S:the-importance-of-frequency" class="section level4" number="2.1.1.2">
 <h4><span class="header-section-number">2.1.1.2</span> La importancia de la Frecuencia</h4>
 <p>Recordemos en el Capítulo <a href="C-Intro.html#C:Intro">1</a> que fijar el precio de un producto de seguro puede ser un problema complejo. En la fabricación, el coste de un producto es (relativamente) conocido. En otras áreas de servicios financieros, se dispone de precios de mercado. En los seguros, podemos generalizar la fijación de precios de la siguiente manera: empezar con un coste esperado. Añadir “márgenes” para tener en cuenta el riesgo del producto, los gastos incurridos en el mantenimiento del producto y una asignación de beneficios/superávit para el asegurador.</p>
 <p>Ese coste esperado para el seguro puede definirse como el número esperado de siniestros por la cantidad esperada por siniestro, es decir, la <em>frecuencia por cuantía</em> esperada. Centrarse en el recuento de siniestros permite al asegurador considerar aquellos factores que afectan directamente a la ocurrencia de una pérdida, generando así potencialmente un siniestro. El proceso de la frecuencia puede entonces modelizarse.</p>
 </div>
-<div id="S:why-examine-frequency-information" class="section level4">
+<div id="S:why-examine-frequency-information" class="section level4" number="2.1.1.3">
 <h4><span class="header-section-number">2.1.1.3</span> Por qué Examinar la Información de la Frecuencia</h4>
 <p>Las aseguradoras y otros interesados, incluidas las organizaciones gubernamentales, tienen diferentes motivos para generar y mantener bases de datos de frecuencias.</p>
 <ul>
@@ -852,13 +938,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>En productos de seguros a particulares, el historial de siniestralidad es un importante factor de suscripción. Es común utilizar un indicador de si el asegurado tuvo o no un siniestro dentro de un determinado período de tiempo antes del contrato. Además, el número de siniestros incurridos por el asegurado en períodos anteriores tiene capacidad predictiva.</p></li>
 <li><p>En el seguro del hogar, al modelizar la frecuencia de pérdidas potenciales, el asegurador podría considerar las medidas de prevención de pérdidas que el propietario ha adoptado, como los sistemas de alarma o de seguridad visibles. Por otra parte, al modelizar la cuantía de las pérdidas, el asegurador examinaría los factores que afectan a los costes de reparación y sustitución.</p></li>
 </ul></li>
-<li><p><strong>Bases de datos</strong>. Las aseguradoras pueden mantener bases de datos separadas que ayudan a desarrollar modelos separados de frecuencia y cuantía. Por ejemplo, un archivo de titulares de pólizas se genera cuando se suscribe una póliza. En este archivo se registra mucha información de suscripción sobre el asegurado o los asegurados, como la edad, el sexo y la información previa sobre siniestralidad; información sobre la póliza como la cobertura, los deducibles y las limitaciones, así como la existencia de reclamaciones de seguro. Un archivo separado, conocido como el archivo de “siniestros”, registra los detalles de la reclamación contra el asegurador, incluyendo la cantidad. (También puede haber un archivo de “pagos” que registra el proceso de los pagos, aunque no nos ocuparemos de eso aquí). Este proceso de recogida de información podría luego extenderse a la modelización por parte de los asegurados como procesos separados de la frecuencia y la cuantía.</p></li>
-<li><p><strong>Regulación y Administración.</strong> El seguro es una industria altamente regulada y supervisada, dada su importancia en la provisión de seguridad financiera a los individuos y empresas que se enfrentan a los riesgos. Como parte de sus obligaciones los reguladores exigen habitualmente que se informe sobre el número de reclamaciones y las cantidades. Esto puede deberse a que puede haber definiciones alternativas de “cuantía”, por ejemplo, lo pagado frente a lo incurrido, y hay menos posibilidades de error al informar del número de reclamaciones. Esta vigilancia continua ayuda a garantizar la estabilidad financiera de estas compañías de seguros.</p></li>
+<li><p><strong>Bases de datos</strong>. Las aseguradoras pueden mantener bases de datos separadas que ayudan a desarrollar modelos separados de frecuencia y cuantía. Por ejemplo, un archivo de titulares de pólizas se genera cuando se suscribe una póliza. En este archivo se registra mucha información de suscripción sobre el asegurado o los asegurados, como la edad, el sexo y la información previa sobre siniestralidad; información sobre la póliza como la cobertura, los deducibles y las limitaciones, así como la existencia de reclamaciones de seguro. Un archivo separado, conocido como el archivo de “siniestros,” registra los detalles de la reclamación contra el asegurador, incluyendo la cantidad. (También puede haber un archivo de “pagos” que registra el proceso de los pagos, aunque no nos ocuparemos de eso aquí). Este proceso de recogida de información podría luego extenderse a la modelización por parte de los asegurados como procesos separados de la frecuencia y la cuantía.</p></li>
+<li><p><strong>Regulación y Administración.</strong> El seguro es una industria altamente regulada y supervisada, dada su importancia en la provisión de seguridad financiera a los individuos y empresas que se enfrentan a los riesgos. Como parte de sus obligaciones los reguladores exigen habitualmente que se informe sobre el número de reclamaciones y las cantidades. Esto puede deberse a que puede haber definiciones alternativas de “cuantía,” por ejemplo, lo pagado frente a lo incurrido, y hay menos posibilidades de error al informar del número de reclamaciones. Esta vigilancia continua ayuda a garantizar la estabilidad financiera de estas compañías de seguros.</p></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="S:basic-frequency-distributions" class="section level2">
+<div id="S:basic-frequency-distributions" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Distribuciones de Frecuencias Elementales</h2>
 <hr />
 <p>En esta sección, aprenderás a:</p>
@@ -869,7 +955,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <hr />
 <p>En esta sección, presentaremos las distribuciones que se utilizan frecuentemente en la práctica actuarial para modelizar los datos de recuento. La variable aleatoria del número de siniestros se denota con <span class="math inline">\(N\)</span>; por su propia naturaleza toma sólo valores enteros no negativos. Por lo tanto, las distribuciones que se muestran a continuación son todas distribuciones discretas con soporte el conjunto de números enteros no negativos <span class="math inline">\(\{0, 1, \ldots \}\)</span>.</p>
-<div id="S:foundations" class="section level3">
+<div id="S:foundations" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Fundamentos</h3>
 <p>Dado que <span class="math inline">\(N\)</span> es una variable aleatoria discreta que toma valores en <span class="math inline">\(\{0, 1, \ldots \}\)</span>, la descripción completa más natural de su distribución es a través de la especificación de las probabilidades con las que asume cada uno de los valores enteros no negativos. Esto nos lleva al concepto de la función de masa de probabilidad (pmf, según sus siglas en inglés) de <span class="math inline">\(N\)</span>, denotada como <span class="math inline">\(p_N(\cdot)\)</span> y definida de la siguiente manera:</p>
 <p><span class="math display">\[\begin{equation}
@@ -895,13 +981,13 @@ F_N(x):=\begin{cases}
 <p>Otro aspecto fundamental de una distribución es su dispersión, y de las diversas medidas de dispersión estudiadas en la literatura, la desviación estándar es la más popular. Para definirla, primero definimos la varianza de <span class="math inline">\(N\)</span>, denotada por <span class="math inline">\(\mathrm{Var}[N]\)</span>, como <span class="math inline">\(\mathrm{Var}[N]:=\mathrm{E}{[(N-\mu_N)^2]}\)</span> cuando <span class="math inline">\(\mu_N\)</span> es finita. Por las propiedades básicas del valor esperado de una variable aleatoria, vemos que <span class="math inline">\(\mathrm{Var}[N]:=\mathrm{E}[N^2]-[\mathrm{E}(N)]^2\)</span>. La desviación estándar de <span class="math inline">\(N\)</span>, denotada por <span class="math inline">\(\sigma_N\)</span>, se define como la raíz cuadrada de <span class="math inline">\(\mathrm{Var}~N\)</span>.
 Nótese que esta última queda bien definida como <span class="math inline">\(\mathrm{Var}[N]\)</span>, por su definición de promedio de la desviación respecto a la media al cuadrado, y es no negativa; <span class="math inline">\(\mathrm{Var}[N]\)</span> se denota como <span class="math inline">\(\sigma_N^2\)</span>. Obsérvese que estas dos medidas toman valores en <span class="math inline">\([0,\infty]\)</span>.</p>
 </div>
-<div id="S:generating-functions" class="section level3">
+<div id="S:generating-functions" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Funciones Generadoras de Momentos y de Probabilidad</h3>
 <p>Ahora presentaremos dos funciones generadoras que son útiles cuando se trabaja con variables de recuento. Recordemos que para una variable aleatoria discreta, la la función generadora de momentos (mgf, según sus siglas en inglés) de <span class="math inline">\(N\)</span>, denotada como <span class="math inline">\(M_N(\cdot)\)</span>, se define como</p>
 <p><span class="math display">\[
 M_N(t) = \mathrm{E}~{[e^{tN}]} = \sum^{\infty}_{k=0} ~e^{tk}~ p_N(k), \quad t\in \mathbb{R}.
 \]</span></p>
-<p>Obsérvese que mientras <span class="math inline">\(M_N(\cdot)\)</span> está bien definida ya que es el valor esperado de una variable aleatoria no negativa (<span class="math inline">\(e^{tN}\)</span>), aunque puede tomar el valor <span class="math inline">\(\infty\)</span>. Nótese que para una variable aleatoria de recuento, <span class="math inline">\(M_N(\cdot)\)</span> tiene un valor finito en <span class="math inline">\((-\infty,0]\)</span> con <span class="math inline">\(M_N(0)=1\)</span>. El siguiente teorema, cuya demostración se encuentra en <span class="citation">(Billingsley <a href="#ref-billingsley" role="doc-biblioref">2008</a>)</span> (pages 285-6), justifica su nombre.</p>
+<p>Obsérvese que mientras <span class="math inline">\(M_N(\cdot)\)</span> está bien definida ya que es el valor esperado de una variable aleatoria no negativa (<span class="math inline">\(e^{tN}\)</span>), aunque puede tomar el valor <span class="math inline">\(\infty\)</span>. Nótese que para una variable aleatoria de recuento, <span class="math inline">\(M_N(\cdot)\)</span> tiene un valor finito en <span class="math inline">\((-\infty,0]\)</span> con <span class="math inline">\(M_N(0)=1\)</span>. El siguiente teorema, cuya demostración se encuentra en <span class="citation">(<a href="bibliography.html#ref-billingsley" role="doc-biblioref">Billingsley 2008</a>)</span> (pages 285-6), justifica su nombre.</p>
 <!-- \begin{theorem}\label{freq:thm1} -->
 
 <div class="theorem">
@@ -916,7 +1002,6 @@ La <em>mgf</em> se puede usar para <em>generar</em> sus momentos de la siguiente
 \]</span>
 La <em>mgf</em> <span class="math inline">\(M_N(\cdot)\)</span> caracteriza la distribución; en otras palabras, especifica de manera única la distribución.</p>
 </div>
-
 <p>Otro motivo por el que la <em>mgf</em> es muy útil como herramienta es que, para dos variables aleatorias independientes <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, con sus mgfs que existen alrededor de <span class="math inline">\(0\)</span>, la <em>mgf</em> de <span class="math inline">\(X+Y\)</span> es el producto de sus respectivas mgfs.</p>
 <p>Una función generadora relacionada con la <em>mgf</em> es la función generadora de probabilidad (pgf, según sus siglas en inglés), y es una herramienta útil para las variables aleatorias que toman valores en los números enteros no negativos. Para una variable aleatoria <span class="math inline">\(N\)</span>, por <span class="math inline">\(P_N(\cdot)\)</span> denotamos su <em>pgf</em> y se define como:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p><span class="math display">\[\begin{equation}
@@ -950,9 +1035,8 @@ Los momentos factoriales de <span class="math inline">\(N\)</span> se pueden der
 \]</span>
 La <em>pgf</em> <span class="math inline">\(P_N(\cdot)\)</span> caracteriza la distribución; en otras palabras, especifica de manera única la distribución.
 </div>
-
 </div>
-<div id="S:important-frequency-distributions" class="section level3">
+<div id="S:important-frequency-distributions" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Distribuciones de Frecuencias Importantes</h3>
 <p>En esta subsección estudiaremos tres importantes distribuciones de frecuencia utilizadas en estadística, que son las distribuciones binomial, Poisson y binomial negativa. En lo siguiente, un riesgo denota una unidad cubierta por el seguro. Un riesgo puede ser un individuo, un edificio, una empresa o algún otro aspecto para el que se proporciona cobertura de seguro. Para contextualizar, imaginemos un conjunto de datos de seguros que contenga el número de siniestros por riesgo o que esté estratificado de alguna otra manera. Las distribuciones mencionadas anteriormente resultan ser también las que más se utilizan en el ámbito asegurador por diferentes razones, algunas de las cuales se mencionan a continuación.</p>
 <ul>
@@ -965,7 +1049,7 @@ La <em>pgf</em> <span class="math inline">\(P_N(\cdot)\)</span> caracteriza la d
 </ul></li>
 </ul>
 <!-- \phantom{Es útil poner aquí un ejemplo de distribución discreta con tres valores de soporte y derivar su mgf/pgf/momentos etc..} -->
-<div id="S:binomial-distribution" class="section level4">
+<div id="S:binomial-distribution" class="section level4" number="2.2.3.1">
 <h4><span class="header-section-number">2.2.3.1</span> Distribución Binomial</h4>
 <p>Empezamos con la distribución binomial que se genera a partir de una secuencia finita de experimentos idénticos e independientes con resultados dicotómicos. El más clásico de estos experimentos es el del lanzamiento de una moneda (trucada o no trucada) con el resultado de cara o cruz. Así, si <span class="math inline">\(N\)</span> denota el número de caras en una secuencia de <span class="math inline">\(m\)</span> experimentos independientes del lanzamiento de una moneda idéntica cuya probabilidad de obtener cara es <span class="math inline">\(q\)</span>, entonces la distribución de <span class="math inline">\(N\)</span> se denomina distribución binomial con parámetros <span class="math inline">\((m,q)\)</span>, con <span class="math inline">\(m\)</span> un entero positivo y <span class="math inline">\(q\in[0,1]\)</span>. Nótese que cuando <span class="math inline">\(q=0\)</span> (resp., <span class="math inline">\(q=1\)</span>) entonces la distribución es degenerada con <span class="math inline">\(N=0\)</span> (resp., <span class="math inline">\(N=m\)</span>) con probabilidad <span class="math inline">\(1\)</span>. De forma clara, cuando <span class="math inline">\(q\in(0,1)\)</span> su suporte es igual a <span class="math inline">\(\{0,1,\ldots,m\}\)</span> con <em>pmf</em> dada por<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <p><span class="math display">\[\begin{equation*}
@@ -987,7 +1071,7 @@ Además, dado que la varianza de la suma de variables aleatorias independientes 
 \]</span></p>
 <p>En los ejercicios se proponen formas alternativas de derivar los momentos anteriores. Es importante remarcar, especialmente desde el punto de vista de las aplicaciones, que la media es mayor que la varianza a menos que <span class="math inline">\(q=0\)</span>.</p>
 </div>
-<div id="S:poisson-distribution" class="section level4">
+<div id="S:poisson-distribution" class="section level4" number="2.2.3.2">
 <h4><span class="header-section-number">2.2.3.2</span> Distribución de Poisson</h4>
 <p>Después de la distribución binomial, la distribución de Poisson (llamada así por el polímata francés Simeon Denis Poisson) es probablemente la más conocida de las distribuciones discretas. En parte se debe a que surge de forma natural como la distribución de recuento de las ocurrencias aleatorias de un tipo de evento en un determinado período de tiempo, si la tasa de ocurrencia de los eventos es constante. También surge como el límite asintótico de la distribución binomial con <span class="math inline">\(m\rightarrow \infty\)</span> y <span class="math inline">\(mq\rightarrow \lambda\)</span>.</p>
 <p>La distribución de Poisson se parametriza con un único parámetro normalmente denotado por <span class="math inline">\(\lambda\)</span> que toma valores en <span class="math inline">\((0,\infty)\)</span>. Su <em>pmf</em> viene dada por</p>
@@ -1024,7 +1108,7 @@ En concreto, lo anterior implica que
 \]</span>
 Nótese que, curiosamente, para la distribución de Poisson <span class="math inline">\(\mathrm{Var}[N]=\mathrm{E}[N]\)</span>.</p>
 </div>
-<div id="S:negative-binomial-distribution" class="section level4">
+<div id="S:negative-binomial-distribution" class="section level4" number="2.2.3.3">
 <h4><span class="header-section-number">2.2.3.3</span> Distribución Binomial Negativa</h4>
 <p>La tercera distribución importante de recuento es la distribución binomial negativa. Recordemos que la distribución binomial surge como la distribución del número de <em>éxitos</em> en la repetición independiente de <span class="math inline">\(m\)</span> veces de un experimento con resultados binarios o dicotómicos. Si por el contrario, consideramos el número de <em>éxitos</em> hasta que observamos el <span class="math inline">\(r\)</span>-ésimo <em>fallo</em> en repeticiones independientes de un experimento con resultados binarios, entonces su distribución es una distribución binomial negativa. Un caso particular, cuando <span class="math inline">\(r=1\)</span>, es la distribución geométrica. Sin embargo, cuando <span class="math inline">\(r\)</span> no es un número entero, el experimento aleatorio anterior no sería aplicable. A partir de aquí, permitiremos que el parámetro <span class="math inline">\(r\)</span> sea cualquier número real positivo, para luego motivar la distribución de manera más general. Para explicar su nombre, recordemos la serie binomial, <em>i.e.</em></p>
 <p><span class="math display">\[
@@ -1074,7 +1158,7 @@ con el lado derecho de la ecuación anterior siendo la <em>mgf</em> de la distri
 </div>
 </div>
 </div>
-<div id="S:the-a-b-0-class" class="section level2">
+<div id="S:the-a-b-0-class" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> La Clase (a, b, 0)</h2>
 <hr />
 <p>En esta sección, se aprende a:</p>
@@ -1143,7 +1227,7 @@ Por último, dado que la media de la binomial negativa es <span class="math inli
 </div>
 <hr />
 </div>
-<div id="S:estimating-frequency-distributions" class="section level2">
+<div id="S:estimating-frequency-distributions" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Estimación de las Distribuciones de Frecuencias</h2>
 <hr />
 <p>En esta sección, se aprende a:</p>
@@ -1153,7 +1237,7 @@ Por último, dado que la media de la binomial negativa es <span class="math inli
 <li>Calcular el estimador de máxima verosimilitud para las distribuciones binomial, Poisson y binomial negativa</li>
 </ul>
 <hr />
-<div id="S:parameter-estimation" class="section level3">
+<div id="S:parameter-estimation" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Estimación de los parámetros</h3>
 <p>En la sección <a href="C-Frequency-Modeling.html#S:basic-frequency-distributions">2.2</a> se introdujeron tres distribuciones muy importantes para la modelización de varios tipos de datos de recuento derivados de los seguros. Supongamos ahora que tenemos un conjunto de datos de recuento a los que queremos ajustar una distribución, y hemos determinado que una de las distribuciones <span class="math inline">\((a,b,0)\)</span> es más apropiada que las otras. Dado que cada una de ellas forma una clase de distribuciones si permitimos que su(s) parámetro(s) tome(n) cualquier valor permisible, queda la tarea de determinar el <strong>mejor</strong> valor del(los) parámetro(s) para los datos en cuestión. Éste es un problema estadístico de estimación puntual, y el paradigma de inferencia estadística de <em>máxima verosimilitud</em> suele producir estimadores eficientes en los problemas de inferencia paramétrica. En esta sección describiremos este paradigma y derivaremos los estimadores de máxima verosimilitud.</p>
 <p>Supongamos que observamos las variables aleatorias independientes e idénticamente distribuidas, <em>iid</em>, <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> de una distribución con <em>pmf</em> <span class="math inline">\(p_\theta\)</span>, donde <span class="math inline">\(\theta\)</span> es un parámetro y un valor desconocido en el espacio del parámetro <span class="math inline">\(\Theta\subseteq \mathbb{R}^d\)</span>. Por ejemplo, en el caso de la distribución de Poisson</p>
@@ -1196,7 +1280,7 @@ Figure 2.1: Verosimilitud para <span class="math inline">\((0,1,0)\)</span> de u
 </p>
 </div>
 </div>
-<div id="S:frequency-distributions-mle" class="section level3">
+<div id="S:frequency-distributions-mle" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> MLE de las distribuciones de frecuencias</h3>
 <p>A continuación derivamos el estimador de máxima verosimilitud, <em>MLE</em>, para los tres miembros de la clase <span class="math inline">\((a,b,0)\)</span>. Empezamos resumiendo la discusión anterior. En el escenario de observar las variables aleatorias <em>iid</em>, independientes e idénticamente distribuidas, <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> de una distribución con <em>pmf</em> <span class="math inline">\(p_\theta\)</span>, donde <span class="math inline">\(\theta\)</span> toma un valor desconocido en <span class="math inline">\(\Theta\subseteq \mathbb{R}^d\)</span>, la verosimilitud <span class="math inline">\(L(\cdot)\)</span>, una función en <span class="math inline">\(\Theta\)</span> se define como</p>
 <p><span class="math display">\[
@@ -1273,7 +1357,7 @@ Nótese que la verosimilitud sería cero para valores de <span class="math inlin
 \hat{m}_{\rm MLE}\geq \max_{1\leq i \leq n}x_i.
 \]</span>
 Para especificar un algoritmo para calcular <span class="math inline">\(\hat{m}_{\rm MLE}\)</span>, primero señalamos que para algunos conjuntos de datos <span class="math inline">\(\hat{m}_{\rm MLE}\)</span> podría ser igual a <span class="math inline">\(\infty\)</span>, lo que indicaría que una distribución de Poisson se ajustaría mejor que una distribución binomial. Esto es así, ya que la distribución binomial con los parámetros <span class="math inline">\((m,\overline{x}/m)\)</span> se aproxima a la distribución de Poisson con el parámetro <span class="math inline">\(\overline{x}\)</span> con <span class="math inline">\(m\)</span> tendiendo a infinito. El hecho de que algunos conjuntos de datos <strong>prefieran</strong> una distribución de Poisson no debería ser sorprendente ya que desde este punto de vista el conjunto de la distribución de Poisson está en el límite del conjunto de las distribuciones binomiales.</p>
-<p>Curiosamente, en <span class="citation">(Olkin, Petkau, and Zidek <a href="#ref-olkin1981" role="doc-biblioref">1981</a>)</span> muestran que si la media de la muestra es menor o igual a la varianza de la muestra entonces <span class="math inline">\(\hat{m}_{\rm MLE}=\infty\)</span>; de lo contrario, existe un <span class="math inline">\(m\)</span> finito que maximiza la ecuación <a href="C-Frequency-Modeling.html#eq:binlikm">(2.3)</a>. En la siguiente Figura <a href="C-Frequency-Modeling.html#fig:MLEm">2.2</a> se muestra el gráfico de <span class="math inline">\(L\left(m,\frac{1}{nm}\sum_{i=1}^n x_i\right)\)</span> para tres muestras diferentes de tamaño <span class="math inline">\(5\)</span>; sólo difieren en el valor del máximo de la muestra. La primera muestra de <span class="math inline">\((2,2,2,4,5)\)</span> tiene una relación entre la media de la muestra y la varianza de la muestra mayor a <span class="math inline">\(1\)</span> (<span class="math inline">\(1,875\)</span>), la segunda muestra de <span class="math inline">\((2,2,2,4,6)\)</span> tiene la relación igual a <span class="math inline">\(1,25\)</span> que está más cerca de <span class="math inline">\(1\)</span>, y la tercera muestra de <span class="math inline">\((2,2,2,4,7)\)</span> tiene una relación menor a <span class="math inline">\(1\)</span> (<span class="math inline">\(0,885\)</span>). Para las tres muestras, como se muestra en la Figura <a href="C-Frequency-Modeling.html#fig:MLEm">2.2</a>, <span class="math inline">\(\hat{m}_{\rm MLE}\)</span> es igual a <span class="math inline">\(7\)</span>, <span class="math inline">\(18\)</span> and <span class="math inline">\(\infty\)</span>, respectivamente. Nótese que el valor en el límite de <span class="math inline">\(L\left(m,\frac{1}{nm}\sum_{i=1}^n x_i\right)\)</span> cuando <span class="math inline">\(m\)</span> tiende a infinito es igual a</p>
+<p>Curiosamente, en <span class="citation">(<a href="bibliography.html#ref-olkin1981" role="doc-biblioref">Olkin, Petkau, and Zidek 1981</a>)</span> muestran que si la media de la muestra es menor o igual a la varianza de la muestra entonces <span class="math inline">\(\hat{m}_{\rm MLE}=\infty\)</span>; de lo contrario, existe un <span class="math inline">\(m\)</span> finito que maximiza la ecuación <a href="C-Frequency-Modeling.html#eq:binlikm">(2.3)</a>. En la siguiente Figura <a href="C-Frequency-Modeling.html#fig:MLEm">2.2</a> se muestra el gráfico de <span class="math inline">\(L\left(m,\frac{1}{nm}\sum_{i=1}^n x_i\right)\)</span> para tres muestras diferentes de tamaño <span class="math inline">\(5\)</span>; sólo difieren en el valor del máximo de la muestra. La primera muestra de <span class="math inline">\((2,2,2,4,5)\)</span> tiene una relación entre la media de la muestra y la varianza de la muestra mayor a <span class="math inline">\(1\)</span> (<span class="math inline">\(1,875\)</span>), la segunda muestra de <span class="math inline">\((2,2,2,4,6)\)</span> tiene la relación igual a <span class="math inline">\(1,25\)</span> que está más cerca de <span class="math inline">\(1\)</span>, y la tercera muestra de <span class="math inline">\((2,2,2,4,7)\)</span> tiene una relación menor a <span class="math inline">\(1\)</span> (<span class="math inline">\(0,885\)</span>). Para las tres muestras, como se muestra en la Figura <a href="C-Frequency-Modeling.html#fig:MLEm">2.2</a>, <span class="math inline">\(\hat{m}_{\rm MLE}\)</span> es igual a <span class="math inline">\(7\)</span>, <span class="math inline">\(18\)</span> and <span class="math inline">\(\infty\)</span>, respectivamente. Nótese que el valor en el límite de <span class="math inline">\(L\left(m,\frac{1}{nm}\sum_{i=1}^n x_i\right)\)</span> cuando <span class="math inline">\(m\)</span> tiende a infinito es igual a</p>
 <p><span class="math display" id="eq:Poilik">\[\begin{equation}
 \left(\prod_{i=1}^n x_i! \right)^{-1} \exp\left\{-\sum_{i=1}^n x_i\right\} \overline{x}^{n\overline{x}}. 
 \tag{2.4}
@@ -1342,7 +1426,7 @@ Lo anterior reduce el problema de optimización bidimensional a un problema unid
 <span class="math display">\[
 l(r,\overline{x}/r)=\sum_{i=1}^n \log\binom{r+x_i-1}{x_i} -n(r+\overline{x}) \log(1+\overline{x}/r) +n\overline{x}\log(\overline{x}/r),
 \]</span>
-con respecto a <span class="math inline">\(r\)</span>, siendo el maximizador de <span class="math inline">\(r\)</span> su <em>MLE</em> y <span class="math inline">\(\hat{\beta}_{MLE}=\overline{x}/\hat{r}_{MLE}\)</span>. En <span class="citation">(Levin, Reeds, and others <a href="#ref-levin1977" role="doc-biblioref">1977</a>)</span> se muestra que si la varianza muestral es mayor que la media muestral, entonces existe un único <span class="math inline">\(r&gt;0\)</span> que maximiza <span class="math inline">\(l(r,\overline{x}/r)\)</span> y por lo tanto un único <em>MLE</em> para <span class="math inline">\(r\)</span> y <span class="math inline">\(\beta\)</span>. Además, muestran que si <span class="math inline">\(\hat{\sigma}^2\leq \overline{x}\)</span>, entonces la verosimilitud de la binomial negativa estará dominada por la verosimilitud de la Poisson con <span class="math inline">\(\hat{\lambda}=\overline{x}\)</span>. En otras palabras, una distribución de Poisson ofrece un mejor ajuste a los datos. La garantía en el caso de <span class="math inline">\(\hat{\sigma}^2&gt;\hat{\mu}\)</span> nos permite usar un algoritmo para maximizar <span class="math inline">\(l(r,\overline{x}/r)\)</span>. Mediante un método alternativo de calcular la verosimilitud, observamos que
+con respecto a <span class="math inline">\(r\)</span>, siendo el maximizador de <span class="math inline">\(r\)</span> su <em>MLE</em> y <span class="math inline">\(\hat{\beta}_{MLE}=\overline{x}/\hat{r}_{MLE}\)</span>. En <span class="citation">(<a href="bibliography.html#ref-levin1977" role="doc-biblioref">Levin, Reeds, and others 1977</a>)</span> se muestra que si la varianza muestral es mayor que la media muestral, entonces existe un único <span class="math inline">\(r&gt;0\)</span> que maximiza <span class="math inline">\(l(r,\overline{x}/r)\)</span> y por lo tanto un único <em>MLE</em> para <span class="math inline">\(r\)</span> y <span class="math inline">\(\beta\)</span>. Además, muestran que si <span class="math inline">\(\hat{\sigma}^2\leq \overline{x}\)</span>, entonces la verosimilitud de la binomial negativa estará dominada por la verosimilitud de la Poisson con <span class="math inline">\(\hat{\lambda}=\overline{x}\)</span>. En otras palabras, una distribución de Poisson ofrece un mejor ajuste a los datos. La garantía en el caso de <span class="math inline">\(\hat{\sigma}^2&gt;\hat{\mu}\)</span> nos permite usar un algoritmo para maximizar <span class="math inline">\(l(r,\overline{x}/r)\)</span>. Mediante un método alternativo de calcular la verosimilitud, observamos que
 <span class="math display">\[
 l(r,\overline{x}/r)=\sum_{i=1}^n \sum_{j=1}^{x_i}\log(r-1+j) - \sum_{i=1}^n\log(x_i!) - n(r+\overline{x}) \log(r+\overline{x}) + nr\log(r) + n\overline{x}\log(\overline{x}),
 \]</span>
@@ -1417,7 +1501,7 @@ Figure 2.3: Gráfico de las Verosimilitudes Parcialmente Maximizadas <span class
 </div>
 </div>
 </div>
-<div id="S:other-frequency-distributions" class="section level2">
+<div id="S:other-frequency-distributions" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Otras Distribuciones de Frecuencias</h2>
 <hr />
 <p>En esta sección, se aprende a:</p>
@@ -1427,9 +1511,9 @@ Figure 2.3: Gráfico de las Verosimilitudes Parcialmente Maximizadas <span class
 <li>Calcular las probabilidades usando la relación recursiva</li>
 </ul>
 <hr />
-<p>En las secciones anteriores hemos examinado tres distribuciones con soporte definido en el conjunto de números enteros no negativos, que se adaptan bien a muchas aplicaciones de seguros. Además, al permitir frecuentemente que los parámetros sean una función de variables explicativas conocidas (por el asegurador) como la edad, el sexo, la ubicación geográfica (territorio), etc., estas distribuciones nos permiten explicar las probabilidades de siniestro en términos de estas variables. El ámbito de la estadística que analiza estos modelos se conoce como análisis de regresión - es un tópico importante de interés actuarial que no se tratará en este libro; ver <span class="citation">(Edward W Frees <a href="#ref-freesregression" role="doc-biblioref">2009</a>)</span>.</p>
+<p>En las secciones anteriores hemos examinado tres distribuciones con soporte definido en el conjunto de números enteros no negativos, que se adaptan bien a muchas aplicaciones de seguros. Además, al permitir frecuentemente que los parámetros sean una función de variables explicativas conocidas (por el asegurador) como la edad, el sexo, la ubicación geográfica (territorio), etc., estas distribuciones nos permiten explicar las probabilidades de siniestro en términos de estas variables. El ámbito de la estadística que analiza estos modelos se conoce como análisis de regresión - es un tópico importante de interés actuarial que no se tratará en este libro; ver <span class="citation">(<a href="bibliography.html#ref-freesregression" role="doc-biblioref">Edward W. Frees 2009a</a>)</span>.</p>
 <p>Es evidente que existen infinitas otras distribuciones de recuento, y lo que es más importante, las distribuciones anteriores por sí mismas no satisfacen todas las necesidades prácticas. En concreto, una característica de algunos datos en seguros es que la proporción de ceros puede ser muy diferente en la relación a la proporción de otros valores para que puedan ser explicados por las distribuciones anteriores. A continuación, se modifican las distribuciones previas para permitir una probabilidad arbitraria para el recuento de ceros, independientemente de la asignación relativa de probabilidades para los otros valores. Otra característica de un conjunto de datos que está compuesto por subconjuntos homogéneos es que, aunque las distribuciones anteriores pueden proporcionar buenos ajustes a cada subconjunto, pueden no hacerlo para la totalidad del conjunto de datos. Posteriormente, se amplían de forma natural las distribuciones <span class="math inline">\((a,b,0)\)</span> para poder cubrir, en particular, estos conjuntos de datos.</p>
-<div id="S:zero-truncation-or-modification" class="section level3">
+<div id="S:zero-truncation-or-modification" class="section level3" number="2.5.1">
 <h3><span class="header-section-number">2.5.1</span> Modificación o Truncamiento en Cero</h3>
 <p>Supongamos que analizamos pólizas del seguro de automóvil que aparecen en una base de datos de siniestros de automóvil ocurridos en un determinado período. Si se estudia el número de siniestros que estas pólizas han tenido durante este período, entonces obviamente la distribución tiene que asignar una probabilidad de cero a la variable de recuento que asume el valor cero. En otras palabras, al restringir la atención a los datos de recuento en las pólizas de la base de datos de siniestros, en cierto modo hemos truncado en cero los datos de recuento de todas las pólizas. En productos de seguros a particulares (como en el caso de los automóviles), los asegurados pueden no querer informar del primer siniestro por temor a que aumente el precio del seguro en el futuro - este comportamiento inflará la proporción de recuentos de cero. Ejemplos como estos últimos modifican la proporción de ceros. Es interesante mencionar que las modificaciones naturales de las tres distribuciones anteriores son capaces de proporcionar buenos ajustes a los conjuntos de datos cero modificados/truncados que se generan en el seguro.</p>
 <p>Como se presenta a continuación, se modifica la probabilidad que se le asigna al valor cero en la clase <span class="math inline">\((a,b,0)\)</span> manteniendo las probabilidades relativas asignadas a los valores no nulos - modificación en cero. Nótese que como la clase de distribuciones <span class="math inline">\((a,b,0)\)</span> satisface la recurrencia <a href="C-Frequency-Modeling.html#eq:ab0">(2.1)</a>, el mantenimiento de las probabilidades relativas de los valores no nulos implica que la recurrencia <a href="C-Frequency-Modeling.html#eq:ab0">(2.1)</a> se satisface para <span class="math inline">\(k\geq 2\)</span>. Esto nos lleva a la definición de la siguiente clase de distribuciones.</p>
@@ -1485,7 +1569,7 @@ p_3^M=p_2^M\left(\frac{\lambda}{3}\right)=0,083476\\\hline
 <hr />
 </div>
 </div>
-<div id="S:mixture-distributions" class="section level2">
+<div id="S:mixture-distributions" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Distribuciones Mixtas</h2>
 <hr />
 <p>En esta sección, se aprende a:</p>
@@ -1594,7 +1678,7 @@ Ahora, se puede utilizar directamente el resultado anterior para concluir que <s
 </div>
 <hr />
 </div>
-<div id="S:goodness-of-fit" class="section level2">
+<div id="S:goodness-of-fit" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Bondad del Ajuste</h2>
 <hr />
 <p>En esta sección, se aprende a:</p>
@@ -1603,7 +1687,7 @@ Ahora, se puede utilizar directamente el resultado anterior para concluir que <s
 <li>Comparar el estadístico con una distribución de referencia para evaluar la adecuación del ajuste</li>
 </ul>
 <hr />
-<p>Previamente se han analizado tres distribuciones de frecuencias elementales, junto con sus extensiones mediante la modificación/truncamiento en cero y mostrando las mixturas de estas distribuciones. Ahora bien, estas clases siguen siendo paramétricas y, por tanto, por su propia naturaleza, un pequeño subconjunto de la clase de todas las distribuciones de frecuencia posibles (<em>i.e.</em> el conjunto de distribuciones para números enteros no negativos.) Por lo tanto, aunque hemos mostrado métodos para estimar los parámetros desconocidos, la distribución <em>ajustada</em> no será una buena representación de la distribución subyacente si ésta está <strong>lejos</strong> de la clase de distribución utilizada en la modelización. De hecho, se puede demostrar que el <em>estimador máximo verosímil</em> convergerá a un valor de tal forma que la distribución correspondiente será una <em>proyección</em> Kullback-Leibler de la distribución subyacente en la clase de distribuciones utilizada para la modelización. A continuación presentamos un método de contraste - el estadístico chi-cuadrado de Pearson - para comprobar la bondad del ajuste de la distribución ajustada. Para más detalles sobre el contraste chi-cuadrado de Pearson, a un nivel introductorio de estadística matemática, remitimos al lector a la Sección 9.1 de <span class="citation">(Hogg, Tanis, and Zimmerman <a href="#ref-zimmerman2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p>Previamente se han analizado tres distribuciones de frecuencias elementales, junto con sus extensiones mediante la modificación/truncamiento en cero y mostrando las mixturas de estas distribuciones. Ahora bien, estas clases siguen siendo paramétricas y, por tanto, por su propia naturaleza, un pequeño subconjunto de la clase de todas las distribuciones de frecuencia posibles (<em>i.e.</em> el conjunto de distribuciones para números enteros no negativos.) Por lo tanto, aunque hemos mostrado métodos para estimar los parámetros desconocidos, la distribución <em>ajustada</em> no será una buena representación de la distribución subyacente si ésta está <strong>lejos</strong> de la clase de distribución utilizada en la modelización. De hecho, se puede demostrar que el <em>estimador máximo verosímil</em> convergerá a un valor de tal forma que la distribución correspondiente será una <em>proyección</em> Kullback-Leibler de la distribución subyacente en la clase de distribuciones utilizada para la modelización. A continuación presentamos un método de contraste - el estadístico chi-cuadrado de Pearson - para comprobar la bondad del ajuste de la distribución ajustada. Para más detalles sobre el contraste chi-cuadrado de Pearson, a un nivel introductorio de estadística matemática, remitimos al lector a la Sección 9.1 de <span class="citation">(<a href="bibliography.html#ref-zimmerman2015" role="doc-biblioref">Hogg, Tanis, and Zimmerman 2015</a>)</span>.</p>
 <p>En <span class="math inline">\(1993\)</span>, una cartera de <span class="math inline">\(n=7.483\)</span> pólizas de seguro de automóvil de una importante compañía de seguros de Singapur tenía la distribución de accidentes de automóvil por asegurado como se indica en <a href="#tab:2.4">Tabla 2.4</a>.</p>
 <p><a id=tab:2.4></a></p>
 <p><span class="math display">\[\begin{matrix}
@@ -1656,7 +1740,7 @@ optim(sum(op*(0:4)),g,method=&quot;Brent&quot;,lower=0,upper=10)$par</code></pre
 <p>Para los datos de autos de Singapur el estadístico chi-cuadrado de Pearson es igual a <span class="math inline">\(41,98\)</span> utilizando el conjunto de datos <em>MLE</em> para <span class="math inline">\({\lambda}\)</span>. Usando la distribución límite de chi-cuadrado con <span class="math inline">\(5-1-1=3\)</span> grados de libertad, vemos que el valor de <span class="math inline">\(41,98\)</span> está muy lejos en la cola (el percentil <span class="math inline">\(99\)</span> está por debajo de <span class="math inline">\(12\)</span>). Por lo tanto, podemos concluir que la distribución de Poisson proporciona un ajuste inadecuado para los datos.</p>
 <p>Anteriormente, en la tabla resumen previa hemos considerado que las celdas vienen dadas. En la práctica, una pregunta relevante es cómo definir las celdas para que la distribución chi-cuadrado sea una buena aproximación a la distribución de muestra finita del estadístico. Una regla empírica es definir las celdas de tal manera que el <span class="math inline">\(80%\)</span> de las celdas, si no todas, tengan al menos valores esperados mayores a <span class="math inline">\(5\)</span>. Además, puesto que un mayor número de celdas proporciona una mayor potencia del contraste, una simple regla empírica es por tanto maximizar el número de celdas de tal forma que cada celda tenga al menos 5 observaciones.</p>
 </div>
-<div id="S:exercises" class="section level2">
+<div id="S:exercises" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> Ejercicios</h2>
 <div id="ejercicios-teóricos" class="section level4 unnumbered">
 <h4>Ejercicios Teóricos</h4>
@@ -1742,7 +1826,7 @@ Determinar el valor de <span class="math inline">\(\Pr(N=3)\)</span>. (Resp: 0,1
 </p>
 </div>
 </div>
-<div id="Freq-further-reading-and-resources" class="section level2">
+<div id="Freq-further-reading-and-resources" class="section level2" number="2.9">
 <h2><span class="header-section-number">2.9</span> Recursos Adicionales y Autores</h2>
 <p>El Capítulo del Apéndice <a href="C-AppA.html#C:AppA">15</a> ofrece una introducción general a la teoría de máxima verosimilitud en relación con la estimación de los parámetros de una familia paramétrica. El Capítulo del Apéndice <a href="C-AppC.html#C:AppC">17</a> proporciona ejemplos más específicos y expande algunos de los conceptos.</p>
 <div id="autoría" class="section level4 unnumbered">
@@ -1753,7 +1837,7 @@ Determinar el valor de <span class="math inline">\(\Pr(N=3)\)</span>. (Resp: 0,1
 <li><p>Traducción al español: Ramon Alemany y Miguel Santolino (Universitat de Barcelona).</p></li>
 </ul>
 </div>
-<div id="S:rcode" class="section level3">
+<div id="S:rcode" class="section level3" number="2.9.1">
 <h3><span class="header-section-number">2.9.1</span> TS 2.A. Código R para Gráficos</h3>
 <p><strong>Código para Figura <a href="C-Frequency-Modeling.html#fig:MLEab0">2.3</a>:</strong></p>
 <h5 style="text-align: center;">
@@ -1885,31 +1969,13 @@ dev.off();</code></pre>
 </div>
 </div>
 </div>
-<h3>Bibliography</h3>
-<div id="refs" class="references">
-<div id="ref-billingsley">
-<p>Billingsley, Patrick. 2008. <em>Probability and Measure</em>. John Wiley &amp; Sons.</p>
-</div>
-<div id="ref-freesregression">
-<p>Frees, Edward W. 2009. <em>Regression Modeling with Actuarial and Financial Applications</em>. Cambridge University Press.</p>
-</div>
-<div id="ref-zimmerman2015">
-<p>Hogg, Robert V, Elliot A Tanis, and Dale L Zimmerman. 2015. <em>Probability and Statistical Inference, 9th Edition</em>. Pearson, New York.</p>
-</div>
-<div id="ref-levin1977">
-<p>Levin, Bruce, James Reeds, and others. 1977. “Compound Multinomial Likelihood Functions Are Unimodal: Proof of a Conjecture of Ij Good.” <em>The Annals of Statistics</em> 5 (1): 79–87.</p>
-</div>
-<div id="ref-olkin1981">
-<p>Olkin, Ingram, A John Petkau, and James V Zidek. 1981. “A Comparison of N Estimators for the Binomial Distribution.” <em>Journal of the American Statistical Association</em> 76 (375): 637–42.</p>
-</div>
-</div>
 <div class="footnotes">
 <hr />
 <ol start="2">
 <li id="fn2"><p>Por comodidad, indexamos <span class="math inline">\(\mu_N\)</span> con la variable aleatoria <span class="math inline">\(N\)</span> en lugar de <span class="math inline">\(F_N\)</span> o <span class="math inline">\(p_N\)</span>, aunque es una función de la distribución de la variable aleatoria.<a href="C-Frequency-Modeling.html#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p><span class="math inline">\(0^0 = 1\)</span><a href="C-Frequency-Modeling.html#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>A partir de aquí suprimiremos la referencia a <span class="math inline">\(N\)</span> y denotaremos la <em>pmf</em> por la secuencia <span class="math inline">\(\{p_k\}_{k\geq 0}\)</span>, en vez de la función <span class="math inline">\(p_N(\cdot)\)</span>.<a href="C-Frequency-Modeling.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Para la base teórica que subyace de la expresión anterior, ver <span class="citation">(Billingsley <a href="#ref-billingsley" role="doc-biblioref">2008</a>)</span>.<a href="C-Frequency-Modeling.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Para la base teórica que subyace de la expresión anterior, ver <span class="citation">(<a href="bibliography.html#ref-billingsley" role="doc-biblioref">Billingsley 2008</a>)</span>.<a href="C-Frequency-Modeling.html#fnref5" class="footnote-back">↩︎</a></p></li>
 <li id="fn6"><p>El conjunto de maximizadores de <span class="math inline">\(L(\cdot)\)</span> son los mismos que el conjunto de maximizadores de cualquier función estrictamente creciente de <span class="math inline">\(L(\cdot)\)</span>, y por lo tanto son los mismos que los de <span class="math inline">\(l(\cdot)\)</span>.<a href="C-Frequency-Modeling.html#fnref6" class="footnote-back">↩︎</a></p></li>
 <li id="fn7"><p>Una pequeña ventaja de trabajar con <span class="math inline">\(l(\cdot)\)</span> es que los términos constantes en <span class="math inline">\(L(\cdot)\)</span> no aparecen en <span class="math inline">\(l&#39;(\cdot)\)</span> mientras que si lo hacen en <span class="math inline">\(L&#39;(\cdot)\)</span>.<a href="C-Frequency-Modeling.html#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>Esto, en concreto, establece una forma de simular a partir de una distribución mixta que hace uso de los eficientes esquemas de simulación que pueden existir para las distribuciones que la componen.<a href="C-Frequency-Modeling.html#fnref8" class="footnote-back">↩︎</a></p></li>

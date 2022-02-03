@@ -32,6 +32,7 @@
   
 <link rel="prev" href="C-PortMgt.html"/>
 <link rel="next" href="C-BonusMalus.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,19 +310,20 @@ document.getElementById("defaultOpen").click();
 </script>
 
 
+
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -342,7 +343,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -391,69 +392,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Loss Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
-<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
+<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#naturaleza-y-relevancia-del-seguro"><i class="fa fa-check"></i><b>1.1.1</b> Naturaleza y relevancia del seguro</a></li>
 <li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</a></li>
 <li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Procesos en los seguros</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a><ul>
+<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="C-Intro.html"><a href="C-Intro.html#inicio-del-seguro"><i class="fa fa-check"></i><b>1.2.1</b> Inicio del seguro</a></li>
 <li class="chapter" data-level="1.2.2" data-path="C-Intro.html"><a href="C-Intro.html#renovación-del-seguro"><i class="fa fa-check"></i><b>1.2.2</b> Renovación del seguro</a></li>
 <li class="chapter" data-level="1.2.3" data-path="C-Intro.html"><a href="C-Intro.html#gestión-de-productos-y-siniestros"><i class="fa fa-check"></i><b>1.2.3</b> Gestión de productos y siniestros</a></li>
 <li class="chapter" data-level="1.2.4" data-path="C-Intro.html"><a href="C-Intro.html#S:Reserving"><i class="fa fa-check"></i><b>1.2.4</b> Provisiones</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a><ul>
+<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="C-Intro.html"><a href="C-Intro.html#S:OutComes"><i class="fa fa-check"></i><b>1.3.1</b> Variables de siniestralidad del fondo: frecuencia y severidad</a></li>
 <li class="chapter" data-level="1.3.2" data-path="C-Intro.html"><a href="C-Intro.html#S:FundVariables"><i class="fa fa-check"></i><b>1.3.2</b> Variables de clasificación del fondo</a></li>
 <li class="chapter" data-level="1.3.3" data-path="C-Intro.html"><a href="C-Intro.html#operativa-del-fondo"><i class="fa fa-check"></i><b>1.3.3</b> Operativa del fondo</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="C-Intro.html"><a href="C-Intro.html#Intro-further-reading-and-resources"><i class="fa fa-check"></i><b>1.4</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a><ul>
-<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:how-frequency-augments-severity-information"><i class="fa fa-check"></i><b>2.1.1</b> Cómo la frecuencia incrementa la información sobre la cuantía</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a><ul>
+<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:foundations"><i class="fa fa-check"></i><b>2.2.1</b> Fundamentos</a></li>
 <li class="chapter" data-level="2.2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:generating-functions"><i class="fa fa-check"></i><b>2.2.2</b> Funciones Generadoras de Momentos y de Probabilidad</a></li>
 <li class="chapter" data-level="2.2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:important-frequency-distributions"><i class="fa fa-check"></i><b>2.2.3</b> Distribuciones de Frecuencias Importantes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> La Clase (a, b, 0)</a></li>
-<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Estimación de los parámetros</a></li>
 <li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> MLE de las distribuciones de frecuencias</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:zero-truncation-or-modification"><i class="fa fa-check"></i><b>2.5.1</b> Modificación o Truncamiento en Cero</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Distribuciones Mixtas</a></li>
 <li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Bondad del Ajuste</a></li>
 <li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
-<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a><ul>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. Código R para Gráficos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a><ul>
-<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a><ul>
+<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Momentos</a></li>
 <li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#cuantiles"><i class="fa fa-check"></i><b>3.1.2</b> Cuantiles</a></li>
 <li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#función-generatriz-de-momentos"><i class="fa fa-check"></i><b>3.1.3</b> Función generatriz de momentos</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Distribución gamma</a></li>
 <li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#distribución-pareto"><i class="fa fa-check"></i><b>3.2.2</b> Distribución Pareto</a></li>
 <li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Distribución Weibull</a></li>
 <li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#distribución-beta-generalizada-de-segundo-tipo"><i class="fa fa-check"></i><b>3.2.4</b> Distribución Beta Generalizada de segundo tipo</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a><ul>
+<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="C-Severity.html"><a href="C-Severity.html#funciones-de-variables-aleatorias-y-sus-distribuciones"><i class="fa fa-check"></i><b>3.3.1</b> Funciones de variables aleatorias y sus distribuciones</a></li>
 <li class="chapter" data-level="3.3.2" data-path="C-Severity.html"><a href="C-Severity.html#multiplicación-por-una-constante"><i class="fa fa-check"></i><b>3.3.2</b> Multiplicación por una constante</a></li>
 <li class="chapter" data-level="3.3.3" data-path="C-Severity.html"><a href="C-Severity.html#elevación-a-una-potencia"><i class="fa fa-check"></i><b>3.3.3</b> Elevación a una potencia</a></li>
@@ -461,35 +477,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.5" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-finitas"><i class="fa fa-check"></i><b>3.3.5</b> Mixturas finitas</a></li>
 <li class="chapter" data-level="3.3.6" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-continuas"><i class="fa fa-check"></i><b>3.3.6</b> Mixturas continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a><ul>
+<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Franquicias</a></li>
 <li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Límites de la póliza</a></li>
 <li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coseguro-e-inflación"><i class="fa fa-check"></i><b>3.4.3</b> Coseguro e inflación</a></li>
 <li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reaseguro</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#estimadores-de-máxima-verosimilitud-para-datos-completos"><i class="fa fa-check"></i><b>3.5.1</b> Estimadores de máxima verosimilitud para datos completos</a></li>
 <li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Estimadores por máxima verosimilitud usando datos modificados</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Recursos y Contribuciones Adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a><ul>
-<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a><ul>
+<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica"><i class="fa fa-check"></i><b>4.1.1</b> Estimación No Paramétrica</a></li>
 <li class="chapter" data-level="4.1.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ToolsModelSelection"><i class="fa fa-check"></i><b>4.1.2</b> Herramientas para la Selección de Modelos y Diagnósticos</a></li>
 <li class="chapter" data-level="4.1.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#valores-iniciales"><i class="fa fa-check"></i><b>4.1.3</b> Valores Iniciales</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a><ul>
+<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-iterativa"><i class="fa fa-check"></i><b>4.2.1</b> Selección del Modelo Iterativa</a></li>
 <li class="chapter" data-level="4.2.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-entrenamiento"><i class="fa fa-check"></i><b>4.2.2</b> Selección de Modelo basada en un Conjunto de Datos de Entrenamiento</a></li>
 <li class="chapter" data-level="4.2.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-prueba"><i class="fa fa-check"></i><b>4.2.3</b> Selección de Modelo basada en un Conjunto de Datos de Prueba</a></li>
 <li class="chapter" data-level="4.2.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-basada-en-validación-cruzada"><i class="fa fa-check"></i><b>4.2.4</b> Selección del Modelo basada en Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a><ul>
+<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-paramétrica-usando-datos-modificados"><i class="fa fa-check"></i><b>4.3.1</b> Estimación Paramétrica usando Datos Modificados</a></li>
 <li class="chapter" data-level="4.3.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica-utilizando-datos-modificados"><i class="fa fa-check"></i><b>4.3.2</b> Estimación no Paramétrica Utilizando Datos Modificados</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a><ul>
+<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:IntroBayes"><i class="fa fa-check"></i><b>4.4.1</b> Introducción a la Inferencia Bayesiana</a></li>
 <li class="chapter" data-level="4.4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#modelo-bayesiano"><i class="fa fa-check"></i><b>4.4.2</b> Modelo Bayesiano</a></li>
 <li class="chapter" data-level="4.4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#inferencia-bayesiana"><i class="fa fa-check"></i><b>4.4.3</b> Inferencia Bayesiana</a></li>
@@ -497,164 +520,201 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introducción"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
 <li class="chapter" data-level="5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-individual"><i class="fa fa-check"></i><b>5.2</b> Modelo de Riesgo Individual</a></li>
-<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a><ul>
+<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
 <li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#método-recursivo"><i class="fa fa-check"></i><b>5.4.1</b> Método recursivo</a></li>
 <li class="chapter" data-level="5.4.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#simulación"><i class="fa fa-check"></i><b>5.4.2</b> Simulación</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a><ul>
+<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-la-exposición-en-la-frecuencia"><i class="fa fa-check"></i><b>5.5.1</b> Impacto de la exposición en la frecuencia</a></li>
 <li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impacto de los deducibles en la frecuencia de siniestros</a></li>
 <li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-las-modificaciones-de-la-póliza-en-la-siniestralidad-agregada"><i class="fa fa-check"></i><b>5.5.3</b> Impacto de las modificaciones de la póliza en la siniestralidad agregada</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a><ul>
-<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a><ul>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generación-de-observaciones-uniformes-independientes"><i class="fa fa-check"></i><b>6.1.1</b> Generación de observaciones uniformes independientes</a></li>
 <li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:InverseTransform"><i class="fa fa-check"></i><b>6.1.2</b> Método de la transformada inversa</a></li>
 <li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-de-la-simulación"><i class="fa fa-check"></i><b>6.1.3</b> Precisión de la simulación</a></li>
 <li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulación e inferencia estadística</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a><ul>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#fundamentos-del-bootstrap"><i class="fa fa-check"></i><b>6.2.1</b> Fundamentos del Bootstrap</a></li>
 <li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-del-bootstrap-sesgo-desviación-estándar-y-mse-error-cuadrático-medio-en-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>6.2.2</b> Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)</a></li>
 <li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>6.2.3</b> Intervalos de confianza</a></li>
 <li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Bootstrap paramétrico</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a><ul>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-k-fold"><i class="fa fa-check"></i><b>6.3.1</b> Validación cruzada k-fold</a></li>
 <li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-dejando-uno-fuera"><i class="fa fa-check"></i><b>6.3.2</b> Validación cruzada dejando uno fuera</a></li>
 <li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-y-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Validación cruzada y Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
-<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
 <li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#muestreo-de-gibbs"><i class="fa fa-check"></i><b>6.5.2</b> Muestreo de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a><ul>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-bootstrap-applications-in-predictive-modeling"><i class="fa fa-check"></i><b>6.6.1</b> TS 6.A. Bootstrap Applications in Predictive Modeling</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a><ul>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introducción a la Tarificación</a></li>
-<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a><ul>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Método de la Prima Pura</a></li>
 <li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Método de la Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a><ul>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.1</b> Principios de Tarificación</a></li>
 <li class="chapter" data-level="7.3.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#propiedades-de-los-principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.2</b> Propiedades de los Principios de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a><ul>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposición al Riesgo</a></li>
 <li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Factores de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a><ul>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposiciones-y-primas"><i class="fa fa-check"></i><b>7.5.1</b> Exposiciones y Primas</a></li>
 <li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#siniestros-reclamaciones-y-pagos"><i class="fa fa-check"></i><b>7.5.2</b> Siniestros, Reclamaciones y Pagos</a></li>
 <li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a><ul>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-lorenz-clásica"><i class="fa fa-check"></i><b>7.6.1</b> Curva de Lorenz Clásica</a></li>
 <li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-rendimiento-y-estadístico-de-gini"><i class="fa fa-check"></i><b>7.6.2</b> Curva de Rendimiento y Estadístico de Gini</a></li>
 <li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#validación-cruzada"><i class="fa fa-check"></i><b>7.6.3</b> Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-regulación-de-la-tarificación"><i class="fa fa-check"></i>TS 7.A. Regulación de la Tarificación</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a><ul>
+<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
-<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a><ul>
+<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Necesidad de la Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson"><i class="fa fa-check"></i><b>8.2.2</b> Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporación-de-la-exposición"><i class="fa fa-check"></i><b>8.2.3</b> Incorporación de la exposición</a></li>
 <li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejercicios-3"><i class="fa fa-check"></i><b>8.2.4</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a><ul>
+<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#factores-de-tarificación-y-tarifa"><i class="fa fa-check"></i><b>8.3.1</b> Factores de Tarificación y Tarifa</a></li>
 <li class="chapter" data-level="8.3.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#modelo-de-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.2</b> Modelo de Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson-para-la-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.3</b> Regresión de Poisson para la Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejemplos-numéricos"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplos numéricos</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimación-de-modelos-de-regresión-de-poisson"><i class="fa fa-check"></i>TS 8.A – Estimación de Modelos de Regresión de Poisson</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a><ul>
+<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introducción-a-las-aplicaciones-de-la-teoría-de-la-credibilidad"><i class="fa fa-check"></i><b>9.1</b> Introducción a las Aplicaciones de la Teoría de la Credibilidad</a></li>
-<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a><ul>
+<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:frequency"><i class="fa fa-check"></i><b>9.2.1</b> Credibilidad Completa para la Frecuencia de Siniestralidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-siniestralidad-agregada-y-la-prima-pura"><i class="fa fa-check"></i><b>9.2.2</b> Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura</a></li>
 <li class="chapter" data-level="9.2.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-severidad"><i class="fa fa-check"></i><b>9.2.3</b> Credibilidad Completa para la Severidad</a></li>
 <li class="chapter" data-level="9.2.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-parcial"><i class="fa fa-check"></i><b>9.2.4</b> Credibilidad parcial</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a><ul>
+<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibilidad Z, <em>EPV</em>, y <em>VHM</em></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann-straub"><i class="fa fa-check"></i><b>9.4</b> Credibilidad de Bühlmann-Straub</a></li>
-<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.5</b> Otros Recursos y Colaboradores</a></li>
+<li class="chapter" data-level="9.7" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.7</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a><ul>
+<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introducción-a-las-carteras-de-seguros"><i class="fa fa-check"></i><b>10.1</b> Introducción a las Carteras de Seguros</a></li>
-<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a><ul>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#clasificación-basada-en-los-momentos"><i class="fa fa-check"></i><b>10.2.1</b> Clasificación Basada en los Momentos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparación-basada-en-el-comportamiento-de-colas-con-límites"><i class="fa fa-check"></i><b>10.2.2</b> Comparación basada en el comportamiento de colas con límites</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a><ul>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#medidas-de-riesgo-coherentes"><i class="fa fa-check"></i><b>10.3.1</b> Medidas de Riesgo Coherentes</a></li>
 <li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.2</b> Valor en Riesgo</a></li>
 <li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#cola-del-valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.3</b> Cola del Valor en Riesgo</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a><ul>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Reaseguro Proporcional</a></li>
 <li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Reaseguro No-Proporcional</a></li>
 <li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Acuerdos de Reaseguro Adicionales</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#recursos-y-colaboradores-adicionales"><i class="fa fa-check"></i><b>10.5</b> Recursos y Colaboradores adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a><ul>
+<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a>
+<ul>
 <li class="chapter" data-level="11.1.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:claim-types"><i class="fa fa-check"></i><b>11.1.1</b> Siniestros cerrados, IBNR, y RBNS</a></li>
 <li class="chapter" data-level="11.1.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#por-qué-reservar"><i class="fa fa-check"></i><b>11.1.2</b> ¿Por qué reservar?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a><ul>
+<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#de-micro-a-macro"><i class="fa fa-check"></i><b>11.2.1</b> De Micro a Macro</a></li>
 <li class="chapter" data-level="11.2.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#triángulos-de-desarrollo"><i class="fa fa-check"></i><b>11.2.2</b> Triángulos de desarrollo</a></li>
 <li class="chapter" data-level="11.2.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#notación-de-provisiones"><i class="fa fa-check"></i><b>11.2.3</b> Notación de provisiones</a></li>
 <li class="chapter" data-level="11.2.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Rcode"><i class="fa fa-check"></i><b>11.2.4</b> Código R para resumir datos de provisión de pérdidas</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a><ul>
+<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:DeterministicCL"><i class="fa fa-check"></i><b>11.3.1</b> Chain-Ladder Determinista</a></li>
 <li class="chapter" data-level="11.3.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#modelo-chain-ladder-de-distribución-libre-de-mack"><i class="fa fa-check"></i><b>11.3.2</b> Modelo Chain-ladder de distribución libre de Mack</a></li>
 <li class="chapter" data-level="11.3.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#código-r-para-las-predicciones-chain-ladder"><i class="fa fa-check"></i><b>11.3.3</b> Código R para las predicciones Chain-Ladder</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a><ul>
+<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#especificación-del-modelo"><i class="fa fa-check"></i><b>11.4.1</b> Especificación del modelo</a></li>
 <li class="chapter" data-level="11.4.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#estimación-y-predicción-del-modelo"><i class="fa fa-check"></i><b>11.4.2</b> Estimación y predicción del modelo</a></li>
 <li class="chapter" data-level="11.4.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#bootstrap"><i class="fa fa-check"></i><b>11.4.3</b> Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
 <li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
 <li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
 <li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
@@ -662,21 +722,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
 <li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
 <li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
 <li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
 <li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
-<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a><ul>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#tipos-y-fuentes-de-datos"><i class="fa fa-check"></i><b>13.1.1</b> Tipos y Fuentes de Datos</a></li>
 <li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#estructuras-de-datos-y-almacenamiento"><i class="fa fa-check"></i><b>13.1.2</b> Estructuras de Datos y Almacenamiento</a></li>
 <li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#calidad-de-los-datos"><i class="fa fa-check"></i><b>13.1.3</b> Calidad de los Datos</a></li>
 <li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#limpieza-de-los-datos"><i class="fa fa-check"></i><b>13.1.4</b> Limpieza de los Datos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a><ul>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a>
+<ul>
 <li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Proceso de Análisis de Datos</a></li>
 <li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratorio-versus-confirmatorio"><i class="fa fa-check"></i><b>13.2.2</b> Exploratorio versus Confirmatorio</a></li>
 <li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervisado-versus-no-supervisado"><i class="fa fa-check"></i><b>13.2.3</b> Supervisado versus No Supervisado</a></li>
@@ -687,7 +751,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.8" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-reproducibles"><i class="fa fa-check"></i><b>13.2.8</b> Análisis Reproducibles</a></li>
 <li class="chapter" data-level="13.2.9" data-path="C-DataSystems.html"><a href="C-DataSystems.html#problemas-éticos"><i class="fa fa-check"></i><b>13.2.9</b> Problemas Éticos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a><ul>
+<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a>
+<ul>
 <li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-exploratorias"><i class="fa fa-check"></i><b>13.3.1</b> Técnicas exploratorias</a></li>
 <li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-confirmatorias"><i class="fa fa-check"></i><b>13.3.2</b> Técnicas confirmatorias</a></li>
 </ul></li>
@@ -695,96 +760,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#resumen"><i class="fa fa-check"></i><b>13.5</b> Resumen</a></li>
 <li class="chapter" data-level="13.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#DS:further-reading-and-resources"><i class="fa fa-check"></i><b>13.6</b> Otros recursos y colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Dependence Modeling</a><ul>
-<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Variable Types</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Qualitative Variables</a></li>
-<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Quantitative Variables</a></li>
-<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#multivariate-variables"><i class="fa fa-check"></i><b>14.1.3</b> Multivariate Variables</a></li>
+<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Modelización de la Dependencia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Tipos de Variables</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Variables Cualitativas</a></li>
+<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Variables Cuantitativas</a></li>
+<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-multivariantes"><i class="fa fa-check"></i><b>14.1.3</b> Variables Multivariantes</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Classic Measures of Scalar Associations</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
-<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
-<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
-<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
-<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
-<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
+<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Medidas clásicas de asociaciones escalares</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-de-asociación-para-variables-ordinales"><i class="fa fa-check"></i><b>14.2.1</b> Medidas de Asociación para Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-basadas-en-rangos"><i class="fa fa-check"></i><b>14.2.2</b> Medidas Basadas en Rangos</a></li>
+<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-nominales"><i class="fa fa-check"></i><b>14.2.3</b> Variables Nominales</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-ordinales"><i class="fa fa-check"></i><b>14.2.4</b> Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-de-intervalo"><i class="fa fa-check"></i><b>14.2.5</b> Variables de Intervalo</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-discretas-y-continuas"><i class="fa fa-check"></i><b>14.2.6</b> Variables discretas y continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
-<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#data-description"><i class="fa fa-check"></i><b>14.4.1</b> Data Description</a></li>
-<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#marginal-models"><i class="fa fa-check"></i><b>14.4.2</b> Marginal Models</a></li>
-<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#probability-integral-transformation"><i class="fa fa-check"></i><b>14.4.3</b> Probability Integral Transformation</a></li>
-<li class="chapter" data-level="14.4.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#joint-modeling-with-copula-function"><i class="fa fa-check"></i><b>14.4.4</b> Joint Modeling with Copula Function</a></li>
+<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introducción a Copulas</a></li>
+<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Aplicación usando Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#descripción-de-los-datos"><i class="fa fa-check"></i><b>14.4.1</b> Descripción de los Datos</a></li>
+<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelos-marginales"><i class="fa fa-check"></i><b>14.4.2</b> Modelos Marginales</a></li>
+<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelización-conjunta-con-función-de-cópula"><i class="fa fa-check"></i><b>14.4.3</b> Modelización Conjunta con Función de Cópula</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Types of Copulas</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#elliptical-copulas"><i class="fa fa-check"></i><b>14.5.1</b> Elliptical Copulas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#archimedian-copulas"><i class="fa fa-check"></i><b>14.5.2</b> Archimedian Copulas</a></li>
-<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
+<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Tipos de Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-elípticas"><i class="fa fa-check"></i><b>14.5.1</b> Cópulas Elípticas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-arquimedianas"><i class="fa fa-check"></i><b>14.5.2</b> Cópulas Arquimedianas</a></li>
+<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#propiedades-de-las-cópulas"><i class="fa fa-check"></i><b>14.5.3</b> Propiedades de las Cópulas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
-<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
+<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> ¿Por qué es importante la modelización de la dependencia?</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Más Recursos y Contribuciones</a>
+<ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-otras-medidas-clásicas-de-asociaciones-escalares"><i class="fa fa-check"></i>TS 14.A. Otras Medidas Clásicas de Asociaciones Escalares</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a><ul>
-<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a><ul>
+<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="C-AppA.html"><a href="C-AppA.html#muestreo-aleatorio"><i class="fa fa-check"></i><b>15.1.1</b> Muestreo Aleatorio</a></li>
 <li class="chapter" data-level="15.1.2" data-path="C-AppA.html"><a href="C-AppA.html#distribución-muestral"><i class="fa fa-check"></i><b>15.1.2</b> Distribución Muestral</a></li>
 <li class="chapter" data-level="15.1.3" data-path="C-AppA.html"><a href="C-AppA.html#teorema-central-del-límite"><i class="fa fa-check"></i><b>15.1.3</b> Teorema Central del Límite</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a><ul>
+<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a>
+<ul>
 <li class="chapter" data-level="15.2.1" data-path="C-AppA.html"><a href="C-AppA.html#método-de-estimación-de-momentos"><i class="fa fa-check"></i><b>15.2.1</b> Método de Estimación de Momentos</a></li>
 <li class="chapter" data-level="15.2.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:MLE"><i class="fa fa-check"></i><b>15.2.2</b> Estimación por Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a><ul>
+<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a>
+<ul>
 <li class="chapter" data-level="15.3.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE:ED"><i class="fa fa-check"></i><b>15.3.1</b> Distribución Exacta para la Media de Muestra Normal</a></li>
 <li class="chapter" data-level="15.3.2" data-path="C-AppA.html"><a href="C-AppA.html#propiedades-de-muestra-grande-del-estimador-mle"><i class="fa fa-check"></i><b>15.3.2</b> Propiedades de Muestra Grande del Estimador MLE</a></li>
 <li class="chapter" data-level="15.3.3" data-path="C-AppA.html"><a href="C-AppA.html#intervalo-de-confianza"><i class="fa fa-check"></i><b>15.3.3</b> Intervalo de confianza</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a><ul>
+<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a>
+<ul>
 <li class="chapter" data-level="15.4.1" data-path="C-AppA.html"><a href="C-AppA.html#conceptos-básicos"><i class="fa fa-check"></i><b>15.4.1</b> Conceptos Básicos</a></li>
 <li class="chapter" data-level="15.4.2" data-path="C-AppA.html"><a href="C-AppA.html#contraste-t-student-basado-en-el-estimador-mle"><i class="fa fa-check"></i><b>15.4.2</b> Contraste <span class="math inline">\(t\)</span>-Student Basado en el Estimador MLE</a></li>
 <li class="chapter" data-level="15.4.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:LRT"><i class="fa fa-check"></i><b>15.4.3</b> Prueba de la Razón de Verosimilitud</a></li>
 <li class="chapter" data-level="15.4.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:IC"><i class="fa fa-check"></i><b>15.4.4</b> Criterios de Información</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a><ul>
-<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a><ul>
+<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a>
+<ul>
 <li class="chapter" data-level="16.1.1" data-path="C-AppB.html"><a href="C-AppB.html#distribución-condicional"><i class="fa fa-check"></i><b>16.1.1</b> Distribución Condicional</a></li>
 <li class="chapter" data-level="16.1.2" data-path="C-AppB.html"><a href="C-AppB.html#caso-continuo"><i class="fa fa-check"></i><b>16.1.2</b> Caso Continuo</a></li>
 <li class="chapter" data-level="16.1.3" data-path="C-AppB.html"><a href="C-AppB.html#esperanza-condicional-y-varianza-condicional"><i class="fa fa-check"></i><b>16.1.3</b> Esperanza Condicional y Varianza Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a><ul>
+<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a>
+<ul>
 <li class="chapter" data-level="16.2.1" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-las-esperanzas-iteradas"><i class="fa fa-check"></i><b>16.2.1</b> Ley de las Esperanzas Iteradas</a></li>
 <li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-la-varianza-total"><i class="fa fa-check"></i><b>16.2.2</b> Ley de la Varianza Total</a></li>
 <li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#aplicación"><i class="fa fa-check"></i><b>16.2.3</b> Aplicación</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a><ul>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#familia-exponencial-lineal"><i class="fa fa-check"></i><b>16.3.1</b> Familia Exponencial Lineal</a></li>
 <li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#distribuciones-conjugadas"><i class="fa fa-check"></i><b>16.3.2</b> Distribuciones Conjugadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a><ul>
-<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a><ul>
+<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.1.1" data-path="C-AppC.html"><a href="C-AppC.html#la-función-de-verosimilitud-y-de-log-verosimilitud"><i class="fa fa-check"></i><b>17.1.1</b> La Función de Verosimilitud y de Log-verosimilitud</a></li>
 <li class="chapter" data-level="17.1.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-de-las-funciones-de-verosimilitud"><i class="fa fa-check"></i><b>17.1.2</b> Propiedades de las Funciones de Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.2.1" data-path="C-AppC.html"><a href="C-AppC.html#definición-y-derivación-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.1</b> Definición y Derivación del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-asintóticas-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.2</b> Propiedades Asintóticas del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.3" data-path="C-AppC.html"><a href="C-AppC.html#uso-de-la-estimación-de-máxima-verosimilitud"><i class="fa fa-check"></i><b>17.2.3</b> Uso de la Estimación de Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#contraste-de-hipótesis"><i class="fa fa-check"></i><b>17.3.1</b> Contraste de Hipótesis</a></li>
 <li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> Validación del Modelo y MLE</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a><ul>
-<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a><ul>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a>
+<ul>
 <li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab0"><i class="fa fa-check"></i><b>18.1.1</b> La clase (a,b,0)</a></li>
 <li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab1"><i class="fa fa-check"></i><b>18.1.2</b> La clase (a,b,1)</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a><ul>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a>
+<ul>
 <li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-un-parámetro"><i class="fa fa-check"></i><b>18.2.1</b> Distribuciones Un Parámetro</a></li>
 <li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-dos-parámetros"><i class="fa fa-check"></i><b>18.2.2</b> Distribuciones Dos Parámetros</a></li>
 <li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-tres-parámetros"><i class="fa fa-check"></i><b>18.2.3</b> Distribuciones Tres Parámetros</a></li>
@@ -815,10 +901,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="C:LossReserves" class="section level1">
+<div id="C:LossReserves" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Provisiones</h1>
 <p><em>Vista Previa del Capítulo.</em> Este capítulo introduce las provisiones (también conocidas como reservas por pérdidas) para seguros de propiedad y accidentes (P&amp;C, según sus siglas en inglés, o generales, no-vida). En particular, el capítulo presenta algunas herramientas analíticas básicas esenciales para evaluar las reservas de una cartera de productos de seguros de P&amp;C. En primer lugar, la Sección <a href="C-LossReserves.html#S:motivation">11.1</a> motiva la necesidad de las provisiones. Después la Sección <a href="C-LossReserves.html#S:Data">11.2</a> estudia las fuentes de datos disponibles e introduce algunas notaciones formales para enfocar las provisiones como un desafío de predicción. A continuación, la sección <a href="C-LossReserves.html#S:Chain-ladder">11.3</a> cubre el método de chain-ladder y el modelo de chain-ladder con distribución libre de Mack. La sección <a href="C-LossReserves.html#S:GLMs">11.4</a> finalmente desarrolla un enfoque totalmente estocástico para determinar la reserva pendiente con modelos lineales generalizados (GLMs, según sus siglas en inglés), incluyendo la técnica de bootstrapping para obtener una distribución predictiva de la reserva pendiente a través de la simulación.</p>
-<div id="S:motivation" class="section level2">
+<div id="S:motivation" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Motivación</h2>
 <p>Nuestro punto de partida es la vida de un siniestro en un seguro de P&amp;C. La figura <a href="C-LossReserves.html#fig:tikz-run-off">11.1</a> muestra el desarrollo del siniestro a lo largo del tiempo e identifica los eventos de interés:</p>
 <a id="tikz-run-off"></a>
@@ -830,7 +916,7 @@ Figure 11.1: Vida o run-off de un siniestro
 </div>
 <p>El evento asegurado o accidente ocurre en el momento <span class="math inline">\(t_{occ}\)</span>. Este siniestro es reportado a la compañía de seguros en el momento <span class="math inline">\(t_{rep}\)</span>, después de un cierto tiempo de demora. Si la compañía de seguros acepta la reclamación presentada, realizará diferentes pagos para reembolsar la pérdida financiera del titular de la póliza. En este ejemplo, la compañía de seguros compensa la pérdida sufrida con pagos por pérdidas en los momentos <span class="math inline">\(t_1\)</span>, <span class="math inline">\(t_2\)</span> u <span class="math inline">\(t_3\)</span>. Finalmente, la reclamación se liquida o cierra en el momento <span class="math inline">\(t_{set}\)</span>.</p>
 <p>A menudo las reclamaciones no se liquidan inmediatamente debido a la presencia de una demora en la presentación de la reclamación, un retraso en el proceso de liquidación o ambos. El retraso en la notificación es el tiempo que transcurre entre la ocurrencia del evento asegurado y la notificación de este evento a la compañía de seguros. El tiempo entre la notificación y la liquidación de una reclamación se conoce como la demora en la liquidación. Por ejemplo, es muy intuitivo que una reclamación por daños materiales se resuelve más rápidamente que una reclamación por lesiones corporales que impliquen un tipo de lesión compleja. Las reclamaciones cerradas pueden reabrirse debido a nuevos acontecimientos, por ejemplo, una lesión que requiere un tratamiento adicional. En conjunto, el desarrollo del siniestro requiere un tiempo. La presencia de este retraso en la tramitación de un siniestro obliga al asegurador a disponer de capital para liquidar estas reclamaciones en el futuro.</p>
-<div id="S:claim-types" class="section level3">
+<div id="S:claim-types" class="section level3" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Siniestros cerrados, IBNR, y RBNS</h3>
 <p>Basándonos en el estado de la liquidación de la reclamación, distinguimos tres tipos de siniestros en los libros de una compañía de seguros. El primer tipo de siniestro es una reclamación cerrada. Para estos siniestros se ha observado el desarrollo completo. Con la línea roja de la figura <a href="C-LossReserves.html#fig:tikz-closed">11.2</a> que indica el momento presente, todos los eventos del desarrollo del siniestro tienen lugar antes del momento presente. Por lo tanto, estos eventos se observan en el momento actual. Por comodidad, asumiremos que una reclamación cerrada no puede reabrirse.</p>
 <a id="tikz-closed"></a>
@@ -858,14 +944,14 @@ Figure 11.4: Vida de un siniestro IBNR
 </div>
 <p>Las compañías de seguros provisionarán el capital para cumplir con sus responsabilidades futuras con respecto a los siniestros tanto RBNS como IBNR. El desarrollo futuro de tales siniestros es incierto y se utilizarán técnicas de modelización predictiva para calcular las reservas adecuadas, a partir de los datos históricos de desarrollo observados en siniestros similares.</p>
 </div>
-<div id="por-qué-reservar" class="section level3">
+<div id="por-qué-reservar" class="section level3" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> ¿Por qué reservar?</h3>
 <p>El ciclo de producción invertido del mercado de los seguros y la dinámica de los siniestros que se muestra en la sección <a href="C-LossReserves.html#S:claim-types">11.1.1</a> motivan la necesidad de reservar y el diseño de herramientas de modelización predictiva para estimar las reservas. En los seguros, los ingresos por primas preceden a los costes. Un asegurador cobrará una prima a un cliente, antes de saber realmente cómo de costosa será la póliza o el contrato de seguro. En la industria manufacturera normalmente no es así y el fabricante sabe - antes de vender un producto - cuál fue el coste de producción de este producto. En un momento de evaluación específico <span class="math inline">\(\tau\)</span> el asegurador predecirá sus responsabilidades pendientes con respecto a los contratos vendidos en el pasado. Esta es la reserva de siniestros o reserva para pérdidas; es el capital necesario para liquidar los siniestros abiertos de exposiciones pasadas. Es un elemento muy importante en el balance del asegurador, más concretamente en el pasivo de este balance.</p>
 </div>
 </div>
-<div id="S:Data" class="section level2">
+<div id="S:Data" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Datos de provisiones</h2>
-<div id="de-micro-a-macro" class="section level3">
+<div id="de-micro-a-macro" class="section level3" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> De Micro a Macro</h3>
 <p>Ahora analizamos los datos disponibles para estimar la reserva pendiente de una cartera de contratos P&amp;C. Las compañías de seguros suelen registrar los datos sobre el desarrollo de un siniestro individual como se muestra en la línea de tiempo a la izquierda de la figura <a href="C-LossReserves.html#fig:tikz-micro-macro">11.5</a>. Nos referimos a los datos registrados a este nivel como <strong>datos granulares o de micro-nivel</strong>. Típicamente, un actuario agrega la información registrada sobre la evolución individual de los siniestros para todas las reclamaciones de una cartera. Esta agregación da lugar a datos estructurados en un formato triangular como se muestra en la parte derecha de la figura <a href="C-LossReserves.html#fig:tikz-micro-macro">11.5</a>. Estos datos se denominan datos <strong>agregados o a nivel macro</strong> porque cada celda del triángulo muestra la información obtenida al agregar el desarrollo de múltiples reclamaciones.</p>
 <a id="tikz-micro-macro"></a>
@@ -877,14 +963,14 @@ Figure 11.5: De datos granulares a triángulo de desarrollo
 </div>
 <p>La visualización triangular utilizada en la provisión por pérdidas se llama triángulo <strong>run-off o de desarrollo</strong>. En el eje vertical el triángulo enumera los años de accidente o de ocurrencia durante los cuales se sigue una cartera. Los pagos provisionados para un siniestro específico están conectados con el año durante el cual ocurrió el evento asegurado. En el eje horizontal se indica el retraso en el pago desde la ocurrencia del evento asegurado.</p>
 </div>
-<div id="triángulos-de-desarrollo" class="section level3">
+<div id="triángulos-de-desarrollo" class="section level3" number="11.2.2">
 <h3><span class="header-section-number">11.2.2</span> Triángulos de desarrollo</h3>
-<p>Un primer ejemplo de un triángulo de desarrollo con pagos incrementales se muestra en la Figura <a href="C-LossReserves.html#fig:tikz-triangle">11.6</a> (tomada de <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2, también utilizada en <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, Tabla 1.4). Los años de los accidentes (o años de ocurrencia) se muestran en el eje vertical y van desde 2004 hasta 2013. Se refieren al año durante el cual ocurrió el evento asegurado. El eje horizontal indica el retraso en el pago en años desde la ocurrencia del evento asegurado. <em>0 retraso</em> se utiliza para los pagos realizados en el año de ocurrencia del accidente o evento asegurado. <em>Un año</em> de retraso se utiliza para los pagos realizados en el año posterior a la ocurrencia del accidente.</p>
+<p>Un primer ejemplo de un triángulo de desarrollo con pagos incrementales se muestra en la Figura <a href="C-LossReserves.html#fig:tikz-triangle">11.6</a> (tomada de <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2, también utilizada en <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, Tabla 1.4). Los años de los accidentes (o años de ocurrencia) se muestran en el eje vertical y van desde 2004 hasta 2013. Se refieren al año durante el cual ocurrió el evento asegurado. El eje horizontal indica el retraso en el pago en años desde la ocurrencia del evento asegurado. <em>0 retraso</em> se utiliza para los pagos realizados en el año de ocurrencia del accidente o evento asegurado. <em>Un año</em> de retraso se utiliza para los pagos realizados en el año posterior a la ocurrencia del accidente.</p>
 <p><a id="tikz-triangle"></a></p>
 <div class="figure" style="text-align: center"><span id="fig:tikz-triangle"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-triangle-1.png" alt="Triángulo de Desarrollo con datos de pagos incrementales. Fuente: @WuthrichMerz2008, Tabla 2.2." width="672" />
 <p class="caption">
-Figure 11.6: Triángulo de Desarrollo con datos de pagos incrementales. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.6: Triángulo de Desarrollo con datos de pagos incrementales. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>Por ejemplo, la celda <span class="math inline">\((2004, 0)\)</span> del triángulo anterior muestra el número <span class="math inline">\(5947\)</span>, la cantidad total pagada en el año 2004 por todas los siniestros ocurridos en el año 2004. Por lo tanto, es la cantidad total pagada con 0 años de retraso en todas las reclamaciones que ocurrieron en el año 2004. De manera similar, el número de la celda <span class="math inline">\((2012,1)\)</span> muestra el total de <span class="math inline">\(2357,9\)</span> pagados en el año 2013 por todos los siniestros que ocurrieron en el año 2012.</p>
@@ -892,7 +978,7 @@ Figure 11.6: Triángulo de Desarrollo con datos de pagos incrementales. Fuente: 
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-1.png" alt=" Triángulo de desarrollo con datos de pago acumulados. Fuente: @WuthrichMerz2008, Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.7:  Triángulo de desarrollo con datos de pago acumulados. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.7:  Triángulo de desarrollo con datos de pago acumulados. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>Mientras que el triángulo de la Figura <a href="C-LossReserves.html#fig:tikz-triangle">11.6</a> muestra los datos de pago incremental, la Figura <a href="C-LossReserves.html#fig:tikz-cum-triangle">11.7</a> muestra la misma información en formato acumulado. Ahora, la celda <span class="math inline">\((2004,1)\)</span> muestra la cantidad total pagada <em>hasta</em> la demora de pago 1 para todos los siniestros que ocurrieron en el año 2004. Por lo tanto, es la suma de la cantidad pagada en 2004 y la cantidad pagada en 2005 por los accidentes que ocurrieron en 2004.</p>
@@ -911,7 +997,7 @@ Figure 11.7:  Triángulo de desarrollo con datos de pago acumulados. Fuente: <sp
 </ul>
 <p>Es posible que se disponga de otras fuentes de información, por ejemplo, covariables (como el tipo de siniestros), información externa (como inflación, cambios regulatorios). La mayoría de los métodos de provisión de siniestros diseñados para los triángulos de desarrollo se basan más bien en una sola fuente de información, aunque algunas contribuciones recientes se centran en el uso de datos más detallados para la provisión de pérdidas.</p>
 </div>
-<div id="notación-de-provisiones" class="section level3">
+<div id="notación-de-provisiones" class="section level3" number="11.2.3">
 <h3><span class="header-section-number">11.2.3</span> Notación de provisiones</h3>
 <div id="triángulos-de-desarrollo-1" class="section level4 unnumbered">
 <h4>Triángulos de desarrollo</h4>
@@ -920,7 +1006,7 @@ Figure 11.7:  Triángulo de desarrollo con datos de pago acumulados. Fuente: <sp
 <div class="figure" style="text-align: center"><span id="fig:tikz-math-triangle"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-math-triangle-1.png" alt="Notación matemática para un triángulo de desarrollo. Fuente: @WuthrichMerz2008" width="960" />
 <p class="caption">
-Figure 11.8: Notación matemática para un triángulo de desarrollo. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>
+Figure 11.8: Notación matemática para un triángulo de desarrollo. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>
 </p>
 </div>
 <p>La variable aleatoria <span class="math inline">\(X_{ij}\)</span> denota las reclamaciones incrementales pagadas en el período de desarrollo <span class="math inline">\(j\)</span> de los siniestros del año de accidente <span class="math inline">\(i\)</span>. Por lo tanto, <span class="math inline">\(X_{ij}\)</span> es la cantidad total pagada en el año de desarrollo <span class="math inline">\(j\)</span> por todos los siniestros que ocurrieron en el año de ocurrencia <span class="math inline">\(i\)</span>. Estas cuantías se pagan realmente en el año contable o natural <span class="math inline">\(i+j\)</span>. Desde un punto de vista acumulado, <span class="math inline">\(C_{ij}\)</span> es la cantidad acumulada pagada hasta (e incluyendo) el año de desarrollo <span class="math inline">\(j\)</span> por los accidentes ocurridos en el año <span class="math inline">\(i\)</span>. Al final, se paga una cantidad total de <span class="math inline">\(C_{iJ}\)</span> en el último año de desarrollo <span class="math inline">\(J\)</span> por los siniestros ocurridos en el año de accidente <span class="math inline">\(i\)</span>. En este capítulo el tiempo se expresa en años, aunque también se pueden utilizar otras unidades de tiempo, por ejemplo, semestres o trimestres.</p>
@@ -933,21 +1019,21 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <p><span class="math display">\[\begin{eqnarray*}
 \mathcal{R}^{(0)}_{i} = \sum_{\ell=I-i+1}^{I-1} X_{i\ell} = C_{i,I}-C_{i,I-i}.
 \end{eqnarray*}\]</span></p>
-<p>Expresamos la reserva como una suma de datos incrementales, <span class="math inline">\(X_{i\ell}\)</span>, o como la diferencia entre datos acumulados. En este último caso, la cantidad pendiente es la cantidad acumulada final <span class="math inline">\(C_{i,I}\)</span> menos la cantidad acumulada observada más reciente <span class="math inline">\(C_{i,I-i}\)</span>. Siguiendo a <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, la anotación <span class="math inline">\(\mathcal{R}^{(0)}_{i}\)</span> se refiere a la reserva para el año de ocurrencia <span class="math inline">\(i\)</span> donde <span class="math inline">\(i=1,\ldots,I\)</span>. El superíndice <span class="math inline">\((0)\)</span> se refiere a la evaluación de la reserva en el momento actual, digamos <span class="math inline">\(\tau = 0\)</span>. Entendemos que <span class="math inline">\(\tau = 0\)</span> al final del año de ocurrencia <span class="math inline">\(I\)</span>, el año calendario más reciente para el que se observan y registran los datos.</p>
+<p>Expresamos la reserva como una suma de datos incrementales, <span class="math inline">\(X_{i\ell}\)</span>, o como la diferencia entre datos acumulados. En este último caso, la cantidad pendiente es la cantidad acumulada final <span class="math inline">\(C_{i,I}\)</span> menos la cantidad acumulada observada más reciente <span class="math inline">\(C_{i,I-i}\)</span>. Siguiendo a <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, la anotación <span class="math inline">\(\mathcal{R}^{(0)}_{i}\)</span> se refiere a la reserva para el año de ocurrencia <span class="math inline">\(i\)</span> donde <span class="math inline">\(i=1,\ldots,I\)</span>. El superíndice <span class="math inline">\((0)\)</span> se refiere a la evaluación de la reserva en el momento actual, digamos <span class="math inline">\(\tau = 0\)</span>. Entendemos que <span class="math inline">\(\tau = 0\)</span> al final del año de ocurrencia <span class="math inline">\(I\)</span>, el año calendario más reciente para el que se observan y registran los datos.</p>
 </div>
 </div>
-<div id="S:Rcode" class="section level3">
+<div id="S:Rcode" class="section level3" number="11.2.4">
 <h3><span class="header-section-number">11.2.4</span> Código R para resumir datos de provisión de pérdidas</h3>
-<p>Usamos el paquete <code>ChainLadder</code> <span class="citation">(Gesmann et al. <a href="#ref-R-chainladder" role="doc-biblioref">2019</a>)</span> para importar triángulos de desarrollo en <code>R</code> y para explorar las tendencias presentes en estos triángulos. La viñeta del paquete documenta muy bien sus funciones para trabajar con datos triangulares. Primero, exploramos dos formas de importar un triángulo.</p>
+<p>Usamos el paquete <code>ChainLadder</code> <span class="citation">(<a href="bibliography.html#ref-R-chainladder" role="doc-biblioref">Gesmann et al. 2019</a>)</span> para importar triángulos de desarrollo en <code>R</code> y para explorar las tendencias presentes en estos triángulos. La viñeta del paquete documenta muy bien sus funciones para trabajar con datos triangulares. Primero, exploramos dos formas de importar un triángulo.</p>
 <div id="datos-con-formato-extenso" class="section level4 unnumbered">
 <h4>Datos con formato extenso</h4>
-<p>El conjunto de datos <code>triangle_W_M_long.txt</code> almacena el triángulo de desarrollo acumulado de <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span> (Tabla 2.2) en formato largo. Es decir, cada celda del triángulo es una fila de este conjunto de datos, y se almacenan tres características: la cuantía del pago (acumulado, en este ejemplo), el año de ocurrencia (<span class="math inline">\(i\)</span>) y el retraso del pago (<span class="math inline">\(j\)</span>). Importamos el archivo .txt y almacenamos el conjunto de datos resultante como <code>my_triangle_long</code>:</p>
+<p>El conjunto de datos <code>triangle_W_M_long.txt</code> almacena el triángulo de desarrollo acumulado de <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span> (Tabla 2.2) en formato largo. Es decir, cada celda del triángulo es una fila de este conjunto de datos, y se almacenan tres características: la cuantía del pago (acumulado, en este ejemplo), el año de ocurrencia (<span class="math inline">\(i\)</span>) y el retraso del pago (<span class="math inline">\(j\)</span>). Importamos el archivo .txt y almacenamos el conjunto de datos resultante como <code>my_triangle_long</code>:</p>
 <h5 style="text-align: center;">
 <a id="displayCode.TriangleText.1" href="javascript:togglecode('toggleCode.TriangleText.1','displayCode.TriangleText.1');"><i><strong>Código R para importar datos de texto</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.1" style="display: none">
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="C-LossReserves.html#cb115-1"></a>my_triangle_long &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Data/triangle_W_M_long.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb115-2"><a href="C-LossReserves.html#cb115-2"></a><span class="kw">head</span>(my_triangle_long)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="C-LossReserves.html#cb115-1" aria-hidden="true" tabindex="-1"></a>my_triangle_long <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Data/triangle_W_M_long.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb115-2"><a href="C-LossReserves.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_triangle_long)</span></code></pre></div>
 <pre><code>   payment origin dev
 1  5946975   2004   0
 2  9668212   2004   1
@@ -961,8 +1047,8 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <a id="displayCode.TriangleText.2" href="javascript:togglecode('toggleCode.TriangleText.2','displayCode.TriangleText.2');"><i><strong>Código R para la transformación en formato triangular</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.2" style="display: none">
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="C-LossReserves.html#cb117-1"></a>my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_long, <span class="dt">origin =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">dev =</span> <span class="st">&quot;dev&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;payment&quot;</span>)</span>
-<span id="cb117-2"><a href="C-LossReserves.html#cb117-2"></a><span class="kw">str</span>(my_triangle)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="C-LossReserves.html#cb117-1" aria-hidden="true" tabindex="-1"></a>my_triangle <span class="ot">&lt;-</span> <span class="fu">as.triangle</span>(my_triangle_long, <span class="at">origin =</span> <span class="st">&quot;origin&quot;</span>, <span class="at">dev =</span> <span class="st">&quot;dev&quot;</span>, <span class="at">value =</span> <span class="st">&quot;payment&quot;</span>)</span>
+<span id="cb117-2"><a href="C-LossReserves.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_triangle)</span></code></pre></div>
 <pre><code> &#39;triangle&#39; int [1:10, 1:10] 5946975 6346756 6269090 5863015 5778885 6184793 5600184 5288066 5290793 5675568 ...
  - attr(*, &quot;dimnames&quot;)=List of 2
   ..$ origin: chr [1:10] &quot;2004&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; ...
@@ -973,7 +1059,7 @@ la cantidad última por los siniestros para el año de ocurrencia <span class="m
 <a id="displayCode.TriangleText.3" href="javascript:togglecode('toggleCode.TriangleText.3','displayCode.TriangleText.3');"><i><strong>Código R para mostrar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleText.3" style="display: none">
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="C-LossReserves.html#cb119-1"></a><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="C-LossReserves.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(my_triangle<span class="sc">/</span><span class="dv">1000</span>, <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1     2     3     4     5     6     7     8     9
   2004 5947 9668 10564 10772 10978 11041 11106 11121 11132 11148
@@ -995,17 +1081,17 @@ origin    0    1     2     3     4     5     6     7     8     9
 <a id="displayCode.TriangleCSV.1" href="javascript:togglecode('toggleCode.TriangleCSV.1','displayCode.TriangleCSV.1');"><i><strong>Código R para importar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.1" style="display: none">
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="C-LossReserves.html#cb121-1"></a>my_triangle_csv &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;Data/triangle_W_M.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb121-2"><a href="C-LossReserves.html#cb121-2"></a>my_triangle_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(my_triangle_csv)</span>
-<span id="cb121-3"><a href="C-LossReserves.html#cb121-3"></a><span class="kw">dimnames</span>(my_triangle_matrix) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">origin =</span> <span class="dv">2004</span> <span class="op">:</span><span class="st"> </span><span class="dv">2013</span>, <span class="dt">dev =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">ncol</span>(my_triangle_matrix)<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="C-LossReserves.html#cb121-1" aria-hidden="true" tabindex="-1"></a>my_triangle_csv <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;Data/triangle_W_M.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb121-2"><a href="C-LossReserves.html#cb121-2" aria-hidden="true" tabindex="-1"></a>my_triangle_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(my_triangle_csv)</span>
+<span id="cb121-3"><a href="C-LossReserves.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(my_triangle_matrix) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">origin =</span> <span class="dv">2004</span> <span class="sc">:</span> <span class="dv">2013</span>, <span class="at">dev =</span> <span class="dv">0</span><span class="sc">:</span>(<span class="fu">ncol</span>(my_triangle_matrix)<span class="sc">-</span><span class="dv">1</span>))</span></code></pre></div>
 </div>
 <p>Inspeccionamos el triángulo:</p>
 <h5 style="text-align: center;">
 <a id="displayCode.TriangleCSV.2" href="javascript:togglecode('toggleCode.TriangleCSV.2','displayCode.TriangleCSV.2');"><i><strong>Código R para mostrar datos triangulares</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.2" style="display: none">
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="C-LossReserves.html#cb122-1"></a>my_triangle &lt;-<span class="st"> </span><span class="kw">as.triangle</span>(my_triangle_matrix) </span>
-<span id="cb122-2"><a href="C-LossReserves.html#cb122-2"></a><span class="kw">round</span>(my_triangle<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="C-LossReserves.html#cb122-1" aria-hidden="true" tabindex="-1"></a>my_triangle <span class="ot">&lt;-</span> <span class="fu">as.triangle</span>(my_triangle_matrix) </span>
+<span id="cb122-2"><a href="C-LossReserves.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(my_triangle<span class="sc">/</span><span class="dv">1000</span>, <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1     2     3     4     5     6     7     8     9
   2004 5947 9668 10564 10772 10978 11041 11106 11121 11132 11148
@@ -1027,8 +1113,8 @@ origin    0    1     2     3     4     5     6     7     8     9
 <a id="displayCode.TriangleCSV.3" href="javascript:togglecode('toggleCode.TriangleCSV.3','displayCode.TriangleCSV.3');"><i><strong>Código R para pasar de visualización de datos acumulados a incrementales</strong></i></a>
 </h5>
 <div id="toggleCode.TriangleCSV.3" style="display: none">
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="C-LossReserves.html#cb124-1"></a>my_triangle_incr &lt;-<span class="st"> </span><span class="kw">cum2incr</span>(my_triangle) </span>
-<span id="cb124-2"><a href="C-LossReserves.html#cb124-2"></a><span class="kw">round</span>(my_triangle_incr<span class="op">/</span><span class="dv">1000</span>, <span class="dt">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="C-LossReserves.html#cb124-1" aria-hidden="true" tabindex="-1"></a>my_triangle_incr <span class="ot">&lt;-</span> <span class="fu">cum2incr</span>(my_triangle) </span>
+<span id="cb124-2"><a href="C-LossReserves.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(my_triangle_incr<span class="sc">/</span><span class="dv">1000</span>, <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>      dev
 origin    0    1   2   3   4   5  6  7  8  9
   2004 5947 3721 896 208 207  62 66 15 11 16
@@ -1047,7 +1133,7 @@ origin    0    1   2   3   4   5  6  7  8  9
 <div id="visualización-de-triángulos" class="section level4 unnumbered">
 <h4>Visualización de triángulos</h4>
 <p>Para explorar la evolución de los pagos acumulados por año de ocurrencia, la figura <a href="C-LossReserves.html#fig:plottriangle">11.9</a> muestra <code>my_triangle</code> usando la función <code>plot</code> disponible para los objetos de tipo <code>triangle</code> en el paquete <code>ChainLadder</code>. Cada línea de este gráfico muestra un año de ocurrencia (de 2004 a 2013, etiquetado como 1 a 10). Los períodos de desarrollo se etiquetan de 1 a 10 (en lugar de 0 a 9, como se usó anteriormente).</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="C-LossReserves.html#cb126-1"></a><span class="kw">plot</span>(my_triangle)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="C-LossReserves.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_triangle)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plottriangle"></span>
 <img src="LossDataAnalytics_files/figure-html/plottriangle-1.png" alt="Desarrollo del siniestro por año de ocurrencia " width="80%" />
 <p class="caption">
@@ -1055,31 +1141,31 @@ Figure 11.9: Desarrollo del siniestro por año de ocurrencia
 </p>
 </div>
 <p>Alternativamente, el argumento <code>lattice</code> crea un gráfico por año de ocurrencia.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="C-LossReserves.html#cb127-1"></a><span class="kw">plot</span>(my_triangle, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="C-LossReserves.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_triangle, <span class="at">lattice =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_lattice-1.png" width="80%" style="display: block; margin: auto;" />
 En lugar de graficar el triángulo acumulado guardado en <code>my_triangle</code>, podemos graficar el triángulo de desarollo incremental.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="C-LossReserves.html#cb128-1"></a><span class="kw">plot</span>(my_triangle_incr)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="C-LossReserves.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_triangle_incr)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_incr-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="C-LossReserves.html#cb129-1"></a><span class="kw">plot</span>(my_triangle_incr, <span class="dt">lattice =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="C-LossReserves.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_triangle_incr, <span class="at">lattice =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/plot_triangle_incr-2.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
-<div id="S:Chain-ladder" class="section level2">
+<div id="S:Chain-ladder" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Chain-Ladder</h2>
-<p>El método más utilizado para estimar las reservas por pagos pendientes es el llamado método chain-ladder. Los orígenes de este método no están claros pero se afianzó firmemente en aplicaciones prácticas a principios de los 70, <span class="citation">Taylor (<a href="#ref-taylor1986claims" role="doc-biblioref">1986</a>)</span>. Como se mostrará, el nombre se refiere al encadenamiento (chain) de una secuencia de factores (desarrollo año a año) en una escalera (ladder) de factores; las pérdidas inmaduras suben hacia la madurez cuando se multiplican por esta concatenación de ratios, de ahí la descripción de <em>método chain-ladder.</em> Empezaremos explorando el método chain-ladder en su versión determinista o algorítmica, por lo tanto sin hacer ninguna suposición estocástica. Luego describiremos el modelo chain-ladder de distribución libre de Mack.</p>
-<div id="S:DeterministicCL" class="section level3">
+<p>El método más utilizado para estimar las reservas por pagos pendientes es el llamado método chain-ladder. Los orígenes de este método no están claros pero se afianzó firmemente en aplicaciones prácticas a principios de los 70, <span class="citation"><a href="bibliography.html#ref-taylor1986claims" role="doc-biblioref">G. C. Taylor</a> (<a href="bibliography.html#ref-taylor1986claims" role="doc-biblioref">1986</a>)</span>. Como se mostrará, el nombre se refiere al encadenamiento (chain) de una secuencia de factores (desarrollo año a año) en una escalera (ladder) de factores; las pérdidas inmaduras suben hacia la madurez cuando se multiplican por esta concatenación de ratios, de ahí la descripción de <em>método chain-ladder.</em> Empezaremos explorando el método chain-ladder en su versión determinista o algorítmica, por lo tanto sin hacer ninguna suposición estocástica. Luego describiremos el modelo chain-ladder de distribución libre de Mack.</p>
+<div id="S:DeterministicCL" class="section level3" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> Chain-Ladder Determinista</h3>
 <p>El método chain-ladder determinista se centra en el triángulo de desarrollo en forma acumulada. Recordemos que una celda <span class="math inline">\((i,j)\)</span> en este triángulo muestra la cantidad acumulada pagada hasta el período de desarrollo <span class="math inline">\(j\)</span> por siniestros que ocurrieron en el año <span class="math inline">\(i\)</span>. El método chain-ladder asume que los <strong>factores de desarrollo</strong> <span class="math inline">\(f_j\)</span> (también llamados factores edad-a-edad, ratios de enlace o factores chain-ladder) existen de tal manera que</p>
 <p><span class="math display">\[
 C_{i,j+1} = f_j \times C_{i,j}.
 \]</span></p>
-<p>Por tanto, el factor de desarrollo indica cómo la cantidad acumulada en el año de desarrollo <span class="math inline">\(j\)</span> crece hasta la cantidad acumulada en el año <span class="math inline">\(j+1\)</span>. Destacamos la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo en la Figura <a href="C-LossReserves.html#fig:tikz-cum-triangle-cl1">11.10</a> tomada de <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span> (Tabla 2.2, también utilizada en <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, Tabla 1.4).</p>
+<p>Por tanto, el factor de desarrollo indica cómo la cantidad acumulada en el año de desarrollo <span class="math inline">\(j\)</span> crece hasta la cantidad acumulada en el año <span class="math inline">\(j+1\)</span>. Destacamos la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo en la Figura <a href="C-LossReserves.html#fig:tikz-cum-triangle-cl1">11.10</a> tomada de <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span> (Tabla 2.2, también utilizada en <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>, Tabla 1.4).</p>
 <a id="tikz-cum-triangle-cl1"></a>
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle-cl1"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-cl1-1.png" alt="Triángulo de desarrollo con datos de pagos acumulados que muestra la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo. Fuente: @WuthrichMerz2008, Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.10: Triángulo de desarrollo con datos de pagos acumulados que muestra la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.10: Triángulo de desarrollo con datos de pagos acumulados que muestra la cantidad acumulada en el período 0 en azul y la cantidad acumulada en el período 1 en rojo. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>El método chain-ladder presenta una forma intuitiva para estimar o calcular estos factores de desarrollo. Dado que el primer factor de desarrollo <span class="math inline">\(f_0\)</span> describe el desarrollo de la cantidad acumulada de los siniestros desde el período de desarrollo 0 hasta el período de desarrollo 1, se puede estimar como la proporción de las cantidades acumuladas en rojo y las cantidades acumuladas en azul, resaltadas en la Figura <a href="C-LossReserves.html#fig:tikz-cum-triangle-cl1">11.10</a>. En notación matemática obtenemos entonces la siguiente estimación <span class="math inline">\(\hat{f}_0^{CL}\)</span> para el primer factor de desarrollo <span class="math inline">\(f_0\)</span>, dadas las observaciones <span class="math inline">\(\mathcal{D}_I\)</span>:</p>
@@ -1095,7 +1181,7 @@ Siguiendo este razonamiento, se puede estimar el próximo factor de desarrollo <
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle-cl2"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-cl2-1.png" alt=" Triángulo de desarrollo con datos de pago acumulado que muestra la cantidad acumulada en el período 1 en azul y la cantidad acumulada en el período 2 en rojo. Fuente: @WuthrichMerz2008, Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.11:  Triángulo de desarrollo con datos de pago acumulado que muestra la cantidad acumulada en el período 1 en azul y la cantidad acumulada en el período 2 en rojo. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.11:  Triángulo de desarrollo con datos de pago acumulado que muestra la cantidad acumulada en el período 1 en azul y la cantidad acumulada en el período 2 en rojo. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>La notación matemática de la estimación de <span class="math inline">\(\hat{f}_1^{CL}\)</span> para el siguiente factor de desarrollo <span class="math inline">\(f_1\)</span>, dadas las observaciones <span class="math inline">\(\mathcal{D}_I\)</span>, es igual:</p>
@@ -1115,7 +1201,7 @@ Note que para <span class="math inline">\(\hat{C}_{10,2}\)</span> realmente se u
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle-cl3"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-cl3-1.png" alt=" Triángulo de desarollo con datos de pago acumulados que incluyen predicciones en cursiva. Fuente: [@WuthrichMerz2008], Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.12:  Triángulo de desarollo con datos de pago acumulados que incluyen predicciones en cursiva. Fuente: <span class="citation">(Wüthrich and Merz <a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.12:  Triángulo de desarollo con datos de pago acumulados que incluyen predicciones en cursiva. Fuente: <span class="citation">(<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz 2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>Eventualmente se necesita estimar los valores de la columna final. El último factor de desarrollo <span class="math inline">\(f_8\)</span> mide el crecimiento desde el período de desarrollo 8 al período de desarrollo 9 en el triángulo. Como sólo en la primera fila del triángulo se han observado ambas celdas, este último factor se estima como la relación entre el valor en rojo y el valor en azul en la Figura <a href="C-LossReserves.html#fig:tikz-cum-triangle-cl3b">11.13</a>.</p>
@@ -1123,7 +1209,7 @@ Figure 11.12:  Triángulo de desarollo con datos de pago acumulados que incluyen
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle-cl3b"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-cl3b-1.png" alt=" Triángulo de desarollo con datos de pago acumulado en los que se destaca la cantidad acumulada en el período 8 en azul y la cantidad acumulada en el período 9 en rojo. Fuente: [@WuthrichMerz2008], Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.13:  Triángulo de desarollo con datos de pago acumulado en los que se destaca la cantidad acumulada en el período 8 en azul y la cantidad acumulada en el período 9 en rojo. Fuente: <span class="citation">(Wüthrich and Merz <a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.13:  Triángulo de desarollo con datos de pago acumulado en los que se destaca la cantidad acumulada en el período 8 en azul y la cantidad acumulada en el período 9 en rojo. Fuente: <span class="citation">(<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz 2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>Dadas las observaciones <span class="math inline">\(\mathcal{D}_I\)</span>, este factor estimado es igual a:
@@ -1145,7 +1231,7 @@ donde <span class="math inline">\(C_{i,I-i}\)</span> está en la última diagona
 <div class="figure" style="text-align: center"><span id="fig:tikz-cum-triangle-cl4"></span>
 <img src="LossDataAnalytics_files/figure-html/tikz-cum-triangle-cl4-1.png" alt=" Triángulo de desarrollo con datos de pagos acumulados en el que se incluyen las predicciones en cursiva. Fuente: @WuthrichMerz2008, Tabla 2.2." width="960" />
 <p class="caption">
-Figure 11.14:  Triángulo de desarrollo con datos de pagos acumulados en el que se incluyen las predicciones en cursiva. Fuente: <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
+Figure 11.14:  Triángulo de desarrollo con datos de pagos acumulados en el que se incluyen las predicciones en cursiva. Fuente: <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, Tabla 2.2.
 </p>
 </div>
 <p>Las cifras de la última columna muestran las estimaciones de las cantidades finales de los siniestros. La estimación de la cantidad pendiente <span class="math inline">\(\hat{\mathcal{R}}_i^{CL}\)</span> para un particular año de ocurrencia <span class="math inline">\(i=I-J+1,\ldots, I\)</span> viene dada por la diferencia entre la cantidad última y la cantidad acumulada observada en la diagonal más reciente:
@@ -1161,10 +1247,10 @@ Figure 11.15:  Reservas por período de ocurrencia y para el total
 </p>
 </div>
 </div>
-<div id="modelo-chain-ladder-de-distribución-libre-de-mack" class="section level3">
+<div id="modelo-chain-ladder-de-distribución-libre-de-mack" class="section level3" number="11.3.2">
 <h3><span class="header-section-number">11.3.2</span> Modelo Chain-ladder de distribución libre de Mack</h3>
 <p>En esta etapa, el método tradicional chain-ladder proporciona un estimador puntual <span class="math inline">\(\hat{C}^{CL}_{iJ}\)</span> para el pronóstico de <span class="math inline">\(C_{iJ}\)</span>, usando la información <span class="math inline">\(\mathcal{D}_I\)</span>. Dado que el método de chain-ladder es un algoritmo puramente determinista e intuitivamente natural para completar un triángulo de desarrollo, no se puede determinar cómo de fiable es el estimador puntual ni modelizar la variación de los pagos futuros. Para responder a tales preguntas se necesita un modelo estocástico subyacente que reproduzca las estimaciones de las provisiones chain-ladder.</p>
-<p>En esta sección nos centraremos en el modelo chain-ladder de distribución libre como modelo estocástico subyacente, introducido en <span class="citation">Mack (<a href="#ref-Mack1993" role="doc-biblioref">1993</a>)</span>. Este método nos permite estimar los errores estándar de las predicciones chain-ladder. En la siguiente sección <a href="C-LossReserves.html#S:GLMs">11.4</a>, se utilizan modelos lineales generalizados para desarrollar un enfoque totalmente estocástico para predecir la reserva pendiente.</p>
+<p>En esta sección nos centraremos en el modelo chain-ladder de distribución libre como modelo estocástico subyacente, introducido en <span class="citation"><a href="bibliography.html#ref-Mack1993" role="doc-biblioref">Mack</a> (<a href="bibliography.html#ref-Mack1993" role="doc-biblioref">1993</a>)</span>. Este método nos permite estimar los errores estándar de las predicciones chain-ladder. En la siguiente sección <a href="C-LossReserves.html#S:GLMs">11.4</a>, se utilizan modelos lineales generalizados para desarrollar un enfoque totalmente estocástico para predecir la reserva pendiente.</p>
 <p>En el enfoque de Mack se mantienen las siguientes condiciones (sin asumir una distribución):</p>
 <ul>
 <li><p>Los siniestros acumulados <span class="math inline">\((C_{ij})_{j=0,\ldots,J}\)</span> son independientes a lo largo de diferentes periodos de ocurrencia <span class="math inline">\(i\)</span>.</p></li>
@@ -1249,7 +1335,7 @@ E\left[ \left( C_{iJ} - \hat{C}_{iJ} \right)^2 | \mathcal{D}_I\right] \\
 E(X-a)^2 = \text{Var}(X)+\left[EX-a\right]^2.
 \]</span></p>
 <p>Aplicado a la expresión del <em>MSEP</em> se trata a <span class="math inline">\(\hat{C}_{i,J}\)</span> como fijo porque se trabaja condicionalmente en los datos del triángulo superior y <span class="math inline">\(\hat{C}_{i,J}\)</span> sólo usa la información de este triángulo superior.</p>
-<p><span class="citation">Mack (<a href="#ref-Mack1993" role="doc-biblioref">1993</a>)</span> derivó la importante fórmula para el <em>MSEP</em> condicional en el modelo chain-ladder de distribución libre para un único período de ocurrencia <span class="math inline">\(i\)</span>:</p>
+<p><span class="citation"><a href="bibliography.html#ref-Mack1993" role="doc-biblioref">Mack</a> (<a href="bibliography.html#ref-Mack1993" role="doc-biblioref">1993</a>)</span> derivó la importante fórmula para el <em>MSEP</em> condicional en el modelo chain-ladder de distribución libre para un único período de ocurrencia <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
 \widehat{MSEP_{C_{iJ}|\mathcal{D}_I}}  =
 \left(\hat{C}_{iJ}^{CL}\right)^2 \sum_{j=I-i}^{J-1} \left[ \frac{\hat{\sigma}_j^2}{(\hat{f}_j^{CL})^2} \left(\frac{1}{\hat{C}^{CL}_{ij}}+\frac{1}{\sum_{n=1}^{I-j-1}C_{nj}}\right)\right].
@@ -1266,15 +1352,15 @@ E(X-a)^2 = \text{Var}(X)+\left[EX-a\right]^2.
 \]</span>
 El resultado es la suma de los <em>MSEP</em> por período de ocurrencia más un término de covarianza. Este término de covarianza se suma porque los MSEPs para diferentes períodos de ocurrencia <span class="math inline">\(i\)</span> utilizan los mismos estimadores <span class="math inline">\(\hat{f}_j^{CL}\)</span> de los parámetros <span class="math inline">\(f_j\)</span> para diferentes años de accidentes <span class="math inline">\(i\)</span>.</p>
 </div>
-<div id="código-r-para-las-predicciones-chain-ladder" class="section level3">
+<div id="código-r-para-las-predicciones-chain-ladder" class="section level3" number="11.3.3">
 <h3><span class="header-section-number">11.3.3</span> Código R para las predicciones Chain-Ladder</h3>
-<p>Usamos el objeto <code>my_triangle</code> de tipo <code>triangle</code> que se creó en la sección <a href="C-LossReserves.html#S:Rcode">11.2.4</a>. El modelo chain-ladder de distribución libre de <span class="citation">Mack (<a href="#ref-Mack1993" role="doc-biblioref">1993</a>)</span> está implementado en el paquete <code>ChainLadder</code> <span class="citation">(Gesmann et al. <a href="#ref-R-chainladder" role="doc-biblioref">2019</a>)</span> (como una forma especial de mínimos cuadrados ponderados) y puede ser aplicado en los datos <code>my_triangle</code> para predecir las cuantías de los siniestros pendientes y para estimar el error estándar de estas predicciones.</p>
+<p>Usamos el objeto <code>my_triangle</code> de tipo <code>triangle</code> que se creó en la sección <a href="C-LossReserves.html#S:Rcode">11.2.4</a>. El modelo chain-ladder de distribución libre de <span class="citation"><a href="bibliography.html#ref-Mack1993" role="doc-biblioref">Mack</a> (<a href="bibliography.html#ref-Mack1993" role="doc-biblioref">1993</a>)</span> está implementado en el paquete <code>ChainLadder</code> <span class="citation">(<a href="bibliography.html#ref-R-chainladder" role="doc-biblioref">Gesmann et al. 2019</a>)</span> (como una forma especial de mínimos cuadrados ponderados) y puede ser aplicado en los datos <code>my_triangle</code> para predecir las cuantías de los siniestros pendientes y para estimar el error estándar de estas predicciones.</p>
 <h5 style="text-align: center;">
 <a id="displayCode.MackModel.1" href="javascript:togglecode('toggleCode.MackModel.1','displayCode.MackModel.1');"><i><strong>Código R para las predicciones del modelo Mack</strong></i></a>
 </h5>
 <div id="toggleCode.MackModel.1" style="display: none">
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="C-LossReserves.html#cb130-1"></a>CL &lt;-<span class="st"> </span><span class="kw">MackChainLadder</span>(my_triangle)</span>
-<span id="cb130-2"><a href="C-LossReserves.html#cb130-2"></a>CL</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="C-LossReserves.html#cb130-1" aria-hidden="true" tabindex="-1"></a>CL <span class="ot">&lt;-</span> <span class="fu">MackChainLadder</span>(my_triangle)</span>
+<span id="cb130-2"><a href="C-LossReserves.html#cb130-2" aria-hidden="true" tabindex="-1"></a>CL</span></code></pre></div>
 <pre><code>MackChainLadder(Triangle = my_triangle)
 
          Latest Dev.To.Date   Ultimate      IBNR Mack.S.E CV(IBNR)
@@ -1296,7 +1382,7 @@ Ultimate: 98,788,397.77
 IBNR:      6,047,063.77
 Mack.S.E     462,977.83
 CV(IBNR):          0.08</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="C-LossReserves.html#cb132-1"></a><span class="kw">round</span>(<span class="kw">summary</span>(CL)<span class="op">$</span>Totals)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="C-LossReserves.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">summary</span>(CL)<span class="sc">$</span>Totals)</span></code></pre></div>
 <pre><code>             Totals
 Latest:    92741334
 Dev:              1
@@ -1306,14 +1392,14 @@ Mack S.E.:   462978
 CV(IBNR):         0</code></pre>
 </div>
 <p>Los factores de desarrollo se obtienen de la siguiente manera:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="C-LossReserves.html#cb134-1"></a><span class="kw">round</span>(CL<span class="op">$</span>f,<span class="dt">digits =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="C-LossReserves.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(CL<span class="sc">$</span>f,<span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code> [1] 1.4925 1.0778 1.0229 1.0148 1.0070 1.0051 1.0011 1.0010 1.0014 1.0000</code></pre>
 También podemos obtener el triángulo de desarrollo completo (incluyendo las predicciones).
 <h5 style="text-align: center;">
 <a id="displayCode.MackModel.1" href="javascript:togglecode('toggleCode.MackModel.1','displayCode.MackModel.1');"><i><strong>Código R para el triángulo completo modelo de Mack</strong></i></a>
 </h5>
 <div id="toggleCode.MackModel.1" style="display: none">
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="C-LossReserves.html#cb136-1"></a>CL<span class="op">$</span>FullTriangle</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="C-LossReserves.html#cb136-1" aria-hidden="true" tabindex="-1"></a>CL<span class="sc">$</span>FullTriangle</span></code></pre></div>
 <pre><code>      dev
 origin       0       1        2        3        4        5        6        7
   2004 5946975 9668212 10563929 10771690 10978394 11040518 11106331 11121181
@@ -1340,25 +1426,25 @@ origin        8        9
   2013  9612728  9626383</code></pre>
 </div>
 <p>La MSEP para la reserva total a través de todos los períodos de ocurrencia se obtiene como:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="C-LossReserves.html#cb138-1"></a>CL<span class="op">$</span>Total.Mack.S.E<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="C-LossReserves.html#cb138-1" aria-hidden="true" tabindex="-1"></a>CL<span class="sc">$</span>Total.Mack.S.E<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>           9 
 214348469061 </code></pre>
 <p>Se deben validar los supuestos de Mack comprobando que no hay tendencias en los gráficos de los residuos. Los últimos cuatro gráficos que obtenemos con el siguiente comando muestran respectivamente los residuos estandarizados frente a los valores ajustados, el período de origen, el período de calendario y el período de desarrollo.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="C-LossReserves.html#cb140-1"></a><span class="kw">plot</span>(CL)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="C-LossReserves.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CL)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/ResidualPlot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>El gráfico superior izquierdo es un gráfico de barras de la última posición de los siniestros más el IBNR y el error estándar de Mack por período de ocurrencia. El gráfico superior derecho muestra los patrones de desarrollo predichos para todos los períodos de ocurrencia (comenzando con 1 para el período de ocurrencia más antiguo).</p>
 <p>Al establecer el argumento <code>lattice=TRUE</code> se obtiene un gráfico del desarrollo, incluyendo la predicción y los errores estándar estimados por período de ocurrencia:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="C-LossReserves.html#cb141-1"></a><span class="kw">plot</span>(CL, <span class="dt">lattice=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="C-LossReserves.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CL, <span class="at">lattice=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/PlotLattice-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="S:GLMs" class="section level2">
+<div id="S:GLMs" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> GLMs y Bootstrap para provisiones</h2>
 <hr />
 <p>** Esta sección se está escribiendo y aún no está completa ni editada. Os mostramos una idea de lo que será la versión final.**</p>
 <hr />
 <p>Esta sección cubre los modelos de regresión para analizar los triángulos de desarrollo. Cuando se analizan los datos de un triángulo de desarrollo con un modelo de regresión, se dispone de los instrumentos estándar para la construcción, estimación y predicción del modelo. Usando estas herramientas somos capaces de ir más allá de la estimación puntual y el error estándar como se deriva en la Sección <a href="C-LossReserves.html#S:Chain-ladder">11.3</a>. Más específicamente, construimos un modelo lineal generalizado (GLM) para los pagos incrementales <span class="math inline">\(X_{ij}\)</span> en la Figura <a href="C-LossReserves.html#fig:tikz-triangle">11.6</a>. Mientras que el método de chain-ladder funciona con datos acumulados, los GLM asumen que las variables de respuesta son independientes y por lo tanto trabajan con triángulos de desarrollo incrementales.</p>
-<div id="especificación-del-modelo" class="section level3">
+<div id="especificación-del-modelo" class="section level3" number="11.4.1">
 <h3><span class="header-section-number">11.4.1</span> Especificación del modelo</h3>
 <p>Suponemos que <span class="math inline">\(X_{ij}\)</span> denota el pago incremental en la celda <span class="math inline">\((i,j)\)</span> del triángulo de desarrollo. Asumimos que los <span class="math inline">\(X_{ij}\)</span> son independientes con una densidad <span class="math inline">\(f(x_{ij};\theta_{ij},\phi)\)</span> de la familia exponencial de distribuciones. Identificamos</p>
 <ul>
@@ -1389,7 +1475,7 @@ X_{ij} &amp;\sim  \phi \cdot Z_{ij}  \\
 \mu_{ij} =  \exp{(\mu + \alpha_i + \beta_j)}.
 \]</span></p>
 </div>
-<div id="estimación-y-predicción-del-modelo" class="section level3">
+<div id="estimación-y-predicción-del-modelo" class="section level3" number="11.4.2">
 <h3><span class="header-section-number">11.4.2</span> Estimación y predicción del modelo</h3>
 <p>Se estiman los parámetros de regresión <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha_i\)</span> y <span class="math inline">\(\beta_j\)</span> en los GLM propuestos. En <code>R</code> está disponible la función <code>glm</code> para estimar estos parámetros a través de la estimación por máxima verosimilitud (mle) o cuasi-verosimilitud (en el caso de Poisson sobredisperso). Teniendo disponibles las estimaciones de los parámetros <span class="math inline">\(\hat{\mu}\)</span>, <span class="math inline">\(\hat{\alpha}_i\)</span> y <span class="math inline">\(\hat{\beta}_j\)</span>, se obtiene una estimación puntual para cada celda del triángulo superior
 <span class="math display">\[
@@ -1402,11 +1488,11 @@ De manera similar, se puede predecir una celda en el triángulo inferior como
 \]</span></p>
 <p>Luego se suman las estimaciones específicas de cada celda para obtener estimaciones puntuales de las reservas pendientes (por año de ocurrencia <span class="math inline">\(i\)</span> o la provisión total). Combinando las observaciones del triángulo superior con sus estimaciones puntuales, podemos obtener residuos adecuadamente definidos y usarlos para la inspección de los residuos.</p>
 </div>
-<div id="bootstrap" class="section level3">
+<div id="bootstrap" class="section level3" number="11.4.3">
 <h3><span class="header-section-number">11.4.3</span> Bootstrap</h3>
 </div>
 </div>
-<div id="LossRe:further-reading-and-resources" class="section level2">
+<div id="LossRe:further-reading-and-resources" class="section level2" number="11.5">
 <h2><span class="header-section-number">11.5</span> Recursos adicionales y contribuciones</h2>
 <div id="colaboradores-6" class="section level4 unnumbered">
 <h4>Colaboradores</h4>
@@ -1417,79 +1503,19 @@ De manera similar, se puede predecir una celda en el triángulo inferior como
 </div>
 <div id="lecturas-adicionales-y-referencias" class="section level4 unnumbered">
 <h4>Lecturas adicionales y referencias</h4>
-<p>Como se muestra en la Figura <a href="C-LossReserves.html#fig:tikz-run-off">11.1</a>, cronogramas y visualizaciones similares se discuten (entre otros) en <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">Antonio and Plat (<a href="#ref-AntonioPlat2014" role="doc-biblioref">2014</a>)</span> y <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p>Como se muestra en la Figura <a href="C-LossReserves.html#fig:tikz-run-off">11.1</a>, cronogramas y visualizaciones similares se discuten (entre otros) en <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>, <span class="citation"><a href="bibliography.html#ref-AntonioPlat2014" role="doc-biblioref">Antonio and Plat</a> (<a href="bibliography.html#ref-AntonioPlat2014" role="doc-biblioref">2014</a>)</span> y <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span>.</p>
 <p>Con el tiempo los actuarios comenzaron a pensar en posibles modelos subyacentes. Aquí mencionamos algunas contribuciones importantes:</p>
 <ul>
-<li><span class="citation">Kremer (<a href="#ref-Kremer1982" role="doc-biblioref">1982</a>)</span>: ANOVA de dos factores</li>
-<li><span class="citation">Kremer (<a href="#ref-Kremer1984" role="doc-biblioref">1984</a>)</span>, <span class="citation">Mack (<a href="#ref-Mack1991" role="doc-biblioref">1991</a>)</span>: modelo Poisson</li>
-<li><span class="citation">Mack (<a href="#ref-Mack1993" role="doc-biblioref">1993</a>)</span>: modelo chain-ladder de distribución-libre</li>
-<li><span class="citation">Renshaw (<a href="#ref-Renshaw1989" role="doc-biblioref">1989</a>)</span>; <span class="citation">Renshaw and Verrall (<a href="#ref-RenshawVerrall1998" role="doc-biblioref">1998</a>)</span>: modelo Poisson sobredisperso</li>
-<li><span class="citation">Gisler (<a href="#ref-Gisler2006" role="doc-biblioref">2006</a>)</span>; <span class="citation">Gisler and Wüthrich (<a href="#ref-GislerWuthrich2008" role="doc-biblioref">2008</a>)</span>; <span class="citation">Bühlmann et al. (<a href="#ref-Buhlmann2009" role="doc-biblioref">2009</a>)</span>: modelo chain-ladder bayesiano.</li>
+<li><span class="citation"><a href="bibliography.html#ref-Kremer1982" role="doc-biblioref">E. Kremer</a> (<a href="bibliography.html#ref-Kremer1982" role="doc-biblioref">1982</a>)</span>: ANOVA de dos factores</li>
+<li><span class="citation"><a href="bibliography.html#ref-Kremer1984" role="doc-biblioref">Erhard Kremer</a> (<a href="bibliography.html#ref-Kremer1984" role="doc-biblioref">1984</a>)</span>, <span class="citation"><a href="bibliography.html#ref-Mack1991" role="doc-biblioref">Mack</a> (<a href="bibliography.html#ref-Mack1991" role="doc-biblioref">1991</a>)</span>: modelo Poisson</li>
+<li><span class="citation"><a href="bibliography.html#ref-Mack1993" role="doc-biblioref">Mack</a> (<a href="bibliography.html#ref-Mack1993" role="doc-biblioref">1993</a>)</span>: modelo chain-ladder de distribución-libre</li>
+<li><span class="citation"><a href="bibliography.html#ref-Renshaw1989" role="doc-biblioref">A. E. Renshaw</a> (<a href="bibliography.html#ref-Renshaw1989" role="doc-biblioref">1989</a>)</span>; <span class="citation"><a href="bibliography.html#ref-RenshawVerrall1998" role="doc-biblioref">A. Renshaw and Verrall</a> (<a href="bibliography.html#ref-RenshawVerrall1998" role="doc-biblioref">1998</a>)</span>: modelo Poisson sobredisperso</li>
+<li><span class="citation"><a href="bibliography.html#ref-Gisler2006" role="doc-biblioref">Gisler</a> (<a href="bibliography.html#ref-Gisler2006" role="doc-biblioref">2006</a>)</span>; <span class="citation"><a href="bibliography.html#ref-GislerWuthrich2008" role="doc-biblioref">Gisler and Wüthrich</a> (<a href="bibliography.html#ref-GislerWuthrich2008" role="doc-biblioref">2008</a>)</span>; <span class="citation"><a href="bibliography.html#ref-Buhlmann2009" role="doc-biblioref">Bühlmann et al.</a> (<a href="bibliography.html#ref-Buhlmann2009" role="doc-biblioref">2009</a>)</span>: modelo chain-ladder bayesiano.</li>
 </ul>
-<p>Los diversos modelos estocásticos propuestos en la literatura actuarial se basan en diferentes supuestos y tienen diferentes propiedades, pero tienen en común que proporcionan exactamente las estimaciones de la provisión chain-ladder. Para más información también nos referimos a <span class="citation">Mack and Venter (<a href="#ref-MackVenter2000" role="doc-biblioref">2000</a>)</span> y a la interesante discusión que se publicó en el <em>ASTIN Bulletin: Journal of the International Actuarial Association</em> en 2006 <span class="citation">(Venter <a href="#ref-Venter2006" role="doc-biblioref">2006</a>)</span>.</p>
-<p>Para leer más sobre las familias exponenciales y los modelos lineales generalizados, ver, por ejemplo, <span class="citation">P. McCullagh and Nelder (<a href="#ref-McCullagh1989" role="doc-biblioref">1989</a>)</span> y <span class="citation">Wüthrich and Merz (<a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>. Nos referimos a <span class="citation">(Kremer <a href="#ref-Kremer1982" role="doc-biblioref">1982</a>)</span>, <span class="citation">(Renshaw and Verrall <a href="#ref-RenshawVerrall1998" role="doc-biblioref">1998</a>)</span> y <span class="citation">(England and Verrall <a href="#ref-EnglandVerrall2002" role="doc-biblioref">2002</a>)</span>, y a los resúmenes en <span class="citation">(Taylor <a href="#ref-Taylor2000" role="doc-biblioref">2000</a>)</span>, <span class="citation">(Wüthrich and Merz <a href="#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span> y <span class="citation">(Wüthrich and Merz <a href="#ref-WuthrichMerz2015" role="doc-biblioref">2015</a>)</span> para más detalles sobre los GLM analizamos. XXX presenta supuestos distributivos y especificaciones alternativas del predictor lineal.</p>
+<p>Los diversos modelos estocásticos propuestos en la literatura actuarial se basan en diferentes supuestos y tienen diferentes propiedades, pero tienen en común que proporcionan exactamente las estimaciones de la provisión chain-ladder. Para más información también nos referimos a <span class="citation"><a href="bibliography.html#ref-MackVenter2000" role="doc-biblioref">Mack and Venter</a> (<a href="bibliography.html#ref-MackVenter2000" role="doc-biblioref">2000</a>)</span> y a la interesante discusión que se publicó en el <em>ASTIN Bulletin: Journal of the International Actuarial Association</em> en 2006 <span class="citation">(<a href="bibliography.html#ref-Venter2006" role="doc-biblioref">Gary G. Venter 2006</a>)</span>.</p>
+<p>Para leer más sobre las familias exponenciales y los modelos lineales generalizados, ver, por ejemplo, <span class="citation"><a href="bibliography.html#ref-McCullagh1989" role="doc-biblioref">P. McCullagh and Nelder</a> (<a href="bibliography.html#ref-McCullagh1989" role="doc-biblioref">1989</a>)</span> y <span class="citation"><a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz</a> (<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">2008</a>)</span>. Nos referimos a <span class="citation">(<a href="bibliography.html#ref-Kremer1982" role="doc-biblioref">E. Kremer 1982</a>)</span>, <span class="citation">(<a href="bibliography.html#ref-RenshawVerrall1998" role="doc-biblioref">A. Renshaw and Verrall 1998</a>)</span> y <span class="citation">(<a href="bibliography.html#ref-EnglandVerrall2002" role="doc-biblioref">England and Verrall 2002</a>)</span>, y a los resúmenes en <span class="citation">(<a href="bibliography.html#ref-Taylor2000" role="doc-biblioref">G. Taylor 2000</a>)</span>, <span class="citation">(<a href="bibliography.html#ref-WuthrichMerz2008" role="doc-biblioref">Wüthrich and Merz 2008</a>)</span> y <span class="citation">(<a href="bibliography.html#ref-WuthrichMerz2015" role="doc-biblioref">Wüthrich and Merz 2015</a>)</span> para más detalles sobre los GLM analizamos. XXX presenta supuestos distributivos y especificaciones alternativas del predictor lineal.</p>
 
 </div>
-</div>
-</div>
-<h3>Bibliography</h3>
-<div id="refs" class="references">
-<div id="ref-AntonioPlat2014">
-<p>Antonio, K., and R. Plat. 2014. “Micro–Level Stochastic Loss Reserving for General Insurance.” <em>Scandinavian Actuarial Journal</em> 7: 649–69.</p>
-</div>
-<div id="ref-Buhlmann2009">
-<p>Bühlmann, Hans, Massimo De Felice, Alois Gisler, Franco Moriconi, and Mario V Wüthrich. 2009. “Recursive Credibility Formula for Chain Ladder Factors and the Claims Development Result.” <em>ASTIN Bulletin: The Journal of the IAA</em> 39 (1): 275–306.</p>
-</div>
-<div id="ref-EnglandVerrall2002">
-<p>England, P., and R. Verrall. 2002. “Stochastic Claims Reserving in General Insurance.” <em>British Actuarial Journal</em> 8/3: 443–518.</p>
-</div>
-<div id="ref-R-chainladder">
-<p>Gesmann, Markus, Daniel Murphy, Yanwei Zhang, Alessandro Carrato, Mario Wuthrich, Fabio Concina, and Eric Dal Moro. 2019. <em>ChainLadder: Statistical Methods and Models for Claims Reserving in General Insurance</em>. <a href="https://CRAN.R-project.org/package=ChainLadder">https://CRAN.R-project.org/package=ChainLadder</a>.</p>
-</div>
-<div id="ref-Gisler2006">
-<p>Gisler, Alois. 2006. “The Estimation Error in the Chain-Ladder Reserving Method: A Bayesian Approach.” <em>ASTIN Bulletin: The Journal of the IAA</em> 36 (2): 554–65.</p>
-</div>
-<div id="ref-GislerWuthrich2008">
-<p>Gisler, Alois, and Mario V Wüthrich. 2008. “Credibility for the Chain Ladder Reserving Method.” <em>ASTIN Bulletin: The Journal of the IAA</em> 38 (2): 565–600.</p>
-</div>
-<div id="ref-Kremer1982">
-<p>Kremer, E. 1982. “IBNR-Claims and the Two-Way Model of Anova.” <em>Scandinavian Actuarial Journal</em> 1982: 47–55.</p>
-</div>
-<div id="ref-Kremer1984">
-<p>Kremer, Erhard. 1984. “A Class of Autoregressive Models for Predicting the Final Claims Amount.” <em>Insurance: Mathematics and Economics</em> 3 (2): 111–19.</p>
-</div>
-<div id="ref-Mack1991">
-<p>Mack, Thomas. 1991. “A Simple Parametric Model for Rating Automobile Insurance or Estimating Ibnr Claims Reserves.” <em>ASTIN Bulletin: The Journal of the IAA</em> 21 (1): 93–109.</p>
-</div>
-<div id="ref-Mack1993">
-<p>Mack, Thomas. 1993. “Distribution-Free Calculation of the Standard Error of Chain Ladder Reserve Estimates.” <em>ASTIN Bulletin: The Journal of the IAA</em> 23 (2): 213–25.</p>
-</div>
-<div id="ref-MackVenter2000">
-<p>Mack, Thomas, and Gary Venter. 2000. “A Comparison of Stochastic Models That Reproduce Chain Ladder Reserve Estimates.” <em>Insurance: Mathematics and Economics</em> 26 (1): 101–7.</p>
-</div>
-<div id="ref-McCullagh1989">
-<p>McCullagh, P., and J. A. Nelder. 1989. <em>Generalized Linear Models, Second Edition</em>. Chapman and Hall/Crc Monographs on Statistics and Applied Probability Series. Chapman &amp; Hall.</p>
-</div>
-<div id="ref-Renshaw1989">
-<p>Renshaw, Arthur E. 1989. “Chain Ladder and Interactive Modelling.(Claims Reserving and Glim).” <em>Journal of the Institute of Actuaries</em> 116 (3): 559–87.</p>
-</div>
-<div id="ref-RenshawVerrall1998">
-<p>Renshaw, A., and R. Verrall. 1998. “A Stochastic Model Underlying the Chain-Ladder Technique.” <em>British Actuarial Journal</em> 4/4: 903–23.</p>
-</div>
-<div id="ref-Taylor2000">
-<p>Taylor, G. 2000. <em>Loss Reserving: An Actuarial Perspective</em>. Kluwer Academic Publishers.</p>
-</div>
-<div id="ref-taylor1986claims">
-<p>Taylor, Gregory Clive. 1986. <em>Claims Reserving in Non-Life Insurance</em>. North Holland.</p>
-</div>
-<div id="ref-Venter2006">
-<p>Venter, Gary G. 2006. “Discussion of the Mean Square Error of Prediction in the Chain Ladder Reserving Method.” <em>ASTIN Bulletin: The Journal of the IAA</em> 36 (2): 566–71.</p>
-</div>
-<div id="ref-WuthrichMerz2008">
-<p>Wüthrich, Mario V., and Michael Merz. 2008. <em>Stochastic Claims Reserving Methods in Insurance</em>. Vol. 435. Wiley Finance. John Wiley &amp; Sons.</p>
-</div>
-<div id="ref-WuthrichMerz2015">
-<p>Wüthrich, Mario V., and Michael Merz. 2008. <em>Stochastic Claims Reserving Methods in Insurance</em>. Vol. 435. Wiley Finance. John Wiley &amp; Sons.</p> 2015. <em>Stochastic Claims Reserving Manual: Advances in Dynamic Modeling</em>. SSRN.</p>
 </div>
 </div>
             </section>

@@ -32,6 +32,7 @@
   
 <link rel="prev" href="C-Credibility.html"/>
 <link rel="next" href="C-LossReserves.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <!-- Mathjax -->
@@ -310,19 +310,20 @@ document.getElementById("defaultOpen").click();
 </script>
 
 
+
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -342,7 +343,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -391,69 +392,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Loss Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#colaboradores"><i class="fa fa-check"></i>Colaboradores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisores"><i class="fa fa-check"></i>Revisores</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#traducción-al-español"><i class="fa fa-check"></i>Traducción al español</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-nuestros-lectores"><i class="fa fa-check"></i>Para nuestros lectores</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a><ul>
-<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a><ul>
+<li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introducción a la Analítica de Datos de Pérdida</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevancia de la Analítica para las Actividades de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#naturaleza-y-relevancia-del-seguro"><i class="fa fa-check"></i><b>1.1.1</b> Naturaleza y relevancia del seguro</a></li>
 <li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#qué-es-la-analítica-de-datos-según-su-nombre-en-inglés-analytics"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es la Analítica de datos (según su nombre en inglés, Analytics)?</a></li>
 <li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Procesos en los seguros</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a><ul>
+<li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Operaciones de la Compañía de Seguros</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="C-Intro.html"><a href="C-Intro.html#inicio-del-seguro"><i class="fa fa-check"></i><b>1.2.1</b> Inicio del seguro</a></li>
 <li class="chapter" data-level="1.2.2" data-path="C-Intro.html"><a href="C-Intro.html#renovación-del-seguro"><i class="fa fa-check"></i><b>1.2.2</b> Renovación del seguro</a></li>
 <li class="chapter" data-level="1.2.3" data-path="C-Intro.html"><a href="C-Intro.html#gestión-de-productos-y-siniestros"><i class="fa fa-check"></i><b>1.2.3</b> Gestión de productos y siniestros</a></li>
 <li class="chapter" data-level="1.2.4" data-path="C-Intro.html"><a href="C-Intro.html#S:Reserving"><i class="fa fa-check"></i><b>1.2.4</b> Provisiones</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a><ul>
+<li class="chapter" data-level="1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:LGPIF"><i class="fa fa-check"></i><b>1.3</b> Caso de Estudio: Fondo de Propiedad de Wisconsin</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="C-Intro.html"><a href="C-Intro.html#S:OutComes"><i class="fa fa-check"></i><b>1.3.1</b> Variables de siniestralidad del fondo: frecuencia y severidad</a></li>
 <li class="chapter" data-level="1.3.2" data-path="C-Intro.html"><a href="C-Intro.html#S:FundVariables"><i class="fa fa-check"></i><b>1.3.2</b> Variables de clasificación del fondo</a></li>
 <li class="chapter" data-level="1.3.3" data-path="C-Intro.html"><a href="C-Intro.html#operativa-del-fondo"><i class="fa fa-check"></i><b>1.3.3</b> Operativa del fondo</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="C-Intro.html"><a href="C-Intro.html#Intro-further-reading-and-resources"><i class="fa fa-check"></i><b>1.4</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a><ul>
-<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html"><i class="fa fa-check"></i><b>2</b> Modelización de la Frecuencia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions"><i class="fa fa-check"></i><b>2.1</b> Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:how-frequency-augments-severity-information"><i class="fa fa-check"></i><b>2.1.1</b> Cómo la frecuencia incrementa la información sobre la cuantía</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a><ul>
+<li class="chapter" data-level="2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:basic-frequency-distributions"><i class="fa fa-check"></i><b>2.2</b> Distribuciones de Frecuencias Elementales</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:foundations"><i class="fa fa-check"></i><b>2.2.1</b> Fundamentos</a></li>
 <li class="chapter" data-level="2.2.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:generating-functions"><i class="fa fa-check"></i><b>2.2.2</b> Funciones Generadoras de Momentos y de Probabilidad</a></li>
 <li class="chapter" data-level="2.2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:important-frequency-distributions"><i class="fa fa-check"></i><b>2.2.3</b> Distribuciones de Frecuencias Importantes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> La Clase (a, b, 0)</a></li>
-<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimación de las Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Estimación de los parámetros</a></li>
 <li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> MLE de las distribuciones de frecuencias</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a><ul>
+<li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Otras Distribuciones de Frecuencias</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:zero-truncation-or-modification"><i class="fa fa-check"></i><b>2.5.1</b> Modificación o Truncamiento en Cero</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Distribuciones Mixtas</a></li>
 <li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Bondad del Ajuste</a></li>
 <li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
-<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a><ul>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Recursos Adicionales y Autores</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. Código R para Gráficos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a><ul>
-<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a><ul>
+<li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modelización de la Severidad de las Pérdidas</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Cantidades Distribucionales Básicas</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Momentos</a></li>
 <li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#cuantiles"><i class="fa fa-check"></i><b>3.1.2</b> Cuantiles</a></li>
 <li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#función-generatriz-de-momentos"><i class="fa fa-check"></i><b>3.1.3</b> Función generatriz de momentos</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a><ul>
+<li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Distribuciones Continuas para Modelizar la Severidad de las Pérdidas</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Distribución gamma</a></li>
 <li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#distribución-pareto"><i class="fa fa-check"></i><b>3.2.2</b> Distribución Pareto</a></li>
 <li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Distribución Weibull</a></li>
 <li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#distribución-beta-generalizada-de-segundo-tipo"><i class="fa fa-check"></i><b>3.2.4</b> Distribución Beta Generalizada de segundo tipo</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a><ul>
+<li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Métodos para Crear Distribuciones Nuevas</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="C-Severity.html"><a href="C-Severity.html#funciones-de-variables-aleatorias-y-sus-distribuciones"><i class="fa fa-check"></i><b>3.3.1</b> Funciones de variables aleatorias y sus distribuciones</a></li>
 <li class="chapter" data-level="3.3.2" data-path="C-Severity.html"><a href="C-Severity.html#multiplicación-por-una-constante"><i class="fa fa-check"></i><b>3.3.2</b> Multiplicación por una constante</a></li>
 <li class="chapter" data-level="3.3.3" data-path="C-Severity.html"><a href="C-Severity.html#elevación-a-una-potencia"><i class="fa fa-check"></i><b>3.3.3</b> Elevación a una potencia</a></li>
@@ -461,35 +477,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.5" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-finitas"><i class="fa fa-check"></i><b>3.3.5</b> Mixturas finitas</a></li>
 <li class="chapter" data-level="3.3.6" data-path="C-Severity.html"><a href="C-Severity.html#mixturas-continuas"><i class="fa fa-check"></i><b>3.3.6</b> Mixturas continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a><ul>
+<li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Modificaciones de Cobertura</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Franquicias</a></li>
 <li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Límites de la póliza</a></li>
 <li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coseguro-e-inflación"><i class="fa fa-check"></i><b>3.4.3</b> Coseguro e inflación</a></li>
 <li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reaseguro</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Estimación por Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#estimadores-de-máxima-verosimilitud-para-datos-completos"><i class="fa fa-check"></i><b>3.5.1</b> Estimadores de máxima verosimilitud para datos completos</a></li>
 <li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Estimadores por máxima verosimilitud usando datos modificados</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Recursos y Contribuciones Adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a><ul>
-<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a><ul>
+<li class="chapter" data-level="4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html"><i class="fa fa-check"></i><b>4</b> Selección del Modelo y Estimación</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:NonParInf"><i class="fa fa-check"></i><b>4.1</b> Inferencia No Paramétrica</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica"><i class="fa fa-check"></i><b>4.1.1</b> Estimación No Paramétrica</a></li>
 <li class="chapter" data-level="4.1.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ToolsModelSelection"><i class="fa fa-check"></i><b>4.1.2</b> Herramientas para la Selección de Modelos y Diagnósticos</a></li>
 <li class="chapter" data-level="4.1.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#valores-iniciales"><i class="fa fa-check"></i><b>4.1.3</b> Valores Iniciales</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a><ul>
+<li class="chapter" data-level="4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModelSelection"><i class="fa fa-check"></i><b>4.2</b> Selección del Modelo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-iterativa"><i class="fa fa-check"></i><b>4.2.1</b> Selección del Modelo Iterativa</a></li>
 <li class="chapter" data-level="4.2.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-entrenamiento"><i class="fa fa-check"></i><b>4.2.2</b> Selección de Modelo basada en un Conjunto de Datos de Entrenamiento</a></li>
 <li class="chapter" data-level="4.2.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-de-modelo-basada-en-un-conjunto-de-datos-de-prueba"><i class="fa fa-check"></i><b>4.2.3</b> Selección de Modelo basada en un Conjunto de Datos de Prueba</a></li>
 <li class="chapter" data-level="4.2.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#selección-del-modelo-basada-en-validación-cruzada"><i class="fa fa-check"></i><b>4.2.4</b> Selección del Modelo basada en Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a><ul>
+<li class="chapter" data-level="4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:ModifiedData"><i class="fa fa-check"></i><b>4.3</b> Estimación utilizando Datos Modificados</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-paramétrica-usando-datos-modificados"><i class="fa fa-check"></i><b>4.3.1</b> Estimación Paramétrica usando Datos Modificados</a></li>
 <li class="chapter" data-level="4.3.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#estimación-no-paramétrica-utilizando-datos-modificados"><i class="fa fa-check"></i><b>4.3.2</b> Estimación no Paramétrica Utilizando Datos Modificados</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a><ul>
+<li class="chapter" data-level="4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:MS:BayesInference"><i class="fa fa-check"></i><b>4.4</b> Inferencia Bayesiana</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:IntroBayes"><i class="fa fa-check"></i><b>4.4.1</b> Introducción a la Inferencia Bayesiana</a></li>
 <li class="chapter" data-level="4.4.2" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#modelo-bayesiano"><i class="fa fa-check"></i><b>4.4.2</b> Modelo Bayesiano</a></li>
 <li class="chapter" data-level="4.4.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#inferencia-bayesiana"><i class="fa fa-check"></i><b>4.4.3</b> Inferencia Bayesiana</a></li>
@@ -497,164 +520,201 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Más Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Modelos de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introducción"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
 <li class="chapter" data-level="5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-individual"><i class="fa fa-check"></i><b>5.2</b> Modelo de Riesgo Individual</a></li>
-<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a><ul>
+<li class="chapter" data-level="5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#modelo-de-riesgo-colectivo"><i class="fa fa-check"></i><b>5.3</b> Modelo de Riesgo Colectivo</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
 <li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a><ul>
+<li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#método-recursivo"><i class="fa fa-check"></i><b>5.4.1</b> Método recursivo</a></li>
 <li class="chapter" data-level="5.4.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#simulación"><i class="fa fa-check"></i><b>5.4.2</b> Simulación</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a><ul>
+<li class="chapter" data-level="5.5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#efectos-de-la-modificación-de-las-coberturas"><i class="fa fa-check"></i><b>5.5</b> Efectos de la Modificación de las Coberturas</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-la-exposición-en-la-frecuencia"><i class="fa fa-check"></i><b>5.5.1</b> Impacto de la exposición en la frecuencia</a></li>
 <li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impacto de los deducibles en la frecuencia de siniestros</a></li>
 <li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impacto-de-las-modificaciones-de-la-póliza-en-la-siniestralidad-agregada"><i class="fa fa-check"></i><b>5.5.3</b> Impacto de las modificaciones de la póliza en la siniestralidad agregada</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a><ul>
-<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a><ul>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulación y Remuestreo</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Fundamentos de la Simulación</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generación-de-observaciones-uniformes-independientes"><i class="fa fa-check"></i><b>6.1.1</b> Generación de observaciones uniformes independientes</a></li>
 <li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:InverseTransform"><i class="fa fa-check"></i><b>6.1.2</b> Método de la transformada inversa</a></li>
 <li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-de-la-simulación"><i class="fa fa-check"></i><b>6.1.3</b> Precisión de la simulación</a></li>
 <li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulación e inferencia estadística</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a><ul>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping y Remuestreo</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#fundamentos-del-bootstrap"><i class="fa fa-check"></i><b>6.2.1</b> Fundamentos del Bootstrap</a></li>
 <li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#precisión-del-bootstrap-sesgo-desviación-estándar-y-mse-error-cuadrático-medio-en-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>6.2.2</b> Precisión del bootstrap: Sesgo, desviación estándar, y MSE (error cuadrático medio, en sus siglas en inglés)</a></li>
 <li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>6.2.3</b> Intervalos de confianza</a></li>
 <li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Bootstrap paramétrico</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a><ul>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Validación Cruzada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-k-fold"><i class="fa fa-check"></i><b>6.3.1</b> Validación cruzada k-fold</a></li>
 <li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-dejando-uno-fuera"><i class="fa fa-check"></i><b>6.3.2</b> Validación cruzada dejando uno fuera</a></li>
 <li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#validación-cruzada-y-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Validación cruzada y Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
-<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
 <li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#muestreo-de-gibbs"><i class="fa fa-check"></i><b>6.5.2</b> Muestreo de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a><ul>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Recursos Adicionales y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-bootstrap-applications-in-predictive-modeling"><i class="fa fa-check"></i><b>6.6.1</b> TS 6.A. Bootstrap Applications in Predictive Modeling</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a><ul>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Fundamentos de la Prima</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introducción a la Tarificación</a></li>
-<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a><ul>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Métodos de Tarificación Conjunta</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Método de la Prima Pura</a></li>
 <li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Método de la Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a><ul>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Principios de Tarificación</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.1</b> Principios de Tarificación</a></li>
 <li class="chapter" data-level="7.3.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#propiedades-de-los-principios-de-tarificación"><i class="fa fa-check"></i><b>7.3.2</b> Propiedades de los Principios de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a><ul>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Riesgos Heterogéneos</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposición al Riesgo</a></li>
 <li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Factores de Tarificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a><ul>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Desarrollo y Tendencia</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposiciones-y-primas"><i class="fa fa-check"></i><b>7.5.1</b> Exposiciones y Primas</a></li>
 <li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#siniestros-reclamaciones-y-pagos"><i class="fa fa-check"></i><b>7.5.2</b> Siniestros, Reclamaciones y Pagos</a></li>
 <li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparación de los Métodos de Prima Pura y Ratio de Siniestralidad</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a><ul>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selección de Prima</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-lorenz-clásica"><i class="fa fa-check"></i><b>7.6.1</b> Curva de Lorenz Clásica</a></li>
 <li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#curva-de-rendimiento-y-estadístico-de-gini"><i class="fa fa-check"></i><b>7.6.2</b> Curva de Rendimiento y Estadístico de Gini</a></li>
 <li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#validación-cruzada"><i class="fa fa-check"></i><b>7.6.3</b> Validación Cruzada</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#otros-recursos-y-colaboradores"><i class="fa fa-check"></i><b>7.7</b> Otros Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-regulación-de-la-tarificación"><i class="fa fa-check"></i>TS 7.A. Regulación de la Tarificación</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a><ul>
+<li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Clasificación de Riesgos</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
-<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a><ul>
+<li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Modelo de Regresión de Poisson</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Necesidad de la Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson"><i class="fa fa-check"></i><b>8.2.2</b> Regresión de Poisson</a></li>
 <li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporación-de-la-exposición"><i class="fa fa-check"></i><b>8.2.3</b> Incorporación de la exposición</a></li>
 <li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejercicios-3"><i class="fa fa-check"></i><b>8.2.4</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a><ul>
+<li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Variables Categóricas y Tarifa Multiplicativa</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#factores-de-tarificación-y-tarifa"><i class="fa fa-check"></i><b>8.3.1</b> Factores de Tarificación y Tarifa</a></li>
 <li class="chapter" data-level="8.3.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#modelo-de-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.2</b> Modelo de Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#regresión-de-poisson-para-la-tarifa-multiplicativa"><i class="fa fa-check"></i><b>8.3.3</b> Regresión de Poisson para la Tarifa Multiplicativa</a></li>
 <li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ejemplos-numéricos"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplos numéricos</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a><ul>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Más Recursos y Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimación-de-modelos-de-regresión-de-poisson"><i class="fa fa-check"></i>TS 8.A – Estimación de Modelos de Regresión de Poisson</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a><ul>
+<li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Tarificación Basada en la Experiencia Mediante Teoría de la Credibilidad</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introducción-a-las-aplicaciones-de-la-teoría-de-la-credibilidad"><i class="fa fa-check"></i><b>9.1</b> Introducción a las Aplicaciones de la Teoría de la Credibilidad</a></li>
-<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a><ul>
+<li class="chapter" data-level="9.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-fluctuación-limitada"><i class="fa fa-check"></i><b>9.2</b> Credibilidad de Fluctuación Limitada</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:frequency"><i class="fa fa-check"></i><b>9.2.1</b> Credibilidad Completa para la Frecuencia de Siniestralidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-siniestralidad-agregada-y-la-prima-pura"><i class="fa fa-check"></i><b>9.2.2</b> Credibilidad Completa para la Siniestralidad Agregada y la Prima Pura</a></li>
 <li class="chapter" data-level="9.2.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-completa-para-la-severidad"><i class="fa fa-check"></i><b>9.2.3</b> Credibilidad Completa para la Severidad</a></li>
 <li class="chapter" data-level="9.2.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-parcial"><i class="fa fa-check"></i><b>9.2.4</b> Credibilidad parcial</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a><ul>
+<li class="chapter" data-level="9.3" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann"><i class="fa fa-check"></i><b>9.3</b> Credibilidad de Bühlmann</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibilidad Z, <em>EPV</em>, y <em>VHM</em></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#credibilidad-de-bühlmann-straub"><i class="fa fa-check"></i><b>9.4</b> Credibilidad de Bühlmann-Straub</a></li>
-<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.5</b> Otros Recursos y Colaboradores</a></li>
+<li class="chapter" data-level="9.7" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.7</b> Otros Recursos y Colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a><ul>
+<li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Gestión de Carteras de Seguros incluyendo Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introducción-a-las-carteras-de-seguros"><i class="fa fa-check"></i><b>10.1</b> Introducción a las Carteras de Seguros</a></li>
-<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a><ul>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Colas de las Distribuciones</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#clasificación-basada-en-los-momentos"><i class="fa fa-check"></i><b>10.2.1</b> Clasificación Basada en los Momentos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparación-basada-en-el-comportamiento-de-colas-con-límites"><i class="fa fa-check"></i><b>10.2.2</b> Comparación basada en el comportamiento de colas con límites</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a><ul>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Medidas de Riesgo</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#medidas-de-riesgo-coherentes"><i class="fa fa-check"></i><b>10.3.1</b> Medidas de Riesgo Coherentes</a></li>
 <li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.2</b> Valor en Riesgo</a></li>
 <li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#cola-del-valor-en-riesgo"><i class="fa fa-check"></i><b>10.3.3</b> Cola del Valor en Riesgo</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a><ul>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reaseguro</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Reaseguro Proporcional</a></li>
 <li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Reaseguro No-Proporcional</a></li>
 <li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Acuerdos de Reaseguro Adicionales</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#recursos-y-colaboradores-adicionales"><i class="fa fa-check"></i><b>10.5</b> Recursos y Colaboradores adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a><ul>
+<li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Provisiones</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:motivation"><i class="fa fa-check"></i><b>11.1</b> Motivación</a>
+<ul>
 <li class="chapter" data-level="11.1.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:claim-types"><i class="fa fa-check"></i><b>11.1.1</b> Siniestros cerrados, IBNR, y RBNS</a></li>
 <li class="chapter" data-level="11.1.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#por-qué-reservar"><i class="fa fa-check"></i><b>11.1.2</b> ¿Por qué reservar?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a><ul>
+<li class="chapter" data-level="11.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Data"><i class="fa fa-check"></i><b>11.2</b> Datos de provisiones</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#de-micro-a-macro"><i class="fa fa-check"></i><b>11.2.1</b> De Micro a Macro</a></li>
 <li class="chapter" data-level="11.2.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#triángulos-de-desarrollo"><i class="fa fa-check"></i><b>11.2.2</b> Triángulos de desarrollo</a></li>
 <li class="chapter" data-level="11.2.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#notación-de-provisiones"><i class="fa fa-check"></i><b>11.2.3</b> Notación de provisiones</a></li>
 <li class="chapter" data-level="11.2.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Rcode"><i class="fa fa-check"></i><b>11.2.4</b> Código R para resumir datos de provisión de pérdidas</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a><ul>
+<li class="chapter" data-level="11.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:Chain-ladder"><i class="fa fa-check"></i><b>11.3</b> Chain-Ladder</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:DeterministicCL"><i class="fa fa-check"></i><b>11.3.1</b> Chain-Ladder Determinista</a></li>
 <li class="chapter" data-level="11.3.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#modelo-chain-ladder-de-distribución-libre-de-mack"><i class="fa fa-check"></i><b>11.3.2</b> Modelo Chain-ladder de distribución libre de Mack</a></li>
 <li class="chapter" data-level="11.3.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#código-r-para-las-predicciones-chain-ladder"><i class="fa fa-check"></i><b>11.3.3</b> Código R para las predicciones Chain-Ladder</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a><ul>
+<li class="chapter" data-level="11.4" data-path="C-LossReserves.html"><a href="C-LossReserves.html#S:GLMs"><i class="fa fa-check"></i><b>11.4</b> GLMs y Bootstrap para provisiones</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="C-LossReserves.html"><a href="C-LossReserves.html#especificación-del-modelo"><i class="fa fa-check"></i><b>11.4.1</b> Especificación del modelo</a></li>
 <li class="chapter" data-level="11.4.2" data-path="C-LossReserves.html"><a href="C-LossReserves.html#estimación-y-predicción-del-modelo"><i class="fa fa-check"></i><b>11.4.2</b> Estimación y predicción del modelo</a></li>
 <li class="chapter" data-level="11.4.3" data-path="C-LossReserves.html"><a href="C-LossReserves.html#bootstrap"><i class="fa fa-check"></i><b>11.4.3</b> Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="C-LossReserves.html"><a href="C-LossReserves.html#LossRe:further-reading-and-resources"><i class="fa fa-check"></i><b>11.5</b> Recursos adicionales y contribuciones</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a><ul>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Tarificación a posteriori usando Bonus-Malus</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
-<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a><ul>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> Sistema NCD en Varios Países</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-malasia"><i class="fa fa-check"></i><b>12.2.1</b> Sistema NCD en Malasia</a></li>
 <li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#sistema-ncd-en-otros-países"><i class="fa fa-check"></i><b>12.2.2</b> Sistema NCD en Otros Países</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a><ul>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS y Modelo de Cadenas de Markov</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#probabilidad-de-transición"><i class="fa fa-check"></i><b>12.3.1</b> Probabilidad de Transición</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a><ul>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS y Distribución Estacionaria</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#distribución-estacionaria"><i class="fa fa-check"></i><b>12.4.1</b> Distribución Estacionaria</a></li>
 <li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-distribuciones-estacionarias"><i class="fa fa-check"></i><b>12.4.2</b> Programa R para Distribuciones Estacionarias</a></li>
 <li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#evolución-de-la-prima"><i class="fa fa-check"></i><b>12.4.3</b> Evolución de la Prima</a></li>
@@ -662,21 +722,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.5</b> Ratio de Convergencia</a></li>
 <li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#programa-r-para-el-ratio-de-convergencia"><i class="fa fa-check"></i><b>12.4.6</b> Programa R para el Ratio de Convergencia</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a><ul>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS y Tarificación de Primas</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas"><i class="fa fa-check"></i><b>12.5.1</b> Tarificación de Primas</a></li>
 <li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#modelos-de-frecuencia-regresiones-de-poisson-y-binomial-negativa"><i class="fa fa-check"></i><b>12.5.2</b> Modelos de Frecuencia – Regresiones de Poisson y Binomial Negativa</a></li>
 <li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-de-primas-con-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.3</b> Tarificación de Primas con datos Bonus-Malus</a></li>
 <li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#tarificación-sin-datos-bonus-malus"><i class="fa fa-check"></i><b>12.5.4</b> Tarificación sin datos Bonus-Malus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a><ul>
-<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a><ul>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Datos y Sistemas</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#datos"><i class="fa fa-check"></i><b>13.1</b> Datos</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#tipos-y-fuentes-de-datos"><i class="fa fa-check"></i><b>13.1.1</b> Tipos y Fuentes de Datos</a></li>
 <li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#estructuras-de-datos-y-almacenamiento"><i class="fa fa-check"></i><b>13.1.2</b> Estructuras de Datos y Almacenamiento</a></li>
 <li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#calidad-de-los-datos"><i class="fa fa-check"></i><b>13.1.3</b> Calidad de los Datos</a></li>
 <li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#limpieza-de-los-datos"><i class="fa fa-check"></i><b>13.1.4</b> Limpieza de los Datos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a><ul>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-preliminar-de-los-datos"><i class="fa fa-check"></i><b>13.2</b> Análisis Preliminar de los Datos</a>
+<ul>
 <li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Proceso de Análisis de Datos</a></li>
 <li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratorio-versus-confirmatorio"><i class="fa fa-check"></i><b>13.2.2</b> Exploratorio versus Confirmatorio</a></li>
 <li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervisado-versus-no-supervisado"><i class="fa fa-check"></i><b>13.2.3</b> Supervisado versus No Supervisado</a></li>
@@ -687,7 +751,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.8" data-path="C-DataSystems.html"><a href="C-DataSystems.html#análisis-reproducibles"><i class="fa fa-check"></i><b>13.2.8</b> Análisis Reproducibles</a></li>
 <li class="chapter" data-level="13.2.9" data-path="C-DataSystems.html"><a href="C-DataSystems.html#problemas-éticos"><i class="fa fa-check"></i><b>13.2.9</b> Problemas Éticos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a><ul>
+<li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-de-análisis-de-datos"><i class="fa fa-check"></i><b>13.3</b> Técnicas de Análisis de Datos</a>
+<ul>
 <li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-exploratorias"><i class="fa fa-check"></i><b>13.3.1</b> Técnicas exploratorias</a></li>
 <li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#técnicas-confirmatorias"><i class="fa fa-check"></i><b>13.3.2</b> Técnicas confirmatorias</a></li>
 </ul></li>
@@ -695,96 +760,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#resumen"><i class="fa fa-check"></i><b>13.5</b> Resumen</a></li>
 <li class="chapter" data-level="13.6" data-path="C-DataSystems.html"><a href="C-DataSystems.html#DS:further-reading-and-resources"><i class="fa fa-check"></i><b>13.6</b> Otros recursos y colaboradores</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Dependence Modeling</a><ul>
-<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Variable Types</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Qualitative Variables</a></li>
-<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Quantitative Variables</a></li>
-<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#multivariate-variables"><i class="fa fa-check"></i><b>14.1.3</b> Multivariate Variables</a></li>
+<li class="chapter" data-level="14" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html"><i class="fa fa-check"></i><b>14</b> Modelización de la Dependencia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:VarTypes"><i class="fa fa-check"></i><b>14.1</b> Tipos de Variables</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuaVar"><i class="fa fa-check"></i><b>14.1.1</b> Variables Cualitativas</a></li>
+<li class="chapter" data-level="14.1.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:QuanVar"><i class="fa fa-check"></i><b>14.1.2</b> Variables Cuantitativas</a></li>
+<li class="chapter" data-level="14.1.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-multivariantes"><i class="fa fa-check"></i><b>14.1.3</b> Variables Multivariantes</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Classic Measures of Scalar Associations</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
-<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
-<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
-<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
-<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
-<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
+<li class="chapter" data-level="14.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Measures"><i class="fa fa-check"></i><b>14.2</b> Medidas clásicas de asociaciones escalares</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-de-asociación-para-variables-ordinales"><i class="fa fa-check"></i><b>14.2.1</b> Medidas de Asociación para Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#medidas-basadas-en-rangos"><i class="fa fa-check"></i><b>14.2.2</b> Medidas Basadas en Rangos</a></li>
+<li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-nominales"><i class="fa fa-check"></i><b>14.2.3</b> Variables Nominales</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-ordinales"><i class="fa fa-check"></i><b>14.2.4</b> Variables Ordinales</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-de-intervalo"><i class="fa fa-check"></i><b>14.2.5</b> Variables de Intervalo</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#variables-discretas-y-continuas"><i class="fa fa-check"></i><b>14.2.6</b> Variables discretas y continuas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
-<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#data-description"><i class="fa fa-check"></i><b>14.4.1</b> Data Description</a></li>
-<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#marginal-models"><i class="fa fa-check"></i><b>14.4.2</b> Marginal Models</a></li>
-<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#probability-integral-transformation"><i class="fa fa-check"></i><b>14.4.3</b> Probability Integral Transformation</a></li>
-<li class="chapter" data-level="14.4.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#joint-modeling-with-copula-function"><i class="fa fa-check"></i><b>14.4.4</b> Joint Modeling with Copula Function</a></li>
+<li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introducción a Copulas</a></li>
+<li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Aplicación usando Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#descripción-de-los-datos"><i class="fa fa-check"></i><b>14.4.1</b> Descripción de los Datos</a></li>
+<li class="chapter" data-level="14.4.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelos-marginales"><i class="fa fa-check"></i><b>14.4.2</b> Modelos Marginales</a></li>
+<li class="chapter" data-level="14.4.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#modelización-conjunta-con-función-de-cópula"><i class="fa fa-check"></i><b>14.4.3</b> Modelización Conjunta con Función de Cópula</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Types of Copulas</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#elliptical-copulas"><i class="fa fa-check"></i><b>14.5.1</b> Elliptical Copulas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#archimedian-copulas"><i class="fa fa-check"></i><b>14.5.2</b> Archimedian Copulas</a></li>
-<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
+<li class="chapter" data-level="14.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopTyp"><i class="fa fa-check"></i><b>14.5</b> Tipos de Cópulas</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-elípticas"><i class="fa fa-check"></i><b>14.5.1</b> Cópulas Elípticas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#cópulas-arquimedianas"><i class="fa fa-check"></i><b>14.5.2</b> Cópulas Arquimedianas</a></li>
+<li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#propiedades-de-las-cópulas"><i class="fa fa-check"></i><b>14.5.3</b> Propiedades de las Cópulas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
-<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
+<li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> ¿Por qué es importante la modelización de la dependencia?</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Más Recursos y Contribuciones</a>
+<ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-otras-medidas-clásicas-de-asociaciones-escalares"><i class="fa fa-check"></i>TS 14.A. Otras Medidas Clásicas de Asociaciones Escalares</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a><ul>
-<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a><ul>
+<li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Apéndice A: Revisión de la Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:BASIC"><i class="fa fa-check"></i><b>15.1</b> Conceptos Básicos</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="C-AppA.html"><a href="C-AppA.html#muestreo-aleatorio"><i class="fa fa-check"></i><b>15.1.1</b> Muestreo Aleatorio</a></li>
 <li class="chapter" data-level="15.1.2" data-path="C-AppA.html"><a href="C-AppA.html#distribución-muestral"><i class="fa fa-check"></i><b>15.1.2</b> Distribución Muestral</a></li>
 <li class="chapter" data-level="15.1.3" data-path="C-AppA.html"><a href="C-AppA.html#teorema-central-del-límite"><i class="fa fa-check"></i><b>15.1.3</b> Teorema Central del Límite</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a><ul>
+<li class="chapter" data-level="15.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:PE"><i class="fa fa-check"></i><b>15.2</b> Estimación Puntual y Propiedades</a>
+<ul>
 <li class="chapter" data-level="15.2.1" data-path="C-AppA.html"><a href="C-AppA.html#método-de-estimación-de-momentos"><i class="fa fa-check"></i><b>15.2.1</b> Método de Estimación de Momentos</a></li>
 <li class="chapter" data-level="15.2.2" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:MLE"><i class="fa fa-check"></i><b>15.2.2</b> Estimación por Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a><ul>
+<li class="chapter" data-level="15.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE"><i class="fa fa-check"></i><b>15.3</b> Estimación de Intervalo</a>
+<ul>
 <li class="chapter" data-level="15.3.1" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:IE:ED"><i class="fa fa-check"></i><b>15.3.1</b> Distribución Exacta para la Media de Muestra Normal</a></li>
 <li class="chapter" data-level="15.3.2" data-path="C-AppA.html"><a href="C-AppA.html#propiedades-de-muestra-grande-del-estimador-mle"><i class="fa fa-check"></i><b>15.3.2</b> Propiedades de Muestra Grande del Estimador MLE</a></li>
 <li class="chapter" data-level="15.3.3" data-path="C-AppA.html"><a href="C-AppA.html#intervalo-de-confianza"><i class="fa fa-check"></i><b>15.3.3</b> Intervalo de confianza</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a><ul>
+<li class="chapter" data-level="15.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT"><i class="fa fa-check"></i><b>15.4</b> Pruebas de Hipótesis</a>
+<ul>
 <li class="chapter" data-level="15.4.1" data-path="C-AppA.html"><a href="C-AppA.html#conceptos-básicos"><i class="fa fa-check"></i><b>15.4.1</b> Conceptos Básicos</a></li>
 <li class="chapter" data-level="15.4.2" data-path="C-AppA.html"><a href="C-AppA.html#contraste-t-student-basado-en-el-estimador-mle"><i class="fa fa-check"></i><b>15.4.2</b> Contraste <span class="math inline">\(t\)</span>-Student Basado en el Estimador MLE</a></li>
 <li class="chapter" data-level="15.4.3" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:LRT"><i class="fa fa-check"></i><b>15.4.3</b> Prueba de la Razón de Verosimilitud</a></li>
 <li class="chapter" data-level="15.4.4" data-path="C-AppA.html"><a href="C-AppA.html#S:AppA:HT:IC"><i class="fa fa-check"></i><b>15.4.4</b> Criterios de Información</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a><ul>
-<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a><ul>
+<li class="chapter" data-level="16" data-path="C-AppB.html"><a href="C-AppB.html"><i class="fa fa-check"></i><b>16</b> Apéndice B: Esperanzas Iteradas</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:CD"><i class="fa fa-check"></i><b>16.1</b> Distribución Condicionada y Esperanza Condicional</a>
+<ul>
 <li class="chapter" data-level="16.1.1" data-path="C-AppB.html"><a href="C-AppB.html#distribución-condicional"><i class="fa fa-check"></i><b>16.1.1</b> Distribución Condicional</a></li>
 <li class="chapter" data-level="16.1.2" data-path="C-AppB.html"><a href="C-AppB.html#caso-continuo"><i class="fa fa-check"></i><b>16.1.2</b> Caso Continuo</a></li>
 <li class="chapter" data-level="16.1.3" data-path="C-AppB.html"><a href="C-AppB.html#esperanza-condicional-y-varianza-condicional"><i class="fa fa-check"></i><b>16.1.3</b> Esperanza Condicional y Varianza Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a><ul>
+<li class="chapter" data-level="16.2" data-path="C-AppB.html"><a href="C-AppB.html#S:AppB:IE"><i class="fa fa-check"></i><b>16.2</b> Esperanzas Iteradas y Varianza Total</a>
+<ul>
 <li class="chapter" data-level="16.2.1" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-las-esperanzas-iteradas"><i class="fa fa-check"></i><b>16.2.1</b> Ley de las Esperanzas Iteradas</a></li>
 <li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#ley-de-la-varianza-total"><i class="fa fa-check"></i><b>16.2.2</b> Ley de la Varianza Total</a></li>
 <li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#aplicación"><i class="fa fa-check"></i><b>16.2.3</b> Aplicación</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a><ul>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Distribuciones Conjugadas</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#familia-exponencial-lineal"><i class="fa fa-check"></i><b>16.3.1</b> Familia Exponencial Lineal</a></li>
 <li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#distribuciones-conjugadas"><i class="fa fa-check"></i><b>16.3.2</b> Distribuciones Conjugadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a><ul>
-<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a><ul>
+<li class="chapter" data-level="17" data-path="C-AppC.html"><a href="C-AppC.html"><i class="fa fa-check"></i><b>17</b> Apéndice C: Teoría de la Máxima Verosimilitud</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:LF"><i class="fa fa-check"></i><b>17.1</b> Función de Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.1.1" data-path="C-AppC.html"><a href="C-AppC.html#la-función-de-verosimilitud-y-de-log-verosimilitud"><i class="fa fa-check"></i><b>17.1.1</b> La Función de Verosimilitud y de Log-verosimilitud</a></li>
 <li class="chapter" data-level="17.1.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-de-las-funciones-de-verosimilitud"><i class="fa fa-check"></i><b>17.1.2</b> Propiedades de las Funciones de Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLE"><i class="fa fa-check"></i><b>17.2</b> Estimadores de Máxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.2.1" data-path="C-AppC.html"><a href="C-AppC.html#definición-y-derivación-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.1</b> Definición y Derivación del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.2" data-path="C-AppC.html"><a href="C-AppC.html#propiedades-asintóticas-del-estimador-mle"><i class="fa fa-check"></i><b>17.2.2</b> Propiedades Asintóticas del Estimador MLE</a></li>
 <li class="chapter" data-level="17.2.3" data-path="C-AppC.html"><a href="C-AppC.html#uso-de-la-estimación-de-máxima-verosimilitud"><i class="fa fa-check"></i><b>17.2.3</b> Uso de la Estimación de Máxima Verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a><ul>
+<li class="chapter" data-level="17.3" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:SI"><i class="fa fa-check"></i><b>17.3</b> Inferencia Estadística Basada en la Estimación de Báxima Verosimilitud</a>
+<ul>
 <li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#contraste-de-hipótesis"><i class="fa fa-check"></i><b>17.3.1</b> Contraste de Hipótesis</a></li>
 <li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> Validación del Modelo y MLE</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a><ul>
-<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a><ul>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Apéndice D: Resumen de Distribuciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-discretas"><i class="fa fa-check"></i><b>18.1</b> Distribuciones Discretas</a>
+<ul>
 <li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab0"><i class="fa fa-check"></i><b>18.1.1</b> La clase (a,b,0)</a></li>
 <li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#la-clase-ab1"><i class="fa fa-check"></i><b>18.1.2</b> La clase (a,b,1)</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a><ul>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-continuas"><i class="fa fa-check"></i><b>18.2</b> Distribuciones Continuas</a>
+<ul>
 <li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-un-parámetro"><i class="fa fa-check"></i><b>18.2.1</b> Distribuciones Un Parámetro</a></li>
 <li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-dos-parámetros"><i class="fa fa-check"></i><b>18.2.2</b> Distribuciones Dos Parámetros</a></li>
 <li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distribuciones-tres-parámetros"><i class="fa fa-check"></i><b>18.2.3</b> Distribuciones Tres Parámetros</a></li>
@@ -815,7 +901,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="C:PortMgt" class="section level1">
+<div id="C:PortMgt" class="section level1" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Gestión de Carteras de Seguros incluyendo Reaseguro</h1>
 <p><em>Contenido</em>. Una cartera de seguros es simplemente un conjunto de contratos de seguros. Para ayudar a gestionar la incertidumbre de la cartera, este capítulo</p>
 <ul>
@@ -823,7 +909,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>cuantifica el riesgo global introduciendo indicadores conocidos como medidas de riesgo, y</li>
 <li>analiza las opciones de repartir el riesgo de la cartera a través del reaseguro, la contratación de cobertura de seguro por la propia entidad aseguradora.</li>
 </ul>
-<div id="introducción-a-las-carteras-de-seguros" class="section level2">
+<div id="introducción-a-las-carteras-de-seguros" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Introducción a las Carteras de Seguros</h2>
 <p>La mayoría de nuestros análisis en los capítulos previos se han realizado a nivel de contrato, definido como un acuerdo entre el tomador y el asegurador. Los aseguradores tienen, y gestionan, <a href="#" class="tooltip" style="color:green"><em>carteras</em><span style="font-size:8pt">una colección de contratos</span></a> que son simplemente conjuntos de pólizas. Como en otras áreas financieras, existen elecciones sobre los procesos de gestión que se producen solo a nivel de cartera. Por ejemplo, las decisiones estratégicas no ocurren a nivel de contrato. Se producen en la sala de reuniones, donde los gestores revisan los datos disponibles y posiblemente pongan en marcha nuevas estrategias. Desde la perspectiva de la cartera, los aseguradores quieren planear su capacidad, establecer políticas de gestión, y equilibrar el mix de productos que se distribuyen para aumentar los ingresos mientras se controla la volatilidad.</p>
 <p>Conceptualmente, uno puede pensar en una compañía de seguros como nada más que un conjunto, o cartera, de contratos de seguros. En el Capítulo <a href="C-AggLossModels.html#C:AggLossModels">5</a> se ha aprendido sobre la modelización de carteras de seguros como la suma de contratos individuales, teniendo en cuenta hipótesis de independencia entre los contratos. Teniendo en cuenta su importancia, este capítulo se centra directamente en las distribuciones de carteras.</p>
@@ -833,7 +919,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>En la Sección <a href="C-Severity.html#S:CoverageModifications">3.4</a> se aprendieron mecanismos que los tomadores usan para repartir riesgos como franquicias y límites de cobertura. De la misma forma, los aseguradores usan mecanismos similares para repartir los riesgos de cartera. Compran protecciones del riesgo mediante el reaseguro, una compañía de seguros para los aseguradores. Este reparto del riesgo de cartera de seguros se describe en la Sección <a href="C-PortMgt.html#S:Reinsurance">10.4</a>.</p></li>
 </ul>
 </div>
-<div id="S:Tails" class="section level2">
+<div id="S:Tails" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Colas de las Distribuciones</h2>
 <hr />
 <p>En esta sección, se aprende como:</p>
@@ -844,10 +930,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <hr />
 <p>En 1998 cayó lluvia helada en el este de Ontario, al suroeste de Canadá, durante seis días. El suceso supuso el doble de precipitaciones experimentadas en la zona en cualquier tormenta de hielo anterior, y provocó una catástrofe que derivó en más de 840,000 reclamaciones de seguros. Esta cifra es un 20<span class="math inline">\(\%\)</span> superior a los siniestros causados por el Huracán Andrew – uno de los mayores desastres naturales en la historia de Norteamérica. La catástrofe supuso aproximadamente 1.44 miles de millones de dólares Canadienses en acuerdos de seguros lo que representa la mayor cantidad para pérdidas en la historia de Canadá. Este no es un ejemplo aislado – sucesos catastróficos similares que causaron pérdidas extremas para el seguro son los Huracanes Harvey y Sandy, el terremoto y tsunami japonès de 2011, y otros.</p>
-<p>En el contexto asegurador, las pérdidas muy grandes y poco frecuentes que afectan a las carteras convirtiéndose en siniestros representan habitualmente la mayor parte de las indemnizaciones pagadas por las compañías aseguradoras. Dichas pérdidas, también llamadas ‘extremas’, son modelizadas cuantitativamente mediante las colas de las distribuciones de probabilidad asociadas. Desde el punto de vista de la modelización cuantitativa, confiar en modelos probabilísticos que no recogen bien el comportamiento de las colas puede resultar desalentador. Por ejemplo, los periodos de crisis financera pueden aparecer con mayor frecuencia de loesperado, y las pérdidas en seguros pueden producirse con mayor severidad. Por tanto, el estudio del comportamiento probabilístico en las colas de los modelos actuariales es de suma importancia en el contexto moderno de la gestión cuantitativa del riesgo. Por esta razón, esta sección se dedica a la introduccción de unas pocas nociones matemáticas que caracterizan el peso de la cola de variables aleatorias (<em>v.a.</em>). La aplicación de esas nociones será útil en la construcción y selección de modelos apropiados con las propiedades matemáticas deseadas en las colas, que serán adecuadas para el alcance de determinados objetivos.</p>
+<p>En el contexto asegurador, las pérdidas muy grandes y poco frecuentes que afectan a las carteras convirtiéndose en siniestros representan habitualmente la mayor parte de las indemnizaciones pagadas por las compañías aseguradoras. Dichas pérdidas, también llamadas ‘extremas,’ son modelizadas cuantitativamente mediante las colas de las distribuciones de probabilidad asociadas. Desde el punto de vista de la modelización cuantitativa, confiar en modelos probabilísticos que no recogen bien el comportamiento de las colas puede resultar desalentador. Por ejemplo, los periodos de crisis financera pueden aparecer con mayor frecuencia de loesperado, y las pérdidas en seguros pueden producirse con mayor severidad. Por tanto, el estudio del comportamiento probabilístico en las colas de los modelos actuariales es de suma importancia en el contexto moderno de la gestión cuantitativa del riesgo. Por esta razón, esta sección se dedica a la introduccción de unas pocas nociones matemáticas que caracterizan el peso de la cola de variables aleatorias (<em>v.a.</em>). La aplicación de esas nociones será útil en la construcción y selección de modelos apropiados con las propiedades matemáticas deseadas en las colas, que serán adecuadas para el alcance de determinados objetivos.</p>
 <p>Formalmente, se define <span class="math inline">\(X\)</span> como las obligaciones (aleatorias) que pueden derivarse de un conjunto (cartera) de pólizas de seguros. Se está especialmente interesado en estudiar la cola derecha de la distribución de <span class="math inline">\(X\)</span>, que representa la ocurrencia de grandes pérdidas. Informalmente, <em>una v.a. se define como de cola pesada si las probabilidades altas se asignan a los valores grandes.</em> Destacar que esto no significa que las funciones de densidad/masa de probabilidad vayan creciendo cuando el valor de <em>v.a.</em> tienda a infinito. De hecho para una <em>v.a.</em> continua, la <a href="#" class="tooltip" style="color:green"><em>pdf</em><span style="font-size:8pt">función de densidad de probabilidad</span></a>/<a href="#" class="tooltip" style="color:green"><em>pmf</em><span style="font-size:8pt">función de masa de probabilidad</span></a> debe disminuir en el infinito para garantizar que la probabilidad total es igual a uno. En cambio, lo que preocupa es la tasa de decrecimiento de la función de probabilidad. Es más probable que se produzcan resultados no deseados en carteras de seguros descritas por una <em>v.a.</em> de pérdidas con cola (derecha) pesada. El peso de la cola puede ser un concepto absoluto o relativo. Específicamente, desde el primer punto de vista, se puede considerar que una <em>v.a.</em> es de cola pesada si se cumplen ciertas propiedades matemáticas de la distribución de probabilidad. Desde el segundo punto de vista, se puede decir que la cola de una distribución es más pesada que la otra si algunas medidas de cola son mayores/menores.</p>
 <p>Se han propuesto diferentes enfoques cuantitativos para clasificar y comparar el peso de las colas. Entre ellos, la <a href="#" class="tooltip" style="color:green"><em>función de supervivencia</em><span style="font-size:8pt">Uno menos la función de distribución. Proporciona la probabilidad de que la v.a. supere un determinado valor</span></a> sirve como base de análisis. A continuación, se introducen dos métodos de clasificación de colas simples pero muy utilizados, basados en el comportamiento de la función de supervivencia de <span class="math inline">\(X\)</span>.</p>
-<div id="clasificación-basada-en-los-momentos" class="section level3">
+<div id="clasificación-basada-en-los-momentos" class="section level3" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Clasificación Basada en los Momentos</h3>
 <p>Una forma de clasificar el peso de la cola de una distribución es evaluando la existencia de momentos ordinarios o respecto al origen. Ya que nuestro mayor interés recae en las colas derechas de las distribuciones, de ahora en adelante se asume que la obligación o pérdida <em>v.a.</em> <span class="math inline">\(X\)</span> es positiva. Al principio, el momento ordinario <span class="math inline">\(k-\)</span>th de una <em>v.a.</em> <span class="math inline">\(X\)</span> continua, introducido en la Sección <a href="C-Severity.html#S:BasicQuantities">3.1</a>, puede calcularse como</p>
 <p><span class="math display">\[\begin{eqnarray*}
@@ -916,7 +1002,7 @@ En otras palabras, en base al método de los momentos, el peso de la cola de una
 <hr />
 <p>Se concluye esta sección con una discusión abierta sobre las limitaciones del método basado en los momentos. A pesar de su implementación sencilla y de su interpretación intuitiva, existen determinadas situaciones en las que la aplicación del método basado en los momentos no es factible. Primero, en el caso de los modelos probabilísticos más complejos, el <span class="math inline">\(k\)</span>-th momento ordinario puede no ser simple de derivar, y de este modo, la identificación del máximo orden del momento finito puede convertirse en un desafío. Segundo, el método basado en los momentos no cumple bien con el cuerpo principal de la teoría de la cola pesada definido en la literatura. Específicamente, la existencia de las funciones generadoras de momentos es sin duda el método más popular para clasificar la cola pesada frente a la cola ligera dentro de la comunidad de los actuarios académicos. Sin embargo, para algunas <em>v.a.</em> como la <em>v.a.</em> lognormal, sus funciones generadoras de momentos no existen, incluso cuando todos los momentos positivos son finitos. En esos casos, las aplicaciones de los métodos basados en los momentos pueden conduir a diferentes evaluaciones del peso de la cola. Tercero, cuando se necesita comparar el peso de la cola entre dos distribuciones de cola ligera para las cuales existen todos los momentos positivos, el método basado en los momentos no es informativo (ver, por ejemplo, Ejemplos 10.1.1 y 10.1.2).</p>
 </div>
-<div id="comparación-basada-en-el-comportamiento-de-colas-con-límites" class="section level3">
+<div id="comparación-basada-en-el-comportamiento-de-colas-con-límites" class="section level3" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> Comparación basada en el comportamiento de colas con límites</h3>
 <p>Para resolver las dificultades anteriormente comentadas en relación al uso del método de clasificación basado en los momentos, una aproximación alternativa para comparar el peso de las colas es estudiar directamente los límites de las funciones de supervivencia.</p>
 <p><strong>Definición 10.2.</strong> Para dos <em>v.a.</em> <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, sea</p>
@@ -973,7 +1059,7 @@ href="javascript:toggleEX('toggleExamplePortMgt.1.5','displayTextExamplePortMgt.
 <hr />
 </div>
 </div>
-<div id="S:RiskMeasure" class="section level2">
+<div id="S:RiskMeasure" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Medidas de Riesgo</h2>
 <hr />
 <p>En esta sección, se aprende como:</p>
@@ -984,7 +1070,7 @@ href="javascript:toggleEX('toggleExamplePortMgt.1.5','displayTextExamplePortMgt.
 </ul>
 <hr />
 <p>En la sección previa, se estudian dos métodos para clasificar el peso de las colas de la distribución. Se puede afirmar que el riesgo asociado con una distribución es más peligroso que otros(asintóticamente)si la cola es más pesada. Sin embargo, saber que un riesgo es más peligroso (asintóticamente) que otros puede no ser suficiente a nivel informativo para una gestión de riesgos sofisticada, y adicionalmente, se puede estar interesado en cuantificar cuanto más lo es. De hecho, la magnitud del riesgo asociada con una distribución dada de pérdidas es un input fundamental para muchas aplicaciones de seguros, tales como la tarificación actuarial, el cálculo de reservas, el diseño de coberturas, la supervisión regulatoria de seguros, y otras.</p>
-<div id="medidas-de-riesgo-coherentes" class="section level3">
+<div id="medidas-de-riesgo-coherentes" class="section level3" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Medidas de Riesgo Coherentes</h3>
 <p>Para comparar la magnitud del riesgo de una forma conveniente, se busca una función que represente la <em>v.a.</em> pérdida en un valor numérico indicativo del nivel de riesgo, denominada <a href="#" class="tooltip" style="color:green"><em>medida de riesgo</em><span style="font-size:8pt">una medida que resume el riesgo, o incertidumbre, de una distribución</span></a>. A nivel matemático, la medida de riesgo simplemente resume la función de distribución de una <em>v.a.</em> mediante un solo número. Dos medidas de riesgo sencillas son la media <span class="math inline">\(\mathrm{E}[X]\)</span> y la desviación estándar <span class="math inline">\(\mathrm{SD}(X)=\sqrt{\mathrm{Var}(X)}\)</span>. Otros ejemplos clásicos de medidas de riesgo incluyen el <em>principio</em> de desviación estándar</p>
 <!-- \label{eqn:SD-principle} -->
@@ -1105,7 +1191,7 @@ H_{\mathrm{SD}}(X+c)=\mathrm{E}[X]+c+\alpha\mathrm{SD}(X)=H_{\mathrm{SD}}(X)+c.
 <hr />
 <p>La literatura sobre medidas de riesgo ha crecido rápidamente en popularidad e importancia. En las dos secciones siguientes, se introducen dos índices que han ganado mucho interés recientemente entre teóricos, empíricos y reguladores. Son las medidas denominadas <em>Valor en Riesgo</em> (<em>VaR</em>) y <em>Cola del Valor en Riesgo</em> (<em>TVaR</em>). La racionalidad económica detrás de estas dos medidas de riesgo es similar a la de los métodos de clasificación de colas introducidos en la sección anterior, con las que se espera captar el riesgo de pérdidas extremas representadas por las colas de la distribución.</p>
 </div>
-<div id="valor-en-riesgo" class="section level3">
+<div id="valor-en-riesgo" class="section level3" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> Valor en Riesgo</h3>
 <p>En la Sección <a href="C-ModelSelection.html#S:MS:QuantileEstimator">4.1.1.3</a>, se define el cuantil de una distribución. Se presenta ahora una caso especial de éste y se ofrece una definición formal del <a href="#" class="tooltip" style="color:green"><em>valor en riesgo</em><span style="font-size:8pt">una medida de riesgo basada en la función cuantílica</span></a>, o <em>VaR</em>.</p>
 <p><strong>Definición 10.3.</strong>
@@ -1231,7 +1317,7 @@ A partir de la definición del <em>VaR</em>, tenemos que</p>
 <li>el <em>VaR</em> no es una medida de riesgo coherente (específicamente, el <em>VaR</em> no satisface el axioma de subaditividad, lo que significa que los beneficios de la diversificación pueden no quedar suficientemente reflejados).</li>
 </ul>
 </div>
-<div id="cola-del-valor-en-riesgo" class="section level3">
+<div id="cola-del-valor-en-riesgo" class="section level3" number="10.3.3">
 <h3><span class="header-section-number">10.3.3</span> Cola del Valor en Riesgo</h3>
 <p>Recalcar que el <em>VaR</em> representa <span class="math inline">\((1-p)\times100\%\)</span> la máxima pérdida. Como se mencionó en la sección previa, uno de los mayores inconvenientes del <em>VaR</em> es que no refleja las pérdidas extremas que se producen más allá del <span class="math inline">\((1-p)\times100\%\)</span> peor escenario. Con fines ilustrativos, se considera el siguiente ejemplo poco realista pero inspirador.</p>
 <p><strong>Ejemplo 10.2.5.</strong>
@@ -1240,7 +1326,7 @@ Se consideran dos <em>v.a.</em> de pérdidas <span class="math inline">\(X\sim U
 VaR_{0,95}[X]=VaR_{0,95}[Y]=95,
 \]</span>
 y de ese modo estas dos distribuciones de pérdidas tienen el mismo nivel de riesgo según el <span class="math inline">\(VaR_{0,95}\)</span>. Sin embargo, está claro que <span class="math inline">\(Y\)</span> tiene mayor riesgo que <span class="math inline">\(X\)</span> si las pérdidas extremas son más preocupantes ya que <span class="math inline">\(X\)</span> está limitada por arriba mientras que <span class="math inline">\(Y\)</span> no lo está. La simple cuantificación del riesgo mediante el uso del <em>VaR</em> a un nivel de confianza específico podría ser engañosa y no reflejar la verdadera naturaleza del riesgo.</p>
-<p>Para remediarlo, fue propuesta la <em>Cola del Valor en Riesgo</em> (<em>TVaR</em>) para medir las pérdidas extremas que están por encima de un nivel dado del <em>VaR</em> como una media. Se presenta a continuación la definición del <em>TVaR</em>. Para simplificar, nos vamos a limitar a las <em>v.a.</em> positivas continuas, que se utilizan con más frecuencia en el contexto de la gestión de riesgos de seguros. Se remite al lector interesado a <span class="citation">Hardy (<a href="#ref-hardy2006" role="doc-biblioref">2006</a>)</span> para una discusión más completa del <em>TVaR</em> para <em>v.a.</em> discretas y continuas.</p>
+<p>Para remediarlo, fue propuesta la <em>Cola del Valor en Riesgo</em> (<em>TVaR</em>) para medir las pérdidas extremas que están por encima de un nivel dado del <em>VaR</em> como una media. Se presenta a continuación la definición del <em>TVaR</em>. Para simplificar, nos vamos a limitar a las <em>v.a.</em> positivas continuas, que se utilizan con más frecuencia en el contexto de la gestión de riesgos de seguros. Se remite al lector interesado a <span class="citation"><a href="bibliography.html#ref-hardy2006" role="doc-biblioref">Hardy</a> (<a href="bibliography.html#ref-hardy2006" role="doc-biblioref">2006</a>)</span> para una discusión más completa del <em>TVaR</em> para <em>v.a.</em> discretas y continuas.</p>
 <!-- \label{def:TVaR}-->
 <p><strong>Definición 10.4.</strong>
 Dado <span class="math inline">\(q\in (0,1)\)</span>, la <a href="#" class="tooltip" style="color:green"><em>cola del valor en riesgo</em><span style="font-size:8pt">el valor esperado de un riesgo dado que el riesgo excede el valor en riesgo</span></a> de una <em>v.a.</em> (continua) <span class="math inline">\(X\)</span> se define como</p>
@@ -1392,7 +1478,7 @@ TVaR_q[X]\geq VaR_q[X].
 Tercero y tal vez de forma más relevante, el <em>TVaR</em> es una medida de riesgo coherente y de este modo es capaz de capturar de modo más acertado los efectos de la diversificación de la cartera de seguros. En este caso, no se formula el objetivo de proporcionar la demostración de la característica coherente para el <em>TVaR</em>, que se considera técnicamente cambiante.</p>
 </div>
 </div>
-<div id="S:Reinsurance" class="section level2">
+<div id="S:Reinsurance" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Reaseguro</h2>
 <hr />
 <p>En esta sección, se aprende como:</p>
@@ -1408,7 +1494,7 @@ Tercero y tal vez de forma más relevante, el <em>TVaR</em> es una medida de rie
 <a href="#" class="tooltip" style="color:green"><em>reaseguro proporcional </em><span style="font-size:8pt">un acuerdo entre un reasegurador y una compañía cedente (también conocida como reasegurada) en el cual el reasegurador asume un porcentaje dado de pérdidas y primas</span></a> es un acuerdo entre un reasegurador y una <a href="#" class="tooltip" style="color:green"><em>compañía cedente</em><span style="font-size:8pt">una compañía que compra reaseguro (también conocida como reasegurada)</span></a> (también conocida como la <em>reasegurada</em>) en el cual el reasegurador asume un porcentaje dado de pérdidas y primas. Un contrato de reaseguro se conoce también como un <a href="#" class="tooltip" style="color:green"><em>acuerdo</em><span style="font-size:8pt">un contrato de reaseguro</span></a>. Los acuerdos no-proporcionales son simplemente todo lo demás. Como ejemplos de acuerdos no-proporcionales, este capítulo se centra en <a href="#" class="tooltip" style="color:green"><em>stop-loss</em><span style="font-size:8pt">bajo un acuerdo stop-loss, el asegurador establece un nivel de retención y paga siniestros hasta ese nivel con el reasegurador pagando el exceso</span></a> y <a href="#" class="tooltip" style="color:green">,<em>exceso de pérdida</em> <span style="font-size:8pt">bajo un contrato de exceso de pérdida, el asegurador establece un nivel de retención para cada siniestro y paga indemnizaciones inferiores a dicho nivel mientras que el reasegurador paga el exceso contratado</span></a>. Para todos los tipos de acuerdos, se divide el riesgo total <span class="math inline">\(X\)</span> entre la porción que asume el reasegurador, <span class="math inline">\(Y_{reasegurador}\)</span>, y el retenido por el asegurador, <span class="math inline">\(Y_{asegurador}\)</span>, es decir, <span class="math inline">\(X= Y_{asegurador}+Y_{reasegurador}\)</span>.</p>
 <p>La estructura matemática de un contrato de reaseguro básico es la misma que la considerada en las modificacions de cobertura para seguros personales analizados en el Capítulo 3. Para un reaseguro proporcional, la transformación <span class="math inline">\(Y_{asegurador} = c X\)</span> es idéntica a un ajuste de coaseguro en un seguro personal. Para un reaseguro stop-loss, la transformación <span class="math inline">\(Y_{reasegurador} = \max(0,X-M)\)</span> es la misma que el pago de un asegurador con una franquicia <span class="math inline">\(M\)</span> e <span class="math inline">\(Y_{asegurador} = \min(X,M) = X \wedge M\)</span> es equivalente a lo que un tomador paga con una franquicia <span class="math inline">\(M\)</span>. Para aplicaciones matemáticas prácticas, en los seguros personales el foco está generalmente en los valores esperados como el ingrediente principal usado en tarificación. Por el contrario, en reaseguro el foco está en la distribución completa del riesgo, dado que los valores extremos son la principal preocupación de la estabilidad financera del asegurador y del reasegurador.</p>
 <p>Esta sección describe los fundamentos y cuestiones más básicas de los acuerdos de reaseguro: Sección <a href="C-PortMgt.html#S:ProportionalRe">10.4.1</a> para el reaseguro proporcional y Sección <a href="C-PortMgt.html#S:NonProportionalRe">10.4.2</a> para el reaseguro no-proporcional. La Sección <a href="C-PortMgt.html#S:AdditionalRe">10.4.3</a> da una pincelada a los contratos más complejos.</p>
-<div id="S:ProportionalRe" class="section level3">
+<div id="S:ProportionalRe" class="section level3" number="10.4.1">
 <h3><span class="header-section-number">10.4.1</span> Reaseguro Proporcional</h3>
 <p>El ejemplo más sencillo de contratos proporcionales se denomina<a href="#" class="tooltip" style="color:green"><em>cuota parte</em><span style="font-size:8pt">Un acuerdo proporcional donde el reasegurador recibe un porcentaje determinado de la prima por la cartera de negocio reasegurado y paga un porcentaje de las pérdidas, incluyendo los gastos asignados de ajuste de pérdidas. El reasegurador puede también pagar a la compañía cedente una comisión de cesión diseñada para reflejar las diferencias en los gastos incurridos en la suscripción.</span></a>.</p>
 <ul>
@@ -1428,19 +1514,19 @@ Destacar que <span class="math inline">\(Y_{asegurador}+Y_{reasegurador}=X\)</sp
 <a id="displayQuotaShare" href="javascript:togglecode('toggleQuotaShare','displayQuotaShare');"><i><strong>Mostrar el Código R </strong></i></a>
 </h6>
 <div id="toggleQuotaShare" style="display: none">
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="C-PortMgt.html#cb98-1"></a><span class="kw">set.seed</span>(<span class="dv">2018</span>)</span>
-<span id="cb98-2"><a href="C-PortMgt.html#cb98-2"></a>theta =<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb98-3"><a href="C-PortMgt.html#cb98-3"></a>alpha =<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb98-4"><a href="C-PortMgt.html#cb98-4"></a>nSim =<span class="st"> </span><span class="dv">10000</span></span>
-<span id="cb98-5"><a href="C-PortMgt.html#cb98-5"></a><span class="kw">library</span>(actuar)</span>
-<span id="cb98-6"><a href="C-PortMgt.html#cb98-6"></a>X &lt;-<span class="st">  </span><span class="kw">rpareto</span>(nSim, <span class="dt">shape =</span> alpha, <span class="dt">scale =</span> theta)</span>
-<span id="cb98-7"><a href="C-PortMgt.html#cb98-7"></a></span>
-<span id="cb98-8"><a href="C-PortMgt.html#cb98-8"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb98-9"><a href="C-PortMgt.html#cb98-9"></a><span class="kw">plot</span>(<span class="kw">density</span>(X), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="op">*</span>theta), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="dt">main=</span><span class="st">&quot;Total Loss&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
-<span id="cb98-10"><a href="C-PortMgt.html#cb98-10"></a><span class="kw">plot</span>(<span class="kw">density</span>(<span class="fl">0.75</span><span class="op">*</span>X), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="op">*</span>theta), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="dt">main=</span><span class="st">&quot;Insurer (75%)&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
-<span id="cb98-11"><a href="C-PortMgt.html#cb98-11"></a><span class="kw">plot</span>(<span class="kw">density</span>(<span class="fl">0.25</span><span class="op">*</span>X), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="op">*</span>theta), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="dt">main=</span><span class="st">&quot;Reinsurer (25%)&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="C-PortMgt.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb98-2"><a href="C-PortMgt.html#cb98-2" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb98-3"><a href="C-PortMgt.html#cb98-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb98-4"><a href="C-PortMgt.html#cb98-4" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb98-5"><a href="C-PortMgt.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(actuar)</span>
+<span id="cb98-6"><a href="C-PortMgt.html#cb98-6" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">rpareto</span>(nSim, <span class="at">shape =</span> alpha, <span class="at">scale =</span> theta)</span>
+<span id="cb98-7"><a href="C-PortMgt.html#cb98-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-8"><a href="C-PortMgt.html#cb98-8" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb98-9"><a href="C-PortMgt.html#cb98-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(X), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="sc">*</span>theta), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="at">main=</span><span class="st">&quot;Total Loss&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
+<span id="cb98-10"><a href="C-PortMgt.html#cb98-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fl">0.75</span><span class="sc">*</span>X), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="sc">*</span>theta), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="at">main=</span><span class="st">&quot;Insurer (75%)&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
+<span id="cb98-11"><a href="C-PortMgt.html#cb98-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fl">0.25</span><span class="sc">*</span>X), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span><span class="sc">*</span>theta), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.008</span>), <span class="at">main=</span><span class="st">&quot;Reinsurer (25%)&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span></code></pre></div>
 </div>
-<div id="el-cuota-parte-es-deseable-para-los-reaseguradores" class="section level4">
+<div id="el-cuota-parte-es-deseable-para-los-reaseguradores" class="section level4" number="10.4.1.1">
 <h4><span class="header-section-number">10.4.1.1</span> El Cuota Parte es deseable para los Reaseguradores</h4>
 <p>El contrato cuota parte es particularmente deseable para el reasegurador. Para entenderlo, supongamos que un asegurador y un reasegurador desean firmar un contrato para repartir las pérdidas totales <span class="math inline">\(X\)</span> tal que <span class="math display">\[Y_{asegurador}=g(X) \ \ \ \text{y} \ \ \ \ Y_{reasegurador}=X-g(X),\]</span>
 para alguna función genérica <span class="math inline">\(g(\cdot)\)</span> (conocida como la función <em>retención</em>). Supongamos además que el asegurador solo se preoucupa por la variabilidad de los siniestros retenidos y es indiferente a la elección de <span class="math inline">\(g\)</span> siempre que <span class="math inline">\(Var(Y_{asegurador})\)</span> sea la misma e igual, digamos, <span class="math inline">\(Q\)</span>. Entonces, el siguiente resultado demuestra que el contrato de reaseguro de cuota parte minimiza la incertidumbre del reasegurador medida por <span class="math inline">\(Var(Y_{reasegurador})\)</span>.</p>
@@ -1465,7 +1551,7 @@ En esta expresión, vemos que <span class="math inline">\(Q\)</span> y <span cla
 <hr />
 <p>La propuesta es intuitivamente atractiva – con un contrato de cuota parte, el reasegurador comparte la responsabilidad para siniestros muy grandes en la cola de la distribución. Esto contrasta con los acuerdos no proporcionales donde los reaseguradores se responsabilizan de las grandes reclamaciones.</p>
 </div>
-<div id="optimizando-los-contratos-cuota-parte-para-aseguradores" class="section level4">
+<div id="optimizando-los-contratos-cuota-parte-para-aseguradores" class="section level4" number="10.4.1.2">
 <h4><span class="header-section-number">10.4.1.2</span> Optimizando los Contratos Cuota Parte para Aseguradores</h4>
 <p>Ahora se asumen <span class="math inline">\(n\)</span> riesgos en la cartera, <span class="math inline">\(X_1, \ldots, X_n,\)</span> tal que la suma de la cartera es <span class="math inline">\(X= X_1 + \cdots + X_n\)</span>. Por simplicidad, nos centramos en el caso de riesgos independientes. Se considera una variación del contrato básico de cuota parte donde la cantidad retenida por el asegurador puede variar con cada riesgo, digamos <span class="math inline">\(c_i\)</span>. De este modo, la parte que el asegurador asume del riesgo de la cartera es <span class="math inline">\(Y_{asegurador} = \sum_{i=1}^n c_i X_i\)</span>. ¿Cuál es la mejor elección de las partes <span class="math inline">\(c_i\)</span>?</p>
 <p>Para formalizar esta pregunta, tratamos de encontrar aquellos valores de <span class="math inline">\(c_i\)</span> que minimizan <span class="math inline">\(Var (Y_{asegurador})\)</span> teniendo en cuenta la restricción de que <span class="math inline">\(E (Y_{asegurador}) = K.\)</span> El requisito de que <span class="math inline">\(E (Y_{asegurador}) = K\)</span> sugiere que los aseguradores prefieren retener un ingreso como mínimo de la cantidad de la constante <span class="math inline">\(K\)</span>. Sujeto a esta restricción sobre el ingreso, el asegurador prefiere minimizar la incertidumbre de los riesgos retenidos medida por la varianza.</p>
@@ -1505,41 +1591,41 @@ Y usar este valor de <span class="math inline">\(\lambda\)</span> para determina
 <a id="displayParetoRisksProp" href="javascript:togglecode('toggleParetoRisksProp','displayParetoRisksProp');"><i><strong>Mostrar un Ejemplo con Tres Riesgos Pareto</strong></i></a>
 </h6>
 <div id="toggleParetoRisksProp" style="display: none">
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="C-PortMgt.html#cb99-1"></a>theta1 =<span class="st"> </span><span class="dv">1000</span>; theta2 =<span class="st"> </span><span class="dv">2000</span>; theta3 =<span class="st"> </span><span class="dv">3000</span>;</span>
-<span id="cb99-2"><a href="C-PortMgt.html#cb99-2"></a>alpha1 =<span class="st"> </span><span class="dv">3</span>; alpha2 =<span class="st"> </span><span class="dv">3</span>; alpha3 =<span class="st"> </span><span class="dv">4</span>;</span>
-<span id="cb99-3"><a href="C-PortMgt.html#cb99-3"></a><span class="kw">library</span>(actuar)</span>
-<span id="cb99-4"><a href="C-PortMgt.html#cb99-4"></a>propnfct &lt;-<span class="st"> </span><span class="cf">function</span>(alpha,theta){</span>
-<span id="cb99-5"><a href="C-PortMgt.html#cb99-5"></a>  mu    &lt;-<span class="st"> </span><span class="kw">mpareto</span>(<span class="dt">shape=</span>alpha, <span class="dt">scale=</span>theta, <span class="dt">order=</span><span class="dv">1</span>)</span>
-<span id="cb99-6"><a href="C-PortMgt.html#cb99-6"></a>  var   &lt;-<span class="st"> </span><span class="kw">mpareto</span>(<span class="dt">shape=</span>alpha, <span class="dt">scale=</span>theta, <span class="dt">order=</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span>mu<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb99-7"><a href="C-PortMgt.html#cb99-7"></a>  mu<span class="op">/</span>var</span>
-<span id="cb99-8"><a href="C-PortMgt.html#cb99-8"></a>}</span>
-<span id="cb99-9"><a href="C-PortMgt.html#cb99-9"></a>temp &lt;-<span class="st"> </span><span class="kw">propnfct</span>(alpha1, theta1)<span class="op">*</span><span class="kw">mpareto</span>(<span class="dt">shape=</span>alpha1, <span class="dt">scale=</span>theta1, <span class="dt">order=</span><span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb99-10"><a href="C-PortMgt.html#cb99-10"></a><span class="st">        </span><span class="kw">propnfct</span>(alpha2, theta2)<span class="op">*</span><span class="kw">mpareto</span>(<span class="dt">shape=</span>alpha2, <span class="dt">scale=</span>theta2, <span class="dt">order=</span><span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb99-11"><a href="C-PortMgt.html#cb99-11"></a><span class="st">        </span><span class="kw">propnfct</span>(alpha3, theta3)<span class="op">*</span><span class="kw">mpareto</span>(<span class="dt">shape=</span>alpha3, <span class="dt">scale=</span>theta3, <span class="dt">order=</span><span class="dv">1</span>)  </span>
-<span id="cb99-12"><a href="C-PortMgt.html#cb99-12"></a>KVec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">2500</span>, <span class="dt">length.out=</span><span class="dv">20</span>)</span>
-<span id="cb99-13"><a href="C-PortMgt.html#cb99-13"></a>Lambdavec &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>KVec<span class="op">/</span>temp</span>
-<span id="cb99-14"><a href="C-PortMgt.html#cb99-14"></a>c1 &lt;-<span class="st"> </span><span class="kw">propnfct</span>(alpha1, theta1)</span>
-<span id="cb99-15"><a href="C-PortMgt.html#cb99-15"></a>c2 &lt;-<span class="st"> </span><span class="kw">propnfct</span>(alpha2, theta2)</span>
-<span id="cb99-16"><a href="C-PortMgt.html#cb99-16"></a>c3 &lt;-<span class="st"> </span><span class="kw">propnfct</span>(alpha3, theta3)</span>
-<span id="cb99-17"><a href="C-PortMgt.html#cb99-17"></a>c1Vec &lt;-<span class="st"> </span>c2Vec &lt;-<span class="st"> </span>c3Vec &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">*</span>KVec </span>
-<span id="cb99-18"><a href="C-PortMgt.html#cb99-18"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>) {</span>
-<span id="cb99-19"><a href="C-PortMgt.html#cb99-19"></a>  c1Vec[j] &lt;-<span class="st"> </span>(Lambdavec[j]<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">propnfct</span>(alpha1, theta1)</span>
-<span id="cb99-20"><a href="C-PortMgt.html#cb99-20"></a>  c2Vec[j] &lt;-<span class="st"> </span>(Lambdavec[j]<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">propnfct</span>(alpha2, theta2)</span>
-<span id="cb99-21"><a href="C-PortMgt.html#cb99-21"></a>  c3Vec[j] &lt;-<span class="st"> </span>(Lambdavec[j]<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">propnfct</span>(alpha3, theta3)</span>
-<span id="cb99-22"><a href="C-PortMgt.html#cb99-22"></a>  }</span>
-<span id="cb99-23"><a href="C-PortMgt.html#cb99-23"></a><span class="kw">plot</span>(KVec, c1Vec, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;proportion&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;required revenue (K)&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb99-24"><a href="C-PortMgt.html#cb99-24"></a><span class="kw">lines</span>(KVec, c2Vec)</span>
-<span id="cb99-25"><a href="C-PortMgt.html#cb99-25"></a><span class="kw">lines</span>(KVec, c3Vec)</span>
-<span id="cb99-26"><a href="C-PortMgt.html#cb99-26"></a><span class="kw">text</span>(<span class="dv">1200</span>,<span class="fl">0.80</span>, <span class="kw">expression</span>(c[<span class="dv">1</span>]))</span>
-<span id="cb99-27"><a href="C-PortMgt.html#cb99-27"></a><span class="kw">text</span>(<span class="dv">2000</span>,<span class="fl">0.75</span>, <span class="kw">expression</span>(c[<span class="dv">2</span>]))</span>
-<span id="cb99-28"><a href="C-PortMgt.html#cb99-28"></a><span class="kw">text</span>(<span class="dv">1500</span>,<span class="fl">0.30</span>, <span class="kw">expression</span>(c[<span class="dv">3</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="C-PortMgt.html#cb99-1" aria-hidden="true" tabindex="-1"></a>theta1 <span class="ot">=</span> <span class="dv">1000</span>; theta2 <span class="ot">=</span> <span class="dv">2000</span>; theta3 <span class="ot">=</span> <span class="dv">3000</span>;</span>
+<span id="cb99-2"><a href="C-PortMgt.html#cb99-2" aria-hidden="true" tabindex="-1"></a>alpha1 <span class="ot">=</span> <span class="dv">3</span>; alpha2 <span class="ot">=</span> <span class="dv">3</span>; alpha3 <span class="ot">=</span> <span class="dv">4</span>;</span>
+<span id="cb99-3"><a href="C-PortMgt.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(actuar)</span>
+<span id="cb99-4"><a href="C-PortMgt.html#cb99-4" aria-hidden="true" tabindex="-1"></a>propnfct <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha,theta){</span>
+<span id="cb99-5"><a href="C-PortMgt.html#cb99-5" aria-hidden="true" tabindex="-1"></a>  mu    <span class="ot">&lt;-</span> <span class="fu">mpareto</span>(<span class="at">shape=</span>alpha, <span class="at">scale=</span>theta, <span class="at">order=</span><span class="dv">1</span>)</span>
+<span id="cb99-6"><a href="C-PortMgt.html#cb99-6" aria-hidden="true" tabindex="-1"></a>  var   <span class="ot">&lt;-</span> <span class="fu">mpareto</span>(<span class="at">shape=</span>alpha, <span class="at">scale=</span>theta, <span class="at">order=</span><span class="dv">2</span>) <span class="sc">-</span> mu<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb99-7"><a href="C-PortMgt.html#cb99-7" aria-hidden="true" tabindex="-1"></a>  mu<span class="sc">/</span>var</span>
+<span id="cb99-8"><a href="C-PortMgt.html#cb99-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb99-9"><a href="C-PortMgt.html#cb99-9" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">propnfct</span>(alpha1, theta1)<span class="sc">*</span><span class="fu">mpareto</span>(<span class="at">shape=</span>alpha1, <span class="at">scale=</span>theta1, <span class="at">order=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb99-10"><a href="C-PortMgt.html#cb99-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">propnfct</span>(alpha2, theta2)<span class="sc">*</span><span class="fu">mpareto</span>(<span class="at">shape=</span>alpha2, <span class="at">scale=</span>theta2, <span class="at">order=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb99-11"><a href="C-PortMgt.html#cb99-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">propnfct</span>(alpha3, theta3)<span class="sc">*</span><span class="fu">mpareto</span>(<span class="at">shape=</span>alpha3, <span class="at">scale=</span>theta3, <span class="at">order=</span><span class="dv">1</span>)  </span>
+<span id="cb99-12"><a href="C-PortMgt.html#cb99-12" aria-hidden="true" tabindex="-1"></a>KVec <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">2500</span>, <span class="at">length.out=</span><span class="dv">20</span>)</span>
+<span id="cb99-13"><a href="C-PortMgt.html#cb99-13" aria-hidden="true" tabindex="-1"></a>Lambdavec <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>KVec<span class="sc">/</span>temp</span>
+<span id="cb99-14"><a href="C-PortMgt.html#cb99-14" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">propnfct</span>(alpha1, theta1)</span>
+<span id="cb99-15"><a href="C-PortMgt.html#cb99-15" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">propnfct</span>(alpha2, theta2)</span>
+<span id="cb99-16"><a href="C-PortMgt.html#cb99-16" aria-hidden="true" tabindex="-1"></a>c3 <span class="ot">&lt;-</span> <span class="fu">propnfct</span>(alpha3, theta3)</span>
+<span id="cb99-17"><a href="C-PortMgt.html#cb99-17" aria-hidden="true" tabindex="-1"></a>c1Vec <span class="ot">&lt;-</span> c2Vec <span class="ot">&lt;-</span> c3Vec <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>KVec </span>
+<span id="cb99-18"><a href="C-PortMgt.html#cb99-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb99-19"><a href="C-PortMgt.html#cb99-19" aria-hidden="true" tabindex="-1"></a>  c1Vec[j] <span class="ot">&lt;-</span> (Lambdavec[j]<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">propnfct</span>(alpha1, theta1)</span>
+<span id="cb99-20"><a href="C-PortMgt.html#cb99-20" aria-hidden="true" tabindex="-1"></a>  c2Vec[j] <span class="ot">&lt;-</span> (Lambdavec[j]<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">propnfct</span>(alpha2, theta2)</span>
+<span id="cb99-21"><a href="C-PortMgt.html#cb99-21" aria-hidden="true" tabindex="-1"></a>  c3Vec[j] <span class="ot">&lt;-</span> (Lambdavec[j]<span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">propnfct</span>(alpha3, theta3)</span>
+<span id="cb99-22"><a href="C-PortMgt.html#cb99-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb99-23"><a href="C-PortMgt.html#cb99-23" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(KVec, c1Vec, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;proportion&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;required revenue (K)&quot;</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb99-24"><a href="C-PortMgt.html#cb99-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(KVec, c2Vec)</span>
+<span id="cb99-25"><a href="C-PortMgt.html#cb99-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(KVec, c3Vec)</span>
+<span id="cb99-26"><a href="C-PortMgt.html#cb99-26" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1200</span>,<span class="fl">0.80</span>, <span class="fu">expression</span>(c[<span class="dv">1</span>]))</span>
+<span id="cb99-27"><a href="C-PortMgt.html#cb99-27" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2000</span>,<span class="fl">0.75</span>, <span class="fu">expression</span>(c[<span class="dv">2</span>]))</span>
+<span id="cb99-28"><a href="C-PortMgt.html#cb99-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1500</span>,<span class="fl">0.30</span>, <span class="fu">expression</span>(c[<span class="dv">3</span>]))</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-46-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
-<div id="S:NonProportionalRe" class="section level3">
+<div id="S:NonProportionalRe" class="section level3" number="10.4.2">
 <h3><span class="header-section-number">10.4.2</span> Reaseguro No-Proporcional</h3>
-<div id="la-optimalidad-del-seguro-stop-loss" class="section level4">
+<div id="la-optimalidad-del-seguro-stop-loss" class="section level4" number="10.4.2.1">
 <h4><span class="header-section-number">10.4.2.1</span> La Optimalidad del Seguro Stop-Loss</h4>
 <p>Bajo un contrato <strong>stop-loss</strong>, el asegurador establece un nivel de retención <span class="math inline">\(M (&gt;0)\)</span> y paga en su totalidad los siniestros para los que <span class="math inline">\(X \le M\)</span>. Además, para los siniestros con <span class="math inline">\(X &gt; M\)</span>, el asegurador de directo paga <span class="math inline">\(M\)</span> y el reasegurador para la cantidad restante <span class="math inline">\(X-M\)</span>. De este modo, el asegurador retiene una cantidad <span class="math inline">\(M\)</span> del riesgo. Resumiendo, las cantidades pagadas por el asegurador de directo y el reasegurador son</p>
 <p><span class="math display">\[
@@ -1597,7 +1683,7 @@ para cualquier función de retención <span class="math inline">\(g\)</span>. Es
 </div>
 <p>La proposición es intuitivamente interesante – con el seguro stop-loss, el reasegurador es responsable de los siniestros muy grandes en la cola de la distribución, no el asegurador.</p>
 </div>
-<div id="exceso-de-pérdida" class="section level4">
+<div id="exceso-de-pérdida" class="section level4" number="10.4.2.2">
 <h4><span class="header-section-number">10.4.2.2</span> Exceso de Pérdida</h4>
 <p>Una forma cerrada de reaseguro no-proporcional es la cobertura <a href="#" class="tooltip" style="color:green"><em>exceso de pérdida</em> <span style="font-size:8pt">Bajo un acuerdo de exceso de pérdida, el asegurador establece un nivel de retención para cada siniestro y paga indemnizaciones inferiores a dicho nivel con el reasegurador pagando el exceso</span></a>. Bajo este contrato, se asume que el riesgo total <span class="math inline">\(X\)</span> puede entenderse como una composición de <span class="math inline">\(n\)</span> riesgos separados <span class="math inline">\(X_1, \ldots, X_n\)</span> y que cada uno de esos riesgos están sujetos a un límite superior, digamos, <span class="math inline">\(M_i\)</span>. De este modo el asegurador retiene</p>
 <p><span class="math display">\[
@@ -1605,7 +1691,7 @@ Y_{i,asegurador} = X_i \wedge M_i \ \ \ \ Y_{asegurador} = \sum_{i=1}^n Y_{i,ase
 \]</span>
 y el reasegurador es responsable del exceso, <span class="math inline">\(Y_{reasegurador}=X - Y_{asegurador}\)</span>. Los límites de retención pueden variar según el riesgo o pueden ser los mismos para todos los riesgos, <span class="math inline">\(M_i =M\)</span>, para todo <span class="math inline">\(i\)</span>.</p>
 </div>
-<div id="elección-óptima-de-los-límites-de-retención-para-exceso-de-pérdidas" class="section level4">
+<div id="elección-óptima-de-los-límites-de-retención-para-exceso-de-pérdidas" class="section level4" number="10.4.2.3">
 <h4><span class="header-section-number">10.4.2.3</span> Elección Óptima de los Límites de Retención para Exceso de Pérdidas</h4>
 <p>¿Cuál es la mejor elección de los límites de retención del exceso de pérdidas <span class="math inline">\(M_i\)</span>? Para formalizar esta pregunta, se propone encontrar aquellos valores de <span class="math inline">\(M_i\)</span> que minimizan <span class="math inline">\(Var(Y_{asegurador})\)</span> sujetos a la restricción de que <span class="math inline">\(E(Y_{asegurador}) = K.\)</span> Sujeto a esta restricción de ingresos, el asegurador desea minimizar la incertidumbre de los riesgos retenidos (medidos por la varianza).</p>
 <h6 style="text-align: center;">
@@ -1650,58 +1736,58 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 </h6>
 <div id="toggleParetoRisksExcess" style="display: none">
 <p>Primero se optimiza el Lagrangiano usando el paquete <code>R</code> <code>alabama</code> para <em>Algoritmo de Minimización de la Barrera Adaptativa del Lagrangiano Aumentado</em>.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="C-PortMgt.html#cb100-1"></a>theta1 =<span class="st"> </span><span class="dv">1000</span>;theta2 =<span class="st"> </span><span class="dv">2000</span>;theta3 =<span class="st"> </span><span class="dv">3000</span>;</span>
-<span id="cb100-2"><a href="C-PortMgt.html#cb100-2"></a>alpha1 =<span class="st"> </span><span class="dv">3</span>;   alpha2 =<span class="st"> </span><span class="dv">3</span>;   alpha3 =<span class="st"> </span><span class="dv">4</span>;</span>
-<span id="cb100-3"><a href="C-PortMgt.html#cb100-3"></a>Pmin &lt;-<span class="st"> </span><span class="dv">2000</span></span>
-<span id="cb100-4"><a href="C-PortMgt.html#cb100-4"></a><span class="kw">library</span>(actuar)</span>
-<span id="cb100-5"><a href="C-PortMgt.html#cb100-5"></a>VarFct &lt;-<span class="st"> </span><span class="cf">function</span>(M){</span>
-<span id="cb100-6"><a href="C-PortMgt.html#cb100-6"></a>  M1=M[<span class="dv">1</span>];M2=M[<span class="dv">2</span>];M3=M[<span class="dv">3</span>]</span>
-<span id="cb100-7"><a href="C-PortMgt.html#cb100-7"></a>  mu1    &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M1,<span class="dt">shape=</span>alpha1, <span class="dt">scale=</span>theta1, <span class="dt">order=</span><span class="dv">1</span>)</span>
-<span id="cb100-8"><a href="C-PortMgt.html#cb100-8"></a>  var1   &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M1,<span class="dt">shape=</span>alpha1, <span class="dt">scale=</span>theta1, <span class="dt">order=</span><span class="dv">2</span>)<span class="op">-</span>mu1<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb100-9"><a href="C-PortMgt.html#cb100-9"></a>  mu2    &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M2,<span class="dt">shape=</span>alpha2, <span class="dt">scale=</span>theta2, <span class="dt">order=</span><span class="dv">1</span>)</span>
-<span id="cb100-10"><a href="C-PortMgt.html#cb100-10"></a>  var2   &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M2,<span class="dt">shape=</span>alpha2, <span class="dt">scale=</span>theta2, <span class="dt">order=</span><span class="dv">2</span>)<span class="op">-</span>mu2<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb100-11"><a href="C-PortMgt.html#cb100-11"></a>  mu3    &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M3,<span class="dt">shape=</span>alpha3, <span class="dt">scale=</span>theta3, <span class="dt">order=</span><span class="dv">1</span>)</span>
-<span id="cb100-12"><a href="C-PortMgt.html#cb100-12"></a>  var3   &lt;-<span class="st"> </span><span class="kw">levpareto</span>(<span class="dt">limit=</span>M3,<span class="dt">shape=</span>alpha3, <span class="dt">scale=</span>theta3, <span class="dt">order=</span><span class="dv">2</span>)<span class="op">-</span>mu3<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb100-13"><a href="C-PortMgt.html#cb100-13"></a>  varFct &lt;-<span class="st"> </span>var1 <span class="op">+</span>var2<span class="op">+</span>var3</span>
-<span id="cb100-14"><a href="C-PortMgt.html#cb100-14"></a>  meanFct &lt;-<span class="st"> </span>mu1<span class="op">+</span>mu2<span class="op">+</span>mu3</span>
-<span id="cb100-15"><a href="C-PortMgt.html#cb100-15"></a>  <span class="kw">c</span>(meanFct,varFct)</span>
-<span id="cb100-16"><a href="C-PortMgt.html#cb100-16"></a>  }</span>
-<span id="cb100-17"><a href="C-PortMgt.html#cb100-17"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(M){<span class="kw">VarFct</span>(M)[<span class="dv">2</span>]}</span>
-<span id="cb100-18"><a href="C-PortMgt.html#cb100-18"></a>h &lt;-<span class="st"> </span><span class="cf">function</span>(M){<span class="kw">VarFct</span>(M)[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>Pmin}</span>
-<span id="cb100-19"><a href="C-PortMgt.html#cb100-19"></a><span class="kw">library</span>(alabama)</span>
-<span id="cb100-20"><a href="C-PortMgt.html#cb100-20"></a>par0=<span class="kw">rep</span>(<span class="dv">1000</span>,<span class="dv">3</span>)</span>
-<span id="cb100-21"><a href="C-PortMgt.html#cb100-21"></a>op &lt;-<span class="st"> </span><span class="kw">auglag</span>(<span class="dt">par=</span>par0,<span class="dt">fn=</span>f,<span class="dt">hin=</span>h,<span class="dt">control.outer=</span><span class="kw">list</span>(<span class="dt">trace=</span><span class="ot">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="C-PortMgt.html#cb100-1" aria-hidden="true" tabindex="-1"></a>theta1 <span class="ot">=</span> <span class="dv">1000</span>;theta2 <span class="ot">=</span> <span class="dv">2000</span>;theta3 <span class="ot">=</span> <span class="dv">3000</span>;</span>
+<span id="cb100-2"><a href="C-PortMgt.html#cb100-2" aria-hidden="true" tabindex="-1"></a>alpha1 <span class="ot">=</span> <span class="dv">3</span>;   alpha2 <span class="ot">=</span> <span class="dv">3</span>;   alpha3 <span class="ot">=</span> <span class="dv">4</span>;</span>
+<span id="cb100-3"><a href="C-PortMgt.html#cb100-3" aria-hidden="true" tabindex="-1"></a>Pmin <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb100-4"><a href="C-PortMgt.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(actuar)</span>
+<span id="cb100-5"><a href="C-PortMgt.html#cb100-5" aria-hidden="true" tabindex="-1"></a>VarFct <span class="ot">&lt;-</span> <span class="cf">function</span>(M){</span>
+<span id="cb100-6"><a href="C-PortMgt.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  M1<span class="ot">=</span>M[<span class="dv">1</span>];M2<span class="ot">=</span>M[<span class="dv">2</span>];M3<span class="ot">=</span>M[<span class="dv">3</span>]</span>
+<span id="cb100-7"><a href="C-PortMgt.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  mu1    <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M1,<span class="at">shape=</span>alpha1, <span class="at">scale=</span>theta1, <span class="at">order=</span><span class="dv">1</span>)</span>
+<span id="cb100-8"><a href="C-PortMgt.html#cb100-8" aria-hidden="true" tabindex="-1"></a>  var1   <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M1,<span class="at">shape=</span>alpha1, <span class="at">scale=</span>theta1, <span class="at">order=</span><span class="dv">2</span>)<span class="sc">-</span>mu1<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb100-9"><a href="C-PortMgt.html#cb100-9" aria-hidden="true" tabindex="-1"></a>  mu2    <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M2,<span class="at">shape=</span>alpha2, <span class="at">scale=</span>theta2, <span class="at">order=</span><span class="dv">1</span>)</span>
+<span id="cb100-10"><a href="C-PortMgt.html#cb100-10" aria-hidden="true" tabindex="-1"></a>  var2   <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M2,<span class="at">shape=</span>alpha2, <span class="at">scale=</span>theta2, <span class="at">order=</span><span class="dv">2</span>)<span class="sc">-</span>mu2<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb100-11"><a href="C-PortMgt.html#cb100-11" aria-hidden="true" tabindex="-1"></a>  mu3    <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M3,<span class="at">shape=</span>alpha3, <span class="at">scale=</span>theta3, <span class="at">order=</span><span class="dv">1</span>)</span>
+<span id="cb100-12"><a href="C-PortMgt.html#cb100-12" aria-hidden="true" tabindex="-1"></a>  var3   <span class="ot">&lt;-</span> <span class="fu">levpareto</span>(<span class="at">limit=</span>M3,<span class="at">shape=</span>alpha3, <span class="at">scale=</span>theta3, <span class="at">order=</span><span class="dv">2</span>)<span class="sc">-</span>mu3<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb100-13"><a href="C-PortMgt.html#cb100-13" aria-hidden="true" tabindex="-1"></a>  varFct <span class="ot">&lt;-</span> var1 <span class="sc">+</span>var2<span class="sc">+</span>var3</span>
+<span id="cb100-14"><a href="C-PortMgt.html#cb100-14" aria-hidden="true" tabindex="-1"></a>  meanFct <span class="ot">&lt;-</span> mu1<span class="sc">+</span>mu2<span class="sc">+</span>mu3</span>
+<span id="cb100-15"><a href="C-PortMgt.html#cb100-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(meanFct,varFct)</span>
+<span id="cb100-16"><a href="C-PortMgt.html#cb100-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb100-17"><a href="C-PortMgt.html#cb100-17" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(M){<span class="fu">VarFct</span>(M)[<span class="dv">2</span>]}</span>
+<span id="cb100-18"><a href="C-PortMgt.html#cb100-18" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(M){<span class="fu">VarFct</span>(M)[<span class="dv">1</span>] <span class="sc">-</span> Pmin}</span>
+<span id="cb100-19"><a href="C-PortMgt.html#cb100-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(alabama)</span>
+<span id="cb100-20"><a href="C-PortMgt.html#cb100-20" aria-hidden="true" tabindex="-1"></a>par0<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">1000</span>,<span class="dv">3</span>)</span>
+<span id="cb100-21"><a href="C-PortMgt.html#cb100-21" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">auglag</span>(<span class="at">par=</span>par0,<span class="at">fn=</span>f,<span class="at">hin=</span>h,<span class="at">control.outer=</span><span class="fu">list</span>(<span class="at">trace=</span><span class="cn">FALSE</span>))</span></code></pre></div>
 <p>Los límites de retención óptimos <span class="math inline">\(M_1\)</span>, <span class="math inline">\(M_2\)</span>, y <span class="math inline">\(M_3\)</span> calculados como los límites de retención menos los siniestros esperados del asegurador, <span class="math inline">\(M_i - E(X_i \wedge M_i)\)</span>, son los mismos para todos los riesgos, como se ha derivado teóricamente.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="C-PortMgt.html#cb101-1"></a>M1star =<span class="st"> </span>op<span class="op">$</span>par[<span class="dv">1</span>];M2star =<span class="st"> </span>op<span class="op">$</span>par[<span class="dv">2</span>];M3star =<span class="st"> </span>op<span class="op">$</span>par[<span class="dv">3</span>]</span>
-<span id="cb101-2"><a href="C-PortMgt.html#cb101-2"></a>M1star <span class="op">-</span><span class="kw">levpareto</span>(M1star,<span class="dt">shape=</span>alpha1, <span class="dt">scale=</span>theta1,<span class="dt">order=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="C-PortMgt.html#cb101-1" aria-hidden="true" tabindex="-1"></a>M1star <span class="ot">=</span> op<span class="sc">$</span>par[<span class="dv">1</span>];M2star <span class="ot">=</span> op<span class="sc">$</span>par[<span class="dv">2</span>];M3star <span class="ot">=</span> op<span class="sc">$</span>par[<span class="dv">3</span>]</span>
+<span id="cb101-2"><a href="C-PortMgt.html#cb101-2" aria-hidden="true" tabindex="-1"></a>M1star <span class="sc">-</span><span class="fu">levpareto</span>(M1star,<span class="at">shape=</span>alpha1, <span class="at">scale=</span>theta1,<span class="at">order=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 1344.135</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="C-PortMgt.html#cb103-1"></a>M2star <span class="op">-</span><span class="kw">levpareto</span>(M2star,<span class="dt">shape=</span>alpha2, <span class="dt">scale=</span>theta2,<span class="dt">order=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="C-PortMgt.html#cb103-1" aria-hidden="true" tabindex="-1"></a>M2star <span class="sc">-</span><span class="fu">levpareto</span>(M2star,<span class="at">shape=</span>alpha2, <span class="at">scale=</span>theta2,<span class="at">order=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 1344.133</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="C-PortMgt.html#cb105-1"></a>M3star <span class="op">-</span><span class="kw">levpareto</span>(M3star,<span class="dt">shape=</span>alpha3, <span class="dt">scale=</span>theta3,<span class="dt">order=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="C-PortMgt.html#cb105-1" aria-hidden="true" tabindex="-1"></a>M3star <span class="sc">-</span><span class="fu">levpareto</span>(M3star,<span class="at">shape=</span>alpha3, <span class="at">scale=</span>theta3,<span class="at">order=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 1344.133</code></pre>
 <p>Gráficamente se compara la distribución de los riesgos totales con los retenidos por el asegurador y el reasegurador.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="C-PortMgt.html#cb107-1"></a><span class="kw">set.seed</span>(<span class="dv">2018</span>)</span>
-<span id="cb107-2"><a href="C-PortMgt.html#cb107-2"></a>nSim =<span class="st"> </span><span class="dv">10000</span></span>
-<span id="cb107-3"><a href="C-PortMgt.html#cb107-3"></a><span class="kw">library</span>(actuar)</span>
-<span id="cb107-4"><a href="C-PortMgt.html#cb107-4"></a>Y1 &lt;-<span class="st"> </span><span class="kw">rpareto</span>(nSim, <span class="dt">shape =</span> alpha1, <span class="dt">scale =</span> theta1)</span>
-<span id="cb107-5"><a href="C-PortMgt.html#cb107-5"></a>Y2 &lt;-<span class="st"> </span><span class="kw">rpareto</span>(nSim, <span class="dt">shape =</span> alpha2, <span class="dt">scale =</span> theta2)</span>
-<span id="cb107-6"><a href="C-PortMgt.html#cb107-6"></a>Y3 &lt;-<span class="st"> </span><span class="kw">rpareto</span>(nSim, <span class="dt">shape =</span> alpha3, <span class="dt">scale =</span> theta3)</span>
-<span id="cb107-7"><a href="C-PortMgt.html#cb107-7"></a>YTotal &lt;-<span class="st"> </span>Y1 <span class="op">+</span><span class="st"> </span>Y2 <span class="op">+</span><span class="st"> </span>Y3</span>
-<span id="cb107-8"><a href="C-PortMgt.html#cb107-8"></a>Yinsur &lt;-<span class="st">  </span><span class="kw">pmin</span>(Y1,M1star)<span class="op">+</span><span class="kw">pmin</span>(Y2,M2star)<span class="op">+</span><span class="kw">pmin</span>(Y3,M3star)</span>
-<span id="cb107-9"><a href="C-PortMgt.html#cb107-9"></a>Yreinsur &lt;-<span class="st"> </span>YTotal <span class="op">-</span><span class="st"> </span>Yinsur</span>
-<span id="cb107-10"><a href="C-PortMgt.html#cb107-10"></a></span>
-<span id="cb107-11"><a href="C-PortMgt.html#cb107-11"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb107-12"><a href="C-PortMgt.html#cb107-12"></a><span class="kw">plot</span>(<span class="kw">density</span>(YTotal),   <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="dt">main=</span><span class="st">&quot;Total Loss&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
-<span id="cb107-13"><a href="C-PortMgt.html#cb107-13"></a><span class="kw">plot</span>(<span class="kw">density</span>(Yinsur),   <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="dt">main=</span><span class="st">&quot;Insurer&quot;</span>,    <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
-<span id="cb107-14"><a href="C-PortMgt.html#cb107-14"></a><span class="kw">plot</span>(<span class="kw">density</span>(Yreinsur), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="dt">main=</span><span class="st">&quot;Reinsurer&quot;</span>,  <span class="dt">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="C-PortMgt.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb107-2"><a href="C-PortMgt.html#cb107-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb107-3"><a href="C-PortMgt.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(actuar)</span>
+<span id="cb107-4"><a href="C-PortMgt.html#cb107-4" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(nSim, <span class="at">shape =</span> alpha1, <span class="at">scale =</span> theta1)</span>
+<span id="cb107-5"><a href="C-PortMgt.html#cb107-5" aria-hidden="true" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(nSim, <span class="at">shape =</span> alpha2, <span class="at">scale =</span> theta2)</span>
+<span id="cb107-6"><a href="C-PortMgt.html#cb107-6" aria-hidden="true" tabindex="-1"></a>Y3 <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(nSim, <span class="at">shape =</span> alpha3, <span class="at">scale =</span> theta3)</span>
+<span id="cb107-7"><a href="C-PortMgt.html#cb107-7" aria-hidden="true" tabindex="-1"></a>YTotal <span class="ot">&lt;-</span> Y1 <span class="sc">+</span> Y2 <span class="sc">+</span> Y3</span>
+<span id="cb107-8"><a href="C-PortMgt.html#cb107-8" aria-hidden="true" tabindex="-1"></a>Yinsur <span class="ot">&lt;-</span>  <span class="fu">pmin</span>(Y1,M1star)<span class="sc">+</span><span class="fu">pmin</span>(Y2,M2star)<span class="sc">+</span><span class="fu">pmin</span>(Y3,M3star)</span>
+<span id="cb107-9"><a href="C-PortMgt.html#cb107-9" aria-hidden="true" tabindex="-1"></a>Yreinsur <span class="ot">&lt;-</span> YTotal <span class="sc">-</span> Yinsur</span>
+<span id="cb107-10"><a href="C-PortMgt.html#cb107-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-11"><a href="C-PortMgt.html#cb107-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb107-12"><a href="C-PortMgt.html#cb107-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(YTotal),   <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="at">main=</span><span class="st">&quot;Total Loss&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
+<span id="cb107-13"><a href="C-PortMgt.html#cb107-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Yinsur),   <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="at">main=</span><span class="st">&quot;Insurer&quot;</span>,    <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span>
+<span id="cb107-14"><a href="C-PortMgt.html#cb107-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Yreinsur), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>), <span class="at">main=</span><span class="st">&quot;Reinsurer&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Losses&quot;</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-49-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <hr />
 </div>
 </div>
-<div id="S:AdditionalRe" class="section level3">
+<div id="S:AdditionalRe" class="section level3" number="10.4.3">
 <h3><span class="header-section-number">10.4.3</span> Acuerdos de Reaseguro Adicionales</h3>
-<div id="acuerdo-surplus-share-proportional-treaty" class="section level4">
+<div id="acuerdo-surplus-share-proportional-treaty" class="section level4" number="10.4.3.1">
 <h4><span class="header-section-number">10.4.3.1</span> Acuerdo Surplus Share Proportional Treaty</h4>
 <p>Otro acuerdo proporcional es el denominado <a href="#" class="tooltip" style="color:green"><em>surplus share</em><span style="font-size:8pt">Un acuerdo de reaseguro proporcional que es frecuente en seguros de daños comerciales. Un acuerdo surplus share permite al reasegurado limitar su exposición en un determinado riesgo a una cantidad dada (el pleno de retención). El reasegurador asume una parte del riesgo en proporción a la cantidad que el valor asegurado excede el pleno de retención, hasta un límite dado (expresado como un múltiplo del pleno de retención, o número de plenos).</span></a>; este tipo de contratos es frecuente en seguros de daños comerciales.</p>
 <ul>
@@ -1710,7 +1796,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 </ul>
 <p>Por ejemplo, sea el pleno de retención $100,000 y el límite 4 veces el pleno ($400,000). Entonces, si <span class="math inline">\(X\)</span> es la pérdida, la parte del reasegurador es <span class="math inline">\(\min(400000, (X-100000)_+)\)</span>.</p>
 </div>
-<div id="layers-de-cobertura" class="section level4">
+<div id="layers-de-cobertura" class="section level4" number="10.4.3.2">
 <h4><span class="header-section-number">10.4.3.2</span> Layers de cobertura</h4>
 <p>Se pueden extender los acuerdos de reaseguro no-proporcionales stop-loss introduiendo partes adicionales al contrato. Por ejemplo, en lugar de simplemente un asegurador y un reasegurador o un asegurador y un tomador, pensar en una situación con las tres partes, tomador, asegurador, y reasegurador, los cuales se ponen de acuerdo en como repartir el riesgo. De forma más general, se consideran <span class="math inline">\(k\)</span> partes. Si <span class="math inline">\(k=3\)</span>, podria tratarse de un asegurador y dos reaseguradores diferentes.</p>
 <p><strong>Ejemplo 10.3.4. Layers de cobertura para tres partes.</strong></p>
@@ -1784,7 +1870,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <span class="math inline">\(Y_3 = X - \min(X,100000) = \max(0, X-100000)\)</span>.</p>
 <p>Para saber más, consultar en <a href="https://sites.google.com/a/wisc.edu/local-government-property-insurance-fund/home/reinsurance">Wisconsin Property Fund site</a> un ejemplo de layers de reaseguro.</p>
 </div>
-<div id="ejemplo-de-gestión-de-cartera" class="section level4">
+<div id="ejemplo-de-gestión-de-cartera" class="section level4" number="10.4.3.3">
 <h4><span class="header-section-number">10.4.3.3</span> Ejemplo de Gestión de Cartera</h4>
 <p>Pueden encontrarse muchas otras variaciones de los contratos originales. Para tener más ilustraciones, se considera lo siguiente.</p>
 <p><strong>Ejemplo. 10.3.6. Gestión de carteras.</strong> Tú eres el jefe de riesgos de una empresa de telecomunicaciones. Tu empresa tiene varios riesgos de daños y responsabilidad. Se considera:</p>
@@ -1809,66 +1895,66 @@ De forma que tu riesgo retenido es <span class="math inline">\(Y_{retenido}= X- 
 </h6>
 <div id="togglePortMgtExample" style="display: none">
 <p>En preparación, se adjunta el código necesario para establecer los parámetros.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="C-PortMgt.html#cb108-1"></a><span class="co"># Para la distribución gamma, usar</span></span>
-<span id="cb108-2"><a href="C-PortMgt.html#cb108-2"></a>alpha1 &lt;-<span class="st"> </span><span class="dv">2</span>;      theta1 &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb108-3"><a href="C-PortMgt.html#cb108-3"></a>alpha2 &lt;-<span class="st"> </span><span class="dv">2</span>;      theta2 &lt;-<span class="st"> </span><span class="dv">200</span></span>
-<span id="cb108-4"><a href="C-PortMgt.html#cb108-4"></a><span class="co"># Para la distribución de Pareto, usar</span></span>
-<span id="cb108-5"><a href="C-PortMgt.html#cb108-5"></a>alpha3 &lt;-<span class="st"> </span><span class="dv">2</span>;      theta3 &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb108-6"><a href="C-PortMgt.html#cb108-6"></a>alpha4 &lt;-<span class="st"> </span><span class="dv">3</span>;      theta4 &lt;-<span class="st"> </span><span class="dv">2000</span></span>
-<span id="cb108-7"><a href="C-PortMgt.html#cb108-7"></a><span class="co"># Límites</span></span>
-<span id="cb108-8"><a href="C-PortMgt.html#cb108-8"></a>M1     &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb108-9"><a href="C-PortMgt.html#cb108-9"></a>M2     &lt;-<span class="st"> </span><span class="dv">200</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="C-PortMgt.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para la distribución gamma, usar</span></span>
+<span id="cb108-2"><a href="C-PortMgt.html#cb108-2" aria-hidden="true" tabindex="-1"></a>alpha1 <span class="ot">&lt;-</span> <span class="dv">2</span>;      theta1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb108-3"><a href="C-PortMgt.html#cb108-3" aria-hidden="true" tabindex="-1"></a>alpha2 <span class="ot">&lt;-</span> <span class="dv">2</span>;      theta2 <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb108-4"><a href="C-PortMgt.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Para la distribución de Pareto, usar</span></span>
+<span id="cb108-5"><a href="C-PortMgt.html#cb108-5" aria-hidden="true" tabindex="-1"></a>alpha3 <span class="ot">&lt;-</span> <span class="dv">2</span>;      theta3 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb108-6"><a href="C-PortMgt.html#cb108-6" aria-hidden="true" tabindex="-1"></a>alpha4 <span class="ot">&lt;-</span> <span class="dv">3</span>;      theta4 <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb108-7"><a href="C-PortMgt.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Límites</span></span>
+<span id="cb108-8"><a href="C-PortMgt.html#cb108-8" aria-hidden="true" tabindex="-1"></a>M1     <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb108-9"><a href="C-PortMgt.html#cb108-9" aria-hidden="true" tabindex="-1"></a>M2     <span class="ot">&lt;-</span> <span class="dv">200</span></span></code></pre></div>
 <p>Con estos parámetros, se pueden simular acaecimientos de los riesgos de la cartera.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="C-PortMgt.html#cb109-1"></a><span class="co"># Simular los riesgos</span></span>
-<span id="cb109-2"><a href="C-PortMgt.html#cb109-2"></a>nSim &lt;-<span class="st"> </span><span class="dv">10000</span>  <span class="co">#número de simulaciones</span></span>
-<span id="cb109-3"><a href="C-PortMgt.html#cb109-3"></a><span class="kw">set.seed</span>(<span class="dv">2017</span>) <span class="co">#establecer la seed para reproducir el trabajo </span></span>
-<span id="cb109-4"><a href="C-PortMgt.html#cb109-4"></a>X1 &lt;-<span class="st"> </span><span class="kw">rgamma</span>(nSim,alpha1,<span class="dt">scale =</span> theta1)  </span>
-<span id="cb109-5"><a href="C-PortMgt.html#cb109-5"></a>X2 &lt;-<span class="st"> </span><span class="kw">rgamma</span>(nSim,alpha2,<span class="dt">scale =</span> theta2)  </span>
-<span id="cb109-6"><a href="C-PortMgt.html#cb109-6"></a><span class="co"># Para la Distribución de Pareto, usar</span></span>
-<span id="cb109-7"><a href="C-PortMgt.html#cb109-7"></a><span class="kw">library</span>(actuar)</span>
-<span id="cb109-8"><a href="C-PortMgt.html#cb109-8"></a>X3 &lt;-<span class="st"> </span><span class="kw">rpareto</span>(nSim,<span class="dt">scale=</span>theta3,<span class="dt">shape=</span>alpha3)</span>
-<span id="cb109-9"><a href="C-PortMgt.html#cb109-9"></a>X4 &lt;-<span class="st"> </span><span class="kw">rpareto</span>(nSim,<span class="dt">scale=</span>theta4,<span class="dt">shape=</span>alpha4)</span>
-<span id="cb109-10"><a href="C-PortMgt.html#cb109-10"></a><span class="co"># Riesgos de Cartera</span></span>
-<span id="cb109-11"><a href="C-PortMgt.html#cb109-11"></a>X         &lt;-<span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3 <span class="op">+</span><span class="st"> </span>X4</span>
-<span id="cb109-12"><a href="C-PortMgt.html#cb109-12"></a>Yretenido &lt;-<span class="st"> </span><span class="kw">pmin</span>(X1,M1) <span class="op">+</span><span class="st"> </span><span class="kw">pmin</span>(X2,M2)</span>
-<span id="cb109-13"><a href="C-PortMgt.html#cb109-13"></a>Yasegurador  &lt;-<span class="st"> </span>X <span class="op">-</span><span class="st"> </span>Yretenido</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="C-PortMgt.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular los riesgos</span></span>
+<span id="cb109-2"><a href="C-PortMgt.html#cb109-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co">#número de simulaciones</span></span>
+<span id="cb109-3"><a href="C-PortMgt.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2017</span>) <span class="co">#establecer la seed para reproducir el trabajo </span></span>
+<span id="cb109-4"><a href="C-PortMgt.html#cb109-4" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(nSim,alpha1,<span class="at">scale =</span> theta1)  </span>
+<span id="cb109-5"><a href="C-PortMgt.html#cb109-5" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(nSim,alpha2,<span class="at">scale =</span> theta2)  </span>
+<span id="cb109-6"><a href="C-PortMgt.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Para la Distribución de Pareto, usar</span></span>
+<span id="cb109-7"><a href="C-PortMgt.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(actuar)</span>
+<span id="cb109-8"><a href="C-PortMgt.html#cb109-8" aria-hidden="true" tabindex="-1"></a>X3 <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(nSim,<span class="at">scale=</span>theta3,<span class="at">shape=</span>alpha3)</span>
+<span id="cb109-9"><a href="C-PortMgt.html#cb109-9" aria-hidden="true" tabindex="-1"></a>X4 <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(nSim,<span class="at">scale=</span>theta4,<span class="at">shape=</span>alpha4)</span>
+<span id="cb109-10"><a href="C-PortMgt.html#cb109-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Riesgos de Cartera</span></span>
+<span id="cb109-11"><a href="C-PortMgt.html#cb109-11" aria-hidden="true" tabindex="-1"></a>X         <span class="ot">&lt;-</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4</span>
+<span id="cb109-12"><a href="C-PortMgt.html#cb109-12" aria-hidden="true" tabindex="-1"></a>Yretenido <span class="ot">&lt;-</span> <span class="fu">pmin</span>(X1,M1) <span class="sc">+</span> <span class="fu">pmin</span>(X2,M2)</span>
+<span id="cb109-13"><a href="C-PortMgt.html#cb109-13" aria-hidden="true" tabindex="-1"></a>Yasegurador  <span class="ot">&lt;-</span> X <span class="sc">-</span> Yretenido</span></code></pre></div>
 <p><strong>(a)</strong> Aquí está el código para las cantidades esperadas por siniestro.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="C-PortMgt.html#cb110-1"></a><span class="co"># Cantidades esperadas por siniestro</span></span>
-<span id="cb110-2"><a href="C-PortMgt.html#cb110-2"></a>ExpVec &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">as.matrix</span>(<span class="kw">c</span>(<span class="kw">mean</span>(Yretenido),<span class="kw">mean</span>(Yasegurador),<span class="kw">mean</span>(X))))</span>
-<span id="cb110-3"><a href="C-PortMgt.html#cb110-3"></a><span class="kw">colnames</span>(ExpVec) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Retenido&quot;</span>, <span class="st">&quot;Asegurador&quot;</span>,<span class="st">&quot;Total&quot;</span>)</span>
-<span id="cb110-4"><a href="C-PortMgt.html#cb110-4"></a><span class="kw">round</span>(ExpVec,<span class="dt">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="C-PortMgt.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cantidades esperadas por siniestro</span></span>
+<span id="cb110-2"><a href="C-PortMgt.html#cb110-2" aria-hidden="true" tabindex="-1"></a>ExpVec <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.matrix</span>(<span class="fu">c</span>(<span class="fu">mean</span>(Yretenido),<span class="fu">mean</span>(Yasegurador),<span class="fu">mean</span>(X))))</span>
+<span id="cb110-3"><a href="C-PortMgt.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ExpVec) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Retenido&quot;</span>, <span class="st">&quot;Asegurador&quot;</span>,<span class="st">&quot;Total&quot;</span>)</span>
+<span id="cb110-4"><a href="C-PortMgt.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ExpVec,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>     Retenido Asegurador   Total
 [1,]   269.05    5274.41 5543.46</code></pre>
 <p><strong>(b)</strong> Aquí está el código para los cuantiles.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="C-PortMgt.html#cb112-1"></a><span class="co"># Cuantiles</span></span>
-<span id="cb112-2"><a href="C-PortMgt.html#cb112-2"></a>quantMat &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
-<span id="cb112-3"><a href="C-PortMgt.html#cb112-3"></a>  <span class="kw">quantile</span>(Yretenido, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)),</span>
-<span id="cb112-4"><a href="C-PortMgt.html#cb112-4"></a>  <span class="kw">quantile</span>(Yasegurador,  <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)),</span>
-<span id="cb112-5"><a href="C-PortMgt.html#cb112-5"></a>  <span class="kw">quantile</span>(X       ,  <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)))</span>
-<span id="cb112-6"><a href="C-PortMgt.html#cb112-6"></a><span class="kw">rownames</span>(quantMat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Retenido&quot;</span>, <span class="st">&quot;Asegurador&quot;</span>,<span class="st">&quot;Total&quot;</span>)</span>
-<span id="cb112-7"><a href="C-PortMgt.html#cb112-7"></a><span class="kw">round</span>(quantMat,<span class="dt">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="C-PortMgt.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cuantiles</span></span>
+<span id="cb112-2"><a href="C-PortMgt.html#cb112-2" aria-hidden="true" tabindex="-1"></a>quantMat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb112-3"><a href="C-PortMgt.html#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(Yretenido, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)),</span>
+<span id="cb112-4"><a href="C-PortMgt.html#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(Yasegurador,  <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)),</span>
+<span id="cb112-5"><a href="C-PortMgt.html#cb112-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(X       ,  <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.80</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)))</span>
+<span id="cb112-6"><a href="C-PortMgt.html#cb112-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(quantMat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Retenido&quot;</span>, <span class="st">&quot;Asegurador&quot;</span>,<span class="st">&quot;Total&quot;</span>)</span>
+<span id="cb112-7"><a href="C-PortMgt.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(quantMat,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>               80%     90%     95%      99%
 Retenido    300.00  300.00  300.00   300.00
 Asegurador 6075.67 7399.80 9172.69 14859.02
 Total      6351.35 7675.04 9464.20 15159.02</code></pre>
 <p><strong>(c)</strong> Aquí está el código para los gráficos de densidades del riesgo retenido, del asegurador y el total de riesgo de cartera.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="C-PortMgt.html#cb114-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb114-2"><a href="C-PortMgt.html#cb114-2"></a><span class="kw">plot</span>(<span class="kw">density</span>(Yretenido), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>), <span class="dt">main=</span><span class="st">&quot;Riesgo de Cartera Retenido&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Pérdida (Tener en cuenta la escala horizontal diferente)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Densidad (Tener en cuenta la diferente escala vertical)&quot;</span>)</span>
-<span id="cb114-3"><a href="C-PortMgt.html#cb114-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Yasegurador), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">15000</span>), <span class="dt">main=</span><span class="st">&quot;Riesgo de Cartera del Asegurador&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Pérdida&quot;</span>)</span>
-<span id="cb114-4"><a href="C-PortMgt.html#cb114-4"></a><span class="kw">plot</span>(<span class="kw">density</span>(X), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">15000</span>), <span class="dt">main=</span><span class="st">&quot;Riesgo Total de Cartera&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Pérdida&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="C-PortMgt.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb114-2"><a href="C-PortMgt.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Yretenido), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>), <span class="at">main=</span><span class="st">&quot;Riesgo de Cartera Retenido&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Pérdida (Tener en cuenta la escala horizontal diferente)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidad (Tener en cuenta la diferente escala vertical)&quot;</span>)</span>
+<span id="cb114-3"><a href="C-PortMgt.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Yasegurador), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15000</span>), <span class="at">main=</span><span class="st">&quot;Riesgo de Cartera del Asegurador&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Pérdida&quot;</span>)</span>
+<span id="cb114-4"><a href="C-PortMgt.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(X), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15000</span>), <span class="at">main=</span><span class="st">&quot;Riesgo Total de Cartera&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Pérdida&quot;</span>)</span></code></pre></div>
 <p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-55-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
 </div>
-<div id="recursos-y-colaboradores-adicionales" class="section level2">
+<div id="recursos-y-colaboradores-adicionales" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Recursos y Colaboradores adicionales</h2>
 <ul>
 <li><strong>Edward W. (Jed) Frees</strong>, University of Wisconsin-Madison, y <strong>Jianxi Su</strong>, Purdue University son los autores principales de la versión inicial de este capítulo. Email: <a href="mailto:jfrees@bus.wisc.edu" class="email">jfrees@bus.wisc.edu</a> y/o <a href="mailto:jianxi@purdue.edu" class="email">jianxi@purdue.edu</a> para comentarios sobre el capítulo y mejoras sugeridas.</li>
 <li>Revisores del Capítulo: Fei Huang, Hirokazu (Iwahiro) Iwasawa, Peng Shi, Ping Wang, Chengguo Weng.</li>
 <li>Traducción al español: Mercedes Ayuso (Universitat de Barcelona)</li>
 </ul>
-<p>Algunos de los ejemplos de este capítulo se tomaron de <span class="citation">Clark (<a href="#ref-clark1996basics" role="doc-biblioref">1996</a>)</span>, <span class="citation">Klugman, Panjer, and Willmot (<a href="#ref-klugman2012" role="doc-biblioref">2012</a>)</span>, y <span class="citation">Bahnemann (<a href="#ref-bahnemann2015distributions" role="doc-biblioref">2015</a>)</span>. Estas referencias proporcionan excelentes Fuentes para discusiones adicionales y ejemplos.</p>
+<p>Algunos de los ejemplos de este capítulo se tomaron de <span class="citation"><a href="bibliography.html#ref-clark1996basics" role="doc-biblioref">Clark</a> (<a href="bibliography.html#ref-clark1996basics" role="doc-biblioref">1996</a>)</span>, <span class="citation"><a href="bibliography.html#ref-klugman2012" role="doc-biblioref">Klugman, Panjer, and Willmot</a> (<a href="bibliography.html#ref-klugman2012" role="doc-biblioref">2012</a>)</span>, y <span class="citation"><a href="bibliography.html#ref-bahnemann2015distributions" role="doc-biblioref">Bahnemann</a> (<a href="bibliography.html#ref-bahnemann2015distributions" role="doc-biblioref">2015</a>)</span>. Estas referencias proporcionan excelentes Fuentes para discusiones adicionales y ejemplos.</p>
 <script type="text/javascript">
 function togglecode(id1,id2) {
    var ele = document.getElementById(id1); var text = document.getElementById(id2);
@@ -1876,21 +1962,6 @@ function togglecode(id1,id2) {
       else {ele.style.display = "block"; text.innerHTML = "Hide";}}
 </script>
 
-</div>
-</div>
-<h3>Bibliography</h3>
-<div id="refs" class="references">
-<div id="ref-bahnemann2015distributions">
-<p>Bahnemann, David. 2015. “Distributions for Actuaries.” <em>CAS Monograph Series</em>, no. 2. <a href="https://www.casact.org/pubs/monographs/papers/02-Bahnemann.pdf">https://www.casact.org/pubs/monographs/papers/02-Bahnemann.pdf</a>.</p>
-</div>
-<div id="ref-clark1996basics">
-<p>Clark, David R. 1996. “Basics of Reinsurance Pricing.” <em>CAS Study Note</em>, 41–43. <a href="https://www.soa.org/files/edu/edu-2014-exam-at-study-note-basics-rein.pdf">https://www.soa.org/files/edu/edu-2014-exam-at-study-note-basics-rein.pdf</a>.</p>
-</div>
-<div id="ref-hardy2006">
-<p>Hardy, Mary R. 2006. “An Introduction to Risk Measures for Actuarial Applications.”</p>
-</div>
-<div id="ref-klugman2012">
-<p>Klugman, Stuart A., Harry H. Panjer, and Gordon E. Willmot. 2012. <em>Loss Models: From Data to Decisions</em>. John Wiley &amp; Sons.</p>
 </div>
 </div>
             </section>
