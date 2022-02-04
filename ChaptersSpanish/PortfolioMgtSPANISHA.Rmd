@@ -1127,7 +1127,7 @@ Otro acuerdo proporcional es el denominado <a href="#" class="tooltip" style="co
 -   Un acuerdo surplus share permite al reasegurado limitar su exposición a un determinado riesgo a una cantidad dada (el *pleno de retención*).
 -   El reasegurador asume una parte del riesgo en proporción a la cantidad que el valor asegurado excede el pleno de retención, hasta un límite dado (expresado como un múltiplo del pleno de retención, o número de plenos).
 
-Por ejemplo, sea el pleno de retención \$100,000 y el límite 4 veces el pleno (\$400,000). Entonces, si $X$ es la pérdida, la parte del reasegurador es $\min(400000, (X-100000)_+)$.
+Por ejemplo, sea el pleno de retención 100,000 y el límite 4 veces el pleno (400,000). Entonces, si $X$ es la pérdida, la parte del reasegurador es $\min(400000, (X-100000)_+)$.
 
 
 #### Layers de cobertura
@@ -1143,12 +1143,12 @@ Se pueden extender los acuerdos de reaseguro no-proporcionales stop-loss introdu
 
 
 
-  Layer       Siniestro 1  Siniestro 2  Siniestro 3  Siniestro 4  Total
-  ----------  -----------  -----------  -----------  ----------- -------
-  (0, 100\]          50        100          100          100       350
-  (100, 3000\]        0        500         1700         2900      5100
-  (3000, $\infty$)    0          0            0         1000      1000
-  Total              50        600         1800         4000      6450
+  Layer            Siniestro 1  Siniestro 2  Siniestro 3  Siniestro 4     Total
+  ---------------- -----------  -----------  -----------  -----------   -------
+  (0, 100\]                 50          100          100          100       350
+  (100, 3000\]               0          500         1700         2900      5100
+  (3000, $\infty$)           0            0            0         1000      1000
+  Total                     50          600         1800         4000      6450
 
 
 ***

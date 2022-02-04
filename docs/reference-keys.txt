@@ -6,7 +6,6 @@ tab:CoverageBCIM
 tab:DeductCov
 tab:ClaimRateVar
 tab:RateAlarmCredit
-thm:freq-thm1
 thm:pgfthm
 eq:ab0
 fig:berlik
@@ -144,6 +143,7 @@ fig:PrimEvolución
 fig:study
 fig:modeling
 fig:IntroPlot
+fig:Scatter
 fig:Hist
 fig:Hist2
 fig:Scatter2
@@ -268,7 +268,7 @@ modelo-de-riesgo-colectivo
 momentos-y-distribución
 seguro-stop-loss
 resultados-analíticos
-distribución-tweedie
+S:TweedieDistribution
 cálculo-de-la-distribución-de-pérdidas-agregadas
 método-recursivo
 simulación

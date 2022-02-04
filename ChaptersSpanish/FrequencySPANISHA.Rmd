@@ -120,17 +120,20 @@ M_N(t) = \mathrm{E}~{[e^{tN}]} = \sum^{\infty}_{k=0} ~e^{tk}~ p_N(k), \quad t\in
 Obsérvese que mientras $M_N(\cdot)$ está bien definida ya que es el valor esperado de una variable aleatoria no negativa ($e^{tN}$), aunque puede tomar el valor $\infty$. Nótese que para una variable aleatoria de recuento, $M_N(\cdot)$ tiene un valor finito en $(-\infty,0]$ con $M_N(0)=1$. El siguiente teorema, cuya demostración se encuentra en [@billingsley] (pages 285-6), justifica su nombre.  
 
 <!-- \begin{theorem}\label{freq:thm1} -->
-```{theorem, freq-thm1}
+```{theorem, freq.thm1}
 Consideremos que $N$ es una variable aleatoria de recuento tal que $\mathrm{E}~{[e^{t^\ast N}]}$ es finita para algún $t^\ast>0$. Se tiene lo siguiente:
 
 Todos los momentos de $N$ son finitos, *i.e.*
 \[
-\mathrm{E}{[N^r]}<\infty, \quad r \gt 0.
+\mathrm{E}{[N^r]}<\infty, \quad r > 0.
 \]
+
 La *mgf* se puede usar para *generar* sus momentos de la siguiente forma:
-\[
+
+$$
 \left.\frac{{\rm d}^m}{{\rm d}t^m} M_N(t)\right\vert_{t=0}=\mathrm{E}{N^m}, \quad m\geq 1.
-\]
+$$
+
 La *mgf* $M_N(\cdot)$ caracteriza la distribución; en otras palabras, especifica de manera única la distribución.
 
 ```
@@ -149,7 +152,7 @@ Es sencillo ver que si la *mgf* $M_N(\cdot)$ existe en $(-\infty,t^\ast)$ entonc
 \[
 P_N(s)=M_N(\log(s)), \quad s<e^{t^\ast}.
 \]
-Además, si la *pgf* existe en el intervalo $[0,s^\ast)$ con $s^\ast>1$, entonces la *mgf* $M_N(\cdot)$ existe en $(-\infty,\log(s^\ast))$, y especifica la distribución de $N$ de forma única por el Teorema \@ref(thm:freq-thm1). El siguiente resultado para *pgf* es análogo al Teorema \@ref(thm:freq-thm1), y en concreto motiva su nombre.  
+Además, si la *pgf* existe en el intervalo $[0,s^\ast)$ con $s^\ast>1$, entonces la *mgf* $M_N(\cdot)$ existe en $(-\infty,\log(s^\ast))$, y especifica la distribución de $N$ de forma única por el Teorema \@ref(thm:freq.thm1). El siguiente resultado para *pgf* es análogo al Teorema \@ref(thm:freq.thm1), y en concreto motiva su nombre.  
 
 <!-- \begin{theorem}\label{pgfthm} -->
 ```{theorem, pgfthm}
@@ -301,16 +304,16 @@ p_k = \binom{k+r-1}{k} \left(\frac{1}{1+\beta}\right)^r \left(\frac{\beta}{1+\be
 para $r>0$ y $\beta\geq0$, entonces queda definida una *pmf* válida. Esta distribución que se ha definido se denomina la distribución negativa binomial con parámetros $(r,\beta)$ con $r>0$ y $\beta\geq 0$. Además, la serie binomial también implica que la *pgf* de la distribución venga dada por 
 \[
 \begin{aligned}
-  P_N(z) &= (1-\beta(z-1))^{-r}, \quad \vert z \vert \lt 1+\frac{1}{\beta}, \beta\geq0. 
+  P_N(z) &= (1-\beta(z-1))^{-r}, \quad \vert z \vert < 1+\frac{1}{\beta}, \beta\geq0. 
 \end{aligned}
 \]
 Lo anterior implica que la *mgf* venga dada por 
 \[
 \begin{aligned}
-  M_N(t) &= (1-\beta(e^t-1))^{-r}, \quad t \lt \log\left(1+\frac{1}{\beta}\right), \beta\geq0. 
+  M_N(t) &= (1-\beta(e^t-1))^{-r}, \quad t < \log\left(1+\frac{1}{\beta}\right), \beta\geq0. 
 \end{aligned}
 \]
-Derivamos sus momentos utilizando el Teorema \@ref(thm:freq-thm1) como sigue:
+Derivamos sus momentos utilizando el Teorema \@ref(thm:freq.thm1) como sigue:
 
 \begin{eqnarray*}
 \mathrm{E}[N]&=&M'(0)= \left. r\beta e^t (1-\beta(e^t-1))^{-r-1}\right\vert_{t=0}=r\beta;\\

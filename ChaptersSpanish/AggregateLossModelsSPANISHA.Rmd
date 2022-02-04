@@ -917,7 +917,7 @@ donde $\overline{P}_j =p_{j+1}+p_{j+2}+\cdots = \Pr (N>j)$ es la "función de su
 
 ***
 
-### Distribución Tweedie
+### Distribución Tweedie {#S:TweedieDistribution}
 
 En esta sección se analiza una distribución compuesta concreta en la que el número de siniestros sigue una distribución de Poisson y la cuantía del siniestro sigue una distribución gamma. Esta especificación genera lo que se conoce como *distribución Tweedie*. La distribución Tweedie tiene masa de probabilidad en cero y una componente continua para valores positivos. Esta característica hace que sea ampliamente utilizada en la modelización de la siniestralidad en seguros, donde la masa en cero se interpreta como ningún siniestro y la componente positiva como el coste de los siniestros.
 

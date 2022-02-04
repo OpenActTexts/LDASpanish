@@ -538,14 +538,22 @@ C & 20\% & \lambda=2,0 & \beta=2.000 \\
 
 `r HideExample('9.3.5', 'Mostrar Solución del Ejemplo')`
 
-**Solución** Como las cuantías de los siniestros individuales $X$ están exponencialmente distribuidos, E($X| \beta$)=$\beta$ y Var($X| \beta$)=$\beta^2$.  Para la siniestralidad agregada $S=X_1+\cdots+X_N$, la media es E($S$)=E($N$)E($X$) y la varianza de proceso es Var($S$)=E($N$)Var($X$)+[E($X$)]$^2$Var($N$). Con la frecuencia distribuida según una Poisson y las cuantías de los siniestros individuales exponencialmente distribuidas, E($S| \lambda, \beta$)=$\beta\de lambda$ y Var($S| \lambda, \beta$) = $\beta\de lambda^2+\beta^2\lambda=2\beta\de lambda^2$.
+**Solución** Como las cuantías de los siniestros individuales $X$ están exponencialmente distribuidos, E($X| \beta$)=$\beta$ y Var($X| \beta$)=$\beta^2$.  Para la siniestralidad agregada $S=X_1+\cdots+X_N$, la media es E($S$)=E($N$)E($X$) y la varianza de proceso es Var($S$)=E($N$)Var($X$)+[E($X$)]$^2$Var($N$). Con la frecuencia distribuida según una Poisson y las cuantías de los siniestros individuales exponencialmente distribuidas, E($S| \lambda, \beta$)=$\beta  \lambda$ y Var($S| \lambda, \beta$) = $\beta \lambda^2+\beta^2\lambda=2\beta \lambda^2$.
+
 **La media de la población $\mu$**: las medias de los riesgos son $\mu$(A)=0,5(1.000)=500; $\mu$(B)=1,0(1.500)=1.500; $\mu$(C)=2,0(2.000)=4.000; y entonces $\mu$=0,50(500)+0,30(1.500)+0,20(4.000)=1.500.
+
 **VHM**:  *VHM*=$0,50(500-1.500)^2+0,30(1.500-1.500)^2+0,20(4.000-1.500)^2$=1.750.000.
+
 **EPV**:  Las varianzas del proceso son $\sigma^2(A)=2(0,5)(1.00)^2=1.000.000$; $\sigma^2(B)=2(1,0)(1.500)^2=4.500.000$; $\sigma^2(C)=2(2,0)(2.000)^2=16.000.000$; y entonces
+
 *EPV*=0,50(1.000.000)+0,30(4.500.000)+0,20(16.000.000)=5.050.000.
+
 **$\mathbf{\bar{X}}$**: $\bar{X}_5=5.000/5$=1.000.
+
 **$\mathbf{K}$**: $K=5.050.000/1.750.000$=2,89.
+
 **$\mathbf{Z}$**: Tenemos cinco años de observaciones, $n=5$.  $Z=5/(5+2,89)$=0,63.
+
 **$\boldsymbol{\hat{\mu}(\theta)}$**:  $\hat{\mu}(\theta)=0,63(1.000)+(1-0,63)1.500=\boxed{\mathbf{1.185,00}}$.
 
 </div>
@@ -850,7 +858,7 @@ Una media empírica y el momento de segundo orden de la severidad de los siniest
 El análisis bayesiano, como se describió anteriormente, requiere suposiciones sobre una distribución a priori y una verosimilitud.   Es posible obtener estimaciones sin estas suposiciones, esta metodología es habitualmente conocida como `r Gloss('métodos de Bayes empíricos')`. Los modelos de credibilidad de Bühlmann y Bühlmann-Straub con parámetros estimados a partir de los datos se incluyen en esta categoría de métodos de Bayes empíricos.
 
 
-** Modelo de Bühlmann ** En primer lugar, trataremos el modelo más simple de Bühlmann. Suponemos que hay $r$ riesgos en una población. Para el riesgo $i$ con parámetro de riesgo $\theta_i$ los siniestros en $n$ periodos son $X_{i1},\ldots, X_{in}$. Los siniestros para un riesgo dado en diferentes periodos son *iid*, como se supone para el modelo de Bühlmann. Para el riesgo $i$ la media muestral es $\bar{X}_i=\suma_{j=1}^{n}X_{ij}/n$ y la varianza de proceso empírica y no sesgada es $s_i^2=\suma_{j=1}^{n}(X_{ij}-\bar{X}_i)^2/(n-1)$. Un estimador no sesgado para el *EPV* puede ser calculado obteniendo la media de $s_i^2$ para los $r$ riesgos de la población
+** Modelo de Bühlmann ** En primer lugar, trataremos el modelo más simple de Bühlmann. Suponemos que hay $r$ riesgos en una población. Para el riesgo $i$ con parámetro de riesgo $\theta_i$ los siniestros en $n$ periodos son $X_{i1},\ldots, X_{in}$. Los siniestros para un riesgo dado en diferentes periodos son *iid*, como se supone para el modelo de Bühlmann. Para el riesgo $i$ la media muestral es $\bar{X}_i=\sum_{j=1}^{n}X_{ij}/n$ y la varianza de proceso empírica y no sesgada es $s_i^2=\sum_{j=1}^{n}(X_{ij}-\bar{X}_i)^2/(n-1)$. Un estimador no sesgado para el *EPV* puede ser calculado obteniendo la media de $s_i^2$ para los $r$ riesgos de la población
 
 \begin{equation}  
 \widehat{EPV}=\frac{1}{r}\sum_{i=1}^{r} s_i^2 = \frac{1}{r(n-1)} \sum_{i=1}^{r} \sum_{j=1}^{n}(X_{ij}-\bar{X}_i)^2 .
@@ -1149,7 +1157,7 @@ Utilizando la fórmula (\@ref(eq:VHM-estimate)), el estimador para *VHM* es
 
 ### Estimadores de Credibilidad Balanceados
 
-El modelo de credibilidad ponderado $\hat{\mu}(\theta_i)=Z_i\bar{X}_i+(1-Z_i)\bar{X}$, donde $\bar{X}_i$ es la siniestralidad por exposición para un riesgo $i$ y $\bar{X}$ es la siniestralidad por exposición para toda la población, suele ser utilizado para estimar la siniestralidad esperada para el riesgo $i$.  La media global es $\bar{X}=\suma_{i=1}^r(m_i/m) \bar{X}_i$ donde $m_i$ y $m$ son el número de exposiciones para el riesgo $i$ y la población, respectivamente.
+El modelo de credibilidad ponderado $\hat{\mu}(\theta_i)=Z_i\bar{X}_i+(1-Z_i)\bar{X}$, donde $\bar{X}_i$ es la siniestralidad por exposición para un riesgo $i$ y $\bar{X}$ es la siniestralidad por exposición para toda la población, suele ser utilizado para estimar la siniestralidad esperada para el riesgo $i$.  La media global es $\bar{X}=\sum_{i=1}^r(m_i/m) \bar{X}_i$ donde $m_i$ y $m$ son el número de exposiciones para el riesgo $i$ y la población, respectivamente.
 
 Para que los estimadores ponderados de credibilidad estén balanceados queremos que
 

@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
-<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:TweedieDistribution"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
 <ul>
@@ -1182,7 +1182,6 @@ En una sección posterior, también veremos que las distribuciones marginales no
 \end{eqnarray*}\]</span></p>
 <p>El estadístico contraste ratio de verosimilitud es</p>
 <p><span class="math display">\[\begin{eqnarray*}
-
 G^2 = 2 \sum_{jk} n_{jk} \ln\frac{n_{jk}}{n_{j\centerdot}n_{\centerdot k}/n} .
 \end{eqnarray*}\]</span></p>
 <p>Bajo el supuesto de independencia, tanto <span class="math inline">\(\chi^2\)</span> como <span class="math inline">\(G^2\)</span> tienen una distribución asintótica de Chi-cuadrado con <span class="math inline">\((ncat_X-1)(ncat_Y-1)\)</span> grados de libertad.</p>
@@ -1393,14 +1392,16 @@ u_1) -1)(\exp(\theta u_2) -1)} {\exp(\theta) -1} \right).\]</span></p>
 <h3><span class="header-section-number">14.4.1</span> Descripción de los Datos</h3>
 <p>Comenzamos obteniendo una muestra (<span class="math inline">\(n = 1500\)</span>) de todos los datos. Consideramos las dos primeras variables de los datos; <em>losses</em> y <em>expenses</em>.</p>
 <ul>
-<li><ul>
-<li>losses *: reclamaciones de responsabilidad general de Insurance Services Office, Inc. (ISO)</li>
-</ul></li>
-<li><ul>
-<li>expenses *: ALAE, específicamente atribuibles a la liquidación de reclamaciones individuales (por ejemplo, honorarios de abogados, gastos de investigación de reclamaciones)</li>
-</ul></li>
+<li><em>losses</em>: reclamaciones de responsabilidad general de Insurance Services Office, Inc. (ISO)</li>
+<li><em>expenses</em>: ALAE, específicamente atribuibles a la liquidación de reclamaciones individuales (por ejemplo, honorarios de abogados, gastos de investigación de reclamaciones)</li>
 </ul>
-<p>Para visualizar la relación entre <em>losses</em> y <em>expenses</em> (ALAE), se crean diagramas de dispersión en la figura <a href="#fig:Scatter"><strong>??</strong></a> en la escala real en dólares y en la escala logarítmica.</p>
+<p>Para visualizar la relación entre <em>losses</em> y <em>expenses</em> (ALAE), se crean diagramas de dispersión en la figura <a href="C-DependenceModel.html#fig:Scatter">14.2</a> en la escala real en dólares y en la escala logarítmica.</p>
+<div class="figure"><span id="fig:Scatter"></span>
+<img src="LossDataAnalytics_files/figure-html/Scatter-1.png" alt="Scatter plot of Loss and ALAE" width="672" />
+<p class="caption">
+Figure 14.2: Scatter plot of Loss and ALAE
+</p>
+</div>
 <h5 style="text-align: center;">
 <a id="displayCode.ScaHis.1" href="javascript:togglecode('toggleCode.ScaHis.1','displayCode.ScaHis.1');"><i><strong>Código R para gráfico de dispersión</strong></i></a>
 </h5>
@@ -1458,18 +1459,18 @@ donde <span class="math inline">\(\theta\)</span> es el parámetro de escala y <
 <p>La transformación integral de probabilidad muestra que cualquier variable continua se puede mapear como una variable aleatoria <span class="math inline">\(U(0,1)\)</span> a través de su función de distribución.</p>
 <p>Dada la distribución Pareto II ajustada, la variable <em>expenses</em> se transforma en la variable <span class="math inline">\(u_1\)</span>, que sigue una distribución uniforme en <span class="math inline">\([0,1]\)</span>:</p>
 <p><span class="math display">\[u_1 = 1 - \left( 1 + \frac{ALAE}{\hat{\theta}} \right)^{-\hat{\alpha}}.\]</span></p>
-<p>Después de aplicar la transformación integral de probabilidad a la variable <em>expenses</em>, trazamos el histograma de <em>ALAE Transformada</em> en la Figura <a href="C-DependenceModel.html#fig:Hist">14.2</a>.</p>
+<p>Después de aplicar la transformación integral de probabilidad a la variable <em>expenses</em>, trazamos el histograma de <em>ALAE Transformada</em> en la Figura <a href="C-DependenceModel.html#fig:Hist">14.3</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:Hist"></span>
 <img src="LossDataAnalytics_files/figure-html/Hist-1.png" alt="Histograma de ALAE transformada" width="384" />
 <p class="caption">
-Figure 14.2: Histograma de ALAE transformada
+Figure 14.3: Histograma de ALAE transformada
 </p>
 </div>
-<p>Después del proceso de ajuste, la variable <em>loss</em> también se transforma en la variable <span class="math inline">\(u_2\)</span>, que sigue una distribución uniforme en <span class="math inline">\([0,1]\)</span>. Trazamos el histograma de <em>Loss transformada </em>. Como alternativa, la variable <em>loss</em> se transforma en <span class="math inline">\(normal\)</span> <span class="math inline">\(scores\)</span> con la función cuantil de la distribución normal estándar. Como vemos en la Figura <a href="C-DependenceModel.html#fig:Hist2">14.3</a>, las puntuaciones normales de la variable <em>loss</em> son aproximadamente marginalmente normal estándar.</p>
+<p>Después del proceso de ajuste, la variable <em>loss</em> también se transforma en la variable <span class="math inline">\(u_2\)</span>, que sigue una distribución uniforme en <span class="math inline">\([0,1]\)</span>. Trazamos el histograma de <em>Loss transformada </em>. Como alternativa, la variable <em>loss</em> se transforma en <span class="math inline">\(normal\)</span> <span class="math inline">\(scores\)</span> con la función cuantil de la distribución normal estándar. Como vemos en la Figura <a href="C-DependenceModel.html#fig:Hist2">14.4</a>, las puntuaciones normales de la variable <em>loss</em> son aproximadamente marginalmente normal estándar.</p>
 <div class="figure"><span id="fig:Hist2"></span>
 <img src="LossDataAnalytics_files/figure-html/Hist2-1.png" alt="Histograma de la Pérdida Transformada. El gráfico de la izquierda muestra la distribución de pérdidas transformadas integrales de probabilidad. El gráfico de la derecha muestra la distribución de las puntuaciones normales correspondientes." width="672" />
 <p class="caption">
-Figure 14.3: Histograma de la Pérdida Transformada. El gráfico de la izquierda muestra la distribución de pérdidas transformadas integrales de probabilidad. El gráfico de la derecha muestra la distribución de las puntuaciones normales correspondientes.
+Figure 14.4: Histograma de la Pérdida Transformada. El gráfico de la izquierda muestra la distribución de pérdidas transformadas integrales de probabilidad. El gráfico de la derecha muestra la distribución de las puntuaciones normales correspondientes.
 </p>
 </div>
 <h5 style="text-align: center;">
@@ -1488,12 +1489,12 @@ Figure 14.3: Histograma de la Pérdida Transformada. El gráfico de la izquierda
 </div>
 <div id="modelización-conjunta-con-función-de-cópula" class="section level3" number="14.4.3">
 <h3><span class="header-section-number">14.4.3</span> Modelización Conjunta con Función de Cópula</h3>
-<p>Antes de modelizar conjuntamente las pérdidas y los gastos, dibujamos el diagrama de dispersión de las variables transformadas <span class="math inline">\((u_1, u_2)\)</span> y el diagrama de dispersión de las puntuaciones normales en la figura <a href="C-DependenceModel.html#fig:Scatter2">14.4</a>.</p>
+<p>Antes de modelizar conjuntamente las pérdidas y los gastos, dibujamos el diagrama de dispersión de las variables transformadas <span class="math inline">\((u_1, u_2)\)</span> y el diagrama de dispersión de las puntuaciones normales en la figura <a href="C-DependenceModel.html#fig:Scatter2">14.5</a>.</p>
 <p>Posteriormente, calculamos la rho de Spearman entre estas dos variables aleatorias uniformes.</p>
 <div class="figure"><span id="fig:Scatter2"></span>
 <img src="LossDataAnalytics_files/figure-html/Scatter2-1.png" alt=" Izquierda: Gráfico de Dispersión para variables transformadas. Derecha: Gráfico de Dispersión para puntuaciones normales" width="672" />
 <p class="caption">
-Figure 14.4:  Izquierda: Gráfico de Dispersión para variables transformadas. Derecha: Gráfico de Dispersión para puntuaciones normales
+Figure 14.5:  Izquierda: Gráfico de Dispersión para variables transformadas. Derecha: Gráfico de Dispersión para puntuaciones normales
 </p>
 </div>
 <h5 style="text-align: center;">
@@ -1554,11 +1555,11 @@ Usamos el parámetro ajustado para actualizar la cópula de Frank. La correlaci�
 <span id="cb176-5"><a href="C-DependenceModel.html#cb176-5" aria-hidden="true" tabindex="-1"></a>Output <span class="sc">:</span> </span>
 <span id="cb176-6"><a href="C-DependenceModel.html#cb176-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4622722</span></span></code></pre></div>
 </div>
-<p>Para visualizar la cópula de Frank ajustada, las gráficas de perspectiva de la función de distribución y la función de densidad se dibujan en la Figura <a href="C-DependenceModel.html#fig:FrankCop">14.5</a>.</p>
+<p>Para visualizar la cópula de Frank ajustada, las gráficas de perspectiva de la función de distribución y la función de densidad se dibujan en la Figura <a href="C-DependenceModel.html#fig:FrankCop">14.6</a>.</p>
 <div class="figure"><span id="fig:FrankCop"></span>
 <img src="LossDataAnalytics_files/figure-html/FrankCop-1.png" alt="Izquierda: Gráfico de función de distribución para Franks Copula. Derecha: Gráfico de la función de densidad para Franks Copula" width="672" />
 <p class="caption">
-Figure 14.5: Izquierda: Gráfico de función de distribución para Franks Copula. Derecha: Gráfico de la función de densidad para Franks Copula
+Figure 14.6: Izquierda: Gráfico de función de distribución para Franks Copula. Derecha: Gráfico de la función de densidad para Franks Copula
 </p>
 </div>
 <h5 style="text-align: center;">
@@ -1659,11 +1660,11 @@ H^{-1}(u_p) \right) \prod_{j=1}^p \frac{1}{h(H^{-1}(u_j))}.\]</span></p>
 <span class="math inline">\(\mathrm{C}(u_1,\ldots, u_p) = \Pr(U_1 \leq u_1, \ldots, U_p \leq u_p) \leq \Pr(U_j \leq u_j)\)</span>, para <span class="math inline">\(j=1,\ldots,p\)</span>. El límite se logra cuando <span class="math inline">\(U_1 = \cdots = U_p\)</span>. Para el lado izquierdo cuando <span class="math inline">\(p=2\)</span>, considere <span class="math inline">\(U_2=1-U_1\)</span>. En este caso, si <span class="math inline">\(1-u_2 &lt; u_1\)</span> entonces <span class="math inline">\(\Pr(U_1 \leq u_1, U_2 \leq u_2) = \Pr ( 1-u_2 \leq U_1 &lt; u_1) =u_1+u_2-1.\)</span> <span class="citation">(<a href="#ref-nelsen1997introducción" role="doc-biblioref"><strong>nelsen1997introducción?</strong></a> )</span></p>
 <p>La cópula producto <span class="math inline">\(\mathrm{C}(u_1,u_2)=u_1u_2\)</span> es el resultado de asumir independencia entre variables aleatorias.</p>
 <p>El límite inferior se logra cuando las dos variables aleatorias están perfectamente relacionadas negativamente (<span class="math inline">\(U_2=1-U_1\)</span>) y el límite superior se logra cuando están perfectamente relacionado positivamente (<span class="math inline">\(U_2=U_1\)</span>).</p>
-<p>En la Figura <a href="C-DependenceModel.html#fig:Bounds">14.6</a> podemos ver el Frechet-Hoeffdingbounds para dos variables aleatorias.</p>
+<p>En la Figura <a href="C-DependenceModel.html#fig:Bounds">14.7</a> podemos ver el Frechet-Hoeffdingbounds para dos variables aleatorias.</p>
 <div class="figure"><span id="fig:Bounds"></span>
 <img src="LossDataAnalytics_files/figure-html/Bounds-1.png" alt=" Gráficas de dependencia Perfecta Positiva y Negativa" width="672" />
 <p class="caption">
-Figure 14.6:  Gráficas de dependencia Perfecta Positiva y Negativa
+Figure 14.7:  Gráficas de dependencia Perfecta Positiva y Negativa
 </p>
 </div>
 <h5 style="text-align: center;">
@@ -1697,7 +1698,7 @@ la tau de Kendall usa una copia independiente de (<span class="math inline">\(Y_
 <p>A partir de esta ecuación, <span class="math inline">\(R(z)\)</span> será igual a <span class="math inline">\(z\)</span> bajo el supuesto de independencia. Joe (1997) usa el término “parámetro de dependencia de la cola superior” para <span class="math inline">\(R = \lim_{z \rightarrow 1} R(z)\)</span>. De manera similar, la función de concentración de cola izquierda es</p>
 <p><span class="math display">\[L(z) = \frac{\Pr(U_1 \leq z, U_2 \leq z)}{z}=\Pr(U_1 \leq z | U_2 \leq z) =\frac{ \mathrm{C}(z,z)}{1-z}.\]</span></p>
 <p>La función de concentración Dependencia de la cola captura la probabilidad de que dos variables aleatorias alcancen valores extremos.</p>
-<p>Calculamos las funciones de concentración de cola izquierda y derecha para cuatro tipos diferentes de cópulas; Normal, Frank, Gumbel y t-copula. Después de obtener las funciones de concentración de la cola para cada cópula, mostramos los valores de la función de concentración para estas cuatro cópulas en la <a href="#tab:14.7">Table 14.7</a>. Como en <span class="citation"><a href="bibliography.html#ref-venter2002tails" role="doc-biblioref">Gary G. Venter</a> (<a href="bibliography.html#ref-venter2002tails" role="doc-biblioref">2002</a>)</span>, mostramos <span class="math inline">\(L(z)\)</span> para <span class="math inline">\(z\leq 0,5\)</span> y <span class="math inline">\(R(z)\)</span> para <span class="math inline">\(z&gt;0,5\)</span> en el gráfico de dependencia de cola en la Figura <a href="C-DependenceModel.html#fig:DepTails">14.7</a>. Interpretamos el gráfico de dependencia de la cola, en el sentido de que tanto la cópula Frank como la Normal no exhiben dependencia de la cola, mientras que <span class="math inline">\(t\)</span> y Gumbel pueden hacerlo. La cópula <span class="math inline">\(t\)</span> es simétrica en su tratamiento de las colas superior e inferior.</p>
+<p>Calculamos las funciones de concentración de cola izquierda y derecha para cuatro tipos diferentes de cópulas; Normal, Frank, Gumbel y t-copula. Después de obtener las funciones de concentración de la cola para cada cópula, mostramos los valores de la función de concentración para estas cuatro cópulas en la <a href="#tab:14.7">Table 14.7</a>. Como en <span class="citation"><a href="bibliography.html#ref-venter2002tails" role="doc-biblioref">Gary G. Venter</a> (<a href="bibliography.html#ref-venter2002tails" role="doc-biblioref">2002</a>)</span>, mostramos <span class="math inline">\(L(z)\)</span> para <span class="math inline">\(z\leq 0,5\)</span> y <span class="math inline">\(R(z)\)</span> para <span class="math inline">\(z&gt;0,5\)</span> en el gráfico de dependencia de cola en la Figura <a href="C-DependenceModel.html#fig:DepTails">14.8</a>. Interpretamos el gráfico de dependencia de la cola, en el sentido de que tanto la cópula Frank como la Normal no exhiben dependencia de la cola, mientras que <span class="math inline">\(t\)</span> y Gumbel pueden hacerlo. La cópula <span class="math inline">\(t\)</span> es simétrica en su tratamiento de las colas superior e inferior.</p>
 <p><a id=tab:14.7></a></p>
 <p><span class="math display">\[
 {\small \begin{matrix}
@@ -1743,7 +1744,7 @@ la tau de Kendall usa una copia independiente de (<span class="math inline">\(Y_
 <div class="figure"><span id="fig:DepTails"></span>
 <img src="LossDataAnalytics_files/figure-html/DepTails-1.png" alt="Gráficos de dependencia de la cola" width="672" />
 <p class="caption">
-Figure 14.7: Gráficos de dependencia de la cola
+Figure 14.8: Gráficos de dependencia de la cola
 </p>
 </div>
 <h5 style="text-align: center;">
@@ -1884,6 +1885,9 @@ Figure 14.7: Gráficos de dependencia de la cola
 \end{equation*}\]</span></p>
 <p>Es decir, primero se evalúa cada marginal en su mediana (<span class="math inline">\(F^{-1}_X(1/2)\)</span> y <span class="math inline">\(F^{-1}_Y(1/2)\)</span>, respectivamente). Luego, se evalúa la función de distribución bivariante en las dos medianas. Después de reescalar (multiplicar por 4 y restar 1), el coeficiente resulta tener un rango de <span class="math inline">\([-1,1]\)</span>, donde 0 es el valor bajo el supuesto de independencia.
 Al igual que la rho de Spearman y la tau de Kendall, es fácil proporcionar un estimador basado en rangos. Primero se expresa <span class="math inline">\(\beta = 4C(1/2,1/2)-1 = 2\Pr((U_1-1/2)(U_2-1/2))-1\)</span>, donde <span class="math inline">\(U_1, U_2\)</span> son variables aleatorias uniformes. Luego, se define</p>
+<p><span class="math display">\[\begin{equation*}
+\hat{\beta} = \frac{2}{n} \sum_{i=1}^n I\left( (R(X_{i})-\frac{n+1}{2})(R (Y_{i})-\frac{n+1}{2}) \ge 0 \right)-1 .
+\end{equation*}\]</span></p>
 <p>Consulte, por ejemplo, <span class="citation">(<a href="bibliography.html#ref-joe2014dependence" role="doc-biblioref">Joe 2014</a>)</span>, página 57 o <span class="citation">(<a href="bibliography.html#ref-hougaard2000analysis" role="doc-biblioref">Hougaard 2000</a>)</span>, página 135, para obtener más detalles.</p>
 <p>Debido a que el parámetro de Blomqvist se basa en el centro de la distribución, es particularmente útil cuando se censuran los datos; en este caso, la información en las partes extremas de la distribución no siempre es fiable. ¿Cómo afecta esto a la elección de las medidas de asociación? Primero, recuerde que las medidas de asociación se basan en una función de distribución bivariante. Entonces, si uno tiene conocimiento de una buena aproximación de la función de distribución, en principio el cálculo de una medida de asociación es sencillo. En segundo lugar, para datos censurados, están disponibles extensiones bivariantes del estimador univariante de Kaplan-Meier de función de distribución. Por ejemplo, la versión presentada en <span class="citation">(<a href="bibliography.html#ref-dabrowska1988kaplan" role="doc-biblioref">Dabrowska 1988</a>)</span> es atractiva. Sin embargo, debido a los casos en que aparecen grandes masas de datos en el rango superior de los datos, este y otros estimadores de la función de distribución bivariante no son fiables. Esto significa que las medidas resumidas de la función de distribución estimada basadas en la rho de Spearman o la tau de Kendall pueden no ser fiables. Para esta situación, la versión beta de Blomqvist parece ser una mejor opción, ya que se basa en el centro de la distribución. <span class="citation">(<a href="bibliography.html#ref-hougaard2000analysis" role="doc-biblioref">Hougaard 2000</a>)</span>, Capítulo 14, proporciona una discusión adicional.</p>
 <p>Puede obtener la versión beta de Blomqvist utilizando la función <code>betan()</code> de la librería <code>copula</code> en <code>R</code>. A continuación se obtiene <span class="math inline">\(\beta=0,3\)</span> entre la variable de tarificación <em>Coverage</em> en millones de dólares y la variable de cuantía <em>Claim</em> en dólares.</p>

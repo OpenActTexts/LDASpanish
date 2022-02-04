@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
-<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:TweedieDistribution"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
 <ul>
@@ -991,16 +991,16 @@ M_N(t) = \mathrm{E}~{[e^{tN}]} = \sum^{\infty}_{k=0} ~e^{tk}~ p_N(k), \quad t\in
 <!-- \begin{theorem}\label{freq:thm1} -->
 
 <div class="theorem">
-<p><span id="thm:freq-thm1" class="theorem"><strong>Theorem 2.1  </strong></span>Consideremos que <span class="math inline">\(N\)</span> es una variable aleatoria de recuento tal que <span class="math inline">\(\mathrm{E}~{[e^{t^\ast N}]}\)</span> es finita para algún <span class="math inline">\(t^\ast&gt;0\)</span>. Se tiene lo siguiente:</p>
+<p><span id="thm:freq.thm1" class="theorem"><strong>(#thm:freq.thm1) </strong></span>Consideremos que <span class="math inline">\(N\)</span> es una variable aleatoria de recuento tal que <span class="math inline">\(\mathrm{E}~{[e^{t^\ast N}]}\)</span> es finita para algún <span class="math inline">\(t^\ast&gt;0\)</span>. Se tiene lo siguiente:</p>
 <p>Todos los momentos de <span class="math inline">\(N\)</span> son finitos, <em>i.e.</em>
 <span class="math display">\[
-\mathrm{E}{[N^r]}&lt;\infty, \quad r \gt 0.
-\]</span>
-La <em>mgf</em> se puede usar para <em>generar</em> sus momentos de la siguiente forma:
-<span class="math display">\[
+\mathrm{E}{[N^r]}&lt;\infty, \quad r &gt; 0.
+\]</span></p>
+<p>La <em>mgf</em> se puede usar para <em>generar</em> sus momentos de la siguiente forma:</p>
+<p><span class="math display">\[
 \left.\frac{{\rm d}^m}{{\rm d}t^m} M_N(t)\right\vert_{t=0}=\mathrm{E}{N^m}, \quad m\geq 1.
-\]</span>
-La <em>mgf</em> <span class="math inline">\(M_N(\cdot)\)</span> caracteriza la distribución; en otras palabras, especifica de manera única la distribución.</p>
+\]</span></p>
+<p>La <em>mgf</em> <span class="math inline">\(M_N(\cdot)\)</span> caracteriza la distribución; en otras palabras, especifica de manera única la distribución.</p>
 </div>
 <p>Otro motivo por el que la <em>mgf</em> es muy útil como herramienta es que, para dos variables aleatorias independientes <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, con sus mgfs que existen alrededor de <span class="math inline">\(0\)</span>, la <em>mgf</em> de <span class="math inline">\(X+Y\)</span> es el producto de sus respectivas mgfs.</p>
 <p>Una función generadora relacionada con la <em>mgf</em> es la función generadora de probabilidad (pgf, según sus siglas en inglés), y es una herramienta útil para las variables aleatorias que toman valores en los números enteros no negativos. Para una variable aleatoria <span class="math inline">\(N\)</span>, por <span class="math inline">\(P_N(\cdot)\)</span> denotamos su <em>pgf</em> y se define como:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
@@ -1011,11 +1011,11 @@ P_N(s):=\mathrm{E}~{[s^N]}, \quad s\geq 0.
 <span class="math display">\[
 P_N(s)=M_N(\log(s)), \quad s&lt;e^{t^\ast}.
 \]</span>
-Además, si la <em>pgf</em> existe en el intervalo <span class="math inline">\([0,s^\ast)\)</span> con <span class="math inline">\(s^\ast&gt;1\)</span>, entonces la <em>mgf</em> <span class="math inline">\(M_N(\cdot)\)</span> existe en <span class="math inline">\((-\infty,\log(s^\ast))\)</span>, y especifica la distribución de <span class="math inline">\(N\)</span> de forma única por el Teorema <a href="C-Frequency-Modeling.html#thm:freq-thm1">2.1</a>. El siguiente resultado para <em>pgf</em> es análogo al Teorema <a href="C-Frequency-Modeling.html#thm:freq-thm1">2.1</a>, y en concreto motiva su nombre.</p>
+Además, si la <em>pgf</em> existe en el intervalo <span class="math inline">\([0,s^\ast)\)</span> con <span class="math inline">\(s^\ast&gt;1\)</span>, entonces la <em>mgf</em> <span class="math inline">\(M_N(\cdot)\)</span> existe en <span class="math inline">\((-\infty,\log(s^\ast))\)</span>, y especifica la distribución de <span class="math inline">\(N\)</span> de forma única por el Teorema @ref(thm:freq.thm1). El siguiente resultado para <em>pgf</em> es análogo al Teorema @ref(thm:freq.thm1), y en concreto motiva su nombre.</p>
 <!-- \begin{theorem}\label{pgfthm} -->
 
 <div class="theorem">
-<p><span id="thm:pgfthm" class="theorem"><strong>Theorem 2.2  </strong></span>
+<p><span id="thm:pgfthm" class="theorem"><strong>Theorem 2.1  </strong></span>
 Suponer que <span class="math inline">\(N\)</span> es una variable aleatoria de tal manera que <span class="math inline">\(\mathrm{E}~{(s^{\ast})^N}\)</span> es finita para algún <span class="math inline">\(s^\ast&gt;1\)</span>. Se tiene lo siguiente:</p>
 Todos los momentos de <span class="math inline">\(N\)</span> son finitos, <em>i.e.</em>
 <span class="math display">\[
@@ -1098,7 +1098,7 @@ kp_k=\begin{cases}
 <p><span class="math display">\[
 \mathrm{E}[{N}]=\sum_{k\geq 0} k~p_k =\lambda\sum_{k\geq 1} p_{k-1} = \lambda\sum_{j\geq 0} p_{j} =\lambda.
 \]</span>
-De hecho, de manera más general, utilizando una generalización de lo anterior o el Teorema <a href="C-Frequency-Modeling.html#thm:pgfthm">2.2</a>, vemos que
+De hecho, de manera más general, utilizando una generalización de lo anterior o el Teorema <a href="C-Frequency-Modeling.html#thm:pgfthm">2.1</a>, vemos que
 <span class="math display">\[
 \mathrm{E}{\prod\limits_{i=0}^{m-1} (N-i)}=\left.\frac{{\rm d}^m}{{\rm d}s^m} P_N(s)\right\vert_{s=1}=\lambda^m, \quad m\geq 1.
 \]</span>
@@ -1133,16 +1133,16 @@ p_k = \binom{k+r-1}{k} \left(\frac{1}{1+\beta}\right)^r \left(\frac{\beta}{1+\be
 para <span class="math inline">\(r&gt;0\)</span> y <span class="math inline">\(\beta\geq0\)</span>, entonces queda definida una <em>pmf</em> válida. Esta distribución que se ha definido se denomina la distribución negativa binomial con parámetros <span class="math inline">\((r,\beta)\)</span> con <span class="math inline">\(r&gt;0\)</span> y <span class="math inline">\(\beta\geq 0\)</span>. Además, la serie binomial también implica que la <em>pgf</em> de la distribución venga dada por
 <span class="math display">\[
 \begin{aligned}
-  P_N(z) &amp;= (1-\beta(z-1))^{-r}, \quad \vert z \vert \lt 1+\frac{1}{\beta}, \beta\geq0. 
+  P_N(z) &amp;= (1-\beta(z-1))^{-r}, \quad \vert z \vert &lt; 1+\frac{1}{\beta}, \beta\geq0. 
 \end{aligned}
 \]</span>
 Lo anterior implica que la <em>mgf</em> venga dada por
 <span class="math display">\[
 \begin{aligned}
-  M_N(t) &amp;= (1-\beta(e^t-1))^{-r}, \quad t \lt \log\left(1+\frac{1}{\beta}\right), \beta\geq0. 
+  M_N(t) &amp;= (1-\beta(e^t-1))^{-r}, \quad t &lt; \log\left(1+\frac{1}{\beta}\right), \beta\geq0. 
 \end{aligned}
 \]</span>
-Derivamos sus momentos utilizando el Teorema <a href="C-Frequency-Modeling.html#thm:freq-thm1">2.1</a> como sigue:</p>
+Derivamos sus momentos utilizando el Teorema @ref(thm:freq.thm1) como sigue:</p>
 <p><span class="math display">\[\begin{eqnarray*}
 \mathrm{E}[N]&amp;=&amp;M&#39;(0)= \left. r\beta e^t (1-\beta(e^t-1))^{-r-1}\right\vert_{t=0}=r\beta;\\
 \mathrm{E}[N^2]&amp;=&amp;M&#39;&#39;(0)= \left.\left[ r\beta e^t (1-\beta(e^t-1))^{-r-1} + r(r+1)\beta^2 e^{2t} (1-\beta(e^t-1))^{-r-2}\right]\right\vert_{t=0}\\

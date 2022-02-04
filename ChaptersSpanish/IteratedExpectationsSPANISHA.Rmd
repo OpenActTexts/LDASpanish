@@ -309,7 +309,7 @@ C ~
 \left(
 e^{\gamma}\right)^{a_1}
 \exp\left(-a_2e^{\gamma} \right).$$
-De la tabla de las distribuciones de la familia exponencial, se observa que es una distribución gamma. Es decir, tenemos que la distribución a priori de $\lambda = e^{\gamma}$ es una distribución gamma con parámetros $\alpha_{prior} = a_1 + 1$ y $\theta_ {prior}^{- 1} = a_2$. La distribución a posteriori es una distribución gamma con parámetros $\alpha_{post} = a_1 + x + 1 = \alpha_{prior} + x$ y $\theta_ {post}^{- 1} = a_2 + 1 = \theta_{prior}^{- 1} + 1$. Esto es consistente con el resultado de nuestra Sección \@ref(S:PosteriorDistribution).
+De la tabla de las distribuciones de la familia exponencial, se observa que es una distribución gamma. Es decir, tenemos que la distribución a priori de $\lambda = e^{\gamma}$ es una distribución gamma con parámetros $\alpha_{prior} = a_1 + 1$ y $\theta_ {prior}^{- 1} = a_2$. La distribución a posteriori es una distribución gamma con parámetros $\alpha_{post} = a_1 + x + 1 = \alpha_{prior} + x$ y $\theta_ {post}^{- 1} = a_2 + 1 = \theta_{prior}^{- 1} + 1$. Esto es consistente con el resultado de nuestra Sección \@ref(ConjugateDistributions).
  
 ***
 

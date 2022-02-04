@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
-<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:TweedieDistribution"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
 <ul>
@@ -1128,7 +1128,7 @@ x^{\alpha -1 }\exp(-x/ \theta)  &amp; - \frac{1}{\alpha \gamma},
 \end{matrix}
 }
 \]</span></p>
-<p>Las distribuciones Tweedie (ver Sección <a href="#S:TweedieDistribution"><strong>??</strong></a>) e inversa gaussiana también son miembros de la familia exponencial lineal. La familia exponencial lineal de las familias de distribuciones se utiliza ampliamente como base de los modelos lineales generalizados como se describe, por ejemplo, en <span class="citation"><a href="bibliography.html#ref-frees2009regression" role="doc-biblioref">Edward W. Frees</a> (<a href="bibliography.html#ref-frees2009regression" role="doc-biblioref">2009b</a>)</span>.</p>
+<p>Las distribuciones Tweedie (ver Sección <a href="C-AggLossModels.html#S:TweedieDistribution">5.3.4</a>) e inversa gaussiana también son miembros de la familia exponencial lineal. La familia exponencial lineal de las familias de distribuciones se utiliza ampliamente como base de los modelos lineales generalizados como se describe, por ejemplo, en <span class="citation"><a href="bibliography.html#ref-frees2009regression" role="doc-biblioref">Edward W. Frees</a> (<a href="bibliography.html#ref-frees2009regression" role="doc-biblioref">2009b</a>)</span>.</p>
 </div>
 <div id="distribuciones-conjugadas" class="section level3" number="16.3.2">
 <h3><span class="header-section-number">16.3.2</span> Distribuciones Conjugadas</h3>
@@ -1151,7 +1151,7 @@ C ~
 \left(
 e^{\gamma}\right)^{a_1}
 \exp\left(-a_2e^{\gamma} \right).\]</span>
-De la tabla de las distribuciones de la familia exponencial, se observa que es una distribución gamma. Es decir, tenemos que la distribución a priori de <span class="math inline">\(\lambda = e^{\gamma}\)</span> es una distribución gamma con parámetros <span class="math inline">\(\alpha_{prior} = a_1 + 1\)</span> y <span class="math inline">\(\theta_ {prior}^{- 1} = a_2\)</span>. La distribución a posteriori es una distribución gamma con parámetros <span class="math inline">\(\alpha_{post} = a_1 + x + 1 = \alpha_{prior} + x\)</span> y <span class="math inline">\(\theta_ {post}^{- 1} = a_2 + 1 = \theta_{prior}^{- 1} + 1\)</span>. Esto es consistente con el resultado de nuestra Sección <a href="#S:PosteriorDistribution"><strong>??</strong></a>.</p>
+De la tabla de las distribuciones de la familia exponencial, se observa que es una distribución gamma. Es decir, tenemos que la distribución a priori de <span class="math inline">\(\lambda = e^{\gamma}\)</span> es una distribución gamma con parámetros <span class="math inline">\(\alpha_{prior} = a_1 + 1\)</span> y <span class="math inline">\(\theta_ {prior}^{- 1} = a_2\)</span>. La distribución a posteriori es una distribución gamma con parámetros <span class="math inline">\(\alpha_{post} = a_1 + x + 1 = \alpha_{prior} + x\)</span> y <span class="math inline">\(\theta_ {post}^{- 1} = a_2 + 1 = \theta_{prior}^{- 1} + 1\)</span>. Esto es consistente con el resultado de nuestra Sección <a href="#ConjugateDistributions"><strong>??</strong></a>.</p>
 <hr />
 <p><strong>Caso especial. El modelo Normal-Normal.</strong>
 Consideremos una verosimilitud normal para la que <span class="math inline">\(b(\gamma) = \gamma^2/2\)</span> y el parámetro de escala es <span class="math inline">\(\sigma^2\)</span>. Por lo tanto, tenemos

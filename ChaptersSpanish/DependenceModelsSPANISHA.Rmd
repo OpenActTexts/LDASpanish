@@ -418,7 +418,6 @@ Más generalmente, sea $(X,Y)$ un par bivariante con número de categorías $nca
 El estadístico `r Gloss('contraste ratio de verosimilitud')` es
 
 \begin{eqnarray*}
-
 G^2 = 2 \sum_{jk} n_{jk} \ln\frac{n_{jk}}{n_{j\centerdot}n_{\centerdot k}/n} .
 \end{eqnarray*}
 
@@ -755,8 +754,8 @@ Posteriormente modelizamos la distribución conjunta de estos resultados margina
 
 Comenzamos obteniendo una muestra ($n = 1500$) de todos los datos. Consideramos las dos primeras variables de los datos; *losses* y *expenses*.
 
-* * losses *: reclamaciones de responsabilidad general de Insurance Services Office, Inc. (ISO)
-* * expenses *: ALAE, específicamente atribuibles a la liquidación de reclamaciones individuales (por ejemplo, honorarios de abogados, gastos de investigación de reclamaciones)
+*  *losses*: reclamaciones de responsabilidad general de Insurance Services Office, Inc. (ISO)
+*  *expenses*: ALAE, específicamente atribuibles a la liquidación de reclamaciones individuales (por ejemplo, honorarios de abogados, gastos de investigación de reclamaciones)
 
 
 ```{r message=FALSE, include=FALSE}
@@ -769,10 +768,10 @@ loss <- Lossdata$loss
 
 Para visualizar la relación entre *losses* y *expenses* (ALAE), se crean diagramas de dispersión en la figura \@ref(fig:Scatter) en la escala real en dólares y en la escala logarítmica.
 
-```{r  Scatter, include=FALSE, fig.cap='Scatter plot of Loss and ALAE'}
+```{r Scatter, echo=FALSE, fig.cap='Scatter plot of Loss and ALAE'}
 par(mfrow=c(1, 2))
-plot(loss,alae, cex=.5) # escala real en dólares
-plot(log(loss),log(alae),cex=.5) # escala logarítmica
+plot(loss,alae, cex=.5)           # escala real en dólares
+plot(log(loss),log(alae),cex=.5)  # escala logarítmica
 ```
 
 
@@ -1547,9 +1546,9 @@ plot(density(S), main="Densidad del riesgo total de cartera S", xlab="S")
 Es decir, primero se evalúa cada marginal en su mediana ($F^{-1}_X(1/2)$ y $F^{-1}_Y(1/2)$, respectivamente). Luego, se evalúa la función de distribución bivariante en las dos medianas. Después de reescalar (multiplicar por 4 y restar 1), el coeficiente resulta tener un rango de $[-1,1]$, donde 0 es el valor bajo el supuesto de independencia.
 Al igual que la rho de Spearman y la tau de Kendall, es fácil proporcionar un estimador basado en rangos. Primero se expresa $\beta = 4C(1/2,1/2)-1 = 2\Pr((U_1-1/2)(U_2-1/2))-1$, donde $U_1, U_2$ son variables aleatorias uniformes. Luego, se define
 
-\begin{ecuación*}
+\begin{equation*}
 \hat{\beta} = \frac{2}{n} \sum_{i=1}^n I\left( (R(X_{i})-\frac{n+1}{2})(R (Y_{i})-\frac{n+1}{2}) \ge 0 \right)-1 .
-\end{ecuación*}
+\end{equation*}
 
 Consulte, por ejemplo, [@joe2014dependence], página 57 o [@hougaard2000analysis], página 135, para obtener más detalles.
 

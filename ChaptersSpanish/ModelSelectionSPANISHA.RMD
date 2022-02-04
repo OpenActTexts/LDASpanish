@@ -1901,7 +1901,7 @@ Para una póliza seleccionada al azar, las pérdidas en el año 1 fueron 5. Calc
 
 **Solución.**
 
-Se nos da la distribución a priori de $\theta$ como $ \Pr(\theta = 1) = \Pr(\theta = 3) = \frac{1}{2}$, la distribución condicional $f (x | \theta)$, y el hecho de que observamos $X_1 = 5$. El objetivo es encontrar la probabilidad predictiva $\Pr(X_2> 8 | X_1 = 5)$.
+Se nos da la distribución a priori de $\theta$ como $\Pr(\theta = 1) = \Pr(\theta = 3) = \frac{1}{2}$, la distribución condicional $f (x | \theta)$, y el hecho de que observamos $X_1 = 5$. El objetivo es encontrar la probabilidad predictiva $\Pr(X_2> 8 | X_1 = 5)$.
 
 Las probabilidades a posteriori son
 

@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
-<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:TweedieDistribution"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
 <ul>
@@ -1623,7 +1623,7 @@ F_{S}\left(s\right) &amp;=&amp; p_{0}+\sum_{n=1}^{\infty }p_n F_{X}^{\ast n}\lef
 donde <span class="math inline">\(\overline{P}_j =p_{j+1}+p_{j+2}+\cdots = \Pr (N&gt;j)\)</span> es la “función de supervivencia” de la distribución del número de siniestros.</p>
 <hr />
 </div>
-<div id="distribución-tweedie" class="section level3" number="5.3.4">
+<div id="S:TweedieDistribution" class="section level3" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> Distribución Tweedie</h3>
 <p>En esta sección se analiza una distribución compuesta concreta en la que el número de siniestros sigue una distribución de Poisson y la cuantía del siniestro sigue una distribución gamma. Esta especificación genera lo que se conoce como <em>distribución Tweedie</em>. La distribución Tweedie tiene masa de probabilidad en cero y una componente continua para valores positivos. Esta característica hace que sea ampliamente utilizada en la modelización de la siniestralidad en seguros, donde la masa en cero se interpreta como ningún siniestro y la componente positiva como el coste de los siniestros.</p>
 <p>Concretamente, consideremos el modelo de riesgo colectivo <span class="math inline">\(S_N=X_1+\cdots+X_N\)</span>.

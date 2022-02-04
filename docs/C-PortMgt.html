@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#momentos-y-distribución"><i class="fa fa-check"></i><b>5.3.1</b> Momentos y distribución</a></li>
 <li class="chapter" data-level="5.3.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#seguro-stop-loss"><i class="fa fa-check"></i><b>5.3.2</b> Seguro Stop-loss</a></li>
 <li class="chapter" data-level="5.3.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#resultados-analíticos"><i class="fa fa-check"></i><b>5.3.3</b> Resultados analíticos</a></li>
-<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#distribución-tweedie"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
+<li class="chapter" data-level="5.3.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:TweedieDistribution"><i class="fa fa-check"></i><b>5.3.4</b> Distribución Tweedie</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#cálculo-de-la-distribución-de-pérdidas-agregadas"><i class="fa fa-check"></i><b>5.4</b> Cálculo de la Distribución de Pérdidas Agregadas</a>
 <ul>
@@ -1794,7 +1794,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <li>Un acuerdo surplus share permite al reasegurado limitar su exposición a un determinado riesgo a una cantidad dada (el <em>pleno de retención</em>).</li>
 <li>El reasegurador asume una parte del riesgo en proporción a la cantidad que el valor asegurado excede el pleno de retención, hasta un límite dado (expresado como un múltiplo del pleno de retención, o número de plenos).</li>
 </ul>
-<p>Por ejemplo, sea el pleno de retención $100,000 y el límite 4 veces el pleno ($400,000). Entonces, si <span class="math inline">\(X\)</span> es la pérdida, la parte del reasegurador es <span class="math inline">\(\min(400000, (X-100000)_+)\)</span>.</p>
+<p>Por ejemplo, sea el pleno de retención 100,000 y el límite 4 veces el pleno (400,000). Entonces, si <span class="math inline">\(X\)</span> es la pérdida, la parte del reasegurador es <span class="math inline">\(\min(400000, (X-100000)_+)\)</span>.</p>
 </div>
 <div id="layers-de-cobertura" class="section level4" number="10.4.3.2">
 <h4><span class="header-section-number">10.4.3.2</span> Layers de cobertura</h4>
@@ -1812,7 +1812,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <th>Siniestro 2</th>
 <th>Siniestro 3</th>
 <th>Siniestro 4</th>
-<th align="center">Total</th>
+<th align="right">Total</th>
 </tr>
 </thead>
 <tbody>
@@ -1822,7 +1822,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <td>100</td>
 <td>100</td>
 <td>100</td>
-<td align="center">350</td>
+<td align="right">350</td>
 </tr>
 <tr class="even">
 <td align="left">(100, 3000]</td>
@@ -1830,15 +1830,15 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <td>500</td>
 <td>1700</td>
 <td>2900</td>
-<td align="center">5100</td>
+<td align="right">5100</td>
 </tr>
 <tr class="odd">
-<td align="left">(3000, $</td>
-<td>ty$) 0</td>
+<td align="left">(3000, <span class="math inline">\(\infty\)</span>)</td>
+<td>0</td>
 <td>0</td>
 <td>0</td>
 <td>1000</td>
-<td align="center">1000</td>
+<td align="right">1000</td>
 </tr>
 <tr class="even">
 <td align="left">Total</td>
@@ -1846,7 +1846,7 @@ E(X \wedge M)^2 = 2\int_0^M ~x(1- F(x))dx.
 <td>600</td>
 <td>1800</td>
 <td>4000</td>
-<td align="center">6450</td>
+<td align="right">6450</td>
 </tr>
 </tbody>
 </table>
